@@ -67,6 +67,8 @@ def ratchet():
     for k in range(5): i = int(k * 0.05 * SR); c = hp(noise(0.03), 1500) * dec(int(0.03 * SR), 25); x[i:i + len(c)] += c * (1 - k * 0.12)
     return x
 
+put(chime(1318), 3.2, 0.10); put(chime(1046), 3.35, 0.08)  # lift arrives: ding-dong
+out += 0.06 * bp(rng.standard_normal(N), 80, 400) * ramp(0.0, 0.3, ct) * (1 - ramp(2.9, 3.3, ct))  # motor running while it rises
 put(snap(1.3), 4.9, 0.55); put(thud(0.5, 70), 4.95, 0.6)
 for k in range(5): put(tick(880 * 2 ** (k / 12 * 2)), 9.3 + k * 0.55, 0.18)
 for k in range(5): put(pop(), 14.5 + (k + 1) * 0.22, 0.2)

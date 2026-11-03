@@ -9,6 +9,7 @@ import { ShaderPass } from "./lib/jsm/postprocessing/ShaderPass.js";
 import { OutputPass } from "./lib/jsm/postprocessing/OutputPass.js";
 import { RoundedBoxGeometry } from "./lib/jsm/geometries/RoundedBoxGeometry.js";
 import { RoomEnvironment } from "./lib/jsm/environments/RoomEnvironment.js";
+import { mergeGeometries } from "./lib/jsm/utils/BufferGeometryUtils.js";
 
 // ---------- helpers ----------
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
@@ -30,7 +31,8 @@ export const PAL = {
 const mat = (c, o = {}) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.6, metalness: 0, ...o });
 const flat = (c, o = {}) => mat(c, { flatShading: true, roughness: 0.85, ...o });
 
-export function createWorld(canvas, W, H, scale = 1) {
+export function createWorld(canvas, W, H, scale = 1, opts = {}) {
+  const FX = { ao: opts.ao ?? true, bloom: opts.bloom ?? true, finish: opts.finish ?? true, msaa: opts.msaa ?? (scale < 1 ? 0 : 2), half: opts.half ?? true };
   // deterministic construction: some three.js addons seed noise with Math.random
   const realRandom = Math.random; Math.random = mulberry32(1234);
 
@@ -167,6 +169,18 @@ export function createWorld(canvas, W, H, scale = 1) {
   for (const sx of [-RAILX, RAILX]) {
     const web = new THREE.Mesh(new THREE.BoxGeometry(0.12, TOP + 4, 0.34), railM); web.position.set(sx, (TOP + 4) / 2 - 3.2, CARZ); tower.add(web);
     const fl = new THREE.Mesh(new THREE.BoxGeometry(0.34, TOP + 4, 0.1), railM); fl.position.set(sx + Math.sign(sx) * 0.17, (TOP + 4) / 2 - 3.2, CARZ); tower.add(fl);
+  }
+  // merge the tower's static pieces by material: hundreds of draw calls -> a handful
+  {
+    tower.updateMatrixWorld(true);
+    const byMat = new Map(); const drop = [];
+    tower.traverse((o) => { if (!o.isMesh || o.material.transparent || o.material.map) return;
+      const g = o.geometry.index ? o.geometry.toNonIndexed() : o.geometry.clone();
+      for (const k of Object.keys(g.attributes)) if (!["position", "normal"].includes(k)) g.deleteAttribute(k);
+      g.applyMatrix4(o.matrix.clone().premultiply(new THREE.Matrix4().copy(o.parent === tower ? new THREE.Matrix4() : o.parent.matrix)));
+      if (!byMat.has(o.material)) byMat.set(o.material, []); byMat.get(o.material).push(g); drop.push(o); });
+    drop.forEach((o) => o.parent.remove(o));
+    for (const [m, gs] of byMat) { const mesh = new THREE.Mesh(mergeGeometries(gs, false), m); mesh.castShadow = true; mesh.receiveShadow = true; tower.add(mesh); }
   }
   // machine room on the roof: glass box, motor, main sheave, governor
   const MR = new THREE.Group(); MR.position.set(0, TOPW + 0.6, CARZ); scene.add(MR);
@@ -331,16 +345,16 @@ export function createWorld(canvas, W, H, scale = 1) {
   const hide = (im, i) => { dummy.position.set(0, -9999, 0); dummy.scale.setScalar(0.0001); dummy.updateMatrix(); im.setMatrixAt(i, dummy.matrix); };
 
   // ---------- post-processing ----------
-  const rt = new THREE.WebGLRenderTarget(RW, RH, { type: THREE.HalfFloatType, samples: 4 });
+  const rt = new THREE.WebGLRenderTarget(RW, RH, { type: FX.half ? THREE.HalfFloatType : THREE.UnsignedByteType, samples: FX.msaa });
   const composer = new EffectComposer(renderer, rt);
   composer.setPixelRatio(1); composer.setSize(RW, RH);
   composer.addPass(new RenderPass(scene, camera));
   const gtao = new GTAOPass(scene, camera, RW, RH);
-  gtao.updateGtaoMaterial({ radius: 0.6, distanceExponent: 1.5, thickness: 1.2, scale: 1.0, samples: scale < 1 ? 8 : 12, distanceFallOff: 1, screenSpaceRadius: false });
+  gtao.updateGtaoMaterial({ radius: 0.6, distanceExponent: 1.5, thickness: 1.2, scale: 1.0, samples: scale < 1 ? 6 : 10, distanceFallOff: 1, screenSpaceRadius: false });
   gtao.updatePdMaterial({ lumaPhi: 10, depthPhi: 2, normalPhi: 3, radius: 6, rings: 2, samples: 8 });
   gtao.blendIntensity = 0.85;
-  composer.addPass(gtao);
-  const bloom = new UnrealBloomPass(new THREE.Vector2(RW, RH), 0.22, 0.5, 1.05); composer.addPass(bloom);
+  if (FX.ao) composer.addPass(gtao);
+  const bloom = new UnrealBloomPass(new THREE.Vector2(RW, RH), 0.22, 0.5, 1.05); if (FX.bloom) composer.addPass(bloom);
   // tilt-shift (miniature look) + warm grade + vignette, all in one pass
   const finish = new ShaderPass({
     uniforms: { tDiffuse: { value: null }, res: { value: new THREE.Vector2(RW, RH) }, focusY: { value: 0.6 }, band: { value: 0.2 }, blurAmt: { value: 1.0 }, vig: { value: 0.32 } },
@@ -349,8 +363,8 @@ export function createWorld(canvas, W, H, scale = 1) {
       void main(){
         float d = max(0.0, abs(vUv.y - focusY) - band); float r = clamp(d * 3.2, 0.0, 1.0) * blurAmt * 7.0;
         vec4 acc = vec4(0.0); float wsum = 0.0;
-        for (int i = -4; i <= 4; i++) for (int j = -4; j <= 4; j++) {
-          vec2 o = vec2(float(i), float(j)) / 4.0; float w = exp(-dot(o,o)*1.5);
+        for (int i = -2; i <= 2; i++) for (int j = -2; j <= 2; j++) {
+          vec2 o = vec2(float(i), float(j)) / 2.0; float w = exp(-dot(o,o)*1.5);
           acc += texture2D(tDiffuse, vUv + o * r / res) * w; wsum += w; }
         vec3 c = (acc / wsum).rgb;
         float l = dot(c, vec3(0.299,0.587,0.114)); c = mix(vec3(l), c, 1.12);               // a touch more saturation
@@ -359,7 +373,7 @@ export function createWorld(canvas, W, H, scale = 1) {
         vec2 q = vUv - 0.5; q.x *= res.x / res.y; float v = smoothstep(0.95, 0.25, length(q)); c *= mix(1.0 - vig, 1.0, v);
         gl_FragColor = vec4(c, 1.0); }`,
   });
-  composer.addPass(finish);
+  if (FX.finish) composer.addPass(finish);
   composer.addPass(new OutputPass());
   Math.random = realRandom;
 
@@ -368,8 +382,10 @@ export function createWorld(canvas, W, H, scale = 1) {
   // fall: slow-motion free fall from 22.3, governor trips ~28, safeties grip 32.4-36.8
   const vFall = (t) => (t < 22.3 ? 0 : t < 27.5 ? 4.2 * ss(22.3, 27.5, t) : t < 32.4 ? 4.2 : 4.2 * (1 - ss(32.4, 36.8, t)));
   const YT = []; { let y = CAR_Y0, dt = 1 / 120; for (let t = 0; t <= 61; t += dt) { if (t > 4.9 && t < 5.25) y -= 0.5 * dt; y -= vFall(t) * dt; YT.push(y); } }
+  const CAR_START = BASE + 26 * FLOOR_H;         // the film opens with the lift arriving: floor 26 -> 30
   const carY = (t) => {
-    if (t >= 54.5) return CAR_Y0; // next ride: a fresh, intact lift (loop)
+    if (t >= 54.5) return CAR_START; // next ride: a fresh, intact lift at the opening position (loop)
+    if (t < 3.2) return lerp(CAR_START, CAR_Y0, ease(clamp(t / 3.2)));
     return YT[clamp(Math.round(t * 120), 0, YT.length - 1)];
   };
   const speedMS = (t) => (t >= 54.5 ? 0 : vFall(t) / 4.2 * 2.6 + (t > 4.9 && t < 5.25 ? 0.4 : 0)); // shown on the dial (m/s, illustrative)
@@ -387,9 +403,9 @@ export function createWorld(canvas, W, H, scale = 1) {
   // ---------- camera keys ----------
   const cpos = () => V(0, carY(curT), CARZ);
   let curT = 0;
-  const W0 = { pos: V(2.2, CAR_Y0 + 1.6, CARZ + 11.5), look: V(0, CAR_Y0 + 3.2, CARZ) }; // the hook shot: car front + cables
+  const W0 = { pos: V(2.2, 1.6, 11.5), look: V(0, 3.2, 0) }; // the hook shot (relative to the car): car front + cables
   const keys = [
-    { t: 0, pos: () => W0.pos, look: () => W0.look, fov: 38 },
+    { t: 0, pos: () => cpos().add(W0.pos), look: () => cpos().add(W0.look), fov: 38 },
     { t: 4.4, pos: () => cpos().add(V(1.6, 1.9, 10.2)), look: () => cpos().add(V(0, 3.4, 0)), fov: 38 },
     { t: 7.2, pos: () => cpos().add(V(3.2, 3.0, 14.0)), look: () => cpos().add(V(0, 5.0, 0)), fov: 40 },
     { t: 12.8, pos: () => cpos().add(V(-2.6, 5.5, 15.0)), look: () => cpos().add(V(0, 5.2, 0)), fov: 40 },
@@ -405,7 +421,7 @@ export function createWorld(canvas, W, H, scale = 1) {
     { t: 52.0, pos: () => V(-15.5, 10.5, 36), look: () => V(-30, 5.5, 12), fov: 40 },
     { t: 54.6, pos: () => V(-16, 10, 35), look: () => V(-30, 5.5, 12), fov: 40 },
     { t: 57.4, pos: () => V(40, 58, 170), look: () => V(-4, 36, 0), fov: 42 },
-    { t: 60, pos: () => W0.pos, look: () => W0.look, fov: 38 },
+    { t: 60, pos: () => cpos().add(W0.pos), look: () => cpos().add(W0.look), fov: 38 },
   ];
   const cr = (p0, p1, p2, p3, u) => { const u2 = u * u, u3 = u2 * u; return p1.clone().multiplyScalar(2).add(p2.clone().sub(p0).multiplyScalar(u)).add(p0.clone().multiplyScalar(2).sub(p1.clone().multiplyScalar(5)).add(p2.clone().multiplyScalar(4)).sub(p3).multiplyScalar(u2)).add(p1.clone().multiplyScalar(3).sub(p0).sub(p2.clone().multiplyScalar(3)).add(p3).multiplyScalar(u3)).multiplyScalar(0.5); };
   // Hermite with tangents clamped to the current segment length: smooth through keys, never overshoots
@@ -444,10 +460,10 @@ export function createWorld(canvas, W, H, scale = 1) {
       const b = V(c.x, cy + CAR_H + 0.72, CARZ + c.z);
       if (!broken) { c.upper.visible = true; c.lower.visible = false; placeCyl(c.upper, a, b); }
       else {
-        const dt = t - snapT; const mid = a.clone().lerp(b, 0.5);
+        const dt = t - snapT; const mid = b.clone().add(V(0, 1.4, 0)); // breaks just above the car roof, in frame
         // upper part springs up, lower part whips and dangles from the crosshead
         const upEnd = mid.clone().add(V(0.4 * Math.sin(dt * 6) * Math.exp(-dt * 2), 3 + 6 * (1 - Math.exp(-dt * 3)), 0.3 * Math.sin(dt * 5) * Math.exp(-dt)));
-        const lowLen = Math.min(4.5, b.distanceTo(mid));
+        const lowLen = 1.4;
         const sway = Math.sin(dt * 4 + i) * Math.exp(-dt * 0.8);
         const lowEnd = b.clone().add(V(0.9 * sway + 0.6 * (i % 2 ? 1 : -1), Math.min(-0.2, lowLen * (0.4 - 0.8 * ss(0, 1.2, dt))), 0.8 + 0.4 * sway));
         c.upper.visible = true; c.lower.visible = true; placeCyl(c.upper, a, upEnd); placeCyl(c.lower, b, lowEnd);
@@ -526,7 +542,7 @@ export function createWorld(canvas, W, H, scale = 1) {
       const dtb = t - B.t; if (dtb < 0 || dtb > 1.2 || (fresh && B.t < 50)) continue;
       const r2 = mulberry32(Math.round(B.t * 100));
       let c0;
-      if (B.at.startsWith("cable")) { const c = cables[+B.at.slice(5)]; c0 = V(c.x * 0.8, (TOPW + 2 + YT[Math.round(B.t * 120)] + CAR_H) / 2, CARZ + c.z); }
+      if (B.at.startsWith("cable")) { const c = cables[+B.at.slice(5)]; c0 = V(c.x, YT[Math.round(B.t * 120)] + CAR_H + 0.72 + 1.4, CARZ + c.z); }
       else if (B.at === "gov") { GOV.getWorldPosition(gpos); c0 = gpos.clone(); }
       else if (B.at === "pit") c0 = V(0, BASE - 1.3, CARZ);
       else { otis.updateMatrixWorld(true); c0 = V(2.0, 5.2, 0).applyMatrix4(otis.matrixWorld); }
@@ -574,5 +590,5 @@ export function createWorld(canvas, W, H, scale = 1) {
   }
 
   function debug(t) { render(t); const v = car.position.clone().project(camera); return { t, car: car.position.toArray().map((x) => +x.toFixed(1)), ndc: [+v.x.toFixed(2), +v.y.toFixed(2)], cam: camera.position.toArray().map((x) => +x.toFixed(1)) }; }
-  return { render, speed: speedMS, debug, scene };
+  return { render, speed: speedMS, debug, scene, composer, passes: { gtao, bloom, finish } };
 }

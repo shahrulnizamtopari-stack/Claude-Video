@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ms" data-composition-variables='[{"id":"previewScale","type":"number","label":"3D render scale (0.5 for previews)","default":1,"min":0.25,"max":1,"step":0.25}]'>
+<html lang="ms" data-composition-variables='[{"id":"previewScale","type":"number","label":"3D render scale (0.5 for previews)","default":1,"min":0.25,"max":1,"step":0.25},{"id":"fx","type":"string","label":"effects override (JSON, testing only)","default":""}]'>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1080, height=1920" />
@@ -39,6 +39,7 @@
           <div class="unit">m/s</div>
         </div>
       </div>
+      <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="60" data-track-index="5" data-volume="1"></audio>
     </div>
 
     <script>
@@ -53,7 +54,8 @@
       const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
       const scale = Number(vars.previewScale) || 1;
       await document.fonts.load('800 40px "Montserrat"');
-      const world = createWorld(document.getElementById("world-canvas"), 1080, 1920, scale);
+      let fxOpts = {}; try { fxOpts = vars.fx ? JSON.parse(vars.fx) : {}; } catch (e) {}
+      const world = createWorld(document.getElementById("world-canvas"), 1080, 1920, scale, fxOpts);
 
       const num = document.getElementById("meter-num"), arc = document.getElementById("meter-arc");
       function drawMeter(ct) {
