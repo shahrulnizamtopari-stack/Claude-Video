@@ -1,13 +1,16 @@
 ---
 name: explainer-style
-description: House style for this repo's vertical 3D explainer videos (low-poly floating island at sunset, one continuous camera take, one-word Malay captions, voiceover-synced, loops cleanly). Use whenever the user asks for a new explainer / "video macam style plane tu" / a new topic in the same style, or to edit an existing one. Holds the look, the process with its approval stops, the reusable code in plane-video/, and the pitfalls already solved.
+description: House style for this repo's vertical 3D explainer videos (current default is the v3 "studio" look - light technical cutaway, phrase captions with a blue select-box, live HUD, callout labels; older looks are the floating island at sunset). One continuous camera take, Malay voiceover-synced, loops cleanly. Use whenever the user asks for a new explainer / "video macam style plane tu" / a new topic in the same style, or to edit an existing one. Holds the look, the process with its approval stops, the reusable code in plane-video/, and the pitfalls already solved.
 ---
 
 # Explainer style: "the simple way" vertical 3D videos
 
-Two reference films:
-- **`lift-video/` (v2 look, the current default).** "Kenapa Lif Tak Terus Jatuh Bila Kabel Putus?" Post-processed
-  Three.js: environment light, GTAO, bloom, tilt-shift, grade and vignette, with smooth rounded models. Start new videos from this one.
+Reference films:
+- **`ricecooker-video/` (v3 "studio" look, the current default).** "Periuk Nasi Boleh Ditipu". Light technical cutaway on a
+  pale blue-white studio, ink outlines, one blue accent, phrase captions with a select-box, live HUD, callout labels, source notes.
+  Film length follows the voiceover. **Start new videos from this one** (see §0).
+- `lift-video/` (v2 look). "Kenapa Lif Tak Terus Jatuh Bila Kabel Putus?" Post-processed
+  Three.js: environment light, GTAO, bloom, tilt-shift, grade and vignette, with smooth rounded models, floating island at sunset.
 - `plane-video/` (v1). Flat low-poly, no post-processing, burned-in one-word captions, voiceover-synced.
 
 A new video copies the reference project and replaces only the story-specific parts.
@@ -15,7 +18,58 @@ A new video copies the reference project and replaces only the story-specific pa
 Engine: **HyperFrames** (skills in `.agents/skills/hyperframes*`; read `/hyperframes` first) with a **Three.js** world
 driven by the seek protocol (`hf-seek`, every frame a pure function of time). This works well; there is no need for Remotion.
 
-## 1. The look (keep unless the user changes it)
+## 0. The v3 studio look (ricecooker-video, the default)
+
+Modelled on a reference the user liked ("smooth dan professional"): a calm technical drawing that moves. §1–§3 below describe
+the older island looks; for v3 these rules win.
+
+- **Studio:** `scene.background` `#eef1f8`, a pale floor that fades into it (fog 160–520), hemisphere + one soft key with
+  shadows + cool fill, `RoomEnvironment` at 0.55 for metal reflections, ACES exposure 0.9. No tilt-shift, no warm grade.
+- **Bloom only for lights:** threshold 1.6, strength 0.3. A low threshold on a white scene turns everything milky.
+- **Ink outlines:** every mesh gets `EdgesGeometry` (≈28°) as black `LineSegments`, so the models read like a technical drawing.
+- **Cutaway:** objects built with `LatheGeometry` are split into a back half (phi π/2..3π/2) with **cap faces** (the profile
+  `Shape`, mirrored) on the z = 0 cut plane, plus a front half. The front half is removed by a moving clipping plane
+  (`renderer.localClippingEnabled`, plane normal (0,−1,0)) with a glowing blue ring at the cut height: "kita bedah".
+- **Palette:** ink `#15171c`, accent blue `#2f5bff`, shell white, steel/aluminium greys, one or two story colours
+  (magnet red/blue, heater orange `#ff6a2a`, water `#6fa8ff`). Status colours: orange = working, blue = boiling/active,
+  red = danger/dry, green = done/warm, grey = off.
+- **Camera framing (9:16 is narrow!):** at fov 40 the visible width is only ≈0.41 × distance. A 30-unit object needs the
+  camera ≈75–100 units away; two side by side ≈150. `setViewOffset(W, H, 0, -H*0.07, W, H)` puts the subject a little below centre.
+- **HTML overlay layer (`#ui` in index.html), driven per frame from `world.render()` output:**
+  - Chapter title at top (y 150, Inter 700 54 px), key words in blue `<em>`; changes per chapter with an opacity + blur cross-fade.
+  - HUD pill (y 300): coloured status dot + label | big tabular value + small unit. Values come from the world (temperature, volts…).
+    Split scenes get one pill per object, positioned from projected anchors.
+  - Callout labels: dot on a projected 3D anchor (`world.render` returns `anchors`), ink leader line growing out, uppercase
+    800-weight tag with letter-spacing and an ink underline.
+  - Source note (y 1645, small grey on a light chip) for facts: "Takat didih air pada paras laut · titik Curie ferit ≈ 103°C".
+  - Optional fact card (big number + bar) and a small end CTA ("Barang apa nak aku bedah lepas ni? ↓"); fade it out before the loop point.
+  - Fades: top 520 px and bottom 420 px gradients into the background colour.
+- **Captions (`tools/build_captions.py`):** phrases of max 3 words, broken at punctuation, on a frosted white pill at y 1500.
+  Spoken word = white text on a blue box with two round corner handles (top-left, bottom-right), spoken words dark,
+  upcoming words grey. Inter 700, 60 px. Fonts are vendored in `assets/fonts/inter-latin-*.woff2`.
+- **Rewind beat:** a `finish` shader uniform `rew` tints cool/desaturated with faint scanlines, plus a blinking "◀◀ UNDUR" tag.
+- **Story shape that worked:** a visible mystery at frame 0 (with a sound), a second open question by 6 s, cutaway, a
+  side-by-side proof scene with two live HUDs, the twist that answers the hook, one practical takeaway, a history card,
+  then the camera returns to the frame-0 shot so it loops.
+
+### Voiceover in v3: the film follows the voice
+
+- The user usually sends an ElevenLabs MP3. Measure it (`ffprobe`); **the film length is the voice length** rounded to whole
+  frames (72.4 s for the rice cooker). `build_captions.py` writes it to `assets/duration.json`; put the same number in every
+  `data-duration` in `index.html` (root, world, ui, both audio tracks, captions host).
+- Transcribe with `--model small --language ms --json`, move the result to `assets/transcript.raw.json`, then
+  `python3 tools/align_vo.py` (difflib alignment, script spelling kept; it handles "kuk"→Cook, "tujuh puluh"→70, merged words).
+- The design stays in canonical time 0..60. The warp anchors are **phrase starts** (not every word, which makes motion jerky)
+  plus `(voice length, 60)`. Everything on screen and every sound effect runs on `warp(t)`.
+- `tools/make_sfx.py` reads the film length from `duration.json`. Sounds that worked: a sharp switch KLIK (high-passed noise +
+  2.4/3.9 kHz ring + low thump), a half-second hush before the big moment, tape-rewind chirps, a sweep whoosh, bubbles, a heater
+  hum bed, ticks on each counted number. Mix at `data-volume="0.35"`; the final measured −14.7 LUFS, peak −2.6 dB.
+- **Render cost:** about 2.5 s per frame at `previewScale` 0.75 with `fx {"msaa":4}` (72 s film ≈ 90 min). Run it in the
+  background. The user may say to skip the 540×960 preview ("terus final render"); that is their call to make.
+- `npx hyperframes check` can time out on this heavy page; use `snapshot` at chosen seconds to look instead.
+- Add `<project>/renders/` to `.gitignore` before the first render, or the render temp files get committed.
+
+## 1. The look (v1/v2 island looks)
 
 - **Format:** 1080×1920, 30 fps, exactly the requested length (default 60.0 s), MP4. No watermark, intro or outro card.
 - **World:** a small low-poly floating island (grass top, soil band, rock cone underside, hanging roots), ring road,
