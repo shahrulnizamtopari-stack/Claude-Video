@@ -1,0 +1,89 @@
+<title>Lift Safety Storyboard</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Nunito+Sans:wght@400;700&display=swap">
+<style>
+/* Layout: one narrow phone column of frame cards (still left, notes right on wide screens), then reference sections */
+:root{
+  --bg:#fbf1ec; --panel:#ffffff; --ink:#2a2238; --muted:#6c5f78; --line:#ead9d2;
+  --peach:#e46a3c; --plum:#5d4fa8; --leaf:#4f8f45;
+  --display:"Montserrat",system-ui,sans-serif; --body:"Nunito Sans",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1d1828;--panel:#28213a;--ink:#f6ece6;--muted:#b9a9c4;--line:#3c3352;--peach:#ff9a6b;--plum:#b3a6ff;--leaf:#9ed38c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1d1828;--panel:#28213a;--ink:#f6ece6;--muted:#b9a9c4;--line:#3c3352;--peach:#ff9a6b;--plum:#b3a6ff;--leaf:#9ed38c;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 56px}
+.wrap{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,6vw,40px);line-height:1.1;margin:0;text-wrap:balance}
+h2{font-family:var(--display);font-weight:800;font-size:22px;margin:0 0 12px;text-wrap:balance}
+.lede{color:var(--muted);margin:8px 0 0;max-width:62ch}
+.status{display:inline-block;margin-top:12px;font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--peach)}
+.frames{display:flex;flex-direction:column;gap:18px}
+.frame{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+.frame img{width:100%;border-radius:8px;display:block;aspect-ratio:9/16;object-fit:cover}
+.meta{min-width:0;display:flex;flex-direction:column;gap:6px}
+.title{font-family:var(--display);font-weight:800;font-size:19px}
+.time{font-family:var(--display);font-weight:600;font-size:13px;color:var(--peach);font-variant-numeric:tabular-nums}
+.meta p{margin:0}
+.vo{font-style:italic;color:var(--plum)}
+.sfx,.cam{color:var(--muted);font-size:14.5px}
+@media (max-width:620px){.frame{grid-template-columns:minmax(0,1fr)}.frame img{max-width:340px;margin:0 auto}}
+.capbox{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:18px;align-items:start}
+.capbox img{width:100%;border-radius:10px}
+@media (max-width:620px){.capbox{grid-template-columns:minmax(0,1fr)}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{font-family:var(--display);font-weight:800;padding:4px 10px;border-radius:6px;background:#1b1622;font-size:15px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:14.5px}
+td{padding:8px 12px;border-top:1px solid var(--line);vertical-align:top}
+tr:first-child td{border-top:0}
+td:nth-child(2){white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--peach);font-weight:700}
+td:nth-child(3){color:var(--muted)}
+ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px;max-width:72ch}
+code{font-size:.9em}
+.next{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+.next p{margin:0}
+</style>
+<div class="wrap">
+  <header>
+    <h1>Kenapa Lif Tak Terus Jatuh Bila Kabel Putus?</h1>
+    <p class="lede">60 s vertical, 1080×1920 at 30 fps, one continuous 3D take, upgraded v2 look. Malay voiceover, no burned-in subtitles (you add your own). Stills are rendered from the real scene; nothing is final yet.</p>
+    <span class="status">Storyboard · waiting for your approval</span>
+  </header>
+
+  <section>
+    <h2>The 8 segments</h2>
+    <div class="frames">{{CARDS}}</div>
+  </section>
+
+  <section>
+    <h2>The upgrade: v1 vs v2</h2>
+    <div class="capbox">
+      <img src="{{CMP}}" alt="Left: the plane video (v1). Right: the lift video (v2).">
+      <div>
+        <p style="margin:0">Left: the plane video. Right: the new look. Soft bounce light and reflections, ambient occlusion in corners, real bloom on lights and sparks, a tilt-shift miniature blur, a warm grade with a vignette, and smooth models with rounded edges.</p>
+        <p style="margin:10px 0 0;color:var(--muted)">Blender would look softer still, but it needs a GPU; on this machine's CPU a 60 s render would take 8–15 hours.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Draft script</h2>
+    <ol>{{SCRIPT}}</ol>
+    <p style="color:var(--muted);margin:10px 0 0">Approve or edit the wording, then record it (about 145 words, about 50–60 s).</p>
+  </section>
+
+  <section>
+    <h2>Scene graph</h2>
+    <div class="tbl"><table><tbody>{{ROWS}}</tbody></table></div>
+  </section>
+
+  <section>
+    <h2>Risks and unclear points</h2>
+    <ol>{{RISKS}}</ol>
+  </section>
+
+  <section class="next">
+    <p><strong>Next, once you approve:</strong> build and preview each of the 8 segments separately, stitch them into one timeline, render a 540×960 preview, then stop again for your feedback before the full-resolution render.</p>
+  </section>
+</div>

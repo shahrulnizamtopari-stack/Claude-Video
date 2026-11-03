@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ms" data-composition-variables='[{"id":"previewScale","type":"number","label":"3D render scale (0.5 for previews)","default":1,"min":0.25,"max":1,"step":0.25}]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/lib/gsap.min.js"></script>
+    <script type="importmap">{ "imports": { "three": "./assets/lib/three.module.min.js" } }</script>
+    <style>
+      @font-face { font-family: "Montserrat"; font-weight: 800; src: url("assets/fonts/montserrat-latin-800-normal.woff2") format("woff2"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #f2a7a4; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; }
+      #world { position: absolute; inset: 0; }
+      #world canvas { width: 1080px; height: 1920px; display: block; }
+      #meter { position: absolute; left: 0; right: 0; top: 200px; display: flex; justify-content: center; z-index: 5; }
+      #meter .dial { position: relative; width: 420px; height: 250px; }
+      #meter svg { position: absolute; inset: 0; overflow: visible; }
+      #meter .num { position: absolute; left: 0; right: 0; top: 108px; text-align: center; font-family: "Montserrat", sans-serif; font-weight: 800;
+        font-size: 88px; color: #fff; -webkit-text-stroke: 14px #000; paint-order: stroke fill; line-height: 1; font-variant-numeric: tabular-nums; }
+      #meter .unit { position: absolute; left: 0; right: 0; top: 200px; text-align: center; font-family: "Montserrat", sans-serif; font-weight: 800;
+        font-size: 40px; color: #fff; -webkit-text-stroke: 9px #000; paint-order: stroke fill; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1080" data-height="1920" data-fps="30">
+      <div id="world" class="clip" data-start="0" data-duration="60" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+        <canvas id="world-canvas" width="1080" height="1920"></canvas>
+      </div>
+
+      <!-- fall speed (m/s): appears when the cables go, red while over-speed, back to 0 when the safeties stop the car -->
+      <div id="meter" class="clip" data-start="21" data-duration="18.5" data-track-index="2" data-track-kind="graphics">
+        <div class="dial" id="meter-dial">
+          <svg viewBox="0 0 420 250">
+            <path d="M 30 220 A 180 180 0 0 1 390 220" fill="none" stroke="#000" stroke-width="40" stroke-linecap="round" />
+            <path d="M 30 220 A 180 180 0 0 1 390 220" fill="none" stroke="#fff" stroke-width="26" stroke-linecap="round" />
+            <path id="meter-arc" d="M 30 220 A 180 180 0 0 1 390 220" fill="none" stroke="#ffc531" stroke-width="26" stroke-linecap="butt" pathLength="100" stroke-dasharray="0 120" />
+          </svg>
+          <div class="num" id="meter-num">0.0</div>
+          <div class="unit">m/s</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      let resolveWorld;
+      window.__hf.buildReady["world"] = new Promise((r) => (resolveWorld = r));
+    </script>
+    <script type="module">
+      import { createWorld } from "./assets/world.js";
+      import { warp, unwarp } from "./assets/timing.js";
+      const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
+      const scale = Number(vars.previewScale) || 1;
+      await document.fonts.load('800 40px "Montserrat"');
+      const world = createWorld(document.getElementById("world-canvas"), 1080, 1920, scale);
+
+      const num = document.getElementById("meter-num"), arc = document.getElementById("meter-arc");
+      function drawMeter(ct) {
+        const v = world.speed(ct);
+        num.textContent = v.toFixed(1);
+        arc.setAttribute("stroke-dasharray", `${(v / 3) * 100} 120`);
+        arc.setAttribute("stroke", v > 1.6 ? "#ff5a3d" : v > 0.05 ? "#ffc531" : "#a8f07a");
+      }
+      function renderAt(t) { const ct = warp(t); world.render(ct); drawMeter(ct); }
+      window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#meter-dial", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(2)" }, unwarp(21.6));
+      tl.fromTo("#meter-dial", { scale: 1, opacity: 1 }, { scale: 0.5, opacity: 0, duration: 0.3, ease: "power2.in", immediateRender: false }, unwarp(39.0));
+      window.__timelines["main"] = tl;
+      renderAt(0);
+      resolveWorld();
+    </script>
+  </body>
+</html>
