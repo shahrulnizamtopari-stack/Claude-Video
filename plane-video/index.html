@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/lib/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Montserrat"; font-weight: 800; src: url("assets/fonts/montserrat-latin-800-normal.woff2") format("woff2"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #f2a7a4; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; }
+      #world { position: absolute; inset: 0; }
+      #world canvas { width: 1080px; height: 1920px; display: block; }
+      #meter { position: absolute; left: 0; right: 0; top: 230px; display: flex; justify-content: center; z-index: 5; }
+      #meter .dial { position: relative; width: 420px; height: 250px; }
+      #meter svg { position: absolute; inset: 0; overflow: visible; }
+      #meter .num { position: absolute; left: 0; right: 0; top: 112px; text-align: center; font-family: "Montserrat", sans-serif; font-weight: 800;
+        font-size: 92px; color: #fff; -webkit-text-stroke: 14px #000; paint-order: stroke fill; line-height: 1; }
+      #meter .unit { position: absolute; left: 0; right: 0; top: 206px; text-align: center; font-family: "Montserrat", sans-serif; font-weight: 800;
+        font-size: 40px; color: #fff; -webkit-text-stroke: 9px #000; paint-order: stroke fill; }
+      #captions-host { z-index: 10; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1080" data-height="1920" data-fps="30">
+      <div id="world" class="clip" data-start="0" data-duration="60" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+        <canvas id="world-canvas" width="1080" height="1920"></canvas>
+      </div>
+
+      <div id="meter" class="clip" data-start="34" data-duration="13" data-track-index="2" data-track-kind="graphics">
+        <div class="dial" id="meter-dial">
+          <svg viewBox="0 0 420 250">
+            <path d="M 30 220 A 180 180 0 0 1 390 220" fill="none" stroke="#000" stroke-width="40" stroke-linecap="round" />
+            <path d="M 30 220 A 180 180 0 0 1 390 220" fill="none" stroke="#fff" stroke-width="26" stroke-linecap="round" />
+            <path id="meter-arc" d="M 30 220 A 180 180 0 0 1 390 220" fill="none" stroke="#ffc531" stroke-width="26" stroke-linecap="round" pathLength="100" stroke-dasharray="0 100" />
+            <g id="meter-200"><line x1="0" y1="-150" x2="0" y2="-205" stroke="#000" stroke-width="16" stroke-linecap="round" transform="translate(210 220) rotate(51)" />
+              <line x1="0" y1="-152" x2="0" y2="-203" stroke="#ff6a3d" stroke-width="8" stroke-linecap="round" transform="translate(210 220) rotate(51)" /></g>
+          </svg>
+          <div class="num" id="meter-num">0</div>
+          <div class="unit">km/j</div>
+        </div>
+      </div>
+
+      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="60"
+        data-track-index="3" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+    </div>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      let resolveWorld;
+      window.__hf.buildReady["world"] = new Promise((r) => (resolveWorld = r));
+      // speed meter: 0-300 km/j mapped onto the arc; driven from the same speed curve as the 3D roll
+      const kmh = (t) => (t < 36.6 ? 0 : t < 44.2 ? 255 * Math.pow((t - 36.6) / 7.6, 1.25) : 255);
+      const meterState = { t: 34 };
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#meter-dial", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(2)" }, 34.2);
+      tl.fromTo("#meter-200", { opacity: 0.25 }, { opacity: 1, duration: 0.2, yoyo: true, repeat: 5 }, 35.4);
+      tl.fromTo(meterState, { t: 34 }, {
+        t: 46.6, duration: 12.6, ease: "none",
+        onUpdate: () => {
+          const v = kmh(meterState.t);
+          document.getElementById("meter-num").textContent = Math.round(v);
+          document.getElementById("meter-arc").setAttribute("stroke-dasharray", `${(v / 300) * 100} 100`);
+          document.getElementById("meter-arc").setAttribute("stroke", v >= 200 ? "#a8f07a" : "#ffc531");
+        },
+      }, 34);
+      tl.to("#meter-dial", { scale: 0.5, opacity: 0, duration: 0.3, ease: "power2.in" }, 46.6);
+      window.__timelines["main"] = tl;
+    </script>
+    <script type="module">
+      import { createWorld } from "./assets/world.js";
+      const world = createWorld(document.getElementById("world-canvas"), 1080, 1920);
+      window.__world = world;
+      window.addEventListener("hf-seek", (e) => world.render(e.detail.time));
+      world.render(0);
+      resolveWorld();
+    </script>
+  </body>
+</html>
