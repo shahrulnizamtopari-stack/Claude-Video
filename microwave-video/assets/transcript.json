@@ -1,0 +1,842 @@
+[
+ {
+  "text": "Ramai",
+  "start": 0.19,
+  "end": 0.35
+ },
+ {
+  "text": "percaya",
+  "start": 0.35,
+  "end": 0.84
+ },
+ {
+  "text": "microwave",
+  "start": 0.84,
+  "end": 1.47
+ },
+ {
+  "text": "panaskan",
+  "start": 1.47,
+  "end": 2.03
+ },
+ {
+  "text": "makanan",
+  "start": 2.03,
+  "end": 2.52
+ },
+ {
+  "text": "dari",
+  "start": 2.52,
+  "end": 2.8
+ },
+ {
+  "text": "dalam.",
+  "start": 2.8,
+  "end": 3.43
+ },
+ {
+  "text": "Salah.",
+  "start": 3.43,
+  "end": 3.88
+ },
+ {
+  "text": "Kalau",
+  "start": 4.08,
+  "end": 4.48
+ },
+ {
+  "text": "betul...",
+  "start": 4.48,
+  "end": 5.19
+ },
+ {
+  "text": "kenapa",
+  "start": 5.19,
+  "end": 5.53
+ },
+ {
+  "text": "tengah",
+  "start": 5.53,
+  "end": 5.85
+ },
+ {
+  "text": "lauk",
+  "start": 5.86,
+  "end": 6.06
+ },
+ {
+  "text": "kau",
+  "start": 6.06,
+  "end": 6.21
+ },
+ {
+  "text": "masih",
+  "start": 6.21,
+  "end": 6.46
+ },
+ {
+  "text": "sejuk?",
+  "start": 6.46,
+  "end": 6.88
+ },
+ {
+  "text": "Jom",
+  "start": 7.08,
+  "end": 7.463
+ },
+ {
+  "text": "bedah.",
+  "start": 7.463,
+  "end": 8.1
+ },
+ {
+  "text": "Dalam",
+  "start": 8.18,
+  "end": 8.43
+ },
+ {
+  "text": "microwave",
+  "start": 8.56,
+  "end": 9.09
+ },
+ {
+  "text": "ada",
+  "start": 9.17,
+  "end": 9.31
+ },
+ {
+  "text": "satu",
+  "start": 9.31,
+  "end": 9.58
+ },
+ {
+  "text": "tiub",
+  "start": 9.58,
+  "end": 9.85
+ },
+ {
+  "text": "namanya",
+  "start": 9.85,
+  "end": 10.32
+ },
+ {
+  "text": "magnetron.",
+  "start": 10.32,
+  "end": 11.24
+ },
+ {
+  "text": "Dia",
+  "start": 11.43,
+  "end": 11.46
+ },
+ {
+  "text": "pancar",
+  "start": 11.46,
+  "end": 11.9
+ },
+ {
+  "text": "gelombang",
+  "start": 11.9,
+  "end": 12.46
+ },
+ {
+  "text": "mikro",
+  "start": 12.48,
+  "end": 12.71
+ },
+ {
+  "text": "yang",
+  "start": 12.84,
+  "end": 13.09
+ },
+ {
+  "text": "bertukar",
+  "start": 13.15,
+  "end": 13.69
+ },
+ {
+  "text": "arah",
+  "start": 13.7,
+  "end": 13.99
+ },
+ {
+  "text": "hampir",
+  "start": 13.99,
+  "end": 14.31
+ },
+ {
+  "text": "dua",
+  "start": 14.52,
+  "end": 14.602
+ },
+ {
+  "text": "setengah",
+  "start": 14.602,
+  "end": 14.82
+ },
+ {
+  "text": "bilion",
+  "start": 15.21,
+  "end": 15.43
+ },
+ {
+  "text": "kali",
+  "start": 15.43,
+  "end": 15.72
+ },
+ {
+  "text": "sesaat.",
+  "start": 15.72,
+  "end": 16.48
+ },
+ {
+  "text": "Setiap",
+  "start": 16.67,
+  "end": 16.93
+ },
+ {
+  "text": "kali",
+  "start": 16.93,
+  "end": 17.24
+ },
+ {
+  "text": "gelombang",
+  "start": 17.24,
+  "end": 17.85
+ },
+ {
+  "text": "bertukar",
+  "start": 17.85,
+  "end": 18.45
+ },
+ {
+  "text": "arah,",
+  "start": 18.46,
+  "end": 18.84
+ },
+ {
+  "text": "molekul",
+  "start": 19.04,
+  "end": 19.36
+ },
+ {
+  "text": "air",
+  "start": 19.43,
+  "end": 19.66
+ },
+ {
+  "text": "dalam",
+  "start": 19.66,
+  "end": 20.06
+ },
+ {
+  "text": "makanan",
+  "start": 20.08,
+  "end": 20.63
+ },
+ {
+  "text": "ikut",
+  "start": 20.68,
+  "end": 20.97
+ },
+ {
+  "text": "berpusing.",
+  "start": 20.97,
+  "end": 21.79
+ },
+ {
+  "text": "Ke",
+  "start": 21.87,
+  "end": 22.047
+ },
+ {
+  "text": "kiri,",
+  "start": 22.047,
+  "end": 22.4
+ },
+ {
+  "text": "ke",
+  "start": 22.4,
+  "end": 22.55
+ },
+ {
+  "text": "kanan,",
+  "start": 22.55,
+  "end": 22.93
+ },
+ {
+  "text": "berbilion",
+  "start": 22.93,
+  "end": 23.65
+ },
+ {
+  "text": "kali",
+  "start": 23.71,
+  "end": 23.93
+ },
+ {
+  "text": "sesaat.",
+  "start": 23.99,
+  "end": 24.72
+ },
+ {
+  "text": "Molekul",
+  "start": 24.92,
+  "end": 25.24
+ },
+ {
+  "text": "berlaga-laga,",
+  "start": 25.31,
+  "end": 26.44
+ },
+ {
+  "text": "dan",
+  "start": 26.44,
+  "end": 26.69
+ },
+ {
+  "text": "tu",
+  "start": 26.7,
+  "end": 26.85
+ },
+ {
+  "text": "yang",
+  "start": 26.93,
+  "end": 27.2
+ },
+ {
+  "text": "jadi",
+  "start": 27.21,
+  "end": 27.55
+ },
+ {
+  "text": "haba.",
+  "start": 27.55,
+  "end": 27.92
+ },
+ {
+  "text": "Tapi",
+  "start": 28.12,
+  "end": 28.24
+ },
+ {
+  "text": "gelombang",
+  "start": 28.24,
+  "end": 28.911
+ },
+ {
+  "text": "ni",
+  "start": 28.911,
+  "end": 29.06
+ },
+ {
+  "text": "cuma",
+  "start": 29.14,
+  "end": 29.39
+ },
+ {
+  "text": "tembus",
+  "start": 29.52,
+  "end": 29.92
+ },
+ {
+  "text": "dua",
+  "start": 29.92,
+  "end": 30.093
+ },
+ {
+  "text": "tiga",
+  "start": 30.093,
+  "end": 30.324
+ },
+ {
+  "text": "sentimeter.",
+  "start": 30.324,
+  "end": 30.9
+ },
+ {
+  "text": "Bahagian",
+  "start": 31.15,
+  "end": 31.48
+ },
+ {
+  "text": "tengah",
+  "start": 31.55,
+  "end": 31.94
+ },
+ {
+  "text": "tak",
+  "start": 31.94,
+  "end": 32.1
+ },
+ {
+  "text": "kena",
+  "start": 32.18,
+  "end": 32.43
+ },
+ {
+  "text": "terus.",
+  "start": 32.43,
+  "end": 32.99
+ },
+ {
+  "text": "Dia",
+  "start": 33.19,
+  "end": 33.23
+ },
+ {
+  "text": "tunggu",
+  "start": 33.23,
+  "end": 33.67
+ },
+ {
+  "text": "haba",
+  "start": 33.73,
+  "end": 33.99
+ },
+ {
+  "text": "merayap",
+  "start": 33.99,
+  "end": 34.47
+ },
+ {
+  "text": "masuk",
+  "start": 34.6,
+  "end": 34.85
+ },
+ {
+  "text": "dari",
+  "start": 34.91,
+  "end": 35.2
+ },
+ {
+  "text": "luar.",
+  "start": 35.21,
+  "end": 35.56
+ },
+ {
+  "text": "Sebab",
+  "start": 35.75,
+  "end": 35.89
+ },
+ {
+  "text": "tu",
+  "start": 35.89,
+  "end": 36.02
+ },
+ {
+  "text": "tengah",
+  "start": 36.02,
+  "end": 36.41
+ },
+ {
+  "text": "lauk",
+  "start": 36.41,
+  "end": 36.67
+ },
+ {
+  "text": "masih",
+  "start": 36.67,
+  "end": 37
+ },
+ {
+  "text": "sejuk.",
+  "start": 37,
+  "end": 37.56
+ },
+ {
+  "text": "Dalam",
+  "start": 37.75,
+  "end": 37.91
+ },
+ {
+  "text": "microwave",
+  "start": 37.91,
+  "end": 38.55
+ },
+ {
+  "text": "ada",
+  "start": 38.55,
+  "end": 38.7
+ },
+ {
+  "text": "titik",
+  "start": 38.78,
+  "end": 39.03
+ },
+ {
+  "text": "panas",
+  "start": 39.16,
+  "end": 39.41
+ },
+ {
+  "text": "dan",
+  "start": 39.46,
+  "end": 39.67
+ },
+ {
+  "text": "titik",
+  "start": 39.67,
+  "end": 40.01
+ },
+ {
+  "text": "sejuk,",
+  "start": 40.02,
+  "end": 40.56
+ },
+ {
+  "text": "jaraknya",
+  "start": 40.62,
+  "end": 41.11
+ },
+ {
+  "text": "lebih",
+  "start": 41.59,
+  "end": 41.7
+ },
+ {
+  "text": "kurang",
+  "start": 41.7,
+  "end": 42.19
+ },
+ {
+  "text": "enam",
+  "start": 42.19,
+  "end": 42.399
+ },
+ {
+  "text": "sentimeter.",
+  "start": 42.399,
+  "end": 42.92
+ },
+ {
+  "text": "Sebab",
+  "start": 43.11,
+  "end": 43.23
+ },
+ {
+  "text": "tu",
+  "start": 43.23,
+  "end": 43.36
+ },
+ {
+  "text": "pinggan",
+  "start": 43.36,
+  "end": 43.8
+ },
+ {
+  "text": "kena",
+  "start": 43.8,
+  "end": 44.05
+ },
+ {
+  "text": "berpusing,",
+  "start": 44.05,
+  "end": 44.62
+ },
+ {
+  "text": "supaya",
+  "start": 44.62,
+  "end": 45
+ },
+ {
+  "text": "semua",
+  "start": 45,
+  "end": 45.32
+ },
+ {
+  "text": "bahagian",
+  "start": 45.32,
+  "end": 45.82
+ },
+ {
+  "text": "kena.",
+  "start": 45.82,
+  "end": 46.36
+ },
+ {
+  "text": "Oven",
+  "start": 46.45,
+  "end": 46.71
+ },
+ {
+  "text": "pula",
+  "start": 46.71,
+  "end": 47.03
+ },
+ {
+  "text": "lain.",
+  "start": 47.09,
+  "end": 47.48
+ },
+ {
+  "text": "Dia",
+  "start": 47.48,
+  "end": 47.68
+ },
+ {
+  "text": "bakar",
+  "start": 47.68,
+  "end": 47.96
+ },
+ {
+  "text": "udara",
+  "start": 47.96,
+  "end": 48.26
+ },
+ {
+  "text": "dan",
+  "start": 48.26,
+  "end": 48.44
+ },
+ {
+  "text": "dinding.",
+  "start": 48.44,
+  "end": 49.12
+ },
+ {
+  "text": "Permukaan",
+  "start": 49.31,
+  "end": 49.64
+ },
+ {
+  "text": "makanan",
+  "start": 49.71,
+  "end": 50.16
+ },
+ {
+  "text": "kering,",
+  "start": 50.16,
+  "end": 50.55
+ },
+ {
+  "text": "lepas",
+  "start": 50.55,
+  "end": 50.87
+ },
+ {
+  "text": "seratus",
+  "start": 50.87,
+  "end": 51.46
+ },
+ {
+  "text": "darjah,",
+  "start": 51.46,
+  "end": 51.92
+ },
+ {
+  "text": "dan",
+  "start": 51.92,
+  "end": 52.08
+ },
+ {
+  "text": "jadi",
+  "start": 52.09,
+  "end": 52.19
+ },
+ {
+  "text": "perang",
+  "start": 52.4,
+  "end": 52.63
+ },
+ {
+  "text": "rangup.",
+  "start": 52.63,
+  "end": 53.12
+ },
+ {
+  "text": "Microwave",
+  "start": 53.27,
+  "end": 53.57
+ },
+ {
+  "text": "tak",
+  "start": 53.57,
+  "end": 53.72
+ },
+ {
+  "text": "boleh",
+  "start": 53.72,
+  "end": 53.98
+ },
+ {
+  "text": "buat",
+  "start": 53.98,
+  "end": 54.19
+ },
+ {
+  "text": "macam",
+  "start": 54.19,
+  "end": 54.45
+ },
+ {
+  "text": "tu.",
+  "start": 54.45,
+  "end": 54.76
+ },
+ {
+  "text": "Selagi",
+  "start": 54.94,
+  "end": 55.12
+ },
+ {
+  "text": "ada",
+  "start": 55.12,
+  "end": 55.28
+ },
+ {
+  "text": "air,",
+  "start": 55.35,
+  "end": 55.6
+ },
+ {
+  "text": "permukaan",
+  "start": 55.6,
+  "end": 56.14
+ },
+ {
+  "text": "tersangkut",
+  "start": 56.14,
+  "end": 56.73
+ },
+ {
+  "text": "dekat",
+  "start": 56.74,
+  "end": 57.04
+ },
+ {
+  "text": "seratus",
+  "start": 57.04,
+  "end": 57.58
+ },
+ {
+  "text": "darjah.",
+  "start": 57.58,
+  "end": 58.16
+ },
+ {
+  "text": "Jadi",
+  "start": 58.36,
+  "end": 58.48
+ },
+ {
+  "text": "microwave",
+  "start": 58.48,
+  "end": 59.21
+ },
+ {
+  "text": "goncang",
+  "start": 59.21,
+  "end": 59.77
+ },
+ {
+  "text": "air,",
+  "start": 59.77,
+  "end": 60.01
+ },
+ {
+  "text": "oven",
+  "start": 60.01,
+  "end": 60.29
+ },
+ {
+  "text": "bakar",
+  "start": 60.37,
+  "end": 60.73
+ },
+ {
+  "text": "udara.",
+  "start": 60.73,
+  "end": 61.2
+ },
+ {
+  "text": "Satu",
+  "start": 61.39,
+  "end": 61.53
+ },
+ {
+  "text": "laju,",
+  "start": 61.53,
+  "end": 62.02
+ },
+ {
+  "text": "satu",
+  "start": 62.02,
+  "end": 62.34
+ },
+ {
+  "text": "rangup.",
+  "start": 62.42,
+  "end": 62.92
+ },
+ {
+  "text": "Dan",
+  "start": 63.11,
+  "end": 63.14
+ },
+ {
+  "text": "sekarang",
+  "start": 63.14,
+  "end": 63.72
+ },
+ {
+  "text": "kau",
+  "start": 63.72,
+  "end": 63.94
+ },
+ {
+  "text": "tahu...",
+  "start": 63.94,
+  "end": 64.24
+ },
+ {
+  "text": "kenapa",
+  "start": 64.24,
+  "end": 64.54
+ },
+ {
+  "text": "ayam",
+  "start": 64.54,
+  "end": 64.71
+ },
+ {
+  "text": "goreng",
+  "start": 64.74,
+  "end": 65.05
+ },
+ {
+  "text": "semalam",
+  "start": 65.13,
+  "end": 65.5
+ },
+ {
+  "text": "jadi",
+  "start": 65.52,
+  "end": 65.74
+ },
+ {
+  "text": "lembik",
+  "start": 65.74,
+  "end": 65.99
+ },
+ {
+  "text": "bila",
+  "start": 66.14,
+  "end": 66.32
+ },
+ {
+  "text": "panaskan",
+  "start": 66.32,
+  "end": 66.8
+ },
+ {
+  "text": "dalam",
+  "start": 66.95,
+  "end": 67.1
+ },
+ {
+  "text": "microwave.",
+  "start": 67.1,
+  "end": 67.84
+ }
+]

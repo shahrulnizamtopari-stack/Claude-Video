@@ -1,0 +1,416 @@
+<template>
+  <style>
+    @font-face { font-family: "Inter"; font-weight: 700; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); }
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    #root .cap { position: absolute; left: 0; right: 0; top: 1500px; display: flex; justify-content: center; }
+    #root .pill { display: inline-flex; gap: 6px; align-items: center; padding: 10px 14px; border-radius: 22px;
+      background: rgba(255,255,255,0.86); box-shadow: 0 10px 34px rgba(30,40,80,0.16), 0 1px 0 rgba(255,255,255,0.9) inset; }
+    #root .w { position: relative; display: inline-block; padding: 4px 10px; }
+    #root .t { position: relative; font-family: "Inter", sans-serif; font-weight: 700; font-size: 60px; letter-spacing: -1.2px; line-height: 1.1; color: #a3a9b8; }
+    #root .hl { position: absolute; inset: 0; background: #2f5bff; border-radius: 8px; opacity: 0; box-shadow: 0 6px 18px rgba(47,91,255,0.35); }
+    #root .hl i, #root .hl b { position: absolute; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 3.5px solid #2f5bff; }
+    #root .hl i { left: -8px; top: -8px; }
+    #root .hl b { right: -8px; bottom: -8px; }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920" data-layout-allow-overflow>
+    <div id="cp0" class="clip cap" data-start="0.19" data-duration="1.28" data-track-index="1"><div class="pill"><span class="w" id="w0"><span class="hl"><i></i><b></b></span><span class="t">Ramai</span></span> <span class="w" id="w1"><span class="hl"><i></i><b></b></span><span class="t">percaya</span></span> <span class="w" id="w2"><span class="hl"><i></i><b></b></span><span class="t">microwave</span></span></div></div>
+    <div id="cp1" class="clip cap" data-start="1.47" data-duration="1.33" data-track-index="1"><div class="pill"><span class="w" id="w3"><span class="hl"><i></i><b></b></span><span class="t">panaskan</span></span> <span class="w" id="w4"><span class="hl"><i></i><b></b></span><span class="t">makanan</span></span> <span class="w" id="w5"><span class="hl"><i></i><b></b></span><span class="t">dari</span></span></div></div>
+    <div id="cp2" class="clip cap" data-start="2.8" data-duration="0.63" data-track-index="1"><div class="pill"><span class="w" id="w6"><span class="hl"><i></i><b></b></span><span class="t">dalam.</span></span></div></div>
+    <div id="cp3" class="clip cap" data-start="3.43" data-duration="0.65" data-track-index="1"><div class="pill"><span class="w" id="w7"><span class="hl"><i></i><b></b></span><span class="t">Salah.</span></span></div></div>
+    <div id="cp4" class="clip cap" data-start="4.08" data-duration="1.11" data-track-index="1"><div class="pill"><span class="w" id="w8"><span class="hl"><i></i><b></b></span><span class="t">Kalau</span></span> <span class="w" id="w9"><span class="hl"><i></i><b></b></span><span class="t">betul…</span></span></div></div>
+    <div id="cp5" class="clip cap" data-start="5.19" data-duration="0.87" data-track-index="1"><div class="pill"><span class="w" id="w10"><span class="hl"><i></i><b></b></span><span class="t">kenapa</span></span> <span class="w" id="w11"><span class="hl"><i></i><b></b></span><span class="t">tengah</span></span> <span class="w" id="w12"><span class="hl"><i></i><b></b></span><span class="t">lauk</span></span></div></div>
+    <div id="cp6" class="clip cap" data-start="6.06" data-duration="1.02" data-track-index="1"><div class="pill"><span class="w" id="w13"><span class="hl"><i></i><b></b></span><span class="t">kau</span></span> <span class="w" id="w14"><span class="hl"><i></i><b></b></span><span class="t">masih</span></span> <span class="w" id="w15"><span class="hl"><i></i><b></b></span><span class="t">sejuk?</span></span></div></div>
+    <div id="cp7" class="clip cap" data-start="7.08" data-duration="1.1" data-track-index="1"><div class="pill"><span class="w" id="w16"><span class="hl"><i></i><b></b></span><span class="t">Jom</span></span> <span class="w" id="w17"><span class="hl"><i></i><b></b></span><span class="t">bedah.</span></span></div></div>
+    <div id="cp8" class="clip cap" data-start="8.18" data-duration="1.13" data-track-index="1"><div class="pill"><span class="w" id="w18"><span class="hl"><i></i><b></b></span><span class="t">Dalam</span></span> <span class="w" id="w19"><span class="hl"><i></i><b></b></span><span class="t">microwave</span></span> <span class="w" id="w20"><span class="hl"><i></i><b></b></span><span class="t">ada</span></span></div></div>
+    <div id="cp9" class="clip cap" data-start="9.31" data-duration="1.01" data-track-index="1"><div class="pill"><span class="w" id="w21"><span class="hl"><i></i><b></b></span><span class="t">satu</span></span> <span class="w" id="w22"><span class="hl"><i></i><b></b></span><span class="t">tiub</span></span> <span class="w" id="w23"><span class="hl"><i></i><b></b></span><span class="t">namanya</span></span></div></div>
+    <div id="cp10" class="clip cap" data-start="10.32" data-duration="1.11" data-track-index="1"><div class="pill"><span class="w" id="w24"><span class="hl"><i></i><b></b></span><span class="t">magnetron.</span></span></div></div>
+    <div id="cp11" class="clip cap" data-start="11.43" data-duration="1.05" data-track-index="1"><div class="pill"><span class="w" id="w25"><span class="hl"><i></i><b></b></span><span class="t">Dia</span></span> <span class="w" id="w26"><span class="hl"><i></i><b></b></span><span class="t">pancar</span></span> <span class="w" id="w27"><span class="hl"><i></i><b></b></span><span class="t">gelombang</span></span></div></div>
+    <div id="cp12" class="clip cap" data-start="12.48" data-duration="1.22" data-track-index="1"><div class="pill"><span class="w" id="w28"><span class="hl"><i></i><b></b></span><span class="t">mikro</span></span> <span class="w" id="w29"><span class="hl"><i></i><b></b></span><span class="t">yang</span></span> <span class="w" id="w30"><span class="hl"><i></i><b></b></span><span class="t">bertukar</span></span></div></div>
+    <div id="cp13" class="clip cap" data-start="13.7" data-duration="1.51" data-track-index="1"><div class="pill"><span class="w" id="w31"><span class="hl"><i></i><b></b></span><span class="t">arah</span></span> <span class="w" id="w32"><span class="hl"><i></i><b></b></span><span class="t">hampir</span></span> <span class="w" id="w33"><span class="hl"><i></i><b></b></span><span class="t">2,5</span></span></div></div>
+    <div id="cp14" class="clip cap" data-start="15.21" data-duration="1.46" data-track-index="1"><div class="pill"><span class="w" id="w35"><span class="hl"><i></i><b></b></span><span class="t">bilion</span></span> <span class="w" id="w36"><span class="hl"><i></i><b></b></span><span class="t">kali</span></span> <span class="w" id="w37"><span class="hl"><i></i><b></b></span><span class="t">sesaat.</span></span></div></div>
+    <div id="cp15" class="clip cap" data-start="16.67" data-duration="1.18" data-track-index="1"><div class="pill"><span class="w" id="w38"><span class="hl"><i></i><b></b></span><span class="t">Setiap</span></span> <span class="w" id="w39"><span class="hl"><i></i><b></b></span><span class="t">kali</span></span> <span class="w" id="w40"><span class="hl"><i></i><b></b></span><span class="t">gelombang</span></span></div></div>
+    <div id="cp16" class="clip cap" data-start="17.85" data-duration="1.19" data-track-index="1"><div class="pill"><span class="w" id="w41"><span class="hl"><i></i><b></b></span><span class="t">bertukar</span></span> <span class="w" id="w42"><span class="hl"><i></i><b></b></span><span class="t">arah,</span></span></div></div>
+    <div id="cp17" class="clip cap" data-start="19.04" data-duration="1.04" data-track-index="1"><div class="pill"><span class="w" id="w43"><span class="hl"><i></i><b></b></span><span class="t">molekul</span></span> <span class="w" id="w44"><span class="hl"><i></i><b></b></span><span class="t">air</span></span> <span class="w" id="w45"><span class="hl"><i></i><b></b></span><span class="t">dalam</span></span></div></div>
+    <div id="cp18" class="clip cap" data-start="20.08" data-duration="1.79" data-track-index="1"><div class="pill"><span class="w" id="w46"><span class="hl"><i></i><b></b></span><span class="t">makanan</span></span> <span class="w" id="w47"><span class="hl"><i></i><b></b></span><span class="t">ikut</span></span> <span class="w" id="w48"><span class="hl"><i></i><b></b></span><span class="t">berpusing.</span></span></div></div>
+    <div id="cp19" class="clip cap" data-start="21.87" data-duration="0.53" data-track-index="1"><div class="pill"><span class="w" id="w49"><span class="hl"><i></i><b></b></span><span class="t">Ke</span></span> <span class="w" id="w50"><span class="hl"><i></i><b></b></span><span class="t">kiri,</span></span></div></div>
+    <div id="cp20" class="clip cap" data-start="22.4" data-duration="0.53" data-track-index="1"><div class="pill"><span class="w" id="w51"><span class="hl"><i></i><b></b></span><span class="t">ke</span></span> <span class="w" id="w52"><span class="hl"><i></i><b></b></span><span class="t">kanan,</span></span></div></div>
+    <div id="cp21" class="clip cap" data-start="22.93" data-duration="1.99" data-track-index="1"><div class="pill"><span class="w" id="w53"><span class="hl"><i></i><b></b></span><span class="t">berbilion</span></span> <span class="w" id="w54"><span class="hl"><i></i><b></b></span><span class="t">kali</span></span> <span class="w" id="w55"><span class="hl"><i></i><b></b></span><span class="t">sesaat.</span></span></div></div>
+    <div id="cp22" class="clip cap" data-start="24.92" data-duration="1.52" data-track-index="1"><div class="pill"><span class="w" id="w56"><span class="hl"><i></i><b></b></span><span class="t">Molekul</span></span> <span class="w" id="w57"><span class="hl"><i></i><b></b></span><span class="t">berlaga-laga,</span></span></div></div>
+    <div id="cp23" class="clip cap" data-start="26.44" data-duration="0.77" data-track-index="1"><div class="pill"><span class="w" id="w58"><span class="hl"><i></i><b></b></span><span class="t">dan</span></span> <span class="w" id="w59"><span class="hl"><i></i><b></b></span><span class="t">tu</span></span> <span class="w" id="w60"><span class="hl"><i></i><b></b></span><span class="t">yang</span></span></div></div>
+    <div id="cp24" class="clip cap" data-start="27.21" data-duration="0.91" data-track-index="1"><div class="pill"><span class="w" id="w61"><span class="hl"><i></i><b></b></span><span class="t">jadi</span></span> <span class="w" id="w62"><span class="hl"><i></i><b></b></span><span class="t">haba.</span></span></div></div>
+    <div id="cp25" class="clip cap" data-start="28.12" data-duration="1.02" data-track-index="1"><div class="pill"><span class="w" id="w63"><span class="hl"><i></i><b></b></span><span class="t">Tapi</span></span> <span class="w" id="w64"><span class="hl"><i></i><b></b></span><span class="t">gelombang</span></span> <span class="w" id="w65"><span class="hl"><i></i><b></b></span><span class="t">ni</span></span></div></div>
+    <div id="cp26" class="clip cap" data-start="29.14" data-duration="1.184" data-track-index="1"><div class="pill"><span class="w" id="w66"><span class="hl"><i></i><b></b></span><span class="t">cuma</span></span> <span class="w" id="w67"><span class="hl"><i></i><b></b></span><span class="t">tembus</span></span> <span class="w" id="w68"><span class="hl"><i></i><b></b></span><span class="t">2–3</span></span></div></div>
+    <div id="cp27" class="clip cap" data-start="30.324" data-duration="0.826" data-track-index="1"><div class="pill"><span class="w" id="w70"><span class="hl"><i></i><b></b></span><span class="t">cm.</span></span></div></div>
+    <div id="cp28" class="clip cap" data-start="31.15" data-duration="1.03" data-track-index="1"><div class="pill"><span class="w" id="w71"><span class="hl"><i></i><b></b></span><span class="t">Bahagian</span></span> <span class="w" id="w72"><span class="hl"><i></i><b></b></span><span class="t">tengah</span></span> <span class="w" id="w73"><span class="hl"><i></i><b></b></span><span class="t">tak</span></span></div></div>
+    <div id="cp29" class="clip cap" data-start="32.18" data-duration="1.01" data-track-index="1"><div class="pill"><span class="w" id="w74"><span class="hl"><i></i><b></b></span><span class="t">kena</span></span> <span class="w" id="w75"><span class="hl"><i></i><b></b></span><span class="t">terus.</span></span></div></div>
+    <div id="cp30" class="clip cap" data-start="33.19" data-duration="0.8" data-track-index="1"><div class="pill"><span class="w" id="w76"><span class="hl"><i></i><b></b></span><span class="t">Dia</span></span> <span class="w" id="w77"><span class="hl"><i></i><b></b></span><span class="t">tunggu</span></span> <span class="w" id="w78"><span class="hl"><i></i><b></b></span><span class="t">haba</span></span></div></div>
+    <div id="cp31" class="clip cap" data-start="33.99" data-duration="1.22" data-track-index="1"><div class="pill"><span class="w" id="w79"><span class="hl"><i></i><b></b></span><span class="t">merayap</span></span> <span class="w" id="w80"><span class="hl"><i></i><b></b></span><span class="t">masuk</span></span> <span class="w" id="w81"><span class="hl"><i></i><b></b></span><span class="t">dari</span></span></div></div>
+    <div id="cp32" class="clip cap" data-start="35.21" data-duration="0.54" data-track-index="1"><div class="pill"><span class="w" id="w82"><span class="hl"><i></i><b></b></span><span class="t">luar.</span></span></div></div>
+    <div id="cp33" class="clip cap" data-start="35.75" data-duration="0.66" data-track-index="1"><div class="pill"><span class="w" id="w83"><span class="hl"><i></i><b></b></span><span class="t">Sebab</span></span> <span class="w" id="w84"><span class="hl"><i></i><b></b></span><span class="t">tu</span></span> <span class="w" id="w85"><span class="hl"><i></i><b></b></span><span class="t">tengah</span></span></div></div>
+    <div id="cp34" class="clip cap" data-start="36.41" data-duration="1.34" data-track-index="1"><div class="pill"><span class="w" id="w86"><span class="hl"><i></i><b></b></span><span class="t">lauk</span></span> <span class="w" id="w87"><span class="hl"><i></i><b></b></span><span class="t">masih</span></span> <span class="w" id="w88"><span class="hl"><i></i><b></b></span><span class="t">sejuk.</span></span></div></div>
+    <div id="cp35" class="clip cap" data-start="37.75" data-duration="1.03" data-track-index="1"><div class="pill"><span class="w" id="w89"><span class="hl"><i></i><b></b></span><span class="t">Dalam</span></span> <span class="w" id="w90"><span class="hl"><i></i><b></b></span><span class="t">microwave</span></span> <span class="w" id="w91"><span class="hl"><i></i><b></b></span><span class="t">ada</span></span></div></div>
+    <div id="cp36" class="clip cap" data-start="38.78" data-duration="0.89" data-track-index="1"><div class="pill"><span class="w" id="w92"><span class="hl"><i></i><b></b></span><span class="t">titik</span></span> <span class="w" id="w93"><span class="hl"><i></i><b></b></span><span class="t">panas</span></span> <span class="w" id="w94"><span class="hl"><i></i><b></b></span><span class="t">dan</span></span></div></div>
+    <div id="cp37" class="clip cap" data-start="39.67" data-duration="0.95" data-track-index="1"><div class="pill"><span class="w" id="w95"><span class="hl"><i></i><b></b></span><span class="t">titik</span></span> <span class="w" id="w96"><span class="hl"><i></i><b></b></span><span class="t">sejuk,</span></span></div></div>
+    <div id="cp38" class="clip cap" data-start="40.62" data-duration="1.57" data-track-index="1"><div class="pill"><span class="w" id="w97"><span class="hl"><i></i><b></b></span><span class="t">jaraknya</span></span> <span class="w" id="w98"><span class="hl"><i></i><b></b></span><span class="t">lebih</span></span> <span class="w" id="w99"><span class="hl"><i></i><b></b></span><span class="t">kurang</span></span></div></div>
+    <div id="cp39" class="clip cap" data-start="42.19" data-duration="0.92" data-track-index="1"><div class="pill"><span class="w" id="w100"><span class="hl"><i></i><b></b></span><span class="t">6</span></span> <span class="w" id="w101"><span class="hl"><i></i><b></b></span><span class="t">cm.</span></span></div></div>
+    <div id="cp40" class="clip cap" data-start="43.11" data-duration="0.69" data-track-index="1"><div class="pill"><span class="w" id="w102"><span class="hl"><i></i><b></b></span><span class="t">Sebab</span></span> <span class="w" id="w103"><span class="hl"><i></i><b></b></span><span class="t">tu</span></span> <span class="w" id="w104"><span class="hl"><i></i><b></b></span><span class="t">pinggan</span></span></div></div>
+    <div id="cp41" class="clip cap" data-start="43.8" data-duration="0.82" data-track-index="1"><div class="pill"><span class="w" id="w105"><span class="hl"><i></i><b></b></span><span class="t">kena</span></span> <span class="w" id="w106"><span class="hl"><i></i><b></b></span><span class="t">berpusing,</span></span></div></div>
+    <div id="cp42" class="clip cap" data-start="44.62" data-duration="1.2" data-track-index="1"><div class="pill"><span class="w" id="w107"><span class="hl"><i></i><b></b></span><span class="t">supaya</span></span> <span class="w" id="w108"><span class="hl"><i></i><b></b></span><span class="t">semua</span></span> <span class="w" id="w109"><span class="hl"><i></i><b></b></span><span class="t">bahagian</span></span></div></div>
+    <div id="cp43" class="clip cap" data-start="45.82" data-duration="0.63" data-track-index="1"><div class="pill"><span class="w" id="w110"><span class="hl"><i></i><b></b></span><span class="t">kena.</span></span></div></div>
+    <div id="cp44" class="clip cap" data-start="46.45" data-duration="1.03" data-track-index="1"><div class="pill"><span class="w" id="w111"><span class="hl"><i></i><b></b></span><span class="t">Oven</span></span> <span class="w" id="w112"><span class="hl"><i></i><b></b></span><span class="t">pula</span></span> <span class="w" id="w113"><span class="hl"><i></i><b></b></span><span class="t">lain.</span></span></div></div>
+    <div id="cp45" class="clip cap" data-start="47.48" data-duration="0.78" data-track-index="1"><div class="pill"><span class="w" id="w114"><span class="hl"><i></i><b></b></span><span class="t">Dia</span></span> <span class="w" id="w115"><span class="hl"><i></i><b></b></span><span class="t">bakar</span></span> <span class="w" id="w116"><span class="hl"><i></i><b></b></span><span class="t">udara</span></span></div></div>
+    <div id="cp46" class="clip cap" data-start="48.26" data-duration="1.05" data-track-index="1"><div class="pill"><span class="w" id="w117"><span class="hl"><i></i><b></b></span><span class="t">dan</span></span> <span class="w" id="w118"><span class="hl"><i></i><b></b></span><span class="t">dinding.</span></span></div></div>
+    <div id="cp47" class="clip cap" data-start="49.31" data-duration="1.24" data-track-index="1"><div class="pill"><span class="w" id="w119"><span class="hl"><i></i><b></b></span><span class="t">Permukaan</span></span> <span class="w" id="w120"><span class="hl"><i></i><b></b></span><span class="t">makanan</span></span> <span class="w" id="w121"><span class="hl"><i></i><b></b></span><span class="t">kering,</span></span></div></div>
+    <div id="cp48" class="clip cap" data-start="50.55" data-duration="1.37" data-track-index="1"><div class="pill"><span class="w" id="w122"><span class="hl"><i></i><b></b></span><span class="t">lepas</span></span> <span class="w" id="w123"><span class="hl"><i></i><b></b></span><span class="t">100°C,</span></span></div></div>
+    <div id="cp49" class="clip cap" data-start="51.92" data-duration="0.71" data-track-index="1"><div class="pill"><span class="w" id="w125"><span class="hl"><i></i><b></b></span><span class="t">dan</span></span> <span class="w" id="w126"><span class="hl"><i></i><b></b></span><span class="t">jadi</span></span> <span class="w" id="w127"><span class="hl"><i></i><b></b></span><span class="t">perang</span></span></div></div>
+    <div id="cp50" class="clip cap" data-start="52.63" data-duration="0.64" data-track-index="1"><div class="pill"><span class="w" id="w128"><span class="hl"><i></i><b></b></span><span class="t">rangup.</span></span></div></div>
+    <div id="cp51" class="clip cap" data-start="53.27" data-duration="0.71" data-track-index="1"><div class="pill"><span class="w" id="w129"><span class="hl"><i></i><b></b></span><span class="t">Microwave</span></span> <span class="w" id="w130"><span class="hl"><i></i><b></b></span><span class="t">tak</span></span> <span class="w" id="w131"><span class="hl"><i></i><b></b></span><span class="t">boleh</span></span></div></div>
+    <div id="cp52" class="clip cap" data-start="53.98" data-duration="0.96" data-track-index="1"><div class="pill"><span class="w" id="w132"><span class="hl"><i></i><b></b></span><span class="t">buat</span></span> <span class="w" id="w133"><span class="hl"><i></i><b></b></span><span class="t">macam</span></span> <span class="w" id="w134"><span class="hl"><i></i><b></b></span><span class="t">tu.</span></span></div></div>
+    <div id="cp53" class="clip cap" data-start="54.94" data-duration="0.66" data-track-index="1"><div class="pill"><span class="w" id="w135"><span class="hl"><i></i><b></b></span><span class="t">Selagi</span></span> <span class="w" id="w136"><span class="hl"><i></i><b></b></span><span class="t">ada</span></span> <span class="w" id="w137"><span class="hl"><i></i><b></b></span><span class="t">air,</span></span></div></div>
+    <div id="cp54" class="clip cap" data-start="55.6" data-duration="1.44" data-track-index="1"><div class="pill"><span class="w" id="w138"><span class="hl"><i></i><b></b></span><span class="t">permukaan</span></span> <span class="w" id="w139"><span class="hl"><i></i><b></b></span><span class="t">tersangkut</span></span> <span class="w" id="w140"><span class="hl"><i></i><b></b></span><span class="t">dekat</span></span></div></div>
+    <div id="cp55" class="clip cap" data-start="57.04" data-duration="1.32" data-track-index="1"><div class="pill"><span class="w" id="w141"><span class="hl"><i></i><b></b></span><span class="t">100°C.</span></span></div></div>
+    <div id="cp56" class="clip cap" data-start="58.36" data-duration="1.41" data-track-index="1"><div class="pill"><span class="w" id="w143"><span class="hl"><i></i><b></b></span><span class="t">Jadi</span></span> <span class="w" id="w144"><span class="hl"><i></i><b></b></span><span class="t">microwave</span></span> <span class="w" id="w145"><span class="hl"><i></i><b></b></span><span class="t">goncang</span></span></div></div>
+    <div id="cp57" class="clip cap" data-start="59.77" data-duration="0.24" data-track-index="1"><div class="pill"><span class="w" id="w146"><span class="hl"><i></i><b></b></span><span class="t">air,</span></span></div></div>
+    <div id="cp58" class="clip cap" data-start="60.01" data-duration="1.38" data-track-index="1"><div class="pill"><span class="w" id="w147"><span class="hl"><i></i><b></b></span><span class="t">oven</span></span> <span class="w" id="w148"><span class="hl"><i></i><b></b></span><span class="t">bakar</span></span> <span class="w" id="w149"><span class="hl"><i></i><b></b></span><span class="t">udara.</span></span></div></div>
+    <div id="cp59" class="clip cap" data-start="61.39" data-duration="0.63" data-track-index="1"><div class="pill"><span class="w" id="w150"><span class="hl"><i></i><b></b></span><span class="t">Satu</span></span> <span class="w" id="w151"><span class="hl"><i></i><b></b></span><span class="t">laju,</span></span></div></div>
+    <div id="cp60" class="clip cap" data-start="62.02" data-duration="1.09" data-track-index="1"><div class="pill"><span class="w" id="w152"><span class="hl"><i></i><b></b></span><span class="t">satu</span></span> <span class="w" id="w153"><span class="hl"><i></i><b></b></span><span class="t">rangup.</span></span></div></div>
+    <div id="cp61" class="clip cap" data-start="63.11" data-duration="0.83" data-track-index="1"><div class="pill"><span class="w" id="w154"><span class="hl"><i></i><b></b></span><span class="t">Dan</span></span> <span class="w" id="w155"><span class="hl"><i></i><b></b></span><span class="t">sekarang</span></span> <span class="w" id="w156"><span class="hl"><i></i><b></b></span><span class="t">kau</span></span></div></div>
+    <div id="cp62" class="clip cap" data-start="63.94" data-duration="0.3" data-track-index="1"><div class="pill"><span class="w" id="w157"><span class="hl"><i></i><b></b></span><span class="t">tahu…</span></span></div></div>
+    <div id="cp63" class="clip cap" data-start="64.24" data-duration="0.89" data-track-index="1"><div class="pill"><span class="w" id="w158"><span class="hl"><i></i><b></b></span><span class="t">kenapa</span></span> <span class="w" id="w159"><span class="hl"><i></i><b></b></span><span class="t">ayam</span></span> <span class="w" id="w160"><span class="hl"><i></i><b></b></span><span class="t">goreng</span></span></div></div>
+    <div id="cp64" class="clip cap" data-start="65.13" data-duration="1.01" data-track-index="1"><div class="pill"><span class="w" id="w161"><span class="hl"><i></i><b></b></span><span class="t">semalam</span></span> <span class="w" id="w162"><span class="hl"><i></i><b></b></span><span class="t">jadi</span></span> <span class="w" id="w163"><span class="hl"><i></i><b></b></span><span class="t">lembik</span></span></div></div>
+    <div id="cp65" class="clip cap" data-start="66.14" data-duration="0.96" data-track-index="1"><div class="pill"><span class="w" id="w164"><span class="hl"><i></i><b></b></span><span class="t">bila</span></span> <span class="w" id="w165"><span class="hl"><i></i><b></b></span><span class="t">panaskan</span></span> <span class="w" id="w166"><span class="hl"><i></i><b></b></span><span class="t">dalam</span></span></div></div>
+    <div id="cp66" class="clip cap" data-start="67.1" data-duration="0.867" data-track-index="1"><div class="pill"><span class="w" id="w167"><span class="hl"><i></i><b></b></span><span class="t">microwave.</span></span></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.set("#w0 .hl", {opacity: 1}, 0.19); tl.set("#w0 .t", {color: "#ffffff"}, 0.19);
+    tl.set("#w0 .hl", {opacity: 0}, 0.35); tl.set("#w0 .t", {color: "#14161c"}, 0.35);
+    tl.set("#w1 .hl", {opacity: 1}, 0.35); tl.set("#w1 .t", {color: "#ffffff"}, 0.35);
+    tl.set("#w1 .hl", {opacity: 0}, 0.84); tl.set("#w1 .t", {color: "#14161c"}, 0.84);
+    tl.set("#w2 .hl", {opacity: 1}, 0.84); tl.set("#w2 .t", {color: "#ffffff"}, 0.84);
+    tl.fromTo("#cp0 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 0.19);
+    tl.set("#w3 .hl", {opacity: 1}, 1.47); tl.set("#w3 .t", {color: "#ffffff"}, 1.47);
+    tl.set("#w3 .hl", {opacity: 0}, 2.03); tl.set("#w3 .t", {color: "#14161c"}, 2.03);
+    tl.set("#w4 .hl", {opacity: 1}, 2.03); tl.set("#w4 .t", {color: "#ffffff"}, 2.03);
+    tl.set("#w4 .hl", {opacity: 0}, 2.52); tl.set("#w4 .t", {color: "#14161c"}, 2.52);
+    tl.set("#w5 .hl", {opacity: 1}, 2.52); tl.set("#w5 .t", {color: "#ffffff"}, 2.52);
+    tl.fromTo("#cp1 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 1.47);
+    tl.set("#w6 .hl", {opacity: 1}, 2.8); tl.set("#w6 .t", {color: "#ffffff"}, 2.8);
+    tl.fromTo("#cp2 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 2.8);
+    tl.set("#w7 .hl", {opacity: 1}, 3.43); tl.set("#w7 .t", {color: "#ffffff"}, 3.43);
+    tl.fromTo("#cp3 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 3.43);
+    tl.set("#w8 .hl", {opacity: 1}, 4.08); tl.set("#w8 .t", {color: "#ffffff"}, 4.08);
+    tl.set("#w8 .hl", {opacity: 0}, 4.48); tl.set("#w8 .t", {color: "#14161c"}, 4.48);
+    tl.set("#w9 .hl", {opacity: 1}, 4.48); tl.set("#w9 .t", {color: "#ffffff"}, 4.48);
+    tl.fromTo("#cp4 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 4.08);
+    tl.set("#w10 .hl", {opacity: 1}, 5.19); tl.set("#w10 .t", {color: "#ffffff"}, 5.19);
+    tl.set("#w10 .hl", {opacity: 0}, 5.53); tl.set("#w10 .t", {color: "#14161c"}, 5.53);
+    tl.set("#w11 .hl", {opacity: 1}, 5.53); tl.set("#w11 .t", {color: "#ffffff"}, 5.53);
+    tl.set("#w11 .hl", {opacity: 0}, 5.86); tl.set("#w11 .t", {color: "#14161c"}, 5.86);
+    tl.set("#w12 .hl", {opacity: 1}, 5.86); tl.set("#w12 .t", {color: "#ffffff"}, 5.86);
+    tl.fromTo("#cp5 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 5.19);
+    tl.set("#w13 .hl", {opacity: 1}, 6.06); tl.set("#w13 .t", {color: "#ffffff"}, 6.06);
+    tl.set("#w13 .hl", {opacity: 0}, 6.21); tl.set("#w13 .t", {color: "#14161c"}, 6.21);
+    tl.set("#w14 .hl", {opacity: 1}, 6.21); tl.set("#w14 .t", {color: "#ffffff"}, 6.21);
+    tl.set("#w14 .hl", {opacity: 0}, 6.46); tl.set("#w14 .t", {color: "#14161c"}, 6.46);
+    tl.set("#w15 .hl", {opacity: 1}, 6.46); tl.set("#w15 .t", {color: "#ffffff"}, 6.46);
+    tl.fromTo("#cp6 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 6.06);
+    tl.set("#w16 .hl", {opacity: 1}, 7.08); tl.set("#w16 .t", {color: "#ffffff"}, 7.08);
+    tl.set("#w16 .hl", {opacity: 0}, 7.463); tl.set("#w16 .t", {color: "#14161c"}, 7.463);
+    tl.set("#w17 .hl", {opacity: 1}, 7.463); tl.set("#w17 .t", {color: "#ffffff"}, 7.463);
+    tl.fromTo("#cp7 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 7.08);
+    tl.set("#w18 .hl", {opacity: 1}, 8.18); tl.set("#w18 .t", {color: "#ffffff"}, 8.18);
+    tl.set("#w18 .hl", {opacity: 0}, 8.56); tl.set("#w18 .t", {color: "#14161c"}, 8.56);
+    tl.set("#w19 .hl", {opacity: 1}, 8.56); tl.set("#w19 .t", {color: "#ffffff"}, 8.56);
+    tl.set("#w19 .hl", {opacity: 0}, 9.17); tl.set("#w19 .t", {color: "#14161c"}, 9.17);
+    tl.set("#w20 .hl", {opacity: 1}, 9.17); tl.set("#w20 .t", {color: "#ffffff"}, 9.17);
+    tl.fromTo("#cp8 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 8.18);
+    tl.set("#w21 .hl", {opacity: 1}, 9.31); tl.set("#w21 .t", {color: "#ffffff"}, 9.31);
+    tl.set("#w21 .hl", {opacity: 0}, 9.58); tl.set("#w21 .t", {color: "#14161c"}, 9.58);
+    tl.set("#w22 .hl", {opacity: 1}, 9.58); tl.set("#w22 .t", {color: "#ffffff"}, 9.58);
+    tl.set("#w22 .hl", {opacity: 0}, 9.85); tl.set("#w22 .t", {color: "#14161c"}, 9.85);
+    tl.set("#w23 .hl", {opacity: 1}, 9.85); tl.set("#w23 .t", {color: "#ffffff"}, 9.85);
+    tl.fromTo("#cp9 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 9.31);
+    tl.set("#w24 .hl", {opacity: 1}, 10.32); tl.set("#w24 .t", {color: "#ffffff"}, 10.32);
+    tl.fromTo("#cp10 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 10.32);
+    tl.set("#w25 .hl", {opacity: 1}, 11.43); tl.set("#w25 .t", {color: "#ffffff"}, 11.43);
+    tl.set("#w25 .hl", {opacity: 0}, 11.46); tl.set("#w25 .t", {color: "#14161c"}, 11.46);
+    tl.set("#w26 .hl", {opacity: 1}, 11.46); tl.set("#w26 .t", {color: "#ffffff"}, 11.46);
+    tl.set("#w26 .hl", {opacity: 0}, 11.9); tl.set("#w26 .t", {color: "#14161c"}, 11.9);
+    tl.set("#w27 .hl", {opacity: 1}, 11.9); tl.set("#w27 .t", {color: "#ffffff"}, 11.9);
+    tl.fromTo("#cp11 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 11.43);
+    tl.set("#w28 .hl", {opacity: 1}, 12.48); tl.set("#w28 .t", {color: "#ffffff"}, 12.48);
+    tl.set("#w28 .hl", {opacity: 0}, 12.84); tl.set("#w28 .t", {color: "#14161c"}, 12.84);
+    tl.set("#w29 .hl", {opacity: 1}, 12.84); tl.set("#w29 .t", {color: "#ffffff"}, 12.84);
+    tl.set("#w29 .hl", {opacity: 0}, 13.15); tl.set("#w29 .t", {color: "#14161c"}, 13.15);
+    tl.set("#w30 .hl", {opacity: 1}, 13.15); tl.set("#w30 .t", {color: "#ffffff"}, 13.15);
+    tl.fromTo("#cp12 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 12.48);
+    tl.set("#w31 .hl", {opacity: 1}, 13.7); tl.set("#w31 .t", {color: "#ffffff"}, 13.7);
+    tl.set("#w31 .hl", {opacity: 0}, 13.99); tl.set("#w31 .t", {color: "#14161c"}, 13.99);
+    tl.set("#w32 .hl", {opacity: 1}, 13.99); tl.set("#w32 .t", {color: "#ffffff"}, 13.99);
+    tl.set("#w32 .hl", {opacity: 0}, 14.52); tl.set("#w32 .t", {color: "#14161c"}, 14.52);
+    tl.set("#w33 .hl", {opacity: 1}, 14.52); tl.set("#w33 .t", {color: "#ffffff"}, 14.52);
+    tl.fromTo("#cp13 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 13.7);
+    tl.set("#w35 .hl", {opacity: 1}, 15.21); tl.set("#w35 .t", {color: "#ffffff"}, 15.21);
+    tl.set("#w35 .hl", {opacity: 0}, 15.43); tl.set("#w35 .t", {color: "#14161c"}, 15.43);
+    tl.set("#w36 .hl", {opacity: 1}, 15.43); tl.set("#w36 .t", {color: "#ffffff"}, 15.43);
+    tl.set("#w36 .hl", {opacity: 0}, 15.72); tl.set("#w36 .t", {color: "#14161c"}, 15.72);
+    tl.set("#w37 .hl", {opacity: 1}, 15.72); tl.set("#w37 .t", {color: "#ffffff"}, 15.72);
+    tl.fromTo("#cp14 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 15.21);
+    tl.set("#w38 .hl", {opacity: 1}, 16.67); tl.set("#w38 .t", {color: "#ffffff"}, 16.67);
+    tl.set("#w38 .hl", {opacity: 0}, 16.93); tl.set("#w38 .t", {color: "#14161c"}, 16.93);
+    tl.set("#w39 .hl", {opacity: 1}, 16.93); tl.set("#w39 .t", {color: "#ffffff"}, 16.93);
+    tl.set("#w39 .hl", {opacity: 0}, 17.24); tl.set("#w39 .t", {color: "#14161c"}, 17.24);
+    tl.set("#w40 .hl", {opacity: 1}, 17.24); tl.set("#w40 .t", {color: "#ffffff"}, 17.24);
+    tl.fromTo("#cp15 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 16.67);
+    tl.set("#w41 .hl", {opacity: 1}, 17.85); tl.set("#w41 .t", {color: "#ffffff"}, 17.85);
+    tl.set("#w41 .hl", {opacity: 0}, 18.46); tl.set("#w41 .t", {color: "#14161c"}, 18.46);
+    tl.set("#w42 .hl", {opacity: 1}, 18.46); tl.set("#w42 .t", {color: "#ffffff"}, 18.46);
+    tl.fromTo("#cp16 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 17.85);
+    tl.set("#w43 .hl", {opacity: 1}, 19.04); tl.set("#w43 .t", {color: "#ffffff"}, 19.04);
+    tl.set("#w43 .hl", {opacity: 0}, 19.43); tl.set("#w43 .t", {color: "#14161c"}, 19.43);
+    tl.set("#w44 .hl", {opacity: 1}, 19.43); tl.set("#w44 .t", {color: "#ffffff"}, 19.43);
+    tl.set("#w44 .hl", {opacity: 0}, 19.66); tl.set("#w44 .t", {color: "#14161c"}, 19.66);
+    tl.set("#w45 .hl", {opacity: 1}, 19.66); tl.set("#w45 .t", {color: "#ffffff"}, 19.66);
+    tl.fromTo("#cp17 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 19.04);
+    tl.set("#w46 .hl", {opacity: 1}, 20.08); tl.set("#w46 .t", {color: "#ffffff"}, 20.08);
+    tl.set("#w46 .hl", {opacity: 0}, 20.68); tl.set("#w46 .t", {color: "#14161c"}, 20.68);
+    tl.set("#w47 .hl", {opacity: 1}, 20.68); tl.set("#w47 .t", {color: "#ffffff"}, 20.68);
+    tl.set("#w47 .hl", {opacity: 0}, 20.97); tl.set("#w47 .t", {color: "#14161c"}, 20.97);
+    tl.set("#w48 .hl", {opacity: 1}, 20.97); tl.set("#w48 .t", {color: "#ffffff"}, 20.97);
+    tl.fromTo("#cp18 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 20.08);
+    tl.set("#w49 .hl", {opacity: 1}, 21.87); tl.set("#w49 .t", {color: "#ffffff"}, 21.87);
+    tl.set("#w49 .hl", {opacity: 0}, 22.047); tl.set("#w49 .t", {color: "#14161c"}, 22.047);
+    tl.set("#w50 .hl", {opacity: 1}, 22.047); tl.set("#w50 .t", {color: "#ffffff"}, 22.047);
+    tl.fromTo("#cp19 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 21.87);
+    tl.set("#w51 .hl", {opacity: 1}, 22.4); tl.set("#w51 .t", {color: "#ffffff"}, 22.4);
+    tl.set("#w51 .hl", {opacity: 0}, 22.55); tl.set("#w51 .t", {color: "#14161c"}, 22.55);
+    tl.set("#w52 .hl", {opacity: 1}, 22.55); tl.set("#w52 .t", {color: "#ffffff"}, 22.55);
+    tl.fromTo("#cp20 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 22.4);
+    tl.set("#w53 .hl", {opacity: 1}, 22.93); tl.set("#w53 .t", {color: "#ffffff"}, 22.93);
+    tl.set("#w53 .hl", {opacity: 0}, 23.71); tl.set("#w53 .t", {color: "#14161c"}, 23.71);
+    tl.set("#w54 .hl", {opacity: 1}, 23.71); tl.set("#w54 .t", {color: "#ffffff"}, 23.71);
+    tl.set("#w54 .hl", {opacity: 0}, 23.99); tl.set("#w54 .t", {color: "#14161c"}, 23.99);
+    tl.set("#w55 .hl", {opacity: 1}, 23.99); tl.set("#w55 .t", {color: "#ffffff"}, 23.99);
+    tl.fromTo("#cp21 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 22.93);
+    tl.set("#w56 .hl", {opacity: 1}, 24.92); tl.set("#w56 .t", {color: "#ffffff"}, 24.92);
+    tl.set("#w56 .hl", {opacity: 0}, 25.31); tl.set("#w56 .t", {color: "#14161c"}, 25.31);
+    tl.set("#w57 .hl", {opacity: 1}, 25.31); tl.set("#w57 .t", {color: "#ffffff"}, 25.31);
+    tl.fromTo("#cp22 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 24.92);
+    tl.set("#w58 .hl", {opacity: 1}, 26.44); tl.set("#w58 .t", {color: "#ffffff"}, 26.44);
+    tl.set("#w58 .hl", {opacity: 0}, 26.7); tl.set("#w58 .t", {color: "#14161c"}, 26.7);
+    tl.set("#w59 .hl", {opacity: 1}, 26.7); tl.set("#w59 .t", {color: "#ffffff"}, 26.7);
+    tl.set("#w59 .hl", {opacity: 0}, 26.93); tl.set("#w59 .t", {color: "#14161c"}, 26.93);
+    tl.set("#w60 .hl", {opacity: 1}, 26.93); tl.set("#w60 .t", {color: "#ffffff"}, 26.93);
+    tl.fromTo("#cp23 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 26.44);
+    tl.set("#w61 .hl", {opacity: 1}, 27.21); tl.set("#w61 .t", {color: "#ffffff"}, 27.21);
+    tl.set("#w61 .hl", {opacity: 0}, 27.55); tl.set("#w61 .t", {color: "#14161c"}, 27.55);
+    tl.set("#w62 .hl", {opacity: 1}, 27.55); tl.set("#w62 .t", {color: "#ffffff"}, 27.55);
+    tl.fromTo("#cp24 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 27.21);
+    tl.set("#w63 .hl", {opacity: 1}, 28.12); tl.set("#w63 .t", {color: "#ffffff"}, 28.12);
+    tl.set("#w63 .hl", {opacity: 0}, 28.24); tl.set("#w63 .t", {color: "#14161c"}, 28.24);
+    tl.set("#w64 .hl", {opacity: 1}, 28.24); tl.set("#w64 .t", {color: "#ffffff"}, 28.24);
+    tl.set("#w64 .hl", {opacity: 0}, 28.911); tl.set("#w64 .t", {color: "#14161c"}, 28.911);
+    tl.set("#w65 .hl", {opacity: 1}, 28.911); tl.set("#w65 .t", {color: "#ffffff"}, 28.911);
+    tl.fromTo("#cp25 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 28.12);
+    tl.set("#w66 .hl", {opacity: 1}, 29.14); tl.set("#w66 .t", {color: "#ffffff"}, 29.14);
+    tl.set("#w66 .hl", {opacity: 0}, 29.52); tl.set("#w66 .t", {color: "#14161c"}, 29.52);
+    tl.set("#w67 .hl", {opacity: 1}, 29.52); tl.set("#w67 .t", {color: "#ffffff"}, 29.52);
+    tl.set("#w67 .hl", {opacity: 0}, 29.92); tl.set("#w67 .t", {color: "#14161c"}, 29.92);
+    tl.set("#w68 .hl", {opacity: 1}, 29.92); tl.set("#w68 .t", {color: "#ffffff"}, 29.92);
+    tl.fromTo("#cp26 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 29.14);
+    tl.set("#w70 .hl", {opacity: 1}, 30.324); tl.set("#w70 .t", {color: "#ffffff"}, 30.324);
+    tl.fromTo("#cp27 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 30.324);
+    tl.set("#w71 .hl", {opacity: 1}, 31.15); tl.set("#w71 .t", {color: "#ffffff"}, 31.15);
+    tl.set("#w71 .hl", {opacity: 0}, 31.55); tl.set("#w71 .t", {color: "#14161c"}, 31.55);
+    tl.set("#w72 .hl", {opacity: 1}, 31.55); tl.set("#w72 .t", {color: "#ffffff"}, 31.55);
+    tl.set("#w72 .hl", {opacity: 0}, 31.94); tl.set("#w72 .t", {color: "#14161c"}, 31.94);
+    tl.set("#w73 .hl", {opacity: 1}, 31.94); tl.set("#w73 .t", {color: "#ffffff"}, 31.94);
+    tl.fromTo("#cp28 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 31.15);
+    tl.set("#w74 .hl", {opacity: 1}, 32.18); tl.set("#w74 .t", {color: "#ffffff"}, 32.18);
+    tl.set("#w74 .hl", {opacity: 0}, 32.43); tl.set("#w74 .t", {color: "#14161c"}, 32.43);
+    tl.set("#w75 .hl", {opacity: 1}, 32.43); tl.set("#w75 .t", {color: "#ffffff"}, 32.43);
+    tl.fromTo("#cp29 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 32.18);
+    tl.set("#w76 .hl", {opacity: 1}, 33.19); tl.set("#w76 .t", {color: "#ffffff"}, 33.19);
+    tl.set("#w76 .hl", {opacity: 0}, 33.23); tl.set("#w76 .t", {color: "#14161c"}, 33.23);
+    tl.set("#w77 .hl", {opacity: 1}, 33.23); tl.set("#w77 .t", {color: "#ffffff"}, 33.23);
+    tl.set("#w77 .hl", {opacity: 0}, 33.73); tl.set("#w77 .t", {color: "#14161c"}, 33.73);
+    tl.set("#w78 .hl", {opacity: 1}, 33.73); tl.set("#w78 .t", {color: "#ffffff"}, 33.73);
+    tl.fromTo("#cp30 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 33.19);
+    tl.set("#w79 .hl", {opacity: 1}, 33.99); tl.set("#w79 .t", {color: "#ffffff"}, 33.99);
+    tl.set("#w79 .hl", {opacity: 0}, 34.6); tl.set("#w79 .t", {color: "#14161c"}, 34.6);
+    tl.set("#w80 .hl", {opacity: 1}, 34.6); tl.set("#w80 .t", {color: "#ffffff"}, 34.6);
+    tl.set("#w80 .hl", {opacity: 0}, 34.91); tl.set("#w80 .t", {color: "#14161c"}, 34.91);
+    tl.set("#w81 .hl", {opacity: 1}, 34.91); tl.set("#w81 .t", {color: "#ffffff"}, 34.91);
+    tl.fromTo("#cp31 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 33.99);
+    tl.set("#w82 .hl", {opacity: 1}, 35.21); tl.set("#w82 .t", {color: "#ffffff"}, 35.21);
+    tl.fromTo("#cp32 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 35.21);
+    tl.set("#w83 .hl", {opacity: 1}, 35.75); tl.set("#w83 .t", {color: "#ffffff"}, 35.75);
+    tl.set("#w83 .hl", {opacity: 0}, 35.89); tl.set("#w83 .t", {color: "#14161c"}, 35.89);
+    tl.set("#w84 .hl", {opacity: 1}, 35.89); tl.set("#w84 .t", {color: "#ffffff"}, 35.89);
+    tl.set("#w84 .hl", {opacity: 0}, 36.02); tl.set("#w84 .t", {color: "#14161c"}, 36.02);
+    tl.set("#w85 .hl", {opacity: 1}, 36.02); tl.set("#w85 .t", {color: "#ffffff"}, 36.02);
+    tl.fromTo("#cp33 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 35.75);
+    tl.set("#w86 .hl", {opacity: 1}, 36.41); tl.set("#w86 .t", {color: "#ffffff"}, 36.41);
+    tl.set("#w86 .hl", {opacity: 0}, 36.67); tl.set("#w86 .t", {color: "#14161c"}, 36.67);
+    tl.set("#w87 .hl", {opacity: 1}, 36.67); tl.set("#w87 .t", {color: "#ffffff"}, 36.67);
+    tl.set("#w87 .hl", {opacity: 0}, 37); tl.set("#w87 .t", {color: "#14161c"}, 37);
+    tl.set("#w88 .hl", {opacity: 1}, 37); tl.set("#w88 .t", {color: "#ffffff"}, 37);
+    tl.fromTo("#cp34 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 36.41);
+    tl.set("#w89 .hl", {opacity: 1}, 37.75); tl.set("#w89 .t", {color: "#ffffff"}, 37.75);
+    tl.set("#w89 .hl", {opacity: 0}, 37.91); tl.set("#w89 .t", {color: "#14161c"}, 37.91);
+    tl.set("#w90 .hl", {opacity: 1}, 37.91); tl.set("#w90 .t", {color: "#ffffff"}, 37.91);
+    tl.set("#w90 .hl", {opacity: 0}, 38.55); tl.set("#w90 .t", {color: "#14161c"}, 38.55);
+    tl.set("#w91 .hl", {opacity: 1}, 38.55); tl.set("#w91 .t", {color: "#ffffff"}, 38.55);
+    tl.fromTo("#cp35 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 37.75);
+    tl.set("#w92 .hl", {opacity: 1}, 38.78); tl.set("#w92 .t", {color: "#ffffff"}, 38.78);
+    tl.set("#w92 .hl", {opacity: 0}, 39.16); tl.set("#w92 .t", {color: "#14161c"}, 39.16);
+    tl.set("#w93 .hl", {opacity: 1}, 39.16); tl.set("#w93 .t", {color: "#ffffff"}, 39.16);
+    tl.set("#w93 .hl", {opacity: 0}, 39.46); tl.set("#w93 .t", {color: "#14161c"}, 39.46);
+    tl.set("#w94 .hl", {opacity: 1}, 39.46); tl.set("#w94 .t", {color: "#ffffff"}, 39.46);
+    tl.fromTo("#cp36 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 38.78);
+    tl.set("#w95 .hl", {opacity: 1}, 39.67); tl.set("#w95 .t", {color: "#ffffff"}, 39.67);
+    tl.set("#w95 .hl", {opacity: 0}, 40.02); tl.set("#w95 .t", {color: "#14161c"}, 40.02);
+    tl.set("#w96 .hl", {opacity: 1}, 40.02); tl.set("#w96 .t", {color: "#ffffff"}, 40.02);
+    tl.fromTo("#cp37 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 39.67);
+    tl.set("#w97 .hl", {opacity: 1}, 40.62); tl.set("#w97 .t", {color: "#ffffff"}, 40.62);
+    tl.set("#w97 .hl", {opacity: 0}, 41.59); tl.set("#w97 .t", {color: "#14161c"}, 41.59);
+    tl.set("#w98 .hl", {opacity: 1}, 41.59); tl.set("#w98 .t", {color: "#ffffff"}, 41.59);
+    tl.set("#w98 .hl", {opacity: 0}, 41.7); tl.set("#w98 .t", {color: "#14161c"}, 41.7);
+    tl.set("#w99 .hl", {opacity: 1}, 41.7); tl.set("#w99 .t", {color: "#ffffff"}, 41.7);
+    tl.fromTo("#cp38 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 40.62);
+    tl.set("#w100 .hl", {opacity: 1}, 42.19); tl.set("#w100 .t", {color: "#ffffff"}, 42.19);
+    tl.set("#w100 .hl", {opacity: 0}, 42.399); tl.set("#w100 .t", {color: "#14161c"}, 42.399);
+    tl.set("#w101 .hl", {opacity: 1}, 42.399); tl.set("#w101 .t", {color: "#ffffff"}, 42.399);
+    tl.fromTo("#cp39 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 42.19);
+    tl.set("#w102 .hl", {opacity: 1}, 43.11); tl.set("#w102 .t", {color: "#ffffff"}, 43.11);
+    tl.set("#w102 .hl", {opacity: 0}, 43.23); tl.set("#w102 .t", {color: "#14161c"}, 43.23);
+    tl.set("#w103 .hl", {opacity: 1}, 43.23); tl.set("#w103 .t", {color: "#ffffff"}, 43.23);
+    tl.set("#w103 .hl", {opacity: 0}, 43.36); tl.set("#w103 .t", {color: "#14161c"}, 43.36);
+    tl.set("#w104 .hl", {opacity: 1}, 43.36); tl.set("#w104 .t", {color: "#ffffff"}, 43.36);
+    tl.fromTo("#cp40 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 43.11);
+    tl.set("#w105 .hl", {opacity: 1}, 43.8); tl.set("#w105 .t", {color: "#ffffff"}, 43.8);
+    tl.set("#w105 .hl", {opacity: 0}, 44.05); tl.set("#w105 .t", {color: "#14161c"}, 44.05);
+    tl.set("#w106 .hl", {opacity: 1}, 44.05); tl.set("#w106 .t", {color: "#ffffff"}, 44.05);
+    tl.fromTo("#cp41 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 43.8);
+    tl.set("#w107 .hl", {opacity: 1}, 44.62); tl.set("#w107 .t", {color: "#ffffff"}, 44.62);
+    tl.set("#w107 .hl", {opacity: 0}, 45); tl.set("#w107 .t", {color: "#14161c"}, 45);
+    tl.set("#w108 .hl", {opacity: 1}, 45); tl.set("#w108 .t", {color: "#ffffff"}, 45);
+    tl.set("#w108 .hl", {opacity: 0}, 45.32); tl.set("#w108 .t", {color: "#14161c"}, 45.32);
+    tl.set("#w109 .hl", {opacity: 1}, 45.32); tl.set("#w109 .t", {color: "#ffffff"}, 45.32);
+    tl.fromTo("#cp42 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 44.62);
+    tl.set("#w110 .hl", {opacity: 1}, 45.82); tl.set("#w110 .t", {color: "#ffffff"}, 45.82);
+    tl.fromTo("#cp43 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 45.82);
+    tl.set("#w111 .hl", {opacity: 1}, 46.45); tl.set("#w111 .t", {color: "#ffffff"}, 46.45);
+    tl.set("#w111 .hl", {opacity: 0}, 46.71); tl.set("#w111 .t", {color: "#14161c"}, 46.71);
+    tl.set("#w112 .hl", {opacity: 1}, 46.71); tl.set("#w112 .t", {color: "#ffffff"}, 46.71);
+    tl.set("#w112 .hl", {opacity: 0}, 47.09); tl.set("#w112 .t", {color: "#14161c"}, 47.09);
+    tl.set("#w113 .hl", {opacity: 1}, 47.09); tl.set("#w113 .t", {color: "#ffffff"}, 47.09);
+    tl.fromTo("#cp44 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 46.45);
+    tl.set("#w114 .hl", {opacity: 1}, 47.48); tl.set("#w114 .t", {color: "#ffffff"}, 47.48);
+    tl.set("#w114 .hl", {opacity: 0}, 47.68); tl.set("#w114 .t", {color: "#14161c"}, 47.68);
+    tl.set("#w115 .hl", {opacity: 1}, 47.68); tl.set("#w115 .t", {color: "#ffffff"}, 47.68);
+    tl.set("#w115 .hl", {opacity: 0}, 47.96); tl.set("#w115 .t", {color: "#14161c"}, 47.96);
+    tl.set("#w116 .hl", {opacity: 1}, 47.96); tl.set("#w116 .t", {color: "#ffffff"}, 47.96);
+    tl.fromTo("#cp45 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 47.48);
+    tl.set("#w117 .hl", {opacity: 1}, 48.26); tl.set("#w117 .t", {color: "#ffffff"}, 48.26);
+    tl.set("#w117 .hl", {opacity: 0}, 48.44); tl.set("#w117 .t", {color: "#14161c"}, 48.44);
+    tl.set("#w118 .hl", {opacity: 1}, 48.44); tl.set("#w118 .t", {color: "#ffffff"}, 48.44);
+    tl.fromTo("#cp46 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 48.26);
+    tl.set("#w119 .hl", {opacity: 1}, 49.31); tl.set("#w119 .t", {color: "#ffffff"}, 49.31);
+    tl.set("#w119 .hl", {opacity: 0}, 49.71); tl.set("#w119 .t", {color: "#14161c"}, 49.71);
+    tl.set("#w120 .hl", {opacity: 1}, 49.71); tl.set("#w120 .t", {color: "#ffffff"}, 49.71);
+    tl.set("#w120 .hl", {opacity: 0}, 50.16); tl.set("#w120 .t", {color: "#14161c"}, 50.16);
+    tl.set("#w121 .hl", {opacity: 1}, 50.16); tl.set("#w121 .t", {color: "#ffffff"}, 50.16);
+    tl.fromTo("#cp47 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 49.31);
+    tl.set("#w122 .hl", {opacity: 1}, 50.55); tl.set("#w122 .t", {color: "#ffffff"}, 50.55);
+    tl.set("#w122 .hl", {opacity: 0}, 50.87); tl.set("#w122 .t", {color: "#14161c"}, 50.87);
+    tl.set("#w123 .hl", {opacity: 1}, 50.87); tl.set("#w123 .t", {color: "#ffffff"}, 50.87);
+    tl.fromTo("#cp48 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 50.55);
+    tl.set("#w125 .hl", {opacity: 1}, 51.92); tl.set("#w125 .t", {color: "#ffffff"}, 51.92);
+    tl.set("#w125 .hl", {opacity: 0}, 52.09); tl.set("#w125 .t", {color: "#14161c"}, 52.09);
+    tl.set("#w126 .hl", {opacity: 1}, 52.09); tl.set("#w126 .t", {color: "#ffffff"}, 52.09);
+    tl.set("#w126 .hl", {opacity: 0}, 52.4); tl.set("#w126 .t", {color: "#14161c"}, 52.4);
+    tl.set("#w127 .hl", {opacity: 1}, 52.4); tl.set("#w127 .t", {color: "#ffffff"}, 52.4);
+    tl.fromTo("#cp49 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 51.92);
+    tl.set("#w128 .hl", {opacity: 1}, 52.63); tl.set("#w128 .t", {color: "#ffffff"}, 52.63);
+    tl.fromTo("#cp50 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 52.63);
+    tl.set("#w129 .hl", {opacity: 1}, 53.27); tl.set("#w129 .t", {color: "#ffffff"}, 53.27);
+    tl.set("#w129 .hl", {opacity: 0}, 53.57); tl.set("#w129 .t", {color: "#14161c"}, 53.57);
+    tl.set("#w130 .hl", {opacity: 1}, 53.57); tl.set("#w130 .t", {color: "#ffffff"}, 53.57);
+    tl.set("#w130 .hl", {opacity: 0}, 53.72); tl.set("#w130 .t", {color: "#14161c"}, 53.72);
+    tl.set("#w131 .hl", {opacity: 1}, 53.72); tl.set("#w131 .t", {color: "#ffffff"}, 53.72);
+    tl.fromTo("#cp51 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 53.27);
+    tl.set("#w132 .hl", {opacity: 1}, 53.98); tl.set("#w132 .t", {color: "#ffffff"}, 53.98);
+    tl.set("#w132 .hl", {opacity: 0}, 54.19); tl.set("#w132 .t", {color: "#14161c"}, 54.19);
+    tl.set("#w133 .hl", {opacity: 1}, 54.19); tl.set("#w133 .t", {color: "#ffffff"}, 54.19);
+    tl.set("#w133 .hl", {opacity: 0}, 54.45); tl.set("#w133 .t", {color: "#14161c"}, 54.45);
+    tl.set("#w134 .hl", {opacity: 1}, 54.45); tl.set("#w134 .t", {color: "#ffffff"}, 54.45);
+    tl.fromTo("#cp52 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 53.98);
+    tl.set("#w135 .hl", {opacity: 1}, 54.94); tl.set("#w135 .t", {color: "#ffffff"}, 54.94);
+    tl.set("#w135 .hl", {opacity: 0}, 55.12); tl.set("#w135 .t", {color: "#14161c"}, 55.12);
+    tl.set("#w136 .hl", {opacity: 1}, 55.12); tl.set("#w136 .t", {color: "#ffffff"}, 55.12);
+    tl.set("#w136 .hl", {opacity: 0}, 55.35); tl.set("#w136 .t", {color: "#14161c"}, 55.35);
+    tl.set("#w137 .hl", {opacity: 1}, 55.35); tl.set("#w137 .t", {color: "#ffffff"}, 55.35);
+    tl.fromTo("#cp53 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 54.94);
+    tl.set("#w138 .hl", {opacity: 1}, 55.6); tl.set("#w138 .t", {color: "#ffffff"}, 55.6);
+    tl.set("#w138 .hl", {opacity: 0}, 56.14); tl.set("#w138 .t", {color: "#14161c"}, 56.14);
+    tl.set("#w139 .hl", {opacity: 1}, 56.14); tl.set("#w139 .t", {color: "#ffffff"}, 56.14);
+    tl.set("#w139 .hl", {opacity: 0}, 56.74); tl.set("#w139 .t", {color: "#14161c"}, 56.74);
+    tl.set("#w140 .hl", {opacity: 1}, 56.74); tl.set("#w140 .t", {color: "#ffffff"}, 56.74);
+    tl.fromTo("#cp54 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 55.6);
+    tl.set("#w141 .hl", {opacity: 1}, 57.04); tl.set("#w141 .t", {color: "#ffffff"}, 57.04);
+    tl.fromTo("#cp55 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 57.04);
+    tl.set("#w143 .hl", {opacity: 1}, 58.36); tl.set("#w143 .t", {color: "#ffffff"}, 58.36);
+    tl.set("#w143 .hl", {opacity: 0}, 58.48); tl.set("#w143 .t", {color: "#14161c"}, 58.48);
+    tl.set("#w144 .hl", {opacity: 1}, 58.48); tl.set("#w144 .t", {color: "#ffffff"}, 58.48);
+    tl.set("#w144 .hl", {opacity: 0}, 59.21); tl.set("#w144 .t", {color: "#14161c"}, 59.21);
+    tl.set("#w145 .hl", {opacity: 1}, 59.21); tl.set("#w145 .t", {color: "#ffffff"}, 59.21);
+    tl.fromTo("#cp56 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 58.36);
+    tl.set("#w146 .hl", {opacity: 1}, 59.77); tl.set("#w146 .t", {color: "#ffffff"}, 59.77);
+    tl.fromTo("#cp57 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 59.77);
+    tl.set("#w147 .hl", {opacity: 1}, 60.01); tl.set("#w147 .t", {color: "#ffffff"}, 60.01);
+    tl.set("#w147 .hl", {opacity: 0}, 60.37); tl.set("#w147 .t", {color: "#14161c"}, 60.37);
+    tl.set("#w148 .hl", {opacity: 1}, 60.37); tl.set("#w148 .t", {color: "#ffffff"}, 60.37);
+    tl.set("#w148 .hl", {opacity: 0}, 60.73); tl.set("#w148 .t", {color: "#14161c"}, 60.73);
+    tl.set("#w149 .hl", {opacity: 1}, 60.73); tl.set("#w149 .t", {color: "#ffffff"}, 60.73);
+    tl.fromTo("#cp58 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 60.01);
+    tl.set("#w150 .hl", {opacity: 1}, 61.39); tl.set("#w150 .t", {color: "#ffffff"}, 61.39);
+    tl.set("#w150 .hl", {opacity: 0}, 61.53); tl.set("#w150 .t", {color: "#14161c"}, 61.53);
+    tl.set("#w151 .hl", {opacity: 1}, 61.53); tl.set("#w151 .t", {color: "#ffffff"}, 61.53);
+    tl.fromTo("#cp59 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 61.39);
+    tl.set("#w152 .hl", {opacity: 1}, 62.02); tl.set("#w152 .t", {color: "#ffffff"}, 62.02);
+    tl.set("#w152 .hl", {opacity: 0}, 62.42); tl.set("#w152 .t", {color: "#14161c"}, 62.42);
+    tl.set("#w153 .hl", {opacity: 1}, 62.42); tl.set("#w153 .t", {color: "#ffffff"}, 62.42);
+    tl.fromTo("#cp60 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 62.02);
+    tl.set("#w154 .hl", {opacity: 1}, 63.11); tl.set("#w154 .t", {color: "#ffffff"}, 63.11);
+    tl.set("#w154 .hl", {opacity: 0}, 63.14); tl.set("#w154 .t", {color: "#14161c"}, 63.14);
+    tl.set("#w155 .hl", {opacity: 1}, 63.14); tl.set("#w155 .t", {color: "#ffffff"}, 63.14);
+    tl.set("#w155 .hl", {opacity: 0}, 63.72); tl.set("#w155 .t", {color: "#14161c"}, 63.72);
+    tl.set("#w156 .hl", {opacity: 1}, 63.72); tl.set("#w156 .t", {color: "#ffffff"}, 63.72);
+    tl.fromTo("#cp61 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 63.11);
+    tl.set("#w157 .hl", {opacity: 1}, 63.94); tl.set("#w157 .t", {color: "#ffffff"}, 63.94);
+    tl.fromTo("#cp62 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 63.94);
+    tl.set("#w158 .hl", {opacity: 1}, 64.24); tl.set("#w158 .t", {color: "#ffffff"}, 64.24);
+    tl.set("#w158 .hl", {opacity: 0}, 64.54); tl.set("#w158 .t", {color: "#14161c"}, 64.54);
+    tl.set("#w159 .hl", {opacity: 1}, 64.54); tl.set("#w159 .t", {color: "#ffffff"}, 64.54);
+    tl.set("#w159 .hl", {opacity: 0}, 64.74); tl.set("#w159 .t", {color: "#14161c"}, 64.74);
+    tl.set("#w160 .hl", {opacity: 1}, 64.74); tl.set("#w160 .t", {color: "#ffffff"}, 64.74);
+    tl.fromTo("#cp63 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 64.24);
+    tl.set("#w161 .hl", {opacity: 1}, 65.13); tl.set("#w161 .t", {color: "#ffffff"}, 65.13);
+    tl.set("#w161 .hl", {opacity: 0}, 65.52); tl.set("#w161 .t", {color: "#14161c"}, 65.52);
+    tl.set("#w162 .hl", {opacity: 1}, 65.52); tl.set("#w162 .t", {color: "#ffffff"}, 65.52);
+    tl.set("#w162 .hl", {opacity: 0}, 65.74); tl.set("#w162 .t", {color: "#14161c"}, 65.74);
+    tl.set("#w163 .hl", {opacity: 1}, 65.74); tl.set("#w163 .t", {color: "#ffffff"}, 65.74);
+    tl.fromTo("#cp64 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 65.13);
+    tl.set("#w164 .hl", {opacity: 1}, 66.14); tl.set("#w164 .t", {color: "#ffffff"}, 66.14);
+    tl.set("#w164 .hl", {opacity: 0}, 66.32); tl.set("#w164 .t", {color: "#14161c"}, 66.32);
+    tl.set("#w165 .hl", {opacity: 1}, 66.32); tl.set("#w165 .t", {color: "#ffffff"}, 66.32);
+    tl.set("#w165 .hl", {opacity: 0}, 66.95); tl.set("#w165 .t", {color: "#14161c"}, 66.95);
+    tl.set("#w166 .hl", {opacity: 1}, 66.95); tl.set("#w166 .t", {color: "#ffffff"}, 66.95);
+    tl.fromTo("#cp65 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 66.14);
+    tl.set("#w167 .hl", {opacity: 1}, 67.1); tl.set("#w167 .t", {color: "#ffffff"}, 67.1);
+    tl.fromTo("#cp66 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 67.1);
+    window.__timelines["captions"] = tl;
+  </script>
+</template>
