@@ -3,3 +3,4 @@ node_modules/
 *.mp4
 !plane-video/assets/**/*.mp4
 plane-video/renders/
+plane-video-project.zip
