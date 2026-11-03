@@ -233,6 +233,8 @@ export function createWorld(canvas, W, H, scale = 1, opts = {}) {
   const sideArrows = [0, 1].map(() => mkArrow(PAL.air));
   const upArrows = [0, 1, 2].map(() => mkArrow(PAL.up));
   const shipDown = mkArrow(PAL.down), shipUp = mkArrow(0x4fb6ff);
+  // underwater arrows draw before the (depth-writing) sea, so the water tints them instead of hiding them
+  upArrows.forEach((u) => u.traverse((o) => (o.renderOrder = -1))); shipUp.traverse((o) => (o.renderOrder = -1)); lens.renderOrder = -1;
 
   // ---------- particles ----------
   const NP = 360;
