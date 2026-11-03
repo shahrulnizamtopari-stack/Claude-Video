@@ -8,7 +8,7 @@ Timing source:
   - otherwise placeholder timings: each segment's words are spaced evenly inside that segment's window (canonical time).
 Also writes assets/words.json and assets/timing.js (real voice time -> canonical design time warp).
 """
-import json, os, re, html
+import json, os, re, html, subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SEGMENTS = [  # (start, end, script text) -- approved script, canonical time
@@ -21,6 +21,9 @@ SEGMENTS = [  # (start, end, script text) -- approved script, canonical time
     (52, 60, "Periuk nasi automatik pertama keluar di Jepun, tahun 1955. Lebih 70 tahun, prinsip dia masih sama. Sebab kadang-kadang, ciptaan paling bijak... cuma tahu bila nak lepaskan."),
 ]
 BLUE = "#2f5bff"
+_vo = os.path.join(ROOT, "assets", "voiceover.mp3")
+# film length = the voiceover's own length (rounded to whole frames); canonical design time stays 0..60
+DUR = round(round(float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", _vo])) * 30) / 30, 3) if os.path.exists(_vo) else 60.0
 
 
 def words():
@@ -62,7 +65,7 @@ def main():
     blocks, tweens = [], []
     for gi, g in enumerate(gs):
         start = ws[g[0]]["start"]
-        nxt = ws[gs[gi + 1][0]]["start"] if gi + 1 < len(gs) else 60.0
+        nxt = ws[gs[gi + 1][0]]["start"] if gi + 1 < len(gs) else DUR
         end = min(nxt, ws[g[-1]]["end"] + 0.6)
         dur = round(max(0.2, end - start), 3)
         spans = []
@@ -103,7 +106,8 @@ def main():
     os.makedirs(os.path.join(ROOT, "compositions"), exist_ok=True)
     open(os.path.join(ROOT, "compositions", "captions.html"), "w").write(doc)
     json.dump(ws, open(os.path.join(ROOT, "assets", "words.json"), "w"), indent=1)
-    pairs = [(0.0, 0.0)] + [(w["start"], w["cstart"]) for w in ws] + [(60.0, 60.0)]
+    # warp anchors at every phrase start: visuals land on the words without jerky per-word speed changes
+    pairs = [(0.0, 0.0)] + [(ws[g[0]]["start"], ws[g[0]]["cstart"]) for g in gs] + [(DUR, 60.0)]
     clean = []
     for r, c in pairs:
         if clean and (r <= clean[-1][0] or c <= clean[-1][1]):
@@ -125,7 +129,8 @@ export function unwarp(c) {
 }
 """
     open(os.path.join(ROOT, "assets", "timing.js"), "w").write(js)
-    print(len(ws), "words,", len(gs), "phrases written")
+    json.dump({"duration": DUR}, open(os.path.join(ROOT, "assets", "duration.json"), "w"))
+    print(len(ws), "words,", len(gs), "phrases written; film length", DUR, "s")
 
 
 if __name__ == "__main__":

@@ -154,7 +154,7 @@ export function createWorld(canvas, W, H, scale = 1, opts = {}) {
       const pts = []; for (let i = 0; i <= 24; i++) { const u = i / 24; const r = r0 + (r1 - r0) * Math.sin(Math.PI * u); pts.push(V(Math.cos(a) * r, lerp(1.95, 3.55, u), Math.sin(a) * r)); }
       const tube = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 24, 0.06, 6), C.fieldM); C.field.add(tube); }
     // power wire: from the knob switch down and across to the heater; dots run along it while cooking
-    C.wireCurve = new THREE.CatmullRomCurve3([V(1.2, 6.5, 13.3), V(1.2, 2.4, 13.0), V(2.5, 2.3, 10.5), V(6.0, 2.6, 6.0), V(7.0, 3.1, 1.5)]);
+    C.wireCurve = new THREE.CatmullRomCurve3([V(1.2, 6.5, 13.3), V(1.6, 2.4, 12.8), V(8.5, 2.2, 9.0), V(11.6, 2.5, 1.0), V(9.5, 3.0, -4.0)]);
     const wire = new THREE.Mesh(new THREE.TubeGeometry(C.wireCurve, 60, 0.13, 6), mat(0x2b2f38)); G.add(wire);
     C.dots = new THREE.InstancedMesh(new THREE.SphereGeometry(0.28, 10, 8), new THREE.MeshBasicMaterial({ color: 0x7fb0ff, toneMapped: false }), 10); C.dots.frustumCulled = false; G.add(C.dots);
     C.heatGlow = glow(0xff8a4a, 26, 0); C.heatGlow.position.set(0, 3.6, 0); G.add(C.heatGlow);

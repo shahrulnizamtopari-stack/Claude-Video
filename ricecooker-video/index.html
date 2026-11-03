@@ -45,11 +45,11 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1080" data-height="1920" data-fps="30">
-      <div id="world" class="clip" data-start="0" data-duration="60" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="72.4" data-width="1080" data-height="1920" data-fps="30">
+      <div id="world" class="clip" data-start="0" data-duration="72.4" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
         <canvas id="world-canvas" width="1080" height="1920"></canvas>
       </div>
-      <div id="ui" class="clip" data-start="0" data-duration="60" data-track-index="2" data-track-kind="graphics" data-layout-ignore>
+      <div id="ui" class="clip" data-start="0" data-duration="72.4" data-track-index="2" data-track-kind="graphics" data-layout-ignore>
         <div class="fade-top"></div><div class="fade-bot"></div>
         <div id="title"></div>
         <div class="hud" id="hud-main"><div class="st"><span class="dot"></span><span class="sl"></span></div><span class="sep"></span><div><span class="val"></span><span class="unit"></span></div></div>
@@ -62,7 +62,9 @@
         <div id="cta">Barang apa nak aku bedah lepas ni? ↓</div>
         <div id="rew">◀◀ UNDUR</div>
       </div>
-      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="60"
+      <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="72.4" data-track-index="4" data-volume="1"></audio>
+      <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="72.4" data-track-index="5" data-volume="0.35"></audio>
+      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="72.4"
         data-track-index="3" data-track-kind="captions" data-width="1080" data-height="1920"></div>
     </div>
 
