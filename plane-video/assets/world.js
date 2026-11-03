@@ -40,10 +40,10 @@ export const PAL = {
 const mat = (c, o = {}) => new THREE.MeshStandardMaterial({ color: c, flatShading: true, roughness: 0.85, metalness: 0, ...o });
 
 // ---------- scene ----------
-export function createWorld(canvas, W, H) {
+export function createWorld(canvas, W, H, scale = 1) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true, alpha: false });
   renderer.setPixelRatio(1);
-  renderer.setSize(W, H, false);
+  renderer.setSize(Math.round(W * scale), Math.round(H * scale), false);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -70,17 +70,17 @@ export function createWorld(canvas, W, H) {
           if(h>0.0){ c = mix(hor, mid, smoothstep(0.0,0.28,h)); c = mix(c, top, smoothstep(0.25,0.85,h)); }
           else { c = mix(hor, low, smoothstep(0.0,-0.35,h)); }
           float s = max(dot(normalize(vDir), sunDir),0.0);
-          c += vec3(1.0,0.85,0.6)*pow(s,40.0)*0.9 + vec3(1.0,0.7,0.45)*pow(s,6.0)*0.25;
+          c += vec3(1.0,0.85,0.6)*pow(s,60.0)*0.5 + vec3(1.0,0.7,0.45)*pow(s,6.0)*0.14;
           gl_FragColor = vec4(c,1.0); }`,
     })
   );
   scene.add(sky);
 
-  scene.add(new THREE.HemisphereLight(0xffd2b8, 0x6c8f5a, 0.9));
+  scene.add(new THREE.HemisphereLight(0xffd2b8, 0xd99a86, 0.95)); // warm bounce so undersides read peach, not green
   const sun = new THREE.DirectionalLight(0xffe0c2, 2.4);
   sun.position.set(-120, 160, 140);
   sun.castShadow = true;
-  sun.shadow.mapSize.set(2048, 2048);
+  sun.shadow.mapSize.set(scale < 1 ? 1024 : 2048, scale < 1 ? 1024 : 2048);
   sun.shadow.bias = -0.0006;
   sun.shadow.normalBias = 0.6;
   sun.shadow.radius = 4;
@@ -101,7 +101,7 @@ export function createWorld(canvas, W, H) {
     const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, color, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false, fog: false }));
     s.scale.set(size, size, 1); return s;
   };
-  const sunGlow = glow(0xffd9a8, 520); sunGlow.position.set(-480, 150, -1700); scene.add(sunGlow);
+  const sunGlow = glow(0xffd9a8, 240); sunGlow.material.opacity = 0.55; sunGlow.position.set(-480, 150, -1700); scene.add(sunGlow);
 
   // ---------- island ----------
   const rnd = mulberry32(7);
@@ -191,7 +191,10 @@ export function createWorld(canvas, W, H) {
     const c = new THREE.Group(); const n = 3 + Math.floor(rnd() * 3);
     for (let k = 0; k < n; k++) { const b = new THREE.Mesh(new THREE.IcosahedronGeometry(1, 0), cloudMat); const s = 5 + rnd() * 7; b.scale.set(s * 1.4, s * 0.7, s); b.position.set(k * 7 - n * 3.5, rnd() * 2, rnd() * 4); c.add(b); }
     const a = (i / 9) * Math.PI * 2 + 0.3; const r = 150 + rnd() * 90;
-    c.position.set(Math.cos(a) * r, -30 + rnd() * 70, Math.sin(a) * r - 40); scene.add(c); clouds.push(c);
+    c.position.set(Math.cos(a) * r, -30 + rnd() * 70, Math.sin(a) * r - 40);
+    { const camP = V(205, 14, 222), d = camP.clone().normalize(); const along = c.position.dot(d); const perp = c.position.clone().sub(d.clone().multiplyScalar(along));
+      if (along > 0 && perp.length() < 110) c.position.add(perp.lengthSq() > 1 ? perp.normalize().multiplyScalar(120) : V(0, 0, -150)); }
+    scene.add(c); clouds.push(c);
   }
 
   // ---------- car + arm ----------
@@ -206,9 +209,11 @@ export function createWorld(canvas, W, H) {
   const sleeve = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.38, 0.9), mat(PAL.sleeve)); sleeve.position.z = 0.3; arm.add(sleeve);
   const forearm = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.26, 0.55), mat(PAL.skin)); forearm.position.z = 0.95; arm.add(forearm);
   const hand = new THREE.Group(); hand.position.z = 1.2; arm.add(hand);
-  { const palm = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.12, 0.62), mat(PAL.skin)); palm.position.z = 0.31; palm.castShadow = true; hand.add(palm);
-    for (let i = 0; i < 4; i++) { const f = new THREE.Mesh(new THREE.BoxGeometry(0.13, 0.1, 0.42), mat(PAL.skin)); f.position.set(0.22 - i * 0.145, 0, 0.8); hand.add(f); }
-    const th = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.1, 0.14), mat(PAL.skin)); th.position.set(0.42, 0, 0.12); th.rotation.y = -0.5; hand.add(th); }
+  { const skin = mat(PAL.skin, { roughness: 0.7 });
+    const palm = new THREE.Mesh(new THREE.IcosahedronGeometry(1, 1), skin); palm.scale.set(0.33, 0.075, 0.34); palm.position.z = 0.33; palm.castShadow = true; hand.add(palm);
+    const fl = [0.36, 0.42, 0.4, 0.32];
+    for (let i = 0; i < 4; i++) { const f = new THREE.Mesh(new THREE.CapsuleGeometry(0.062, fl[i], 3, 6), skin); f.rotation.x = Math.PI / 2; f.position.set(0.21 - i * 0.14, 0.005, 0.62 + fl[i] / 2); f.castShadow = true; hand.add(f); }
+    const th = new THREE.Mesh(new THREE.CapsuleGeometry(0.07, 0.28, 3, 6), skin); th.rotation.set(Math.PI / 2, 0, 0); th.rotation.y = 0; th.position.set(0.38, -0.01, 0.3); th.rotateX(0); th.rotation.z = 0; th.rotation.y = 0.0; const thg = new THREE.Group(); thg.add(th); thg.rotation.y = 0.75; thg.position.set(0.12, 0, 0.05); hand.add(thg); }
 
   // ---------- plane (origin = wing centre) ----------
   const plane = new THREE.Group(); scene.add(plane);
@@ -339,6 +344,7 @@ export function createWorld(canvas, W, H) {
   const parts = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(1, 0), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.95, fog: false }), NP);
   parts.frustumCulled = false; parts.instanceColor = new THREE.InstancedBufferAttribute(new Float32Array(NP * 3), 3); scene.add(parts);
   const dummy = new THREE.Object3D();
+  const XAXIS = V(1, 0, 0);
   const hide = (im, i) => { dummy.position.set(0, -9999, 0); dummy.scale.set(0.0001, 0.0001, 0.0001); dummy.updateMatrix(); im.setMatrixAt(i, dummy.matrix); };
 
   // ---------- timeline functions ----------
@@ -357,11 +363,11 @@ export function createWorld(canvas, W, H) {
     let x = RWX0 + 6, y = GEAR_H, z = RWZ, yaw = 0, dt = 1 / 120;
     for (let t = 34; t <= 62.001; t += dt) {
       const v = kmh(t) * 0.066 * (1 - 0.45 * ss(46.5, 49, t));
-      // manoeuvres: bank + turn left 48-51.4 (aileron, rudder), climb 51.2-52.6 / descend 52.9-54.4 (elevator),
+      // manoeuvres: bank + turn right 48-51.4 (aileron, rudder), climb 51.2-52.6 / descend 52.9-54.4 (elevator),
       // then a gentle climbing left turn that carries it up behind the island for the final wide shot
-      const roll = -0.6 * (ss(48.0, 48.8, t) - ss(50.6, 51.4, t)) - 0.4 * (ss(55.2, 56.2, t) - ss(59.0, 60.0, t));
-      const yawRate = -roll * 1.0;
-      const pitch = (t < 44.6 ? 0.16 * ss(44.0, 44.8, t) : 0.16 - 0.1 * ss(46, 48, t)) + 0.22 * (ss(51.2, 51.8, t) - ss(52.4, 52.9, t)) - 0.2 * (ss(52.9, 53.4, t) - ss(53.8, 54.4, t)) + 0.5 * ss(55.5, 57, t);
+      const roll = 0.6 * (ss(48.4, 49.0, t) - ss(50.6, 51.2, t)) + 0.4 * (ss(51.2, 51.8, t) - ss(54.2, 54.8, t)) + 0.35 * (ss(55.2, 56.2, t) - ss(59.0, 60.0, t)); // banking right, towards the camera side
+      const yawRate = -roll * 0.9;
+      const pitch = (t < 44.6 ? 0.16 * ss(44.0, 44.8, t) : 0.16 - 0.1 * ss(46, 48, t)) + 0.22 * (ss(51.2, 51.8, t) - ss(52.4, 52.9, t)) - 0.2 * (ss(52.9, 53.4, t) - ss(53.8, 54.4, t)) + 0.3 * ss(55.5, 57, t);
       yaw += yawRate * dt;
       const airborne = t > 45.0;
       x += Math.cos(yaw) * v * dt; z += -Math.sin(yaw) * v * dt;
@@ -377,26 +383,31 @@ export function createWorld(canvas, W, H) {
 
   // ---------- camera keys ----------
   // Each key: t, pos(t) and look(t) evaluated live so follow-shots track their subject.
-  const W0 = { pos: V(0, 44, 200), look: V(5, -6, 0), fov: 44 };
+  const W0 = { pos: V(205, 14, 222), look: V(4, -2, 0), fov: 44 };
+  // chase from outside the plane's circle, so the island stays behind it
+  const radPos = (t, D, H, back) => { const f = fly(t); const l = Math.hypot(f.x, f.z) || 1; return V(f.x + (f.x / l) * D - Math.cos(f.yaw) * back, f.y + H, f.z + (f.z / l) * D + Math.sin(f.yaw) * back); };
   const flyPos = (t, off) => { const f = fly(t); const c = Math.cos(f.yaw), s = Math.sin(f.yaw); return V(f.x + off.x * c + off.z * s, f.y + off.y, f.z - off.x * s + off.z * c); };
   const keys = [
     { t: 0, pos: () => W0.pos, look: () => W0.look, fov: 44 },
-    { t: 2.6, pos: (t) => carPose(t).pos.clone().add(V(-4, 26, 70)), look: (t) => carPose(t).pos.clone().add(V(0, 2, 0)), fov: 40 },
-    { t: 4.0, pos: (t) => handWorld(t).add(V(-6.5, 2.6, 8.5)), look: (t) => handWorld(t).add(V(-0.6, -0.2, 0)), fov: 40 },
+    { t: 1.0, pos: (t) => carPose(t).pos.clone().add(V(-6, 34, 96)), look: (t) => carPose(t).pos.clone().add(V(0, 2, 0)), fov: 42 },
+    { t: 2.2, pos: (t) => handWorld(t).add(V(-7.5, 3.0, 9.5)), look: (t) => handWorld(t).add(V(-0.8, -0.4, 0)), fov: 40 },
+    { t: 4.2, pos: (t) => handWorld(t).add(V(-5.2, 2.0, 6.8)), look: (t) => handWorld(t).add(V(-0.6, -0.3, 0)), fov: 40 },
     { t: 6.0, pos: (t) => handWorld(t).add(V(-2.6, 1.2, 3.4)), look: (t) => handWorld(t), fov: 40 },
     { t: 8.5, pos: (t) => obj.pos.clone().add(V(-16, 9, 34)), look: () => obj.pos.clone(), fov: 40 },
     { t: 14.5, pos: (t) => obj.pos.clone().add(V(-13, 8, 33)), look: () => obj.pos.clone().add(V(0, -0.5, 0)), fov: 40 },
-    { t: 19.0, pos: (t) => obj.pos.clone().add(V(16, 1, 30)), look: () => obj.pos.clone().add(V(0, -1.5, -2.5)), fov: 40 },
-    { t: 22.8, pos: (t) => obj.pos.clone().add(V(12, 0, 31)), look: () => obj.pos.clone().add(V(-1, -1.5, -2.5)), fov: 40 },
+    { t: 16.8, pos: (t) => obj.pos.clone().add(V(4, 9, 31)), look: () => obj.pos.clone().add(V(0, -0.5, -1)), fov: 40 },
+    { t: 19.2, pos: (t) => obj.pos.clone().add(V(17, -9, 24)), look: () => obj.pos.clone().add(V(1, -2.2, -3)), fov: 40 },
+    { t: 22.8, pos: (t) => obj.pos.clone().add(V(13, -8, 26)), look: () => obj.pos.clone().add(V(0, -2.2, -3)), fov: 40 },
     { t: 25.0, pos: (t) => obj.pos.clone().add(V(2.0, 5.0, 27)), look: () => obj.pos.clone().add(V(0, -0.3, 7)), fov: 38 },
     { t: 31.5, pos: (t) => obj.pos.clone().add(V(-1.5, 4.0, 26)), look: () => obj.pos.clone().add(V(0, -0.3, 7)), fov: 38 },
-    { t: 34.4, pos: (t) => obj.pos.clone().add(V(-8, 14, 75)), look: () => obj.pos.clone().add(V(0, 0, 0)), fov: 40 },
-    { t: 38.5, pos: (t) => obj.pos.clone().add(V(2, 13, 80)), look: () => obj.pos.clone().add(V(-3, 1, 0)), fov: 40 },
-    { t: 43.0, pos: (t) => obj.pos.clone().add(V(-4, 11, 78)), look: () => obj.pos.clone().add(V(-3, 2, 0)), fov: 40 },
-    { t: 47.8, pos: (t) => obj.pos.clone().add(V(-70, 10, 110)), look: () => obj.pos.clone().add(V(0, -6, 0)), fov: 42 },
-    { t: 50.0, pos: (t) => flyPos(t, V(-62, 18, 62)), look: () => obj.pos.clone(), fov: 40 },
-    { t: 54.0, pos: (t) => flyPos(t, V(-56, 16, 52)), look: () => obj.pos.clone(), fov: 40 },
-    { t: 56.0, pos: (t) => flyPos(t, V(-70, 22, 70)), look: () => obj.pos.clone(), fov: 40 },
+    { t: 33.6, pos: (t) => obj.pos.clone().add(V(30, 30, 92)), look: () => obj.pos.clone().add(V(0, -3, 0)), fov: 40 },
+    { t: 37.0, pos: (t) => obj.pos.clone().add(V(52, 12, 66)), look: () => obj.pos.clone().add(V(3, -4, 0)), fov: 40 },
+    { t: 40.6, pos: (t) => obj.pos.clone().add(V(-38, 22, 50)), look: () => obj.pos.clone().add(V(-3, -4, 4)), fov: 40 },
+    { t: 43.0, pos: (t) => obj.pos.clone().add(V(-8, 10, 66)), look: () => obj.pos.clone().add(V(-2, -3, 0)), fov: 40 },
+    { t: 47.8, pos: (t) => obj.pos.clone().add(V(14, 16, 78)), look: () => obj.pos.clone().add(V(0, -5, 0)), fov: 42 },
+    { t: 50.0, pos: (t) => radPos(t, 80, 16, 34), look: () => obj.pos.clone().add(V(0, -2, 0)), fov: 40 },
+    { t: 54.0, pos: (t) => radPos(t, 62, 12, 24), look: () => obj.pos.clone().add(V(0, -2, 0)), fov: 40 },
+    { t: 56.2, pos: (t) => radPos(t, 70, 18, 30), look: () => obj.pos.clone().add(V(0, -3, 0)), fov: 40 },
     { t: 60, pos: () => W0.pos, look: () => W0.look, fov: 44 },
   ];
   const cr = (p0, p1, p2, p3, u) => {
@@ -439,11 +450,11 @@ export function createWorld(canvas, W, H) {
     // car
     const cp = carPose(t); car.position.copy(cp.pos); car.rotation.y = cp.yaw;
     // arm: out of window 0.6-1.4, tilt 1.6-2.6, lift 2.6-4.5, hidden after morph
-    const out = ss(0.5, 1.5, t);
+    const out = ss(1.3, 2.1, t);
     arm.scale.set(1, 1, Math.max(0.001, out));
-    const tilt = 0.32 * ss(1.6, 2.6, t) + 0.03 * Math.sin(t * 7) * ss(2.6, 3, t);
+    const tilt = 0.34 * ss(2.3, 3.2, t) + 0.03 * Math.sin(t * 7) * ss(3.2, 3.6, t);
     hand.rotation.z = tilt;
-    arm.rotation.x = -0.32 * ss(2.8, 4.4, t) - 0.02 * Math.sin(t * 9) * ss(3, 4, t);
+    arm.rotation.x = -0.34 * ss(3.6, 4.6, t) - 0.02 * Math.sin(t * 9) * ss(3.6, 4.4, t);
     const handVis = t < 6.6;
     arm.visible = t < 7.2; hand.visible = handVis;
     hand.scale.setScalar(1 - ss(6.0, 6.6, t));
@@ -476,7 +487,7 @@ export function createWorld(canvas, W, H) {
     if (t < 6) {
       const f = fly(60), fp = fly(59.9);
       const vx = (f.x - fp.x) * 10, vy = (f.y - fp.y) * 10, vz = (f.z - fp.z) * 10;
-      pos = V(f.x + vx * t, f.y + vy * t, f.z + vz * t); sc = 1; m = 1; span = 34; yaw = f.yaw; pitch = f.pitch; roll = f.roll; loopPlane = true;
+      pos = V(f.x + vx * t, f.y + vy * t, f.z + vz * t); sc = 1; m = 1; span = 34; yaw = f.yaw; pitch = f.pitch; roll = f.roll; aoa = 0; loopPlane = true;
     }
     plane.position.copy(pos); plane.scale.setScalar(sc);
     plane.rotation.set(0, 0, 0); plane.rotation.order = "YXZ";
@@ -496,7 +507,7 @@ export function createWorld(canvas, W, H) {
     gearParts.forEach((g) => { g.rotation.z = retract * 1.4; if (retract > 0.98) g.visible = false; else g.visible = true; });
     // engines
     const eR = engR, eL = engL;
-    const engZ = t < 32 && !loopPlane ? -3.5 : lerp(-3.5, -8.5, pop(32.3, t, 0.5)); // first engine on the far half, so the near tip stays clear for the cutaway
+    const engZ = loopPlane ? -8.5 : t < 32 ? -3.5 : lerp(-3.5, -8.5, pop(32.3, t, 0.5)); // first engine on the far half, so the near tip stays clear for the cutaway
     eR.e.position.set(0.3, 0, engZ); eL.e.position.set(0.3, 0, 8.5);
     eR.e.visible = loopPlane || t >= 18.9;
     eR.pylon.scale.setScalar(Math.max(0.001, b(19.3)));
@@ -548,13 +559,13 @@ export function createWorld(canvas, W, H) {
     // ---- airflow streaks ----
     plane.updateMatrixWorld(true);
     let k = 0;
-    const flowOn = t < 6.6 ? ss(0.8, 1.6, t) : t < 32 ? 1 : 0;
+    const flowOn = t < 6.6 ? ss(1.6, 2.4, t) : t < 32 ? 1 : 0;
     if (flowOn > 0.01) {
       // flow in the object's frame (chord-normalised), relative flow towards -x
       const isHand = t < 6.4;
       const C = isHand ? 0.62 : CH * sc; // chord in world units
       const O = isHand ? hw : pos.clone();
-      const deflect = isHand ? 0.32 * ss(1.6, 2.6, t) : aoa * 1.6 + 0.05;
+      const deflect = isHand ? 0.32 * ss(2.3, 3.2, t) : aoa * 1.6 + 0.05;
       const rough = ss(23.6, 24.4, t) * (1 - ss(27.2, 29.8, t));
       const prof = profilePts(m, 12);
       const surfY = (xn, upper) => { // xn chord-normalised (+0.5 LE .. -0.5 TE)
@@ -583,7 +594,7 @@ export function createWorld(canvas, W, H) {
         const p2 = V(xn2 * C, fy(xn2) * C, (isHand ? zz * C : zz * sc)).add(O);
         const dir = p2.clone().sub(p1); const len = (isHand ? 0.55 : 0.5) * C * 0.6;
         const fade = Math.sin(Math.PI * s) * flowOn;
-        dummy.position.copy(p1); dummy.lookAt(p2); dummy.rotateY(Math.PI / 2);
+        dummy.position.copy(p1); dummy.quaternion.setFromUnitVectors(XAXIS, dir.clone().normalize());
         const th = (isHand ? 0.018 : 0.022) * C;
         dummy.scale.set(len * fade + 0.0001, th, th);
         dummy.updateMatrix(); streaks.setMatrixAt(k++, dummy.matrix);
@@ -646,5 +657,10 @@ export function createWorld(canvas, W, H) {
     renderer.render(scene, camera);
     return { kmh: kmh(t), t };
   }
-  return { render, kmh };
+  function debug(t) {
+    render(t);
+    const v = plane.position.clone().project(camera);
+    return { t, plane: plane.position.toArray().map((x) => +x.toFixed(1)), ndc: [+v.x.toFixed(2), +v.y.toFixed(2), +v.z.toFixed(3)], visible: plane.visible, cam: camera.position.toArray().map((x) => +x.toFixed(1)) };
+  }
+  return { render, kmh, debug };
 }

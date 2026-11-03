@@ -1,767 +1,920 @@
 [
  {
   "text": "Cuba",
-  "start": 0.15,
-  "end": 0.488
+  "start": 0.25,
+  "end": 0.34,
+  "cstart": 0.15
  },
  {
   "text": "letak",
-  "start": 0.488,
-  "end": 0.826
+  "start": 0.34,
+  "end": 0.72,
+  "cstart": 0.488
  },
  {
   "text": "tangan",
-  "start": 0.826,
-  "end": 1.165
+  "start": 0.72,
+  "end": 1.06,
+  "cstart": 0.826
  },
  {
   "text": "keluar",
-  "start": 1.165,
-  "end": 1.503
+  "start": 1.06,
+  "end": 1.53,
+  "cstart": 1.165
  },
  {
   "text": "tingkap",
-  "start": 1.503,
-  "end": 1.841
+  "start": 1.53,
+  "end": 1.92,
+  "cstart": 1.503
  },
  {
   "text": "kereta,",
-  "start": 1.841,
-  "end": 2.179
+  "start": 1.92,
+  "end": 2.51,
+  "cstart": 1.841
  },
  {
   "text": "senget",
-  "start": 2.179,
-  "end": 2.518
+  "start": 2.51,
+  "end": 2.93,
+  "cstart": 2.179
  },
  {
   "text": "sikit",
-  "start": 2.518,
-  "end": 2.856
+  "start": 2.93,
+  "end": 3.29,
+  "cstart": 2.518
  },
  {
   "text": "ke",
-  "start": 2.856,
-  "end": 3.194
+  "start": 3.29,
+  "end": 3.43,
+  "cstart": 2.856
  },
  {
   "text": "atas.",
-  "start": 3.194,
-  "end": 3.532
+  "start": 3.43,
+  "end": 3.86,
+  "cstart": 3.194
  },
  {
   "text": "Tangan",
-  "start": 3.532,
-  "end": 3.871
+  "start": 3.86,
+  "end": 4.18,
+  "cstart": 3.532
  },
  {
   "text": "kau",
-  "start": 3.871,
-  "end": 4.209
+  "start": 4.18,
+  "end": 4.34,
+  "cstart": 3.871
  },
  {
   "text": "terangkat.",
-  "start": 4.209,
-  "end": 4.547
+  "start": 4.34,
+  "end": 4.99,
+  "cstart": 4.209
  },
  {
   "text": "Kau",
-  "start": 4.547,
-  "end": 4.885
+  "start": 4.99,
+  "end": 5.08,
+  "cstart": 4.547
  },
  {
   "text": "baru",
-  "start": 4.885,
-  "end": 5.224
+  "start": 5.08,
+  "end": 5.35,
+  "cstart": 4.885
  },
  {
   "text": "bina",
-  "start": 5.224,
-  "end": 5.562
+  "start": 5.35,
+  "end": 5.61,
+  "cstart": 5.224
  },
  {
   "text": "sayap.",
-  "start": 5.562,
-  "end": 6.0
+  "start": 5.61,
+  "end": 6.1,
+  "cstart": 5.562
  },
  {
   "text": "Sebab",
-  "start": 6.0,
-  "end": 6.445
+  "start": 6.1,
+  "end": 6.36,
+  "cstart": 6.0
  },
  {
   "text": "tangan",
-  "start": 6.445,
-  "end": 6.89
+  "start": 6.36,
+  "end": 6.59,
+  "cstart": 6.445
  },
  {
   "text": "yang",
-  "start": 6.89,
-  "end": 7.335
+  "start": 6.59,
+  "end": 6.84,
+  "cstart": 6.89
  },
  {
   "text": "senget",
-  "start": 7.335,
-  "end": 7.78
+  "start": 6.84,
+  "end": 7.16,
+  "cstart": 7.335
  },
  {
   "text": "tu",
-  "start": 7.78,
-  "end": 8.225
+  "start": 7.16,
+  "end": 7.23,
+  "cstart": 7.78
  },
  {
   "text": "tolak",
-  "start": 8.225,
-  "end": 8.67
+  "start": 7.23,
+  "end": 7.57,
+  "cstart": 8.225
  },
  {
   "text": "angin",
-  "start": 8.67,
-  "end": 9.115
+  "start": 7.57,
+  "end": 7.92,
+  "cstart": 8.67
  },
  {
   "text": "ke",
-  "start": 9.115,
-  "end": 9.56
+  "start": 7.92,
+  "end": 8.02,
+  "cstart": 9.115
  },
  {
   "text": "bawah,",
-  "start": 9.56,
-  "end": 10.005
+  "start": 8.02,
+  "end": 8.45,
+  "cstart": 9.56
  },
  {
   "text": "dan",
-  "start": 10.005,
-  "end": 10.45
+  "start": 8.45,
+  "end": 8.52,
+  "cstart": 10.005
  },
  {
   "text": "angin",
-  "start": 10.45,
-  "end": 10.895
+  "start": 8.52,
+  "end": 8.85,
+  "cstart": 10.45
  },
  {
   "text": "tolak",
-  "start": 10.895,
-  "end": 11.34
+  "start": 8.85,
+  "end": 9.18,
+  "cstart": 10.895
  },
  {
   "text": "balik",
-  "start": 11.34,
-  "end": 11.785
+  "start": 9.18,
+  "end": 9.56,
+  "cstart": 11.34
  },
  {
   "text": "tangan",
-  "start": 11.785,
-  "end": 12.23
+  "start": 9.56,
+  "end": 9.9,
+  "cstart": 11.785
  },
  {
   "text": "kau",
-  "start": 12.23,
-  "end": 12.675
+  "start": 9.9,
+  "end": 10.1,
+  "cstart": 12.23
  },
  {
   "text": "ke",
-  "start": 12.675,
-  "end": 13.12
+  "start": 10.1,
+  "end": 10.23,
+  "cstart": 12.675
  },
  {
   "text": "atas.",
-  "start": 13.12,
-  "end": 13.565
+  "start": 10.23,
+  "end": 10.67,
+  "cstart": 13.12
  },
  {
   "text": "Itu",
-  "start": 13.565,
-  "end": 14.01
+  "start": 12.4,
+  "end": 12.59,
+  "cstart": 13.565
  },
  {
   "text": "namanya",
-  "start": 14.01,
-  "end": 14.455
+  "start": 12.59,
+  "end": 13.11,
+  "cstart": 14.01
  },
  {
   "text": "lift.",
-  "start": 14.455,
-  "end": 15.0
+  "start": 13.11,
+  "end": 13.4,
+  "cstart": 14.455
  },
  {
   "text": "Tapi",
-  "start": 15.0,
-  "end": 15.343
+  "start": 15.1,
+  "end": 15.35,
+  "cstart": 15.0
  },
  {
   "text": "kau",
-  "start": 15.343,
-  "end": 15.687
+  "start": 15.35,
+  "end": 15.5,
+  "cstart": 15.343
  },
  {
   "text": "kena",
-  "start": 15.687,
-  "end": 16.03
+  "start": 15.5,
+  "end": 15.72,
+  "cstart": 15.687
  },
  {
   "text": "pandu",
-  "start": 16.03,
-  "end": 16.374
+  "start": 15.72,
+  "end": 16.0,
+  "cstart": 16.03
  },
  {
   "text": "laju.",
-  "start": 16.374,
-  "end": 16.717
+  "start": 16.0,
+  "end": 16.34,
+  "cstart": 16.374
  },
  {
   "text": "Pesawat",
-  "start": 16.717,
-  "end": 17.061
+  "start": 17.037,
+  "end": 17.377,
+  "cstart": 16.717
  },
  {
   "text": "tak",
-  "start": 17.061,
-  "end": 17.404
+  "start": 17.377,
+  "end": 17.547,
+  "cstart": 17.061
  },
  {
   "text": "boleh",
-  "start": 17.404,
-  "end": 17.748
+  "start": 17.547,
+  "end": 17.827,
+  "cstart": 17.404
  },
  {
   "text": "tunggu",
-  "start": 17.748,
-  "end": 18.091
+  "start": 17.827,
+  "end": 18.177,
+  "cstart": 17.748
  },
  {
   "text": "angin,",
-  "start": 18.091,
-  "end": 18.435
+  "start": 18.177,
+  "end": 18.557,
+  "cstart": 18.091
  },
  {
   "text": "jadi",
-  "start": 18.435,
-  "end": 18.778
+  "start": 18.557,
+  "end": 18.817,
+  "cstart": 18.435
  },
  {
   "text": "kau",
-  "start": 18.778,
-  "end": 19.122
+  "start": 18.817,
+  "end": 18.957,
+  "cstart": 18.778
  },
  {
   "text": "tolak",
-  "start": 19.122,
-  "end": 19.465
+  "start": 18.957,
+  "end": 19.237,
+  "cstart": 19.122
  },
  {
   "text": "sendiri",
-  "start": 19.465,
-  "end": 19.809
+  "start": 19.237,
+  "end": 19.637,
+  "cstart": 19.465
  },
  {
   "text": "ke",
-  "start": 19.809,
-  "end": 20.152
+  "start": 19.637,
+  "end": 19.857,
+  "cstart": 19.809
  },
  {
   "text": "depan",
-  "start": 20.152,
-  "end": 20.496
+  "start": 19.857,
+  "end": 20.027,
+  "cstart": 20.152
  },
  {
   "text": "guna",
-  "start": 20.496,
-  "end": 20.839
+  "start": 20.027,
+  "end": 20.247,
+  "cstart": 20.496
  },
  {
   "text": "kipas",
-  "start": 20.839,
-  "end": 21.183
+  "start": 20.247,
+  "end": 20.527,
+  "cstart": 20.839
  },
  {
   "text": "atau",
-  "start": 21.183,
-  "end": 21.526
+  "start": 20.527,
+  "end": 20.797,
+  "cstart": 21.183
  },
  {
   "text": "jet.",
-  "start": 21.526,
-  "end": 21.87
+  "start": 20.797,
+  "end": 21.087,
+  "cstart": 21.526
  },
  {
   "text": "Itu",
-  "start": 21.87,
-  "end": 22.213
+  "start": 21.643,
+  "end": 21.813,
+  "cstart": 21.87
  },
  {
   "text": "namanya",
-  "start": 22.213,
-  "end": 22.557
+  "start": 21.813,
+  "end": 22.323,
+  "cstart": 22.213
  },
  {
   "text": "thrust.",
-  "start": 22.557,
-  "end": 23.0
+  "start": 22.323,
+  "end": 22.543,
+  "cstart": 22.557
  },
  {
   "text": "Tapi",
-  "start": 23.0,
-  "end": 23.445
+  "start": 23.1,
+  "end": 23.33,
+  "cstart": 23.0
  },
  {
   "text": "sayap",
-  "start": 23.445,
-  "end": 23.89
+  "start": 23.33,
+  "end": 23.66,
+  "cstart": 23.445
  },
  {
   "text": "yang",
-  "start": 23.89,
-  "end": 24.335
+  "start": 23.66,
+  "end": 23.84,
+  "cstart": 23.89
  },
  {
   "text": "rata",
-  "start": 24.335,
-  "end": 24.78
+  "start": 23.84,
+  "end": 24.15,
+  "cstart": 24.335
  },
  {
   "text": "banyak",
-  "start": 24.78,
-  "end": 25.225
+  "start": 24.15,
+  "end": 24.4,
+  "cstart": 24.78
  },
  {
   "text": "melawan",
-  "start": 25.225,
-  "end": 25.67
+  "start": 24.4,
+  "end": 24.8,
+  "cstart": 25.225
  },
  {
   "text": "angin.",
-  "start": 25.67,
-  "end": 26.115
+  "start": 24.8,
+  "end": 25.42,
+  "cstart": 25.67
  },
  {
   "text": "Jadi",
-  "start": 26.115,
-  "end": 26.56
+  "start": 26.037,
+  "end": 26.277,
+  "cstart": 26.115
  },
  {
   "text": "kau",
-  "start": 26.56,
-  "end": 27.005
+  "start": 26.277,
+  "end": 26.457,
+  "cstart": 26.56
  },
  {
   "text": "bengkokkan",
-  "start": 27.005,
-  "end": 27.45
+  "start": 26.457,
+  "end": 26.987,
+  "cstart": 27.005
  },
  {
   "text": "bahagian",
-  "start": 27.45,
-  "end": 27.895
+  "start": 26.987,
+  "end": 27.477,
+  "cstart": 27.45
  },
  {
   "text": "atas",
-  "start": 27.895,
-  "end": 28.34
+  "start": 27.477,
+  "end": 27.717,
+  "cstart": 27.895
  },
  {
   "text": "supaya",
-  "start": 28.34,
-  "end": 28.785
+  "start": 27.717,
+  "end": 28.077,
+  "cstart": 28.34
  },
  {
   "text": "angin",
-  "start": 28.785,
-  "end": 29.23
+  "start": 28.077,
+  "end": 28.377,
+  "cstart": 28.785
  },
  {
   "text": "mengalir",
-  "start": 29.23,
-  "end": 29.675
+  "start": 28.377,
+  "end": 28.887,
+  "cstart": 29.23
  },
  {
   "text": "licin.",
-  "start": 29.675,
-  "end": 30.12
+  "start": 28.887,
+  "end": 29.197,
+  "cstart": 29.675
  },
  {
   "text": "Bentuk",
-  "start": 30.12,
-  "end": 30.565
+  "start": 30.023,
+  "end": 30.223,
+  "cstart": 30.12
  },
  {
   "text": "ni",
-  "start": 30.565,
-  "end": 31.01
+  "start": 30.223,
+  "end": 30.343,
+  "cstart": 30.565
  },
  {
   "text": "dipanggil",
-  "start": 31.01,
-  "end": 31.455
+  "start": 30.343,
+  "end": 30.883,
+  "cstart": 31.01
  },
  {
   "text": "aerofoil.",
-  "start": 31.455,
-  "end": 32.0
+  "start": 30.883,
+  "end": 31.483,
+  "cstart": 31.455
  },
  {
   "text": "Tapi",
-  "start": 32.0,
-  "end": 32.352
+  "start": 32.1,
+  "end": 32.35,
+  "cstart": 32.0
  },
  {
   "text": "pesawat",
-  "start": 32.352,
-  "end": 32.703
+  "start": 32.35,
+  "end": 32.89,
+  "cstart": 32.352
  },
  {
   "text": "ni",
-  "start": 32.703,
-  "end": 33.055
+  "start": 32.89,
+  "end": 32.9,
+  "cstart": 32.703
  },
  {
   "text": "beratus",
-  "start": 33.055,
-  "end": 33.406
+  "start": 32.9,
+  "end": 33.446,
+  "cstart": 33.055
  },
  {
   "text": "tan.",
-  "start": 33.406,
-  "end": 33.758
+  "start": 33.446,
+  "end": 33.997,
+  "cstart": 33.406
  },
  {
   "text": "Sayap",
-  "start": 33.758,
-  "end": 34.11
+  "start": 33.997,
+  "end": 34.297,
+  "cstart": 33.758
  },
  {
   "text": "perlukan",
-  "start": 34.11,
-  "end": 34.461
+  "start": 34.297,
+  "end": 34.787,
+  "cstart": 34.11
  },
  {
   "text": "laju",
-  "start": 34.461,
-  "end": 34.813
+  "start": 34.787,
+  "end": 35.027,
+  "cstart": 34.461
  },
  {
   "text": "lebih",
-  "start": 34.813,
-  "end": 35.165
+  "start": 35.027,
+  "end": 35.337,
+  "cstart": 34.813
  },
  {
   "text": "dua",
-  "start": 35.165,
-  "end": 35.516
+  "start": 35.897,
+  "end": 35.916,
+  "cstart": 35.165
  },
  {
   "text": "ratus",
-  "start": 35.516,
-  "end": 35.868
+  "start": 35.916,
+  "end": 35.948,
+  "cstart": 35.516
  },
  {
   "text": "kilometer",
-  "start": 35.868,
-  "end": 36.219
+  "start": 35.948,
+  "end": 36.017,
+  "cstart": 35.868
  },
  {
   "text": "sejam",
-  "start": 36.219,
-  "end": 36.571
+  "start": 36.017,
+  "end": 36.317,
+  "cstart": 36.219
  },
  {
   "text": "untuk",
-  "start": 36.571,
-  "end": 36.923
+  "start": 36.317,
+  "end": 36.747,
+  "cstart": 36.571
  },
  {
   "text": "angkat",
-  "start": 36.923,
-  "end": 37.274
+  "start": 36.747,
+  "end": 36.927,
+  "cstart": 36.923
  },
  {
   "text": "dia.",
-  "start": 37.274,
-  "end": 37.626
+  "start": 36.927,
+  "end": 37.863,
+  "cstart": 37.274
  },
  {
   "text": "Jadi",
-  "start": 37.626,
-  "end": 37.977
+  "start": 37.863,
+  "end": 38.163,
+  "cstart": 37.626
  },
  {
   "text": "kau",
-  "start": 37.977,
-  "end": 38.329
+  "start": 38.163,
+  "end": 38.323,
+  "cstart": 37.977
  },
  {
   "text": "pecut",
-  "start": 38.329,
-  "end": 38.681
+  "start": 38.323,
+  "end": 38.593,
+  "cstart": 38.329
  },
  {
   "text": "atas",
-  "start": 38.681,
-  "end": 39.032
+  "start": 38.593,
+  "end": 38.833,
+  "cstart": 38.681
  },
  {
   "text": "landasan",
-  "start": 39.032,
-  "end": 39.384
+  "start": 38.833,
+  "end": 39.323,
+  "cstart": 39.032
  },
  {
   "text": "panjang,",
-  "start": 39.384,
-  "end": 39.735
+  "start": 39.323,
+  "end": 39.823,
+  "cstart": 39.384
  },
  {
   "text": "dan",
-  "start": 39.735,
-  "end": 40.087
+  "start": 39.823,
+  "end": 40.003,
+  "cstart": 39.735
  },
  {
   "text": "buka",
-  "start": 40.087,
-  "end": 40.439
+  "start": 40.003,
+  "end": 40.263,
+  "cstart": 40.087
  },
  {
   "text": "flaps",
-  "start": 40.439,
-  "end": 40.79
+  "start": 40.263,
+  "end": 40.563,
+  "cstart": 40.439
  },
  {
   "text": "supaya",
-  "start": 40.79,
-  "end": 41.142
+  "start": 40.563,
+  "end": 40.913,
+  "cstart": 40.79
  },
  {
   "text": "sayap",
-  "start": 41.142,
-  "end": 41.494
+  "start": 40.913,
+  "end": 41.233,
+  "cstart": 41.142
  },
  {
   "text": "menolak",
-  "start": 41.494,
-  "end": 41.845
+  "start": 41.233,
+  "end": 41.633,
+  "cstart": 41.494
  },
  {
   "text": "lebih",
-  "start": 41.845,
-  "end": 42.197
+  "start": 41.633,
+  "end": 41.943,
+  "cstart": 41.845
  },
  {
   "text": "banyak",
-  "start": 42.197,
-  "end": 42.548
+  "start": 41.943,
+  "end": 42.313,
+  "cstart": 42.197
  },
  {
   "text": "udara.",
-  "start": 42.548,
-  "end": 43.0
+  "start": 42.313,
+  "end": 43.1,
+  "cstart": 42.548
  },
  {
   "text": "Dan",
-  "start": 43.0,
-  "end": 43.408
+  "start": 43.1,
+  "end": 43.31,
+  "cstart": 43.0
  },
  {
   "text": "bila",
-  "start": 43.408,
-  "end": 43.817
+  "start": 43.31,
+  "end": 43.54,
+  "cstart": 43.408
  },
  {
   "text": "laju",
-  "start": 43.817,
-  "end": 44.225
+  "start": 43.54,
+  "end": 43.79,
+  "cstart": 43.817
  },
  {
   "text": "dah",
-  "start": 44.225,
-  "end": 44.633
+  "start": 43.79,
+  "end": 43.98,
+  "cstart": 44.225
  },
  {
   "text": "cukup,",
-  "start": 44.633,
-  "end": 45.042
+  "start": 43.98,
+  "end": 44.41,
+  "cstart": 44.633
  },
  {
   "text": "roda",
-  "start": 45.042,
-  "end": 45.45
+  "start": 44.41,
+  "end": 44.65,
+  "cstart": 45.042
  },
  {
   "text": "terangkat.",
-  "start": 45.45,
-  "end": 45.858
+  "start": 44.65,
+  "end": 45.35,
+  "cstart": 45.45
  },
  {
   "text": "Beratus",
-  "start": 45.858,
-  "end": 46.267
+  "start": 45.71,
+  "end": 46.144,
+  "cstart": 45.858
  },
  {
   "text": "tan,",
-  "start": 46.267,
-  "end": 46.675
+  "start": 46.144,
+  "end": 46.33,
+  "cstart": 46.267
  },
  {
   "text": "terapung",
-  "start": 46.675,
-  "end": 47.083
+  "start": 46.33,
+  "end": 46.83,
+  "cstart": 46.675
  },
  {
   "text": "atas",
-  "start": 47.083,
-  "end": 47.492
+  "start": 46.83,
+  "end": 47.08,
+  "cstart": 47.083
  },
  {
   "text": "angin.",
-  "start": 47.492,
-  "end": 48.0
+  "start": 47.08,
+  "end": 47.74,
+  "cstart": 47.492
  },
  {
   "text": "Tapi",
-  "start": 48.0,
-  "end": 48.343
+  "start": 48.1,
+  "end": 48.36,
+  "cstart": 48.0
  },
  {
   "text": "macam",
-  "start": 48.343,
-  "end": 48.687
+  "start": 48.36,
+  "end": 48.77,
+  "cstart": 48.343
  },
  {
   "text": "mana",
-  "start": 48.687,
-  "end": 49.03
+  "start": 48.77,
+  "end": 48.94,
+  "cstart": 48.687
  },
  {
   "text": "nak",
-  "start": 49.03,
-  "end": 49.374
+  "start": 48.94,
+  "end": 49.13,
+  "cstart": 49.03
  },
  {
   "text": "belok,",
-  "start": 49.374,
-  "end": 49.717
+  "start": 49.13,
+  "end": 49.58,
+  "cstart": 49.374
  },
  {
   "text": "naik",
-  "start": 49.717,
-  "end": 50.061
+  "start": 49.58,
+  "end": 49.86,
+  "cstart": 49.717
  },
  {
   "text": "dan",
-  "start": 50.061,
-  "end": 50.404
+  "start": 49.86,
+  "end": 50.03,
+  "cstart": 50.061
  },
  {
   "text": "turun?",
-  "start": 50.404,
-  "end": 50.748
+  "start": 50.03,
+  "end": 50.6,
+  "cstart": 50.404
  },
  {
   "text": "Jadi",
-  "start": 50.748,
-  "end": 51.091
+  "start": 50.6,
+  "end": 50.81,
+  "cstart": 50.748
  },
  {
   "text": "kau",
-  "start": 51.091,
-  "end": 51.435
+  "start": 50.81,
+  "end": 51.08,
+  "cstart": 51.091
  },
  {
   "text": "pasang",
-  "start": 51.435,
-  "end": 51.778
+  "start": 51.08,
+  "end": 51.4,
+  "cstart": 51.435
  },
  {
   "text": "sirip",
-  "start": 51.778,
-  "end": 52.122
+  "start": 51.4,
+  "end": 51.74,
+  "cstart": 51.778
  },
  {
   "text": "kecil",
-  "start": 52.122,
-  "end": 52.465
+  "start": 51.74,
+  "end": 52.07,
+  "cstart": 52.122
  },
  {
   "text": "di",
-  "start": 52.465,
-  "end": 52.809
+  "start": 52.07,
+  "end": 52.22,
+  "cstart": 52.465
  },
  {
   "text": "sayap",
-  "start": 52.809,
-  "end": 53.152
+  "start": 52.22,
+  "end": 52.53,
+  "cstart": 52.809
  },
  {
   "text": "dan",
-  "start": 53.152,
-  "end": 53.496
+  "start": 52.53,
+  "end": 52.75,
+  "cstart": 53.152
  },
  {
   "text": "ekor",
-  "start": 53.496,
-  "end": 53.839
+  "start": 52.75,
+  "end": 52.99,
+  "cstart": 53.496
  },
  {
   "text": "yang",
-  "start": 53.839,
-  "end": 54.183
+  "start": 52.99,
+  "end": 53.32,
+  "cstart": 53.839
  },
  {
   "text": "boleh",
-  "start": 54.183,
-  "end": 54.526
+  "start": 53.32,
+  "end": 53.62,
+  "cstart": 54.183
  },
  {
   "text": "dilaraskan.",
-  "start": 54.526,
-  "end": 54.87
+  "start": 53.62,
+  "end": 54.41,
+  "cstart": 54.526
  },
  {
   "text": "Aileron,",
-  "start": 54.87,
-  "end": 55.213
+  "start": 54.41,
+  "end": 55.1,
+  "cstart": 54.87
  },
  {
   "text": "rudder,",
-  "start": 55.213,
-  "end": 55.557
+  "start": 55.1,
+  "end": 55.7,
+  "cstart": 55.213
  },
  {
   "text": "elevator.",
-  "start": 55.557,
-  "end": 56.0
+  "start": 55.7,
+  "end": 56.53,
+  "cstart": 55.557
  },
  {
   "text": "Tengok",
-  "start": 56.0,
-  "end": 56.557
+  "start": 56.53,
+  "end": 56.87,
+  "cstart": 56.0
  },
  {
   "text": "kau.",
-  "start": 56.557,
-  "end": 57.114
+  "start": 56.87,
+  "end": 57.09,
+  "cstart": 56.557
  },
  {
   "text": "Kau",
-  "start": 57.114,
-  "end": 57.671
+  "start": 57.592,
+  "end": 57.722,
+  "cstart": 57.114
  },
  {
   "text": "baru",
-  "start": 57.671,
-  "end": 58.229
+  "start": 57.722,
+  "end": 57.942,
+  "cstart": 57.671
  },
  {
   "text": "bina",
-  "start": 58.229,
-  "end": 58.786
+  "start": 57.942,
+  "end": 58.162,
+  "cstart": 58.229
  },
  {
   "text": "kapal",
-  "start": 58.786,
-  "end": 59.343
+  "start": 58.162,
+  "end": 58.542,
+  "cstart": 58.786
  },
  {
   "text": "terbang.",
-  "start": 59.343,
-  "end": 59.9
+  "start": 58.542,
+  "end": 59.132,
+  "cstart": 59.343
  }
 ]

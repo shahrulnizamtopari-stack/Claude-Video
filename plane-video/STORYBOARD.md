@@ -158,7 +158,7 @@ RUDDER / ELEVATOR use the same colour as the glow on their surface.
 5. **"Jet engine and propeller."** A propeller *and* a jet under one wing would look odd. The prop appears on "kipas", then a nacelle closes around it on "jet" to make a turbofan (a ducted fan, which is accurate).
 6. **Scale jump (hand → airliner).** The plate grows in the sky between 6 and 10 s; the world is toy-scale, so it reads as "your wing, grown up" rather than as a literal size.
 7. **Science check.** The arrows show Newton's 3rd law (air pushed down, wing pushed up), which matches the script. I avoid the "equal transit time" myth. The aerofoil beat shows separated flow versus attached flow, a fair simplification of "melawan angin". Liftoff at ~255 km/j matches "lebih dua ratus" (real airliners rotate at ~250–290 km/h). "Beratus tan" fits a widebody twin, which is what the model is.
-8. **Speed unit.** The dial says **km/j** (Malay: kilometer sejam). Tell me if you want km/h.
+8. **Speed unit.** Dial uses km/h (confirmed).
 9. **Sound effects.** The brief supplies none. I'll make wind, engine, click, thud, whirr and chime from scratch locally (synthesised with ffmpeg, no licensing issues) and mix them at about −20 dB under the voice. Tell me if you have an SFX library you'd rather use.
 10. **Glow and particles.** HyperFrames' house style bans them by default; your brief asks for them, so they stay, limited to key moments (part attaching, key words, runway lights).
 11. **Render time.** WebGL runs on the software GPU in this container. Expect the 540×960 preview to take minutes and the full 1080×1920 render to take noticeably longer (likely 30–60 min).
