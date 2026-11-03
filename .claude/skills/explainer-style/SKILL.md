@@ -5,8 +5,12 @@ description: House style for this repo's vertical 3D explainer videos (low-poly 
 
 # Explainer style: "the simple way" vertical 3D videos
 
-The reference film is `plane-video/` ("How a plane flies, the simple way"): its source, `STORYBOARD.md`, and the
-tools in `plane-video/tools/`. A new video copies that project and replaces only the story-specific parts.
+Two reference films:
+- **`lift-video/` (v2 look, the current default).** "Kenapa Lif Tak Terus Jatuh Bila Kabel Putus?" Post-processed
+  Three.js: environment light, GTAO, bloom, tilt-shift, grade and vignette, with smooth rounded models. Start new videos from this one.
+- `plane-video/` (v1). Flat low-poly, no post-processing, burned-in one-word captions, voiceover-synced.
+
+A new video copies the reference project and replaces only the story-specific parts.
 
 Engine: **HyperFrames** (skills in `.agents/skills/hyperframes*`; read `/hyperframes` first) with a **Three.js** world
 driven by the seek protocol (`hf-seek`, every frame a pure function of time). This works well; there is no need for Remotion.
@@ -27,6 +31,27 @@ driven by the seek protocol (`hf-seek`, every frame a pure function of time). Th
 - **Explaining forces:** glowing 3D arrows (cyan = air, yellow = lift, orange = thrust). Airflow is white instanced
   streaks along computed streamlines (rough = wobbling and tearing, smooth = following the surface).
 - **Data on screen** (speed and so on): a big outlined arc dial at the top (y≈230), in the same font as the captions. Units as the user asks (the plane film used km/h).
+
+## 1b. The v2 look (lift-video): how it's built and what it costs
+
+- **Import map:** `three` points to `assets/lib/three.module.min.js`. Addons are vendored in `assets/lib/jsm/` (postprocessing,
+  shaders, geometries, environments, math, utils). The probe page needs the same import map.
+- **Pipeline:** RenderPass → GTAOPass → UnrealBloom (0.22, 0.5, threshold 1.05) → one `finish` ShaderPass (5×5 tilt-shift
+  blur whose focus line follows the look-target, saturation ×1.12, contrast ×1.06, warm tint, vignette 0.32) → OutputPass.
+  Environment: `RoomEnvironment` through PMREM, `scene.environmentIntensity ≈ 0.28`, exposure 0.92.
+- **GTAOPass is patched** (in `overrideVisibility`) to skip sprites, transparent materials and instanced meshes; otherwise
+  every glow sprite renders as a **dark square**.
+- **Determinism:** `Math.random` is swapped for a seeded PRNG while the composer is built (addons seed noise with it).
+- **Speed:** on this CPU-only cloud machine, HyperFrames capture costs about 0.65 s per frame at preview scale. To keep it there,
+  merge the static scene by material (`mergeGeometries`), use MSAA 0 for previews and 2 for the final, 6 AO samples for previews
+  and 10 for the final, and the 5×5 (not 9×9) blur. Measure with variables: `previewScale` and `fx` (JSON, e.g. `{"ao":false}`).
+  The preview takes about 20 minutes. **Render the final at `previewScale` 0.75** with `fx {"msaa":2}`; the output is still 1080×1920, at about half the cost of 1.0.
+- **Camera spline:** Hermite with tangents clamped to the segment length (`hc`), which never overshoots between far-apart keys.
+  Plain Catmull-Rom overshot badly when a key followed a moving subject.
+- **Cut-away sets:** recess facades so the subject is open from the front, and put buildings on a podium with an open front
+  so pits and basements are visible.
+- **Hook:** something moves from frame 0 (the lift rising with the indicator counting), and the big event lands by about 5 s,
+  inside the frame.
 
 ## 2. Camera
 
@@ -49,6 +74,12 @@ driven by the seek protocol (`hf-seek`, every frame a pure function of time). Th
 - Key terms: uppercase, coloured, larger (≤150 px), and shrunk to fit long words:
   `min(150, 1080*0.74/(0.78*len))`. Set the colours in `KEY` in `tools/build_captions.py`.
 - Built by `tools/build_captions.py` into `compositions/captions.html` (one clip per word).
+
+## 3b. No-subtitle mode (user syncs in CapCut)
+
+When the user says they'll add the voiceover and subtitles themselves: no captions composition, and the timing follows
+the draft script's `SEGMENTS` (identity warp). Write `BEATS.md`, a table of time, what happens on screen, and the script line,
+and give it in the reply so they can line up their voice. The sound-effect bed goes in the video at about −17 LUFS (no voice to duck under).
 
 ## 4. Voiceover, timing and sound
 
