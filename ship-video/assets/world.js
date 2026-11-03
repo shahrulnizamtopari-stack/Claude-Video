@@ -76,7 +76,7 @@ export function createWorld(canvas, W, H, scale = 1, opts = {}) {
 
   // ---------- sea ----------
   const waveU = { uTime: { value: 0 } };
-  const seaMat = new THREE.MeshStandardMaterial({ color: PAL.sea, roughness: 0.18, metalness: 0.1, flatShading: true, transparent: true, opacity: 0.8, envMapIntensity: 1.3 });
+  const seaMat = new THREE.MeshStandardMaterial({ color: PAL.sea, roughness: 0.62, metalness: 0.0, flatShading: true, transparent: true, opacity: 0.62, envMapIntensity: 0.55 });
   seaMat.onBeforeCompile = (sh) => {
     sh.uniforms.uTime = waveU.uTime;
     sh.vertexShader = "uniform float uTime;\n" + sh.vertexShader.replace("#include <begin_vertex>", `#include <begin_vertex>
@@ -108,20 +108,23 @@ export function createWorld(canvas, W, H, scale = 1, opts = {}) {
   // ---------- hull builder ----------
   // ship-local: x along length (bow at +x), y up from keel, z across.  Returns geometry with vertex colours.
   function hullGeometry(L, B, D, waterline, colors) {
-    const NS = 40, NP = 14; const pos = [], col = [], idx = [];
+    const NS = 48, NP = 2 * (16 + 1 + 6 + 1) - 2; const pos = [], col = [], idx = [];
     const half = (x) => { const u = (x + L / 2) / L; // 0 stern .. 1 bow
       const bow = u > 0.78 ? Math.pow(1 - (u - 0.78) / 0.22, 0.75) : 1; const stern = u < 0.1 ? 0.78 + 0.22 * (u / 0.1) : 1; return (B / 2) * bow * stern; };
     const keel = (x) => { const u = (x + L / 2) / L; return u > 0.86 ? (u - 0.86) / 0.14 * D * 0.55 : u < 0.06 ? (0.06 - u) / 0.06 * D * 0.35 : 0; };
     const ring = [];
     for (let i = 0; i <= NS; i++) {
       const x = -L / 2 + (L * i) / NS; const w = Math.max(0.05, half(x)), k = keel(x);
-      const pts = [];
-      for (let j = 0; j <= NP; j++) { const a = (j / NP) * Math.PI; // 0 = port deck edge, PI = starboard deck edge
-        const sx = -Math.cos(a), sy = Math.sin(a);
-        const r = 0.35; // bilge roundness
-        const z = Math.sign(sx) * Math.pow(Math.abs(sx), r) * w;
-        const y = D - (D - k) * Math.pow(sy, 0.25);
-        pts.push([x, y, z]); }
+      // cross-section: straight side wall, rounded bilge, flat bottom (port deck edge -> starboard deck edge)
+      const pts = []; const rb = Math.min(1.8, w * 0.9); const yb = k + rb;
+      const hp = [];
+      const NW = 16, NB = 6;
+      for (let j = 0; j <= NW; j++) hp.push([w, D - (D - yb) * (j / NW)]);
+      for (let j = 1; j <= NB; j++) { const a = (j / NB) * Math.PI / 2; hp.push([w - rb + rb * Math.cos(a), yb - rb * Math.sin(a)]); }
+      hp.push([0, k]);
+      // NP+1 points total: port half (reversed sign) then starboard half
+      const all = hp.map(([z, y]) => [-z, y]).concat(hp.slice(0, -1).reverse().map(([z, y]) => [z, y]));
+      for (const [z, y] of all) pts.push([x, y, z]);
       ring.push(pts);
     }
     const c = new THREE.Color();
@@ -138,17 +141,17 @@ export function createWorld(canvas, W, H, scale = 1, opts = {}) {
   }
 
   // ---------- main cargo ship ----------
-  const SHIP = { L: 84, B: 13, D: 9, T0: 4.2, pos: V(0, 0, -62) };
-  const ship = new THREE.Group(); ship.position.copy(SHIP.pos); scene.add(ship);
+  const SHIP = { L: 62, B: 14, D: 9, T0: 4.2, pos: V(26, 0, -120), yaw: 0.55 };
+  const ship = new THREE.Group(); ship.position.copy(SHIP.pos); ship.rotation.y = SHIP.yaw; scene.add(ship);
   const hullData = hullGeometry(SHIP.L, SHIP.B, SHIP.D, SHIP.T0 + 0.2, { bottom: PAL.hullBottom, boot: PAL.boot, top: PAL.hullTop });
   const hullMat = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.45, metalness: 0.25, side: THREE.DoubleSide, transparent: false, opacity: 1 });
   const hull = new THREE.Mesh(hullData.geo, hullMat); hull.castShadow = true; hull.receiveShadow = true; ship.add(hull);
   // displaced-water ghost: the hull below the waterline, glowing (clipped at the sea surface)
   const clipPlane = new THREE.Plane(V(0, -1, 0), 0);
-  const dispMat = new THREE.MeshStandardMaterial({ color: PAL.water, emissive: PAL.water, emissiveIntensity: 0.9, transparent: true, opacity: 0, depthWrite: false, clippingPlanes: [clipPlane], side: THREE.DoubleSide });
+  const dispMat = new THREE.MeshStandardMaterial({ color: PAL.water, emissive: PAL.water, emissiveIntensity: 0.35, transparent: true, opacity: 0, depthWrite: false, clippingPlanes: [clipPlane], side: THREE.DoubleSide });
   const disp = new THREE.Mesh(hullData.geo, dispMat); disp.scale.set(1.01, 1.0, 1.04); ship.add(disp);
   // superstructure, funnel
-  const sup = new THREE.Group(); sup.position.set(-SHIP.L / 2 + 9, SHIP.D, 0); ship.add(sup);
+  const sup = new THREE.Group(); sup.position.set(-SHIP.L / 2 + 8, SHIP.D, 0); ship.add(sup);
   { const block = new THREE.Mesh(new RoundedBoxGeometry(8, 9, 11.5, 2, 0.3), mat(PAL.white, { roughness: 0.5 })); block.position.y = 4.5; block.castShadow = true; sup.add(block);
     for (let k = 0; k < 4; k++) { const win = new THREE.Mesh(new THREE.BoxGeometry(8.05, 0.6, 11.55), mat(0x2b3550, { roughness: 0.2, metalness: 0.3 })); win.position.y = 2 + k * 2; sup.add(win); }
     const bridge = new THREE.Mesh(new RoundedBoxGeometry(5, 1.6, 15, 2, 0.2), mat(PAL.white)); bridge.position.set(1.5, 9.5, 0); bridge.castShadow = true; sup.add(bridge);
@@ -158,8 +161,8 @@ export function createWorld(canvas, W, H, scale = 1, opts = {}) {
     const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 6, 8), mat(0xf2efe8)); mast.position.set(SHIP.L - 14, 3, 0); sup.add(mast); }
   // containers (instanced): bays along the deck, 5 across, tiers stacked; visible count depends on load
   const CONT = []; { const cols = [0xd8453c, 0x2f6fd0, 0xf2b630, 0xff8a5c, 0x4aa86a, 0xeeeeee, 0x8a5bd0]; const r2 = mulberry32(3);
-    for (let tier = 0; tier < 5; tier++) for (let bay = 0; bay < 9; bay++) for (let row = 0; row < 5; row++) {
-      const x = -SHIP.L / 2 + 19 + bay * 6.3; if (x > SHIP.L / 2 - 12) continue;
+    for (let tier = 0; tier < 5; tier++) for (let bay = 0; bay < 7; bay++) for (let row = 0; row < 5; row++) {
+      const x = -SHIP.L / 2 + 17 + bay * 6.3; if (x > SHIP.L / 2 - 9) continue;
       CONT.push({ x, y: SHIP.D + 0.05 + tier * 2.45 + 1.2, z: -4.8 + row * 2.4, tier, bay, color: cols[Math.floor(r2() * cols.length)], delay: r2() }); } }
   const contMesh = new THREE.InstancedMesh(new RoundedBoxGeometry(6.0, 2.4, 2.3, 1, 0.08), mat(0xffffff, { roughness: 0.55, metalness: 0.2 }), CONT.length);
   contMesh.castShadow = true; contMesh.receiveShadow = true; contMesh.instanceColor = new THREE.InstancedBufferAttribute(new Float32Array(CONT.length * 3), 3);
@@ -169,8 +172,8 @@ export function createWorld(canvas, W, H, scale = 1, opts = {}) {
   const bulkM = new THREE.MeshStandardMaterial({ color: 0xd9d3dd, metalness: 0.4, roughness: 0.4, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false });
   const airM = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xdff6ff, emissiveIntensity: 0.6, transparent: true, opacity: 0, depthWrite: false });
   const holds = [];
-  for (let k = 0; k < 7; k++) {
-    const x0 = -SHIP.L / 2 + 15 + k * 8.4, x1 = x0 + 8.2;
+  for (let k = 0; k < 5; k++) {
+    const x0 = -SHIP.L / 2 + 14 + k * 8.4, x1 = x0 + 8.2;
     const w = Math.min(hullData.half(x0), hullData.half(x1)) * 0.9;
     const bh = new THREE.Mesh(new THREE.BoxGeometry(0.25, SHIP.D - 1.2, w * 2), bulkM); bh.position.set(x0, (SHIP.D) / 2 + 0.3, 0); inner.add(bh);
     const air = new THREE.Mesh(new RoundedBoxGeometry(7.6, SHIP.D - 1.8, w * 2 - 0.6, 2, 0.4), airM); air.position.set((x0 + x1) / 2, SHIP.D / 2 + 0.4, 0); inner.add(air); holds.push(air);
@@ -190,8 +193,8 @@ export function createWorld(canvas, W, H, scale = 1, opts = {}) {
   loadLine.position.set(2, 5.6 + (300 - 256) / 512 * 4.2, SHIP.B / 2 + 0.04); ship.add(loadLine);
 
   // ---------- second ship: an old passenger liner (generic), for the leak ----------
-  const LIN = { L: 46, B: 7, D: 6.5, T0: 3.2, pos: V(-58, 0, -16) };
-  const liner = new THREE.Group(); liner.position.copy(LIN.pos); liner.rotation.y = 0.5; scene.add(liner);
+  const LIN = { L: 40, B: 8, D: 6.5, T0: 3.2, pos: V(-70, 0, -60), yaw: 0.45 };
+  const liner = new THREE.Group(); liner.position.copy(LIN.pos); liner.rotation.y = LIN.yaw; scene.add(liner);
   const linData = hullGeometry(LIN.L, LIN.B, LIN.D, LIN.T0 + 0.15, { bottom: 0x8e2d2a, boot: 0xf2efe8, top: 0x1d1a22 });
   const linMat = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.5, metalness: 0.2, side: THREE.DoubleSide, transparent: true, opacity: 1 });
   const linHull = new THREE.Mesh(linData.geo, linMat); linHull.castShadow = true; liner.add(linHull);
@@ -201,7 +204,7 @@ export function createWorld(canvas, W, H, scale = 1, opts = {}) {
       const ft = new THREE.Mesh(new THREE.CylinderGeometry(0.92, 0.92, 0.8, 16), mat(0x1c1820)); ft.position.set(-4 + k * 8 + 0.27, LIN.D + 8.0, 0); ft.rotation.z = 0.12; liner.add(ft); } }
   const linFloods = [];
   const floodM = new THREE.MeshStandardMaterial({ color: PAL.water, emissive: 0x2a8ad8, emissiveIntensity: 0.5, transparent: true, opacity: 0.75, depthWrite: false });
-  for (let k = 0; k < 5; k++) { const x0 = -LIN.L / 2 + 6 + k * 7.2; const w = Math.min(linData.half(x0), linData.half(x0 + 7)) * 0.86;
+  for (let k = 0; k < 4; k++) { const x0 = -LIN.L / 2 + 6 + k * 7.2; const w = Math.min(linData.half(x0), linData.half(x0 + 7)) * 0.86;
     const f = new THREE.Mesh(new THREE.BoxGeometry(6.8, 1, w * 2), floodM); f.position.set(x0 + 3.5, 0.5, 0); liner.add(f); linFloods.push(f);
     const bh = new THREE.Mesh(new THREE.BoxGeometry(0.2, LIN.D - 0.8, w * 2), new THREE.MeshStandardMaterial({ color: 0xd9d3dd, transparent: true, opacity: 0.6, depthWrite: false })); bh.position.set(x0, LIN.D / 2, 0); liner.add(bh); }
   const holeGlow = glow(0xff5a3d, 4, 0); holeGlow.position.set(LIN.L / 2 - 10, 1.4, LIN.B / 2); liner.add(holeGlow);
@@ -270,28 +273,29 @@ export function createWorld(canvas, W, H, scale = 1, opts = {}) {
 
   // camera
   const DEMOV = (x, y, z) => DEMO.clone().add(V(x, y, z));
-  const SH = (x, y, z) => SHIP.pos.clone().add(V(x, y, z));
-  const LN = (x, y, z) => LIN.pos.clone().add(V(x, y, z));
+  const SH = (x, y, z) => SHIP.pos.clone().add(V(x, y, z).applyAxisAngle(V(0, 1, 0), SHIP.yaw));   // ship-local offsets
+  const LN = (x, y, z) => LIN.pos.clone().add(V(x, y, z).applyAxisAngle(V(0, 1, 0), LIN.yaw));
   const keys = [
-    { t: 0, pos: () => DEMOV(0.7, 2.5, 8.6), look: () => DEMOV(0, 2.3, 0), fov: 38 },
-    { t: 2.0, pos: () => DEMOV(0.6, 2.3, 8.4), look: () => DEMOV(0, 1.6, 0), fov: 38 },
-    { t: 3.9, pos: () => DEMOV(0.5, 1.2, 8.0), look: () => DEMOV(0, -1.0, 0), fov: 38 },
-    { t: 6.6, pos: () => V(-26, 9, 2), look: () => SH(0, 7, 0), fov: 40 },
-    { t: 9.8, pos: () => V(-46, 14, -10), look: () => SH(4, 7, 0), fov: 40 },
-    { t: 12.2, pos: () => DEMOV(0.8, 3.2, 9.0), look: () => DEMOV(0, 2.2, 0), fov: 38 },
-    { t: 16.0, pos: () => DEMOV(0.8, 4.2, 10.5), look: () => DEMOV(0, 1.8, 0), fov: 38 },
-    { t: 19.5, pos: () => DEMOV(1.5, 5.0, 10.5), look: () => DEMOV(0, 0.0, 0), fov: 40 },
-    { t: 23.0, pos: () => DEMOV(1.2, 1.4, 10.5), look: () => DEMOV(0, -0.6, 0), fov: 40 },
-    { t: 26.8, pos: () => DEMOV(1.4, 1.6, 11.0), look: () => DEMOV(0, -0.7, 0), fov: 40 },
-    { t: 29.0, pos: () => SH(14, 3, 46), look: () => SH(0, -1.5, 0), fov: 40 },
-    { t: 33.4, pos: () => SH(-6, 4, 44), look: () => SH(0, -1.0, 0), fov: 40 },
-    { t: 36.4, pos: () => SH(-14, 16, 38), look: () => SH(0, 1.5, 0), fov: 40 },
-    { t: 39.4, pos: () => SH(4, 3.0, 22), look: () => SH(2, 1.0, 6.5), fov: 38 },
-    { t: 45.6, pos: () => SH(10, 9, 40), look: () => SH(0, 2.0, 0), fov: 40 },
-    { t: 48.4, pos: () => LN(10, 7, 34), look: () => LN(0, 0.5, 0), fov: 40 },
-    { t: 53.0, pos: () => LN(14, 9, 36), look: () => LN(0, -1.0, 0), fov: 40 },
-    { t: 56.2, pos: () => V(-30, 12, 22), look: () => SH(0, 5, 0), fov: 40 },
-    { t: 60, pos: () => DEMOV(0.7, 2.5, 8.6), look: () => DEMOV(0, 2.3, 0), fov: 38 },
+    { t: 0, pos: () => DEMOV(0.9, 2.6, 11.5), look: () => DEMOV(0, 2.2, 0), fov: 38 },
+    { t: 2.0, pos: () => DEMOV(0.8, 2.2, 11.0), look: () => DEMOV(0, 1.4, 0), fov: 38 },
+    { t: 3.9, pos: () => DEMOV(0.6, 0.9, 10.5), look: () => DEMOV(0, -1.6, 0), fov: 38 },
+    { t: 6.8, pos: () => SH(78, 12, 104), look: () => SH(0, 7, 0), fov: 40 },
+    { t: 9.8, pos: () => SH(92, 22, 128), look: () => SH(-2, 8, 0), fov: 40 },
+    { t: 12.2, pos: () => DEMOV(1.0, 3.4, 14.0), look: () => DEMOV(0, 2.2, 0), fov: 38 },
+    { t: 16.0, pos: () => DEMOV(1.0, 4.4, 16.0), look: () => DEMOV(0, 1.6, 0), fov: 38 },
+    { t: 19.6, pos: () => DEMOV(1.6, 4.6, 17.0), look: () => DEMOV(0, -0.4, 0), fov: 40 },
+    { t: 23.0, pos: () => DEMOV(1.4, 0.9, 17.0), look: () => DEMOV(0, -1.6, 0), fov: 40 },
+    { t: 26.8, pos: () => DEMOV(1.6, 1.0, 17.5), look: () => DEMOV(0, -1.8, 0), fov: 40 },
+    { t: 29.0, pos: () => SH(8, 2.5, 96), look: () => SH(0, 0, 0), fov: 40 },
+    { t: 33.4, pos: () => SH(-6, 3.5, 94), look: () => SH(0, 0.5, 0), fov: 40 },
+    { t: 36.4, pos: () => SH(-14, 3.0, 62), look: () => SH(0, 2.0, 0), fov: 40 },
+    { t: 39.6, pos: () => SH(5, 4.0, 26), look: () => SH(2, 3.0, 7), fov: 38 },
+    { t: 44.8, pos: () => SH(4, 2.6, 22), look: () => SH(2, 0.6, 7), fov: 38 },
+    { t: 46.6, pos: () => SH(20, 9, 70), look: () => SH(0, 4.0, 0), fov: 40 },
+    { t: 48.6, pos: () => LN(10, 8, 74), look: () => LN(0, 2.0, 0), fov: 40 },
+    { t: 53.0, pos: () => LN(16, 10, 78), look: () => LN(0, 0.0, 0), fov: 40 },
+    { t: 56.2, pos: () => DEMOV(-6, 6, 30), look: () => SH(0, 6, 0), fov: 40 },
+    { t: 60, pos: () => DEMOV(0.9, 2.6, 11.5), look: () => DEMOV(0, 2.2, 0), fov: 38 },
   ];
   const hc = (p0, p1, p2, p3, u) => { const seg = p2.distanceTo(p1);
     const m1 = p2.clone().sub(p0).multiplyScalar(0.5); if (m1.length() > seg) m1.setLength(seg);
@@ -352,13 +356,13 @@ export function createWorld(canvas, W, H, scale = 1, opts = {}) {
     // --- main ship: floats at its draft, bobs; cutaway 34.2-38.6; displaced ghost 29.8-34
     const draft = shipDraft(t);
     ship.position.set(SHIP.pos.x, -draft + bob(SHIP.pos.x, SHIP.pos.z, 0.5), SHIP.pos.z);
-    ship.rotation.set(0.012 * Math.sin(t * 0.9), 0, 0.01 * Math.sin(t * 0.7));
+    ship.rotation.set(0.012 * Math.sin(t * 0.9), SHIP.yaw, 0.01 * Math.sin(t * 0.7));
     const cut = ss(34.0, 34.8, t) * (1 - ss(38.4, 39.2, t));
     hullMat.transparent = cut > 0.01; hullMat.opacity = 1 - 0.68 * cut; hullMat.depthWrite = cut < 0.01;
     bulkM.opacity = 0.6 * cut; airM.opacity = 0.35 * cut * ss(35.0, 36.2, t) * (1 + 0.5 * (t > 37.8 && t < 38.6 ? 1 : 0));
     holds.forEach((h, i) => h.scale.setScalar(S0(pop(35.0 + i * 0.12, t, 0.4)))); inner.visible = cut > 0.01;
     clipPlane.constant = 0; // world y = 0 (sea surface): keep what is below
-    dispMat.opacity = 0.42 * ss(30.2, 30.9, t) * (1 - ss(33.6, 34.3, t)) * (1 + 0.6 * (t > 32.9 && t < 33.5 ? 1 : 0));
+    dispMat.opacity = 0.3 * ss(30.2, 30.9, t) * (1 - ss(33.6, 34.3, t)) * (1 + 0.6 * (t > 32.9 && t < 33.5 ? 1 : 0));
     // containers: tiers 0..4, the extra tiers drop in one bay at a time while loading
     const tiers = tiersShown(t);
     CONT.forEach((c, i) => {
@@ -373,14 +377,14 @@ export function createWorld(canvas, W, H, scale = 1, opts = {}) {
     // Archimedes arrows: weight (down) and displaced water (up), equal; pulse together on "Archimedes"
     { const onD = pop(27.7, t, 0.45) * (1 - ss(33.8, 34.4, t)), onU = pop(29.5, t, 0.45) * (1 - ss(33.8, 34.4, t));
       const pulse = 1 + 0.25 * (t > 32.9 && t < 33.6 ? Math.sin((t - 32.9) * 12) ** 2 : 0);
-      shipDown.visible = onD > 0.01; shipDown.position.copy(SH(4, 12, SHIP.B / 2 + 2)); shipDown.rotation.set(Math.PI, 0, 0); shipDown.scale.setScalar(S0(onD) * 5 * pulse);
-      shipUp.visible = onU > 0.01; shipUp.position.copy(SH(4, -9.5, SHIP.B / 2 + 2)); shipUp.scale.setScalar(S0(onU) * 5 * pulse); }
+      shipDown.visible = onD > 0.01; shipDown.position.copy(SH(2, 19, SHIP.B / 2 + 3)); shipDown.rotation.set(Math.PI, 0, 0); shipDown.scale.setScalar(S0(onD) * 9 * pulse);
+      shipUp.visible = onU > 0.01; shipUp.position.copy(SH(2, -15, SHIP.B / 2 + 3)); shipUp.scale.setScalar(S0(onU) * 9 * pulse); }
 
     // --- liner: leak at 47.9, holds flood bow-first 48.3-52, sinks + tilts 49.5-53.2; cutaway while flooding
-    { const flood = (k) => ss(48.3 + (4 - k) * 0.55, 49.6 + (4 - k) * 0.55, t);
+    { const flood = (k) => ss(48.3 + (3 - k) * 0.7, 49.8 + (3 - k) * 0.7, t);
       const sinkL = ss(49.0, 53.4, t); const fresh = t < 46.5;
       liner.position.set(LIN.pos.x, -LIN.T0 - sinkL * (LIN.T0 + 2.6) + bob(LIN.pos.x, LIN.pos.z, 0.5), LIN.pos.z);
-      liner.rotation.set(0, 0.5, -0.11 * sinkL + 0.01 * Math.sin(t * 0.8));
+      liner.rotation.set(0, LIN.yaw, -0.11 * sinkL + 0.01 * Math.sin(t * 0.8));
       linMat.opacity = 1 - 0.6 * ss(47.4, 48.0, t); linMat.depthWrite = linMat.opacity > 0.99;
       linFloods.forEach((f, k) => { const h = (LIN.D - 1.2) * flood(k); f.visible = h > 0.02 && !fresh; f.scale.y = S0(h); f.position.y = 0.6 + h / 2; });
       holeGlow.material.opacity = (t > 47.8 && t < 52.5 ? 0.9 : 0) * (0.7 + 0.3 * Math.sin(t * 20)); }
