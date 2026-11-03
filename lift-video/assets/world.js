@@ -417,6 +417,7 @@ export function createWorld(canvas, W, H, scale = 1, opts = {}) {
     { t: 37.5, pos: () => cpos().add(V(3.2, -0.2, 11.5)), look: () => cpos().add(V(0.4, 1.0, 0)), fov: 40 },
     { t: 42.0, pos: () => V(0.8, BASE + 1.4, CARZ + 12.5), look: () => V(0, BASE - 1.2, CARZ), fov: 40 },
     { t: 47.0, pos: () => V(1.2, BASE + 1.0, CARZ + 11.5), look: () => V(0, BASE - 1.3, CARZ), fov: 40 },
+    { t: 48.3, pos: () => V(2, 7.5, 26), look: () => V(-14, 5.0, 14), fov: 40 },  // out of the pit, in front of the podium, turning towards the 1854 rig
     { t: 49.6, pos: () => V(-14, 12, 38), look: () => V(-30, 6.0, 12), fov: 40 },
     { t: 52.0, pos: () => V(-15.5, 10.5, 36), look: () => V(-30, 5.5, 12), fov: 40 },
     { t: 54.6, pos: () => V(-16, 10, 35), look: () => V(-30, 5.5, 12), fov: 40 },
