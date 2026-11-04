@@ -140,21 +140,24 @@ export function createWorld(canvas, W, H, scale = 1, opts = {}) {
 
   // ---------- Krakatau map (x = 1500) ----------
   const MAP = new THREE.Group(); MAP.position.set(1500, 0, 0); scene.add(MAP);
-  { const sea = new THREE.Mesh(new THREE.PlaneGeometry(260, 260).rotateX(-Math.PI / 2), mat(0x081018, { roughness: 0.4, metalness: 0.2 })); MAP.add(sea);
-    const gridM = new THREE.LineBasicMaterial({ color: 0x8a5a2a, transparent: true, opacity: 0.35 }); const pts = [];
+  { const sea = new THREE.Mesh(new THREE.PlaneGeometry(260, 260).rotateX(-Math.PI / 2), mat(0x0f2230, { roughness: 0.5, emissive: 0x08202e, emissiveIntensity: 0.8 })); MAP.add(sea);
+    const gridM = new THREE.LineBasicMaterial({ color: 0xb07a3a, transparent: true, opacity: 0.45 }); const pts = [];
     for (let i = -6; i <= 6; i++) { pts.push(V(i * 20, 0.05, -130), V(i * 20, 0.05, 130), V(-130, 0.05, i * 20), V(130, 0.05, i * 20)); }
     MAP.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts), gridM));
     // rough landmasses: Sumatra, Java, Borneo, the Malay peninsula (stylised low-poly blobs)
-    const landM = mat(0x5a3e24, { roughness: 1, flatShading: true, emissive: 0x2a1408, emissiveIntensity: 0.6 });
-    const blob = (pts2, h = 0.6) => { const g = new THREE.ExtrudeGeometry(new THREE.Shape(P2(pts2)), { depth: h, bevelEnabled: false }); g.rotateX(-Math.PI / 2); const m = new THREE.Mesh(g, landM); MAP.add(m); return m; };
+    const landM = mat(0x8a6038, { roughness: 1, flatShading: true, emissive: 0x5a2a10, emissiveIntensity: 0.9 });
+    const coastM = new THREE.LineBasicMaterial({ color: 0xffb050 });
+    const blob = (pts2, h = 0.6) => { const g = new THREE.ExtrudeGeometry(new THREE.Shape(P2(pts2)), { depth: h, bevelEnabled: false }); g.rotateX(-Math.PI / 2); const m = new THREE.Mesh(g, landM); MAP.add(m);
+      const cl = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts2.map(([x, y]) => V(x, h + 0.1, -y))), coastM); MAP.add(cl); return m; };
     blob([[-6, 2], [-2, -6], [6, -16], [12, -26], [16, -30], [14, -20], [8, -10], [2, 0]]);           // Sumatra (NW-SE)
     blob([[2, 4], [12, 6], [26, 8], [30, 10], [24, 12], [10, 10], [2, 8]]);                           // Java
     blob([[20, -14], [30, -20], [40, -18], [42, -8], [34, -2], [24, -4]]);                             // Borneo
     blob([[4, -30], [6, -40], [8, -48], [10, -44], [9, -34]]); }                                        // peninsula
+  const mapLight = new THREE.PointLight(0xffb070, 1200, 400, 1.2); mapLight.position.set(1500 - 30, 120, 10); scene.add(mapLight);
   const KRA = V(1500 + 2, 0.8, 2), ROD = V(1500 - 92, 0.8, 22);   // 1 unit ~ 50 km, Rodrigues ~4800 km WSW
-  const kDot = glow(0xffb040, 10, 1); kDot.position.copy(KRA); scene.add(kDot);
-  const rDot = glow(0xffe0a0, 9, 1); rDot.position.copy(ROD); scene.add(rDot);
-  const rings = Array.from({ length: 4 }, () => { const m = new THREE.Mesh(new THREE.TorusGeometry(1, 0.012, 6, 160), new THREE.MeshBasicMaterial({ color: 0xffc04a, toneMapped: false, transparent: true, opacity: 0 })); m.rotation.x = Math.PI / 2; m.position.copy(KRA); scene.add(m); return m; });
+  const kDot = glow(0xffb040, 22, 1); kDot.position.copy(KRA); scene.add(kDot);
+  const rDot = glow(0xffe0a0, 20, 1); rDot.position.copy(ROD); scene.add(rDot);
+  const rings = Array.from({ length: 4 }, () => { const m = new THREE.Mesh(new THREE.RingGeometry(0.98, 1, 160), new THREE.MeshBasicMaterial({ color: 0xffc04a, toneMapped: false, transparent: true, opacity: 0, side: THREE.DoubleSide })); m.rotation.x = -Math.PI / 2; m.position.copy(KRA); scene.add(m); return m; });
 
   // ---------- particles: lava/embers/foam/burst (emissive), ash (dark) ----------
   const NL = 1600, NA = 420;
@@ -255,8 +258,8 @@ export function createWorld(canvas, W, H, scale = 1, opts = {}) {
     const runOn = 1 - ss(36.8, 37.4, t); runny.forEach((m) => (m.visible = runOn > 0.02)); runny.forEach((m) => (m.material.uniforms.amt.value = runOn));
     const sw = ss(37.0, 39.4, t); dome.scale.set(1 + 0.2 * sw, 0.6 + 0.4 * sw, 1 + 0.2 * sw); dome.material.emissiveIntensity = sw * 0.35 * (1 + 0.5 * Math.sin(t * 20)); domeGlow.material.opacity = (t > 36.9 && t < 39.55) ? sw * 0.5 * (0.7 + 0.3 * Math.sin(t * 20)) : 0; dome.visible = t > 36.9 && t < 39.55;
     // Krakatau rings
-    rings.forEach((m, i) => { const t0 = 43.4 + i * 0.5; const u = clamp((t - t0) / 3.4); m.scale.setScalar(S0(2 + u * 100)); m.material.opacity = t > t0 && t < 50.2 ? 0.9 * (1 - u * 0.7) : 0; m.scale.z = 1; });
-    kDot.material.opacity = t > 40 && t < 50 ? 0.7 + 0.3 * Math.sin(t * 6) : 0; rDot.material.opacity = t > 40 && t < 50.2 ? 0.4 + 0.6 * ss(46.0, 46.8, t) : 0; kDot.scale.setScalar(10 + 20 * Math.exp(-Math.max(0, t - 43.4) * 2) * (t > 43.4 ? 1 : 0));
+    rings.forEach((m, i) => { const t0 = 43.4 + i * 0.5; const u = clamp((t - t0) / 3.4); const R = 2 + u * 100; m.geometry.dispose(); m.geometry = new THREE.RingGeometry(Math.max(0.1, R - 1.6), R, 160); m.material.opacity = t > t0 && t < 50.2 ? 0.95 * (1 - u * 0.55) : 0; });
+    kDot.material.opacity = t > 40 && t < 50 ? 0.7 + 0.3 * Math.sin(t * 6) : 0; rDot.material.opacity = t > 40 && t < 50.2 ? 0.4 + 0.6 * ss(46.0, 46.8, t) : 0; kDot.scale.setScalar(22 + 40 * Math.exp(-Math.max(0, t - 43.4) * 2) * (t > 43.4 ? 1 : 0));
     // fertile fields grow after the ash settles
     { const g = ss(52.6, 55.2, t) * (1 - ss(59.0, 60, t)); fieldGround.material.color.set(0x3b2a1a).lerp(new THREE.Color(0x2c4a1c), g);
       for (let i = 0; i < NF; i++) { const [x, z, r] = FIELD[i]; dummy.position.set(x, 0.8 * g, z); dummy.scale.set(1, S0(g * (0.8 + 0.4 * r)), 1); dummy.rotation.set(0.1 * Math.sin(t * 2 + x), r * 6, 0); dummy.updateMatrix(); field.setMatrixAt(i, dummy.matrix); }
@@ -297,6 +300,7 @@ export function createWorld(canvas, W, H, scale = 1, opts = {}) {
     // golden-hour tint at the end (fertile scene)
     const gold = ss(51.0, 52.5, t) * (1 - ss(57.0, 59.0, t)); hemi.color.set(0x6a3a2a).lerp(new THREE.Color(0xffc080), gold); hemi.intensity = 0.7 + 0.8 * gold; key.intensity = 0.8 + 1.4 * gold;
     scene.background.set(BG).lerp(new THREE.Color(0x3a1a0c), gold); scene.fog.color.copy(scene.background);
+    const far = camera.position.y > 150; scene.fog.near = far ? 700 : 80; scene.fog.far = far ? 1600 : 420;
     composer.render();
     const out = { t, anchors: {} }; const A = out.anchors;
     A["crater"] = proj(V(4, 39, 2)); A["crust"] = proj(EA_(9.4, -9 + 3.0, 0.2)); A["skin"] = proj(EA_(4.7, 11.5 + 1.2, 0.2)); A["mantle"] = proj(EA_(-5, -9 + 3, 0.2));
