@@ -1,0 +1,51 @@
+<template>
+<style>
+#root { position:absolute; inset:0; color:#ece6df; font-family:"Inter",sans-serif; }
+#root .hud { position:absolute; left:80px; right:80px; top:196px; height:36px; font:500 28px "JetBrains Mono",monospace; letter-spacing:3px; color:#8a8178; }
+#root .hud .l { position:absolute; left:0; top:0; } #root .hud .r { position:absolute; right:0; top:0; text-align:right; }
+#root .title { position:absolute; left:80px; right:80px; font-family:"Inter",sans-serif; font-weight:900; font-size:116px; letter-spacing:-4px; line-height:.94; }
+#root .mono { font-family:"JetBrains Mono",monospace; }
+#root .big { font-family:"JetBrains Mono",monospace; font-weight:700; letter-spacing:-10px; line-height:1; }
+#root .baik{color:#3aa0ff} #root .sed{color:#3ccf6e} #root .ts{color:#ffd23f} #root .sts{color:#ff8a1f} #root .bhy{color:#ff2d2d} #root .ember{color:#ff6a1f} #root .dim{color:#8a8178}
+#root .tag { display:inline-block; font:700 28px "JetBrains Mono",monospace; letter-spacing:5px; padding:12px 22px; border:3px solid currentColor; border-radius:8px; }
+#root .stamp { display:inline-block; font:900 70px "Inter"; letter-spacing:4px; border:9px solid currentColor; border-radius:14px; padding:12px 28px; }
+#root .src { font:500 28px "JetBrains Mono"; color:#8a8178; letter-spacing:1px; }
+
+#bay-t { top:236px; }
+#bay-stack { position:absolute; left:80px; top:500px; width:480px; height:260px; }
+#root .nt { position:absolute; width:300px; height:140px; border:3px solid #4a423b; border-radius:12px; background:#15130f; font:700 28px "JetBrains Mono"; color:#8a8178; padding:18px 20px; }
+#bay-10 { position:absolute; left:620px; top:500px; }
+#bay-10 .big { font-size:160px; letter-spacing:-6px; }
+#bay-fine { position:absolute; left:80px; top:780px; }
+#bay-fine .big { font-size:110px; letter-spacing:-4px; color:#ffd23f; }
+#bay-zero { position:absolute; left:80px; top:960px; }
+#bay-zero .big { font-size:150px; letter-spacing:-4px; }
+#bay-st { position:absolute; left:380px; top:990px; color:#ff2d2d; }
+</style>
+<div id="root" data-composition-id="bayar" data-width="1080" data-height="1920" data-start="0" data-duration="9.5">
+
+<div class="hud"><span class="l">FAIL UNDANG-UNDANG · THPA</span><span class="r">SINGAPURA</span></div>
+<div class="title" id="bay-t">SIAPA<br><span class="ts">BAYAR?</span></div>
+<div id="bay-stack"><div class="nt" data-layout-allow-overlap id="bay-n0" style="left:0px;top:0px;opacity:0">NOTIS #01</div><div class="nt" data-layout-allow-overlap id="bay-n1" style="left:18px;top:12px;opacity:0">NOTIS #02</div><div class="nt" data-layout-allow-overlap id="bay-n2" style="left:36px;top:24px;opacity:0">NOTIS #03</div><div class="nt" data-layout-allow-overlap id="bay-n3" style="left:54px;top:36px;opacity:0">NOTIS #04</div><div class="nt" data-layout-allow-overlap id="bay-n4" style="left:72px;top:48px;opacity:0">NOTIS #05</div><div class="nt" data-layout-allow-overlap id="bay-n5" style="left:90px;top:60px;opacity:0">NOTIS #06</div><div class="nt" data-layout-allow-overlap id="bay-n6" style="left:108px;top:72px;opacity:0">NOTIS #07</div><div class="nt" data-layout-allow-overlap id="bay-n7" style="left:126px;top:84px;opacity:0">NOTIS #08</div><div class="nt" data-layout-allow-overlap id="bay-n8" style="left:144px;top:96px;opacity:0">NOTIS #09</div><div class="nt" data-layout-allow-overlap id="bay-n9" style="left:162px;top:108px;opacity:0">NOTIS #10</div></div>
+<div id="bay-10" style="opacity:0"><div class="big">10</div><div class="src">SYARIKAT</div></div>
+<div id="bay-fine" style="opacity:0"><div class="src">DENDA SEHINGGA</div><div class="big">S$100K<span style="font-size:48px;letter-spacing:0">/hari</span></div></div>
+<div id="bay-zero" style="opacity:0"><div class="src">DIDENDA SEJAK 2014</div><div class="big">0</div></div>
+<div id="bay-st" style="opacity:0"><span class="stamp">BELUM ADA</span></div>
+
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#bay-t",{opacity:0,y:24},{opacity:1,y:0,duration:.3,ease:"power3.out"},0.1);
+tl.fromTo("#bay-n0",{opacity:0,y:-50},{opacity:1,y:0,duration:.18,ease:"power3.out"},1.80);tl.fromTo("#bay-n1",{opacity:0,y:-50},{opacity:1,y:0,duration:.18,ease:"power3.out"},1.88);tl.fromTo("#bay-n2",{opacity:0,y:-50},{opacity:1,y:0,duration:.18,ease:"power3.out"},1.96);tl.fromTo("#bay-n3",{opacity:0,y:-50},{opacity:1,y:0,duration:.18,ease:"power3.out"},2.04);tl.fromTo("#bay-n4",{opacity:0,y:-50},{opacity:1,y:0,duration:.18,ease:"power3.out"},2.12);tl.fromTo("#bay-n5",{opacity:0,y:-50},{opacity:1,y:0,duration:.18,ease:"power3.out"},2.20);tl.fromTo("#bay-n6",{opacity:0,y:-50},{opacity:1,y:0,duration:.18,ease:"power3.out"},2.28);tl.fromTo("#bay-n7",{opacity:0,y:-50},{opacity:1,y:0,duration:.18,ease:"power3.out"},2.36);tl.fromTo("#bay-n8",{opacity:0,y:-50},{opacity:1,y:0,duration:.18,ease:"power3.out"},2.44);tl.fromTo("#bay-n9",{opacity:0,y:-50},{opacity:1,y:0,duration:.18,ease:"power3.out"},2.52);
+tl.fromTo("#bay-10",{opacity:0,scale:1.3},{opacity:1,scale:1,duration:.25,ease:"power4.out",transformOrigin:"0% 50%"},2.45);
+tl.fromTo("#bay-fine",{opacity:0,y:20},{opacity:1,y:0,duration:.3},3.95);
+tl.fromTo("#bay-zero",{opacity:0,y:20},{opacity:1,y:0,duration:.3},6.4);
+tl.fromTo("#bay-st",{opacity:0,scale:2.2,rotation:-8},{opacity:1,scale:1,rotation:-8,duration:.16,ease:"power4.in"},8.75);
+tl.to("#bay-st",{y:6,duration:.05,yoyo:true,repeat:3},8.91);
+
+window.__timelines["bayar"] = tl;
+})();
+</script>
+</template>

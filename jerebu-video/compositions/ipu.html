@@ -1,0 +1,56 @@
+<template>
+<style>
+#root { position:absolute; inset:0; color:#ece6df; font-family:"Inter",sans-serif; }
+#root .hud { position:absolute; left:80px; right:80px; top:196px; height:36px; font:500 28px "JetBrains Mono",monospace; letter-spacing:3px; color:#8a8178; }
+#root .hud .l { position:absolute; left:0; top:0; } #root .hud .r { position:absolute; right:0; top:0; text-align:right; }
+#root .title { position:absolute; left:80px; right:80px; font-family:"Inter",sans-serif; font-weight:900; font-size:116px; letter-spacing:-4px; line-height:.94; }
+#root .mono { font-family:"JetBrains Mono",monospace; }
+#root .big { font-family:"JetBrains Mono",monospace; font-weight:700; letter-spacing:-10px; line-height:1; }
+#root .baik{color:#3aa0ff} #root .sed{color:#3ccf6e} #root .ts{color:#ffd23f} #root .sts{color:#ff8a1f} #root .bhy{color:#ff2d2d} #root .ember{color:#ff6a1f} #root .dim{color:#8a8178}
+#root .tag { display:inline-block; font:700 28px "JetBrains Mono",monospace; letter-spacing:5px; padding:12px 22px; border:3px solid currentColor; border-radius:8px; }
+#root .stamp { display:inline-block; font:900 70px "Inter"; letter-spacing:4px; border:9px solid currentColor; border-radius:14px; padding:12px 28px; }
+#root .src { font:500 28px "JetBrains Mono"; color:#8a8178; letter-spacing:1px; }
+
+#ipu-tag { position:absolute; left:0; right:0; top:300px; text-align:center; }
+#ipu-num { position:absolute; left:0; right:0; top:380px; text-align:center; font-size:300px; color:#3aa0ff; }
+#ipu-cat { position:absolute; left:0; right:0; top:690px; text-align:center; font:900 52px "Inter"; letter-spacing:2px; color:#3aa0ff; }
+#ipu-bar { position:absolute; left:80px; width:920px; top:790px; height:26px; border-radius:13px; overflow:hidden; display:flex; }
+#ipu-ndl { position:absolute; left:80px; top:772px; width:8px; height:62px; margin-left:-4px; background:#fff; border-radius:4px; box-shadow:0 0 20px #fff; }
+#ipu-sc { position:absolute; left:80px; width:920px; top:838px; height:36px; }
+#ipu-sc span { position:absolute; top:0; font:500 28px "JetBrains Mono"; color:#8a8178; }
+#ipu-st { position:absolute; left:0; right:0; top:900px; text-align:center; color:#ff2d2d; }
+#ipu-97 { position:absolute; left:0; right:0; top:1080px; text-align:center; }
+</style>
+<div id="root" data-composition-id="ipu" data-width="1080" data-height="1920" data-start="0" data-duration="7.15">
+
+<div class="hud"><span class="l">SERIAN · SARAWAK</span><span class="r bhy" id="ipu-hs" style="opacity:0">▲ BERBAHAYA</span></div>
+<div id="ipu-tag"><span class="tag dim">INDEKS PENCEMAR UDARA</span></div>
+<div id="ipu-num" class="big">30</div>
+<div id="ipu-cat">BAIK</div>
+<div id="ipu-bar"><div style="flex:50;background:#3aa0ff"></div><div style="flex:50;background:#3ccf6e"></div><div style="flex:100;background:#ffd23f"></div><div style="flex:100;background:#ff8a1f"></div><div style="flex:220;background:#ff2d2d"></div></div>
+<div id="ipu-ndl"></div>
+<div id="ipu-sc"><span style="left:0">0</span><span style="left:84px">50</span><span style="left:166px">100</span><span style="left:334px">200</span><span style="left:500px">300</span><span style="right:0">500+</span></div>
+<div id="ipu-st" style="opacity:0"><span class="stamp" id="ipu-sti">DARURAT</span></div>
+<div id="ipu-97" class="src" style="opacity:0">darurat jerebu terakhir di Sarawak: 1997</div>
+
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+
+const num=document.getElementById("ipu-num"), cat=document.getElementById("ipu-cat"), V={v:30};
+const band=v=>v<=50?["BAIK","#3aa0ff"]:v<=100?["SEDERHANA","#3ccf6e"]:v<=200?["TIDAK SIHAT","#ffd23f"]:v<=300?["SANGAT TIDAK SIHAT","#ff8a1f"]:["BERBAHAYA","#ff2d2d"];
+const paint=()=>{const v=Math.round(V.v);num.textContent=v;const [n,c]=band(v);cat.textContent=n;cat.style.color=c;num.style.color=c;
+  num.style.textShadow=`0 0 ${40+v/5}px ${c}88`;};
+tl.fromTo(V,{v:30},{v:519,duration:2.4,ease:"power2.in",onUpdate:paint},1.7);
+tl.fromTo("#ipu-ndl",{x:28},{x:920,duration:2.4,ease:"power2.in"},1.7);
+tl.to("#ipu-num",{x:10,duration:.04,yoyo:true,repeat:9,ease:"none"},4.1);
+tl.fromTo("#ipu-hs",{opacity:0},{opacity:1,duration:.15},3.6);
+tl.fromTo("#ipu-st",{opacity:0,scale:2.2,rotation:-8},{opacity:1,scale:1,rotation:-8,duration:.16,ease:"power4.in"},5.3);
+tl.to("#ipu-st",{y:6,duration:.05,yoyo:true,repeat:3},5.46);
+tl.fromTo("#ipu-97",{opacity:0},{opacity:1,duration:.3},5.35);
+
+window.__timelines["ipu"] = tl;
+})();
+</script>
+</template>
