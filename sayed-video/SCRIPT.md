@@ -1,8 +1,20 @@
-# Skrip VO: "237 Tahun" (draf 1, hook B)
+# Skrip VO: "237 Tahun" (draf 2: versi gempak, hook B)
 
 Gaya: **KERTAS** + gambar sebenar dicetak halftone riso (biru / hitam). Kira-kira 140 patah perkataan, ~55–60 s.
 
-## Satu perenggan (untuk ElevenLabs)
+## Versi GEMPAK, satu perenggan (draf 2, ~60 s) ⭐ guna yang ni
+
+Dua ratus tiga puluh tujuh tahun. Tak pernah sekali pun, seorang Muslim dipilih jadi senator Amerika. Sampai malam ni. Dan bahagian paling gila? Ada orang cuba sedaya upaya… untuk halang dia. Nama dia Abdul El-Sayed. Anak pendatang Mesir. Bapanya, seorang imam. Doktor perubatan. PhD Oxford. Umur tiga puluh, dah jadi ketua kesihatan Detroit. Tapi lapan tahun lepas… dia kalah teruk. Dia boleh saja berhenti di situ. Dia tak berhenti. Tahun ni, dia bangkit balik. Dan serangan datang bertubi-tubi. Trump dan sekutunya gelar dia "jihadist". Ted Cruz kata kalau dia menang… rakyat Amerika akan mati. Dua ratus tujuh puluh juta dolar dibelanjakan. Dua hari sebelum undi, bekas lawan dari parti sendiri pun sokong musuh dia. Nampak macam mustahil. Keputusannya? Dia menang. Hampir enam mata. Dan malam tu, dia cakap: "Kau pilih kebencian. Michigan pilih harapan." Dua ratus tiga puluh tujuh tahun… dipecahkan oleh seorang anak pendatang.
+
+### Kenapa versi ni lebih gempak
+- 0–3 s: "237 tahun… tak pernah sekali pun" terus buat penonton terkejut.
+- Persoalan di saat ~7: "Ada orang cuba sedaya upaya… untuk halang dia." Penonton nak tahu siapa dan macam mana.
+- Arc underdog: kalah teruk, tak berhenti, bangkit balik.
+- Tekanan bertimbun: jihadist, ancaman Cruz, $270J, kawan sendiri berpaling. Lepas tu "Nampak macam mustahil." sebagai jeda sebelum twist.
+- Penutup: "dipecahkan oleh seorang anak pendatang." Ayat ni mudah dikongsi dan menyentuh ramai.
+- Teks atas skrin di frame akhir (bukan VO): "Apa pendapat kau? Komen 👇"
+
+## Versi asal (draf 1)
 
 Dua ratus tiga puluh tujuh tahun. Tak pernah ada seorang Muslim dipilih jadi senator Amerika. Sampai malam ni. Nama dia Abdul El-Sayed. Anak pendatang Mesir, dan bapanya seorang imam. Dia bukan calang-calang orang: doktor perubatan, PhD dari Oxford. Umur tiga puluh, dah jadi ketua kesihatan Detroit. Lapan tahun lepas, dia bertanding… dan kalah teruk. Tahun ni, dia cuba lagi. Trump dan sekutunya panggil dia "jihadist". Ted Cruz kata kalau dia menang… rakyat Amerika akan mati. Lebih dua ratus tujuh puluh juta dolar dibelanjakan dalam pertandingan ni. Dan dua hari sebelum mengundi, bekas lawan dari parti sendiri pun sokong musuh dia. Keputusannya? Dia menang. Hampir enam mata. Malam tu dia cakap: "Kau pilih kebencian… Michigan pilih harapan." Dua ratus tiga puluh tujuh tahun… akhirnya berubah.
 
@@ -34,3 +46,5 @@ Dua ratus tiga puluh tujuh tahun. Tak pernah ada seorang Muslim dipilih jadi sen
 - Foto kempen: **Conlan Houston / CC BY-SA 4.0** (diubah: crop dan halftone).
 - "Thank you, Michigan!": grafik kempen **via Threads**.
 - Mic dan podium: **via Threads** (kemungkinan gambar agensi berita; risiko hak cipta ditanggung pemilik akaun).
+- Draf 2: "Ada orang cuba sedaya upaya untuk halang dia" merujuk serangan Trump, Cruz, Rogers dan perbelanjaan $270J+ (CBS, Bridge Michigan). Ini rumusan naratif.
+- Draf 2: "Dia boleh saja berhenti di situ" dan "Nampak macam mustahil" ialah naratif, bukan dakwaan fakta.
