@@ -1,0 +1,42 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton.woff2)}
+@font-face{font-family:DMSerif;src:url(fonts/DMSerifDisplay.woff2)}
+@font-face{font-family:Marker;src:url(fonts/PermanentMarker.woff2)}
+@font-face{font-family:Typewriter;src:url(fonts/SpecialElite.woff2)}
+@font-face{font-family:Narrow;font-weight:700;src:url(fonts/ArchivoNarrow.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#ece4d6}
+#f{position:relative;width:1080px;height:1920px;background:#ece4d6;color:#1d1b18;overflow:hidden}
+#f>*{position:absolute}
+.grain{inset:0;width:1080px;height:1920px;mix-blend-mode:multiply;pointer-events:none}
+.card{background:#f6f1e7;box-shadow:5px 7px 0 rgba(0,0,0,.10),0 18px 40px rgba(0,0,0,.16)}
+.tape{width:220px;height:62px;background:rgba(236,222,170,.8);box-shadow:0 2px 4px rgba(0,0,0,.12)}
+.stamp{display:inline-block;font:400 60px Anton;letter-spacing:5px;border:9px solid currentColor;border-radius:14px;padding:6px 24px;mix-blend-mode:multiply;opacity:.92;white-space:nowrap}
+.riso{position:relative;display:inline-block}
+.riso .g{position:absolute;left:8px;top:6px;color:#2e56b8;opacity:.5;mix-blend-mode:multiply;white-space:nowrap}
+.riso .m{position:relative}
+</style></head><body>
+<div id="f">
+ <svg width="0" height="0" style="position:absolute"><defs>
+  <filter id="n" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .45  0 0 0 0 .4  0 0 0 0 .34  0 0 0 .5 0"/></filter>
+  <filter id="b" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".006" numOctaves="3" seed="9"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .42  0 0 0 0 .3  0 0 0 .45 -.08"/></filter></defs></svg>
+ <svg class="grain"><rect width="1080" height="1920" filter="url(#b)"/></svg>
+ <div style="left:80px;top:270px;font:40px Typewriter;letter-spacing:5px">MIDTERM AMERIKA · 2026</div>
+ <div id="card" class="card" style="left:56px;top:340px;width:968px;padding:44px 36px;transform:rotate(-2deg)"></div>
+ <div class="tape" style="left:430px;top:316px;transform:rotate(-4deg)"></div>
+ <div style="left:80px;top:950px;font:400 172px/0.9 Anton;color:#d23820"><span class="riso"><span class="g">TANPA</span><span class="m">TANPA</span></span><br><span class="riso"><span class="g">BERTANDING?</span><span class="m">BERTANDING?</span></span></div>
+ <svg style="left:80px;top:1290px" width="920" height="60"><path d="M10 20 C260 8 600 34 900 14" stroke="#1d1b18" stroke-width="12" fill="none" stroke-linecap="round"/></svg>
+ <div style="left:90px;top:1370px;transform:rotate(-5deg);color:#2e56b8"><span class="stamp">DEMOKRAT RAMPAS KONGRES</span></div>
+ <svg style="left:560px;top:1470px" width="460" height="240" viewBox="0 0 330 170"><g fill="none" stroke="#1d1b18" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M86 140 C84 70 130 34 172 34 C222 34 250 76 252 140 Z"/><path d="M250 136 C292 132 326 146 330 160 C300 170 262 164 236 152"/><path d="M172 34 L172 24"/></g><text x="168" y="112" text-anchor="middle" font-family="Marker" font-size="46" fill="#d23820">VETO</text></svg>
+ <svg class="grain"><rect width="1080" height="1920" filter="url(#n)"/></svg>
+</div>
+<script>
+let seed=13;const r=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646};
+const F=["Anton","DMSerif","Typewriter","Narrow","Marker"];
+document.getElementById("card").innerHTML="TRUMP KALAH".split(" ").map(w=>`<div style="white-space:nowrap">`+[...w].map(ch=>{const f=F[Math.floor(r()*5)],x=r();
+ const bg=x<.22?'#1d1b18':x<.42?'#d23820':x<.58?'#2e56b8':x<.72?'#fffaf0':x<.86?'#f6dc3c':'#d8cfc0',c=x<.58?'#f6f1e7':'#1d1b18';
+ return `<span style="display:inline-block;margin:6px 4px;padding:8px 16px 0;line-height:1;font-family:${f};font-size:${150+r()*50|0}px;background:${bg};color:${c};transform:rotate(${(r()-.5)*12}deg);box-shadow:3px 3px 0 rgba(0,0,0,.2)">${ch}</span>`}).join('')+`</div>`).join('');
+</script>
+</body></html>
