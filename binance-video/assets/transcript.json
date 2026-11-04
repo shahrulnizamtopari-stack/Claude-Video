@@ -1,0 +1,794 @@
+[
+  {
+    "text": "Jam",
+    "start": 0.19,
+    "end": 0.31,
+    "id": "w0"
+  },
+  {
+    "text": "4",
+    "start": 0.31,
+    "end": 0.59,
+    "id": "w1"
+  },
+  {
+    "text": "pagi,",
+    "start": 0.67,
+    "end": 1.18,
+    "id": "w2"
+  },
+  {
+    "text": "semua",
+    "start": 1.33,
+    "end": 1.49,
+    "id": "w3"
+  },
+  {
+    "text": "orang",
+    "start": 1.49,
+    "end": 1.73,
+    "id": "w4"
+  },
+  {
+    "text": "tengah",
+    "start": 1.73,
+    "end": 2.04,
+    "id": "w5"
+  },
+  {
+    "text": "tidur",
+    "start": 2.04,
+    "end": 2.27,
+    "id": "w6"
+  },
+  {
+    "text": "dan",
+    "start": 2.43,
+    "end": 2.55,
+    "id": "w7"
+  },
+  {
+    "text": "dalam",
+    "start": 2.55,
+    "end": 2.88,
+    "id": "w8"
+  },
+  {
+    "text": "20",
+    "start": 2.93,
+    "end": 3.38,
+    "id": "w9"
+  },
+  {
+    "text": "menit,",
+    "start": 3.39,
+    "end": 3.84,
+    "id": "w10"
+  },
+  {
+    "text": "$6,300",
+    "start": 3.88,
+    "end": 5.43,
+    "id": "w11"
+  },
+  {
+    "text": "juta",
+    "start": 5.43,
+    "end": 5.88,
+    "id": "w12"
+  },
+  {
+    "text": "lezap",
+    "start": 5.88,
+    "end": 6.25,
+    "id": "w13"
+  },
+  {
+    "text": "rompakan",
+    "start": 6.44,
+    "end": 6.84,
+    "id": "w14"
+  },
+  {
+    "text": "kripto",
+    "start": 6.84,
+    "end": 7.2,
+    "id": "w15"
+  },
+  {
+    "text": "terbesar",
+    "start": 7.2,
+    "end": 7.68,
+    "id": "w16"
+  },
+  {
+    "text": "dalam",
+    "start": 7.68,
+    "end": 7.99,
+    "id": "w17"
+  },
+  {
+    "text": "sejarah",
+    "start": 7.99,
+    "end": 8.37,
+    "id": "w18"
+  },
+  {
+    "text": "dan",
+    "start": 8.52,
+    "end": 8.65,
+    "id": "w19"
+  },
+  {
+    "text": "bahagian",
+    "start": 8.66,
+    "end": 9.09,
+    "id": "w20"
+  },
+  {
+    "text": "paling",
+    "start": 9.15,
+    "end": 9.51,
+    "id": "w21"
+  },
+  {
+    "text": "gila.",
+    "start": 9.51,
+    "end": 9.78,
+    "id": "w22"
+  },
+  {
+    "text": "Menurut",
+    "start": 9.97,
+    "end": 10.31,
+    "id": "w23"
+  },
+  {
+    "text": "laporan,",
+    "start": 10.31,
+    "end": 10.96,
+    "id": "w24"
+  },
+  {
+    "text": "ia",
+    "start": 11.09,
+    "end": 11.14,
+    "id": "w25"
+  },
+  {
+    "text": "bermula",
+    "start": 11.14,
+    "end": 11.7,
+    "id": "w26"
+  },
+  {
+    "text": "dengan",
+    "start": 11.7,
+    "end": 12.05,
+    "id": "w27"
+  },
+  {
+    "text": "satu",
+    "start": 12.23,
+    "end": 12.47,
+    "id": "w28"
+  },
+  {
+    "text": "temuduga",
+    "start": 12.47,
+    "end": 13.08,
+    "id": "w29"
+  },
+  {
+    "text": "kerja,",
+    "start": 13.08,
+    "end": 13.65,
+    "id": "w30"
+  },
+  {
+    "text": "Binance,",
+    "start": 13.66,
+    "end": 14.32,
+    "id": "w31"
+  },
+  {
+    "text": "Bursa",
+    "start": 14.4,
+    "end": 14.71,
+    "id": "w32"
+  },
+  {
+    "text": "Kripto",
+    "start": 14.71,
+    "end": 15.1,
+    "id": "w33"
+  },
+  {
+    "text": "Terbesar",
+    "start": 15.17,
+    "end": 15.76,
+    "id": "w34"
+  },
+  {
+    "text": "Dunia,",
+    "start": 15.76,
+    "end": 16.45,
+    "id": "w35"
+  },
+  {
+    "text": "XRP",
+    "start": 16.45,
+    "end": 16.75,
+    "id": "w36"
+  },
+  {
+    "text": "Solana,",
+    "start": 16.76,
+    "end": 17.61,
+    "id": "w37"
+  },
+  {
+    "text": "Bitcoin,",
+    "start": 17.61,
+    "end": 18.51,
+    "id": "w38"
+  },
+  {
+    "text": "dan",
+    "start": 18.51,
+    "end": 18.69,
+    "id": "w39"
+  },
+  {
+    "text": "dalam",
+    "start": 18.7,
+    "end": 19.03,
+    "id": "w40"
+  },
+  {
+    "text": "3",
+    "start": 19.03,
+    "end": 19.22,
+    "id": "w41"
+  },
+  {
+    "text": "menit,",
+    "start": 19.22,
+    "end": 19.7,
+    "id": "w42"
+  },
+  {
+    "text": "Dompet",
+    "start": 19.77,
+    "end": 20.19,
+    "id": "w43"
+  },
+  {
+    "text": "Ethereum",
+    "start": 20.28,
+    "end": 20.94,
+    "id": "w44"
+  },
+  {
+    "text": "kosong.",
+    "start": 20.94,
+    "end": 21.5,
+    "id": "w45"
+  },
+  {
+    "text": "Mereka",
+    "start": 21.52,
+    "end": 21.92,
+    "id": "w46"
+  },
+  {
+    "text": "tak",
+    "start": 21.92,
+    "end": 22.09,
+    "id": "w47"
+  },
+  {
+    "text": "pecah",
+    "start": 22.17,
+    "end": 22.48,
+    "id": "w48"
+  },
+  {
+    "text": "peti",
+    "start": 22.48,
+    "end": 22.76,
+    "id": "w49"
+  },
+  {
+    "text": "besi,",
+    "start": 22.83,
+    "end": 23.18,
+    "id": "w50"
+  },
+  {
+    "text": "mereka",
+    "start": 23.18,
+    "end": 23.6,
+    "id": "w51"
+  },
+  {
+    "text": "godam,",
+    "start": 23.6,
+    "end": 24.09,
+    "id": "w52"
+  },
+  {
+    "text": "seorang",
+    "start": 24.09,
+    "end": 24.58,
+    "id": "w53"
+  },
+  {
+    "text": "manusia,",
+    "start": 24.58,
+    "end": 25.16,
+    "id": "w54"
+  },
+  {
+    "text": "laptop",
+    "start": 25.38,
+    "end": 25.63,
+    "id": "w55"
+  },
+  {
+    "text": "seorang",
+    "start": 25.63,
+    "end": 26.04,
+    "id": "w56"
+  },
+  {
+    "text": "jurutera",
+    "start": 26.12,
+    "end": 26.62,
+    "id": "w57"
+  },
+  {
+    "text": "di",
+    "start": 26.73,
+    "end": 26.81,
+    "id": "w58"
+  },
+  {
+    "text": "ceroboh",
+    "start": 26.89,
+    "end": 27.27,
+    "id": "w59"
+  },
+  {
+    "text": "dilaporkan",
+    "start": 27.33,
+    "end": 28.01,
+    "id": "w60"
+  },
+  {
+    "text": "selepas",
+    "start": 28.01,
+    "end": 28.49,
+    "id": "w61"
+  },
+  {
+    "text": "temuduga",
+    "start": 28.5,
+    "end": 29.02,
+    "id": "w62"
+  },
+  {
+    "text": "kerja",
+    "start": 29.1,
+    "end": 29.41,
+    "id": "w63"
+  },
+  {
+    "text": "palsu.",
+    "start": 29.41,
+    "end": 30.12,
+    "id": "w64"
+  },
+  {
+    "text": "Siapa",
+    "start": 30.23,
+    "end": 30.4,
+    "id": "w65"
+  },
+  {
+    "text": "dalangnya?",
+    "start": 30.4,
+    "end": 31.12,
+    "id": "w66"
+  },
+  {
+    "text": "FBI",
+    "start": 31.12,
+    "end": 31.46,
+    "id": "w67"
+  },
+  {
+    "text": "tuding",
+    "start": 31.46,
+    "end": 32.08,
+    "id": "w68"
+  },
+  {
+    "text": "jari,",
+    "start": 32.15,
+    "end": 32.79,
+    "id": "w69"
+  },
+  {
+    "text": "Korea",
+    "start": 32.79,
+    "end": 33.23,
+    "id": "w70"
+  },
+  {
+    "text": "Utara,",
+    "start": 33.23,
+    "end": 33.78,
+    "id": "w71"
+  },
+  {
+    "text": "Korea",
+    "start": 34,
+    "end": 34.27,
+    "id": "w72"
+  },
+  {
+    "text": "Utara,",
+    "start": 34.27,
+    "end": 34.87,
+    "id": "w73"
+  },
+  {
+    "text": "Nafi,",
+    "start": 34.87,
+    "end": 35.43,
+    "id": "w74"
+  },
+  {
+    "text": "tapi",
+    "start": 35.43,
+    "end": 35.7,
+    "id": "w75"
+  },
+  {
+    "text": "dunia",
+    "start": 35.7,
+    "end": 36.03,
+    "id": "w76"
+  },
+  {
+    "text": "kripto",
+    "start": 36.03,
+    "end": 36.37,
+    "id": "w77"
+  },
+  {
+    "text": "melawan",
+    "start": 36.56,
+    "end": 36.83,
+    "id": "w78"
+  },
+  {
+    "text": "balik,",
+    "start": 36.91,
+    "end": 37.34,
+    "id": "w79"
+  },
+  {
+    "text": "tether,",
+    "start": 37.34,
+    "end": 37.86,
+    "id": "w80"
+  },
+  {
+    "text": "circle,",
+    "start": 37.87,
+    "end": 38.41,
+    "id": "w81"
+  },
+  {
+    "text": "semua",
+    "start": 38.41,
+    "end": 38.75,
+    "id": "w82"
+  },
+  {
+    "text": "bekukan",
+    "start": 38.75,
+    "end": 39.21,
+    "id": "w83"
+  },
+  {
+    "text": "dana,",
+    "start": 39.27,
+    "end": 39.75,
+    "id": "w84"
+  },
+  {
+    "text": "kira-kira",
+    "start": 39.76,
+    "end": 40.37,
+    "id": "w85"
+  },
+  {
+    "text": "3",
+    "start": 40.43,
+    "end": 40.53,
+    "id": "w86"
+  },
+  {
+    "text": "billion,",
+    "start": 40.62,
+    "end": 41.2,
+    "id": "w87"
+  },
+  {
+    "text": "tak",
+    "start": 41.23,
+    "end": 41.35,
+    "id": "w88"
+  },
+  {
+    "text": "sempat",
+    "start": 41.35,
+    "end": 41.62,
+    "id": "w89"
+  },
+  {
+    "text": "lari.",
+    "start": 41.62,
+    "end": 42,
+    "id": "w90"
+  },
+  {
+    "text": "Dan",
+    "start": 42.19,
+    "end": 42.23,
+    "id": "w91"
+  },
+  {
+    "text": "duit",
+    "start": 42.24,
+    "end": 42.53,
+    "id": "w92"
+  },
+  {
+    "text": "curi",
+    "start": 42.53,
+    "end": 42.83,
+    "id": "w93"
+  },
+  {
+    "text": "macam",
+    "start": 42.87,
+    "end": 43.18,
+    "id": "w94"
+  },
+  {
+    "text": "ni,",
+    "start": 43.31,
+    "end": 43.51,
+    "id": "w95"
+  },
+  {
+    "text": "pemantau",
+    "start": 43.51,
+    "end": 44.1,
+    "id": "w96"
+  },
+  {
+    "text": "sekatan",
+    "start": 44.11,
+    "end": 44.64,
+    "id": "w97"
+  },
+  {
+    "text": "antara",
+    "start": 44.64,
+    "end": 45.09,
+    "id": "w98"
+  },
+  {
+    "text": "bangsa",
+    "start": 45.09,
+    "end": 45.54,
+    "id": "w99"
+  },
+  {
+    "text": "kata,",
+    "start": 45.54,
+    "end": 45.98,
+    "id": "w100"
+  },
+  {
+    "text": "ia",
+    "start": 45.98,
+    "end": 46.13,
+    "id": "w101"
+  },
+  {
+    "text": "bantu",
+    "start": 46.13,
+    "end": 46.5,
+    "id": "w102"
+  },
+  {
+    "text": "biayai",
+    "start": 46.5,
+    "end": 46.95,
+    "id": "w103"
+  },
+  {
+    "text": "program",
+    "start": 46.95,
+    "end": 47.48,
+    "id": "w104"
+  },
+  {
+    "text": "nukleer",
+    "start": 47.48,
+    "end": 48,
+    "id": "w105"
+  },
+  {
+    "text": "dan",
+    "start": 48,
+    "end": 48.22,
+    "id": "w106"
+  },
+  {
+    "text": "peluru",
+    "start": 48.23,
+    "end": 48.68,
+    "id": "w107"
+  },
+  {
+    "text": "berpandu",
+    "start": 48.68,
+    "end": 49.27,
+    "id": "w108"
+  },
+  {
+    "text": "Korea",
+    "start": 49.27,
+    "end": 49.65,
+    "id": "w109"
+  },
+  {
+    "text": "Utara.",
+    "start": 49.65,
+    "end": 50.2,
+    "id": "w110"
+  },
+  {
+    "text": "Jadi",
+    "start": 50.39,
+    "end": 50.47,
+    "id": "w111"
+  },
+  {
+    "text": "kalau",
+    "start": 50.47,
+    "end": 50.79,
+    "id": "w112"
+  },
+  {
+    "text": "dapat",
+    "start": 50.87,
+    "end": 51.15,
+    "id": "w113"
+  },
+  {
+    "text": "tawaran",
+    "start": 51.15,
+    "end": 51.62,
+    "id": "w114"
+  },
+  {
+    "text": "kerja",
+    "start": 51.62,
+    "end": 51.94,
+    "id": "w115"
+  },
+  {
+    "text": "yang",
+    "start": 51.99,
+    "end": 52.16,
+    "id": "w116"
+  },
+  {
+    "text": "terlalu",
+    "start": 52.23,
+    "end": 52.68,
+    "id": "w117"
+  },
+  {
+    "text": "bagus,",
+    "start": 52.68,
+    "end": 53.15,
+    "id": "w118"
+  },
+  {
+    "text": "fikir",
+    "start": 53.15,
+    "end": 53.48,
+    "id": "w119"
+  },
+  {
+    "text": "dua",
+    "start": 53.48,
+    "end": 53.68,
+    "id": "w120"
+  },
+  {
+    "text": "kali.",
+    "start": 53.68,
+    "end": 54.3,
+    "id": "w121"
+  },
+  {
+    "text": "Sebab",
+    "start": 54.3,
+    "end": 54.61,
+    "id": "w122"
+  },
+  {
+    "text": "yang",
+    "start": 54.62,
+    "end": 54.88,
+    "id": "w123"
+  },
+  {
+    "text": "temuduga",
+    "start": 54.88,
+    "end": 55.32,
+    "id": "w124"
+  },
+  {
+    "text": "kau,",
+    "start": 55.43,
+    "end": 55.7,
+    "id": "w125"
+  },
+  {
+    "text": "mungkin",
+    "start": 55.71,
+    "end": 56.16,
+    "id": "w126"
+  },
+  {
+    "text": "bukan",
+    "start": 56.16,
+    "end": 56.45,
+    "id": "w127"
+  },
+  {
+    "text": "orang",
+    "start": 56.64,
+    "end": 56.78,
+    "id": "w128"
+  },
+  {
+    "text": "yang",
+    "start": 56.84,
+    "end": 57.06,
+    "id": "w129"
+  },
+  {
+    "text": "kau",
+    "start": 57.06,
+    "end": 57.25,
+    "id": "w130"
+  },
+  {
+    "text": "sangka.",
+    "start": 57.25,
+    "end": 57.9,
+    "id": "w131"
+  }
+]

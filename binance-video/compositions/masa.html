@@ -1,0 +1,72 @@
+<template>
+<style>
+@font-face{font-family:"Anton";src:url("assets/fonts/Anton.woff2") format("woff2")}
+@font-face{font-family:"Marker";src:url("assets/fonts/PermanentMarker.woff2") format("woff2")}
+@font-face{font-family:"Typewriter";src:url("assets/fonts/SpecialElite.woff2") format("woff2")}
+@font-face{font-family:"CourierP";font-weight:700;src:url("assets/fonts/CourierPrime.woff2") format("woff2")}
+@font-face{font-family:"Stencil";font-weight:700;src:url("assets/fonts/StardosStencil.woff2") format("woff2")}
+
+#root { position:absolute; inset:0; color:#1c1a17; }
+#root .jit { position:absolute; inset:0; transform-origin:50% 45%; }
+#root .jit > * { position:absolute; }
+#root .an { font-family:"Anton",sans-serif; line-height:.92; letter-spacing:1px; }
+#root .mk { font-family:"Marker",cursive; line-height:1.05; }
+#root .ty { font-family:"Typewriter",monospace; }
+#root .cr { font-family:"CourierP",monospace; font-weight:700; }
+#root .st { font-family:"Stencil",serif; font-weight:700; }
+#root .red { color:#c4241d; } #root .cream { color:#fff3d6; }
+#root .idx { background:#fbf8f0 repeating-linear-gradient(transparent 0 62px,#9fc0e0 62px 64px); background-position:0 90px;
+  box-shadow:5px 9px 0 rgba(0,0,0,.25),0 24px 44px rgba(0,0,0,.4); z-index:2; }
+#root .idx::before { content:""; position:absolute; left:0; right:0; top:80px; height:4px; background:#e08a8a; }
+#root .card { background:#fbf8f0; box-shadow:5px 9px 0 rgba(0,0,0,.25),0 24px 44px rgba(0,0,0,.4); z-index:2; }
+#root .manila { background:#e2c98d; box-shadow:5px 9px 0 rgba(0,0,0,.25),0 24px 44px rgba(0,0,0,.45); z-index:2; }
+#root .pol { background:#f7f5ef; padding:24px 24px 96px; box-shadow:5px 9px 0 rgba(0,0,0,.25),0 26px 48px rgba(0,0,0,.45); z-index:2; }
+#root .pol .ph { background:#2a2622; display:flex; align-items:center; justify-content:center; }
+#root .pol .cap { position:absolute; left:24px; right:24px; bottom:22px; font:52px "Marker",cursive; text-align:center; white-space:nowrap; }
+#root .pin { width:46px; height:46px; border-radius:50%; background:radial-gradient(circle at 35% 35%,#ff8a80,#c4241d 55%,#7a1410); box-shadow:5px 8px 7px rgba(0,0,0,.45); z-index:6; }
+#root .stamp { display:inline-block; font:700 80px "Stencil",serif; letter-spacing:6px; border:10px solid currentColor; border-radius:12px; padding:4px 30px; mix-blend-mode:multiply; opacity:.9; white-space:nowrap; z-index:7; }
+#root .tag { background:#f2d03b; font:700 34px "CourierP",monospace; padding:8px 20px; box-shadow:2px 5px 5px rgba(0,0,0,.3); z-index:7; white-space:nowrap; }
+#root .cctv { font:700 36px "CourierP",monospace; color:#f2f2f2; background:rgba(0,0,0,.6); padding:10px 22px; letter-spacing:2px; z-index:8; white-space:nowrap; }
+#root .rd { display:inline-block; background:#111; color:#111; line-height:1.05; }
+#root .strings { left:0; top:0; z-index:1; overflow:visible; }
+#root .strings path { fill:none; stroke:#c4241d; stroke-width:6; }
+
+#ms-cc { left:80px; top:196px; }
+#ms-loc { left:60px; top:290px; width:960px; height:150px; transform:rotate(-1deg); padding:42px 34px 0; }
+#ms-line { left:140px; top:470px; width:6px; height:640px; background:#c4241d; transform-origin:50% 0; z-index:1; }
+#ms-3 { left:640px; top:1060px; transform:rotate(3deg); }
+#ms-st { left:640px; top:930px; color:#c4241d; transform:rotate(-10deg); }
+</style>
+<div id="root" data-composition-id="masa" data-width="1080" data-height="1920" data-start="0" data-duration="7.85">
+<div class="jit" id="masa-jit">
+
+<div id="ms-cc" class="cctv"><span class="red">●</span> REC · <span id="ms-clk">04:05:12</span> MYT <span id="ms-ff" style="opacity:0">▶▶</span></div>
+<div id="ms-loc" class="card"><span class="cr" style="font-size:40px">LOKASI: <b>BINANCE</b> · bursa crypto terbesar dunia</span></div>
+<div id="ms-line"></div>
+<div id="ms-c0" class="idx" style="left:190px;top:470px;width:790px;height:135px;transform:rotate(-1.5deg);padding:14px 30px 0;opacity:0"><span class="cr" style="font-size:34px;color:#666">04:05 MYT</span> <span class="an" style="font-size:66px;margin-left:24px">XRP</span><div class="cr" style="font-size:34px;margin-top:2px">233 juta XRP</div></div><div id="ms-p0" class="pin" style="left:117px;top:510px;opacity:0"></div><div id="ms-c1" class="idx" style="left:220px;top:625px;width:790px;height:135px;transform:rotate(1.5deg);padding:14px 30px 0;opacity:0"><span class="cr" style="font-size:34px;color:#666">04:10 MYT</span> <span class="an" style="font-size:66px;margin-left:24px">SOLANA</span><div class="cr" style="font-size:34px;margin-top:2px">970 ribu SOL</div></div><div id="ms-p1" class="pin" style="left:117px;top:665px;opacity:0"></div><div id="ms-c2" class="idx" style="left:190px;top:780px;width:790px;height:135px;transform:rotate(-1.5deg);padding:14px 30px 0;opacity:0"><span class="cr" style="font-size:34px;color:#666">04:20 MYT</span> <span class="an" style="font-size:66px;margin-left:24px">BITCOIN</span><div class="cr" style="font-size:34px;margin-top:2px">18,270 BTC</div></div><div id="ms-p2" class="pin" style="left:117px;top:820px;opacity:0"></div><div id="ms-c3" class="idx" style="left:220px;top:935px;width:790px;height:135px;transform:rotate(1.5deg);padding:14px 30px 0;opacity:0"><span class="cr" style="font-size:34px;color:#666">04:23 MYT</span> <span class="an" style="font-size:66px;margin-left:24px">ETHEREUM</span><div class="cr" style="font-size:34px;margin-top:2px">dikosongkan</div></div><div id="ms-p3" class="pin" style="left:117px;top:975px;opacity:0"></div>
+<div id="ms-3" class="tag" style="opacity:0;font-size:40px">3 MIN 24 S</div>
+<div id="ms-st" style="opacity:0"><span class="stamp" style="font-size:84px">KOSONG</span></div>
+
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#masa-jit",{scale:1,x:0,y:0},{scale:1.04,x:-5.0,y:-7.7,duration:7.85,ease:"none"},0);
+
+tl.fromTo("#ms-loc",{opacity:0,y:-60},{opacity:1,y:0,duration:.2,ease:"power3.out"},0.06);
+tl.fromTo("#ms-line",{scaleY:0},{scaleY:1,duration:1.0,ease:"power1.inOut"},1.5);
+const ck=document.getElementById("ms-clk"), K={v:5*60+12};
+const fmt=v=>{v=Math.floor(v);return "04:"+String(Math.floor(v/60)).padStart(2,"0")+":"+String(v%60).padStart(2,"0");};
+tl.fromTo(K,{v:5*60+12},{v:5*60+12,duration:.01,onUpdate:()=>{ck.textContent=fmt(K.v);}},0);
+tl.fromTo(K,{v:5*60+12},{v:23*60+41,duration:4.2,ease:"power1.in",onUpdate:()=>{ck.textContent=fmt(K.v);}},2.8);
+tl.fromTo("#ms-ff",{opacity:0},{opacity:1,duration:.05},2.8);
+tl.to("#ms-ff",{opacity:0,duration:.05},7.0);
+tl.fromTo("#ms-c0",{opacity:0,x:140},{opacity:1,x:0,duration:.18,ease:"power3.out"},2.85);tl.fromTo("#ms-p0",{opacity:0,scale:1.6},{opacity:1,scale:1,duration:.08},2.97);tl.fromTo("#ms-c1",{opacity:0,x:140},{opacity:1,x:0,duration:.18,ease:"power3.out"},3.16);tl.fromTo("#ms-p1",{opacity:0,scale:1.6},{opacity:1,scale:1,duration:.08},3.28);tl.fromTo("#ms-c2",{opacity:0,x:140},{opacity:1,x:0,duration:.18,ease:"power3.out"},4.00);tl.fromTo("#ms-p2",{opacity:0,scale:1.6},{opacity:1,scale:1,duration:.08},4.12);tl.fromTo("#ms-c3",{opacity:0,x:140},{opacity:1,x:0,duration:.18,ease:"power3.out"},6.65);tl.fromTo("#ms-p3",{opacity:0,scale:1.6},{opacity:1,scale:1,duration:.08},6.77);
+tl.fromTo("#ms-3",{opacity:0,scale:1.5},{opacity:1,scale:1,duration:.15},5.4);
+tl.fromTo("#ms-st",{opacity:0,scale:1.9},{opacity:1,scale:1,duration:.12,ease:"power4.in"},7.3);
+
+window.__timelines["masa"] = tl;
+})();
+</script>
+</template>

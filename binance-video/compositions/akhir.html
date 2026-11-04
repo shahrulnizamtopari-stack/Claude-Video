@@ -1,0 +1,67 @@
+<template>
+<style>
+@font-face{font-family:"Anton";src:url("assets/fonts/Anton.woff2") format("woff2")}
+@font-face{font-family:"Marker";src:url("assets/fonts/PermanentMarker.woff2") format("woff2")}
+@font-face{font-family:"Typewriter";src:url("assets/fonts/SpecialElite.woff2") format("woff2")}
+@font-face{font-family:"CourierP";font-weight:700;src:url("assets/fonts/CourierPrime.woff2") format("woff2")}
+@font-face{font-family:"Stencil";font-weight:700;src:url("assets/fonts/StardosStencil.woff2") format("woff2")}
+
+#root { position:absolute; inset:0; color:#1c1a17; }
+#root .jit { position:absolute; inset:0; transform-origin:50% 45%; }
+#root .jit > * { position:absolute; }
+#root .an { font-family:"Anton",sans-serif; line-height:.92; letter-spacing:1px; }
+#root .mk { font-family:"Marker",cursive; line-height:1.05; }
+#root .ty { font-family:"Typewriter",monospace; }
+#root .cr { font-family:"CourierP",monospace; font-weight:700; }
+#root .st { font-family:"Stencil",serif; font-weight:700; }
+#root .red { color:#c4241d; } #root .cream { color:#fff3d6; }
+#root .idx { background:#fbf8f0 repeating-linear-gradient(transparent 0 62px,#9fc0e0 62px 64px); background-position:0 90px;
+  box-shadow:5px 9px 0 rgba(0,0,0,.25),0 24px 44px rgba(0,0,0,.4); z-index:2; }
+#root .idx::before { content:""; position:absolute; left:0; right:0; top:80px; height:4px; background:#e08a8a; }
+#root .card { background:#fbf8f0; box-shadow:5px 9px 0 rgba(0,0,0,.25),0 24px 44px rgba(0,0,0,.4); z-index:2; }
+#root .manila { background:#e2c98d; box-shadow:5px 9px 0 rgba(0,0,0,.25),0 24px 44px rgba(0,0,0,.45); z-index:2; }
+#root .pol { background:#f7f5ef; padding:24px 24px 96px; box-shadow:5px 9px 0 rgba(0,0,0,.25),0 26px 48px rgba(0,0,0,.45); z-index:2; }
+#root .pol .ph { background:#2a2622; display:flex; align-items:center; justify-content:center; }
+#root .pol .cap { position:absolute; left:24px; right:24px; bottom:22px; font:52px "Marker",cursive; text-align:center; white-space:nowrap; }
+#root .pin { width:46px; height:46px; border-radius:50%; background:radial-gradient(circle at 35% 35%,#ff8a80,#c4241d 55%,#7a1410); box-shadow:5px 8px 7px rgba(0,0,0,.45); z-index:6; }
+#root .stamp { display:inline-block; font:700 80px "Stencil",serif; letter-spacing:6px; border:10px solid currentColor; border-radius:12px; padding:4px 30px; mix-blend-mode:multiply; opacity:.9; white-space:nowrap; z-index:7; }
+#root .tag { background:#f2d03b; font:700 34px "CourierP",monospace; padding:8px 20px; box-shadow:2px 5px 5px rgba(0,0,0,.3); z-index:7; white-space:nowrap; }
+#root .cctv { font:700 36px "CourierP",monospace; color:#f2f2f2; background:rgba(0,0,0,.6); padding:10px 22px; letter-spacing:2px; z-index:8; white-space:nowrap; }
+#root .rd { display:inline-block; background:#111; color:#111; line-height:1.05; }
+#root .strings { left:0; top:0; z-index:1; overflow:visible; }
+#root .strings path { fill:none; stroke:#c4241d; stroke-width:6; }
+
+#ak-l { left:80px; top:240px; width:920px; height:620px; transform:rotate(-1.5deg); padding:56px 60px; }
+#ak-c { position:absolute; left:248px; top:228px; }
+#ak-t { left:80px; top:900px; font-size:130px; }
+#ak-q { left:80px; top:1040px; transform:rotate(-2deg); }
+#root .sig { position:relative; display:inline-block; }
+#root .sig .bar { position:absolute; inset:-4px -8px; background:#111; transform-origin:100% 50%; }
+</style>
+<div id="root" data-composition-id="akhir" data-width="1080" data-height="1920" data-start="0" data-duration="9.9">
+<div class="jit" id="akhir-jit">
+
+<div id="ak-l" class="card"><div class="st" style="font-size:66px;letter-spacing:3px">TAWARAN KERJA</div>
+<div class="cr" style="font-size:42px;line-height:1.8;margin-top:30px">Jawatan: <span class="rd">██████████</span><br>Gaji: <span class="rd">█████</span> <span class="mk red" style="font-size:44px">terlalu bagus</span><br><br>Penemuduga:<br><span class="sig"><span class="an red" style="font-size:72px">???</span><i class="bar" id="ak-sb"></i></span></div>
+<svg id="ak-c" width="420" height="120" viewBox="0 0 420 120" style="overflow:visible"><path id="ak-cp" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M30 60 C30 10 390 0 400 55 C410 110 40 120 20 70 C10 40 80 20 120 18" fill="none" stroke="#c4241d" stroke-width="7"/></svg></div>
+<div class="pin"  style="left:517px;top:233px"></div>
+<div id="ak-t" class="an cream" style="opacity:0">FIKIR <span style="color:#ff7a6e">DUA KALI.</span></div>
+<div id="ak-q" class="tag" style="opacity:0;font-size:40px;white-space:normal;width:900px;line-height:1.3">Pernah dapat tawaran kerja pelik? Komen ↓</div>
+
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#akhir-jit",{scale:1,x:0,y:0},{scale:1.04,x:13.4,y:8.6,duration:9.9,ease:"none"},0);
+
+tl.fromTo("#ak-l",{y:900,rotation:-10},{y:0,rotation:-1.5,duration:.35,ease:"power3.out"},0.0);
+tl.fromTo("#ak-cp",{strokeDashoffset:1},{strokeDashoffset:0,duration:.5,ease:"steps(8)"},1.9);
+tl.fromTo("#ak-t",{opacity:0,scale:1.15},{opacity:1,scale:1,duration:.15,ease:"power4.in",transformOrigin:"0% 50%"},2.85);
+tl.fromTo("#ak-sb",{scaleX:1},{scaleX:0,duration:.35,ease:"power2.in"},5.85);
+tl.fromTo("#ak-q",{opacity:0,y:30},{opacity:1,y:0,duration:.25},7.3);
+
+window.__timelines["akhir"] = tl;
+})();
+</script>
+</template>
