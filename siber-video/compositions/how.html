@@ -1,0 +1,50 @@
+<template>
+<style>
+#root { position:absolute; inset:0; color:#e9eef3; font-family:"Inter",sans-serif; }
+#root .hud { position:absolute; left:80px; right:80px; top:196px; height:36px; font:500 28px "JetBrains Mono",monospace; letter-spacing:3px; color:#6b7785; }
+#root .hud .l { position:absolute; left:0; top:0; }
+#root .hud .r { position:absolute; right:0; top:0; text-align:right; }
+#root .title { position:absolute; left:80px; right:80px; font-family:"Inter",sans-serif; font-weight:900; font-size:116px; letter-spacing:-4px; line-height:.94; }
+#root .mono { font-family:"JetBrains Mono",monospace; }
+#root .ice { color:#5ad1ff; } #root .warm { color:#ff9a3c; } #root .hot { color:#ff3b30; } #root .dim { color:#6b7785; }
+#root .tag { display:inline-block; font:700 28px "JetBrains Mono",monospace; letter-spacing:5px; padding:12px 22px; border:3px solid currentColor; border-radius:8px; }
+
+#how-t { top:236px; }
+#root .box { position:absolute; left:80px; width:920px; height:112px; border:3px solid #2a3440; border-radius:14px; background:#0b1016; }
+#root .box .n { position:absolute; left:30px; top:40px; font:500 28px "JetBrains Mono"; color:#6b7785; }
+#root .box .t { position:absolute; left:100px; top:16px; font:900 44px "Inter"; letter-spacing:1px; }
+#root .box .s { position:absolute; left:100px; top:68px; font:500 28px "JetBrains Mono"; color:#6b7785; }
+#root .con { position:absolute; left:538px; width:4px; height:38px; background:#3a4654; transform-origin:50% 0; }
+#how-b3 { border-color:#ff9a3c; } #how-b4 { border-color:#ff3b30; }
+#how-red { position:absolute; inset:0; border-radius:11px; background:rgba(255,59,48,.22); opacity:0; }
+</style>
+<div id="root" data-composition-id="how" data-width="1080" data-height="1920" data-start="0" data-duration="7.3">
+
+<div class="hud"><span class="l">CARA SERANGAN</span><span class="r warm">04 LANGKAH</span></div>
+<div class="title" id="how-t">MACAM<br><span class="warm">MANA?</span></div>
+<div class="box" id="how-b1" style="top:500px;opacity:0"><span class="n">01</span><span class="t">INTERNET</span><span class="s">peti sejuk disambung online</span></div>
+<div class="con" id="how-k1" style="top:612px"></div>
+<div class="box" id="how-b2" style="top:650px;opacity:0"><span class="n">02</span><span class="t">SISTEM LAMA</span><span class="s">perisian tak dikemas kini</span></div>
+<div class="con" id="how-k2" style="top:762px"></div>
+<div class="box" id="how-b3" style="top:800px;opacity:0"><span class="n">03</span><span class="t">KATA LALUAN</span><span class="s warm"><span id="how-p1">••••</span><span id="how-p2" style="display:none">1 2 3 4 — senang teka</span></span></div>
+<div class="con" id="how-k3" style="top:912px"></div>
+<div class="box" id="how-b4" style="top:950px;opacity:0"><div id="how-red"></div><span class="n">04</span><span class="t hot">MOD DEFROST</span><span class="s">suhu dinaikkan ▲</span></div>
+
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#how-t",{opacity:0,y:30},{opacity:1,y:0,duration:.3,ease:"power3.out"},0.07);
+[["#how-b1",.88],["#how-b2",2.94],["#how-b3",3.81],["#how-b4",6.12]].forEach(([s,t])=>
+  tl.fromTo(s,{opacity:0,x:-40},{opacity:1,x:0,duration:.3,ease:"power3.out"},t));
+[["#how-k1",2.7],["#how-k2",3.6],["#how-k3",5.9]].forEach(([s,t])=>tl.fromTo(s,{scaleY:0},{scaleY:1,duration:.22},t));
+tl.set("#how-p1",{display:"inline"},0);tl.set("#how-p2",{display:"none"},0);
+tl.set("#how-p1",{display:"none"},4.5);tl.set("#how-p2",{display:"inline"},4.5);
+tl.fromTo("#how-red",{opacity:0},{opacity:1,duration:.12,yoyo:true,repeat:5},6.7);
+tl.fromTo("#how-b4",{x:0},{x:8,duration:.04,yoyo:true,repeat:7,ease:"none"},6.7);
+
+window.__timelines["how"] = tl;
+})();
+</script>
+</template>

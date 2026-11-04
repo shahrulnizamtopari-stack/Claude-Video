@@ -1,0 +1,44 @@
+<template>
+<style>
+#root { position:absolute; inset:0; color:#e9eef3; font-family:"Inter",sans-serif; }
+#root .hud { position:absolute; left:80px; right:80px; top:196px; height:36px; font:500 28px "JetBrains Mono",monospace; letter-spacing:3px; color:#6b7785; }
+#root .hud .l { position:absolute; left:0; top:0; }
+#root .hud .r { position:absolute; right:0; top:0; text-align:right; }
+#root .title { position:absolute; left:80px; right:80px; font-family:"Inter",sans-serif; font-weight:900; font-size:116px; letter-spacing:-4px; line-height:.94; }
+#root .mono { font-family:"JetBrains Mono",monospace; }
+#root .ice { color:#5ad1ff; } #root .warm { color:#ff9a3c; } #root .hot { color:#ff3b30; } #root .dim { color:#6b7785; }
+#root .tag { display:inline-block; font:700 28px "JetBrains Mono",monospace; letter-spacing:5px; padding:12px 22px; border:3px solid currentColor; border-radius:8px; }
+
+#days-t { top:236px; }
+#days-src { position:absolute; left:80px; top:470px; font:500 28px "JetBrains Mono"; color:#6b7785; }
+#root .rw { position:absolute; left:80px; width:920px; }
+#root .rw .lb { font:700 30px "JetBrains Mono"; letter-spacing:3px; color:#9aa5b1; }
+#root .rw .br { position:absolute; left:0; top:46px; height:74px; border-radius:10px; transform-origin:0 50%; }
+#root .rw .vl { position:absolute; left:22px; top:62px; font:700 40px "JetBrains Mono"; color:#07090c; }
+</style>
+<div id="root" data-composition-id="days" data-width="1080" data-height="1920" data-start="0" data-duration="5.75">
+
+<div class="hud"><span class="l">CADANGAN RASMI</span><span class="r warm">HARI STOK</span></div>
+<div class="title" id="days-t">BERAPA<br><span class="warm">LAMA?</span></div>
+<div id="days-src" style="opacity:0">sumber: EU · UK Be Ready · MCF Sweden · Jerman</div>
+<div class="rw" id="days-r0" style="top:540px;height:130px;opacity:0"><div class="lb">EU</div><div class="br" id="days-b0" style="width:381px;background:#5ad1ff"></div><div class="vl" id="days-v0" style="opacity:0">3 HARI</div></div>
+<div class="rw" id="days-r1" style="top:690px;height:130px;opacity:0"><div class="lb">UK</div><div class="br" id="days-b1" style="width:381px;background:#5ad1ff"></div><div class="vl" id="days-v1" style="opacity:0">3 HARI</div></div>
+<div class="rw" id="days-r2" style="top:840px;height:130px;opacity:0"><div class="lb">SWEDEN</div><div class="br" id="days-b2" style="width:689px;background:#ff9a3c"></div><div class="vl" id="days-v2" style="opacity:0">7 HARI</div></div>
+<div class="rw" id="days-r3" style="top:990px;height:130px;opacity:0"><div class="lb">JERMAN</div><div class="br" id="days-b3" style="width:920px;background:#ff3b30"></div><div class="vl" id="days-v3" style="opacity:0">10 HARI</div></div>
+
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#days-t",{opacity:0,y:30},{opacity:1,y:0,duration:.3,ease:"power3.out"},0.12);
+tl.fromTo("#days-src",{opacity:0},{opacity:1,duration:.4},0.6);
+tl.fromTo("#days-r0",{opacity:0,x:-30},{opacity:1,x:0,duration:.25},1.11);tl.fromTo("#days-b0",{scaleX:0},{scaleX:1,duration:.55,ease:"power3.out"},1.76);tl.fromTo("#days-v0",{opacity:0},{opacity:1,duration:.15},2.01);
+tl.fromTo("#days-r1",{opacity:0,x:-30},{opacity:1,x:0,duration:.25},1.42);tl.fromTo("#days-b1",{scaleX:0},{scaleX:1,duration:.55,ease:"power3.out"},1.76);tl.fromTo("#days-v1",{opacity:0},{opacity:1,duration:.15},2.01);
+tl.fromTo("#days-r2",{opacity:0,x:-30},{opacity:1,x:0,duration:.25},2.60);tl.fromTo("#days-b2",{scaleX:0},{scaleX:1,duration:.55,ease:"power3.out"},3.28);tl.fromTo("#days-v2",{opacity:0},{opacity:1,duration:.15},3.53);
+tl.fromTo("#days-r3",{opacity:0,x:-30},{opacity:1,x:0,duration:.25},4.32);tl.fromTo("#days-b3",{scaleX:0},{scaleX:1,duration:.55,ease:"power3.out"},4.72);tl.fromTo("#days-v3",{opacity:0},{opacity:1,duration:.15},4.97);
+
+window.__timelines["days"] = tl;
+})();
+</script>
+</template>

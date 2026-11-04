@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="assets/lib/gsap.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:1080px; height:1920px; overflow:hidden; background:#07090c; }
+#root { position:relative; width:1080px; height:1920px; overflow:hidden; }
+#bg { position:absolute; inset:0; background:#07090c; }
+#dots { position:absolute; inset:0; background-image:radial-gradient(circle,rgba(255,255,255,.07) 1.6px,transparent 2px); background-size:36px 36px; }
+.glow { position:absolute; inset:0; }
+#g-ice { background:radial-gradient(ellipse 80% 45% at 50% 38%,rgba(90,209,255,.16),transparent 70%); }
+#g-hot { background:radial-gradient(ellipse 80% 45% at 50% 38%,rgba(255,59,48,.24),transparent 70%); opacity:0; }
+#g-warm { background:radial-gradient(ellipse 80% 45% at 50% 38%,rgba(255,154,60,.18),transparent 70%); opacity:0; }
+#scan { position:absolute; inset:0; background:repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0 2px,transparent 2px 6px); z-index:20; }
+#vig { position:absolute; inset:0; background:radial-gradient(ellipse 75% 60% at 50% 45%,transparent 55%,rgba(0,0,0,.65)); z-index:21; }
+#glitch { position:absolute; inset:0; z-index:22; opacity:0; }
+#glitch i { position:absolute; left:0; right:0; display:block; }
+#captions { z-index:15; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="58.8" data-width="1080" data-height="1920" data-fps="30">
+  <div id="bg" data-layout-ignore></div>
+  <div id="dots" data-layout-ignore></div>
+  <div class="glow" id="g-ice" data-layout-ignore></div>
+  <div class="glow" id="g-hot" data-layout-ignore></div>
+  <div class="glow" id="g-warm" data-layout-ignore></div>
+  <div id="hook" data-composition-id="hook" data-composition-src="compositions/hook.html" data-start="0.0" data-duration="4.45" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="spike" data-composition-id="spike" data-composition-src="compositions/spike.html" data-start="4.45" data-duration="4.65" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="map" data-composition-id="map" data-composition-src="compositions/map.html" data-start="9.1" data-duration="14.75" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="how" data-composition-id="how" data-composition-src="compositions/how.html" data-start="23.85" data-duration="7.3" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="who" data-composition-id="who" data-composition-src="compositions/who.html" data-start="31.15" data-duration="4.35" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="kit" data-composition-id="kit" data-composition-src="compositions/kit.html" data-start="35.5" data-duration="9.15" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="days" data-composition-id="days" data-composition-src="compositions/days.html" data-start="44.65" data-duration="5.75" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="end" data-composition-id="end" data-composition-src="compositions/end.html" data-start="50.4" data-duration="8.4" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="58.8" data-track-index="3" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+  <div id="scan" data-layout-ignore></div>
+  <div id="vig" data-layout-ignore></div>
+  <div id="glitch" data-layout-ignore><i style="top:420px;height:26px;background:rgba(255,59,48,.55)"></i><i style="top:760px;height:10px;background:rgba(0,229,255,.5)"></i><i style="top:1010px;height:40px;background:rgba(255,255,255,.18)"></i><i style="top:1240px;height:8px;background:rgba(255,42,109,.6)"></i></div>
+  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="57.6" data-track-index="4" data-volume="1"></audio>
+  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="58.8" data-track-index="5" data-volume="0.5"></audio>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.set("#glitch",{opacity:0,x:0},0);
+tl.fromTo("#g-ice",{opacity:1},{opacity:0,duration:.3},3.81);
+tl.fromTo("#g-hot",{opacity:0},{opacity:1,duration:.3},3.81);
+tl.to("#g-hot",{opacity:0,duration:.6},35.5);
+tl.fromTo("#g-warm",{opacity:0},{opacity:1,duration:.6},35.5);
+tl.to("#g-warm",{opacity:0,duration:4},51.0);
+tl.to("#g-ice",{opacity:1,duration:4},51.0);
+[4.45, 9.1, 23.85, 31.15, 35.5, 44.65, 50.4, 3.81, 8.52].forEach(t => {
+  tl.to("#glitch",{opacity:1,duration:.03},t-0.05);
+  tl.to("#glitch",{x:18,duration:.03},t-0.02);
+  tl.set("#glitch",{x:0},t+0.12);
+  tl.to("#glitch",{opacity:0,duration:.05},t+0.07);
+});
+window.__timelines["main"] = tl;
+</script>
+</body>
+</html>

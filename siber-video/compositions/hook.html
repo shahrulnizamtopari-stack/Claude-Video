@@ -1,0 +1,50 @@
+<template>
+<style>
+#root { position:absolute; inset:0; color:#e9eef3; font-family:"Inter",sans-serif; }
+#root .hud { position:absolute; left:80px; right:80px; top:196px; height:36px; font:500 28px "JetBrains Mono",monospace; letter-spacing:3px; color:#6b7785; }
+#root .hud .l { position:absolute; left:0; top:0; }
+#root .hud .r { position:absolute; right:0; top:0; text-align:right; }
+#root .title { position:absolute; left:80px; right:80px; font-family:"Inter",sans-serif; font-weight:900; font-size:116px; letter-spacing:-4px; line-height:.94; }
+#root .mono { font-family:"JetBrains Mono",monospace; }
+#root .ice { color:#5ad1ff; } #root .warm { color:#ff9a3c; } #root .hot { color:#ff3b30; } #root .dim { color:#6b7785; }
+#root .tag { display:inline-block; font:700 28px "JetBrains Mono",monospace; letter-spacing:5px; padding:12px 22px; border:3px solid currentColor; border-radius:8px; }
+
+#hook-grid { position:absolute; left:60px; top:500px; width:960px; height:620px; }
+#root .cell { position:absolute; width:225px; height:108px; border:2px solid #22303c; border-radius:10px; background:#0b1016; }
+#root .cell .id { position:absolute; left:14px; top:9px; font:500 18px "JetBrains Mono"; color:#4a5866; letter-spacing:2px; }
+#root .cell .v { position:absolute; left:0; right:0; top:30px; text-align:center; font:700 54px "JetBrains Mono"; color:#5ad1ff; }
+#root .cell .h { position:absolute; inset:-2px; border:2px solid #ff3b30; border-radius:10px; background:rgba(255,59,48,.16); opacity:0; }
+#root .cell .h .v { color:#ff3b30; top:32px; }
+#hook-t1, #hook-t2, #hook-t3 { top:250px; }
+#hook-t3 { font-size:170px; color:#ff3b30; top:265px; }
+</style>
+<div id="root" data-composition-id="hook" data-width="1080" data-height="1920" data-start="0" data-duration="4.45">
+
+<div class="hud"><span class="l">03:14 · MALAM</span><span class="r ice" id="hook-ok">● 20 UNIT ONLINE</span><span class="r hot" id="hook-al" style="opacity:0">▲ 20 UNIT ALARM</span></div>
+<div class="title" id="hook-t1">SATU<br>MALAM…</div>
+<div class="title" id="hook-t2" style="opacity:0">RATUSAN<br>PETI BEKU.</div>
+<div class="title" id="hook-t3" style="opacity:0">SERENTAK.</div>
+<div id="hook-grid"><div class="cell" data-layout-allow-overlap id="hook-c0" style="left:0px;top:0px"><span class="id" data-layout-ignore>F-01</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c1" style="left:245px;top:0px"><span class="id" data-layout-ignore>F-02</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c2" style="left:490px;top:0px"><span class="id" data-layout-ignore>F-03</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c3" style="left:735px;top:0px"><span class="id" data-layout-ignore>F-04</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c4" style="left:0px;top:128px"><span class="id" data-layout-ignore>F-05</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c5" style="left:245px;top:128px"><span class="id" data-layout-ignore>F-06</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c6" style="left:490px;top:128px"><span class="id" data-layout-ignore>F-07</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c7" style="left:735px;top:128px"><span class="id" data-layout-ignore>F-08</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c8" style="left:0px;top:256px"><span class="id" data-layout-ignore>F-09</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c9" style="left:245px;top:256px"><span class="id" data-layout-ignore>F-10</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c10" style="left:490px;top:256px"><span class="id" data-layout-ignore>F-11</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c11" style="left:735px;top:256px"><span class="id" data-layout-ignore>F-12</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c12" style="left:0px;top:384px"><span class="id" data-layout-ignore>F-13</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c13" style="left:245px;top:384px"><span class="id" data-layout-ignore>F-14</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c14" style="left:490px;top:384px"><span class="id" data-layout-ignore>F-15</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c15" style="left:735px;top:384px"><span class="id" data-layout-ignore>F-16</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c16" style="left:0px;top:512px"><span class="id" data-layout-ignore>F-17</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c17" style="left:245px;top:512px"><span class="id" data-layout-ignore>F-18</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c18" style="left:490px;top:512px"><span class="id" data-layout-ignore>F-19</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div><div class="cell" data-layout-allow-overlap id="hook-c19" style="left:735px;top:512px"><span class="id" data-layout-ignore>F-20</span><div class="v">-18°</div><div class="h"><div class="v">50°</div></div></div></div>
+
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+
+const order=[7,13,2,18,10,0,15,5,11,19,3,8,16,1,12,6,17,9,4,14];
+order.forEach((ci,k)=>{const x=k/19, t=1.25+2.45*(1-(1-x)*(1-x));
+  tl.fromTo(`#hook-c${ci} .h`,{opacity:0},{opacity:1,duration:.07},t);
+  tl.fromTo(`#hook-c${ci} > .v`,{opacity:1},{opacity:0,duration:.05},t);
+  tl.fromTo(`#hook-c${ci}`,{scale:1.08},{scale:1,duration:.25,ease:"power2.out"},t);});
+tl.fromTo("#hook-t1",{opacity:1},{opacity:0,duration:.12},0.78);
+tl.fromTo("#hook-t2",{opacity:0,y:30},{opacity:1,y:0,duration:.3,ease:"power3.out"},0.83);
+tl.to("#hook-t2",{opacity:0,duration:.1},3.72);
+tl.fromTo("#hook-t3",{opacity:0,scale:1.35},{opacity:1,scale:1,duration:.22,ease:"power4.out"},3.81);
+tl.fromTo("#hook-grid",{x:0},{x:10,duration:.04,yoyo:true,repeat:9,ease:"none"},3.81);
+tl.fromTo("#hook-ok",{opacity:1},{opacity:0,duration:.1},3.81);
+tl.fromTo("#hook-al",{opacity:0},{opacity:1,duration:.1},3.81);
+
+window.__timelines["hook"] = tl;
+})();
+</script>
+</template>
