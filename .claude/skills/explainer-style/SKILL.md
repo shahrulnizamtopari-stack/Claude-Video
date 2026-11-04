@@ -73,6 +73,34 @@ the older island looks; for v3 these rules win.
   `DISPLAY` map in `build_captions.py` ("" hides a word and gives its time to the word before).
 - Add `<project>/renders/` to `.gitignore` before the first render, or the render temp files get committed.
 
+## 0b. The v4 cinematic look (lebah-video) — for beautiful physical subjects
+
+The user said this one was "lebih cantik dari before". Use it when the subject is something lovely to look at (honey, fire,
+space, nature, the body); keep v3 (§0) when the point is a mechanism that needs crisp technical cutaways. Start from
+`lebah-video/` (copy it like §6 says, then replace the story).
+
+- **Palette:** one dominant hue on a dark background. Bee: background `#140b05`, amber/gold everything, gold `#ffc94a` accents.
+  Fog in the background colour (near 14, far 60) for depth fall-off. No ink outlines: shape comes from light.
+- **Materials (MeshPhysicalMaterial):** glossy liquids get `clearcoat: 1, clearcoatRoughness ~0.03` + a little emissive; soft
+  surfaces (wax, fur) get `sheen` with a warm `sheenColor`; thin films (wings) get `iridescence`; props in real metal
+  (`metalness: 1, roughness ~0.2`). Environment: `RoomEnvironment`, `environmentIntensity ~0.5`.
+- **Light rig:** warm key (`0xffb36b`, ~2.4) from upper left-front, cool rim (`0x9ab8ff`, ~1.0) from behind, low warm hemisphere,
+  and a weak point light that follows the camera (`intensity ~7, distance 18`) so glossy things always catch a highlight.
+  Too much camera light + emissive + bloom blows the frame out to white: watch the first snapshot.
+- **Post:** bloom (0.55, 0.5, threshold 0.92), then one `finish` ShaderPass: warm grade (`pow(c, vec3(0.98,1.0,1.06)) * vec3(1.04,1,0.94)`),
+  vignette (`mix(0.55, 1.0, smoothstep(0.85, 0.25, r))`) and grain. **Grain makes files huge** (107 MB for 52 s at 0.025 per-frame
+  noise). Use about 0.012, or keep it out of dark flat areas; the platforms recompress anyway.
+- **Camera:** macro, fov 36, the hero fills 70–80 % of the frame; never park a small object in the middle of empty space.
+- **Always something alive:** drifting glowing motes around the camera (instanced, periodic), a slow-motion drip/spark/ember on a
+  cycle that divides 60, characters with fast secondary motion (wing flap `sin(t·2π·40)`). Make every periodic motion's period
+  divide 60 s so the loop is seamless.
+- **Overlay to match:** title cream `#fff6e6` with gold `<em>`, text-shadow; fades in the background colour; info cards as dark
+  glass (`rgba(36,22,10,0.88)`) with a thin gold border and a soft gold glow; label dots gold.
+- **Shape/diagram scenes** stay in the same world: dark backdrop, bevelled extruded tiles in the hero material, highlights by
+  emissive pulses timed to the words (`exp(-(t - tWord) * 1.5)`).
+- Avoid empty transition frames: keep stages within a few units of each other or cut on a whoosh; a dark empty frame for even
+  0.5 s reads as a glitch.
+
 ## 1. The look (v1/v2 island looks)
 
 - **Format:** 1080×1920, 30 fps, exactly the requested length (default 60.0 s), MP4. No watermark, intro or outro card.
