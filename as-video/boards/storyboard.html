@@ -1,0 +1,158 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;src:url(../fonts/Anton.woff2)}
+@font-face{font-family:Serif;src:url(../fonts/DMSerifDisplay.woff2)}
+@font-face{font-family:Marker;src:url(../fonts/PermanentMarker.woff2)}
+@font-face{font-family:Type;src:url(../fonts/SpecialElite.woff2)}
+@font-face{font-family:Narrow;font-weight:700;src:url(../fonts/ArchivoNarrow.woff2)}
+:root{--paper:#ece4d6;--paper2:#f6f1e7;--ink:#1d1b18;--red:#e5422b;--blue:#2e56b8;--hl:#f6dc3c;--kraft:#c9a878;--grey:#9a9387}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#2a2622;padding:40px;color:#f2ece2;font-family:Narrow,sans-serif}
+h1{font:400 44px Anton;letter-spacing:1px}
+.sub{font:16px Type;color:#cfc6b8;margin:6px 0 28px}
+.grid{display:grid;grid-template-columns:repeat(4,405px);gap:40px 32px}
+.no{font:15px Type;color:#d9cfbf;margin:12px 0 4px}
+.vo{font:15px/1.45 Narrow;color:#f0e9de}
+.fx{font:13px/1.4 Type;color:#a89f92;margin-top:5px}
+.f{width:405px;height:720px;position:relative;overflow:hidden;background:var(--paper);color:var(--ink);border-radius:3px}
+.f>*{position:absolute}
+.grain{inset:0;width:100%;height:100%;mix-blend-mode:multiply;opacity:.55;pointer-events:none;z-index:50}
+.serif{font-family:Serif;line-height:.95}
+.anton{font-family:Anton;line-height:.92;letter-spacing:.5px}
+.mk{font-family:Marker}
+.ty{font-family:Type}
+.riso{position:relative;display:inline-block}
+.riso::after{content:attr(data-t);position:absolute;left:3px;top:2px;color:var(--blue);mix-blend-mode:multiply;opacity:.55;z-index:-1}
+.tape{width:90px;height:26px;background:rgba(236,222,170,.75);box-shadow:0 1px 2px rgba(0,0,0,.15);z-index:20}
+.card{background:var(--paper2);box-shadow:2px 3px 0 rgba(0,0,0,.12),0 8px 18px rgba(0,0,0,.12)}
+.dymo{display:inline-block;background:#141414;color:#f4f4f4;font:700 22px Narrow;letter-spacing:3px;padding:7px 12px 6px;border-radius:3px;text-shadow:0 -1px 0 rgba(0,0,0,.8),0 1px 0 rgba(255,255,255,.25);box-shadow:0 2px 3px rgba(0,0,0,.3)}
+.stamp{font:400 30px Anton;letter-spacing:3px;border:4px solid currentColor;border-radius:6px;padding:4px 12px;mix-blend-mode:multiply;opacity:.88}
+.half{background-image:radial-gradient(circle,rgba(29,27,24,.22) 1.2px,transparent 1.6px);background-size:7px 7px}
+.ransom span{display:inline-block;margin:2px 1px;padding:2px 5px 0;line-height:1}
+.sticky{background:#f8e36a;box-shadow:2px 4px 8px rgba(0,0,0,.2);font:26px/1.1 Marker;padding:16px 14px}
+</style></head><body>
+<h1>STORYBOARD · "KALAH TANPA BERTANDING" · GAYA "KERTAS"</h1>
+<div class="sub">Midterm AS 2026 · 1080×1920 · ±80 s · kolaj kertas di atas meja · cetakan riso merah (Republikan) / biru (Demokrat) · marker, cop, label Dymo, resit · gerakan stop-motion 12fps (jitter halus, kertas ditolak masuk dengan tangan)</div>
+<div class="grid" id="g"></div>
+<svg width="0" height="0" style="position:absolute"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .45  0 0 0 0 .4  0 0 0 0 .34  0 0 0 .55 0"/></filter>
+<filter id="blot"><feTurbulence type="fractalNoise" baseFrequency=".015" numOctaves="3" seed="9"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .42  0 0 0 0 .3  0 0 0 .35 -.05"/></filter>
+<filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="1" seed="2" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="2.5"/></filter></svg>
+<script>
+let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646};
+const grain=`<svg class="grain"><rect width="100%" height="100%" filter="url(#blot)"/><rect width="100%" height="100%" filter="url(#noise)"/></svg>`;
+const torn=(n=26,j=7)=>{let p=[];for(let i=0;i<=n;i++)p.push(`${i/n*100}% ${rnd()*j}px`);for(let i=0;i<=n;i++)p.push(`calc(100% - ${rnd()*j}px) ${i/n*100}%`);for(let i=n;i>=0;i--)p.push(`${i/n*100}% calc(100% - ${rnd()*j}px)`);for(let i=n;i>=0;i--)p.push(`${rnd()*j}px ${i/n*100}%`);return `clip-path:polygon(${p.join(',')})`};
+const fonts=["Anton","Serif","Type","Narrow","Marker"];
+const ransom=(t,size=34)=>`<div class="ransom">`+t.split(' ').map(w=>`<span style="display:inline-block;white-space:nowrap;margin-right:8px">`+[...w].map(ch=>{const f=fonts[Math.floor(rnd()*5)],r=rnd();
+ const bg=r<.18?'#1d1b18':r<.32?'var(--red)':r<.42?'var(--blue)':r<.6?'#fffaf0':r<.75?'var(--hl)':'#d8cfc0';const c=(r<.42)?'#f6f1e7':'#1d1b18';
+ return `<span style="font-family:${f};font-size:${size*(0.85+rnd()*.35)}px;background:${bg};color:${c};transform:rotate(${(rnd()-.5)*12}deg);box-shadow:1px 1px 0 rgba(0,0,0,.18)">${ch}</span>`}).join('')+`</span>`).join('')+`</div>`;
+const circ=(w,h,c="var(--red)",sw=5)=>{let d="";for(let i=0;i<=40;i++){const a=i/36*Math.PI*2-0.3,rx=w/2*(1+(rnd()-.5)*.06),ry=h/2*(1+(rnd()-.5)*.08);d+=(i?"L":"M")+(w/2+rx*Math.cos(a)).toFixed(1)+","+(h/2+ry*Math.sin(a)).toFixed(1)}return `<svg width="${w+20}" height="${h+20}" viewBox="-10 -10 ${w+20} ${h+20}" style="overflow:visible"><path d="${d}" fill="none" stroke="${c}" stroke-width="${sw}" stroke-linecap="round" filter="url(#rough)"/></svg>`};
+const S=[];
+
+S.push({t:"01 · 0:00–0:07 · HOOK — SURAT UGUT",vo:"“Saya tak ada dalam kertas undi. Kalau ada… kami menang besar.” Itu kata Donald Trump. Sehari selepas partinya kalah teruk.",
+fx:"Frame 0: petikan huruf-keratan sudah ditampal. Huruf 'jatuh' satu-satu ikut VO (stop-motion). Tag mesin taip ditaip. Cop merah 'SEHARI SELEPAS KALAH' hentak.",
+html:`<div style="left:26px;top:70px;width:353px;padding:20px 16px;transform:rotate(-2deg);${torn()}" class="card">${ransom("SAYA TAK ADA DALAM KERTAS UNDI.",34)}</div>
+<div class="tape" style="left:150px;top:58px;transform:rotate(-4deg)"></div>
+<div class="mk" style="left:34px;top:330px;width:340px;font-size:40px;line-height:1.05;color:var(--red);transform:rotate(-3deg)">Kalau ada…<br>kami menang<br>BESAR!</div>
+<div class="ty" style="left:34px;top:520px;font-size:15px;background:#fffaf0;padding:6px 10px;transform:rotate(1deg)">— DONALD TRUMP · TRUTH SOCIAL · 4 NOV 2026</div>
+<div class="stamp" style="left:120px;top:590px;color:var(--red);transform:rotate(-8deg)">SEHARI SELEPAS KALAH</div>`});
+
+S.push({t:"02 · 0:07–0:12 · TAPI TUNGGU",vo:"“Tapi tunggu. Trump tak bertanding pun. Macam mana dia boleh kalah?”",
+fx:"Keratan akhbar besar ditolak masuk dari kanan. Marker merah lukis tanda soal gergasi (stroke on). Perkataan 'TAK BERTANDING' diserlah highlighter.",
+html:`<div class="ty" style="left:34px;top:70px;font-size:16px;letter-spacing:2px">TAPI TUNGGU…</div>
+<div class="serif" style="left:30px;top:110px;width:345px;font-size:54px">Trump <span style="background:linear-gradient(transparent 55%,var(--hl) 55%)">tak bertanding</span> pun.</div>
+<div class="anton" style="left:30px;top:330px;width:330px;font-size:68px"><span class="riso" data-t="MACAM MANA DIA BOLEH KALAH?">MACAM MANA DIA BOLEH KALAH?</span></div>
+<div class="mk" style="left:250px;top:470px;font-size:210px;color:var(--red);transform:rotate(10deg);line-height:1;opacity:.92">?</div>
+<div class="half" style="left:0;right:0;bottom:0;height:120px;opacity:.7"></div>`});
+
+S.push({t:"03 · 0:12–0:19 · MALAYSIA vs AMERIKA",vo:"“Di Malaysia, kita undi wakil rakyat, dan Perdana Menteri datang dari situ. Di Amerika, presiden dan parlimen diundi berasingan.”",
+fx:"Dua helai kertas koyak ditampal kiri-kanan. Anak panah marker dilukis: MY satu laluan (undi → wakil → PM); US dua laluan berasingan. Bendera dilukis tangan ringkas.",
+html:`<div class="card" style="left:16px;top:70px;width:180px;height:430px;transform:rotate(-2deg);padding:16px 12px;${torn()}">
+ <div class="anton" style="font-size:28px">MALAYSIA</div><div class="ty" style="font-size:12px;margin-top:4px">PRU · ≤5 tahun</div>
+ <div class="dymo" style="font-size:15px;margin-top:22px">KITA UNDI</div><div class="mk" style="font-size:30px;margin:6px 0 0 30px">↓</div>
+ <div class="dymo" style="font-size:15px;margin-top:4px">WAKIL RAKYAT</div><div class="mk" style="font-size:30px;margin:6px 0 0 30px">↓</div>
+ <div class="serif" style="font-size:36px;margin-top:6px">Perdana<br>Menteri</div></div>
+<div class="card" style="left:210px;top:96px;width:180px;height:430px;transform:rotate(2deg);padding:16px 12px;${torn()}">
+ <div class="anton" style="font-size:28px">AMERIKA</div><div class="ty" style="font-size:12px;margin-top:4px">dua undi berasingan</div>
+ <div style="margin-top:22px;border:3px solid var(--ink);padding:8px;font:22px Serif">Presiden<div class="ty" style="font-size:12px">setiap 4 tahun</div></div>
+ <div class="mk" style="font-size:22px;color:var(--red);margin:10px 0 10px 18px">≠ asing</div>
+ <div style="border:3px solid var(--ink);padding:8px;font:22px Serif">Kongres<div class="ty" style="font-size:12px">setiap 2 tahun</div></div></div>
+<div class="tape" style="left:60px;top:58px;transform:rotate(5deg)"></div><div class="tape" style="left:260px;top:84px;transform:rotate(-6deg)"></div>
+<div class="mk" style="left:30px;top:560px;width:350px;font-size:30px;line-height:1.1;transform:rotate(-2deg)">Di sana, presiden &amp; parlimen <span style="color:var(--red)">tak terikat.</span></div>`});
+
+S.push({t:"04 · 0:19–0:31 · APA ITU MIDTERM",vo:"“Presiden: empat tahun sekali. Tapi Dewan Rakyat mereka: setiap dua tahun. Jadi di tengah-tengah penggal presiden, rakyat undi lagi. Itulah midterm. Nama presiden tiada… tapi semua orang tahu, ini rapot kad dia.”",
+fx:"Pembaris kayu masuk, marker lukis garis masa. 2024 & 2028 cop 'PRESIDEN'. 2026 dibulatkan merah, label 'MIDTERM'. Kad 'rapot kad' dengan gred dicop.",
+html:`<div class="ty" style="left:30px;top:70px;font-size:16px;letter-spacing:2px">PILIHAN RAYA SEPARUH PENGGAL</div>
+<div class="anton" style="left:28px;top:100px;font-size:96px"><span class="riso" data-t="MIDTERM">MIDTERM</span></div>
+<svg style="left:20px;top:300px" width="370" height="90"><path d="M10 45 L360 45" stroke="#1d1b18" stroke-width="4" filter="url(#rough)"/>${[[30,'2024'],[185,'2026'],[340,'2028']].map(([x,t])=>`<path d="M${x} 33 L${x} 57" stroke="#1d1b18" stroke-width="4"/><text x="${x}" y="85" text-anchor="middle" font-family="Anton" font-size="22" fill="#1d1b18">${t}</text>`).join('')}</svg>
+<div style="left:132px;top:300px">${circ(106,76)}</div>
+<div class="dymo" style="left:18px;top:250px;font-size:13px;transform:rotate(-3deg)">PRESIDEN</div><div class="dymo" style="left:300px;top:250px;font-size:13px;transform:rotate(3deg)">PRESIDEN</div>
+<div class="mk" style="left:150px;top:400px;font-size:26px;color:var(--red);transform:rotate(-4deg)">← sekarang</div>
+<div class="card" style="left:40px;top:470px;width:325px;padding:14px 16px;transform:rotate(-1.5deg)"><div class="ty" style="font-size:14px">NAMA PRESIDEN DALAM KERTAS UNDI:</div>
+<div class="serif" style="font-size:34px;margin-top:6px"><s style="text-decoration-color:var(--red);text-decoration-thickness:4px">ADA</s> &nbsp;TIADA</div>
+<div class="mk" style="font-size:22px;margin-top:8px;color:var(--blue)">…tapi ini rapot kad dia.</div></div>`});
+
+S.push({t:"05 · 0:31–0:38 · KONGRES PEGANG KUNCI",vo:"“Sebab Kongres pegang kunci. Duit kerajaan. Undang-undang. Siasatan. Malah kuasa untuk dakwa presiden.”",
+fx:"Kunci tembaga (lakaran riso) jatuh atas meja. 4 label Dymo dicetak & ditampal satu-satu ikut VO, setiap satu bunyi 'klik-klik' mesin Dymo.",
+html:`<div class="anton" style="left:30px;top:70px;font-size:62px">KONGRES<br><span style="color:var(--blue)">PEGANG KUNCI.</span></div>
+<svg style="left:220px;top:210px;transform:rotate(-25deg)" width="160" height="160" viewBox="0 0 160 160"><circle cx="45" cy="45" r="32" fill="none" stroke="#b8862c" stroke-width="16"/><path d="M68 68 L140 140 M110 110 L125 95 M125 125 L140 110" stroke="#b8862c" stroke-width="16" stroke-linecap="round"/></svg>
+${[["💰","DUIT KERAJAAN",-3],["📜","UNDANG-UNDANG",2],["🔍","SIASATAN",-1],["⚖","DAKWA PRESIDEN",3]].map(([e,t,r],i)=>`<div style="left:${30+(i%2)*14}px;top:${390+i*72}px;transform:rotate(${r}deg)"><span class="dymo" style="${i==3?'background:#7a1b12':''}">${t}</span></div>`).join('')}`});
+
+const hemi=()=>{const rows=6,R0=60,R1=170,seats=[];let tot=0;const rs=[];for(let r=0;r<rows;r++){const rad=R0+(R1-R0)*r/(rows-1);rs.push(rad);tot+=rad}
+ let left=100;const per=rs.map((rad,i)=>{const n=i==rows-1?left:Math.round(100*rad/tot);left-=n;return n});
+ per.forEach((n,i)=>{for(let k=0;k<n;k++){const a=Math.PI*(1-k/(n-1));seats.push({a,x:185+rs[i]*Math.cos(a),y:190-rs[i]*Math.sin(a)})}});
+ seats.sort((p,q)=>q.a-p.a);return seats.map((s,i)=>`<circle cx="${s.x.toFixed(1)}" cy="${s.y.toFixed(1)}" r="10" fill="${i<54?'#2e56b8':i<56?'#b9b1a3':'#e5422b'}" opacity=".9" style="mix-blend-mode:multiply"/>`).join('')};
+S.push({t:"06 · 0:38–0:50 · KEPUTUSAN",vo:"“Dan 3 November lalu… Demokrat rampas kedua-dua dewan. Senat: unjuran sekurang-kurangnya 54 daripada 100. Dewan Rakyat: lebih 250 daripada 435.”",
+fx:"Tajuk akhbar dicetak (huruf 'tergelincir'). 100 titik riso dicetak kiri→kanan, biru dulu. Nombor marker. Cop 'UNJURAN' senget. Kertas Dewan Rakyat diselit dari bawah.",
+html:`<div class="card" style="left:18px;top:60px;width:370px;padding:12px 14px;transform:rotate(-1deg)"><div class="ty" style="font-size:12px;border-bottom:2px solid var(--ink);padding-bottom:4px">4 NOV 2026 · EDISI KHAS</div>
+<div class="anton" style="font-size:44px;margin-top:8px">DEMOKRAT RAMPAS<br>KEDUA-DUA DEWAN</div></div>
+<div class="ty" style="left:30px;top:250px;font-size:14px;letter-spacing:2px">SENAT · 100 KERUSI</div>
+<svg style="left:18px;top:260px" width="370" height="210">${hemi()}</svg>
+<div class="mk" style="left:34px;top:462px;font-size:38px;color:var(--blue)">54+ DEM</div><div class="mk" style="left:300px;top:470px;font-size:26px;color:var(--red)">GOP</div>
+<div class="stamp" style="left:250px;top:232px;color:var(--red);transform:rotate(-10deg);font-size:20px">UNJURAN</div>
+<div class="card" style="left:40px;top:540px;width:325px;padding:12px 16px;transform:rotate(1.5deg)"><div class="ty" style="font-size:13px">DEWAN RAKYAT · 435 KERUSI</div><div class="anton" style="font-size:52px;color:var(--blue)">250+ <span style="font-size:24px;color:var(--ink)">DEMOKRAT (anggaran)</span></div></div>`});
+
+const st={TX:"0,30 35,30 35,0 52,0 52,26 72,30 100,35 100,60 90,74 74,86 60,100 50,90 40,70 25,60 10,55",KS:"0,0 88,0 94,8 100,14 100,100 0,100",OH:"0,6 30,10 50,0 70,8 96,0 100,40 86,74 70,100 40,90 10,96 0,60"};
+S.push({t:"07 · 0:50–0:58 · NEGERI MERAH TUMBANG",vo:"“Negeri yang selama ni merah pun tumbang. Texas. Kansas. Ohio. Seorang strategis Republikan sendiri mengaku: ‘Ia nampak teruk… tahap kiamat.’”",
+fx:"Keratan peta negeri (merah) ditampal, kemudian setem getah BIRU dihentak atas setiap satu ikut sebutan — tinta biru bertindih merah (multiply = ungu di tepi). Kad petikan diselit.",
+html:`<div class="anton" style="left:30px;top:66px;font-size:54px">NEGERI MERAH<br><span style="color:var(--blue)">PUN TUMBANG.</span></div>
+${[["TX","TEXAS",20,200,150],["KS","KANSAS",215,200,120],["OH","OHIO",120,350,120]].map(([k,n,x,y,w],i)=>`<div style="left:${x}px;top:${y}px;width:${w}px"><svg width="${w}" height="${w}" viewBox="-5 -5 110 110" style="transform:rotate(${(i-1)*5}deg)"><polygon points="${st[k]}" fill="none" stroke="#e5422b" stroke-width="4" stroke-dasharray="6 4" transform="translate(-5 -4)"/><polygon points="${st[k]}" fill="#2e56b8" opacity=".92"/></svg><div class="dymo" style="font-size:13px;margin-top:-6px">${n}</div></div>`).join('')}
+<div class="card" style="left:30px;top:520px;width:345px;padding:14px 16px;transform:rotate(-2deg)"><div class="serif" style="font-size:28px">“It looks biblically bad.”</div><div class="mk" style="font-size:20px;color:var(--red);margin-top:6px">= teruk… tahap kiamat</div><div class="ty" style="font-size:12px;margin-top:6px">— strategis kanan Republikan (CBS)</div></div>`});
+
+S.push({t:"08 · 0:58–1:09 · KENAPA? RESIT",vo:"“Kenapa? Harga. Lapan puluh tujuh peratus pengundi bimbang harga minyak. Enam daripada sepuluh salahkan dasar Trump untuk harga barang naik. Dan perang dengan Iran… majoriti kata ia keputusan salah.”",
+fx:"Resit terma 'dicetak' keluar dari atas ke bawah (bunyi printer resit), baris demi baris ikut VO. JUMLAH dicop merah. Highlighter kuning lalu atas 87%.",
+html:`<div class="anton" style="left:30px;top:60px;font-size:60px">KENAPA?<br><span style="color:var(--red)">HARGA.</span></div>
+<div style="left:70px;top:210px;width:270px;background:#fbfaf6;padding:18px 16px 30px;box-shadow:0 6px 14px rgba(0,0,0,.18);transform:rotate(-1.5deg);clip-path:polygon(0 0,100% 0,100% 96%,95% 100%,90% 96%,85% 100%,80% 96%,75% 100%,70% 96%,65% 100%,60% 96%,55% 100%,50% 96%,45% 100%,40% 96%,35% 100%,30% 96%,25% 100%,20% 96%,15% 100%,10% 96%,5% 100%,0 96%)">
+<div class="ty" style="font-size:14px;text-align:center">EXIT POLL · MIDTERM 2026<br>NO. 000303</div><div class="ty" style="font-size:13px;margin:8px 0;border-top:1px dashed #555"></div>
+${[["BIMBANG HARGA MINYAK","87%",1],["SALAHKAN DASAR TRUMP","~60%",0],["PERANG IRAN 'SALAH'","~62%",0]].map(([a,b,h])=>`<div class="ty" style="font-size:14px;display:flex;justify-content:space-between;margin:9px 0;${h?'background:linear-gradient(transparent 40%,#f6dc3c 40%)':''}"><span>${a}</span><b>${b}</b></div>`).join('')}
+<div class="ty" style="font-size:13px;margin:10px 0;border-top:1px dashed #555"></div><div class="ty" style="font-size:16px;display:flex;justify-content:space-between"><span>JUMLAH</span><b>UNDI PROTES</b></div>
+<div class="ty" style="font-size:11px;text-align:center;margin-top:12px">sumber: exit poll CNN · CBS · AP</div></div>
+<div class="stamp" style="left:200px;top:520px;color:var(--red);transform:rotate(-12deg)">PROTES</div>`});
+
+S.push({t:"09 · 1:09–1:17 · REAKSI TRUMP",vo:"“Trump ucap tahniah kepada Demokrat. Kata dia terima keputusan. Dan sejam kemudian… dia pos gambar topi. Tulisannya: VETO.”",
+fx:"Dua sticky note ditepuk masuk. Jam dinding lukisan berpusing '+1 JAM'. Lakaran marker topi dilukis stroke demi stroke; 'VETO' terakhir, digaris merah.",
+html:`<div class="sticky" style="left:24px;top:70px;width:170px;transform:rotate(-4deg)">“Tahniah, Demokrat!” <span style="color:var(--blue)">✓</span></div>
+<div class="sticky" style="left:206px;top:90px;width:170px;transform:rotate(3deg);background:#f4d0e0">“Saya terima keputusan.” <span style="color:var(--blue)">✓</span></div>
+<div class="ty" style="left:120px;top:270px;font-size:22px;background:#1d1b18;color:#f6f1e7;padding:6px 14px;transform:rotate(-2deg)">+1 JAM KEMUDIAN…</div>
+<svg style="left:40px;top:330px" width="330" height="230" viewBox="0 0 330 230"><g fill="none" stroke="#1d1b18" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" filter="url(#rough)"><path d="M50 160 C50 70 120 40 170 42 C225 44 250 90 252 160 Z"/><path d="M250 158 C285 156 318 166 322 178 C300 186 262 182 240 170"/><path d="M150 44 L150 34"/><path d="M50 160 L252 160"/></g>
+<text x="150" y="130" text-anchor="middle" font-family="Marker" font-size="56" fill="#e5422b">VETO</text></svg>
+<div class="mk" style="left:40px;top:580px;width:330px;font-size:24px;line-height:1.15;transform:rotate(-2deg)">…pos gambar topi. <span style="color:var(--red)">Mesej?</span></div>`});
+
+S.push({t:"10 · 1:17–1:24 · 2 TAHUN AKAN DATANG",vo:"“Trump masih presiden sampai 2029. Tapi dua tahun terakhir ni… setiap langkah dia, Kongres boleh sekat.”",
+fx:"Kalendar meja diselak laju (stop-motion) 2027 → 2028. Setiap bulan dicop 'SEKAT' biru, makin laju. Akhir: Jan 2029 dibulatkan.",
+html:`<div class="anton" style="left:30px;top:66px;font-size:50px">MASIH PRESIDEN<br>SAMPAI <span style="color:var(--red)">2029.</span></div>
+${[[30,230,-4,"2027"],[150,250,3,"2028"]].map(([x,y,r,yr])=>`<div class="card" style="left:${x}px;top:${y}px;width:220px;height:240px;transform:rotate(${r}deg);padding:10px"><div class="anton" style="font-size:26px;background:var(--red);color:#fff;padding:4px 8px">${yr}</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px">${Array.from({length:12},(_,i)=>`<div class="ty" style="font-size:12px;border:1px solid #bbb;height:36px;padding:2px">${['J','F','M','A','M','J','J','O','S','O','N','D'][i]}</div>`).join('')}</div></div>`).join('')}
+${[[60,330],[170,380],[110,430],[220,330],[250,450]].map(([x,y],i)=>`<div class="stamp" style="left:${x}px;top:${y}px;color:var(--blue);font-size:20px;transform:rotate(${(i%2?8:-10)}deg)">SEKAT</div>`).join('')}
+<div class="mk" style="left:30px;top:540px;width:350px;font-size:30px;line-height:1.1">Setiap langkah…<br><span style="color:var(--blue)">boleh disekat.</span></div>`});
+
+S.push({t:"11 · 1:24–1:30 · PUNCHLINE",vo:"“Pengajarannya? Di Amerika… presiden boleh kalah. Tanpa bertanding.”",
+fx:"Semua kertas disapu keluar dengan tangan. Tinggal satu tajuk serif besar. Marker garis dua kali bawah 'TANPA BERTANDING'. Petikan huruf-keratan muncul kecil sebagai callback (loop ke frame 1).",
+html:`<div class="ty" style="left:34px;top:120px;font-size:16px;letter-spacing:2px">PENGAJARANNYA?</div>
+<div class="serif" style="left:30px;top:160px;width:350px;font-size:64px">Di Amerika, presiden boleh kalah.</div>
+<div class="anton" style="left:30px;top:420px;font-size:70px;color:var(--red)"><span class="riso" data-t="TANPA BERTANDING.">TANPA BERTANDING.</span></div>
+<svg style="left:24px;top:560px" width="360" height="40"><path d="M5 12 C100 4 220 18 350 8 M10 30 C120 22 240 34 345 24" stroke="#1d1b18" stroke-width="5" fill="none" stroke-linecap="round" filter="url(#rough)"/></svg>
+<div style="left:60px;top:630px;transform:rotate(-3deg) scale(.6);transform-origin:0 0;width:470px">${ransom("KALAU ADA… KAMI MENANG",30)}</div>`});
+
+document.getElementById('g').innerHTML=S.map(s=>`<div><div class="f">${s.html}${grain}</div><div class="no">${s.t}</div><div class="vo">${s.vo}</div><div class="fx">${s.fx}</div></div>`).join('');
+</script></body></html>
