@@ -1,4 +1,4 @@
-# Skrip VO: "20 Minit" (draf 2: versi viral)
+# Skrip VO: "20 Minit" (draf 3: versi pendek)
 
 Gaya visual baru: **FAIL KES** (papan siasatan gabus, polaroid, kad indeks, benang merah, pin, folder manila "SULIT", bar redaksi, cop BUKTI, jam rakaman CCTV).
 Nada: macam dokumentari jenayah true-crime. Perlahan dan tegang di awal, laju masa garis masa, dan tutup dengan pengajaran.
@@ -16,6 +16,10 @@ Anggaran: ~200 patah perkataan, lebih kurang 80–90 saat.
 | 08 | Pengguna? Binance kata: duit pengguna selamat. Kerugian ditanggung dana kecemasan dan duit syarikat sendiri. | Memo rasmi "PENGGUNA TIDAK MENANGGUNG KERUGIAN" dicop |
 | 09 | Kenapa Korea Utara curi crypto? Pemantau sekatan antarabangsa kata, hasilnya bantu biayai program nuklear dan peluru berpandu mereka. | Folder SULIT dengan bar redaksi dibuka satu-satu · siluet peluru berpandu lakaran |
 | 10 | Pengajarannya? Sistem paling canggih di dunia… boleh tumbang sebab satu laptop. Satu klik. Jadi kalau ada tawaran kerja yang terlalu bagus… fikir dua kali. | Kamera zoom ke polaroid laptop · tulisan marker "SATU KLIK." · fail ditutup |
+
+## Versi PENDEK, satu perenggan (draf 3, ~50–55 s, untuk ElevenLabs) ⭐ guna yang ni
+
+Jam empat pagi. Semua orang tengah tidur. Dan dalam dua puluh minit… enam ribu tiga ratus juta dolar, lesap. Rompakan crypto terbesar dalam sejarah. Dan bahagian paling gila? Menurut laporan, ia bermula… dengan satu temuduga kerja. Binance, bursa crypto terbesar dunia. XRP. Solana. Bitcoin. Dan dalam tiga minit… dompet Ethereum, kosong. Mereka tak pecah peti besi. Mereka godam… seorang manusia. Laptop seorang jurutera diceroboh, dilaporkan selepas temuduga kerja palsu. Siapa dalangnya? FBI tuding jari: Korea Utara. Korea Utara? Nafi. Tapi dunia crypto melawan balik. Tether, Circle, semua bekukan dana. Kira-kira tiga bilion, tak sempat lari. Dan duit curi macam ni? Pemantau sekatan antarabangsa kata, ia bantu biayai program nuklear dan peluru berpandu Korea Utara. Jadi kalau dapat tawaran kerja yang terlalu bagus… fikir dua kali. Sebab yang temuduga kau… mungkin bukan orang yang kau sangka.
 
 ## Versi VIRAL, satu perenggan (draf 2, untuk ElevenLabs)
 
