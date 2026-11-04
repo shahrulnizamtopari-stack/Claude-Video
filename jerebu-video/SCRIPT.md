@@ -1,4 +1,4 @@
-# Skrip VO: "IPU 519" (draf 1)
+# Skrip VO: "IPU 519" (draf 2)
 
 Gaya READOUT. Nada: buka dengan sindiran yang tajam, lepas tu jadi serius dan sebak di bahagian haiwan, dan tutup dengan berat.
 Anggaran: ~165 patah perkataan, lebih kurang 60–65 saat.
@@ -12,13 +12,13 @@ Anggaran: ~165 patah perkataan, lebih kurang 60–65 saat.
 | 05 | Kita? Sekolah ditutup. Kita pakai topeng. Kita duduk dalam rumah. **Kita boleh lari.** | Ikon sekolah, topeng, rumah · KITA BOLEH LARI. |
 | 06 | Tapi mereka… tak boleh. Hampir tiga ratus haiwan liar terpaksa diselamatkan, sembilan puluh enam daripadanya orangutan. Ada yang tak sempat: bekantan, ular sawa, king kobra… ditemui mati terbakar. | Siluet orangutan · **290** HAIWAN · **96** ORANGUTAN · senarai mati terbakar |
 | 07 | Di satu kawasan, dianggarkan dua ratus orangutan pernah tinggal. Selepas api datang… tiada siapa tahu berapa yang tinggal. | 200 titik ➜ pudar ➜ **?** |
-| 08 | Di Indonesia, asap ni dianggarkan meragut tiga ribu lima ratus nyawa. Dalam bulan September saja. | **3,560** NYAWA · SEPTEMBER · (anggaran) |
+| 08 | Satu kajian menganggarkan, asap ni dikaitkan dengan tiga ribu lima ratus kematian di Indonesia. Dalam bulan September saja. | **3,560** KEMATIAN · INDONESIA · SEPTEMBER · label ANGGARAN KAJIAN · CREA |
 | 09 | Siapa bayar? Singapura dah hantar notis kepada sepuluh syarikat. Denda sampai seratus ribu dolar sehari. Tapi sejak 2014… belum ada satu pun syarikat didenda. | SIAPA BAYAR? · 10 SYARIKAT · S$100,000/HARI · cop **0 DIDENDA** |
 | 10 | Hari ni langit dah cerah. Tapi gambut boleh terus membara… di bawah tanah. Bila asap datang lagi, kita boleh lari. **Mereka tak boleh.** | IPU turun ke "baik" · bara di bawah tanah · KITA BOLEH LARI. ~~MEREKA~~ TAK BOLEH. |
 
 ## Versi satu perenggan (untuk ElevenLabs)
 
-Kami bukan hantar asap saja. Bila tiada asap… kami hantar oksigen. Itu kata seorang pegawai Indonesia. Masa tu, bacaan IPU di Serian, Sarawak… cecah lima ratus sembilan belas. Darurat diisytiharkan. Puncanya? Hampir dua juta hektar hutan Indonesia terbakar. Tiga puluh lapan peratus lebih teruk daripada 2019. Dan di Kalimantan, tujuh puluh empat peratus titik api… berada dalam kawasan konsesi syarikat. Kita? Sekolah ditutup. Kita pakai topeng. Kita duduk dalam rumah. Kita boleh lari. Tapi mereka… tak boleh. Hampir tiga ratus haiwan liar terpaksa diselamatkan, sembilan puluh enam daripadanya orangutan. Ada yang tak sempat: bekantan, ular sawa, king kobra… ditemui mati terbakar. Di satu kawasan, dianggarkan dua ratus orangutan pernah tinggal. Selepas api datang… tiada siapa tahu berapa yang tinggal. Di Indonesia, asap ni dianggarkan meragut tiga ribu lima ratus nyawa. Dalam bulan September saja. Siapa bayar? Singapura dah hantar notis kepada sepuluh syarikat. Denda sampai seratus ribu dolar sehari. Tapi sejak 2014… belum ada satu pun syarikat didenda. Hari ni langit dah cerah. Tapi gambut boleh terus membara… di bawah tanah. Bila asap datang lagi, kita boleh lari. Mereka tak boleh.
+Kami bukan hantar asap saja. Bila tiada asap… kami hantar oksigen. Itu kata seorang pegawai Indonesia. Masa tu, bacaan IPU di Serian, Sarawak… cecah lima ratus sembilan belas. Darurat diisytiharkan. Puncanya? Hampir dua juta hektar hutan Indonesia terbakar. Tiga puluh lapan peratus lebih teruk daripada 2019. Dan di Kalimantan, tujuh puluh empat peratus titik api… berada dalam kawasan konsesi syarikat. Kita? Sekolah ditutup. Kita pakai topeng. Kita duduk dalam rumah. Kita boleh lari. Tapi mereka… tak boleh. Hampir tiga ratus haiwan liar terpaksa diselamatkan, sembilan puluh enam daripadanya orangutan. Ada yang tak sempat: bekantan, ular sawa, king kobra… ditemui mati terbakar. Di satu kawasan, dianggarkan dua ratus orangutan pernah tinggal. Selepas api datang… tiada siapa tahu berapa yang tinggal. Satu kajian menganggarkan, asap ni dikaitkan dengan tiga ribu lima ratus kematian di Indonesia. Dalam bulan September saja. Siapa bayar? Singapura dah hantar notis kepada sepuluh syarikat. Denda sampai seratus ribu dolar sehari. Tapi sejak 2014… belum ada satu pun syarikat didenda. Hari ni langit dah cerah. Tapi gambut boleh terus membara… di bawah tanah. Bila asap datang lagi, kita boleh lari. Mereka tak boleh.
 
 ## Semakan fakta
 - Petikan "oksigen": Syahganda Nainggolan, video Kompas, ~10 Okt 2026 (Malay Mail, The Star).
