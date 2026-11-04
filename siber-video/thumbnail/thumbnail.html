@@ -1,0 +1,59 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"InterX";font-weight:900;src:url("fonts/900-normal-c0e4725e31dc.woff2")}
+@font-face{font-family:"MonoX";font-weight:700;src:url("fonts/700-normal-6ee500ede480.woff2")}
+@font-face{font-family:"MonoX";font-weight:500;src:url("fonts/500-normal-6ee500ede480.woff2")}
+:root{--bg:#07090c;--ink:#e9eef3;--ice:#5ad1ff;--warm:#ff9a3c;--hot:#ff3b30;--dim:#6b7785}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;background:var(--bg);overflow:hidden}
+#f{position:relative;width:1080px;height:1920px;background:var(--bg);overflow:hidden;color:var(--ink);font-family:"InterX"}
+.lay{position:absolute;inset:0}
+#glow{background:radial-gradient(ellipse 85% 42% at 50% 34%,rgba(255,59,48,.38),transparent 70%)}
+#dots{background-image:radial-gradient(circle,rgba(255,255,255,.08) 1.6px,transparent 2px);background-size:36px 36px}
+#scan{background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 2px,transparent 2px 6px)}
+#vig{background:radial-gradient(ellipse 75% 60% at 50% 45%,transparent 50%,rgba(0,0,0,.7))}
+/* faint freezer grid behind */
+#grid{position:absolute;left:60px;top:330px;width:960px;opacity:.14;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+#grid div{height:108px;border:2px solid var(--hot);border-radius:10px;background:rgba(255,59,48,.12);font:700 52px "MonoX";color:var(--hot);display:flex;align-items:center;justify-content:center}
+#grid div.c{border-color:#22303c;background:#0b1016;color:var(--ice)}
+.hud{position:absolute;left:80px;right:80px;top:270px;font:500 32px "MonoX";letter-spacing:4px;display:flex;justify-content:space-between}
+#num{position:absolute;left:0;right:0;top:360px;text-align:center;font:700 430px "MonoX";letter-spacing:-22px;line-height:1;color:var(--hot);text-shadow:0 0 120px rgba(255,59,48,.85),0 0 30px rgba(255,59,48,.6)}
+#num .g1,#num .g2{position:absolute;left:0;right:0;top:0;text-shadow:none}
+#num .g1{color:#00e5ff;opacity:.5;transform:translate(-7px,3px);clip-path:inset(20% 0 62% 0)}
+#num .g2{color:#ff2a6d;opacity:.55;transform:translate(8px,-3px);clip-path:inset(70% 0 14% 0)}
+#num .m,#title .hk .m{position:relative;z-index:2}
+#title .hk i{z-index:3;mix-blend-mode:screen}
+#bar{position:absolute;left:150px;width:780px;top:820px;height:22px;border-radius:11px;background:linear-gradient(90deg,var(--ice),var(--warm) 55%,var(--hot));box-shadow:0 0 40px rgba(255,59,48,.6)}
+#from{position:absolute;left:150px;top:858px;font:700 34px "MonoX";color:var(--ice)}
+#to{position:absolute;right:150px;top:858px;font:700 34px "MonoX";color:var(--hot)}
+#title{position:absolute;left:80px;right:80px;top:960px;font-weight:900;font-size:150px;letter-spacing:-5px;line-height:.92}
+#title .hk{position:relative;display:inline-block;color:#fff}
+#title .hk i{position:absolute;left:0;top:0;font-style:normal}
+#title .hk .a{color:#00e5ff;transform:translate(-6px,3px);clip-path:inset(12% 0 62% 0);opacity:.7}
+#title .hk .b{color:#ff2a6d;transform:translate(7px,-2px);clip-path:inset(66% 0 10% 0);opacity:.75}
+#sub{position:absolute;left:80px;right:80px;top:1440px;font:700 40px "MonoX";color:var(--ink)}
+#sub b{color:var(--hot);font-weight:700}
+#stamp{position:absolute;right:70px;top:1530px;transform:rotate(-8deg);font:900 58px "InterX";letter-spacing:3px;color:var(--warm);border:7px solid var(--warm);border-radius:12px;padding:10px 24px;background:rgba(7,9,12,.6)}
+.bars i{position:absolute;left:0;right:0;display:block}
+</style></head><body>
+<div id="f">
+  <div class="lay" id="glow"></div>
+  <div class="lay" id="dots"></div>
+  <div id="grid">
+    <div>50°</div><div>50°</div><div class="c">-18°</div><div>50°</div>
+    <div>50°</div><div class="c">-18°</div><div>50°</div><div>50°</div>
+    <div class="c">-18°</div><div>50°</div><div>50°</div><div>50°</div>
+  </div>
+  <div class="hud"><span style="color:var(--dim)">FREEZER-03 · EROPAH</span><span style="color:var(--hot)">▲ ALARM</span></div>
+  <div id="num"><span class="g1">50°</span><span class="g2">50°</span><span class="m">50°</span></div>
+  <div id="bar"></div>
+  <div id="from">-18°</div><div id="to">50°</div>
+  <div id="title">PETI BEKU<br>EROPAH<br><span class="hk"><i class="a">DIGODAM.</i><i class="b">DIGODAM.</i><span class="m">DIGODAM.</span></span></div>
+  <div id="sub">Ratusan pasar raya · <b>serentak</b></div>
+  <div id="stamp">SIAPA DALANG?</div>
+  <div class="lay bars"><i style="top:540px;height:10px;background:rgba(0,229,255,.35)"></i><i style="top:1180px;height:6px;background:rgba(255,42,109,.45)"></i></div>
+  <div class="lay" id="scan"></div>
+  <div class="lay" id="vig"></div>
+</div>
+</body></html>
