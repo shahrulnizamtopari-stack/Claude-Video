@@ -40,6 +40,26 @@ Dikumpul: 4 Nov 2026. ✅ disahkan beberapa sumber / ⚠️ satu sumber atau ang
 - Polis Indonesia: 223 individu dan 9 syarikat dinamakan, 14 Okt. ⚠️ (Wikipedia)
 - Indonesia terima bantuan bomba asing, 15 Okt. ⚠️
 
+
+## Haiwan liar ✅
+- Kementerian Perhutanan Indonesia: **290 haiwan liar** dikendalikan atau diselamatkan secara nasional hingga 8 Okt 2026. Daripada jumlah itu, 272 di 4 wilayah Kalimantan, termasuk **96 orangutan** dan 78 bekantan.
+- Kalimantan Selatan: **14 haiwan ditemui mati terbakar**, iaitu 12 bekantan, 1 ular sawa dan 1 king kobra.
+- Kalimantan Barat: BKSDA dan YIARI menyelamatkan sekurang-kurangnya 46 orangutan (Ogos hingga 9 Okt). ⚠️ AFP pula guna angka 51 (hingga pertengahan Okt).
+- Mongabay: satu kawasan pemuliharaan seluas 2,330 ha dalam konsesi sawit dianggarkan menampung **~200 orangutan** sebelum kebakaran. Berapa yang selamat **tidak diketahui**.
+- WWF: kira-kira 104,000 orangutan tinggal di Kalimantan dan Sumatera, berbanding lebih 230,000 seabad lalu.
+- Sumber: https://www.suarasurabaya.net/kelanakota/2026/290-satwa-liar-terdampak-karhutla-penanganan-terbanyak-di-kalimantan/ ,
+  https://news.mongabay.com/2026/09/rescuers-race-against-time-as-fires-ravage-orangutan-habitat-inside-indonesian-oil-palm-concession/ ,
+  https://phys.org/news/2026-10-indonesia-orangutans-forest.html
+
+## Tindakan undang-undang Singapura ✅
+- NEA hantar Preventive Measure Notices di bawah THPA kepada 7 syarikat (16 Okt, Sumatera) dan 3 lagi (19 Okt, Kalimantan): **jumlah 10 syarikat**. 4 daripadanya berkait dengan Asia Pulp & Paper.
+- Denda boleh cecah **S$100,000 sehari** jerebu. **Sejak undang-undang itu berkuat kuasa pada 2014, belum ada syarikat didenda atau disaman.**
+- Sumber: https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/16/singapore-to-issue-preventive-measure-notices-to-seven-indonesian-firms-linked-to-haze ,
+  https://www.eco-business.com/news/singapore-widens-haze-crackdown-to-kalimantan-targeting-10-indonesian-firms/
+
+## Titik panas dalam konsesi, Kalimantan (WALHI) ⚠️
+- 10,739 dalam HGU sawit, 7,880 dalam konsesi lombong, 6,905 dalam PBPH (balak). Jumlahnya 74% daripada titik panas Kalimantan.
+
 ## Jangan guna / hati-hati
 - ❌ "AQI lebih 500 seluruh Sarawak". Darurat hanya untuk daerah Serian.
 - ⚠️ Dakwaan Indonesia potong eksport gas ke Singapura: satu sumber (Wikipedia), belum disahkan.
