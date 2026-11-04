@@ -67,6 +67,10 @@ the older island looks; for v3 these rules win.
 - **Render cost:** about 2.5 s per frame at `previewScale` 0.75 with `fx {"msaa":4}` (72 s film ≈ 90 min). Run it in the
   background. The user may say to skip the 540×960 preview ("terus final render"); that is their call to make.
 - `npx hyperframes check` can time out on this heavy page; use `snapshot` at chosen seconds to look instead.
+- `transcribe` failing with `whisper-cli crashed (SIGILL)` means the cached whisper build came from a different CPU
+  (the cloud machine changed). Move `/root/.cache/hyperframes/whisper/whisper.cpp/build` aside and run `transcribe` again; it rebuilds.
+- Spoken numbers: write them as words in the voiceover script ("enam belas darjah"), then show figures in captions with the
+  `DISPLAY` map in `build_captions.py` ("" hides a word and gives its time to the word before).
 - Add `<project>/renders/` to `.gitignore` before the first render, or the render temp files get committed.
 
 ## 1. The look (v1/v2 island looks)
