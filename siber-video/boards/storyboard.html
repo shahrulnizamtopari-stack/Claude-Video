@@ -1,0 +1,199 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+:root{
+  --bg:#07090c; --ink:#e9eef3; --dim:#6b7785; --ice:#5ad1ff; --warm:#ff9a3c; --hot:#ff3b30; --line:#1b222b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#111418;font-family:"Inter",sans-serif;color:var(--ink);padding:40px}
+h1{font-family:"Inter Display";font-weight:800;font-size:34px;letter-spacing:-.5px}
+.sub{color:#8b96a3;margin:6px 0 28px;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(3,405px);gap:36px 32px}
+.cell .no{font:700 13px "DejaVu Sans Mono";color:#8b96a3;margin:12px 0 4px}
+.cell .vo{font-size:14px;line-height:1.45;color:#d6dde4}
+.cell .fx{font-size:12px;line-height:1.4;color:#7f8b98;margin-top:5px}
+.f{width:405px;height:720px;background:var(--bg);position:relative;overflow:hidden;border-radius:6px}
+.mono{font-family:"DejaVu Sans Mono",monospace}
+.disp{font-family:"Inter Display";font-weight:800;letter-spacing:-1.5px;line-height:.95}
+.hud{position:absolute;left:22px;right:22px;top:22px;display:flex;justify-content:space-between;font:11px "DejaVu Sans Mono";color:var(--dim);letter-spacing:1px}
+.scan::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);pointer-events:none}
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.tag{display:inline-block;font:700 11px "DejaVu Sans Mono";letter-spacing:2px;padding:5px 9px;border:1px solid currentColor;border-radius:3px}
+.stamp{position:absolute;font:800 30px "Inter Display";letter-spacing:2px;color:var(--hot);border:4px solid var(--hot);padding:8px 14px;border-radius:6px;transform:rotate(-9deg);opacity:.92;mix-blend-mode:screen}
+.glitch{position:relative}
+.glitch::before,.glitch::after{content:attr(data-t);position:absolute;inset:0}
+.glitch::before{color:#00e5ff;transform:translate(-5px,2px);clip-path:inset(10% 0 55% 0);opacity:.8}
+.glitch::after{color:#ff2a6d;transform:translate(6px,-2px);clip-path:inset(58% 0 12% 0);opacity:.8}
+.bar{height:34px;border-radius:4px;display:flex;align-items:center;padding:0 10px;font:700 15px "DejaVu Sans Mono";color:#07090c}
+svg text{font-family:"DejaVu Sans Mono"}
+</style></head><body>
+<h1>STORYBOARD — "Suhu Naik"</h1>
+<div class="sub">Serangan siber peti sejuk Eropah &amp; kit kecemasan · 1080×1920 · ±50 s · motion graphic + kinetic text · warna bergerak dari biru ais ➜ merah ➜ kembali biru</div>
+<div class="grid" id="g"></div>
+
+<script>
+const S = [];
+
+// 1 HOOK
+S.push({t:"01 · 0:00–0:04 · HOOK", vo:"“Ini suhu peti beku biasa. Tolak lapan belas darjah.”",
+fx:"Nombor digital berkelip masuk, dengung peti sejuk. Kamera sangat perlahan zoom-in.",
+html:`<div class="f scan">
+ <div class="hud"><span>FREEZER-03 · AISLE 7</span><span style="color:var(--ice)">● ONLINE</span></div>
+ <div class="center">
+  <div class="tag" style="color:var(--ice)">SUHU SEMASA</div>
+  <div class="mono" style="font-size:118px;font-weight:700;color:var(--ice);margin-top:18px;text-shadow:0 0 40px rgba(90,209,255,.55)">-18°</div>
+  <div style="width:240px;height:8px;background:var(--line);border-radius:4px;margin-top:26px;overflow:hidden"><div style="width:12%;height:100%;background:var(--ice)"></div></div>
+  <div class="disp" style="font-size:40px;margin-top:70px">PETI BEKU<br><span style="color:var(--ice)">BIASA.</span></div>
+ </div></div>`});
+
+// 2 SPIKE
+S.push({t:"02 · 0:04–0:09 · SUHU MELONJAK", vo:"“Tapi Oktober lalu, suhu ni naik sendiri… sampai lima puluh darjah.”",
+fx:"Nombor berpusing laju -18 → 50, setiap darjah ada ‘beep’. Skrin jadi merah, glitch RGB, getar.",
+html:`<div class="f scan" style="background:radial-gradient(circle at 50% 42%,#3a0806 0,#07090c 70%)">
+ <div class="hud"><span>FREEZER-03 · AISLE 7</span><span style="color:var(--hot)">▲ ALARM</span></div>
+ <div class="center">
+  <div class="tag" style="color:var(--hot)">SUHU SEMASA</div>
+  <div class="mono glitch" data-t="50°" style="font-size:150px;font-weight:700;color:var(--hot);margin-top:10px;text-shadow:0 0 50px rgba(255,59,48,.7)">50°</div>
+  <div style="width:240px;height:8px;background:var(--line);border-radius:4px;margin-top:20px;overflow:hidden"><div style="width:100%;height:100%;background:linear-gradient(90deg,var(--ice),var(--warm),var(--hot))"></div></div>
+  <div class="disp glitch" data-t="DIGODAM." style="font-size:64px;margin-top:64px">DIGODAM.</div>
+  <div style="position:absolute;left:0;right:0;top:300px;height:10px;background:rgba(255,59,48,.25)"></div>
+  <div style="position:absolute;left:40px;right:120px;top:470px;height:4px;background:rgba(0,229,255,.35)"></div>
+ </div></div>`});
+
+// 3 MAP FRANCE
+S.push({t:"03 · 0:09–0:15 · PERANCIS", vo:"“Kira-kira tujuh ratus pasar raya di Perancis kena serentak. Bertan-tan makanan rosak.”",
+fx:"Peta Eropah titik-titik muncul. Perancis menyala merah, kaunter 0 → 700 kedai. Ikon makanan jatuh & pudar.",
+map:{hot:["FR"],count:"700",label:"PASAR RAYA · PERANCIS",date:"12 OKT 2026"}});
+
+// 4 MAP WAVE 2
+S.push({t:"04 · 0:15–0:20 · GELOMBANG KEDUA", vo:"“Dua November — ia berulang. Belgium, Luxembourg, Ireland, Sweden, Estonia.”",
+fx:"Garis denyut merebak dari Perancis ke lima negara, menyala satu-satu ikut sebutan VO. Label nama ‘tap’ masuk.",
+map:{hot:["FR","BE","LU","IE","SE","EE"],count:"100+",label:"KEDAI · 5 NEGARA",date:"2 NOV 2026",links:true}});
+
+// 5 HOW
+S.push({t:"05 · 0:20–0:27 · MACAM MANA?", vo:"“Peti sejuk moden disambung ke internet. Sistem lama, kata laluan mudah — penggodam masuk, tukar ke mod ‘defrost’.”",
+fx:"Carta alir dilukis atas-ke-bawah. Kotak kata laluan ‘1234’ ditaip, lepas tu kunci terbuka. Suis tukar ke DEFROST.",
+html:`<div class="f scan">
+ <div class="hud"><span>CARA SERANGAN</span><span>04 LANGKAH</span></div>
+ <div style="position:absolute;left:40px;right:40px;top:80px">
+  <div class="disp" style="font-size:44px">MACAM<br><span style="color:var(--warm)">MANA?</span></div>
+ </div>
+ ${[["01","INTERNET","peti sejuk disambung online"],["02","SISTEM KAWALAN","perisian lama, tak dikemas kini"],["03","KATA LALUAN","••••  1 2 3 4"],["04","MOD DEFROST","suhu dinaikkan"]].map((r,i)=>`
+ <div style="position:absolute;left:40px;right:40px;top:${220+i*112}px;height:78px;border:1.5px solid ${i==3?'var(--hot)':i==2?'var(--warm)':'#2a3440'};border-radius:8px;display:flex;align-items:center;padding:0 16px;gap:16px;background:${i==3?'rgba(255,59,48,.12)':'transparent'}">
+  <div class="mono" style="font-size:13px;color:var(--dim)">${r[0]}</div>
+  <div><div style="font:800 20px 'Inter Display';letter-spacing:.5px;color:${i==3?'var(--hot)':'var(--ink)'}">${r[1]}</div>
+  <div class="mono" style="font-size:12px;color:${i==2?'var(--warm)':'var(--dim)'};margin-top:3px">${r[2]}</div></div>
+ </div>${i<3?`<div style="position:absolute;left:202px;top:${300+i*112}px;width:2px;height:34px;background:#3a4654"></div>`:''}`).join('')}
+</div>`});
+
+// 6 WHO
+S.push({t:"06 · 0:27–0:33 · SIAPA DALANG?", vo:"“Siapa dalangnya? Sampai sekarang, tiada siapa mengaku. Siasatan masih berjalan.”",
+fx:"Tanda soal gergasi bergegar. Cop merah ‘BELUM DISAHKAN’ hentak masuk (bunyi thunk). Teks khabar angin dipalang.",
+html:`<div class="f scan">
+ <div class="hud"><span>FAIL SIASATAN</span><span>STATUS: TERBUKA</span></div>
+ <div class="center">
+  <div class="disp" style="font-size:330px;color:#1d2530;line-height:.8">?</div>
+ </div>
+ <div style="position:absolute;left:40px;right:40px;top:90px">
+  <div class="disp" style="font-size:52px">SIAPA<br>DALANG?</div>
+ </div>
+ <div class="stamp" style="left:62px;top:400px">BELUM DISAHKAN</div>
+ <div style="position:absolute;left:40px;right:40px;bottom:70px;font:14px 'DejaVu Sans Mono';line-height:2;color:var(--dim)">
+  <div>✕ <s>“Pasti negara X”</s></div>
+  <div>✕ <s>“33 negara bersiap perang”</s></div>
+  <div style="color:var(--ink)">✓ Tiada pihak mengaku</div>
+  <div style="color:var(--ink)">✓ Siasatan jenayah dibuka</div>
+ </div></div>`});
+
+// 7 KIT
+const ic = {
+ air:`<rect x="20" y="8" width="12" height="8" rx="2"/><path d="M16 16h20v40a4 4 0 0 1-4 4H20a4 4 0 0 1-4-4z"/><path d="M16 32h20"/>`,
+ tin:`<ellipse cx="26" cy="16" rx="14" ry="5"/><path d="M12 16v34c0 3 6 6 14 6s14-3 14-6V16"/><path d="M12 30h28"/>`,
+ lampu:`<path d="M14 10h24l-5 16H19z"/><rect x="20" y="26" width="12" height="30" rx="3"/>`,
+ radio:`<rect x="8" y="20" width="36" height="30" rx="4"/><circle cx="20" cy="35" r="7"/><path d="M32 30h6M32 38h6M16 20l20-12"/>`,
+ tunai:`<rect x="6" y="18" width="40" height="24" rx="3"/><circle cx="26" cy="30" r="6"/>`,
+ ubat:`<rect x="8" y="22" width="36" height="16" rx="8" transform="rotate(-35 26 30)"/><path d="M20 22l12 16"/>`
+};
+const items=[["air","AIR","3 L/orang/hari"],["tin","MAKANAN","tak perlu masak"],["lampu","LAMPU SULUH",""],["radio","RADIO","bateri / engkol"],["tunai","DUIT TUNAI",""],["ubat","UBAT","+ first aid"]];
+S.push({t:"07 · 0:33–0:40 · KIT KECEMASAN", vo:"“Sebab itu, kerajaan Eropah ingatkan rakyat: simpan bekalan asas di rumah.”",
+fx:"Item jatuh satu-satu ke grid ikut rentak VO, ‘tick’ setiap satu. Warna jadi tenang (oren lembut).",
+html:`<div class="f scan">
+ <div class="hud"><span>KIT KECEMASAN</span><span>06 ITEM</span></div>
+ <div style="position:absolute;left:40px;right:40px;top:80px">
+  <div class="disp" style="font-size:46px">SIMPAN<br><span style="color:var(--warm)">DI RUMAH.</span></div>
+ </div>
+ <div style="position:absolute;left:32px;right:32px;top:250px;display:grid;grid-template-columns:1fr 1fr;gap:14px">
+ ${items.map(([k,n,s],i)=>`<div style="height:128px;border:1.5px solid ${i<5?'#2a3440':'var(--warm)'};border-radius:10px;padding:14px;position:relative;${i==5?'transform:translateY(-18px) rotate(4deg);background:#121820':''}">
+   <svg width="52" height="62" viewBox="0 0 52 62" fill="none" stroke="${i==5?'var(--warm)':'#e9eef3'}" stroke-width="2.5" stroke-linejoin="round">${ic[k]}</svg>
+   <div style="font:800 15px 'Inter Display';letter-spacing:.5px;margin-top:4px">${n}</div>
+   <div class="mono" style="font-size:11px;color:var(--dim);margin-top:2px">${s}</div>
+   ${i<5?'<div style="position:absolute;right:12px;top:12px;color:var(--ice);font:700 16px DejaVu Sans Mono">✓</div>':''}
+ </div>`).join('')}
+ </div></div>`});
+
+// 8 BARS
+S.push({t:"08 · 0:40–0:46 · BERAPA LAMA?", vo:"“EU dan UK: tiga hari. Sweden: seminggu. Jerman: sepuluh hari.”",
+fx:"Bar memanjang ikut sebutan, nombor hari berputar naik. Bendera kecil di kiri (bentuk ringkas).",
+html:`<div class="f scan">
+ <div class="hud"><span>CADANGAN RASMI</span><span>HARI STOK</span></div>
+ <div style="position:absolute;left:40px;right:40px;top:80px">
+  <div class="disp" style="font-size:46px">BERAPA<br><span style="color:var(--warm)">LAMA?</span></div>
+ </div>
+ ${[["EU",3,"var(--ice)"],["UK",3,"var(--ice)"],["SWEDEN",7,"var(--warm)"],["JERMAN",10,"var(--hot)"]].map(([n,d,c],i)=>`
+ <div style="position:absolute;left:40px;right:40px;top:${270+i*92}px">
+  <div class="mono" style="font-size:12px;color:var(--dim);margin-bottom:6px;letter-spacing:1px">${n}</div>
+  <div class="bar" style="width:${36+d*26}px;background:${c}">${d} HARI</div>
+ </div>`).join('')}
+ <div class="mono" style="position:absolute;left:40px;right:40px;bottom:54px;font-size:11px;color:var(--dim);line-height:1.6">Sumber: EU Preparedness Union (2025), UK “Be Ready” (Okt 2026), MCF Sweden, Kerajaan Jerman</div>
+</div>`});
+
+// 9 END
+S.push({t:"09 · 0:46–0:52 · PENUTUP + LOOP", vo:"“Bersedia — bukan panik. Kerajaan sendiri kata: jangan beli borong.”",
+fx:"Suhu turun balik 50 → -18°, warna kembali biru ais. Frame akhir = frame 01 supaya loop.",
+html:`<div class="f scan">
+ <div class="hud"><span>FREEZER-03 · AISLE 7</span><span style="color:var(--ice)">● PULIH</span></div>
+ <div class="center">
+  <div class="mono" style="font-size:64px;font-weight:700;color:var(--ice);opacity:.55">-18°</div>
+  <div class="disp" style="font-size:66px;margin-top:40px">BERSEDIA.</div>
+  <div class="disp" style="font-size:66px;color:var(--ice);margin-top:6px"><s style="text-decoration-thickness:6px;color:var(--dim)">PANIK.</s></div>
+  <div class="tag" style="color:var(--ink);margin-top:56px">JANGAN BELI BORONG</div>
+ </div></div>`});
+
+// ---- map renderer
+const W=405,H=405, L0=-11,L1=31,A0=35,A1=62;
+const px=(lo,la)=>[ (lo-L0)/(L1-L0)*W, (A1-la)/(A1-A0)*H ];
+const P={
+main:[[-9,43.6],[-1.5,43.4],[-1.2,46],[-4.5,47.8],[-4.6,48.6],[-1.5,48.7],[1.5,50.1],[3,51.2],[4.5,52.9],[6,53.5],[8.5,53.9],[8.6,55],[8.1,56.8],[10.5,57.6],[10.8,56],[12.5,55.5],[10.9,54],[14,54],[18,54.8],[21,55.3],[21,56.5],[21.6,57.5],[23.5,59.2],[28,59.5],[31,60],[31,45],[28.5,43.5],[28,41],[26,40.5],[24,40],[22.8,37],[21,38.5],[19.5,41],[19.4,42],[15,44.6],[13.7,45.6],[12.3,45.3],[12.4,44.2],[14,42.5],[16,41.4],[18.5,40.2],[16.5,38.4],[15.7,38],[15.6,40],[12.5,41.7],[10.5,43],[8.8,44.4],[7.5,43.7],[5,43.3],[3.1,43],[3.2,41.9],[0.8,41],[0,39.8],[-0.7,37.6],[-2,36.7],[-5.3,36.1],[-6.3,36.8],[-7.4,37.2],[-8.9,37],[-8.7,40],[-8.9,42.5]],
+gb:[[-5.7,50.1],[1.4,51.1],[1.7,52.7],[0.2,53.5],[-1.5,55],[-2,56],[-1.8,57.6],[-3,58.6],[-5,58.6],[-6.2,56.5],[-5,55],[-3,54.5],[-3.2,53.4],[-4.6,52.8],[-5.2,51.7],[-3.2,51.4]],
+ie:[[-6,52.2],[-6.2,53.9],[-5.6,54.6],[-7.4,55.3],[-8.6,54.6],[-10,54],[-10,52],[-9.4,51.5]],
+sc:[[5,58.5],[5.2,61],[5,62],[18,62],[17.5,61],[18.8,60],[18.5,59.3],[16.8,58],[16.4,56.3],[14.3,55.4],[12.9,55.5],[12.5,56.5],[11.5,58],[10.6,59.4],[8,58],[6.6,58.1]],
+fi:[[21.3,60.8],[22.5,60],[25,60.3],[28,60.6],[31,61],[31,62],[21.5,62]]};
+function inside(p,poly){let c=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const[a,b]=poly[i],[x,y]=poly[j];if(((b>p[1])!=(y>p[1]))&&(p[0]<(x-a)*(p[1]-b)/(y-b)+a))c=!c}return c}
+const C={FR:[2.5,46.6,"PERANCIS"],BE:[4.6,50.7,"BELGIUM"],LU:[6.1,49.7,"LUX."],IE:[-8,53.2,"IRELAND"],SE:[15.5,59.3,"SWEDEN"],EE:[25.5,58.7,"ESTONIA"]};
+function map(m){
+ const polys=Object.values(P);
+ let dots="";
+ for(let lo=L0;lo<=L1;lo+=0.75)for(let la=A0;la<=A1;la+=0.5){
+   if(polys.some(p=>inside([lo,la],p))){const[x,y]=px(lo,la);
+     let hot=false;
+     for(const k of m.hot){const[cl,ca]=C[k];const r=k=="FR"?3.4:k=="SE"?2.2:1.2; if(Math.hypot((lo-cl)*.64,la-ca)<r*.64*1.1)hot=true}
+     dots+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${hot?2.6:1.7}" fill="${hot?'#ff3b30':'#2b3540'}"/>`}}
+ let glow="",labels="",links="";
+ const [fx,fy]=px(C.FR[0],C.FR[1]);
+ m.hot.forEach(k=>{const[x,y]=px(C[k][0],C[k][1]);
+   glow+=`<circle cx="${x}" cy="${y}" r="${k=='FR'?46:22}" fill="url(#gl)"/>`;
+   labels+=`<circle cx="${x}" cy="${y}" r="4" fill="#fff"/><text x="${k=="SE"?x-8:k=="EE"?x+14:x+8}" y="${k=="EE"?y+20:y-8}"  text-anchor="${k=="SE"?"end":k=="EE"?"end":"start"}" fill="#fff" font-size="11" font-weight="700">${C[k][2]}</text>`;
+   if(m.links&&k!="FR")links+=`<path d="M${fx},${fy} Q${(fx+x)/2},${Math.min(fy,y)-40} ${x},${y}" stroke="#ff3b30" stroke-width="1.4" fill="none" stroke-dasharray="4 4" opacity=".8"/>`;});
+ return `<div class="f scan">
+ <div class="hud"><span>${m.date}</span><span style="color:var(--hot)">▲ ${m.links?"+5 NEGARA":"PERANCIS"}</span></div>
+ <svg style="position:absolute;left:0;top:70px" width="${W}" height="${H}">
+  <defs><radialGradient id="gl"><stop offset="0" stop-color="#ff3b30" stop-opacity=".45"/><stop offset="1" stop-color="#ff3b30" stop-opacity="0"/></radialGradient></defs>
+  ${glow}${dots}${links}${labels}</svg>
+ <div style="position:absolute;left:40px;right:40px;bottom:70px">
+  <div class="mono" style="font-size:112px;font-weight:700;color:var(--hot);letter-spacing:-4px;line-height:1;text-shadow:0 0 40px rgba(255,59,48,.45)">${m.count}</div>
+  <div style="font:800 22px 'Inter Display';letter-spacing:1px;margin-top:8px">${m.label}</div>
+ </div></div>`;
+}
+document.getElementById('g').innerHTML=S.map(s=>`<div class="cell">${s.map?map(s.map):s.html}<div class="no">${s.t}</div><div class="vo">${s.vo}</div><div class="fx">${s.fx}</div></div>`).join('');
+</script>
+</body></html>
