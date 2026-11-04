@@ -180,7 +180,7 @@ S["suspek"] = dict(css="""
 #sp-b { left:720px; top:250px; width:300px; transform:rotate(5deg); }
 #sp-c { left:220px; top:580px; width:640px; height:360px; transform:rotate(-1deg); padding:110px 30px 0; text-align:center; }
 #sp-f { left:60px; top:1000px; width:400px; height:140px; transform:rotate(3deg); padding:94px 24px 0; }
-#sp-g { left:600px; top:980px; width:430px; height:190px; transform:rotate(-3deg); padding:90px 24px 0; }
+#sp-g { left:560px; top:980px; width:480px; height:190px; transform:rotate(-3deg); padding:90px 24px 0; }
 #sp-st { left:250px; top:900px; transform:rotate(-8deg); color:#1c1a17; }
 """, html=f"""
 <svg class="strings" width="1080" height="1920">{string("sp-s1", 210, 250, 540, 600)}{string("sp-s2", 870, 270, 540, 600)}{string("sp-s3", 260, 1010, 540, 600)}{string("sp-s4", 820, 1000, 540, 600)}</svg>
@@ -189,7 +189,7 @@ S["suspek"] = dict(css="""
 <div id="sp-c" class="idx" style="opacity:0"><div class="st red" style="font-size:56px">SUSPEK</div><div class="an" style="font-size:104px">KOREA UTARA</div><div class="cr" style="font-size:32px;margin-top:6px">unit TraderTraitor (Lazarus)</div></div>
 <div id="sp-cp" class="pin" style="left:517px;top:577px;opacity:0"></div>
 <div id="sp-f" class="idx" style="opacity:0"><div class="cr" style="font-size:36px">FBI: dikaitkan</div></div><div id="sp-fp" class="pin" style="left:237px;top:987px;opacity:0"></div>
-<div id="sp-g" class="idx" style="opacity:0"><div class="cr" style="font-size:30px;line-height:1.3">Chainalysis · Elliptic<br>· TRM</div></div><div id="sp-gp" class="pin" style="left:797px;top:977px;opacity:0"></div>
+<div id="sp-g" class="idx" style="opacity:0"><div class="cr" style="font-size:28px;line-height:1.3">Chainalysis · Elliptic<br>· TRM</div></div><div id="sp-gp" class="pin" style="left:797px;top:977px;opacity:0"></div>
 <div id="sp-st" data-layout-allow-overlap style="opacity:0"><span class="stamp" style="font-size:58px;background:rgba(251,248,240,.75)">DINAFIKAN · PYONGYANG</span></div>
 """, js="""
 tl.fromTo("#sp-f",{opacity:0,y:100},{opacity:1,y:0,duration:.2,ease:"power3.out"},0.95);
