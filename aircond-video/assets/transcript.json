@@ -1,0 +1,822 @@
+[
+ {
+  "text": "Aircond",
+  "start": 0.13,
+  "end": 0.26
+ },
+ {
+  "text": "tak",
+  "start": 0.26,
+  "end": 0.45
+ },
+ {
+  "text": "buat",
+  "start": 0.49,
+  "end": 0.71
+ },
+ {
+  "text": "sejuk.",
+  "start": 0.79,
+  "end": 1.19
+ },
+ {
+  "text": "Langsung.",
+  "start": 1.25,
+  "end": 1.91
+ },
+ {
+  "text": "Dia",
+  "start": 1.91,
+  "end": 2.07
+ },
+ {
+  "text": "cuma",
+  "start": 2.07,
+  "end": 2.23
+ },
+ {
+  "text": "angkut",
+  "start": 2.29,
+  "end": 2.59
+ },
+ {
+  "text": "panas",
+  "start": 2.59,
+  "end": 2.84
+ },
+ {
+  "text": "dari",
+  "start": 2.85,
+  "end": 3.06
+ },
+ {
+  "text": "bilik",
+  "start": 3.06,
+  "end": 3.32
+ },
+ {
+  "text": "kau,",
+  "start": 3.32,
+  "end": 3.43
+ },
+ {
+  "text": "dan",
+  "start": 3.54,
+  "end": 3.68
+ },
+ {
+  "text": "buang",
+  "start": 3.68,
+  "end": 3.92
+ },
+ {
+  "text": "kat",
+  "start": 3.93,
+  "end": 4.06
+ },
+ {
+  "text": "luar.",
+  "start": 4.09,
+  "end": 4.32
+ },
+ {
+  "text": "Tak",
+  "start": 4.32,
+  "end": 4.51
+ },
+ {
+  "text": "percaya?",
+  "start": 4.51,
+  "end": 5.03
+ },
+ {
+  "text": "Rasa",
+  "start": 5.1,
+  "end": 5.29
+ },
+ {
+  "text": "angin",
+  "start": 5.29,
+  "end": 5.59
+ },
+ {
+  "text": "dari",
+  "start": 5.59,
+  "end": 5.84
+ },
+ {
+  "text": "unit",
+  "start": 5.84,
+  "end": 5.98
+ },
+ {
+  "text": "luar",
+  "start": 6.14,
+  "end": 6.33
+ },
+ {
+  "text": "tu.",
+  "start": 6.33,
+  "end": 6.66
+ },
+ {
+  "text": "Jom",
+  "start": 6.74,
+  "end": 6.91
+ },
+ {
+  "text": "bedah.",
+  "start": 6.91,
+  "end": 7.43
+ },
+ {
+  "text": "Dalam",
+  "start": 7.51,
+  "end": 7.76
+ },
+ {
+  "text": "aircond",
+  "start": 7.76,
+  "end": 8.02
+ },
+ {
+  "text": "ada",
+  "start": 8.02,
+  "end": 8.15
+ },
+ {
+  "text": "gas",
+  "start": 8.2,
+  "end": 8.38
+ },
+ {
+  "text": "penyejuk",
+  "start": 8.54,
+  "end": 8.91
+ },
+ {
+  "text": "yang",
+  "start": 8.91,
+  "end": 9.17
+ },
+ {
+  "text": "berpusing",
+  "start": 9.17,
+  "end": 9.74
+ },
+ {
+  "text": "dalam",
+  "start": 9.74,
+  "end": 10.06
+ },
+ {
+  "text": "satu",
+  "start": 10.06,
+  "end": 10.32
+ },
+ {
+  "text": "gelung",
+  "start": 10.32,
+  "end": 10.7
+ },
+ {
+  "text": "paip.",
+  "start": 10.7,
+  "end": 11.24
+ },
+ {
+  "text": "Dalam",
+  "start": 11.42,
+  "end": 11.5
+ },
+ {
+  "text": "bilik,",
+  "start": 11.58,
+  "end": 11.95
+ },
+ {
+  "text": "gas",
+  "start": 12.03,
+  "end": 12.11
+ },
+ {
+  "text": "ni",
+  "start": 12.14,
+  "end": 12.26
+ },
+ {
+  "text": "sejuk,",
+  "start": 12.26,
+  "end": 12.67
+ },
+ {
+  "text": "lebih",
+  "start": 12.67,
+  "end": 12.9
+ },
+ {
+  "text": "kurang",
+  "start": 13.06,
+  "end": 13.35
+ },
+ {
+  "text": "lima",
+  "start": 13.35,
+  "end": 13.47
+ },
+ {
+  "text": "darjah.",
+  "start": 13.53,
+  "end": 14.15
+ },
+ {
+  "text": "Dia",
+  "start": 14.15,
+  "end": 14.35
+ },
+ {
+  "text": "serap",
+  "start": 14.35,
+  "end": 14.66
+ },
+ {
+  "text": "haba",
+  "start": 14.66,
+  "end": 14.87
+ },
+ {
+  "text": "udara",
+  "start": 14.95,
+  "end": 15.2
+ },
+ {
+  "text": "bilik",
+  "start": 15.41,
+  "end": 15.53
+ },
+ {
+  "text": "sampai",
+  "start": 15.53,
+  "end": 15.82
+ },
+ {
+  "text": "mendidih",
+  "start": 16,
+  "end": 16.39
+ },
+ {
+  "text": "jadi",
+  "start": 16.45,
+  "end": 16.65
+ },
+ {
+  "text": "wap.",
+  "start": 16.65,
+  "end": 17.11
+ },
+ {
+  "text": "Kat",
+  "start": 17.31,
+  "end": 17.33
+ },
+ {
+  "text": "unit",
+  "start": 17.33,
+  "end": 17.57
+ },
+ {
+  "text": "luar,",
+  "start": 17.61,
+  "end": 17.99
+ },
+ {
+  "text": "kompresor",
+  "start": 18.03,
+  "end": 18.66
+ },
+ {
+  "text": "picit",
+  "start": 18.66,
+  "end": 19.01
+ },
+ {
+  "text": "wap",
+  "start": 19.01,
+  "end": 19.22
+ },
+ {
+  "text": "tu",
+  "start": 19.22,
+  "end": 19.35
+ },
+ {
+  "text": "kuat-kuat.",
+  "start": 19.41,
+  "end": 20.04
+ },
+ {
+  "text": "Bila",
+  "start": 20.06,
+  "end": 20.28
+ },
+ {
+  "text": "gas",
+  "start": 20.28,
+  "end": 20.46
+ },
+ {
+  "text": "dipicit,",
+  "start": 20.46,
+  "end": 21.0
+ },
+ {
+  "text": "dia",
+  "start": 21,
+  "end": 21.09
+ },
+ {
+  "text": "jadi",
+  "start": 21.29,
+  "end": 21.43
+ },
+ {
+  "text": "panas,",
+  "start": 21.43,
+  "end": 21.97
+ },
+ {
+  "text": "lebih",
+  "start": 22.19,
+  "end": 22.26
+ },
+ {
+  "text": "panas",
+  "start": 22.34,
+  "end": 22.64
+ },
+ {
+  "text": "dari",
+  "start": 22.64,
+  "end": 22.87
+ },
+ {
+  "text": "udara",
+  "start": 22.9,
+  "end": 23.03
+ },
+ {
+  "text": "luar.",
+  "start": 23.25,
+  "end": 23.66
+ },
+ {
+  "text": "Kipas",
+  "start": 23.79,
+  "end": 24.05
+ },
+ {
+  "text": "buang",
+  "start": 24.05,
+  "end": 24.34
+ },
+ {
+  "text": "panas",
+  "start": 24.43,
+  "end": 24.65
+ },
+ {
+  "text": "tu",
+  "start": 24.75,
+  "end": 24.83
+ },
+ {
+  "text": "keluar.",
+  "start": 24.85,
+  "end": 25.36
+ },
+ {
+  "text": "Lepas",
+  "start": 25.38,
+  "end": 25.62
+ },
+ {
+  "text": "tu",
+  "start": 25.7,
+  "end": 25.78
+ },
+ {
+  "text": "dia",
+  "start": 25.78,
+  "end": 25.95
+ },
+ {
+  "text": "lalu",
+  "start": 25.95,
+  "end": 26.2
+ },
+ {
+  "text": "satu",
+  "start": 26.2,
+  "end": 26.41
+ },
+ {
+  "text": "injap",
+  "start": 26.61,
+  "end": 26.74
+ },
+ {
+  "text": "kecil,",
+  "start": 26.74,
+  "end": 27.16
+ },
+ {
+  "text": "tekanan",
+  "start": 27.18,
+  "end": 27.58
+ },
+ {
+  "text": "jatuh,",
+  "start": 27.58,
+  "end": 27.88
+ },
+ {
+  "text": "dan",
+  "start": 27.88,
+  "end": 28.04
+ },
+ {
+  "text": "dia",
+  "start": 28.11,
+  "end": 28.24
+ },
+ {
+  "text": "sejuk",
+  "start": 28.24,
+  "end": 28.53
+ },
+ {
+  "text": "semula.",
+  "start": 28.54,
+  "end": 29.2
+ },
+ {
+  "text": "Pusingan",
+  "start": 29.22,
+  "end": 29.71
+ },
+ {
+  "text": "ni",
+  "start": 29.71,
+  "end": 29.91
+ },
+ {
+  "text": "ulang",
+  "start": 29.99,
+  "end": 30.24
+ },
+ {
+  "text": "tanpa",
+  "start": 30.45,
+  "end": 30.61
+ },
+ {
+  "text": "henti.",
+  "start": 30.61,
+  "end": 31.13
+ },
+ {
+  "text": "Air",
+  "start": 31.13,
+  "end": 31.35
+ },
+ {
+  "text": "yang",
+  "start": 31.35,
+  "end": 31.56
+ },
+ {
+  "text": "menitis",
+  "start": 31.56,
+  "end": 31.96
+ },
+ {
+  "text": "dari",
+  "start": 31.96,
+  "end": 32.19
+ },
+ {
+  "text": "paip",
+  "start": 32.19,
+  "end": 32.42
+ },
+ {
+  "text": "tu?",
+  "start": 32.42,
+  "end": 32.59
+ },
+ {
+  "text": "Bukan",
+  "start": 32.63,
+  "end": 32.82
+ },
+ {
+  "text": "bocor.",
+  "start": 32.98,
+  "end": 33.48
+ },
+ {
+  "text": "Itu",
+  "start": 33.48,
+  "end": 33.67
+ },
+ {
+  "text": "wap",
+  "start": 33.67,
+  "end": 33.85
+ },
+ {
+  "text": "air",
+  "start": 33.85,
+  "end": 34.04
+ },
+ {
+  "text": "dari",
+  "start": 34.04,
+  "end": 34.29
+ },
+ {
+  "text": "bilik",
+  "start": 34.29,
+  "end": 34.53
+ },
+ {
+  "text": "kau,",
+  "start": 34.73,
+  "end": 34.91
+ },
+ {
+  "text": "melekat",
+  "start": 34.91,
+  "end": 35.34
+ },
+ {
+  "text": "atas",
+  "start": 35.34,
+  "end": 35.58
+ },
+ {
+  "text": "gegelung",
+  "start": 35.58,
+  "end": 36.08
+ },
+ {
+  "text": "sejuk.",
+  "start": 36.08,
+  "end": 36.67
+ },
+ {
+  "text": "Satu",
+  "start": 36.91,
+  "end": 36.98
+ },
+ {
+  "text": "lagi",
+  "start": 37.06,
+  "end": 37.29
+ },
+ {
+  "text": "mitos:",
+  "start": 37.29,
+  "end": 37.77
+ },
+ {
+  "text": "pasang",
+  "start": 37.97,
+  "end": 38.15
+ },
+ {
+  "text": "enam",
+  "start": 38.21,
+  "end": 38.286
+ },
+ {
+  "text": "belas",
+  "start": 38.286,
+  "end": 38.38
+ },
+ {
+  "text": "darjah",
+  "start": 38.56,
+  "end": 38.89
+ },
+ {
+  "text": "tak",
+  "start": 38.89,
+  "end": 39.06
+ },
+ {
+  "text": "buat",
+  "start": 39.06,
+  "end": 39.29
+ },
+ {
+  "text": "bilik",
+  "start": 39.29,
+  "end": 39.56
+ },
+ {
+  "text": "sejuk",
+  "start": 39.57,
+  "end": 39.85
+ },
+ {
+  "text": "lebih",
+  "start": 39.85,
+  "end": 40.13
+ },
+ {
+  "text": "cepat.",
+  "start": 40.14,
+  "end": 40.65
+ },
+ {
+  "text": "Kompresor",
+  "start": 40.87,
+  "end": 41.27
+ },
+ {
+  "text": "cuma",
+  "start": 41.27,
+  "end": 41.53
+ },
+ {
+  "text": "kerja",
+  "start": 41.53,
+  "end": 41.86
+ },
+ {
+  "text": "lebih",
+  "start": 41.93,
+  "end": 42.19
+ },
+ {
+  "text": "lama,",
+  "start": 42.19,
+  "end": 42.48
+ },
+ {
+  "text": "dan",
+  "start": 42.67,
+  "end": 42.7
+ },
+ {
+  "text": "bil",
+  "start": 42.7,
+  "end": 42.92
+ },
+ {
+  "text": "kau",
+  "start": 42.92,
+  "end": 43.14
+ },
+ {
+  "text": "naik.",
+  "start": 43.14,
+  "end": 43.53
+ },
+ {
+  "text": "Pasang",
+  "start": 43.73,
+  "end": 44.07
+ },
+ {
+  "text": "dua",
+  "start": 44.08,
+  "end": 44.182
+ },
+ {
+  "text": "puluh",
+  "start": 44.182,
+  "end": 44.351
+ },
+ {
+  "text": "empat",
+  "start": 44.351,
+  "end": 44.52
+ },
+ {
+  "text": "je.",
+  "start": 44.52,
+  "end": 44.92
+ },
+ {
+  "text": "Jadi",
+  "start": 45.11,
+  "end": 45.18
+ },
+ {
+  "text": "aircond",
+  "start": 45.18,
+  "end": 45.44
+ },
+ {
+  "text": "bukan",
+  "start": 45.44,
+  "end": 45.77
+ },
+ {
+  "text": "mesin",
+  "start": 45.77,
+  "end": 45.96
+ },
+ {
+  "text": "sejuk.",
+  "start": 46.17,
+  "end": 46.58
+ },
+ {
+  "text": "Dia",
+  "start": 46.74,
+  "end": 46.82
+ },
+ {
+  "text": "mesin",
+  "start": 46.82,
+  "end": 47.12
+ },
+ {
+  "text": "pindah",
+  "start": 47.12,
+  "end": 47.48
+ },
+ {
+  "text": "panas.",
+  "start": 47.48,
+  "end": 48
+ },
+ {
+  "text": "Setiap",
+  "start": 48.19,
+  "end": 48.37
+ },
+ {
+  "text": "kali",
+  "start": 48.37,
+  "end": 48.62
+ },
+ {
+  "text": "bilik",
+  "start": 48.62,
+  "end": 48.93
+ },
+ {
+  "text": "kau",
+  "start": 48.93,
+  "end": 49.05
+ },
+ {
+  "text": "sejuk...",
+  "start": 49.24,
+  "end": 49.59
+ },
+ {
+  "text": "ada",
+  "start": 49.6,
+  "end": 49.66
+ },
+ {
+  "text": "orang",
+  "start": 49.84,
+  "end": 50.06
+ },
+ {
+  "text": "kat",
+  "start": 50.06,
+  "end": 50.23
+ },
+ {
+  "text": "luar",
+  "start": 50.23,
+  "end": 50.45
+ },
+ {
+  "text": "tengah",
+  "start": 50.45,
+  "end": 50.79
+ },
+ {
+  "text": "rasa",
+  "start": 50.79,
+  "end": 51.02
+ },
+ {
+  "text": "panas",
+  "start": 51.02,
+  "end": 51.3
+ },
+ {
+  "text": "kau.",
+  "start": 51.3,
+  "end": 51.72
+ }
+]
