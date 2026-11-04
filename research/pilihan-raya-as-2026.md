@@ -16,7 +16,7 @@ Dikumpul: 4 Nov 2026, kira-kira 10 pagi EST. ⚠️ **Keputusan masih dikira.** 
 
 ## Reaksi Trump ✅
 - Truth Social: *"I wasn't on the Ballot and if I was, we would have won IN A LANDSLIDE!"*
-- Kata dia "absolutely willing to accept" keputusan (NYT), dan tucapkan tahniah kepada Demokrat di Fox ("did a good job").
+- Kata dia "absolutely willing to accept" keputusan (NYT), dan ucapkan tahniah kepada Demokrat di Fox ("did a good job").
 - Kata dia mahu berunding dengan Demokrat. Kira-kira sejam kemudian dia pos gambar topi bertulis **"VETO"** (Forbes).
 
 ## Kenapa pengundi beralih (exit poll) ✅/⚠️
