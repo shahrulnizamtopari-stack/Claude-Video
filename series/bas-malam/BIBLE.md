@@ -106,3 +106,15 @@ Ringkasan laluan canon:
 
 Dengung enjin bas rendah (sentiasa ada), tayar atas jalan, kipas aircond. Tik pembebuk tiket. Ketukan jari atas
 selimut. Radio lama berdesir. Brek angin bas ("pssh"). Hampir tiada muzik: satu dron rendah semasa saat paling tegang.
+
+## 10. Cara render (keputusan pengguna, 5 Nov 2026)
+
+- Mesin cloud tiada GPU: render penuh 131 s ambil ~3 jam (≈3 s/frame pada `previewScale` 0.75 dengan AO, bloom, DOF).
+  Laptop pengguna tak cukup kuat, jadi semua render jalan di cloud.
+- **Part 2 dan seterusnya: render ikut babak.** Pecahkan setiap part kepada 3–4 babak (`render --start A --end B`),
+  simpan setiap fail babak dalam `renders/`, hantar setiap babak kepada pengguna sebaik siap, dan bila ada komen
+  render semula babak yang terlibat sahaja. Cantum dengan `ffmpeg` (concat video, kemudian mux audio penuh).
+- Pengguna lebih suka terus ke final 1080×1920 tanpa preview 540×960 (tak nak tunggu lama).
+- Tukar audio sahaja (baris ElevenLabs, bunyi) = tiada render 3D, cuma mux semula audio.
+- Satu background task dihadkan 2 jam, dan render yang di-`setsid`/`nohup` akan cancel sendiri
+  (`render_cancelled_parent_exited`). Jalankan setiap babak sebagai background task berasingan.
