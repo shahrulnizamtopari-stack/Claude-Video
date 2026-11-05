@@ -1,0 +1,66 @@
+<template>
+<style>
+@font-face{font-family:"Anton";src:url("assets/fonts/Anton.woff2") format("woff2")}
+@font-face{font-family:"DMSerif";src:url("assets/fonts/DMSerifDisplay.woff2") format("woff2")}
+@font-face{font-family:"Marker";src:url("assets/fonts/PermanentMarker.woff2") format("woff2")}
+@font-face{font-family:"Typewriter";src:url("assets/fonts/SpecialElite.woff2") format("woff2")}
+@font-face{font-family:"Narrow";font-weight:700;src:url("assets/fonts/ArchivoNarrow.woff2") format("woff2")}
+
+#root { position:absolute; inset:0; color:#1d1b18; }
+#root .jit { position:absolute; inset:0; }
+#root .jit > * { position:absolute; }
+#root .serif { font-family:"DMSerif",serif; line-height:.95; }
+#root .anton { font-family:"Anton",sans-serif; line-height:.92; letter-spacing:1px; }
+#root .mk { font-family:"Marker",cursive; line-height:1.05; }
+#root .ty { font-family:"Typewriter",monospace; }
+#root .red { color:#d23820; } #root .blue { color:#2e56b8; }
+#root .card { background:#f6f1e7; box-shadow:5px 7px 0 rgba(0,0,0,.10),0 18px 40px rgba(0,0,0,.14); }
+#root .tape { width:220px; height:62px; background:rgba(236,222,170,.78); box-shadow:0 2px 4px rgba(0,0,0,.12); }
+#root .dymo { display:inline-block; background:#141414; color:#f4f4f4; font:700 52px "Narrow",sans-serif; letter-spacing:7px; padding:16px 28px 13px; border-radius:7px;
+  text-shadow:0 -2px 0 rgba(0,0,0,.8),0 2px 0 rgba(255,255,255,.22); box-shadow:0 4px 7px rgba(0,0,0,.3); white-space:nowrap; }
+#root .stamp { display:inline-block; font:400 66px "Anton",sans-serif; letter-spacing:6px; border:9px solid currentColor; border-radius:14px; padding:6px 26px; mix-blend-mode:multiply; opacity:.9; white-space:nowrap; }
+#root .sticky { background:#f8e36a; box-shadow:5px 9px 18px rgba(0,0,0,.2); font:58px/1.08 "Marker",cursive; padding:36px 32px; }
+#root .riso { position:relative; display:inline-block; }
+#root .riso .ghost { position:absolute; left:7px; top:5px; color:#2e56b8; opacity:.5; mix-blend-mode:multiply; white-space:nowrap; }
+#root .riso .main { position:relative; }
+
+#root .print { box-shadow:5px 8px 0 rgba(0,0,0,.12),0 20px 40px rgba(0,0,0,.18); background:#f6f1e7; }
+#root .cred { font:500 28px "Typewriter",monospace; color:#3b3833; background:rgba(246,241,231,.9); padding:4px 12px; white-space:nowrap; }
+#root .tl { height:10px; background:#1d1b18; transform-origin:0 50%; }
+
+#kl-c { left:60px; top:220px; width:620px; padding:30px 34px; transform:rotate(-4deg); }
+#kl-st { position:absolute; left:330px; top:120px; color:#d23820; transform:rotate(-12deg); }
+#kl-m1 { left:80px; top:560px; font-size:66px; width:920px; transform:rotate(-2deg); }
+#kl-m2 { left:80px; top:700px; font-size:96px; transform:rotate(-3deg); }
+#kl-pc { left:520px; top:1150px; }
+</style>
+<div id="root" data-composition-id="kalah" data-width="1080" data-height="1920" data-start="0" data-duration="9.0">
+<div class="jit" id="kalah-jit">
+
+<div id="kl-c" class="card"><div class="ty" style="font-size:30px;border-bottom:4px solid #1d1b18;padding-bottom:8px">2018 · GABENOR MICHIGAN</div><div class="anton" style="font-size:110px;margin-top:14px">EL-SAYED<br>~30%</div>
+<div id="kl-st" data-layout-allow-overlap style="opacity:0;top:215px;left:360px"><span class="stamp" style="font-size:66px">KALAH</span></div></div>
+<div id="kl-m1" class="mk" style="opacity:0">Dia boleh saja berhenti di situ…</div>
+<div id="kl-m2" class="mk blue" style="opacity:0">DIA TAK BERHENTI.</div>
+<div id="kl-p" class="print" style="left:440px;top:560px;width:580px;height:590px;transform:rotate(3deg);clip-path:polygon(0.0% 6.3px,3.6% 3.9px,7.1% 3.0px,10.7% 5.8px,14.3% 8.8px,17.9% 6.9px,21.4% 4.4px,25.0% 11.7px,28.6% 13.7px,32.1% 6.3px,35.7% 1.0px,39.3% 0.4px,42.9% 12.2px,46.4% 0.6px,50.0% 9.9px,53.6% 8.0px,57.1% 4.3px,60.7% 11.1px,64.3% 0.3px,67.9% 1.9px,71.4% 6.4px,75.0% 0.3px,78.6% 11.6px,82.1% 3.3px,85.7% 2.0px,89.3% 0.7px,92.9% 8.8px,96.4% 6.3px,100.0% 8.8px,calc(100% - 9.2px) 0.0%,calc(100% - 11.3px) 3.6%,calc(100% - 13.4px) 7.1%,calc(100% - 9.6px) 10.7%,calc(100% - 2.8px) 14.3%,calc(100% - 6.7px) 17.9%,calc(100% - 2.5px) 21.4%,calc(100% - 0.2px) 25.0%,calc(100% - 6.6px) 28.6%,calc(100% - 10.0px) 32.1%,calc(100% - 2.5px) 35.7%,calc(100% - 3.8px) 39.3%,calc(100% - 4.8px) 42.9%,calc(100% - 9.8px) 46.4%,calc(100% - 7.3px) 50.0%,calc(100% - 8.6px) 53.6%,calc(100% - 10.6px) 57.1%,calc(100% - 5.5px) 60.7%,calc(100% - 11.1px) 64.3%,calc(100% - 12.7px) 67.9%,calc(100% - 1.2px) 71.4%,calc(100% - 13.1px) 75.0%,calc(100% - 10.1px) 78.6%,calc(100% - 1.8px) 82.1%,calc(100% - 6.3px) 85.7%,calc(100% - 8.8px) 89.3%,calc(100% - 12.7px) 92.9%,calc(100% - 5.3px) 96.4%,calc(100% - 8.0px) 100.0%,100.0% calc(100% - 12.3px),96.4% calc(100% - 11.2px),92.9% calc(100% - 13.2px),89.3% calc(100% - 6.5px),85.7% calc(100% - 9.1px),82.1% calc(100% - 2.9px),78.6% calc(100% - 10.1px),75.0% calc(100% - 11.5px),71.4% calc(100% - 9.0px),67.9% calc(100% - 10.0px),64.3% calc(100% - 3.0px),60.7% calc(100% - 12.6px),57.1% calc(100% - 13.7px),53.6% calc(100% - 13.7px),50.0% calc(100% - 7.5px),46.4% calc(100% - 11.1px),42.9% calc(100% - 4.5px),39.3% calc(100% - 12.7px),35.7% calc(100% - 12.0px),32.1% calc(100% - 4.9px),28.6% calc(100% - 1.2px),25.0% calc(100% - 6.2px),21.4% calc(100% - 7.7px),17.9% calc(100% - 10.8px),14.3% calc(100% - 6.8px),10.7% calc(100% - 0.4px),7.1% calc(100% - 11.3px),3.6% calc(100% - 0.9px),0.0% calc(100% - 11.2px),2.4px 100.0%,4.7px 96.4%,11.0px 92.9%,2.0px 89.3%,2.1px 85.7%,7.2px 82.1%,10.1px 78.6%,11.8px 75.0%,9.7px 71.4%,13.2px 67.9%,6.9px 64.3%,13.3px 60.7%,1.2px 57.1%,3.1px 53.6%,7.4px 50.0%,4.1px 46.4%,10.2px 42.9%,8.9px 39.3%,7.3px 35.7%,11.8px 32.1%,7.8px 28.6%,4.4px 25.0%,5.3px 21.4%,11.8px 17.9%,12.6px 14.3%,2.9px 10.7%,11.9px 7.1%,13.6px 3.6%,7.3px 0.0%);opacity:0"><img src="assets/print/riso-user-2.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+<div id="kl-pc" style="opacity:0"><div class="cred">Foto: via Threads</div></div>
+
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const SM="steps(5)", SM8="steps(8)";
+
+tl.fromTo("#kl-c",{y:-400,rotation:-14},{y:0,rotation:-4,duration:.3,ease:SM},0.05);
+tl.fromTo("#kl-st",{opacity:0,scale:1.8},{opacity:1,scale:1,duration:.12,ease:"power4.in"},1.9);
+tl.fromTo("#kl-m1",{opacity:0,clipPath:"inset(0 100% 0 0)"},{opacity:1,clipPath:"inset(0 0% 0 0)",duration:1.0,ease:"steps(12)"},3.1);
+tl.fromTo("#kl-m2",{opacity:0,clipPath:"inset(0 100% 0 0)"},{opacity:1,clipPath:"inset(0 0% 0 0)",duration:.5,ease:SM8},5.1);
+tl.to(["#kl-m1","#kl-m2"],{opacity:0,duration:.1},6.2);
+tl.fromTo("#kl-p",{opacity:0,x:600,rotation:12},{opacity:1,x:0,rotation:3,duration:.3,ease:SM},6.25);
+tl.fromTo("#kl-pc",{opacity:0},{opacity:1,duration:.1},6.5);
+
+tl.set("#kalah-jit",{x:-0.7,y:-0.1,rotation:0.03},0.000);tl.set("#kalah-jit",{x:0.4,y:-2.4,rotation:0.03},0.083);tl.set("#kalah-jit",{x:-1.3,y:1.2,rotation:0.18},0.167);tl.set("#kalah-jit",{x:1.3,y:-1.7,rotation:-0.02},0.250);tl.set("#kalah-jit",{x:-1.4,y:-0.8,rotation:-0.09},0.333);tl.set("#kalah-jit",{x:1.8,y:1.1,rotation:0.06},0.417);tl.set("#kalah-jit",{x:-0.3,y:2.1,rotation:0.16},0.500);tl.set("#kalah-jit",{x:0.9,y:0.1,rotation:-0.04},0.583);tl.set("#kalah-jit",{x:0.5,y:-1.7,rotation:0.12},0.667);tl.set("#kalah-jit",{x:0.7,y:1.0,rotation:0.17},0.750);tl.set("#kalah-jit",{x:-0.1,y:0.4,rotation:0.17},0.833);tl.set("#kalah-jit",{x:-0.7,y:0.6,rotation:-0.08},0.917);tl.set("#kalah-jit",{x:-2.1,y:-1.8,rotation:0.08},1.000);tl.set("#kalah-jit",{x:2.1,y:0.1,rotation:-0.14},1.083);tl.set("#kalah-jit",{x:-1.1,y:-0.4,rotation:0.12},1.167);tl.set("#kalah-jit",{x:1.0,y:1.7,rotation:-0.12},1.250);tl.set("#kalah-jit",{x:2.2,y:-1.2,rotation:0.03},1.333);tl.set("#kalah-jit",{x:2.3,y:1.2,rotation:-0.01},1.417);tl.set("#kalah-jit",{x:-2.2,y:1.7,rotation:0.08},1.500);tl.set("#kalah-jit",{x:-0.4,y:1.7,rotation:0.03},1.583);tl.set("#kalah-jit",{x:-1.4,y:-0.7,rotation:-0.14},1.667);tl.set("#kalah-jit",{x:-2.3,y:0.4,rotation:-0.15},1.750);tl.set("#kalah-jit",{x:0.6,y:-2.2,rotation:-0.17},1.833);tl.set("#kalah-jit",{x:-0.5,y:-0.3,rotation:-0.03},1.917);tl.set("#kalah-jit",{x:-0.6,y:1.3,rotation:-0.09},2.000);tl.set("#kalah-jit",{x:0.1,y:-0.9,rotation:0.14},2.083);tl.set("#kalah-jit",{x:1.0,y:-1.8,rotation:0.17},2.167);tl.set("#kalah-jit",{x:-1.2,y:-0.8,rotation:0.11},2.250);tl.set("#kalah-jit",{x:-2.2,y:-0.1,rotation:0.17},2.333);tl.set("#kalah-jit",{x:-1.9,y:1.7,rotation:-0.08},2.417);tl.set("#kalah-jit",{x:-1.3,y:-1.5,rotation:0.18},2.500);tl.set("#kalah-jit",{x:1.4,y:-2.3,rotation:-0.10},2.583);tl.set("#kalah-jit",{x:-1.8,y:1.7,rotation:0.13},2.667);tl.set("#kalah-jit",{x:-1.7,y:-2.3,rotation:0.05},2.750);tl.set("#kalah-jit",{x:-0.2,y:0.6,rotation:0.17},2.833);tl.set("#kalah-jit",{x:-2.2,y:2.2,rotation:-0.04},2.917);tl.set("#kalah-jit",{x:-1.1,y:2.1,rotation:-0.14},3.000);tl.set("#kalah-jit",{x:2.1,y:2.5,rotation:-0.14},3.083);tl.set("#kalah-jit",{x:-0.2,y:1.4,rotation:0.11},3.167);tl.set("#kalah-jit",{x:0.8,y:-2.3,rotation:-0.02},3.250);tl.set("#kalah-jit",{x:1.8,y:1.7,rotation:-0.01},3.333);tl.set("#kalah-jit",{x:-2.2,y:1.5,rotation:0.00},3.417);tl.set("#kalah-jit",{x:-0.4,y:-1.4,rotation:-0.06},3.500);tl.set("#kalah-jit",{x:-2.0,y:-0.5,rotation:0.10},3.583);tl.set("#kalah-jit",{x:2.2,y:1.3,rotation:-0.11},3.667);tl.set("#kalah-jit",{x:1.5,y:0.8,rotation:-0.18},3.750);tl.set("#kalah-jit",{x:-1.8,y:-0.3,rotation:-0.05},3.833);tl.set("#kalah-jit",{x:2.0,y:0.7,rotation:-0.17},3.917);tl.set("#kalah-jit",{x:-2.2,y:1.3,rotation:0.03},4.000);tl.set("#kalah-jit",{x:-0.7,y:0.3,rotation:0.11},4.083);tl.set("#kalah-jit",{x:-0.8,y:-0.2,rotation:0.10},4.167);tl.set("#kalah-jit",{x:-1.6,y:1.2,rotation:0.18},4.250);tl.set("#kalah-jit",{x:-0.5,y:-2.5,rotation:-0.01},4.333);tl.set("#kalah-jit",{x:1.0,y:-0.3,rotation:0.02},4.417);tl.set("#kalah-jit",{x:0.1,y:2.3,rotation:0.16},4.500);tl.set("#kalah-jit",{x:-0.1,y:1.1,rotation:0.17},4.583);tl.set("#kalah-jit",{x:-1.4,y:2.1,rotation:-0.06},4.667);tl.set("#kalah-jit",{x:-1.5,y:1.1,rotation:-0.06},4.750);tl.set("#kalah-jit",{x:1.6,y:-0.1,rotation:0.13},4.833);tl.set("#kalah-jit",{x:-1.8,y:1.7,rotation:-0.13},4.917);tl.set("#kalah-jit",{x:1.5,y:-0.9,rotation:-0.14},5.000);tl.set("#kalah-jit",{x:-2.0,y:2.1,rotation:0.08},5.083);tl.set("#kalah-jit",{x:-1.3,y:0.8,rotation:0.00},5.167);tl.set("#kalah-jit",{x:2.2,y:-2.2,rotation:-0.13},5.250);tl.set("#kalah-jit",{x:1.8,y:1.5,rotation:0.13},5.333);tl.set("#kalah-jit",{x:-2.3,y:0.3,rotation:-0.10},5.417);tl.set("#kalah-jit",{x:-1.6,y:0.4,rotation:0.09},5.500);tl.set("#kalah-jit",{x:-2.1,y:-2.4,rotation:-0.15},5.583);tl.set("#kalah-jit",{x:0.8,y:0.9,rotation:-0.08},5.667);tl.set("#kalah-jit",{x:1.7,y:-0.8,rotation:-0.16},5.750);tl.set("#kalah-jit",{x:-2.3,y:-1.3,rotation:-0.16},5.833);tl.set("#kalah-jit",{x:0.5,y:0.6,rotation:-0.09},5.917);tl.set("#kalah-jit",{x:-2.0,y:-1.5,rotation:0.02},6.000);tl.set("#kalah-jit",{x:0.3,y:2.2,rotation:-0.05},6.083);tl.set("#kalah-jit",{x:-1.9,y:-2.0,rotation:-0.02},6.167);tl.set("#kalah-jit",{x:-1.9,y:0.0,rotation:0.15},6.250);tl.set("#kalah-jit",{x:-2.1,y:-1.8,rotation:-0.18},6.333);tl.set("#kalah-jit",{x:-1.5,y:-1.8,rotation:-0.04},6.417);tl.set("#kalah-jit",{x:-0.7,y:0.2,rotation:-0.12},6.500);tl.set("#kalah-jit",{x:0.6,y:0.2,rotation:-0.04},6.583);tl.set("#kalah-jit",{x:2.2,y:-0.1,rotation:-0.11},6.667);tl.set("#kalah-jit",{x:-0.7,y:0.4,rotation:0.13},6.750);tl.set("#kalah-jit",{x:0.5,y:-0.7,rotation:0.16},6.833);tl.set("#kalah-jit",{x:0.9,y:-0.5,rotation:0.15},6.917);tl.set("#kalah-jit",{x:-1.4,y:1.1,rotation:0.11},7.000);tl.set("#kalah-jit",{x:-1.5,y:0.6,rotation:0.13},7.083);tl.set("#kalah-jit",{x:-2.0,y:1.7,rotation:-0.05},7.167);tl.set("#kalah-jit",{x:1.4,y:1.8,rotation:0.14},7.250);tl.set("#kalah-jit",{x:2.0,y:-1.2,rotation:-0.13},7.333);tl.set("#kalah-jit",{x:-0.2,y:-0.4,rotation:-0.01},7.417);tl.set("#kalah-jit",{x:-1.6,y:-1.2,rotation:0.12},7.500);tl.set("#kalah-jit",{x:1.3,y:0.9,rotation:-0.09},7.583);tl.set("#kalah-jit",{x:-1.8,y:-0.8,rotation:-0.05},7.667);tl.set("#kalah-jit",{x:1.9,y:2.3,rotation:0.17},7.750);tl.set("#kalah-jit",{x:-1.3,y:1.3,rotation:-0.06},7.833);tl.set("#kalah-jit",{x:-2.2,y:1.0,rotation:-0.12},7.917);tl.set("#kalah-jit",{x:0.4,y:-0.0,rotation:0.08},8.000);tl.set("#kalah-jit",{x:-2.1,y:-0.9,rotation:-0.00},8.083);tl.set("#kalah-jit",{x:-0.4,y:0.1,rotation:-0.05},8.167);tl.set("#kalah-jit",{x:0.6,y:2.4,rotation:0.09},8.250);tl.set("#kalah-jit",{x:0.1,y:2.4,rotation:-0.09},8.333);tl.set("#kalah-jit",{x:0.0,y:2.4,rotation:-0.14},8.417);tl.set("#kalah-jit",{x:-0.9,y:0.2,rotation:-0.08},8.500);tl.set("#kalah-jit",{x:-1.1,y:-0.2,rotation:0.05},8.583);tl.set("#kalah-jit",{x:-0.6,y:-1.7,rotation:0.01},8.667);tl.set("#kalah-jit",{x:-1.9,y:2.0,rotation:-0.06},8.750);tl.set("#kalah-jit",{x:-2.0,y:-1.4,rotation:-0.10},8.833);tl.set("#kalah-jit",{x:-1.3,y:1.0,rotation:-0.01},8.917);
+window.__timelines["kalah"] = tl;
+})();
+</script>
+</template>

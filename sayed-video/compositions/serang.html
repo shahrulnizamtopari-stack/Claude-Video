@@ -1,0 +1,59 @@
+<template>
+<style>
+@font-face{font-family:"Anton";src:url("assets/fonts/Anton.woff2") format("woff2")}
+@font-face{font-family:"DMSerif";src:url("assets/fonts/DMSerifDisplay.woff2") format("woff2")}
+@font-face{font-family:"Marker";src:url("assets/fonts/PermanentMarker.woff2") format("woff2")}
+@font-face{font-family:"Typewriter";src:url("assets/fonts/SpecialElite.woff2") format("woff2")}
+@font-face{font-family:"Narrow";font-weight:700;src:url("assets/fonts/ArchivoNarrow.woff2") format("woff2")}
+
+#root { position:absolute; inset:0; color:#1d1b18; }
+#root .jit { position:absolute; inset:0; }
+#root .jit > * { position:absolute; }
+#root .serif { font-family:"DMSerif",serif; line-height:.95; }
+#root .anton { font-family:"Anton",sans-serif; line-height:.92; letter-spacing:1px; }
+#root .mk { font-family:"Marker",cursive; line-height:1.05; }
+#root .ty { font-family:"Typewriter",monospace; }
+#root .red { color:#d23820; } #root .blue { color:#2e56b8; }
+#root .card { background:#f6f1e7; box-shadow:5px 7px 0 rgba(0,0,0,.10),0 18px 40px rgba(0,0,0,.14); }
+#root .tape { width:220px; height:62px; background:rgba(236,222,170,.78); box-shadow:0 2px 4px rgba(0,0,0,.12); }
+#root .dymo { display:inline-block; background:#141414; color:#f4f4f4; font:700 52px "Narrow",sans-serif; letter-spacing:7px; padding:16px 28px 13px; border-radius:7px;
+  text-shadow:0 -2px 0 rgba(0,0,0,.8),0 2px 0 rgba(255,255,255,.22); box-shadow:0 4px 7px rgba(0,0,0,.3); white-space:nowrap; }
+#root .stamp { display:inline-block; font:400 66px "Anton",sans-serif; letter-spacing:6px; border:9px solid currentColor; border-radius:14px; padding:6px 26px; mix-blend-mode:multiply; opacity:.9; white-space:nowrap; }
+#root .sticky { background:#f8e36a; box-shadow:5px 9px 18px rgba(0,0,0,.2); font:58px/1.08 "Marker",cursive; padding:36px 32px; }
+#root .riso { position:relative; display:inline-block; }
+#root .riso .ghost { position:absolute; left:7px; top:5px; color:#2e56b8; opacity:.5; mix-blend-mode:multiply; white-space:nowrap; }
+#root .riso .main { position:relative; }
+
+#root .print { box-shadow:5px 8px 0 rgba(0,0,0,.12),0 20px 40px rgba(0,0,0,.18); background:#f6f1e7; }
+#root .cred { font:500 28px "Typewriter",monospace; color:#3b3833; background:rgba(246,241,231,.9); padding:4px 12px; white-space:nowrap; }
+#root .tl { height:10px; background:#1d1b18; transform-origin:0 50%; }
+
+#sr-a { left:80px; top:220px; font-size:36px; letter-spacing:3px; }
+#sr-r { left:60px; top:290px; width:960px; transform:rotate(-3deg); }
+#sr-c { left:70px; top:720px; width:940px; padding:40px 44px; transform:rotate(2deg); background:#d23820; color:#fff3e8; }
+#sr-n { left:620px; top:1110px; transform:rotate(-4deg); }
+</style>
+<div id="root" data-composition-id="serang" data-width="1080" data-height="1920" data-start="0" data-duration="6.0">
+<div class="jit" id="serang-jit">
+
+<div id="sr-a" class="ty">DIGELAR OLEH TRUMP &amp; SEKUTU:</div>
+<div id="sr-r"><span style="display:inline-block;white-space:nowrap;margin-right:20px"><span id="sr-l-0" style="display:inline-block;margin:4px 2px;padding:5px 11px 0;line-height:1;font-family:'Typewriter';font-size:125px;background:#e5422b;color:#f6f1e7;transform:rotate(0.0deg);box-shadow:2px 2px 0 rgba(0,0,0,.18)">“</span><span id="sr-l-1" style="display:inline-block;margin:4px 2px;padding:5px 11px 0;line-height:1;font-family:'Narrow';font-size:143px;background:#1d1b18;color:#f6f1e7;transform:rotate(0.2deg);box-shadow:2px 2px 0 rgba(0,0,0,.18)">J</span><span id="sr-l-2" style="display:inline-block;margin:4px 2px;padding:5px 11px 0;line-height:1;font-family:'Typewriter';font-size:126px;background:#d8cfc0;color:#1d1b18;transform:rotate(-0.1deg);box-shadow:2px 2px 0 rgba(0,0,0,.18)">I</span><span id="sr-l-3" style="display:inline-block;margin:4px 2px;padding:5px 11px 0;line-height:1;font-family:'Narrow';font-size:125px;background:#1d1b18;color:#f6f1e7;transform:rotate(-1.0deg);box-shadow:2px 2px 0 rgba(0,0,0,.18)">H</span><span id="sr-l-4" style="display:inline-block;margin:4px 2px;padding:5px 11px 0;line-height:1;font-family:'Marker';font-size:113px;background:#d8cfc0;color:#1d1b18;transform:rotate(-0.3deg);box-shadow:2px 2px 0 rgba(0,0,0,.18)">A</span><span id="sr-l-5" style="display:inline-block;margin:4px 2px;padding:5px 11px 0;line-height:1;font-family:'Anton';font-size:136px;background:#fffaf0;color:#1d1b18;transform:rotate(4.8deg);box-shadow:2px 2px 0 rgba(0,0,0,.18)">D</span><span id="sr-l-6" style="display:inline-block;margin:4px 2px;padding:5px 11px 0;line-height:1;font-family:'Typewriter';font-size:110px;background:#e5422b;color:#f6f1e7;transform:rotate(1.4deg);box-shadow:2px 2px 0 rgba(0,0,0,.18)">I</span><span id="sr-l-7" style="display:inline-block;margin:4px 2px;padding:5px 11px 0;line-height:1;font-family:'Marker';font-size:135px;background:#1d1b18;color:#f6f1e7;transform:rotate(-5.7deg);box-shadow:2px 2px 0 rgba(0,0,0,.18)">S</span><span id="sr-l-8" style="display:inline-block;margin:4px 2px;padding:5px 11px 0;line-height:1;font-family:'Anton';font-size:131px;background:#e5422b;color:#f6f1e7;transform:rotate(-2.1deg);box-shadow:2px 2px 0 rgba(0,0,0,.18)">T</span><span id="sr-l-9" style="display:inline-block;margin:4px 2px;padding:5px 11px 0;line-height:1;font-family:'DMSerif';font-size:106px;background:#f6dc3c;color:#1d1b18;transform:rotate(2.8deg);box-shadow:2px 2px 0 rgba(0,0,0,.18)">”</span></span></div>
+<div id="sr-c" class="card" data-layout-allow-overlap style="opacity:0"><div class="serif" style="font-size:72px">“There is a very real risk that Americans will die.”</div><div class="ty" style="font-size:34px;margin-top:20px">— Senator Ted Cruz</div></div>
+<div id="sr-n" style="opacity:0"><span class="dymo" style="background:#2e56b8">DIA NAFI</span></div>
+
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const SM="steps(5)", SM8="steps(8)";
+
+for(let i=0;i<10;i++) tl.fromTo("#sr-l-"+i,{opacity:0,y:-120,rotation:0},{opacity:1,y:0,duration:.1,ease:"steps(2)"},1.4+i*0.09);
+tl.fromTo("#sr-c",{opacity:0,x:-700,rotation:-8},{opacity:1,x:0,rotation:2,duration:.3,ease:SM},2.95);
+tl.fromTo("#sr-n",{opacity:0,scale:1.5},{opacity:1,scale:1,duration:.15},5.65);
+
+tl.set("#serang-jit",{x:1.4,y:-2.2,rotation:-0.06},0.000);tl.set("#serang-jit",{x:-1.0,y:1.5,rotation:0.14},0.083);tl.set("#serang-jit",{x:2.4,y:0.3,rotation:-0.16},0.167);tl.set("#serang-jit",{x:-1.6,y:0.7,rotation:0.18},0.250);tl.set("#serang-jit",{x:0.9,y:1.5,rotation:-0.03},0.333);tl.set("#serang-jit",{x:0.5,y:-2.3,rotation:0.15},0.417);tl.set("#serang-jit",{x:1.1,y:-2.4,rotation:0.09},0.500);tl.set("#serang-jit",{x:-0.5,y:0.7,rotation:-0.11},0.583);tl.set("#serang-jit",{x:1.1,y:2.3,rotation:0.02},0.667);tl.set("#serang-jit",{x:1.1,y:2.1,rotation:0.10},0.750);tl.set("#serang-jit",{x:1.7,y:-1.5,rotation:-0.13},0.833);tl.set("#serang-jit",{x:2.5,y:-2.4,rotation:-0.12},0.917);tl.set("#serang-jit",{x:1.5,y:2.4,rotation:0.17},1.000);tl.set("#serang-jit",{x:1.5,y:-2.3,rotation:0.10},1.083);tl.set("#serang-jit",{x:-2.3,y:-1.9,rotation:0.02},1.167);tl.set("#serang-jit",{x:-0.2,y:-1.6,rotation:0.14},1.250);tl.set("#serang-jit",{x:1.9,y:-0.5,rotation:-0.16},1.333);tl.set("#serang-jit",{x:-2.1,y:-0.8,rotation:0.09},1.417);tl.set("#serang-jit",{x:-0.2,y:-0.2,rotation:0.09},1.500);tl.set("#serang-jit",{x:-1.2,y:1.4,rotation:0.10},1.583);tl.set("#serang-jit",{x:-2.1,y:0.7,rotation:0.15},1.667);tl.set("#serang-jit",{x:1.5,y:1.4,rotation:0.17},1.750);tl.set("#serang-jit",{x:2.0,y:2.2,rotation:-0.13},1.833);tl.set("#serang-jit",{x:-2.5,y:1.7,rotation:0.06},1.917);tl.set("#serang-jit",{x:-0.9,y:0.3,rotation:0.05},2.000);tl.set("#serang-jit",{x:-2.1,y:-2.1,rotation:0.10},2.083);tl.set("#serang-jit",{x:-1.6,y:-1.7,rotation:-0.16},2.167);tl.set("#serang-jit",{x:1.7,y:-0.9,rotation:-0.14},2.250);tl.set("#serang-jit",{x:-1.4,y:-1.3,rotation:-0.03},2.333);tl.set("#serang-jit",{x:-1.3,y:-0.2,rotation:-0.02},2.417);tl.set("#serang-jit",{x:0.5,y:0.5,rotation:-0.09},2.500);tl.set("#serang-jit",{x:1.4,y:-0.7,rotation:0.12},2.583);tl.set("#serang-jit",{x:2.0,y:1.2,rotation:0.13},2.667);tl.set("#serang-jit",{x:-1.0,y:1.8,rotation:-0.09},2.750);tl.set("#serang-jit",{x:1.0,y:1.5,rotation:-0.11},2.833);tl.set("#serang-jit",{x:0.8,y:0.9,rotation:0.12},2.917);tl.set("#serang-jit",{x:-0.1,y:0.9,rotation:0.14},3.000);tl.set("#serang-jit",{x:1.9,y:-0.9,rotation:-0.02},3.083);tl.set("#serang-jit",{x:-1.3,y:-0.1,rotation:-0.06},3.167);tl.set("#serang-jit",{x:-0.4,y:2.0,rotation:-0.01},3.250);tl.set("#serang-jit",{x:-1.2,y:-0.1,rotation:-0.08},3.333);tl.set("#serang-jit",{x:-0.9,y:2.4,rotation:-0.14},3.417);tl.set("#serang-jit",{x:0.8,y:-0.9,rotation:0.15},3.500);tl.set("#serang-jit",{x:-0.2,y:1.7,rotation:-0.16},3.583);tl.set("#serang-jit",{x:-2.0,y:2.3,rotation:-0.03},3.667);tl.set("#serang-jit",{x:0.9,y:-0.3,rotation:0.13},3.750);tl.set("#serang-jit",{x:1.1,y:-0.3,rotation:0.16},3.833);tl.set("#serang-jit",{x:1.1,y:2.0,rotation:-0.17},3.917);tl.set("#serang-jit",{x:1.3,y:-0.4,rotation:0.16},4.000);tl.set("#serang-jit",{x:-1.3,y:-1.7,rotation:0.05},4.083);tl.set("#serang-jit",{x:0.3,y:0.0,rotation:-0.14},4.167);tl.set("#serang-jit",{x:-2.0,y:-1.9,rotation:0.06},4.250);tl.set("#serang-jit",{x:-2.1,y:0.7,rotation:-0.11},4.333);tl.set("#serang-jit",{x:1.4,y:-1.0,rotation:0.02},4.417);tl.set("#serang-jit",{x:-1.1,y:1.3,rotation:0.09},4.500);tl.set("#serang-jit",{x:0.1,y:-2.5,rotation:0.15},4.583);tl.set("#serang-jit",{x:2.5,y:1.8,rotation:-0.05},4.667);tl.set("#serang-jit",{x:-1.5,y:1.1,rotation:-0.11},4.750);tl.set("#serang-jit",{x:1.3,y:0.2,rotation:0.03},4.833);tl.set("#serang-jit",{x:-0.3,y:0.9,rotation:-0.15},4.917);tl.set("#serang-jit",{x:-0.9,y:1.8,rotation:0.02},5.000);tl.set("#serang-jit",{x:0.6,y:2.1,rotation:-0.16},5.083);tl.set("#serang-jit",{x:1.6,y:1.4,rotation:-0.08},5.167);tl.set("#serang-jit",{x:-1.2,y:-2.1,rotation:0.13},5.250);tl.set("#serang-jit",{x:-2.3,y:2.3,rotation:-0.14},5.333);tl.set("#serang-jit",{x:1.9,y:0.7,rotation:-0.12},5.417);tl.set("#serang-jit",{x:-1.7,y:2.0,rotation:0.12},5.500);tl.set("#serang-jit",{x:-1.2,y:0.7,rotation:0.09},5.583);tl.set("#serang-jit",{x:1.2,y:-2.0,rotation:-0.14},5.667);tl.set("#serang-jit",{x:0.5,y:-1.6,rotation:-0.12},5.750);tl.set("#serang-jit",{x:-0.2,y:-1.2,rotation:0.00},5.833);tl.set("#serang-jit",{x:1.6,y:-2.3,rotation:-0.02},5.917);
+window.__timelines["serang"] = tl;
+})();
+</script>
+</template>
