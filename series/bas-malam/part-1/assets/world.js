@@ -83,6 +83,7 @@ export function createWorld(canvas, Wd, Hd, scale = 1, opts = {}) {
     const wrist = new THREE.Mesh(new THREE.CapsuleGeometry(0.02, 0.12, 4, 8), new THREE.MeshStandardMaterial({ color: 0x9cc3e6, roughness: 0.9 }));
     wrist.position.set(0.09, 0.01, 0); wrist.rotation.z = Math.PI / 2; grabHand.add(wrist); }
   const faceLight = new THREE.PointLight(0xffb070, 0, 2.2, 1.5); faceLight.position.set(-1.05, 1.35, 3.55); scene.add(faceLight);
+  const fillLight = new THREE.PointLight(0xffa860, 0, 3.0, 1.5); scene.add(fillLight);   // passing street lamp for the two darkest shots
   const stickerLight = new THREE.PointLight(0xffc890, 0, 1.6, 1.5); stickerLight.position.set(-0.75, 1.15, 3.95); scene.add(stickerLight);
   const rim = new THREE.PointLight(0x7f9bff, 0, 2.6, 1.6); scene.add(rim);   // cool rim so the black figure reads against black
   const pass = [];
@@ -184,7 +185,7 @@ export function createWorld(canvas, Wd, Hd, scale = 1, opts = {}) {
     vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
     fragmentShader: `uniform sampler2D tDiffuse, tDepth; uniform vec2 res; uniform float focus, aperture, cNear, cFar, vig; varying vec2 vUv;
       float viewZ(vec2 uv){ float d = texture2D(tDepth, uv).x; float z = d * 2.0 - 1.0; return 2.0 * cNear * cFar / (cFar + cNear - z * (cFar - cNear)); }
-      float coc(vec2 uv){ float z = viewZ(uv); return clamp(abs(z - focus) / max(z, 0.05) * aperture * 9.0, 0.0, 9.0) * (res.y / 960.0); }
+      float coc(vec2 uv){ float z = viewZ(uv); return clamp(abs(z - focus) / max(z, 0.05) * aperture * 5.0, 0.0, 6.0) * (res.y / 960.0); }
       void main(){
         float c0 = coc(vUv);
         vec3 acc = texture2D(tDiffuse, vUv).rgb; float wsum = 1.0;
@@ -287,6 +288,7 @@ export function createWorld(canvas, Wd, Hd, scale = 1, opts = {}) {
     grabHand.position.copy(lerpV(V(-0.45, 0.86, 3.68), V(-0.62, 0.88, 3.6), grab));
     grabHand.rotation.set(0, 0, -0.2 * grab);
     stickerLight.intensity = t >= S(7) - 0.1 && t < S(10) ? 0.75 : 0;
+    { const sh = shotAt(t); const on2 = sh === 2 || sh === 5; fillLight.intensity = on2 ? 3.2 : 0; if (on2) fillLight.position.set(sh === 2 ? 0.0 : -0.4, 1.7, sh === 2 ? lerp(-2.4, 0.9, clamp((t - S(3)) / (S(4) - S(3)))) + 0.4 : 2.0); }
     { const sh = shotAt(t); const faceShots = [0, 3, 4, 10, 18, 31, 32]; faceLight.intensity = faceShots.includes(sh) && t < T.lightsOn ? 1.6 + 0.6 * Math.sin(t * 1.3) : 0; }
     // KONDUKTOR
     const k = kondState(t);
