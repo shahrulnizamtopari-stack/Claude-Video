@@ -1,0 +1,10 @@
+{
+  "name": "bas-malam-part-1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.9.6 preview",
+    "check": "npx --yes hyperframes@0.9.6 check",
+    "render": "npx --yes hyperframes@0.9.6 render"
+  }
+}

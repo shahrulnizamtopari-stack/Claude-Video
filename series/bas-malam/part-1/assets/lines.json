@@ -1,0 +1,1720 @@
+{
+ "duration": 131.495,
+ "lines": [
+  {
+   "id": 1,
+   "voice": "NARATOR",
+   "start": 0.6,
+   "end": 4.528,
+   "text": "Bayangkan kau tertidur dalam bas ekspres malam. KL ke Kota Bharu.",
+   "words": [
+    [
+     1.028,
+     1.602,
+     "Bayangkan"
+    ],
+    [
+     1.602,
+     1.793,
+     "kau"
+    ],
+    [
+     1.793,
+     2.303,
+     "tertidur"
+    ],
+    [
+     2.303,
+     2.622,
+     "dalam"
+    ],
+    [
+     2.622,
+     2.813,
+     "bas"
+    ],
+    [
+     2.813,
+     3.26,
+     "ekspres"
+    ],
+    [
+     3.26,
+     3.579,
+     "malam."
+    ],
+    [
+     3.579,
+     3.706,
+     "KL"
+    ],
+    [
+     3.706,
+     3.834,
+     "ke"
+    ],
+    [
+     3.834,
+     4.089,
+     "Kota"
+    ],
+    [
+     4.089,
+     4.408,
+     "Bharu."
+    ]
+   ]
+  },
+  {
+   "id": 2,
+   "voice": "NARATOR",
+   "start": 4.878,
+   "end": 7.038,
+   "text": "Bila kau terjaga, lampu bas dah padam.",
+   "words": [
+    [
+     4.928,
+     5.048,
+     "Bila"
+    ],
+    [
+     5.048,
+     5.228,
+     "kau"
+    ],
+    [
+     5.228,
+     5.628,
+     "terjaga,"
+    ],
+    [
+     6.008,
+     6.248,
+     "lampu"
+    ],
+    [
+     6.248,
+     6.428,
+     "bas"
+    ],
+    [
+     6.428,
+     6.548,
+     "dah"
+    ],
+    [
+     6.548,
+     6.928,
+     "padam."
+    ]
+   ]
+  },
+  {
+   "id": 3,
+   "voice": "NARATOR",
+   "start": 7.588,
+   "end": 12.129,
+   "text": "Semua penumpang sedang tidur. Dan setiap seorang, berselubung selimut sampai ke kepala.",
+   "words": [
+    [
+     7.669,
+     7.849,
+     "Semua"
+    ],
+    [
+     7.849,
+     8.269,
+     "penumpang"
+    ],
+    [
+     8.269,
+     8.549,
+     "sedang"
+    ],
+    [
+     8.549,
+     8.969,
+     "tidur."
+    ],
+    [
+     8.969,
+     9.269,
+     "Dan"
+    ],
+    [
+     9.269,
+     9.649,
+     "setiap"
+    ],
+    [
+     9.649,
+     10.049,
+     "seorang,"
+    ],
+    [
+     10.049,
+     10.729,
+     "berselubung"
+    ],
+    [
+     10.729,
+     11.129,
+     "selimut"
+    ],
+    [
+     11.129,
+     11.389,
+     "sampai"
+    ],
+    [
+     11.389,
+     11.629,
+     "ke"
+    ],
+    [
+     11.629,
+     11.969,
+     "kepala."
+    ]
+   ]
+  },
+  {
+   "id": 4,
+   "voice": "NARATOR",
+   "start": 12.429,
+   "end": 14.331,
+   "text": "Budak perempuan di sebelah kau pun sama.",
+   "words": [
+    [
+     12.471,
+     12.691,
+     "Budak"
+    ],
+    [
+     12.691,
+     13.071,
+     "perempuan"
+    ],
+    [
+     13.071,
+     13.211,
+     "di"
+    ],
+    [
+     13.211,
+     13.471,
+     "sebelah"
+    ],
+    [
+     13.471,
+     13.671,
+     "kau"
+    ],
+    [
+     13.671,
+     13.871,
+     "pun"
+    ],
+    [
+     13.871,
+     14.151,
+     "sama."
+    ]
+   ]
+  },
+  {
+   "id": 5,
+   "voice": "NARATOR",
+   "start": 14.631,
+   "end": 18.355,
+   "text": "Selimut kau cuma sampai bahu. Kau tak ingat bila kau tertidur.",
+   "words": [
+    [
+     14.683,
+     15.083,
+     "Selimut"
+    ],
+    [
+     15.083,
+     15.223,
+     "kau"
+    ],
+    [
+     15.223,
+     15.443,
+     "cuma"
+    ],
+    [
+     15.443,
+     15.803,
+     "sampai"
+    ],
+    [
+     15.803,
+     16.203,
+     "bahu."
+    ],
+    [
+     16.503,
+     16.723,
+     "Kau"
+    ],
+    [
+     16.723,
+     16.843,
+     "tak"
+    ],
+    [
+     16.843,
+     17.203,
+     "ingat"
+    ],
+    [
+     17.203,
+     17.443,
+     "bila"
+    ],
+    [
+     17.443,
+     17.723,
+     "kau"
+    ],
+    [
+     17.723,
+     18.283,
+     "tertidur."
+    ]
+   ]
+  },
+  {
+   "id": 6,
+   "voice": "NARATOR",
+   "start": 18.705,
+   "end": 23.606,
+   "text": "Semua langsir tertutup. Jam merah atas kepala pemandu: 2:47 pagi.",
+   "words": [
+    [
+     18.776,
+     19.234,
+     "Semua"
+    ],
+    [
+     19.234,
+     19.875,
+     "langsir"
+    ],
+    [
+     19.875,
+     20.607,
+     "tertutup."
+    ],
+    [
+     20.607,
+     20.882,
+     "Jam"
+    ],
+    [
+     20.882,
+     21.339,
+     "merah"
+    ],
+    [
+     21.339,
+     21.706,
+     "atas"
+    ],
+    [
+     21.706,
+     22.255,
+     "kepala"
+    ],
+    [
+     22.255,
+     22.896,
+     "pemandu:"
+    ],
+    [
+     22.896,
+     23.17,
+     "2:47"
+    ],
+    [
+     23.17,
+     23.536,
+     "pagi."
+    ]
+   ]
+  },
+  {
+   "id": 7,
+   "voice": "NARATOR",
+   "start": 24.006,
+   "end": 27.75,
+   "text": "Di belakang kerusi depan, ada pelekat lama. Peraturan Penumpang.",
+   "words": [
+    [
+     24.06,
+     24.14,
+     "Di"
+    ],
+    [
+     24.14,
+     24.48,
+     "belakang"
+    ],
+    [
+     24.48,
+     24.78,
+     "kerusi"
+    ],
+    [
+     24.78,
+     25.22,
+     "depan,"
+    ],
+    [
+     25.22,
+     25.5,
+     "ada"
+    ],
+    [
+     25.5,
+     25.9,
+     "pelekat"
+    ],
+    [
+     25.9,
+     26.22,
+     "lama."
+    ],
+    [
+     26.54,
+     26.96,
+     "Peraturan"
+    ],
+    [
+     26.96,
+     27.62,
+     "Penumpang."
+    ]
+   ]
+  },
+  {
+   "id": 8,
+   "voice": "NARATOR",
+   "start": 28.05,
+   "end": 31.017,
+   "text": "Lapan kotak. Tujuh kosong. Dan satu peraturan.",
+   "words": [
+    [
+     28.117,
+     28.317,
+     "Lapan"
+    ],
+    [
+     28.317,
+     28.817,
+     "kotak."
+    ],
+    [
+     29.017,
+     29.197,
+     "Tujuh"
+    ],
+    [
+     29.197,
+     29.837,
+     "kosong."
+    ],
+    [
+     29.837,
+     30.057,
+     "Dan"
+    ],
+    [
+     30.057,
+     30.357,
+     "satu"
+    ],
+    [
+     30.357,
+     31.017,
+     "peraturan."
+    ]
+   ]
+  },
+  {
+   "id": 9,
+   "voice": "NARATOR",
+   "start": 31.467,
+   "end": 34.237,
+   "text": "Bila lampu padam, jangan bercakap dengan konduktor.",
+   "words": [
+    [
+     31.467,
+     31.807,
+     "Bila"
+    ],
+    [
+     31.807,
+     32.087,
+     "lampu"
+    ],
+    [
+     32.087,
+     32.547,
+     "padam,"
+    ],
+    [
+     32.667,
+     32.827,
+     "jangan"
+    ],
+    [
+     32.827,
+     33.367,
+     "bercakap"
+    ],
+    [
+     33.367,
+     33.607,
+     "dengan"
+    ],
+    [
+     33.607,
+     34.187,
+     "konduktor."
+    ]
+   ]
+  },
+  {
+   "id": 10,
+   "voice": "NARATOR",
+   "start": 35.037,
+   "end": 36.191,
+   "text": "Mesti gurauan, kan?",
+   "words": [
+    [
+     35.071,
+     35.311,
+     "Mesti"
+    ],
+    [
+     35.311,
+     35.711,
+     "gurauan,"
+    ],
+    [
+     35.711,
+     36.051,
+     "kan?"
+    ]
+   ]
+  },
+  {
+   "id": 11,
+   "voice": "NARATOR",
+   "start": 36.891,
+   "end": 39.571,
+   "text": "Lepas tu, di depan sekali, seseorang berdiri.",
+   "words": [
+    [
+     37.031,
+     37.311,
+     "Lepas"
+    ],
+    [
+     37.311,
+     37.511,
+     "tu,"
+    ],
+    [
+     37.611,
+     37.691,
+     "di"
+    ],
+    [
+     37.691,
+     37.991,
+     "depan"
+    ],
+    [
+     37.991,
+     38.371,
+     "sekali,"
+    ],
+    [
+     38.371,
+     38.971,
+     "seseorang"
+    ],
+    [
+     38.971,
+     39.431,
+     "berdiri."
+    ]
+   ]
+  },
+  {
+   "id": 12,
+   "voice": "NARATOR",
+   "start": 39.971,
+   "end": 42.527,
+   "text": "Konduktor. Tangan dia pegang pembebuk tiket.",
+   "words": [
+    [
+     40.007,
+     40.527,
+     "Konduktor."
+    ],
+    [
+     40.647,
+     40.987,
+     "Tangan"
+    ],
+    [
+     40.987,
+     41.167,
+     "dia"
+    ],
+    [
+     41.167,
+     41.567,
+     "pegang"
+    ],
+    [
+     41.567,
+     42.067,
+     "pembebuk"
+    ],
+    [
+     42.067,
+     42.527,
+     "tiket."
+    ]
+   ]
+  },
+  {
+   "id": 13,
+   "voice": "NARATOR",
+   "start": 42.827,
+   "end": 48.799,
+   "text": "Dia jalan perlahan. Baris demi baris. Setiap kerusi, dia ketuk kepala yang berselimut. Dan dia mengira.",
+   "words": [
+    [
+     43.029,
+     43.233,
+     "Dia"
+    ],
+    [
+     43.233,
+     43.572,
+     "jalan"
+    ],
+    [
+     43.572,
+     44.116,
+     "perlahan."
+    ],
+    [
+     44.116,
+     44.456,
+     "Baris"
+    ],
+    [
+     44.456,
+     44.727,
+     "demi"
+    ],
+    [
+     44.727,
+     45.067,
+     "baris."
+    ],
+    [
+     45.067,
+     45.475,
+     "Setiap"
+    ],
+    [
+     45.475,
+     45.883,
+     "kerusi,"
+    ],
+    [
+     45.883,
+     46.086,
+     "dia"
+    ],
+    [
+     46.086,
+     46.426,
+     "ketuk"
+    ],
+    [
+     46.426,
+     46.834,
+     "kepala"
+    ],
+    [
+     46.834,
+     47.106,
+     "yang"
+    ],
+    [
+     47.106,
+     47.785,
+     "berselimut."
+    ],
+    [
+     47.785,
+     47.989,
+     "Dan"
+    ],
+    [
+     47.989,
+     48.193,
+     "dia"
+    ],
+    [
+     48.193,
+     48.669,
+     "mengira."
+    ]
+   ]
+  },
+  {
+   "id": 14,
+   "voice": "KONDUKTOR",
+   "start": 49.149,
+   "end": 51.056,
+   "text": "Satu. Dua. Tiga.",
+   "words": [
+    [
+     49.936,
+     50.278,
+     "Satu."
+    ],
+    [
+     50.278,
+     50.534,
+     "Dua."
+    ],
+    [
+     50.534,
+     50.876,
+     "Tiga."
+    ]
+   ]
+  },
+  {
+   "id": 15,
+   "voice": "NARATOR",
+   "start": 51.556,
+   "end": 53.989,
+   "text": "Tiada siapa bergerak. Dia tinggal lapan baris.",
+   "words": [
+    [
+     51.569,
+     51.789,
+     "Tiada"
+    ],
+    [
+     51.789,
+     52.089,
+     "siapa"
+    ],
+    [
+     52.089,
+     52.609,
+     "bergerak."
+    ],
+    [
+     52.789,
+     52.889,
+     "Dia"
+    ],
+    [
+     52.889,
+     53.189,
+     "tinggal"
+    ],
+    [
+     53.189,
+     53.449,
+     "lapan"
+    ],
+    [
+     53.449,
+     53.929,
+     "baris."
+    ]
+   ]
+  },
+  {
+   "id": 16,
+   "voice": "NARATOR",
+   "start": 54.339,
+   "end": 56.192,
+   "text": "Kau tarik selimut. Tutup kepala.",
+   "words": [
+    [
+     54.332,
+     54.512,
+     "Kau"
+    ],
+    [
+     54.512,
+     54.792,
+     "tarik"
+    ],
+    [
+     54.792,
+     55.212,
+     "selimut."
+    ],
+    [
+     55.352,
+     55.652,
+     "Tutup"
+    ],
+    [
+     55.652,
+     56.032,
+     "kepala."
+    ]
+   ]
+  },
+  {
+   "id": 17,
+   "voice": "NARATOR",
+   "start": 56.992,
+   "end": 61.684,
+   "text": "Sekarang kau cuma boleh dengar. Bunyi enjin. Tapak kasut. Dan pembebuk tiket.",
+   "words": [
+    [
+     57.152,
+     57.452,
+     "Sekarang"
+    ],
+    [
+     57.452,
+     57.612,
+     "kau"
+    ],
+    [
+     57.612,
+     57.832,
+     "cuma"
+    ],
+    [
+     57.832,
+     58.072,
+     "boleh"
+    ],
+    [
+     58.072,
+     58.512,
+     "dengar."
+    ],
+    [
+     58.672,
+     58.952,
+     "Bunyi"
+    ],
+    [
+     58.952,
+     59.292,
+     "enjin."
+    ],
+    [
+     59.592,
+     59.892,
+     "Tapak"
+    ],
+    [
+     59.892,
+     60.332,
+     "kasut."
+    ],
+    [
+     60.332,
+     60.592,
+     "Dan"
+    ],
+    [
+     60.592,
+     61.152,
+     "pembebuk"
+    ],
+    [
+     61.152,
+     61.712,
+     "tiket."
+    ]
+   ]
+  },
+  {
+   "id": 18,
+   "voice": "KONDUKTOR",
+   "start": 62.284,
+   "end": 64.764,
+   "text": "Dua puluh lapan. Dua puluh sembilan.",
+   "words": [
+    [
+     62.464,
+     62.624,
+     "Dua"
+    ],
+    [
+     62.624,
+     62.924,
+     "puluh"
+    ],
+    [
+     62.924,
+     63.444,
+     "lapan."
+    ],
+    [
+     63.684,
+     63.824,
+     "Dua"
+    ],
+    [
+     63.824,
+     64.124,
+     "puluh"
+    ],
+    [
+     64.124,
+     64.604,
+     "sembilan."
+    ]
+   ]
+  },
+  {
+   "id": 19,
+   "voice": "NARATOR",
+   "start": 65.264,
+   "end": 69.494,
+   "text": "Dia berhenti. Betul-betul sebelah kau. Satu jari ketuk kepala kau. Perlahan.",
+   "words": [
+    [
+     65.454,
+     65.854,
+     "Dia"
+    ],
+    [
+     66.174,
+     66.374,
+     "berhenti."
+    ],
+    [
+     66.374,
+     66.634,
+     "Betul-betul"
+    ],
+    [
+     66.634,
+     66.994,
+     "sebelah"
+    ],
+    [
+     66.994,
+     67.274,
+     "kau."
+    ],
+    [
+     67.474,
+     67.654,
+     "Satu"
+    ],
+    [
+     67.654,
+     67.974,
+     "jari"
+    ],
+    [
+     67.974,
+     68.294,
+     "ketuk"
+    ],
+    [
+     68.294,
+     68.634,
+     "kepala"
+    ],
+    [
+     68.634,
+     68.914,
+     "kau."
+    ],
+    [
+     68.914,
+     69.494,
+     "Perlahan."
+    ]
+   ]
+  },
+  {
+   "id": 20,
+   "voice": "KONDUKTOR",
+   "start": 70.194,
+   "end": 71.114,
+   "text": "Tiga puluh.",
+   "words": [
+    [
+     70.354,
+     70.574,
+     "Tiga"
+    ],
+    [
+     70.574,
+     71.054,
+     "puluh."
+    ]
+   ]
+  },
+  {
+   "id": 21,
+   "voice": "NARATOR",
+   "start": 71.714,
+   "end": 73.304,
+   "text": "Kemudian, budak sebelah kau.",
+   "words": [
+    [
+     71.714,
+     72.294,
+     "Kemudian,"
+    ],
+    [
+     72.294,
+     72.654,
+     "budak"
+    ],
+    [
+     72.654,
+     73.014,
+     "sebelah"
+    ],
+    [
+     73.014,
+     73.234,
+     "kau."
+    ]
+   ]
+  },
+  {
+   "id": 22,
+   "voice": "KONDUKTOR",
+   "start": 73.704,
+   "end": 74.764,
+   "text": "Tiga puluh satu.",
+   "words": [
+    [
+     73.764,
+     73.964,
+     "Tiga"
+    ],
+    [
+     73.964,
+     74.284,
+     "puluh"
+    ],
+    [
+     74.284,
+     74.624,
+     "satu."
+    ]
+   ]
+  },
+  {
+   "id": 23,
+   "voice": "NARATOR",
+   "start": 75.764,
+   "end": 76.694,
+   "text": "Senyap. Lama.",
+   "words": [
+    [
+     75.834,
+     76.114,
+     "Senyap."
+    ],
+    [
+     76.314,
+     76.494,
+     "Lama."
+    ]
+   ]
+  },
+  {
+   "id": 24,
+   "voice": "KONDUKTOR",
+   "start": 78.094,
+   "end": 80.654,
+   "text": "Bas ni... tiga puluh kerusi je.",
+   "words": [
+    [
+     78.234,
+     78.514,
+     "Bas"
+    ],
+    [
+     78.514,
+     78.854,
+     "ni"
+    ],
+    [
+     79.414,
+     79.574,
+     "tiga"
+    ],
+    [
+     79.574,
+     79.894,
+     "puluh"
+    ],
+    [
+     79.894,
+     80.214,
+     "kerusi"
+    ],
+    [
+     80.214,
+     80.494,
+     "je."
+    ]
+   ]
+  },
+  {
+   "id": 25,
+   "voice": "NARATOR",
+   "start": 81.754,
+   "end": 84.618,
+   "text": "Bas perlahan. Dan berhenti. Semua lampu menyala.",
+   "words": [
+    [
+     81.888,
+     81.928,
+     "Bas"
+    ],
+    [
+     81.928,
+     82.528,
+     "perlahan."
+    ],
+    [
+     82.528,
+     82.748,
+     "Dan"
+    ],
+    [
+     82.748,
+     83.208,
+     "berhenti."
+    ],
+    [
+     83.508,
+     83.768,
+     "Semua"
+    ],
+    [
+     83.768,
+     84.088,
+     "lampu"
+    ],
+    [
+     84.088,
+     84.488,
+     "menyala."
+    ]
+   ]
+  },
+  {
+   "id": 26,
+   "voice": "KONDUKTOR",
+   "start": 85.118,
+   "end": 87.893,
+   "text": "R&R. Rehat lima belas minit.",
+   "words": [
+    [
+     85.149,
+     85.429,
+     "R&R."
+    ],
+    [
+     85.429,
+     86.049,
+     "Rehat"
+    ],
+    [
+     86.209,
+     86.669,
+     "lima"
+    ],
+    [
+     86.669,
+     87.149,
+     "belas"
+    ],
+    [
+     87.149,
+     87.689,
+     "minit."
+    ]
+   ]
+  },
+  {
+   "id": 27,
+   "voice": "NARATOR",
+   "start": 88.593,
+   "end": 93.883,
+   "text": "Seorang demi seorang, penumpang bangun. Selimut masih atas kepala. Dan mereka berjalan keluar.",
+   "words": [
+    [
+     88.723,
+     89.043,
+     "Seorang"
+    ],
+    [
+     89.043,
+     89.283,
+     "demi"
+    ],
+    [
+     89.283,
+     89.763,
+     "seorang,"
+    ],
+    [
+     89.763,
+     90.303,
+     "penumpang"
+    ],
+    [
+     90.303,
+     90.743,
+     "bangun."
+    ],
+    [
+     90.843,
+     91.303,
+     "Selimut"
+    ],
+    [
+     91.303,
+     91.583,
+     "masih"
+    ],
+    [
+     91.583,
+     91.923,
+     "atas"
+    ],
+    [
+     91.923,
+     92.303,
+     "kepala."
+    ],
+    [
+     92.303,
+     92.643,
+     "Dan"
+    ],
+    [
+     92.643,
+     92.923,
+     "mereka"
+    ],
+    [
+     92.923,
+     93.383,
+     "berjalan"
+    ],
+    [
+     93.383,
+     93.743,
+     "keluar."
+    ]
+   ]
+  },
+  {
+   "id": 28,
+   "voice": "NARATOR",
+   "start": 94.333,
+   "end": 99.883,
+   "text": "Di celah langsir, kau nampak papan tanda R&R. Tak ada nama. Tak ada kereta. Tak ada kedai.",
+   "words": [
+    [
+     94.473,
+     94.63,
+     "Di"
+    ],
+    [
+     94.63,
+     95.021,
+     "celah"
+    ],
+    [
+     95.021,
+     95.568,
+     "langsir,"
+    ],
+    [
+     95.568,
+     95.803,
+     "kau"
+    ],
+    [
+     95.803,
+     96.272,
+     "nampak"
+    ],
+    [
+     96.272,
+     96.664,
+     "papan"
+    ],
+    [
+     96.664,
+     97.055,
+     "tanda"
+    ],
+    [
+     97.055,
+     97.211,
+     "R&R."
+    ],
+    [
+     97.211,
+     97.446,
+     "Tak"
+    ],
+    [
+     97.446,
+     97.681,
+     "ada"
+    ],
+    [
+     97.681,
+     97.994,
+     "nama."
+    ],
+    [
+     97.994,
+     98.228,
+     "Tak"
+    ],
+    [
+     98.228,
+     98.463,
+     "ada"
+    ],
+    [
+     98.463,
+     98.932,
+     "kereta."
+    ],
+    [
+     98.932,
+     99.167,
+     "Tak"
+    ],
+    [
+     99.167,
+     99.402,
+     "ada"
+    ],
+    [
+     99.402,
+     99.793,
+     "kedai."
+    ]
+   ]
+  },
+  {
+   "id": 29,
+   "voice": "NARATOR",
+   "start": 100.283,
+   "end": 103.133,
+   "text": "Cuma orang. Berdiri. Semua menghadap bas.",
+   "words": [
+    [
+     100.373,
+     100.673,
+     "Cuma"
+    ],
+    [
+     100.673,
+     101.093,
+     "orang."
+    ],
+    [
+     101.093,
+     101.773,
+     "Berdiri."
+    ],
+    [
+     102.033,
+     102.273,
+     "Semua"
+    ],
+    [
+     102.273,
+     102.793,
+     "menghadap"
+    ],
+    [
+     102.793,
+     103.053,
+     "bas."
+    ]
+   ]
+  },
+  {
+   "id": 30,
+   "voice": "NARATOR",
+   "start": 104.033,
+   "end": 107.083,
+   "text": "Kemudian, satu tangan kecil genggam lengan baju kau.",
+   "words": [
+    [
+     104.063,
+     104.483,
+     "Kemudian,"
+    ],
+    [
+     104.643,
+     104.863,
+     "satu"
+    ],
+    [
+     104.863,
+     105.223,
+     "tangan"
+    ],
+    [
+     105.223,
+     105.603,
+     "kecil"
+    ],
+    [
+     105.743,
+     106.063,
+     "genggam"
+    ],
+    [
+     106.063,
+     106.303,
+     "lengan"
+    ],
+    [
+     106.303,
+     106.743,
+     "baju"
+    ],
+    [
+     106.743,
+     106.983,
+     "kau."
+    ]
+   ]
+  },
+  {
+   "id": 31,
+   "voice": "AIN",
+   "start": 107.583,
+   "end": 109.703,
+   "text": "Kalau turun... tak boleh naik balik.",
+   "words": [
+    [
+     107.767,
+     108.115,
+     "Kalau"
+    ],
+    [
+     108.115,
+     108.463,
+     "turun"
+    ],
+    [
+     108.463,
+     108.672,
+     "tak"
+    ],
+    [
+     108.672,
+     109.02,
+     "boleh"
+    ],
+    [
+     109.02,
+     109.299,
+     "naik"
+    ],
+    [
+     109.299,
+     109.647,
+     "balik."
+    ]
+   ]
+  },
+  {
+   "id": 32,
+   "voice": "NARATOR",
+   "start": 110.703,
+   "end": 111.921,
+   "text": "Kau ada dua pilihan.",
+   "words": [
+    [
+     110.711,
+     110.891,
+     "Kau"
+    ],
+    [
+     110.891,
+     111.111,
+     "ada"
+    ],
+    [
+     111.111,
+     111.291,
+     "dua"
+    ],
+    [
+     111.291,
+     111.791,
+     "pilihan."
+    ]
+   ]
+  },
+  {
+   "id": 33,
+   "voice": "NARATOR",
+   "start": 112.271,
+   "end": 117.016,
+   "text": "Ikut semua orang turun. Lampu dah menyala, dan peraturan tu cuma bila lampu padam.",
+   "words": [
+    [
+     112.276,
+     112.536,
+     "Ikut"
+    ],
+    [
+     112.536,
+     112.776,
+     "semua"
+    ],
+    [
+     112.776,
+     113.056,
+     "orang"
+    ],
+    [
+     113.056,
+     113.456,
+     "turun."
+    ],
+    [
+     113.756,
+     114.156,
+     "Lampu"
+    ],
+    [
+     114.156,
+     114.316,
+     "dah"
+    ],
+    [
+     114.316,
+     114.696,
+     "menyala,"
+    ],
+    [
+     114.956,
+     115.196,
+     "dan"
+    ],
+    [
+     115.196,
+     115.596,
+     "peraturan"
+    ],
+    [
+     115.596,
+     115.816,
+     "tu"
+    ],
+    [
+     115.816,
+     116.056,
+     "cuma"
+    ],
+    [
+     116.056,
+     116.336,
+     "bila"
+    ],
+    [
+     116.336,
+     116.636,
+     "lampu"
+    ],
+    [
+     116.636,
+     117.016,
+     "padam."
+    ]
+   ]
+  },
+  {
+   "id": 34,
+   "voice": "NARATOR",
+   "start": 117.516,
+   "end": 125.829,
+   "text": "Atau tinggal dalam bas. Dengan budak yang kau tak pernah nampak muka. Dan pemandu... yang dari tadi tengok kau, dalam cermin.",
+   "words": [
+    [
+     117.516,
+     118.116,
+     "Atau"
+    ],
+    [
+     118.116,
+     118.376,
+     "tinggal"
+    ],
+    [
+     118.376,
+     118.556,
+     "dalam"
+    ],
+    [
+     118.556,
+     118.876,
+     "bas."
+    ],
+    [
+     119.536,
+     119.856,
+     "Dengan"
+    ],
+    [
+     119.856,
+     120.156,
+     "budak"
+    ],
+    [
+     120.156,
+     120.296,
+     "yang"
+    ],
+    [
+     120.296,
+     120.456,
+     "kau"
+    ],
+    [
+     120.456,
+     120.596,
+     "tak"
+    ],
+    [
+     120.596,
+     120.876,
+     "pernah"
+    ],
+    [
+     120.876,
+     121.256,
+     "nampak"
+    ],
+    [
+     121.256,
+     121.596,
+     "muka."
+    ],
+    [
+     121.956,
+     122.296,
+     "Dan"
+    ],
+    [
+     122.296,
+     122.876,
+     "pemandu"
+    ],
+    [
+     123.436,
+     123.676,
+     "yang"
+    ],
+    [
+     123.676,
+     123.936,
+     "dari"
+    ],
+    [
+     123.936,
+     124.176,
+     "tadi"
+    ],
+    [
+     124.176,
+     124.536,
+     "tengok"
+    ],
+    [
+     124.536,
+     124.776,
+     "kau,"
+    ],
+    [
+     125.076,
+     125.256,
+     "dalam"
+    ],
+    [
+     125.256,
+     125.736,
+     "cermin."
+    ]
+   ]
+  },
+  {
+   "id": 35,
+   "voice": "NARATOR",
+   "start": 126.429,
+   "end": 127.995,
+   "text": "Jadi, apa kau akan buat?",
+   "words": [
+    [
+     126.726,
+     126.975,
+     "Jadi,"
+    ],
+    [
+     126.975,
+     127.161,
+     "apa"
+    ],
+    [
+     127.161,
+     127.348,
+     "kau"
+    ],
+    [
+     127.348,
+     127.597,
+     "akan"
+    ],
+    [
+     127.597,
+     127.846,
+     "buat?"
+    ]
+   ]
+  }
+ ]
+}

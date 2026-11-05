@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ms" data-composition-variables='[{"id":"previewScale","type":"number","label":"3D render scale (0.5 for previews)","default":1,"min":0.25,"max":1,"step":0.25}]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/lib/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Montserrat"; font-weight: 800; src: url("assets/fonts/montserrat-latin-800-normal.woff2") format("woff2"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #020306; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "Montserrat", sans-serif; }
+      #world { position: absolute; inset: 0; }
+      #world canvas { width: 1080px; height: 1920px; display: block; }
+
+      /* under-the-blanket POV: the check fabric with the torch glowing through it */
+      #pov { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+      #pov .fabric { position: absolute; inset: -80px; opacity: 0;
+        background:
+          repeating-linear-gradient(90deg, rgba(142,31,36,0.85) 0 60px, rgba(27,42,78,0) 60px 128px),
+          repeating-linear-gradient(0deg, rgba(142,31,36,0.85) 0 60px, rgba(27,42,78,0) 60px 128px),
+          #1b2a4e; filter: blur(14px); }
+      #pov .glow { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0;
+        background: radial-gradient(circle at var(--gx, 540px) var(--gy, 900px), rgba(255,226,170,0.85) 0, rgba(255,180,120,0.35) 260px, rgba(0,0,0,0) 620px); mix-blend-mode: screen; }
+      #pov .shade { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0;
+        background: radial-gradient(ellipse 340px 900px at var(--sx, -400px) 900px, rgba(0,0,0,0.85) 0, rgba(0,0,0,0) 100%); }
+
+      #fx { position: absolute; inset: 0; z-index: 6; pointer-events: none; }
+      #fx .vig { position: absolute; inset: 0; background: radial-gradient(ellipse 75% 62% at 50% 48%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.78) 100%); }
+      #fx canvas { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0.09; mix-blend-mode: screen; }
+
+      #brand { position: absolute; top: 96px; left: 0; right: 0; z-index: 8; text-align: center; color: rgba(255,255,255,0.78);
+        font-weight: 800; font-size: 30px; letter-spacing: 8px; }
+      #brand b { color: #f2c230; }
+
+      #pills { position: absolute; inset: 0; z-index: 9; pointer-events: none; }
+      #pills svg { position: absolute; inset: 0; overflow: visible; }
+      #pills .pill { position: absolute; display: flex; align-items: center; gap: 18px; padding: 16px 34px 16px 16px; border-radius: 60px;
+        background: rgba(10,12,18,0.88); border: 4px solid rgba(255,255,255,0.9); color: #fff; font-weight: 800; font-size: 46px; letter-spacing: 1px; opacity: 0; }
+      #pills .pill i { font-style: normal; width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; color: #fff; }
+      #pillA { left: 90px; top: 330px; } #pillA i { background: #2fb86a; }
+      #pillB { right: 90px; top: 1450px; } #pillB i { background: #2f6fd6; }
+
+      #endcard { position: absolute; inset: 0; z-index: 11; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px;
+        background: rgba(2,3,6,0.0); color: #fff; text-align: center; }
+      #endcard .q { font-weight: 800; font-size: 96px; line-height: 1.05; -webkit-text-stroke: 8px #000; paint-order: stroke fill; opacity: 0; }
+      #endcard .q span { color: #2fb86a; } #endcard .q em { font-style: normal; color: #4f8ff0; }
+      #endcard .s { font-weight: 800; font-size: 40px; letter-spacing: 6px; color: #f2c230; opacity: 0; }
+      #captions-host { z-index: 10; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="131.5" data-width="1080" data-height="1920" data-fps="30">
+      <div id="world" class="clip" data-start="0" data-duration="131.5" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+        <canvas id="world-canvas" width="1080" height="1920"></canvas>
+      </div>
+      <div id="pov" class="clip" data-start="0" data-duration="131.5" data-track-index="2" data-track-kind="graphics" data-layout-ignore>
+        <div class="fabric" id="pov-fabric"></div><div class="shade" id="pov-shade"></div><div class="glow" id="pov-glow"></div>
+      </div>
+      <div id="fx" class="clip" data-start="0" data-duration="131.5" data-track-index="5" data-track-kind="graphics" data-layout-ignore>
+        <div class="vig"></div><canvas id="grain" width="270" height="480"></canvas>
+      </div>
+      <div id="brand" class="clip" data-start="0" data-duration="131.5" data-track-index="6" data-track-kind="graphics">BAS MALAM · <b>PART 1</b></div>
+      <div id="pills" class="clip" data-start="0" data-duration="131.5" data-track-index="7" data-track-kind="graphics" data-layout-allow-overlap>
+        <svg viewBox="0 0 1080 1920" width="1080" height="1920">
+          <line id="lineA" x1="0" y1="0" x2="0" y2="0" stroke="#fff" stroke-width="5" opacity="0" />
+          <circle id="dotA" r="12" fill="#2fb86a" stroke="#fff" stroke-width="4" opacity="0" />
+          <line id="lineB" x1="0" y1="0" x2="0" y2="0" stroke="#fff" stroke-width="5" opacity="0" />
+          <circle id="dotB" r="12" fill="#2f6fd6" stroke="#fff" stroke-width="4" opacity="0" />
+        </svg>
+        <div class="pill" id="pillA"><i>A</i><span data-var-text="pillA">TURUN</span></div>
+        <div class="pill" id="pillB"><i>B</i><span data-var-text="pillB">TINGGAL</span></div>
+      </div>
+      <div id="endcard" class="clip" data-start="0" data-duration="131.5" data-track-index="8" data-track-kind="graphics" data-layout-allow-overlap>
+        <div class="q" id="endQ">KOMEN<br /><span>A</span> ATAU <em>B</em>?</div>
+        <div class="s" id="endS">PART 2 AKAN DATANG</div>
+      </div>
+
+      <audio id="vo" class="clip" src="assets/vo.wav" data-start="0" data-duration="131.5" data-track-index="11" data-volume="1"></audio>
+      <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="131.5" data-track-index="12" data-volume="0.7"></audio>
+
+      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="131.5"
+        data-track-index="9" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+    </div>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      let resolveWorld;
+      window.__hf.buildReady["world"] = new Promise((r) => (resolveWorld = r));
+    </script>
+    <script type="module">
+      import { createWorld } from "./assets/world.js";
+      import { DURATION } from "./assets/timing.js";
+      await document.fonts.load('800 40px "Montserrat"');
+      const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
+      const scale = Number(vars.previewScale) || 1;
+      const world = createWorld(document.getElementById("world-canvas"), 1080, 1920, scale);
+      const T = world.T;
+      const $ = (id) => document.getElementById(id);
+      const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+      const ss = (a, b, x) => { const u = clamp((x - a) / (b - a)); return u * u * (3 - 2 * u); };
+
+      // film grain: seeded per frame, so every render is identical
+      const gc = $("grain").getContext("2d"), gimg = gc.createImageData(270, 480);
+      function grain(t) {
+        let s = (Math.floor(t * 30) * 2654435761) >>> 0;
+        const d = gimg.data;
+        for (let i = 0; i < d.length; i += 4) { s ^= s << 13; s >>>= 0; s ^= s >>> 17; s ^= s << 5; s >>>= 0; const v = s & 255; d[i] = d[i + 1] = d[i + 2] = v; d[i + 3] = 255; }
+        gc.putImageData(gimg, 0, 0);
+      }
+
+      function renderAt(t) {
+        const r = world.render(t);
+        // blanket POV
+        const [p0, p1] = T.blanketPOV, pov = ss(p0 - 0.05, p0 + 0.35, t) * (1 - ss(p1 - 0.25, p1, t));
+        $("pov-fabric").style.opacity = (pov * 0.94).toFixed(3);
+        const near = clamp(1 - (r.kondDist - 0.6) / 7.5);
+        $("pov-glow").style.opacity = (pov * (0.15 + 0.85 * near * near) * r.torchOn).toFixed(3);
+        $("pov-glow").style.setProperty("--gx", `${540 + Math.sin(t * 0.9) * 120}px`);
+        $("pov-shade").style.opacity = (pov * near * 0.9).toFixed(3);
+        $("pov-shade").style.setProperty("--sx", `${-300 + near * 900}px`);
+        // pills
+        const a = ss(T.pillA, T.pillA + 0.3, t), b = ss(T.pillB, T.pillB + 0.3, t), endDim = 1 - ss(T.endCard, T.endCard + 0.4, t) * 0.65;
+        $("pillA").style.opacity = (a * endDim).toFixed(3); $("pillB").style.opacity = (b * endDim).toFixed(3);
+        const link = (id, pill, anchor, vis, ax, ay) => {
+          const on = vis && anchor.vis ? 1 : 0;
+          const ln = $("line" + id), dot = $("dot" + id);
+          ln.setAttribute("x1", ax); ln.setAttribute("y1", ay); ln.setAttribute("x2", anchor.x.toFixed(1)); ln.setAttribute("y2", anchor.y.toFixed(1));
+          dot.setAttribute("cx", anchor.x.toFixed(1)); dot.setAttribute("cy", anchor.y.toFixed(1));
+          ln.setAttribute("opacity", (on * pill * endDim * 0.9).toFixed(3)); dot.setAttribute("opacity", (on * pill * endDim).toFixed(3));
+        };
+        link("A", a, r.pillA, true, 250, 410); link("B", b, r.pillB, true, 830, 1460);
+        // end card + brand
+        const e = ss(T.endCard, T.endCard + 0.35, t);
+        $("endcard").style.background = `rgba(2,3,6,${(e * 0.55).toFixed(3)})`;
+        $("endQ").style.opacity = e.toFixed(3); $("endS").style.opacity = ss(T.endCard + 0.5, T.endCard + 0.9, t).toFixed(3);
+        $("brand").style.opacity = (1 - ss(T.endCard - 0.2, T.endCard + 0.2, t)).toFixed(3);
+        grain(t);
+      }
+      window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#endQ", { scale: 0.85 }, { scale: 1, duration: 0.4, ease: "back.out(2)" }, T.endCard);
+      window.__timelines["main"] = tl;
+      renderAt(0);
+      resolveWorld();
+    </script>
+  </body>
+</html>
