@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ms" data-composition-variables='[{"id":"previewScale","type":"number","label":"3D render scale (0.5 for previews)","default":1,"min":0.25,"max":1,"step":0.25},{"id":"fx","type":"string","label":"effects override (JSON, testing only)","default":""}]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/lib/gsap.min.js"></script>
+    <script type="importmap">{ "imports": { "three": "./assets/lib/three.module.min.js" } }</script>
+    <style>
+      @font-face { font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 600; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 700; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 800; src: url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0c0504; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "Inter", sans-serif; }
+      #world { position: absolute; inset: 0; }
+      #world canvas { width: 1080px; height: 1920px; display: block; }
+      #ui { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+      .fade-top { position: absolute; left: 0; right: 0; top: 0; height: 520px; background: linear-gradient(rgba(12,5,4,0.85) 0%, rgba(12,5,4,0.5) 40%, rgba(12,5,4,0) 100%); }
+      .fade-bot { position: absolute; left: 0; right: 0; bottom: 0; height: 420px; background: linear-gradient(rgba(12,5,4,0), rgba(12,5,4,0.75) 70%, #0c0504); }
+      #title { position: absolute; left: 60px; right: 60px; top: 150px; text-align: center; font-weight: 700; font-size: 54px; letter-spacing: -1.2px; color: #fff6e6; line-height: 1.15; text-shadow: 0 2px 20px rgba(0,0,0,0.5); }
+      #title em { font-style: normal; color: #ff9a3a; }
+      .hud { position: absolute; display: flex; align-items: center; gap: 18px; padding: 14px 26px; border-radius: 40px; background: rgba(255,255,255,0.92);
+        box-shadow: 0 8px 28px rgba(30,40,80,0.12); transform: translateX(-50%); white-space: nowrap; }
+      .hud .st { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 30px; }
+      .hud .dot { width: 16px; height: 16px; border-radius: 50%; }
+      .hud .sep { width: 2px; height: 36px; background: #dfe3ea; }
+      .hud .val { font-weight: 700; font-size: 44px; color: #14161c; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+      .hud .unit { font-weight: 500; font-size: 26px; color: #8a90a0; margin-left: 6px; }
+      .lbl { position: absolute; height: 0; }
+      .lbl .pt { position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; border-radius: 50%; background: #ffc94a; border: 3px solid #0c0504; }
+      .lbl .ln { position: absolute; top: -1.5px; height: 3px; background: #fff6e6; }
+      .lbl .tx { position: absolute; top: -30px; padding: 6px 12px; font-weight: 800; font-size: 26px; letter-spacing: 3px; color: #14161c; background: rgba(255,255,255,0.94); border-bottom: 3px solid #14161c; white-space: nowrap; }
+      #note { position: absolute; left: 40px; top: 1450px; padding: 7px 14px; border-radius: 8px; background: rgba(255,255,255,0.8); font-weight: 500; font-size: 22px; color: #6b7183; }
+      #card { position: absolute; left: 70px; top: 470px; width: 470px; padding: 26px 30px; border-radius: 22px; background: rgba(255,255,255,0.95); box-shadow: 0 14px 40px rgba(30,40,80,0.14); }
+      #card .k { font-weight: 800; font-size: 22px; letter-spacing: 3px; color: #6b7183; }
+      #card .big { font-weight: 800; font-size: 96px; letter-spacing: -3px; color: #14161c; line-height: 1.05; margin-top: 6px; }
+      #card .sub { font-weight: 600; font-size: 30px; color: #2f5bff; }
+      #card .bar { margin-top: 18px; height: 12px; border-radius: 6px; background: #e4e8f0; overflow: hidden; }
+      #card .bar i { display: block; height: 100%; width: 0; background: #2f5bff; border-radius: 6px; }
+      #card .barl { display: flex; justify-content: space-between; margin-top: 8px; font-weight: 600; font-size: 22px; color: #8a90a0; }
+      #cmp { position: absolute; left: 40px; right: 40px; top: 420px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+      #cmp .col { background: rgba(255,255,255,0.96); border-radius: 26px; padding: 22px 22px 26px; box-shadow: 0 14px 40px rgba(30,40,80,0.14); }
+      #cmp .lcd { background: #1d2430; border-radius: 16px; padding: 10px 18px; display: flex; justify-content: space-between; align-items: baseline; }
+      #cmp .lcd b { font-weight: 800; font-size: 72px; color: #8fd0ff; letter-spacing: -2px; font-variant-numeric: tabular-nums; }
+      #cmp .lcd span { font-weight: 700; font-size: 22px; letter-spacing: 3px; color: #8a96a8; }
+      #cmp .k { margin-top: 18px; font-weight: 800; font-size: 20px; letter-spacing: 3px; color: #6b7183; }
+      #cmp svg { display: block; width: 100%; height: 260px; margin-top: 6px; }
+      #cmp .bar { margin-top: 10px; height: 18px; border-radius: 9px; background: #e4e8f0; overflow: hidden; }
+      #cmp .bar i { display: block; height: 100%; width: 0; border-radius: 9px; }
+      #cmp .chip { margin-top: 14px; display: inline-block; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 24px; }
+      #cmp .lcd b { font-size: 56px; }
+      #stamp { position: absolute; left: 50%; top: 440px; transform: translateX(-50%) rotate(-6deg); padding: 14px 34px; border: 8px solid #e5483a; border-radius: 18px; color: #e5483a; font-weight: 800; font-size: 76px; letter-spacing: 4px; background: rgba(255,255,255,0.9); white-space: nowrap; }
+      .card { position: absolute; left: 60px; right: 60px; background: rgba(36,22,10,0.88); border: 2px solid rgba(255,201,74,0.35); border-radius: 26px; padding: 26px 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(255,170,40,0.15); color: #fff6e6; }
+      .card .k { font-weight: 800; font-size: 22px; letter-spacing: 3px; color: #ffc94a; margin-bottom: 14px; }
+      #wax { top: 380px; } #wax .row { display: flex; align-items: center; gap: 18px; margin-top: 16px; font-weight: 700; font-size: 32px; }
+      #wax .row span { width: 190px; } #wax .bar { flex: 1; height: 30px; border-radius: 15px; background: rgba(255,255,255,0.12); overflow: hidden; } #wax .bar i { display: block; height: 100%; width: 0; border-radius: 15px; background: #b07a3a; }
+      #wax .row.win i { background: linear-gradient(90deg, #ffb020, #ffd86a); box-shadow: 0 0 20px rgba(255,190,60,0.8); } #wax .row b { width: 150px; text-align: right; font-weight: 800; }
+      #tl { top: 380px; } #tl .line { height: 10px; border-radius: 5px; background: rgba(255,255,255,0.12); margin: 30px 20px 0; overflow: hidden; } #tl .line i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ffb020, #ffd86a); box-shadow: 0 0 20px #ffb020; }
+      #tl .nodes { display: flex; justify-content: space-between; margin-top: 20px; } #tl .nodes div { display: flex; flex-direction: column; gap: 6px; max-width: 46%; }
+      #tl .nodes b { font-size: 64px; font-weight: 800; color: #ffc94a; letter-spacing: -2px; } #tl .nodes span { font-size: 26px; font-weight: 600; line-height: 1.3; color: #f2e2c4; } #tl #n1 { text-align: right; align-items: flex-end; }
+      #cta { position: absolute; left: 0; right: 0; top: 1665px; text-align: center; font-weight: 600; font-size: 34px; color: #4a5060; }
+      #rew { position: absolute; right: 60px; top: 300px; font-weight: 800; font-size: 34px; letter-spacing: 2px; color: #2f5bff; }
+      #captions-host { z-index: 10; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="66.967" data-width="1080" data-height="1920" data-fps="30">
+      <div id="world" class="clip" data-start="0" data-duration="66.967" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+        <canvas id="world-canvas" width="1080" height="1920"></canvas>
+      </div>
+      <div id="ui" class="clip" data-start="0" data-duration="66.967" data-track-index="2" data-track-kind="graphics" data-layout-ignore>
+        <div class="fade-top"></div><div class="fade-bot"></div>
+        <div id="title"></div>
+        <div class="hud" id="hud-main"><div class="st"><span class="dot"></span><span class="sl"></span></div><span class="sep"></span><div><span class="val"></span><span class="unit"></span></div></div>
+        <div class="hud" id="hud-a"><div class="st"><span class="dot"></span><span class="sl"></span></div><span class="sep"></span><div><span class="val"></span><span class="unit"></span></div></div>
+        <div class="hud" id="hud-b"><div class="st"><span class="dot"></span><span class="sl"></span></div><span class="sep"></span><div><span class="val"></span><span class="unit"></span></div></div>
+        <div id="labels"></div>
+        <div id="note"></div>
+        <div id="cta">Barang apa nak aku bedah lepas ni? ↓</div>
+        <div id="rew">◀◀ UNDUR</div>
+      </div>
+      <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="66.967" data-track-index="4" data-volume="1"></audio>
+      <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="66.967" data-track-index="5" data-volume="0.35"></audio>
+      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="66.967"
+        data-track-index="3" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+    </div>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      let resolveWorld;
+      window.__hf.buildReady["world"] = new Promise((r) => (resolveWorld = r));
+    </script>
+    <script type="module">
+      import { createWorld } from "./assets/world.js";
+      import { warp } from "./assets/timing.js";
+      const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
+      const scale = Number(vars.previewScale) || 1;
+      await Promise.all(["500", "600", "700", "800"].map((w) => document.fonts.load(`${w} 40px "Inter"`)));
+      let fxOpts = {}; try { fxOpts = vars.fx ? JSON.parse(vars.fx) : {}; } catch (e) {}
+      const world = createWorld(document.getElementById("world-canvas"), 1080, 1920, scale, fxOpts);
+      const T = world.T;
+
+      const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+      const ss = (e0, e1, x) => { const u = clamp((x - e0) / (e1 - e0)); return u * u * (3 - 2 * u); };
+      const win = (t, t0, t1, fin = 0.3, fout = 0.3) => (t0 <= 0 ? 1 : ss(t0, t0 + fin, t)) * (t1 >= 60 ? 1 : 1 - ss(t1 - fout, t1, t));
+
+      const HOOK = "Bom <em>bawah kaki kau</em>";
+      const CH = [
+        [0, 7, HOOK], [7, 14, "Kerak <em>lebih nipis</em> dari kulit epal"], [14, 21, "Magma <em>naik</em>, berkumpul"], [21, 33, "Rahsia letupan: <em>gas</em>"],
+        [33, 40, "Cair <em>mengalir</em>, pekat <em>meletup</em>"], [40, 50, "Krakatau, <em>1883</em>"], [50, 58.8, "Pemusnah, <em>pemberi makan</em>"], [58.8, 60, HOOK],
+      ];
+      const NOTES = [[7.2, 14, "Kerak Bumi 5–70 km tebal · jejari Bumi 6371 km"], [21.2, 33, "Gas terlarut (wap air, CO₂) keluar bila tekanan turun"], [40.2, 50, "Kedengaran di Pulau Rodrigues, ~4800 km dari Krakatau"]];
+      const LABELS = [
+        ["crater", "KAWAH", 1.2, 6.8, 1],
+        ["skin", "KULIT EPAL", 8.3, 13.6, 1], ["crust", "KERAK BUMI", 9.0, 13.6, -1], ["mantle", "MANTEL", 11.9, 13.6, -1],
+        ["chamber", "KEBUK MAGMA", 19.4, 22.4, 1], ["conduit", "SALURAN", 27.6, 31.2, 1], ["bubble", "GELEMBUNG GAS", 29.4, 32.3, 1], ["soda", "SODA = MAGMA", 25.2, 26.9, 1],
+        ["runny", "LAVA CAIR · HAWAII", 34.0, 36.7, 1], ["dome", "MAGMA PEKAT", 37.3, 39.4, 1],
+        ["kra", "KRAKATAU", 41.6, 49.6, 1], ["rod", "PULAU RODRIGUES", 46.2, 49.6, 1], ["field", "TANAH SUBUR", 54.0, 57.8, 1],
+      ];
+      const $ = (s) => document.querySelector(s);
+      const titleEl = $("#title"), noteEl = $("#note"), labelsEl = $("#labels"), cta = $("#cta"), rew = $("#rew");
+      const lblEls = LABELS.map(() => { const d = document.createElement("div"); d.className = "lbl"; d.innerHTML = '<span class="ln"></span><span class="pt"></span><span class="tx"></span>'; labelsEl.appendChild(d); return d; });
+      const fmt0 = (v) => Math.round(v).toLocaleString("en-US").replace(/,/g, " ");
+      function overlay(o, t) {
+        const ch = CH.find(([a, b]) => t >= a && t < b) || CH[CH.length - 1];
+        const ta = win(t, ch[0], ch[1], 0.35, 0.3);
+        if (titleEl.innerHTML !== ch[2]) titleEl.innerHTML = ch[2];
+        titleEl.style.opacity = ta; titleEl.style.filter = `blur(${(1 - ta) * 10}px)`; titleEl.style.transform = `scale(${0.96 + 0.04 * ta})`;
+        // HUD: magma temperature in the hook (and loop), sound distance for Krakatau
+        const hm = $("#hud-main"); hm.style.left = "540px"; hm.style.top = "300px";
+        let a = 0, lab = "Magma", val = "1200", unit = "°C", c = "#ff5a1a";
+        if (t < 7.2) { a = 1 - ss(6.9, 7.2, t); val = fmt0(lerp2(900, 1200, ss(0, 5.0, t)) + 8 * Math.sin(t * 9)); }
+        else if (t > 43.6 && t < 49.8) { a = ss(43.6, 44.0, t) * (1 - ss(49.4, 49.8, t)); lab = "Bunyi sampai"; c = "#ffb020"; val = fmt0(4800 * ss(44.2, 46.7, t)); unit = "km"; }
+        else if (t > 59.0) { a = ss(59.0, 59.6, t); val = "900"; }
+        hm.style.opacity = a; hm.querySelector(".dot").style.background = c; hm.querySelector(".sl").textContent = lab; hm.querySelector(".sl").style.color = c;
+        hm.querySelector(".val").textContent = val; hm.querySelector(".unit").textContent = unit;
+        $("#hud-a").style.opacity = 0; $("#hud-b").style.opacity = 0;
+        LABELS.forEach(([k, txt, t0, t1, side], i) => {
+          const el = lblEls[i], p = o.anchors[k]; const la = p && p[2] ? win(t, t0, t1, 0.25, 0.25) : 0;
+          el.style.opacity = la; if (la <= 0) return;
+          el.style.left = p[0] + "px"; el.style.top = p[1] + "px";
+          const L = 110 * ss(t0, t0 + 0.35, t);
+          const ln = el.querySelector(".ln"), tx = el.querySelector(".tx");
+          ln.style.width = L + "px"; ln.style.left = side > 0 ? "0px" : -L + "px";
+          if (tx.textContent !== txt) tx.textContent = txt;
+          tx.style.left = side > 0 ? L + "px" : "auto"; tx.style.right = side > 0 ? "auto" : L + "px";
+        });
+        const n = NOTES.find(([a, b]) => t >= a && t < b);
+        noteEl.style.opacity = n ? win(t, n[0], n[1]) : 0; if (n && noteEl.textContent !== n[2]) noteEl.textContent = n[2];
+        cta.style.opacity = 0; rew.style.opacity = 0;
+      }
+      const lerp2 = (a, b, u) => a + (b - a) * u;
+      function renderAt(t) { const ct = warp(t); const o = world.render(ct); overlay(o, ct); }
+      window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+      renderAt(0);
+      resolveWorld();
+    </script>
+  </body>
+</html>

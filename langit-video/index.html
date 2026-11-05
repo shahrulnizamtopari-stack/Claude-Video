@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ms" data-composition-variables='[{"id":"previewScale","type":"number","label":"3D render scale (0.5 for previews)","default":1,"min":0.25,"max":1,"step":0.25},{"id":"fx","type":"string","label":"effects override (JSON, testing only)","default":""}]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/lib/gsap.min.js"></script>
+    <script type="importmap">{ "imports": { "three": "./assets/lib/three.module.min.js" } }</script>
+    <style>
+      @font-face { font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 600; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 700; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 800; src: url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #eef1f8; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "Inter", sans-serif; }
+      #world { position: absolute; inset: 0; }
+      #world canvas { width: 1080px; height: 1920px; display: block; }
+      #ui { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+      .fade-top { position: absolute; left: 0; right: 0; top: 0; height: 520px; background: linear-gradient(#eef1f8 0%, rgba(238,241,248,0.92) 40%, rgba(238,241,248,0) 100%); }
+      .fade-bot { position: absolute; left: 0; right: 0; bottom: 0; height: 420px; background: linear-gradient(rgba(240,242,248,0), rgba(240,242,248,0.85) 70%, #f0f2f8); }
+      #title { position: absolute; left: 60px; right: 60px; top: 150px; text-align: center; font-weight: 700; font-size: 54px; letter-spacing: -1.2px; color: #14161c; line-height: 1.15; }
+      #title em { font-style: normal; color: #2f5bff; }
+      .hud { position: absolute; display: flex; align-items: center; gap: 18px; padding: 14px 26px; border-radius: 40px; background: rgba(255,255,255,0.92);
+        box-shadow: 0 8px 28px rgba(30,40,80,0.12); transform: translateX(-50%); white-space: nowrap; }
+      .hud .st { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 30px; }
+      .hud .dot { width: 16px; height: 16px; border-radius: 50%; }
+      .hud .sep { width: 2px; height: 36px; background: #dfe3ea; }
+      .hud .val { font-weight: 700; font-size: 44px; color: #14161c; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+      .hud .unit { font-weight: 500; font-size: 26px; color: #8a90a0; margin-left: 6px; }
+      .lbl { position: absolute; height: 0; }
+      .lbl .pt { position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; border-radius: 50%; background: #14161c; border: 3px solid #fff; }
+      .lbl .ln { position: absolute; top: -1.5px; height: 3px; background: #14161c; }
+      .lbl .tx { position: absolute; top: -30px; padding: 6px 12px; font-weight: 800; font-size: 26px; letter-spacing: 3px; color: #14161c; background: rgba(255,255,255,0.94); border-bottom: 3px solid #14161c; white-space: nowrap; }
+      #note { position: absolute; left: 40px; top: 1450px; padding: 7px 14px; border-radius: 8px; background: rgba(255,255,255,0.8); font-weight: 500; font-size: 22px; color: #6b7183; }
+      #card { position: absolute; left: 70px; top: 470px; width: 470px; padding: 26px 30px; border-radius: 22px; background: rgba(255,255,255,0.95); box-shadow: 0 14px 40px rgba(30,40,80,0.14); }
+      #card .k { font-weight: 800; font-size: 22px; letter-spacing: 3px; color: #6b7183; }
+      #card .big { font-weight: 800; font-size: 96px; letter-spacing: -3px; color: #14161c; line-height: 1.05; margin-top: 6px; }
+      #card .sub { font-weight: 600; font-size: 30px; color: #2f5bff; }
+      #card .bar { margin-top: 18px; height: 12px; border-radius: 6px; background: #e4e8f0; overflow: hidden; }
+      #card .bar i { display: block; height: 100%; width: 0; background: #2f5bff; border-radius: 6px; }
+      #card .barl { display: flex; justify-content: space-between; margin-top: 8px; font-weight: 600; font-size: 22px; color: #8a90a0; }
+      #cmp { position: absolute; left: 40px; right: 40px; top: 420px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+      #cmp .col { background: rgba(255,255,255,0.96); border-radius: 26px; padding: 22px 22px 26px; box-shadow: 0 14px 40px rgba(30,40,80,0.14); }
+      #cmp .lcd { background: #1d2430; border-radius: 16px; padding: 10px 18px; display: flex; justify-content: space-between; align-items: baseline; }
+      #cmp .lcd b { font-weight: 800; font-size: 72px; color: #8fd0ff; letter-spacing: -2px; font-variant-numeric: tabular-nums; }
+      #cmp .lcd span { font-weight: 700; font-size: 22px; letter-spacing: 3px; color: #8a96a8; }
+      #cmp .k { margin-top: 18px; font-weight: 800; font-size: 20px; letter-spacing: 3px; color: #6b7183; }
+      #cmp svg { display: block; width: 100%; height: 260px; margin-top: 6px; }
+      #cmp .bar { margin-top: 10px; height: 18px; border-radius: 9px; background: #e4e8f0; overflow: hidden; }
+      #cmp .bar i { display: block; height: 100%; width: 0; border-radius: 9px; }
+      #cmp .chip { margin-top: 14px; display: inline-block; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 24px; }
+      #cmp .lcd b { font-size: 56px; }
+      #stamp { position: absolute; left: 50%; top: 440px; transform: translateX(-50%) rotate(-6deg); padding: 14px 34px; border: 8px solid #e5483a; border-radius: 18px; color: #e5483a; font-weight: 800; font-size: 76px; letter-spacing: 4px; background: rgba(255,255,255,0.9); white-space: nowrap; }
+      .card { position: absolute; left: 60px; right: 60px; background: rgba(255,255,255,0.96); border-radius: 26px; padding: 26px 30px; box-shadow: 0 14px 40px rgba(30,40,80,0.16); }
+      .card .k { font-weight: 800; font-size: 24px; letter-spacing: 3px; color: #6b7183; margin-bottom: 14px; }
+      #bars { top: 420px; } #bars .row { display: flex; align-items: center; gap: 18px; margin-top: 14px; font-weight: 700; font-size: 32px; color: #14161c; }
+      #bars .row span { width: 100px; } #bars .bar { flex: 1; height: 34px; border-radius: 17px; background: #e4e8f0; overflow: hidden; } #bars .bar i { display: block; height: 100%; width: 0; border-radius: 17px; }
+      #bars .row b { width: 90px; text-align: right; font-weight: 800; }
+      #spec { top: 420px; } #spec svg { display: block; width: 100%; height: auto; }
+      #stamp { position: absolute; left: 50%; top: 440px; transform: translateX(-50%) rotate(-6deg); padding: 14px 34px; border: 8px solid #e5483a; border-radius: 18px; color: #e5483a; font-weight: 800; font-size: 70px; letter-spacing: 3px; background: rgba(255,255,255,0.92); white-space: nowrap; }
+      #cta { position: absolute; left: 0; right: 0; top: 1665px; text-align: center; font-weight: 600; font-size: 34px; color: #4a5060; }
+      #rew { position: absolute; right: 60px; top: 300px; font-weight: 800; font-size: 34px; letter-spacing: 2px; color: #2f5bff; }
+      #captions-host { z-index: 10; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="59.533" data-width="1080" data-height="1920" data-fps="30">
+      <div id="world" class="clip" data-start="0" data-duration="59.533" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+        <canvas id="world-canvas" width="1080" height="1920"></canvas>
+      </div>
+      <div id="ui" class="clip" data-start="0" data-duration="59.533" data-track-index="2" data-track-kind="graphics" data-layout-ignore>
+        <div class="fade-top"></div><div class="fade-bot"></div>
+        <div id="title"></div>
+        <div class="hud" id="hud-main"><div class="st"><span class="dot"></span><span class="sl"></span></div><span class="sep"></span><div><span class="val"></span><span class="unit"></span></div></div>
+        <div class="hud" id="hud-a"><div class="st"><span class="dot"></span><span class="sl"></span></div><span class="sep"></span><div><span class="val"></span><span class="unit"></span></div></div>
+        <div class="hud" id="hud-b"><div class="st"><span class="dot"></span><span class="sl"></span></div><span class="sep"></span><div><span class="val"></span><span class="unit"></span></div></div>
+        <div id="labels"></div>
+        <div id="note"></div>
+        <div id="bars" class="card"><div class="k">BERAPA BANYAK BERSELERAK</div>
+          <div class="row"><span>Merah</span><div class="bar"><i id="bR" style="background:#ff3b30"></i></div><b>1×</b></div>
+          <div class="row"><span>Biru</span><div class="bar"><i id="bB" style="background:#2f6bff"></i></div><b>5,9×</b></div></div>
+        <div id="spec" class="card"><div class="k">KENAPA BUKAN UNGU?</div>
+          <svg viewBox="0 0 900 420"><defs><linearGradient id="rb" x1="0" x2="1"><stop offset="0" stop-color="#8a3cff"/><stop offset="0.2" stop-color="#2f6bff"/><stop offset="0.42" stop-color="#34c759"/><stop offset="0.6" stop-color="#ffd60a"/><stop offset="0.78" stop-color="#ff8a1f"/><stop offset="1" stop-color="#ff3b30"/></linearGradient></defs>
+            <rect x="40" y="350" width="820" height="26" rx="13" fill="url(#rb)"/>
+            <text x="40" y="410" font-size="24" font-weight="700" fill="#8a3cff">UNGU</text><text x="860" y="410" text-anchor="end" font-size="24" font-weight="700" fill="#ff3b30">MERAH</text>
+            <rect x="40" y="40" width="150" height="300" rx="14" fill="#8a3cff" opacity="0.10"/>
+            <path id="cSun" d="M40,300 C120,250 180,120 300,90 C420,62 600,80 860,140" fill="none" stroke="#ff8a1f" stroke-width="8" stroke-linecap="round" pathLength="100" stroke-dasharray="0 100"/>
+            <path id="cEye" d="M40,335 C200,330 300,250 380,120 C430,40 470,40 520,120 C600,250 700,330 860,335" fill="none" stroke="#2f6bff" stroke-width="8" stroke-linecap="round" pathLength="100" stroke-dasharray="0 100"/>
+            <text id="lSun" x="640" y="62" font-size="28" font-weight="700" fill="#ff8a1f">Cahaya matahari</text><text id="lEye" x="560" y="250" font-size="28" font-weight="700" fill="#2f6bff">Kepekaan mata</text>
+            <text id="lLow" x="115" y="80" text-anchor="middle" font-size="26" font-weight="800" fill="#8a3cff">RENDAH</text></svg></div>
+        <div id="stamp">✗ PANTUL LAUT</div>
+        <div id="cta">Barang apa nak aku bedah lepas ni? ↓</div>
+        <div id="rew">◀◀ UNDUR</div>
+      </div>
+      <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="59.533" data-track-index="4" data-volume="1"></audio>
+      <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="59.533" data-track-index="5" data-volume="0.35"></audio>
+      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="59.533"
+        data-track-index="3" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+    </div>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      let resolveWorld;
+      window.__hf.buildReady["world"] = new Promise((r) => (resolveWorld = r));
+    </script>
+    <script type="module">
+      import { createWorld } from "./assets/world.js";
+      import { warp } from "./assets/timing.js";
+      const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
+      const scale = Number(vars.previewScale) || 1;
+      await Promise.all(["500", "600", "700", "800"].map((w) => document.fonts.load(`${w} 40px "Inter"`)));
+      let fxOpts = {}; try { fxOpts = vars.fx ? JSON.parse(vars.fx) : {}; } catch (e) {}
+      const world = createWorld(document.getElementById("world-canvas"), 1080, 1920, scale, fxOpts);
+      const T = world.T;
+
+      const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+      const ss = (e0, e1, x) => { const u = clamp((x - e0) / (e1 - e0)); return u * u * (3 - 2 * u); };
+      const win = (t, t0, t1, fin = 0.3, fout = 0.3) => (t0 <= 0 ? 1 : ss(t0, t0 + fin, t)) * (t1 >= 60 ? 1 : 1 - ss(t1 - fout, t1, t));
+
+      const HOOK = "Ayah, kenapa <em>langit biru</em>?";
+      const CH = [
+        [0, 3.5, HOOK], [3.5, 6, "Pantul laut? <em>Salah.</em>"], [6, 13, "Cahaya putih = <em>semua warna</em>"], [13, 28, "Biru <em>berselerak</em>"],
+        [28, 34, "Biru dari <em>semua arah</em>"], [34, 42, "Kenapa <em>bukan ungu</em>?"], [42, 50, "Senja: <em>laluan panjang</em>"], [50, 55, "Bulan: <em>langit hitam</em>"],
+        [55, 58.8, "Cahaya yang <em>tersesat</em>"], [58.8, 60, HOOK],
+      ];
+      const NOTES = [[13.2, 28, "Serakan Rayleigh ∝ 1/λ⁴ · biru ~450 nm vs merah ~700 nm ≈ 5,9×"], [34.2, 42, "Sebahagian ungu juga diserap di atmosfera atas"], [50.2, 55, "Bulan tiada atmosfera"]];
+      const LABELS = [
+        ["white", "CAHAYA PUTIH", 6.4, 12.9, 1], ["prism", "PRISMA", 7.6, 12.9, 1],
+        ["mol", "MOLEKUL UDARA", 16.2, 27.6, 1], ["red", "MERAH · PANJANG", 18.6, 23.6, -1], ["blue", "BIRU · PENDEK", 20.8, 23.6, 1],
+        ["eye", "MATA KAU", 31.6, 33.9, 1],
+        ["noon", "TENGAH HARI · PENDEK", 43.4, 47.2, -1], ["dusk", "SENJA · PANJANG", 44.2, 47.2, 1],
+        ["msun", "MATAHARI", 53.4, 54.9, 1],
+      ];
+      const ST = { sky: ["Langit", "#2f6bff"] };
+      const $ = (s) => document.querySelector(s);
+      const titleEl = $("#title"), noteEl = $("#note"), labelsEl = $("#labels"), cta = $("#cta"), rew = $("#rew");
+      const lblEls = LABELS.map(() => { const d = document.createElement("div"); d.className = "lbl"; d.innerHTML = '<span class="ln"></span><span class="pt"></span><span class="tx"></span>'; labelsEl.appendChild(d); return d; });
+      const ftop = document.querySelector(".fade-top"), fbot = document.querySelector(".fade-bot");
+      function overlay(o, t) {
+        const ch = CH.find(([a, b]) => t >= a && t < b) || CH[CH.length - 1];
+        const hard = ch[1] === 3.5 || ch[0] === 3.5;
+        const ta = hard ? 1 : win(t, ch[0], ch[1], 0.35, 0.3);
+        if (titleEl.innerHTML !== ch[2]) titleEl.innerHTML = ch[2];
+        titleEl.style.opacity = ta; titleEl.style.filter = `blur(${(1 - ta) * 10}px)`;
+        const dark = o.pal === "space" || o.pal === "dusk", day = o.pal === "day";
+        titleEl.style.color = dark || day ? "#ffffff" : "#14161c"; titleEl.style.textShadow = dark || day ? "0 2px 18px rgba(0,0,30,0.35)" : "none";
+        titleEl.querySelectorAll("em").forEach((e) => (e.style.color = dark ? "#ffd36b" : day ? "#ffe9a8" : "#2f5bff"));
+        ftop.style.opacity = o.pal === "lab" ? 1 : 0; fbot.style.opacity = o.pal === "lab" ? 1 : 0;
+        $("#hud-main").style.opacity = 0; $("#hud-a").style.opacity = 0; $("#hud-b").style.opacity = 0;
+        LABELS.forEach(([k, txt, t0, t1, side], i) => {
+          const el = lblEls[i], p = o.anchors[k]; const la = p && p[2] ? win(t, t0, t1, 0.25, 0.25) : 0;
+          el.style.opacity = la; if (la <= 0) return;
+          el.style.left = p[0] + "px"; el.style.top = p[1] + "px";
+          const L = 110 * ss(t0, t0 + 0.35, t);
+          const ln = el.querySelector(".ln"), tx = el.querySelector(".tx");
+          ln.style.width = L + "px"; ln.style.left = side > 0 ? "0px" : -L + "px"; ln.style.background = dark || day ? "#ffffff" : "#14161c";
+          if (tx.textContent !== txt) tx.textContent = txt;
+          tx.style.left = side > 0 ? L + "px" : "auto"; tx.style.right = side > 0 ? "auto" : L + "px";
+        });
+        const n = NOTES.find(([a, b]) => t >= a && t < b);
+        noteEl.style.opacity = n ? win(t, n[0], n[1]) : 0; if (n && noteEl.textContent !== n[2]) noteEl.textContent = n[2];
+        // cards
+        const ba = win(t, 23.7, 27.9, 0.35, 0.35); $("#bars").style.opacity = ba; $("#bars").style.transform = `translateY(${(1 - ss(23.7, 24.1, t)) * 30}px)`;
+        $("#bR").style.width = 100 / 5.9 * ss(24.3, 24.9, t) + "%"; $("#bB").style.width = 100 * ss(24.9, 25.9, t) + "%";
+        const sa = win(t, 36.8, 41.9, 0.35, 0.35); $("#spec").style.opacity = sa; $("#spec").style.transform = `translateY(${(1 - ss(36.8, 37.2, t)) * 30}px)`;
+        $("#cSun").setAttribute("stroke-dasharray", `${100 * ss(37.4, 38.6, t)} 100`); $("#cEye").setAttribute("stroke-dasharray", `${100 * ss(39.6, 40.8, t)} 100`);
+        $("#lSun").style.opacity = ss(38.3, 38.7, t); $("#lEye").style.opacity = ss(40.5, 40.9, t); $("#lLow").style.opacity = ss(40.8, 41.2, t);
+        const st = win(t, 3.5, 5.7, 0.12, 0.3); $("#stamp").style.opacity = st; $("#stamp").style.transform = `translateX(-50%) rotate(-6deg) scale(${1.5 - 0.5 * ss(3.5, 3.7, t)})`;
+        cta.style.opacity = 0; rew.style.opacity = 0;
+      }
+      function renderAt(t) { const ct = warp(t); const o = world.render(ct); overlay(o, ct); }
+      window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+      renderAt(0);
+      resolveWorld();
+    </script>
+  </body>
+</html>
