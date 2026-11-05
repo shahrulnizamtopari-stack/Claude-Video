@@ -9,3 +9,4 @@ ship-video/renders/
 /renders/
 series/*/*/renders/
 series/*/*/.hyperframes/
+series/*/output/
