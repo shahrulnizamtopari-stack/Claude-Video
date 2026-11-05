@@ -1,6 +1,13 @@
 // BAS MALAM Part 1: the film. Every frame is a pure function of film time t (seconds).
 // Beat times come from assets/timing.js (real voice times), so picture and voice can never drift.
-import * as THREE from "./lib/three.module.min.js";
+import * as THREE from "three";
+import { EffectComposer } from "./lib/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "./lib/jsm/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "./lib/jsm/postprocessing/UnrealBloomPass.js";
+import { GTAOPass } from "./lib/jsm/postprocessing/GTAOPass.js";
+import { ShaderPass } from "./lib/jsm/postprocessing/ShaderPass.js";
+import { OutputPass } from "./lib/jsm/postprocessing/OutputPass.js";
+import { RoomEnvironment } from "./lib/jsm/environments/RoomEnvironment.js";
 import { L, W, DURATION } from "./timing.js";
 import { makeKau, makeAin, makeKonduktor, makePenumpang, makeOrangRnR } from "./shared/characters.js";
 import { BUS, rowZ, seatHip, buildBus, buildRnR } from "./shared/bus.js";
@@ -40,18 +47,26 @@ export const T = {
   endCard: E(35) + 0.4,
 };
 
-export function createWorld(canvas, Wd, Hd, scale = 1) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+function mulberry32(a) { return function () { a |= 0; a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+
+export function createWorld(canvas, Wd, Hd, scale = 1, opts = {}) {
+  const FX = { ao: opts.ao ?? true, bloom: opts.bloom ?? true, finish: opts.finish ?? true, msaa: opts.msaa ?? (scale < 1 ? 0 : 2) };
+  const realRandom = Math.random; Math.random = mulberry32(1221);   // addons seed noise with Math.random
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, preserveDrawingBuffer: true });
   renderer.setPixelRatio(1);
-  renderer.setSize(Math.round(Wd * scale), Math.round(Hd * scale), false);
+  const RW = Math.round(Wd * scale), RH = Math.round(Hd * scale);
+  renderer.setSize(RW, RH, false);
   renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.4;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.25;
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x020306);
-  scene.fog = new THREE.FogExp2(0x05060a, 0.035);
-  const camera = new THREE.PerspectiveCamera(42, Wd / Hd, 0.02, 200);
+  scene.fog = new THREE.FogExp2(0x060914, 0.028);
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+  scene.environmentIntensity = 0.06;
+  const camera = new THREE.PerspectiveCamera(42, Wd / Hd, 0.05, 90);
 
   const bus = buildBus(scene);
   const rnr = buildRnR(scene, (i, covered) => makeOrangRnR(i + 3, covered));
@@ -151,6 +166,48 @@ export function createWorld(canvas, Wd, Hd, scale = 1) {
     return { pos, sit: 1 - su, yaw, walk: t * 0.9 + p.row * 0.3, walkAmp: tw > 0 ? 0.8 : 0, visible: !(atDoor && pos.x < -BUS.halfW - 0.1), sway: 0 };
   }
 
+
+  // ---------- post: AO -> bloom -> finish (depth of field, grade, vignette) ----------
+  const rt = new THREE.WebGLRenderTarget(RW, RH, { type: THREE.HalfFloatType, samples: FX.msaa });
+  const composer = new EffectComposer(renderer, rt);
+  composer.setPixelRatio(1); composer.setSize(RW, RH);
+  composer.addPass(new RenderPass(scene, camera));
+  const gtao = new GTAOPass(scene, camera, RW, RH);
+  gtao.updateGtaoMaterial({ radius: 0.35, distanceExponent: 1.4, thickness: 0.6, scale: 1.0, samples: scale < 1 ? 6 : 10, distanceFallOff: 1, screenSpaceRadius: false });
+  gtao.updatePdMaterial({ lumaPhi: 10, depthPhi: 2, normalPhi: 3, radius: 6, rings: 2, samples: 8 });
+  gtao.blendIntensity = 1.0;
+  composer.addPass(gtao); gtao.enabled = FX.ao;
+  const bloom = new UnrealBloomPass(new THREE.Vector2(RW, RH), 0.55, 0.6, 0.82); if (FX.bloom) composer.addPass(bloom);
+  const finish = new ShaderPass({
+    uniforms: { tDiffuse: { value: null }, tDepth: { value: gtao.depthTexture }, res: { value: new THREE.Vector2(RW, RH) }, focus: { value: 1 }, aperture: { value: 1 },
+      cNear: { value: 0.05 }, cFar: { value: 90 }, vig: { value: 0.45 } },
+    vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+    fragmentShader: `uniform sampler2D tDiffuse, tDepth; uniform vec2 res; uniform float focus, aperture, cNear, cFar, vig; varying vec2 vUv;
+      float viewZ(vec2 uv){ float d = texture2D(tDepth, uv).x; float z = d * 2.0 - 1.0; return 2.0 * cNear * cFar / (cFar + cNear - z * (cFar - cNear)); }
+      float coc(vec2 uv){ float z = viewZ(uv); return clamp(abs(z - focus) / max(z, 0.05) * aperture * 9.0, 0.0, 9.0) * (res.y / 960.0); }
+      void main(){
+        float c0 = coc(vUv);
+        vec3 acc = texture2D(tDiffuse, vUv).rgb; float wsum = 1.0;
+        const float GA = 2.39996323;
+        for (int i = 1; i < 22; i++) {
+          float r = sqrt(float(i) / 21.0); float a = float(i) * GA;
+          vec2 o = vec2(cos(a), sin(a)) * r * c0 / res;
+          vec2 uv = vUv + o; float ci = coc(uv);
+          float w = smoothstep(0.0, 1.0, ci / max(c0, 0.001) + 0.25);   // keep sharp foreground from bleeding
+          acc += texture2D(tDiffuse, uv).rgb * w; wsum += w; }
+        vec3 c = acc / wsum;
+        float l = dot(c, vec3(0.299,0.587,0.114));
+        c = mix(vec3(l), c, 1.08);                                   // saturation
+        c = (c - 0.5) * 1.1 + 0.5;                                   // contrast
+        c += vec3(-0.01, 0.0, 0.025) * (1.0 - smoothstep(0.0, 0.4, l)); // cool shadows
+        c *= mix(vec3(1.0), vec3(1.04, 1.0, 0.95), smoothstep(0.35, 0.9, l)); // warm highlights
+        vec2 q = vUv - 0.5; q.x *= res.x / res.y; float v = smoothstep(0.85, 0.2, length(q)); c *= mix(1.0 - vig, 1.0, v);
+        gl_FragColor = vec4(max(c, 0.0), 1.0); }`,
+  });
+  if (FX.finish) composer.addPass(finish);
+  composer.addPass(new OutputPass());
+  Math.random = realRandom;
+
   // ---------- camera shots ----------
   const kauHead = () => { kau.head.updateWorldMatrix(true, false); return new THREE.Vector3().setFromMatrixPosition(kau.head.matrixWorld); };
   const ainHead = () => { ain.head.updateWorldMatrix(true, false); return new THREE.Vector3().setFromMatrixPosition(ain.head.matrixWorld); };
@@ -164,14 +221,14 @@ export function createWorld(canvas, Wd, Hd, scale = 1) {
   const SH = [
     [0, (u) => { const h = kauHead(); return { p: h.clone().add(V(0.78, 0.1, -0.85 + u * 0.12)), l: h.clone().add(V(0, -0.1, 0)), fov: 38 }; }],
     [S(2), (u) => ({ p: V(AX, 1.62, 4.75 - u * 0.4), l: V(AX - 0.05, 0.95, -6), fov: 50 })],
-    [S(3), (u) => { const z = lerp(-2.4, 0.9, u); return { p: V(0.62, 1.55, z), l: V(-1.0, 0.85, z + 0.5), fov: 48 }; }],
+    [S(3), (u) => { const z = lerp(-2.4, 0.9, u); return { p: V(0.35, 1.22, z), l: V(-0.9, 0.95, z + 0.3), fov: 40 }; }],
     [S(4), (u) => ({ p: V(0.38, 0.78, 3.3 - u * 0.05), l: V(-0.5, 0.32, 3.95), fov: 50 })],
     [S(5), (u) => ({ p: V(0.4, 1.3, 3.35 + u * 0.08), l: V(-0.8, 0.85, 4.05), fov: 42 })],
     [S(6), (u) => ({ p: V(0.05, 1.35, 2.6), l: V(-1.25, 1.31, lerp(2.0, 1.4, u)), fov: 44 })],
     [w(6, 3), (u) => ({ p: lerpV(V(AX, 1.6, -1.2), V(0.4, 1.8, -4.6), ss(0, 1, u)), l: V(0.55, 1.93, BUS.front + 0.09), fov: 40 })],
-    [S(7), (u) => { const c = stick(0.5, 0.5); return { p: c.clone().add(V(0.05, 0.06, 0.62 - u * 0.12)), l: c, fov: 40 }; }],
-    [S(8), (u) => { const c = stick(lerp(0.3, 0.7, u), 0.55); return { p: c.clone().add(V(0, 0.02, 0.3)), l: c, fov: 40 }; }],
-    [S(9), (u) => { const c = stick(0.3, 0.36); return { p: c.clone().add(V(0, 0, 0.27 - u * 0.05)), l: c, fov: 40 }; }],
+    [S(7), (u) => { const c = stick(0.5, 0.5); return { p: c.clone().add(V(0.05, 0.08, 0.6 - u * 0.12)), l: c, fov: 40, hide: [kau.root] }; }],
+    [S(8), (u) => { const c = stick(lerp(0.3, 0.7, u), 0.55); return { p: c.clone().add(V(0, 0.02, 0.3)), l: c, fov: 40, hide: [kau.root] }; }],
+    [S(9), (u) => { const c = stick(0.3, 0.36); return { p: c.clone().add(V(0, 0, 0.27 - u * 0.05)), l: c, fov: 40, hide: [kau.root] }; }],
     [S(10), (u) => { const h = kauHead(); return { p: h.clone().add(V(0.7, 0.02, -0.75 + u * 0.1)), l: h.clone().add(V(0, -0.06, 0)), fov: 34 }; }],
     [S(11), (u) => ({ p: V(AX, 1.3, 2.4), l: V(0.35, 1.25, -4.5), fov: 30 - u * 4 })],
     [S(12), (u) => { const h = kondHead(); return { p: h.clone().add(V(-0.3, -0.2, 1.25 - u * 0.2)), l: h.clone().add(V(0, -0.3 - 0.1 * u, 0)), fov: 36 }; }],
@@ -183,16 +240,16 @@ export function createWorld(canvas, Wd, Hd, scale = 1) {
     [S(16), (u) => { const h = kauHead(); return { p: h.clone().add(V(0.95, 0.1, -0.55)), l: h.clone().add(V(0, -0.2, 0)), fov: 40 }; }],
     [T.blanketPOV[0], () => { const h = kauHead(); return { p: h.clone().add(V(0, 0, -0.05)), l: h.clone().add(V(0.25, -0.05, -1)), fov: 50, hide: [kau.head, kau.blanket] }; }],
     [S(19), (u) => ({ p: V(0.45, 1.5, 3.05), l: V(-0.6, 1.05, 4.05), fov: 40 })],
-    [S(20), (u) => { const h = kondHead(); return { p: V(-0.7, 0.9, 4.1), l: h.clone().add(V(0, -0.15, 0)), fov: 50 - u * 4 }; }],
+    [S(20), (u) => { const h = kondHead(); return { p: V(-0.78, 1.0, 4.12), l: h.clone().add(V(0, -0.15, 0)), fov: 50 - u * 4, hide: [kau.root] }; }],
     [S(21), (u) => ({ p: V(0.85, 1.65, 4.6), l: ainHead().add(V(0, -0.05, 0)), fov: 40 })],
-    [S(23), (u) => { const h = kondHead(); return { p: V(-0.72, 0.95, 4.1).lerp(h, u * 0.15), l: h.clone().add(V(0, -0.08, 0)), fov: 52 - u * 14 }; }],
-    [S(25), (u, t) => { const sh = (1 - ss(T.stop - 0.4, T.stop + 0.6, t)) * 0.004; return { p: V(-0.55 + Math.sin(t * 41) * sh, 1.32 + Math.sin(t * 57) * sh, 2.1), l: V(-1.25, 1.3, 1.3), fov: 42 }; }],
+    [S(23), (u) => { const h = kondHead(); return { p: V(-0.8, 1.02, 4.12).lerp(h, u * 0.15), l: h.clone().add(V(0, -0.08, 0)), fov: 52 - u * 14, hide: [kau.root] }; }],
+    [S(25), (u, t) => { const sh = (1 - ss(T.stop - 0.4, T.stop + 0.6, t)) * 0.006; return { p: V(AX + Math.sin(t * 41) * sh, 1.42 + Math.sin(t * 57) * sh, 1.2), l: V(0.1, 1.2, -6), fov: 36 }; }],
     [w(25, 4) - 0.15, (u) => ({ p: V(AX, 1.62, 4.75), l: V(AX - 0.05, 1.0, -6), fov: 48 })],
     [S(26), (u) => { const h = kondHead(); return { p: V(AX, 1.5, -1.6 + u * 0.2), l: h.clone().add(V(0, -0.1, 0)), fov: 34 }; }],
     [S(27), (u) => ({ p: V(-0.3, 1.3, 4.55), l: V(AX, 1.0, -5.5), fov: 44 })],
-    [S(28), (u) => ({ p: V(-0.98, 1.3, 4.0), l: V(-6, 1.7, lerp(2.2, 0.5, u)), fov: 46, hide: [kau.head] })],
-    [w(28, 5), (u) => ({ p: V(-1.15, 1.32, 3.65), l: signPos, fov: 26 - u * 3, hide: [kau.head] })],
-    [S(29), (u) => ({ p: V(-1.12, 1.3, 3.8), l: V(-9.5, 0.9, -0.8), fov: 44 - u * 10, hide: [kau.head] })],
+    [S(28), (u) => ({ p: V(-0.95, 1.38, 3.95), l: V(-6, 1.5, lerp(2.0, 0.8, u)), fov: 46, hide: [kau.root] })],
+    [w(28, 5), (u) => ({ p: V(-1.15, 1.34, 3.65), l: signPos, fov: 26 - u * 3, hide: [kau.root] })],
+    [S(29), (u) => ({ p: V(-1.12, 1.32, 3.8), l: V(-9.5, 0.9, -0.8), fov: 44 - u * 10, hide: [kau.root] })],
     [S(30), (u) => ({ p: V(-0.12, 1.45, 3.15), l: V(-0.6, 0.86, 3.62), fov: 32 })],
     [S(31), (u) => { const h = ainHead(); return { p: h.clone().add(V(0.12, 0.02, -0.62 + u * 0.1)), l: h.clone().add(V(0, -0.02, 0)), fov: 32 }; }],
     [S(32), (u) => ({ p: V(AX, 1.45, 3.4 - u * 0.4), l: doorPos, fov: 40 })],
@@ -237,7 +294,7 @@ export function createWorld(canvas, Wd, Hd, scale = 1) {
     kond.pose({ sit: k.sit, walk: k.walk, walkAmp: k.walkAmp, armR: k.armR, armL: k.armL, headTilt: k.headTilt, headPitch: k.headPitch, eyes: "none" });
     if (t >= S(14) - 1 && t < S(25)) kond.armL.sh.rotation.set(0.9, 0, -0.15);  // torch forward
     rim.position.set(k.pos.x + Math.sin(k.yaw) * 0.7, 1.75, k.pos.z + Math.cos(k.yaw) * 0.7);
-    rim.intensity = t >= T.standUp && t < T.lightsOn ? 4 : 0;
+    rim.intensity = t >= T.standUp && t < T.lightsOn ? 9 : 0;
     // PASSENGERS
     for (const p of pass) {
       const s = passState(p, t);
@@ -251,7 +308,8 @@ export function createWorld(canvas, Wd, Hd, scale = 1) {
     const moving = 1 - ss(T.stop - 1.2, T.stop, t);
     const period = 2.9, ph = ((t * (0.6 + 0.4 * moving)) % period) / period;
     const sweep = Math.exp(-Math.pow((ph - 0.5) / 0.09, 2));
-    bus.setLights({ on, streetL: moving > 0.01 ? sweep * 9 * moving : (t > T.stop ? 6 : 0), streetZ: moving > 0.01 ? lerp(-6, 5, ph) : 2.0, streetR: sweep * 5 * moving });
+    const decel = clamp((t - (T.stop - 1.2)) / 1.2), dist = t < T.stop - 1.2 ? t : (T.stop - 1.2) + 1.2 * (decel - decel * decel / 2);
+    bus.setLights({ on, t: dist, streetL: moving > 0.01 ? sweep * 9 * moving : (t > T.stop ? 6 : 0), streetZ: moving > 0.01 ? lerp(-6, 5, ph) : 2.0, streetR: sweep * 5 * moving });
     bus.nightPlanes[0].visible = t < T.stop;            // left: the R&R becomes visible
     rnr.grp.visible = t >= T.stop;
     // torch
@@ -281,7 +339,14 @@ export function createWorld(canvas, Wd, Hd, scale = 1) {
     camera.position.copy(c.p); camera.lookAt(c.l); camera.fov = c.fov; camera.updateProjectionMatrix();
     // a whisper of handheld drift, seeded by time
     camera.rotation.z += Math.sin(t * 0.7) * 0.004; camera.rotateX(Math.sin(t * 0.53 + 1) * 0.003); camera.rotateY(Math.sin(t * 0.41 + 2) * 0.003);
-    renderer.render(scene, camera);
+    // depth of field: focus on the look target; tighter lenses get a shallower field
+    finish.uniforms.focus.value = camera.position.distanceTo(c.l) * (c.focusK ?? 1);
+    finish.uniforms.aperture.value = (c.ap ?? 1) * (0.9 + (42 - Math.min(42, c.fov)) * 0.06);
+    finish.uniforms.cNear.value = camera.near; finish.uniforms.cFar.value = camera.far;
+    scene.environmentIntensity = 0.06 + on * 0.12;
+    bloom.strength = 0.55 * (1 - on * 0.65); bloom.threshold = 0.82 + on * 0.4;
+    renderer.toneMappingExposure = 1.25 - on * 0.3;
+    composer.render();
 
     return {
       shot: i,
@@ -289,5 +354,6 @@ export function createWorld(canvas, Wd, Hd, scale = 1) {
       kondDist: kond.root.position.distanceTo(kau.root.position), torchOn,
     };
   }
+  if (typeof window !== "undefined") window.__scene = scene;
   return { render, T };
 }
