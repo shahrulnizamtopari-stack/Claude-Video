@@ -1,97 +1,101 @@
 #!/usr/bin/env python3
-"""Lift video sound-effects bed (assets/sfx.wav, 60 s, 48 kHz mono), all synthesised. Events in canonical time
-(warped to voice time through assets/timing.js; with no voiceover the warp is identity)."""
+"""Krakow explainer sound bed (assets/sfx.wav, 48 kHz mono), all synthesised with numpy (FFT filters, no scipy).
+Events are in canonical time and land on the voice through assets/timing.js.
+Gunfire is distant and muffled (heard from streets away), never close-up."""
 import json, os, re, wave
 import numpy as np
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SR, DUR = 48000, 60.0
-N = int(SR * DUR); out = np.zeros(N); t = np.arange(N) / SR
-rng = np.random.default_rng(11)
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from build_captions import FILM
+SR = 48000; N = int(SR * FILM); out = np.zeros(N); t = np.arange(N) / SR
+rng = np.random.default_rng(7)
 A = json.loads(re.search(r"ANCHORS = (\[.*?\]);", open(os.path.join(ROOT, "assets", "timing.js")).read()).group(1))
 def unwarp(c):
     for (r0, c0), (r1, c1) in zip(A, A[1:]):
         if c <= c1: return r0 + (c - c0) / (c1 - c0) * (r1 - r0)
     return A[-1][0]
 ct = np.interp(t, [r for r, c in A], [c for r, c in A])
-def lp(x, fc):
-    a = 1 - np.exp(-2 * np.pi * fc / SR); y = np.empty_like(x); acc = 0.0
-    for i in range(len(x)): acc += a * (x[i] - acc); y[i] = acc
-    return y
-def bp(x, lo, hi): return lp(x, hi) - lp(x, lo)
-def hp(x, fc): return x - lp(x, fc)
-def env(n, att, rel):
-    e = np.ones(n); a = max(1, int(att * SR)); r = max(1, int(rel * SR)); e[:a] = np.linspace(0, 1, a); e[-r:] *= np.linspace(1, 0, r) ** 2; return e
+def band(x, lo=0, hi=None):
+    X = np.fft.rfft(x); f = np.fft.rfftfreq(len(x), 1 / SR); m = np.ones_like(f)
+    if lo: m *= 1 / (1 + (lo / np.maximum(f, 1)) ** 4)
+    if hi: m *= 1 / (1 + (f / hi) ** 4)
+    return np.fft.irfft(X * m, len(x))
+def noise(d): return rng.standard_normal(int(d * SR))
 def dec(n, k): return np.exp(-np.linspace(0, k, n))
 def tone(f0, f1, d): n = int(d * SR); f = np.linspace(f0, f1, n); return np.sin(2 * np.pi * np.cumsum(f) / SR)
-def noise(d): return rng.standard_normal(int(d * SR))
+def env(n, a, r): e = np.ones(n); a = max(1, int(a * SR)); r = max(1, int(r * SR)); e[:a] = np.linspace(0, 1, a); e[-r:] *= np.linspace(1, 0, r) ** 2; return e
+def ramp(a, b, x): return np.clip((x - a) / (b - a), 0, 1)
 def put(sig, tc, g):
     i = int(unwarp(tc) * SR); j = min(N, i + len(sig))
     if 0 <= i < N: out[i:j] += g * sig[: j - i]
-def ramp(a, b, x): return np.clip((x - a) / (b - a), 0, 1)
+def verb(x, decay=1.6, mix=0.5):
+    n = int(decay * SR); ir = rng.standard_normal(n) * np.exp(-np.linspace(0, 7, n)); ir = band(ir, 200, 3000)
+    L = len(x) + n; y = np.fft.irfft(np.fft.rfft(x, L) * np.fft.rfft(ir, L), L); y /= np.max(np.abs(y)) + 1e-9
+    return np.concatenate([x, np.zeros(n)]) * (1 - mix) + y * mix * np.max(np.abs(x))
 
-# beds
-inside = 1 - ramp(47.6, 48.6, ct) * (1 - ramp(58.6, 59.6, ct))           # shaft scenes vs outdoors
-hum = 0.5 * np.sin(2 * np.pi * 55 * t) + 0.25 * np.sin(2 * np.pi * 110 * t) + 0.6 * lp(rng.standard_normal(N), 200)
-out += 0.05 * hum * inside
-out += 0.05 * bp(rng.standard_normal(N), 200, 1200) * (1 - inside)       # outdoor breeze
-fall = ramp(22.3, 25, ct) * (1 - ramp(33, 36.8, ct))
-out += 0.16 * bp(rng.standard_normal(N), 250, 2500) * fall                 # falling air rush
-fwhine = 500 + 1300 * ramp(23.5, 28.0, ct)
-out += 0.05 * np.sin(2 * np.pi * np.cumsum(fwhine) / SR) * ramp(23.5, 24.5, ct) * (1 - ramp(28.0, 28.15, ct))   # governor spin-up
-drone = np.sin(2 * np.pi * 73 * t) * 0.5 + np.sin(2 * np.pi * 73.8 * t) * 0.5
-out += 0.05 * drone * ramp(27.8, 28.4, ct) * (1 - ramp(31.0, 32.0, ct))
-screech_f = 2200 + 400 * np.sin(2 * np.pi * 7 * t)
-screech = 0.5 * np.sin(2 * np.pi * np.cumsum(screech_f) / SR) * (0.6 + 0.4 * rng.standard_normal(N) * 0.3) + bp(rng.standard_normal(N), 2500, 9000)
-out += 0.10 * screech * ramp(32.35, 32.6, ct) * (1 - ramp(35.6, 36.9, ct))   # wedges on the rails
+# ---------- beds ----------
+city = band(rng.standard_normal(N), 120, 1800)
+murmur = band(rng.standard_normal(N), 300, 1400) * (0.6 + 0.4 * np.sin(2 * np.pi * 0.7 * t) * np.sin(2 * np.pi * 0.23 * t))
+calm = 1 - ramp(4.4, 5.4, ct)
+out += 0.05 * city * (0.5 + 0.5 * calm) + 0.07 * murmur * calm                       # busy square, then thins out
+dr = 0.5 * np.sin(2 * np.pi * 49 * t) + 0.35 * np.sin(2 * np.pi * 49.6 * t) + 0.2 * np.sin(2 * np.pi * 98.3 * t)
+pad = sum(np.sin(2 * np.pi * f * t + k) for k, f in enumerate([146.8, 174.6, 220.0])) / 3      # D minor, dark
+tension = ramp(4.6, 6.0, ct) * (1 - 0.5 * ramp(21.5, 23, ct)) * (1 - ramp(45.5, 47.5, ct))
+out += 0.10 * dr * tension + 0.025 * band(pad, 0, 900) * ramp(28.5, 30.5, ct) * (1 - ramp(45, 47, ct))
+out += 0.03 * band(pad * 0.8 + 0.4 * np.sin(2 * np.pi * 293.7 * t), 0, 1200) * ramp(53.5, 55.5, ct) * (1 - ramp(59.4, 60, ct))  # vigil
+# sirens (two-tone wail), arriving from 13.6, loudest in the chase, fading after the arrest
+sf = 650 + 350 * (0.5 + 0.5 * np.sin(2 * np.pi * 0.55 * t)); siren = np.sin(2 * np.pi * np.cumsum(sf) / SR) + 0.3 * np.sin(2 * np.pi * np.cumsum(sf * 2) / SR)
+sf2 = 720 + 300 * (0.5 + 0.5 * np.sin(2 * np.pi * 0.47 * t + 1.3)); siren2 = np.sin(2 * np.pi * np.cumsum(sf2) / SR)
+sir = ramp(13.6, 16.5, ct) * (1 - ramp(23.0, 27.5, ct))
+out += 0.045 * band(siren + 0.7 * siren2, 300, 2600) * sir
+# heartbeat under the casualty numbers
+for k in range(14):
+    c = 29.4 + k * 0.62
+    for o, g in [(0, 1.0), (0.17, 0.6)]: put(tone(70, 45, 0.18) * dec(int(0.18 * SR), 6), c + o, 0.22 * g)
 
-# one-shots
-def snap(big=1.0):
-    d = 0.9; n = int(d * SR)
-    crack = hp(noise(d), 1500) * dec(n, 40)
-    ring = (np.sin(2 * np.pi * 1850 * np.arange(n) / SR) + 0.6 * np.sin(2 * np.pi * 2960 * np.arange(n) / SR)) * dec(n, 9)
-    crackle = (rng.random(n) < 0.004 * big) * rng.standard_normal(n) * 3 * dec(n, 3)
-    return big * (1.2 * crack + 0.25 * ring + 0.5 * crackle)
-def thud(d=0.6, f0=80): n = int(d * SR); return tone(f0, f0 * 0.5, d) * dec(n, 7) + 0.4 * lp(noise(d), 300) * dec(n, 9)
-def tick(f): d = 0.25; n = int(d * SR); return np.sin(2 * np.pi * f * np.arange(n) / SR) * dec(n, 14)
-def pop(): d = 0.12; return tone(900, 320, d) * env(int(d * SR), 0.002, 0.1)
-def whoomp(): d = 0.45; return tone(140, 260, d) * env(int(d * SR), 0.05, 0.35)
-def clack(): d = 0.3; n = int(d * SR); return hp(noise(d), 800) * dec(n, 30) * 1.5 + 0.6 * np.sin(2 * np.pi * 1200 * np.arange(n) / SR) * dec(n, 25)
-def boing(): d = 0.8; n = int(d * SR); f = 180 + 60 * np.sin(2 * np.pi * 9 * np.arange(n) / SR) * dec(n, 4); return np.sin(2 * np.pi * np.cumsum(f) / SR) * dec(n, 5)
-def knock(): d = 0.18; n = int(d * SR); return (tone(260, 180, d) + 0.5 * bp(noise(d), 300, 2000)) * dec(n, 18)
-def whoosh(d=0.8): n = int(d * SR); return bp(noise(d), 400, 3000) * np.sin(np.linspace(0, np.pi, n)) ** 2
-def chime(f): d = 1.6; n = int(d * SR); k = np.arange(n) / SR; return (np.sin(2 * np.pi * f * k) + 0.5 * np.sin(2 * np.pi * f * 1.5 * k)) * dec(n, 5)
-def ratchet(): d = 0.35; n = int(d * SR); x = np.zeros(n); 
-for _ in [0]: pass
-def ratchet():
-    d = 0.35; n = int(d * SR); x = np.zeros(n)
-    for k in range(5): i = int(k * 0.05 * SR); c = hp(noise(0.03), 1500) * dec(int(0.03 * SR), 25); x[i:i + len(c)] += c * (1 - k * 0.12)
-    return x
+# ---------- one-shots ----------
+def shot():  # distant, muffled report with a street echo
+    d = 0.35; n = int(d * SR); s = band(noise(d), 80, 1800) * dec(n, 22) + 0.8 * tone(110, 50, d) * dec(n, 14)
+    return verb(s, 1.3, 0.55)
+def whoosh(d=0.9, up=True):
+    n = int(d * SR); e = np.sin(np.linspace(0, np.pi, n)) ** 2; s = band(noise(d), 300, 3000) * e
+    return s * np.linspace(0.6, 1.0, n) if up else s
+def ui(f=1400, d=0.14): n = int(d * SR); return (np.sin(2 * np.pi * f * np.arange(n) / SR) + 0.4 * np.sin(2 * np.pi * f * 1.5 * np.arange(n) / SR)) * dec(n, 18)
+def tick(): d = 0.05; n = int(d * SR); return band(noise(d), 2000, 8000) * dec(n, 30)
+def boom(): d = 2.4; n = int(d * SR); return (tone(55, 30, d) + 0.6 * band(noise(d), 20, 200)) * dec(n, 4)
+def chime(f): d = 2.2; n = int(d * SR); k = np.arange(n) / SR; return (np.sin(2 * np.pi * f * k) + 0.5 * np.sin(2 * np.pi * 2 * f * k) + 0.25 * np.sin(2 * np.pi * 3.01 * f * k)) * dec(n, 5)
+def impact(): d = 1.2; n = int(d * SR); return (tone(90, 40, d) * 1.2 + band(noise(d), 40, 600)) * dec(n, 6)
 
-put(chime(1318), 3.2, 0.10); put(chime(1046), 3.35, 0.08)  # lift arrives: ding-dong
-out += 0.06 * bp(rng.standard_normal(N), 80, 400) * ramp(0.0, 0.3, ct) * (1 - ramp(2.9, 3.3, ct))  # motor running while it rises
-put(snap(1.3), 4.9, 0.55); put(thud(0.5, 70), 4.95, 0.6)
-for k in range(5): put(tick(880 * 2 ** (k / 12 * 2)), 9.3 + k * 0.55, 0.18)
-for k in range(5): put(pop(), 14.5 + (k + 1) * 0.22, 0.2)
-put(whoomp(), 17.6, 0.3); put(whoomp(), 18.3, 0.25)
-for s in (21.55, 21.7, 21.85, 22.0, 22.15): put(snap(0.8), s, 0.45)
-put(whoosh(1.0), 22.6, 0.3)
-put(clack(), 28.0, 0.7); put(snap(0.4), 28.0, 0.25)
-put(knock(), 31.6, 0.6); put(thud(0.4, 90), 32.4, 0.4); put(thud(0.7, 60), 36.8, 0.55)
-put(whoosh(1.2), 40.8, 0.28)
-put(pop(), 42.5, 0.25); put(pop(), 42.85, 0.25)
-put(whoosh(0.6), 44.6, 0.2); put(thud(0.5, 75), 45.3, 0.55); put(boing(), 45.3, 0.25)
-put(whoosh(1.0), 47.8, 0.25)
-for s in (48.6, 49.0, 49.4, 49.8): put(knock(), s, 0.45)
-put(whoosh(0.4), 51.2, 0.25); put(thud(0.25, 140), 51.6, 0.6); put(snap(0.5), 51.6, 0.3)
-put(ratchet(), 52.15, 0.7); put(chime(784), 53.5, 0.12)
-put(whoosh(1.6), 55.2, 0.25); put(whoosh(1.0), 58.8, 0.25)
-put(chime(1046), 57.2, 0.1)
+# hook: soft impact as the map takes over
+put(whoosh(1.1), 4.4, 0.35); put(impact(), 5.0, 0.55)
+# gunfire: bursts at each stop (distant), plus the exchange at the arrest
+for c0, c1 in [(6.3, 7.5), (8.7, 9.9), (11.1, 12.3)]:
+    r = np.random.default_rng(int(c0 * 10)); c = c0 + 0.05
+    while c < c1: put(shot(), c, 0.3 * (0.7 + 0.3 * r.random())); c += 0.09 + 0.12 * r.random()
+for c in [21.0, 21.18, 21.31, 21.62, 21.75]: put(shot(), c, 0.22)
+# timer ticks while the clock runs
+for k in range(14): put(tick(), 6.0 + k * 0.5, 0.35)
+# pins and markers
+for c in [6.3, 8.7, 11.1]: put(ui(1250), c, 0.35)
+put(ui(880, 0.3), 21.6, 0.4); put(ui(660, 0.3), 21.75, 0.3)
+# transitions (photos in/out, camera flights)
+for c in [7.4, 12.4, 16.0, 22.4, 30.0, 33.4, 33.8, 46.6, 53.9]: put(whoosh(0.8), c - 0.3, 0.25)
+# fact-card pops
+for c in [13.2, 17.0, 22.4, 29.4, 31.6, 34.6, 42.2, 48.4, 55.0]: put(ui(1700, 0.1), c, 0.22)
+# candles: soft chimes
+for k, c in enumerate([29.6, 29.95, 30.3, 30.65, 31.0, 31.35]): put(chime([523.3, 587.3, 659.3, 587.3, 523.3, 440.0][k]), c, 0.08)
+for k, c in enumerate([35.4, 35.75, 36.1]): put(chime([392.0, 440.0, 349.2][k]), c, 0.08)
+# dossier rows: data blips
+for c in [37.8, 38.8, 39.6, 42.0, 43.4]: put(ui(2100, 0.08), c, 0.2)
+# "pengganas": low boom
+put(boom(), 42.2, 0.5)
+# ending: a single low chime under the question
+put(chime(293.7), 55.0, 0.12)
 
-out *= np.minimum(1, np.minimum(t / 0.05, (DUR - t) / 0.05))   # bed runs through the loop point
-pk = np.abs(out).max(); out = out / pk * 0.6
-rms = np.sqrt(np.mean(out ** 2)); out *= (10 ** (-20 / 20)) / rms
-out = np.tanh(out * 1.4) / 1.4
-pcm = (np.clip(out, -1, 1) * 32767).astype(np.int16)
-with wave.open(os.path.join(ROOT, "assets", "sfx.wav"), "wb") as f:
-    f.setnchannels(1); f.setsampwidth(2); f.setframerate(SR); f.writeframes(pcm.tobytes())
-print("sfx.wav peak dBFS", round(20 * np.log10(np.abs(out).max() + 1e-9), 1))
+# fade in/out, normalise to about -24 dBFS RMS (sits ~10 dB under the voice)
+out *= np.clip(t / 0.3, 0, 1) * np.clip((FILM - t) / 1.2, 0, 1)
+out *= 10 ** (-24 / 20) / (np.sqrt(np.mean(out ** 2)) + 1e-9)
+pk = np.max(np.abs(out)); out *= min(1, 0.7 / pk)
+with wave.open(os.path.join(ROOT, "assets", "sfx.wav"), "w") as w:
+    w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes((np.clip(out, -1, 1) * 32767).astype(np.int16).tobytes())
+print("sfx.wav", FILM, "s, peak", round(20 * np.log10(np.max(np.abs(out))), 1), "dBFS")
