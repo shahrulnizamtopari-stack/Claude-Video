@@ -320,7 +320,7 @@ export function createWorld(canvas, W, H, scale = 1, opts = {}) {
     { t: 9.8, pos: () => carP().add(V(-62, 56, 52)), look: () => carP().add(V(4, 1, -2)), fov: 40 },
     { t: 12.6, pos: () => carP().add(V(-60, 58, 60)), look: () => carP().add(V(4, 1, 2)), fov: 40 },
     { t: 16.0, pos: () => V(90, 90, 160), look: () => V(4, 1, 34), fov: 42 },
-    { t: 19.6, pos: () => V(62, 62, 128), look: () => V(-6, 1, 46), fov: 40 },
+    { t: 19.6, pos: () => V(44, 100, 112), look: () => V(-6, 1, 46), fov: 40 },
     { t: 23.0, pos: () => V(36, 42, 128), look: () => V(-8, 1.5, 60), fov: 40 },
     { t: 28.0, pos: () => V(40, 38, 122), look: () => V(-8, 1.5, 60), fov: 40 },
     { t: 30.4, pos: () => V(-100, 66, 52), look: () => V(-25, 1, 0), fov: 40 },

@@ -1,0 +1,330 @@
+<template>
+  <style>
+    @font-face { font-family: "Montserrat"; font-weight: 800; src: url("assets/fonts/montserrat-latin-800-normal.woff2") format("woff2"); }
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    #root .cap { position: absolute; left: 0; right: 0; top: 0; height: 100%; display: flex; align-items: center; justify-content: center; }
+    #root .w { display: inline-block; font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 128px; letter-spacing: -1px;
+      color: #fff; -webkit-text-stroke: 10px #000; paint-order: stroke fill; text-shadow: 11.0px 0.0px 0 #000, 10.6px 2.8px 0 #000, 9.5px 5.5px 0 #000, 7.8px 7.8px 0 #000, 5.5px 9.5px 0 #000, 2.8px 10.6px 0 #000, 0.0px 11.0px 0 #000, -2.8px 10.6px 0 #000, -5.5px 9.5px 0 #000, -7.8px 7.8px 0 #000, -9.5px 5.5px 0 #000, -10.6px 2.8px 0 #000, -11.0px 0.0px 0 #000, -10.6px -2.8px 0 #000, -9.5px -5.5px 0 #000, -7.8px -7.8px 0 #000, -5.5px -9.5px 0 #000, -2.8px -10.6px 0 #000, -0.0px -11.0px 0 #000, 2.8px -10.6px 0 #000, 5.5px -9.5px 0 #000, 7.8px -7.8px 0 #000, 9.5px -5.5px 0 #000, 10.6px -2.8px 0 #000, 0 16px 0 rgba(0,0,0,0.5); line-height: 1.1; }
+    #root .w.key { color: var(--c); font-size: 150px; text-transform: uppercase; }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920" data-layout-allow-overflow>
+    <div id="cw0" class="clip cap" data-start="0.25" data-duration="0.51" data-track-index="1"><span class="w">Sabtu</span></div>
+    <div id="cw1" class="clip cap" data-start="0.76" data-duration="0.42" data-track-index="1"><span class="w">pukul</span></div>
+    <div id="cw2" class="clip cap" data-start="1.18" data-duration="0.26" data-track-index="1"><span class="w">tiga</span></div>
+    <div id="cw3" class="clip cap" data-start="1.44" data-duration="0.76" data-track-index="1"><span class="w">petang</span></div>
+    <div id="cw4" class="clip cap" data-start="2.2" data-duration="0.45" data-track-index="1"><span class="w">Dataran</span></div>
+    <div id="cw5" class="clip cap" data-start="2.65" data-duration="0.39" data-track-index="1"><span class="w">paling</span></div>
+    <div id="cw6" class="clip cap" data-start="3.04" data-duration="0.39" data-track-index="1"><span class="w">cantik</span></div>
+    <div id="cw7" class="clip cap" data-start="3.43" data-duration="0.17" data-track-index="1"><span class="w">di</span></div>
+    <div id="cw8" class="clip cap" data-start="3.6" data-duration="0.53" data-track-index="1"><span class="w">Poland</span></div>
+    <div id="cw9" class="clip cap" data-start="4.13" data-duration="0.31" data-track-index="1"><span class="w">penuh</span></div>
+    <div id="cw10" class="clip cap" data-start="4.44" data-duration="0.75" data-track-index="1"><span class="w">pelancong</span></div>
+    <div id="cw11" class="clip cap" data-start="5.19" data-duration="0.12" data-track-index="1"><span class="w">Dalam</span></div>
+    <div id="cw12" class="clip cap" data-start="5.31" data-duration="0.12" data-track-index="1"><span class="w">masa</span></div>
+    <div id="cw13" class="clip cap" data-start="5.73" data-duration="0.42" data-track-index="1"><span class="w key" style="--c:#FF5A4A; font-size:146px">seminit</span></div>
+    <div id="cw14" class="clip cap" data-start="6.15" data-duration="0.48" data-track-index="1"><span class="w">semuanya</span></div>
+    <div id="cw15" class="clip cap" data-start="6.63" data-duration="0.64" data-track-index="1"><span class="w">berubah</span></div>
+    <div id="cw16" class="clip cap" data-start="7.27" data-duration="0.4" data-track-index="1"><span class="w">Sebuah</span></div>
+    <div id="cw17" class="clip cap" data-start="7.67" data-duration="0.31" data-track-index="1"><span class="w">kereta</span></div>
+    <div id="cw18" class="clip cap" data-start="7.98" data-duration="0.34" data-track-index="1"><span class="w">hitam</span></div>
+    <div id="cw19" class="clip cap" data-start="8.32" data-duration="0.35" data-track-index="1"><span class="w">masuk</span></div>
+    <div id="cw20" class="clip cap" data-start="8.67" data-duration="0.13" data-track-index="1"><span class="w">ke</span></div>
+    <div id="cw21" class="clip cap" data-start="8.8" data-duration="0.5" data-track-index="1"><span class="w">dataran</span></div>
+    <div id="cw22" class="clip cap" data-start="9.3" data-duration="0.53" data-track-index="1"><span class="w key" style="--c:#FFC531; font-size:150px">Krakow</span></div>
+    <div id="cw23" class="clip cap" data-start="9.83" data-duration="0.48" data-track-index="1"><span class="w">Pemandu</span></div>
+    <div id="cw24" class="clip cap" data-start="10.31" data-duration="0.12" data-track-index="1"><span class="w">tu</span></div>
+    <div id="cw25" class="clip cap" data-start="10.42" data-duration="0.53" data-track-index="1"><span class="w">menembak</span></div>
+    <div id="cw26" class="clip cap" data-start="10.95" data-duration="0.28" data-track-index="1"><span class="w">dari</span></div>
+    <div id="cw27" class="clip cap" data-start="11.23" data-duration="0.48" data-track-index="1"><span class="w">dalam</span></div>
+    <div id="cw28" class="clip cap" data-start="11.71" data-duration="0.24" data-track-index="1"><span class="w">kereta</span></div>
+    <div id="cw29" class="clip cap" data-start="11.95" data-duration="0.53" data-track-index="1"><span class="w">berhenti</span></div>
+    <div id="cw30" class="clip cap" data-start="12.48" data-duration="0.2" data-track-index="1"><span class="w">dan</span></div>
+    <div id="cw31" class="clip cap" data-start="12.68" data-duration="0.53" data-track-index="1"><span class="w">menembak</span></div>
+    <div id="cw32" class="clip cap" data-start="13.21" data-duration="0.75" data-track-index="1"><span class="w">lagi</span></div>
+    <div id="cw33" class="clip cap" data-start="13.96" data-duration="0.35" data-track-index="1"><span class="w">Lebih</span></div>
+    <div id="cw34" class="clip cap" data-start="14.31" data-duration="0.42" data-track-index="1"><span class="w key" style="--c:#FF5A4A; font-size:146px">seminit</span></div>
+    <div id="cw35" class="clip cap" data-start="14.73" data-duration="0.5" data-track-index="1"><span class="w">tembakan</span></div>
+    <div id="cw36" class="clip cap" data-start="15.23" data-duration="0.16" data-track-index="1"><span class="w">tak</span></div>
+    <div id="cw37" class="clip cap" data-start="15.39" data-duration="0.54" data-track-index="1"><span class="w">berhenti</span></div>
+    <div id="cw38" class="clip cap" data-start="15.93" data-duration="0.12" data-track-index="1"><span class="w">Lima</span></div>
+    <div id="cw39" class="clip cap" data-start="15.93" data-duration="0.12" data-track-index="1"><span class="w">belas</span></div>
+    <div id="cw40" class="clip cap" data-start="16.47" data-duration="0.31" data-track-index="1"><span class="w">saat</span></div>
+    <div id="cw41" class="clip cap" data-start="16.78" data-duration="0.71" data-track-index="1"><span class="w">kemudian</span></div>
+    <div id="cw42" class="clip cap" data-start="17.49" data-duration="0.58" data-track-index="1"><span class="w">panggilan</span></div>
+    <div id="cw43" class="clip cap" data-start="18.07" data-duration="0.57" data-track-index="1"><span class="w">kecemasan</span></div>
+    <div id="cw44" class="clip cap" data-start="18.64" data-duration="0.45" data-track-index="1"><span class="w">pertama</span></div>
+    <div id="cw45" class="clip cap" data-start="19.09" data-duration="0.57" data-track-index="1"><span class="w">masuk</span></div>
+    <div id="cw46" class="clip cap" data-start="19.66" data-duration="0.16" data-track-index="1"><span class="w">Kurang</span></div>
+    <div id="cw47" class="clip cap" data-start="19.82" data-duration="0.26" data-track-index="1"><span class="w">tiga</span></div>
+    <div id="cw48" class="clip cap" data-start="20.08" data-duration="0.5" data-track-index="1"><span class="w">minit</span></div>
+    <div id="cw49" class="clip cap" data-start="20.58" data-duration="0.33" data-track-index="1"><span class="w key" style="--c:#7EB6FF; font-size:150px">polis</span></div>
+    <div id="cw50" class="clip cap" data-start="20.91" data-duration="0.23" data-track-index="1"><span class="w">dah</span></div>
+    <div id="cw51" class="clip cap" data-start="21.14" data-duration="0.45" data-track-index="1"><span class="w">sampai</span></div>
+    <div id="cw52" class="clip cap" data-start="21.59" data-duration="0.17" data-track-index="1"><span class="w">dan</span></div>
+    <div id="cw53" class="clip cap" data-start="21.76" data-duration="0.35" data-track-index="1"><span class="w">terus</span></div>
+    <div id="cw54" class="clip cap" data-start="22.11" data-duration="0.37" data-track-index="1"><span class="w">kejar</span></div>
+    <div id="cw55" class="clip cap" data-start="22.48" data-duration="0.73" data-track-index="1"><span class="w">dia</span></div>
+    <div id="cw56" class="clip cap" data-start="23.21" data-duration="0.12" data-track-index="1"><span class="w">Satu</span></div>
+    <div id="cw57" class="clip cap" data-start="23.222" data-duration="0.208" data-track-index="1"><span class="w">kilometer</span></div>
+    <div id="cw58" class="clip cap" data-start="23.43" data-duration="0.44" data-track-index="1"><span class="w">dari</span></div>
+    <div id="cw59" class="clip cap" data-start="23.87" data-duration="0.98" data-track-index="1"><span class="w">dataran</span></div>
+    <div id="cw60" class="clip cap" data-start="24.85" data-duration="0.18" data-track-index="1"><span class="w">dia</span></div>
+    <div id="cw61" class="clip cap" data-start="25.03" data-duration="0.44" data-track-index="1"><span class="w">berbalas</span></div>
+    <div id="cw62" class="clip cap" data-start="25.47" data-duration="0.45" data-track-index="1"><span class="w">tembakan</span></div>
+    <div id="cw63" class="clip cap" data-start="25.92" data-duration="0.31" data-track-index="1"><span class="w">dengan</span></div>
+    <div id="cw64" class="clip cap" data-start="26.23" data-duration="0.2" data-track-index="1"><span class="w">dua</span></div>
+    <div id="cw65" class="clip cap" data-start="26.43" data-duration="0.41" data-track-index="1"><span class="w">anggota</span></div>
+    <div id="cw66" class="clip cap" data-start="26.84" data-duration="0.49" data-track-index="1"><span class="w key" style="--c:#7EB6FF; font-size:150px">polis</span></div>
+    <div id="cw67" class="clip cap" data-start="27.33" data-duration="0.12" data-track-index="1"><span class="w">Dua-dua</span></div>
+    <div id="cw68" class="clip cap" data-start="27.87" data-duration="0.31" data-track-index="1"><span class="w key" style="--c:#7EB6FF; font-size:150px">polis</span></div>
+    <div id="cw69" class="clip cap" data-start="28.18" data-duration="0.61" data-track-index="1"><span class="w">cedera</span></div>
+    <div id="cw70" class="clip cap" data-start="28.79" data-duration="0.21" data-track-index="1"><span class="w">tapi</span></div>
+    <div id="cw71" class="clip cap" data-start="29.0" data-duration="0.47" data-track-index="1"><span class="w">suspek</span></div>
+    <div id="cw72" class="clip cap" data-start="29.47" data-duration="0.52" data-track-index="1"><span class="w">ditembak</span></div>
+    <div id="cw73" class="clip cap" data-start="29.99" data-duration="0.21" data-track-index="1"><span class="w">dan</span></div>
+    <div id="cw74" class="clip cap" data-start="30.2" data-duration="0.73" data-track-index="1"><span class="w">ditahan</span></div>
+    <div id="cw75" class="clip cap" data-start="30.93" data-duration="0.25" data-track-index="1"><span class="w">Enam</span></div>
+    <div id="cw76" class="clip cap" data-start="31.18" data-duration="0.34" data-track-index="1"><span class="w">orang</span></div>
+    <div id="cw77" class="clip cap" data-start="31.52" data-duration="0.79" data-track-index="1"><span class="w key" style="--c:#FF5A4A; font-size:113px">terkorban</span></div>
+    <div id="cw78" class="clip cap" data-start="32.31" data-duration="0.58" data-track-index="1"><span class="w">termasuk</span></div>
+    <div id="cw79" class="clip cap" data-start="32.89" data-duration="0.66" data-track-index="1"><span class="w">pelancong</span></div>
+    <div id="cw80" class="clip cap" data-start="33.55" data-duration="0.57" data-track-index="1"><span class="w">asing</span></div>
+    <div id="cw81" class="clip cap" data-start="34.12" data-duration="0.12" data-track-index="1"><span class="w">Lima</span></div>
+    <div id="cw82" class="clip cap" data-start="34.12" data-duration="0.12" data-track-index="1"><span class="w">belas</span></div>
+    <div id="cw83" class="clip cap" data-start="34.69" data-duration="0.38" data-track-index="1"><span class="w">lagi</span></div>
+    <div id="cw84" class="clip cap" data-start="35.07" data-duration="0.69" data-track-index="1"><span class="w">cedera</span></div>
+    <div id="cw85" class="clip cap" data-start="35.76" data-duration="0.28" data-track-index="1"><span class="w">Lepas</span></div>
+    <div id="cw86" class="clip cap" data-start="36.04" data-duration="0.36" data-track-index="1"><span class="w">tu</span></div>
+    <div id="cw87" class="clip cap" data-start="36.4" data-duration="0.36" data-track-index="1"><span class="w key" style="--c:#7EB6FF; font-size:150px">polis</span></div>
+    <div id="cw88" class="clip cap" data-start="36.76" data-duration="0.31" data-track-index="1"><span class="w">jumpa</span></div>
+    <div id="cw89" class="clip cap" data-start="37.07" data-duration="0.28" data-track-index="1"><span class="w">tiga</span></div>
+    <div id="cw90" class="clip cap" data-start="37.35" data-duration="0.36" data-track-index="1"><span class="w">mayat</span></div>
+    <div id="cw91" class="clip cap" data-start="37.71" data-duration="0.3" data-track-index="1"><span class="w">lagi</span></div>
+    <div id="cw92" class="clip cap" data-start="38.01" data-duration="0.22" data-track-index="1"><span class="w">kat</span></div>
+    <div id="cw93" class="clip cap" data-start="38.23" data-duration="0.37" data-track-index="1"><span class="w">rumah</span></div>
+    <div id="cw94" class="clip cap" data-start="38.6" data-duration="0.69" data-track-index="1"><span class="w">suspek:</span></div>
+    <div id="cw95" class="clip cap" data-start="39.29" data-duration="0.45" data-track-index="1"><span class="w">ayah</span></div>
+    <div id="cw96" class="clip cap" data-start="39.74" data-duration="0.22" data-track-index="1"><span class="w">ibu</span></div>
+    <div id="cw97" class="clip cap" data-start="39.96" data-duration="0.22" data-track-index="1"><span class="w">dan</span></div>
+    <div id="cw98" class="clip cap" data-start="40.18" data-duration="0.26" data-track-index="1"><span class="w">adik</span></div>
+    <div id="cw99" class="clip cap" data-start="40.44" data-duration="0.27" data-track-index="1"><span class="w">dia</span></div>
+    <div id="cw100" class="clip cap" data-start="40.71" data-duration="1.01" data-track-index="1"><span class="w">sendiri</span></div>
+    <div id="cw101" class="clip cap" data-start="41.72" data-duration="0.31" data-track-index="1"><span class="w">Suspek</span></div>
+    <div id="cw102" class="clip cap" data-start="42.03" data-duration="0.46" data-track-index="1"><span class="w">lelaki</span></div>
+    <div id="cw103" class="clip cap" data-start="43.0" data-duration="0.12" data-track-index="1"><span class="w">dua</span></div>
+    <div id="cw104" class="clip cap" data-start="43.06" data-duration="0.38" data-track-index="1"><span class="w">puluhan</span></div>
+    <div id="cw105" class="clip cap" data-start="43.44" data-duration="0.57" data-track-index="1"><span class="w">bertindak</span></div>
+    <div id="cw106" class="clip cap" data-start="44.01" data-duration="0.59" data-track-index="1"><span class="w">seorang</span></div>
+    <div id="cw107" class="clip cap" data-start="44.6" data-duration="0.88" data-track-index="1"><span class="w">diri</span></div>
+    <div id="cw108" class="clip cap" data-start="45.48" data-duration="0.31" data-track-index="1"><span class="w">Senjata</span></div>
+    <div id="cw109" class="clip cap" data-start="45.79" data-duration="0.22" data-track-index="1"><span class="w">dia</span></div>
+    <div id="cw110" class="clip cap" data-start="46.01" data-duration="0.23" data-track-index="1"><span class="w key" style="--c:#FFC531; font-size:150px">sah</span></div>
+    <div id="cw111" class="clip cap" data-start="46.24" data-duration="0.67" data-track-index="1"><span class="w">berdaftar</span></div>
+    <div id="cw112" class="clip cap" data-start="46.91" data-duration="0.31" data-track-index="1"><span class="w">atas</span></div>
+    <div id="cw113" class="clip cap" data-start="47.22" data-duration="0.464" data-track-index="1"><span class="w">permit</span></div>
+    <div id="cw114" class="clip cap" data-start="47.684" data-duration="0.386" data-track-index="1"><span class="w">sukan</span></div>
+    <div id="cw115" class="clip cap" data-start="48.07" data-duration="1.06" data-track-index="1"><span class="w">menembak</span></div>
+    <div id="cw116" class="clip cap" data-start="49.13" data-duration="0.59" data-track-index="1"><span class="w">Kerajaan</span></div>
+    <div id="cw117" class="clip cap" data-start="49.72" data-duration="0.33" data-track-index="1"><span class="w">kata</span></div>
+    <div id="cw118" class="clip cap" data-start="50.05" data-duration="0.25" data-track-index="1"><span class="w">dia</span></div>
+    <div id="cw119" class="clip cap" data-start="50.3" data-duration="0.92" data-track-index="1"><span class="w">terpengaruh</span></div>
+    <div id="cw120" class="clip cap" data-start="51.22" data-duration="0.59" data-track-index="1"><span class="w">fahaman</span></div>
+    <div id="cw121" class="clip cap" data-start="51.81" data-duration="0.67" data-track-index="1"><span class="w">ekstrem</span></div>
+    <div id="cw122" class="clip cap" data-start="52.48" data-duration="0.49" data-track-index="1"><span class="w">kanan</span></div>
+    <div id="cw123" class="clip cap" data-start="52.97" data-duration="0.24" data-track-index="1"><span class="w">dan</span></div>
+    <div id="cw124" class="clip cap" data-start="53.21" data-duration="0.49" data-track-index="1"><span class="w">Perdana</span></div>
+    <div id="cw125" class="clip cap" data-start="53.7" data-duration="0.5" data-track-index="1"><span class="w">Menteri</span></div>
+    <div id="cw126" class="clip cap" data-start="54.2" data-duration="0.48" data-track-index="1"><span class="w">panggil</span></div>
+    <div id="cw127" class="clip cap" data-start="54.68" data-duration="0.24" data-track-index="1"><span class="w">ia</span></div>
+    <div id="cw128" class="clip cap" data-start="54.92" data-duration="0.51" data-track-index="1"><span class="w">serangan</span></div>
+    <div id="cw129" class="clip cap" data-start="55.43" data-duration="1.15" data-track-index="1"><span class="w key" style="--c:#FF5A4A; font-size:113px">pengganas</span></div>
+    <div id="cw130" class="clip cap" data-start="56.58" data-duration="0.33" data-track-index="1"><span class="w">Yang</span></div>
+    <div id="cw131" class="clip cap" data-start="56.91" data-duration="0.2" data-track-index="1"><span class="w">buat</span></div>
+    <div id="cw132" class="clip cap" data-start="57.11" data-duration="0.55" data-track-index="1"><span class="w">Eropah</span></div>
+    <div id="cw133" class="clip cap" data-start="57.66" data-duration="1.02" data-track-index="1"><span class="w">terkejut:</span></div>
+    <div id="cw134" class="clip cap" data-start="58.68" data-duration="0.31" data-track-index="1"><span class="w">Poland</span></div>
+    <div id="cw135" class="clip cap" data-start="58.99" data-duration="0.45" data-track-index="1"><span class="w">antara</span></div>
+    <div id="cw136" class="clip cap" data-start="59.44" data-duration="0.47" data-track-index="1"><span class="w">negara</span></div>
+    <div id="cw137" class="clip cap" data-start="59.91" data-duration="0.5" data-track-index="1"><span class="w">paling</span></div>
+    <div id="cw138" class="clip cap" data-start="60.41" data-duration="0.52" data-track-index="1"><span class="w key" style="--c:#A8F07A; font-size:146px">selamat</span></div>
+    <div id="cw139" class="clip cap" data-start="60.93" data-duration="0.28" data-track-index="1"><span class="w">dan</span></div>
+    <div id="cw140" class="clip cap" data-start="61.21" data-duration="0.67" data-track-index="1"><span class="w">tembakan</span></div>
+    <div id="cw141" class="clip cap" data-start="61.88" data-duration="0.27" data-track-index="1"><span class="w">macam</span></div>
+    <div id="cw142" class="clip cap" data-start="62.15" data-duration="0.14" data-track-index="1"><span class="w">ni</span></div>
+    <div id="cw143" class="clip cap" data-start="62.29" data-duration="0.33" data-track-index="1"><span class="w">sangat</span></div>
+    <div id="cw144" class="clip cap" data-start="62.62" data-duration="0.32" data-track-index="1"><span class="w">jarang</span></div>
+    <div id="cw145" class="clip cap" data-start="62.94" data-duration="0.26" data-track-index="1"><span class="w">berlaku</span></div>
+    <div id="cw146" class="clip cap" data-start="63.2" data-duration="0.29" data-track-index="1"><span class="w">kat</span></div>
+    <div id="cw147" class="clip cap" data-start="63.49" data-duration="0.61" data-track-index="1"><span class="w">sana</span></div>
+    <div id="cw148" class="clip cap" data-start="64.1" data-duration="0.14" data-track-index="1"><span class="w">Patut</span></div>
+    <div id="cw149" class="clip cap" data-start="64.24" data-duration="0.129" data-track-index="1"><span class="w">ke</span></div>
+    <div id="cw150" class="clip cap" data-start="64.369" data-duration="0.388" data-track-index="1"><span class="w">permit</span></div>
+    <div id="cw151" class="clip cap" data-start="64.757" data-duration="0.333" data-track-index="1"><span class="w">sukan</span></div>
+    <div id="cw152" class="clip cap" data-start="65.09" data-duration="0.7" data-track-index="1"><span class="w">menembak</span></div>
+    <div id="cw153" class="clip cap" data-start="65.79" data-duration="1.06" data-track-index="1"><span class="w">diketatkan</span></div>
+    <div id="cw154" class="clip cap" data-start="66.85" data-duration="0.288" data-track-index="1"><span class="w key" style="--c:#FFC531; font-size:150px">Komen</span></div>
+    <div id="cw155" class="clip cap" data-start="67.138" data-duration="0.172" data-track-index="1"><span class="w">kat</span></div>
+    <div id="cw156" class="clip cap" data-start="67.31" data-duration="0.53" data-track-index="1"><span class="w">bawah</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#cw0 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 0.25);
+    tl.fromTo("#cw1 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 0.76);
+    tl.fromTo("#cw2 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 1.18);
+    tl.fromTo("#cw3 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 1.44);
+    tl.fromTo("#cw4 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 2.2);
+    tl.fromTo("#cw5 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 2.65);
+    tl.fromTo("#cw6 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 3.04);
+    tl.fromTo("#cw7 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 3.43);
+    tl.fromTo("#cw8 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 3.6);
+    tl.fromTo("#cw9 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 4.13);
+    tl.fromTo("#cw10 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 4.44);
+    tl.fromTo("#cw11 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 5.19);
+    tl.fromTo("#cw12 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 5.31);
+    tl.fromTo("#cw13 .w", {scale: 0.85}, {scale: 1.18, duration: 0.14, ease: "back.out(3)"}, 5.73);
+    tl.fromTo("#cw14 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 6.15);
+    tl.fromTo("#cw15 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 6.63);
+    tl.fromTo("#cw16 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 7.27);
+    tl.fromTo("#cw17 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 7.67);
+    tl.fromTo("#cw18 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 7.98);
+    tl.fromTo("#cw19 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 8.32);
+    tl.fromTo("#cw20 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 8.67);
+    tl.fromTo("#cw21 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 8.8);
+    tl.fromTo("#cw22 .w", {scale: 0.85}, {scale: 1.18, duration: 0.14, ease: "back.out(3)"}, 9.3);
+    tl.fromTo("#cw23 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 9.83);
+    tl.fromTo("#cw24 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 10.31);
+    tl.fromTo("#cw25 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 10.42);
+    tl.fromTo("#cw26 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 10.95);
+    tl.fromTo("#cw27 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 11.23);
+    tl.fromTo("#cw28 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 11.71);
+    tl.fromTo("#cw29 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 11.95);
+    tl.fromTo("#cw30 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 12.48);
+    tl.fromTo("#cw31 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 12.68);
+    tl.fromTo("#cw32 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 13.21);
+    tl.fromTo("#cw33 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 13.96);
+    tl.fromTo("#cw34 .w", {scale: 0.85}, {scale: 1.18, duration: 0.14, ease: "back.out(3)"}, 14.31);
+    tl.fromTo("#cw35 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 14.73);
+    tl.fromTo("#cw36 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 15.23);
+    tl.fromTo("#cw37 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 15.39);
+    tl.fromTo("#cw38 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 15.93);
+    tl.fromTo("#cw39 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 15.93);
+    tl.fromTo("#cw40 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 16.47);
+    tl.fromTo("#cw41 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 16.78);
+    tl.fromTo("#cw42 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 17.49);
+    tl.fromTo("#cw43 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 18.07);
+    tl.fromTo("#cw44 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 18.64);
+    tl.fromTo("#cw45 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 19.09);
+    tl.fromTo("#cw46 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 19.66);
+    tl.fromTo("#cw47 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 19.82);
+    tl.fromTo("#cw48 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 20.08);
+    tl.fromTo("#cw49 .w", {scale: 0.85}, {scale: 1.18, duration: 0.14, ease: "back.out(3)"}, 20.58);
+    tl.fromTo("#cw50 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 20.91);
+    tl.fromTo("#cw51 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 21.14);
+    tl.fromTo("#cw52 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 21.59);
+    tl.fromTo("#cw53 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 21.76);
+    tl.fromTo("#cw54 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 22.11);
+    tl.fromTo("#cw55 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 22.48);
+    tl.fromTo("#cw56 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 23.21);
+    tl.fromTo("#cw57 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 23.222);
+    tl.fromTo("#cw58 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 23.43);
+    tl.fromTo("#cw59 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 23.87);
+    tl.fromTo("#cw60 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 24.85);
+    tl.fromTo("#cw61 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 25.03);
+    tl.fromTo("#cw62 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 25.47);
+    tl.fromTo("#cw63 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 25.92);
+    tl.fromTo("#cw64 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 26.23);
+    tl.fromTo("#cw65 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 26.43);
+    tl.fromTo("#cw66 .w", {scale: 0.85}, {scale: 1.18, duration: 0.14, ease: "back.out(3)"}, 26.84);
+    tl.fromTo("#cw67 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 27.33);
+    tl.fromTo("#cw68 .w", {scale: 0.85}, {scale: 1.18, duration: 0.14, ease: "back.out(3)"}, 27.87);
+    tl.fromTo("#cw69 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 28.18);
+    tl.fromTo("#cw70 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 28.79);
+    tl.fromTo("#cw71 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 29.0);
+    tl.fromTo("#cw72 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 29.47);
+    tl.fromTo("#cw73 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 29.99);
+    tl.fromTo("#cw74 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 30.2);
+    tl.fromTo("#cw75 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 30.93);
+    tl.fromTo("#cw76 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 31.18);
+    tl.fromTo("#cw77 .w", {scale: 0.85}, {scale: 1.18, duration: 0.14, ease: "back.out(3)"}, 31.52);
+    tl.fromTo("#cw78 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 32.31);
+    tl.fromTo("#cw79 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 32.89);
+    tl.fromTo("#cw80 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 33.55);
+    tl.fromTo("#cw81 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 34.12);
+    tl.fromTo("#cw82 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 34.12);
+    tl.fromTo("#cw83 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 34.69);
+    tl.fromTo("#cw84 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 35.07);
+    tl.fromTo("#cw85 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 35.76);
+    tl.fromTo("#cw86 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 36.04);
+    tl.fromTo("#cw87 .w", {scale: 0.85}, {scale: 1.18, duration: 0.14, ease: "back.out(3)"}, 36.4);
+    tl.fromTo("#cw88 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 36.76);
+    tl.fromTo("#cw89 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 37.07);
+    tl.fromTo("#cw90 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 37.35);
+    tl.fromTo("#cw91 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 37.71);
+    tl.fromTo("#cw92 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 38.01);
+    tl.fromTo("#cw93 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 38.23);
+    tl.fromTo("#cw94 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 38.6);
+    tl.fromTo("#cw95 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 39.29);
+    tl.fromTo("#cw96 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 39.74);
+    tl.fromTo("#cw97 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 39.96);
+    tl.fromTo("#cw98 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 40.18);
+    tl.fromTo("#cw99 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 40.44);
+    tl.fromTo("#cw100 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 40.71);
+    tl.fromTo("#cw101 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 41.72);
+    tl.fromTo("#cw102 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 42.03);
+    tl.fromTo("#cw103 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 43.0);
+    tl.fromTo("#cw104 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 43.06);
+    tl.fromTo("#cw105 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 43.44);
+    tl.fromTo("#cw106 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 44.01);
+    tl.fromTo("#cw107 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 44.6);
+    tl.fromTo("#cw108 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 45.48);
+    tl.fromTo("#cw109 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 45.79);
+    tl.fromTo("#cw110 .w", {scale: 0.85}, {scale: 1.18, duration: 0.14, ease: "back.out(3)"}, 46.01);
+    tl.fromTo("#cw111 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 46.24);
+    tl.fromTo("#cw112 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 46.91);
+    tl.fromTo("#cw113 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 47.22);
+    tl.fromTo("#cw114 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 47.684);
+    tl.fromTo("#cw115 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 48.07);
+    tl.fromTo("#cw116 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 49.13);
+    tl.fromTo("#cw117 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 49.72);
+    tl.fromTo("#cw118 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 50.05);
+    tl.fromTo("#cw119 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 50.3);
+    tl.fromTo("#cw120 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 51.22);
+    tl.fromTo("#cw121 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 51.81);
+    tl.fromTo("#cw122 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 52.48);
+    tl.fromTo("#cw123 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 52.97);
+    tl.fromTo("#cw124 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 53.21);
+    tl.fromTo("#cw125 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 53.7);
+    tl.fromTo("#cw126 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 54.2);
+    tl.fromTo("#cw127 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 54.68);
+    tl.fromTo("#cw128 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 54.92);
+    tl.fromTo("#cw129 .w", {scale: 0.85}, {scale: 1.18, duration: 0.14, ease: "back.out(3)"}, 55.43);
+    tl.fromTo("#cw130 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 56.58);
+    tl.fromTo("#cw131 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 56.91);
+    tl.fromTo("#cw132 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 57.11);
+    tl.fromTo("#cw133 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 57.66);
+    tl.fromTo("#cw134 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 58.68);
+    tl.fromTo("#cw135 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 58.99);
+    tl.fromTo("#cw136 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 59.44);
+    tl.fromTo("#cw137 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 59.91);
+    tl.fromTo("#cw138 .w", {scale: 0.85}, {scale: 1.18, duration: 0.14, ease: "back.out(3)"}, 60.41);
+    tl.fromTo("#cw139 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 60.93);
+    tl.fromTo("#cw140 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 61.21);
+    tl.fromTo("#cw141 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 61.88);
+    tl.fromTo("#cw142 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 62.15);
+    tl.fromTo("#cw143 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 62.29);
+    tl.fromTo("#cw144 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 62.62);
+    tl.fromTo("#cw145 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 62.94);
+    tl.fromTo("#cw146 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 63.2);
+    tl.fromTo("#cw147 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 63.49);
+    tl.fromTo("#cw148 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 64.1);
+    tl.fromTo("#cw149 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 64.24);
+    tl.fromTo("#cw150 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 64.369);
+    tl.fromTo("#cw151 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 64.757);
+    tl.fromTo("#cw152 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 65.09);
+    tl.fromTo("#cw153 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 65.79);
+    tl.fromTo("#cw154 .w", {scale: 0.85}, {scale: 1.18, duration: 0.14, ease: "back.out(3)"}, 66.85);
+    tl.fromTo("#cw155 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 67.138);
+    tl.fromTo("#cw156 .w", {scale: 0.72}, {scale: 1.0, duration: 0.14, ease: "back.out(3)"}, 67.31);
+    window.__timelines["captions"] = tl;
+  </script>
+</template>

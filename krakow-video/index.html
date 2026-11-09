@@ -13,6 +13,7 @@
       #world { position: absolute; inset: 0; }
       #world canvas { width: 1080px; height: 1920px; display: block; }
       /* fact card at the top (y≈230), same font as the captions */
+      #captions-host { position: absolute; inset: 0; z-index: 10; }
       #stat { position: absolute; left: 0; right: 0; top: 190px; display: flex; justify-content: center; z-index: 5; }
       #stat .card { text-align: center; transform-origin: 50% 60%; }
       #stat .big { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 150px; line-height: 1; color: #fff;
@@ -22,11 +23,14 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1080" data-height="1920" data-fps="30">
-      <div id="world" class="clip" data-start="0" data-duration="60" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="69" data-width="1080" data-height="1920" data-fps="30">
+      <div id="world" class="clip" data-start="0" data-duration="69" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
         <canvas id="world-canvas" width="1080" height="1920"></canvas>
       </div>
-      <div id="stat" class="clip" data-start="0" data-duration="60" data-track-index="2" data-track-kind="graphics">
+      <audio id="vo" class="clip" src="assets/voiceover_paced.wav" data-start="0" data-duration="69" data-track-index="4" data-volume="1"></audio>
+      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="69"
+        data-track-index="3" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+      <div id="stat" class="clip" data-start="0" data-duration="69" data-track-index="2" data-track-kind="graphics">
         <div class="card" id="stat-card"><div class="big" id="stat-big"></div><div class="sub" id="stat-sub"></div></div>
       </div>
     </div>

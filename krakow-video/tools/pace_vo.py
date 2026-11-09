@@ -9,7 +9,7 @@
 """
 import json, os, re, subprocess, difflib, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build_captions import SEGMENTS
+from build_captions import SEGMENTS, FILM
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 norm = lambda w: re.sub(r"[^a-z]", "", w.lower())
 
@@ -45,14 +45,15 @@ for i, (si, w) in enumerate(script):
 cuts = [0.0] + [round((times[chunks[k][2]][1] + times[chunks[k + 1][1]][0]) / 2, 3) for k in range(len(chunks) - 1)] + [dur]
 # place: each segment starts at its target (or right after the previous one); its spare time is spread
 # evenly over the pauses after each of its sentences. The voice itself is never stretched.
-targets = [0.25] + [SEGMENTS[si][0] + 0.1 for si in range(1, nseg)] + [59.6]
+NOPAD = os.environ.get("NOPAD") == "1"  # voice longer than the plan: keep its own pauses, add none
+targets = [0.25] + [0.0] * nseg if NOPAD else [0.25] + [SEGMENTS[si][0] * FILM / 60 + 0.1 for si in range(1, nseg)] + [FILM - 0.4]
 offsets = [0.0] * len(chunks); prev_end = 0.0
 for si in range(nseg):
     ks = [k for k, c in enumerate(chunks) if c[0] == si]
     lead = times[chunks[ks[0]][1]][0] - cuts[ks[0]]
     t = max(targets[si] - lead, prev_end)
     speech = sum(cuts[k + 1] - cuts[k] for k in ks)
-    slack = max(0.0, targets[si + 1] - lead - t - speech) if si < nseg - 1 else max(0.0, 59.6 - t - speech)
+    slack = max(0.0, targets[si + 1] - lead - t - speech) if si < nseg - 1 else (0.0 if NOPAD else max(0.0, FILM - 0.4 - t - speech))
     gap = slack / len(ks) if si < nseg - 1 else slack / max(1, len(ks) - 1) * 0.5
     for j, k in enumerate(ks):
         offsets[k] = t - cuts[k]
@@ -61,13 +62,13 @@ for si in range(nseg):
     prev_end = t
     first = times[chunks[ks[0]][1]][0] + offsets[ks[0]]
     print(f"seg{si+1}: {len(ks)} sentences, first word {first:.2f}s (target {SEGMENTS[si][0]}), pause {gap:.2f}s each, ends {t:.2f}s")
-assert prev_end <= 59.95, prev_end
+assert prev_end <= FILM - 0.05, prev_end
 inp = os.path.join(ROOT, "assets", "voiceover.mp3"); parts = []
 for k in range(len(chunks)):
     a, b = cuts[k], cuts[k + 1]; d = int(round((a + offsets[k]) * 1000))
     parts.append(f"[0:a]atrim={a}:{b},asetpts=PTS-STARTPTS,afade=t=in:d=0.012,afade=t=out:st={max(0,b-a-0.025):.3f}:d=0.025,adelay={d}|{d}[s{k}]")
 n = len(chunks)
-flt = ";".join(parts) + ";" + "".join(f"[s{i}]" for i in range(n)) + f"amix=inputs={n}:normalize=0:duration=longest,apad=whole_dur=60[out]"
+flt = ";".join(parts) + ";" + "".join(f"[s{i}]" for i in range(n)) + f"amix=inputs={n}:normalize=0:duration=longest,apad=whole_dur={FILM}[out]"
 subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", inp, "-filter_complex", flt, "-map", "[out]", "-ar", "48000", "-ac", "1", os.path.join(ROOT, "assets", "voiceover_paced.wav")], check=True)
 chunk_of = {}
 for k, c in enumerate(chunks):

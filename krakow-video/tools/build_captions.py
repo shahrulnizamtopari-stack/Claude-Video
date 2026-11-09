@@ -10,17 +10,18 @@ Timing source:
 import json, os, re, html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SEGMENTS = [  # (start, end, script text) -- DRAFT script for approval
-    (0, 6, "Bayangkan kau dalam lif, tingkat tiga puluh. Tiba-tiba, kabel lif putus."),
-    (6, 14, "Tenang. Lif tu takkan terus jatuh. Sebab dia bukan tergantung pada satu kabel je. Biasanya ada empat sampai lapan kabel keluli."),
-    (14, 21, "Dan satu kabel pun biasanya dah cukup kuat untuk tampung lif yang penuh orang."),
-    (21, 31, "Tapi katakanlah semua kabel putus. Kat atas sekali ada roda kecil namanya governor. Bila lif jatuh terlalu laju, pemberat dalam roda tu tercampak keluar dan terus kunci tali dia."),
-    (31, 41, "Tali yang terkunci tu tarik tuas kat lif. Baji besi terus cengkam rel kiri dan kanan, dan lif berhenti dalam jarak yang pendek."),
-    (41, 48, "Kat dasar lubang lif pula ada spring besar, untuk lembutkan hentakan kalau lif terlajak ke bawah."),
-    (48, 55, "Brek keselamatan ni dicipta Elisha Otis. Tahun 1854, dia berdiri atas pelantar tinggi, suruh orang potong talinya, dan pelantar tu tak jatuh."),
-    (55, 60, "Sebab tu lif antara pengangkutan paling selamat dalam dunia."),
+FILM = 69.0  # film length (s): the voice runs 67.7 s with its own pauses, never stretched
+SEGMENTS = [  # (canonical start, end, script text)
+    (0, 5, "Sabtu, pukul tiga petang. Dataran paling cantik di Poland, penuh pelancong. Dalam masa seminit, semuanya berubah."),
+    (5, 13, "Sebuah kereta hitam masuk ke dataran Krakow. Pemandu tu menembak dari dalam kereta, berhenti, dan menembak lagi. Lebih seminit, tembakan tak berhenti."),
+    (13, 21, "Lima belas saat kemudian, panggilan kecemasan pertama masuk. Kurang tiga minit, polis dah sampai, dan terus kejar dia."),
+    (21, 29, "Satu kilometer dari dataran, dia berbalas tembakan dengan dua anggota polis. Dua-dua polis cedera, tapi suspek ditembak dan ditahan."),
+    (29, 37, "Enam orang terkorban, termasuk pelancong asing. Lima belas lagi cedera. Lepas tu polis jumpa tiga mayat lagi kat rumah suspek: ayah, ibu dan adik dia sendiri."),
+    (37, 46, "Suspek lelaki dua puluhan, bertindak seorang diri. Senjata dia sah, berdaftar atas permit sukan menembak. Kerajaan kata dia terpengaruh fahaman ekstrem kanan, dan Perdana Menteri panggil ia serangan pengganas."),
+    (46, 54, "Yang buat Eropah terkejut: Poland antara negara paling selamat, dan tembakan macam ni sangat jarang berlaku kat sana."),
+    (54, 60, "Patut ke permit sukan menembak diketatkan? Komen kat bawah."),
 ]
-KEY = {}
+KEY = {"krakow": "#FFC531", "polis": "#7EB6FF", "terkorban": "#FF5A4A", "pengganas": "#FF5A4A", "selamat": "#A8F07A", "komen": "#FFC531", "seminit": "#FF5A4A", "sah": "#FFC531"}
 
 def words():
     out = []
@@ -83,7 +84,7 @@ def main():
     json.dump(ws, open(os.path.join(ROOT, "assets", "words.json"), "w"), indent=1)
     # time warp: real (voiceover) time -> canonical (design) time, piecewise linear through every word start.
     # The 3D world, speed dial and sound effects are designed in canonical time.
-    pairs = [(0.0, 0.0)] + [(w["start"], w["cstart"]) for w in ws] + [(60.0, 60.0)]
+    pairs = [(0.0, 0.0)] + [(w["start"], w["cstart"]) for w in ws] + [(FILM, 60.0)]
     clean = []
     for r, c in pairs:
         if clean and (r <= clean[-1][0] or c <= clean[-1][1]):
