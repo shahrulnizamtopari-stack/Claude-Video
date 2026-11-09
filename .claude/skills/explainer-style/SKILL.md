@@ -114,6 +114,15 @@ and give it in the reply so they can line up their voice. The sound-effect bed g
    `ffmpeg … scale=540:960`. Send it and **wait for feedback.**
 4. **Final.** `render --quality delivery --variables '{"previewScale":1}'` (about 15 min, run it in the background). Verify
    1080×1920, 1800 frames for 60 s, the duration, LUFS, and a frame strip, then send the file.
+   **Always render in two layers (the user's standing request), so captions can change without a full re-render:**
+   - **Clean plate:** the full film with voice and sound but no captions. Hide the captions host for this render
+     (e.g. `#captions-host { display: var(--caps, block) }` and `style="--caps: none"` on `#root`), output
+     `renders/<name>_clean_1080x1920.mp4`.
+   - **Captions layer:** render only `compositions/captions.html` with transparency
+     (`render -c compositions/captions.html --format mov` or webm), output `renders/<name>_captions.mov`.
+   - **Composite** with ffmpeg (`overlay`, keep the clean plate's audio) into `renders/<name>_final_1080x1920.mp4`.
+     A caption restyle then only re-renders the captions layer and re-composites (minutes, not half an hour).
+   - Send the final, and keep the clean plate and captions layer so the user can also edit them in CapCut.
 5. Commit after each stage. If a push is refused (403), say so once and keep working.
 
 ## 6. Starting a new topic
