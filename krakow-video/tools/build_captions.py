@@ -80,6 +80,7 @@ def main():
   </script>
 </template>
 '''
+    if STYLE == "A": doc = style_a(ws)
     open(os.path.join(ROOT, "compositions", "captions.html"), "w").write(doc)
     json.dump(ws, open(os.path.join(ROOT, "assets", "words.json"), "w"), indent=1)
     # time warp: real (voiceover) time -> canonical (design) time, piecewise linear through every word start.
@@ -107,6 +108,54 @@ export function unwarp(c) {
 """
     open(os.path.join(ROOT, "assets", "timing.js"), "w").write(js)
     print(len(ws), "words written")
+
+# ---------- caption style A ("berita"): 2-line phrase in a dark box at the bottom, the spoken word on a red pill ----------
+STYLE = "A"
+# canonical windows when a photo card or the dossier fills the lower band: the box moves up above it
+RAISE = [(7.4, 12.4), (30.0, 33.4), (37.2, 46.1)]
+def style_a(ws):
+    phrases, cur = [], []
+    for i, w in enumerate(ws):
+        cur.append(i)
+        n = len(" ".join(ws[k]["text"] for k in cur))
+        if re.search(r"[.?!:]$", w["text"]) or n >= 24 or (re.search(r",$", w["text"]) and n >= 14):
+            phrases.append(cur); cur = []
+    if cur: phrases.append(cur)
+    clips, tweens = [], []
+    for pi, ph in enumerate(phrases):
+        st = ws[ph[0]]["start"]
+        en = ws[phrases[pi + 1][0]]["start"] if pi + 1 < len(phrases) else min(FILM, ws[ph[-1]]["end"] + 0.6)
+        en = min(en, ws[ph[-1]]["end"] + 1.2)
+        c0, c1 = ws[ph[0]]["cstart"], ws[ph[-1]]["cstart"] + 0.4; up = any(c0 < b and c1 > a - 0.3 for a, b in RAISE)
+        spans = []
+        for k in ph:
+            disp = html.escape(re.sub(r"[\"“”]", "", ws[k]["text"]))
+            key = KEY.get(re.sub(r"[^\w]", "", ws[k]["text"]).lower())
+            spans.append(f'<span id="aw{k}" class="aw{" key" if key else ""}">{disp}</span>')
+            tweens.append(f'    tl.set("#aw{k}", {{opacity: 1, backgroundColor: "#ff2d3d", color: "#ffffff"}}, {ws[k]["start"]});')
+            tweens.append(f'    tl.set("#aw{k}", {{backgroundColor: "rgba(255,45,61,0)", color: "{key or "#ffffff"}"}}, {round(max(ws[k]["start"] + 0.05, min(ws[k]["end"], ws[k + 1]["start"] if k + 1 < len(ws) else ws[k]["end"])), 3)});')
+        clips.append(f'    <div id="ap{pi}" class="clip ap{" up" if up else ""}" data-start="{st}" data-duration="{round(en - st, 3)}" data-track-index="1"><div class="box">{" ".join(spans)}</div></div>')
+        tweens.append(f'    tl.fromTo("#ap{pi} .box", {{y: 26, opacity: 0}}, {{y: 0, opacity: 1, duration: 0.18, ease: "power2.out"}}, {st});')
+    return f'''<template>
+  <style>
+    @font-face {{ font-family: "Montserrat"; font-weight: 800; src: url("assets/fonts/montserrat-latin-800-normal.woff2") format("woff2"); }}
+    #root {{ position: absolute; inset: 0; pointer-events: none; }}
+    #root .ap {{ position: absolute; left: 60px; right: 60px; top: 1330px; }}
+    #root .ap.up {{ top: 880px; }}
+    #root .box {{ display: inline-block; padding: 26px 34px 30px 46px; background: rgba(8,12,22,0.86); border-radius: 22px; border-left: 12px solid #ff2d3d;
+      font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 64px; line-height: 1.32; color: #fff; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }}
+    #root .aw {{ display: inline-block; opacity: 0.55; border-radius: 12px; padding: 0 8px; margin: 0 -5px; }}
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920" data-layout-allow-overflow>
+{chr(10).join(clips)}
+  </div>
+  <script>
+    const tl = gsap.timeline({{ paused: true }});
+{chr(10).join(tweens)}
+    window.__timelines["captions"] = tl;
+  </script>
+</template>
+'''
 
 if __name__ == "__main__":
     main()

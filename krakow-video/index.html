@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ms" data-composition-variables='[{"id":"previewScale","type":"number","label":"3D render scale (0.5 for previews)","default":1,"min":0.25,"max":1,"step":0.25},{"id":"fx","type":"string","label":"effects override (JSON, testing only)","default":""}]'>
+<html lang="ms" data-composition-variables='[{"id":"previewScale","type":"number","label":"3D render scale (0.5 for previews)","default":1,"min":0.25,"max":1,"step":0.25},{"id":"fx","type":"string","label":"effects override (JSON, testing only)","default":""},{"id":"captions","type":"boolean","label":"burn in captions (false = clean plate)","default":true}]'>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1080, height=1920" />
@@ -86,6 +86,7 @@
       import { warp } from "./assets/timing.js";
       const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
       const scale = Number(vars.previewScale) || 1;
+      if (vars.captions === false || vars.captions === "false") document.getElementById("root").style.setProperty("--caps", "none");
       await document.fonts.load('800 40px "Montserrat"');
       await Promise.all([...document.images].map((im) => (im.complete ? 0 : new Promise((r) => { im.onload = im.onerror = r; }))));
       let fxOpts = {}; try { fxOpts = vars.fx ? JSON.parse(vars.fx) : {}; } catch (e) {}
