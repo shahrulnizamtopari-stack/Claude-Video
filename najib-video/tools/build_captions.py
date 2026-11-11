@@ -7,7 +7,7 @@ When assets/transcript.json exists ([{text,start,end}, ...] matching the script 
 import json, os, re, html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DUR = 68.0
+DUR = json.load(open(os.path.join(ROOT, "assets", "timing.json")))["END"] if os.path.exists(os.path.join(ROOT, "assets", "timing.json")) else 68.0
 SEGMENTS = [
  (0.3, 5.8, "Rumah banglo ni, sekarang rasminya sebuah penjara. Banduannya? Bekas Perdana Menteri."),
  (6.2, 12.8, "Semalam, Najib Razak keluar dari Penjara Kajang, dan balik ke rumah sendiri di Langgak Duta."),
@@ -23,7 +23,7 @@ SEGMENTS = [
 ]
 KEY = {"penjara", "rm42", "12", "rm210", "enam", "rm50", "2028", "dibayar", "bebas", "kajang", "perlembagaan",
        "menteri", "15", "rm11.4", "bilion", "adil", "darjat", "juta", "tahun"}
-MAXW, MAXC = 4, 22
+MAXW, MAXC = 4, 24
 
 def norm(w): return re.sub(r"[^\w.]", "", w.lower()).strip(".")
 def weight(w): return max(2, len(re.sub(r"\W", "", w))) + (3 if re.search(r"\d", w) else 0) + (2 if w[-1] in ".?:," else 0)
@@ -46,12 +46,21 @@ for i, w in enumerate(words):
         or len(" ".join(x["text"] for x in cur)) + 1 + len(nxt["text"]) > MAXC or (w["text"][-1] == "," and len(cur) >= 2)
     if brk: groups.append(cur); cur = []
 
+# never leave one word alone at a sentence end: pull it back into the group before it when that still fits
+for i in range(len(groups) - 1, 0, -1):
+    g = groups[i]
+    if len(g) == 1 and len(" ".join(x["text"] for x in groups[i - 1] + g)) <= 26 and groups[i - 1][-1]["text"][-1] not in ".?:":
+        groups[i - 1] += g; del groups[i]
+    elif len(g) == 1 and len(groups[i - 1]) >= 3:
+        g.insert(0, groups[i - 1].pop())
+def fs(g):  # long phrases shrink so the pill stays inside 900 px (about 35 px per character at 62 px)
+    n = len(" ".join(x["text"] for x in g)); return "" if n <= 24 else f' style="font-size:{62 * 24 / n:.0f}px"'
 rows, js = [], []
 for i, g in enumerate(groups):
     s = max(0.12, g[0]["start"] - 0.05)
     e = min(groups[i + 1][0]["start"] - 0.05 if i + 1 < len(groups) else DUR - 0.05, g[-1]["end"] + 0.35)
     spans = " ".join(f'<span class="w{" key" if norm(w["text"]) in KEY else ""}">{html.escape(w["text"])}</span>' for w in g)
-    rows.append(f'    <div id="cg{i}" class="clip cap" data-start="{s:.2f}" data-duration="{e - s:.2f}" data-track-index="1"><div class="pill" id="cp{i}">{spans}</div></div>')
+    rows.append(f'    <div id="cg{i}" class="clip cap" data-start="{s:.2f}" data-duration="{e - s:.2f}" data-track-index="1"><div class="pill" id="cp{i}"{fs(g)}>{spans}</div></div>')
     js.append(f"[{i},{s:.2f},{e:.2f}]")
 
 out = f'''<template>
