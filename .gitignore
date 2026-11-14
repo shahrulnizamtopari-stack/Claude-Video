@@ -18,3 +18,6 @@ langit-video/renders/
 lebah-video/renders/
 gunung-video/renders/
 najib-video/renders/
+series/*/*/renders/
+series/*/*/.hyperframes/
+series/*/output/

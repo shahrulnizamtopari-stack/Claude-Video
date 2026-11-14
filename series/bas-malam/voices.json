@@ -1,0 +1,22 @@
+{
+  "_note": "Voice IDs are filled in once chosen in ElevenLabs. Keep these identical for every part so the voices never drift.",
+  "model_id": "eleven_multilingual_v2",
+  "output_format": "mp3_44100_128",
+  "voices": {
+    "NARATOR": {
+      "voice_id": "",
+      "brief": "Male, 30-45, deep, calm, close to the mic, half-whisper storyteller",
+      "settings": { "stability": 0.55, "similarity_boost": 0.8, "style": 0.15, "use_speaker_boost": true, "speed": 0.92 }
+    },
+    "AIN": {
+      "voice_id": "",
+      "brief": "Young girl (~9), soft, frightened whisper",
+      "settings": { "stability": 0.45, "similarity_boost": 0.8, "style": 0.3, "use_speaker_boost": true, "speed": 0.9 }
+    },
+    "KONDUKTOR": {
+      "voice_id": "",
+      "brief": "Man in his 50s, gentle, friendly, unhurried. The friendliness is what makes it creepy.",
+      "settings": { "stability": 0.6, "similarity_boost": 0.8, "style": 0.2, "use_speaker_boost": true, "speed": 0.88 }
+    }
+  }
+}
