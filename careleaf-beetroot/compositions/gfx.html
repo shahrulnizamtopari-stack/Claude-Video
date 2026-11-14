@@ -1,0 +1,136 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Inter", sans-serif; }
+    #root .g { position: absolute; left: 0; top: 0; }
+    #root svg { overflow: visible; }
+
+    /* dark look: heavy gradient from the bottom, a lighter one from the top */
+    #g-grad-b { left: 0; top: 0; width: 1080px; height: 1920px;
+      background: linear-gradient(to top, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.82) 14%, rgba(0,0,0,0.55) 27%, rgba(0,0,0,0.22) 38%, rgba(0,0,0,0) 48%); }
+    #g-grad-t { left: 0; top: 0; width: 1080px; height: 1920px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 12%, rgba(0,0,0,0) 26%); }
+
+    /* spotlight: darkens everything but the box (centre driven by --x / --y) */
+    #root .spot { width: 1080px; height: 1920px; --x: 430px; --y: 1000px;
+      background: radial-gradient(ellipse 420px 470px at var(--x) var(--y), rgba(0,0,0,0) 0%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.5) 100%); }
+    #root .hl svg rect { filter: drop-shadow(0 0 12px rgba(255,255,255,0.7)); }
+    #g-box { left: 0; top: 0; width: 460px; height: 500px; }
+
+    /* "Ilustrasi" tag on the CGI */
+    #g-ilu { left: 70px; top: 236px; }
+    #g-ilu-in { display: inline-flex; align-items: center; padding: 10px 22px; border-radius: 999px;
+      background: rgba(0,0,0,0.35); border: 2px solid rgba(255,255,255,0.5); color: rgba(255,255,255,0.92);
+      font-size: 30px; font-weight: 600; letter-spacing: 0.08em; }
+
+    /* checklist card (flat UI) */
+    #g-list { left: 64px; top: 200px; width: 420px; }
+    #g-list-in { background: rgba(255,255,255,0.97); border-radius: 30px; padding: 26px 30px 22px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.2); }
+    #g-list .t { font-size: 30px; font-weight: 400; color: #8A8F8B; margin-bottom: 10px; }
+    #g-list .row { display: flex; align-items: center; gap: 18px; font-size: 46px; font-weight: 700; color: #1B1F1C; height: 72px; }
+    #g-list .dot { width: 44px; height: 44px; border-radius: 50%; border: 3px solid #D3D6D3; position: relative; flex: none; }
+    #g-list .fill { position: absolute; inset: -3px; border-radius: 50%; background: #1E9E4A; }
+    #g-list .fill svg { position: absolute; left: 9px; top: 11px; }
+
+    /* CTA card */
+    #g-cta { left: 0; top: 214px; width: 1080px; text-align: center; }
+    #g-cta-in { display: inline-flex; align-items: center; gap: 30px; background: rgba(255,255,255,0.97); border-radius: 40px;
+      padding: 26px 46px 26px 26px; box-shadow: 0 34px 70px rgba(0,0,0,0.45), 0 4px 12px rgba(0,0,0,0.2); text-align: left; }
+    #g-cta-icon { width: 128px; height: 128px; border-radius: 30px; background: #F5C518; position: relative; flex: none; }
+    #g-cta-icon svg { position: absolute; left: 24px; top: 20px; }
+    #g-cta .a { font-size: 40px; font-weight: 400; color: #6B716C; line-height: 1.1; }
+    #g-cta .b .c { display: inline-block; }
+    #g-cta .b { font-size: 70px; font-weight: 700; color: #141815; line-height: 1.02; letter-spacing: -0.015em; }
+
+    /* small print */
+    #g-note { left: 0; top: 1300px; width: 1080px; text-align: center; }
+    #g-note span { display: inline-block; padding: 8px 20px; border-radius: 999px; background: rgba(0,0,0,0.62);
+      font-size: 28px; font-weight: 400; color: rgba(255,255,255,0.8); letter-spacing: 0.01em; }
+  </style>
+  <div id="root" data-composition-id="gfx" data-width="1080" data-height="1920" data-layout-allow-overflow>
+
+    <div id="g-grad-t" class="clip g" data-start="0" data-duration="35.5" data-track-index="1" data-layout-ignore></div>
+    <div id="g-grad-b" class="clip g" data-start="0" data-duration="35.5" data-track-index="2" data-layout-ignore></div>
+
+    <!-- B3: spotlight + thin highlight on the box while the name is said -->
+    <div id="g-spot" class="clip g spot" data-start="15.24" data-duration="1.52" data-track-index="3" data-layout-ignore></div>
+    <div id="g-box" class="clip g hl" data-start="15.3" data-duration="1.44" data-track-index="4" data-layout-ignore>
+      <svg width="460" height="500" viewBox="0 0 460 500">
+        <rect id="g-boxr" x="8" y="8" width="444" height="484" rx="30" fill="none" stroke="#fff" stroke-width="5"
+          pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" stroke-linecap="butt" />
+      </svg>
+    </div>
+
+    <!-- C2: illustration tag -->
+    <div id="g-ilu" class="clip g" data-start="21.04" data-duration="2.38" data-track-index="3">
+      <div id="g-ilu-in">ILUSTRASI</div>
+    </div>
+
+    <!-- D2: checklist card -->
+    <div id="g-list" class="clip g" data-start="27.68" data-duration="2.56" data-track-index="3">
+      <div id="g-list-in">
+        <div class="t">Setiap gummy</div>
+        <div class="row"><div class="dot"><div class="fill" id="g-f1"><svg width="26" height="22" viewBox="0 0 26 22"><path d="M2 11 L9 18 L24 3" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>Zero sugar</div>
+        <div class="row"><div class="dot"><div class="fill" id="g-f2"><svg width="26" height="22" viewBox="0 0 26 22"><path d="M2 11 L9 18 L24 3" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>Halal</div>
+        <div class="row"><div class="dot"><div class="fill" id="g-f3"><svg width="26" height="22" viewBox="0 0 26 22"><path d="M2 11 L9 18 L24 3" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>Perisa peach</div>
+      </div>
+    </div>
+
+    <!-- D4: CTA card -->
+    <div id="g-cta" class="clip g" data-start="33.2" data-duration="2.3" data-track-index="3">
+      <div id="g-cta-in">
+        <div id="g-cta-icon">
+          <svg width="80" height="86" viewBox="0 0 80 86">
+            <path d="M24 30 C 24 8, 56 8, 56 30" fill="none" stroke="#141815" stroke-width="7" stroke-linecap="round" />
+            <path d="M8 28 L72 28 L77 78 Q 77 83 72 83 L8 83 Q 3 83 3 78 Z" fill="none" stroke="#141815" stroke-width="7" stroke-linejoin="round" />
+          </svg>
+          <svg width="128" height="128" viewBox="-64 -64 128 128" style="left:0;top:0">
+            <circle id="g-tap1" r="40" fill="none" stroke="#fff" stroke-width="5" />
+          </svg>
+        </div>
+        <div>
+          <div class="a" id="g-cta-a">Tekan</div>
+          <div class="b" id="g-cta-b"><span class="c">b</span><span class="c">e</span><span class="c">g</span><span class="c">&nbsp;</span><span class="c">k</span><span class="c">u</span><span class="c">n</span><span class="c">i</span><span class="c">n</span><span class="c">g</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D: small print while the product is taken / promoted -->
+    <div id="g-note" class="clip g" data-start="25.3" data-duration="10.2" data-track-index="5"><span>Wanita hamil / menyusu, rujuk doktor dahulu.</span></div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    // box spotlight + highlight (box position measured on the reframed shot)
+    tl.fromTo("#g-spot", { "--x": "388px", "--y": "1080px", opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 15.24);
+    tl.set("#g-box", { x: 388 - 230, y: 1080 - 250 }, 15.3);
+    tl.fromTo("#g-boxr", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut" }, 15.32);
+    tl.to("#g-box", { opacity: 0, duration: 0.14 }, 16.6);
+
+    // illustration tag
+    tl.fromTo("#g-ilu-in", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 21.08);
+    tl.to("#g-ilu-in", { opacity: 0, duration: 0.16 }, 23.24);
+
+    // checklist
+    tl.fromTo("#g-list", { y: 30, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "power3.out" }, 27.68);
+    tl.fromTo("#g-f1", { scale: 0 }, { scale: 1, duration: 0.24, ease: "back.out(2)" }, 27.90);
+    tl.fromTo("#g-f2", { scale: 0 }, { scale: 1, duration: 0.24, ease: "back.out(2)" }, 29.04);
+    tl.fromTo("#g-f3", { scale: 0 }, { scale: 1, duration: 0.24, ease: "back.out(2)" }, 29.70);
+    tl.to("#g-list", { y: -20, opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, 30.04);
+
+    // CTA card
+    tl.fromTo("#g-cta-in", { y: 40, opacity: 0, filter: "blur(12px)", scale: 0.96 }, { y: 0, opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.36, ease: "power3.out" }, 33.2);
+    tl.fromTo("#g-cta-a", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 33.3);
+    tl.fromTo("#g-cta-b .c", { x: (i) => (i - 4.5) * 20, opacity: 0, filter: "blur(8px)" }, { x: 0, opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "power3.out", stagger: 0.008 }, 33.40);
+    tl.fromTo("#g-cta-icon", { scale: 1 }, { scale: 0.92, duration: 0.07, ease: "power2.in" }, 33.62);
+    tl.to("#g-cta-icon", { scale: 1, duration: 0.2, ease: "back.out(2.5)" }, 33.69);
+    tl.fromTo("#g-tap1", { scale: 0.5, opacity: 0.9 }, { scale: 1.6, opacity: 0, duration: 0.4, ease: "power2.out" }, 33.62);
+    tl.fromTo("#g-tap1", { scale: 0.5, opacity: 0.9 }, { scale: 1.6, opacity: 0, duration: 0.4, ease: "power2.out", immediateRender: false }, 34.1);
+
+    // small print
+    tl.fromTo("#g-note", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 25.3);
+
+    window.__timelines["gfx"] = tl;
+  </script>
+</template>

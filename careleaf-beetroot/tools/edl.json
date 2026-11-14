@@ -1,0 +1,109 @@
+{
+ "total": 34.44,
+ "segments": [
+  {
+   "id": "A1",
+   "clip": "v1_hook",
+   "src_in": 0.26,
+   "src_out": 2.4,
+   "start": 0.0,
+   "dur": 2.14
+  },
+  {
+   "id": "A2",
+   "clip": "v1_hook",
+   "src_in": 2.98,
+   "src_out": 5.56,
+   "start": 2.14,
+   "dur": 2.58
+  },
+  {
+   "id": "A3",
+   "clip": "v1_hook",
+   "src_in": 6.06,
+   "src_out": 9.58,
+   "start": 4.72,
+   "dur": 3.52
+  },
+  {
+   "id": "B1",
+   "clip": "v2_produk",
+   "src_in": 0.44,
+   "src_out": 3.4,
+   "start": 8.24,
+   "dur": 2.96
+  },
+  {
+   "id": "B2",
+   "clip": "v2_produk",
+   "src_in": 3.7,
+   "src_out": 6.2,
+   "start": 11.2,
+   "dur": 2.5
+  },
+  {
+   "id": "B3",
+   "clip": "v2_produk",
+   "src_in": 6.42,
+   "src_out": 9.48,
+   "start": 13.7,
+   "dur": 3.06
+  },
+  {
+   "id": "C1",
+   "clip": "v3_cara",
+   "src_in": 0.46,
+   "src_out": 4.74,
+   "start": 16.76,
+   "dur": 4.28
+  },
+  {
+   "id": "C2",
+   "clip": "v3_cara",
+   "src_in": 5.08,
+   "src_out": 7.46,
+   "start": 21.04,
+   "dur": 2.38
+  },
+  {
+   "id": "C3",
+   "clip": "v3_cara",
+   "src_in": 7.78,
+   "src_out": 9.66,
+   "start": 23.42,
+   "dur": 1.88
+  },
+  {
+   "id": "D1",
+   "clip": "v4_cta",
+   "src_in": 0.1,
+   "src_out": 2.48,
+   "start": 25.3,
+   "dur": 2.38
+  },
+  {
+   "id": "D2",
+   "clip": "v4_cta",
+   "src_in": 2.64,
+   "src_out": 5.22,
+   "start": 27.68,
+   "dur": 2.58
+  },
+  {
+   "id": "D3",
+   "clip": "v4_cta",
+   "src_in": 5.5,
+   "src_out": 8.42,
+   "start": 30.26,
+   "dur": 2.92
+  },
+  {
+   "id": "D4",
+   "clip": "v4_cta",
+   "src_in": 8.58,
+   "src_out": 9.84,
+   "start": 33.18,
+   "dur": 1.26
+  }
+ ]
+}
