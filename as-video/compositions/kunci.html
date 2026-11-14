@@ -1,0 +1,52 @@
+<template>
+<style>
+@font-face{font-family:"Anton";src:url("assets/fonts/Anton.woff2") format("woff2")}
+@font-face{font-family:"DMSerif";src:url("assets/fonts/DMSerifDisplay.woff2") format("woff2")}
+@font-face{font-family:"Marker";src:url("assets/fonts/PermanentMarker.woff2") format("woff2")}
+@font-face{font-family:"Typewriter";src:url("assets/fonts/SpecialElite.woff2") format("woff2")}
+@font-face{font-family:"Narrow";font-weight:700;src:url("assets/fonts/ArchivoNarrow.woff2") format("woff2")}
+
+#root { position:absolute; inset:0; color:#1d1b18; }
+#root .jit { position:absolute; inset:0; }
+#root .jit > * { position:absolute; }
+#root .serif { font-family:"DMSerif",serif; line-height:.95; }
+#root .anton { font-family:"Anton",sans-serif; line-height:.92; letter-spacing:1px; }
+#root .mk { font-family:"Marker",cursive; line-height:1.05; }
+#root .ty { font-family:"Typewriter",monospace; }
+#root .red { color:#d23820; } #root .blue { color:#2e56b8; }
+#root .card { background:#f6f1e7; box-shadow:5px 7px 0 rgba(0,0,0,.10),0 18px 40px rgba(0,0,0,.14); }
+#root .tape { width:220px; height:62px; background:rgba(236,222,170,.78); box-shadow:0 2px 4px rgba(0,0,0,.12); }
+#root .dymo { display:inline-block; background:#141414; color:#f4f4f4; font:700 52px "Narrow",sans-serif; letter-spacing:7px; padding:16px 28px 13px; border-radius:7px;
+  text-shadow:0 -2px 0 rgba(0,0,0,.8),0 2px 0 rgba(255,255,255,.22); box-shadow:0 4px 7px rgba(0,0,0,.3); white-space:nowrap; }
+#root .stamp { display:inline-block; font:400 66px "Anton",sans-serif; letter-spacing:6px; border:9px solid currentColor; border-radius:14px; padding:6px 26px; mix-blend-mode:multiply; opacity:.9; white-space:nowrap; }
+#root .sticky { background:#f8e36a; box-shadow:5px 9px 18px rgba(0,0,0,.2); font:58px/1.08 "Marker",cursive; padding:36px 32px; }
+#root .riso { position:relative; display:inline-block; }
+#root .riso .ghost { position:absolute; left:7px; top:5px; color:#2e56b8; opacity:.5; mix-blend-mode:multiply; white-space:nowrap; }
+#root .riso .main { position:relative; }
+
+#kc-t { left:80px; top:220px; font-size:150px; }
+#kc-k { left:640px; top:600px; }
+</style>
+<div id="root" data-composition-id="kunci" data-width="1080" data-height="1920" data-start="0" data-duration="6.5">
+<div class="jit" id="kunci-jit">
+
+<div id="kc-t" class="anton"><span id="kc-t1" style="opacity:0">KONGRES</span><br><span id="kc-t2" class="blue" style="opacity:0">PEGANG KUNCI.</span></div>
+<svg id="kc-k" width="380" height="380" viewBox="0 0 160 160" style="opacity:0"><circle cx="45" cy="45" r="32" fill="none" stroke="#b8862c" stroke-width="16"/><path d="M68 68 L140 140 M110 110 L125 95 M125 125 L140 110" stroke="#b8862c" stroke-width="16" stroke-linecap="round"/></svg>
+<div id="kc-d0" style="left:80px;top:640px;transform:rotate(-3deg);opacity:0"><span class="dymo" style="background:#141414">DUIT KERAJAAN</span></div><div id="kc-d1" style="left:120px;top:765px;transform:rotate(2deg);opacity:0"><span class="dymo" style="background:#141414">UNDANG-UNDANG</span></div><div id="kc-d2" style="left:80px;top:890px;transform:rotate(-1deg);opacity:0"><span class="dymo" style="background:#141414">SIASATAN</span></div><div id="kc-d3" style="left:120px;top:1015px;transform:rotate(3deg);opacity:0"><span class="dymo" style="background:#7a1b12">DAKWA PRESIDEN</span></div>
+
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const SM="steps(5)", SM8="steps(8)";
+
+tl.fromTo("#kc-t1",{opacity:0},{opacity:1,duration:.1,ease:"steps(1)"},0.3);
+tl.fromTo("#kc-t2",{opacity:0,scale:1.15},{opacity:1,scale:1,duration:.15,ease:"power4.in",transformOrigin:"0% 50%"},0.8);
+tl.fromTo("#kc-k",{opacity:0,y:-300,rotation:-60},{opacity:1,y:0,rotation:-25,duration:.3,ease:SM},1.0);
+tl.fromTo("#kc-d0",{opacity:0,clipPath:"inset(0 100% 0 0)"},{opacity:1,clipPath:"inset(0 0% 0 0)",duration:.35,ease:"steps(7)"},1.68);tl.fromTo("#kc-d1",{opacity:0,clipPath:"inset(0 100% 0 0)"},{opacity:1,clipPath:"inset(0 0% 0 0)",duration:.35,ease:"steps(7)"},2.70);tl.fromTo("#kc-d2",{opacity:0,clipPath:"inset(0 100% 0 0)"},{opacity:1,clipPath:"inset(0 0% 0 0)",duration:.35,ease:"steps(7)"},3.50);tl.fromTo("#kc-d3",{opacity:0,clipPath:"inset(0 100% 0 0)"},{opacity:1,clipPath:"inset(0 0% 0 0)",duration:.35,ease:"steps(7)"},5.50);
+tl.set("#kunci-jit",{x:-2.2,y:2.1,rotation:0.15},0.000);tl.set("#kunci-jit",{x:-0.0,y:-1.5,rotation:-0.11},0.083);tl.set("#kunci-jit",{x:-2.2,y:-1.3,rotation:0.17},0.167);tl.set("#kunci-jit",{x:-1.9,y:-1.9,rotation:0.15},0.250);tl.set("#kunci-jit",{x:-0.9,y:2.2,rotation:0.09},0.333);tl.set("#kunci-jit",{x:-0.3,y:1.8,rotation:-0.02},0.417);tl.set("#kunci-jit",{x:1.1,y:1.9,rotation:0.07},0.500);tl.set("#kunci-jit",{x:1.3,y:2.0,rotation:0.09},0.583);tl.set("#kunci-jit",{x:2.3,y:-0.5,rotation:-0.06},0.667);tl.set("#kunci-jit",{x:-0.7,y:0.6,rotation:0.07},0.750);tl.set("#kunci-jit",{x:-0.5,y:-1.1,rotation:-0.01},0.833);tl.set("#kunci-jit",{x:0.6,y:0.6,rotation:-0.12},0.917);tl.set("#kunci-jit",{x:-0.4,y:1.6,rotation:-0.16},1.000);tl.set("#kunci-jit",{x:-1.3,y:-2.5,rotation:0.08},1.083);tl.set("#kunci-jit",{x:1.5,y:0.9,rotation:0.11},1.167);tl.set("#kunci-jit",{x:-0.3,y:-0.3,rotation:-0.13},1.250);tl.set("#kunci-jit",{x:-2.1,y:2.1,rotation:-0.10},1.333);tl.set("#kunci-jit",{x:1.2,y:-1.1,rotation:-0.01},1.417);tl.set("#kunci-jit",{x:-0.9,y:-0.4,rotation:-0.07},1.500);tl.set("#kunci-jit",{x:-0.7,y:1.7,rotation:0.08},1.583);tl.set("#kunci-jit",{x:0.3,y:0.9,rotation:0.03},1.667);tl.set("#kunci-jit",{x:-1.8,y:0.1,rotation:0.05},1.750);tl.set("#kunci-jit",{x:-0.3,y:2.4,rotation:0.03},1.833);tl.set("#kunci-jit",{x:-1.6,y:-0.1,rotation:-0.15},1.917);tl.set("#kunci-jit",{x:-0.5,y:-1.2,rotation:-0.12},2.000);tl.set("#kunci-jit",{x:2.0,y:-1.6,rotation:0.07},2.083);tl.set("#kunci-jit",{x:2.1,y:-1.6,rotation:-0.03},2.167);tl.set("#kunci-jit",{x:-0.2,y:1.3,rotation:-0.12},2.250);tl.set("#kunci-jit",{x:0.7,y:-0.4,rotation:0.08},2.333);tl.set("#kunci-jit",{x:-0.8,y:0.4,rotation:-0.02},2.417);tl.set("#kunci-jit",{x:-2.0,y:-1.6,rotation:-0.08},2.500);tl.set("#kunci-jit",{x:-0.7,y:0.2,rotation:-0.08},2.583);tl.set("#kunci-jit",{x:0.5,y:1.1,rotation:-0.02},2.667);tl.set("#kunci-jit",{x:1.2,y:-0.0,rotation:-0.08},2.750);tl.set("#kunci-jit",{x:-1.7,y:-2.5,rotation:0.12},2.833);tl.set("#kunci-jit",{x:1.1,y:-1.1,rotation:0.09},2.917);tl.set("#kunci-jit",{x:1.3,y:-1.4,rotation:-0.08},3.000);tl.set("#kunci-jit",{x:-0.4,y:-1.4,rotation:0.16},3.083);tl.set("#kunci-jit",{x:-2.2,y:1.2,rotation:-0.10},3.167);tl.set("#kunci-jit",{x:-1.3,y:1.4,rotation:-0.12},3.250);tl.set("#kunci-jit",{x:1.1,y:1.9,rotation:-0.13},3.333);tl.set("#kunci-jit",{x:0.9,y:0.7,rotation:-0.16},3.417);tl.set("#kunci-jit",{x:0.7,y:1.7,rotation:0.14},3.500);tl.set("#kunci-jit",{x:-1.0,y:-0.6,rotation:-0.09},3.583);tl.set("#kunci-jit",{x:-1.7,y:1.9,rotation:0.03},3.667);tl.set("#kunci-jit",{x:0.6,y:0.7,rotation:-0.10},3.750);tl.set("#kunci-jit",{x:0.1,y:-2.5,rotation:-0.02},3.833);tl.set("#kunci-jit",{x:-1.2,y:2.4,rotation:-0.09},3.917);tl.set("#kunci-jit",{x:-0.7,y:-0.1,rotation:0.11},4.000);tl.set("#kunci-jit",{x:1.3,y:1.0,rotation:0.03},4.083);tl.set("#kunci-jit",{x:1.9,y:-2.5,rotation:0.15},4.167);tl.set("#kunci-jit",{x:1.8,y:1.3,rotation:-0.01},4.250);tl.set("#kunci-jit",{x:1.1,y:1.8,rotation:-0.10},4.333);tl.set("#kunci-jit",{x:0.2,y:-1.2,rotation:0.16},4.417);tl.set("#kunci-jit",{x:1.7,y:2.2,rotation:0.10},4.500);tl.set("#kunci-jit",{x:1.7,y:-0.6,rotation:-0.00},4.583);tl.set("#kunci-jit",{x:0.3,y:0.7,rotation:0.14},4.667);tl.set("#kunci-jit",{x:0.0,y:0.8,rotation:0.05},4.750);tl.set("#kunci-jit",{x:1.5,y:-0.6,rotation:-0.13},4.833);tl.set("#kunci-jit",{x:0.0,y:1.9,rotation:0.12},4.917);tl.set("#kunci-jit",{x:0.8,y:-1.6,rotation:-0.01},5.000);tl.set("#kunci-jit",{x:-1.3,y:1.3,rotation:0.09},5.083);tl.set("#kunci-jit",{x:-0.8,y:1.2,rotation:-0.15},5.167);tl.set("#kunci-jit",{x:-1.6,y:-1.2,rotation:0.17},5.250);tl.set("#kunci-jit",{x:-1.0,y:-1.4,rotation:0.06},5.333);tl.set("#kunci-jit",{x:-1.6,y:1.1,rotation:0.09},5.417);tl.set("#kunci-jit",{x:-0.2,y:-0.3,rotation:0.08},5.500);tl.set("#kunci-jit",{x:1.2,y:-1.9,rotation:-0.04},5.583);tl.set("#kunci-jit",{x:0.1,y:-0.0,rotation:0.07},5.667);tl.set("#kunci-jit",{x:1.4,y:-1.8,rotation:-0.04},5.750);tl.set("#kunci-jit",{x:1.6,y:-1.3,rotation:-0.17},5.833);tl.set("#kunci-jit",{x:-0.1,y:-1.4,rotation:-0.10},5.917);tl.set("#kunci-jit",{x:0.6,y:-0.3,rotation:0.03},6.000);tl.set("#kunci-jit",{x:0.2,y:2.2,rotation:-0.11},6.083);tl.set("#kunci-jit",{x:0.7,y:-0.2,rotation:0.02},6.167);tl.set("#kunci-jit",{x:1.8,y:1.8,rotation:-0.10},6.250);tl.set("#kunci-jit",{x:-0.3,y:0.8,rotation:0.16},6.333);tl.set("#kunci-jit",{x:0.4,y:1.2,rotation:-0.07},6.417);
+window.__timelines["kunci"] = tl;
+})();
+</script>
+</template>

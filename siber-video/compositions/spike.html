@@ -1,0 +1,50 @@
+<template>
+<style>
+#root { position:absolute; inset:0; color:#e9eef3; font-family:"Inter",sans-serif; }
+#root .hud { position:absolute; left:80px; right:80px; top:196px; height:36px; font:500 28px "JetBrains Mono",monospace; letter-spacing:3px; color:#6b7785; }
+#root .hud .l { position:absolute; left:0; top:0; }
+#root .hud .r { position:absolute; right:0; top:0; text-align:right; }
+#root .title { position:absolute; left:80px; right:80px; font-family:"Inter",sans-serif; font-weight:900; font-size:116px; letter-spacing:-4px; line-height:.94; }
+#root .mono { font-family:"JetBrains Mono",monospace; }
+#root .ice { color:#5ad1ff; } #root .warm { color:#ff9a3c; } #root .hot { color:#ff3b30; } #root .dim { color:#6b7785; }
+#root .tag { display:inline-block; font:700 28px "JetBrains Mono",monospace; letter-spacing:5px; padding:12px 22px; border:3px solid currentColor; border-radius:8px; }
+
+#spike-tag { position:absolute; left:0; right:0; top:300px; text-align:center; }
+#spike-num { position:absolute; left:0; right:0; top:370px; text-align:center; font:700 290px "JetBrains Mono"; letter-spacing:-12px; color:#5ad1ff; line-height:1; }
+#spike-track { position:absolute; left:190px; width:700px; top:720px; height:18px; border-radius:9px; background:#1b222b; overflow:hidden; }
+#spike-fill { position:absolute; left:0; top:0; bottom:0; width:700px; background:linear-gradient(90deg,#5ad1ff,#ff9a3c 60%,#ff3b30); transform-origin:0 50%; }
+#spike-a { top:810px; font-size:72px; letter-spacing:-2px; text-align:center; color:#6b7785; }
+#spike-b { top:900px; font-size:180px; text-align:center; letter-spacing:-6px; }
+#root .gl { position:absolute; left:0; right:0; top:0; text-align:center; }
+</style>
+<div id="root" data-composition-id="spike" data-width="1080" data-height="1920" data-start="0" data-duration="4.65">
+
+<div class="hud"><span class="l">FREEZER-03 · LORONG 7</span><span class="r ice" id="spike-ok">● NORMAL</span><span class="r hot" id="spike-al" style="opacity:0">▲ ALARM</span></div>
+<div id="spike-tag"><span class="tag ice" id="spike-tagi">SUHU SEMASA</span></div>
+<div id="spike-num">-18°</div>
+<div id="spike-track"><div id="spike-fill"></div></div>
+<div class="title" id="spike-a" style="opacity:0">BUKAN ROSAK.</div>
+<div class="title" id="spike-b" style="opacity:0"><span class="gl" id="spike-g1" style="color:#00e5ff;opacity:.75">DIGODAM.</span><span class="gl" id="spike-g2" style="color:#ff2a6d;opacity:.75">DIGODAM.</span><span class="gl" style="color:#fff">DIGODAM.</span></div>
+
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+
+const num=document.getElementById("spike-num"); const T={v:-18};
+tl.fromTo(T,{v:-18},{v:50,duration:2.09,ease:"power2.in",onUpdate:()=>{num.textContent=Math.round(T.v)+"°";}},0.36);
+tl.fromTo("#spike-num",{color:"#5ad1ff",textShadow:"0 0 60px rgba(90,209,255,.5)"},{color:"#ff3b30",textShadow:"0 0 90px rgba(255,59,48,.75)",duration:2.09,ease:"power2.in"},0.36);
+tl.fromTo("#spike-fill",{scaleX:.08},{scaleX:1,duration:2.09,ease:"power2.in"},0.36);
+tl.fromTo("#spike-tagi",{color:"#5ad1ff"},{color:"#ff3b30",duration:.2},1.9);
+tl.fromTo("#spike-ok",{opacity:1},{opacity:0,duration:.1},1.9);
+tl.fromTo("#spike-al",{opacity:0},{opacity:1,duration:.1},1.9);
+tl.fromTo("#spike-num",{x:0},{x:8,duration:.04,yoyo:true,repeat:7,ease:"none"},2.45);
+tl.fromTo("#spike-a",{opacity:0,y:24},{opacity:1,y:0,duration:.3,ease:"power3.out"},3.03);
+tl.fromTo("#spike-b",{opacity:0,scale:1.5},{opacity:1,scale:1,duration:.2,ease:"power4.out"},4.07);
+[[4.07,-9,7],[4.17,6,-5],[4.27,-3,3],[4.37,0,0]].forEach(([t,a,b])=>{
+  tl.set("#spike-g1",{x:a,y:-b*0.4},t); tl.set("#spike-g2",{x:b,y:a*0.4},t);});
+
+window.__timelines["spike"] = tl;
+})();
+</script>
+</template>

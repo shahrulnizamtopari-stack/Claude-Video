@@ -1,0 +1,78 @@
+<template>
+<style>
+@font-face{font-family:"Anton";src:url("assets/fonts/Anton.woff2") format("woff2")}
+@font-face{font-family:"Marker";src:url("assets/fonts/PermanentMarker.woff2") format("woff2")}
+@font-face{font-family:"Typewriter";src:url("assets/fonts/SpecialElite.woff2") format("woff2")}
+@font-face{font-family:"CourierP";font-weight:700;src:url("assets/fonts/CourierPrime.woff2") format("woff2")}
+@font-face{font-family:"Stencil";font-weight:700;src:url("assets/fonts/StardosStencil.woff2") format("woff2")}
+
+#root { position:absolute; inset:0; color:#1c1a17; }
+#root .jit { position:absolute; inset:0; transform-origin:50% 45%; }
+#root .jit > * { position:absolute; }
+#root .an { font-family:"Anton",sans-serif; line-height:.92; letter-spacing:1px; }
+#root .mk { font-family:"Marker",cursive; line-height:1.05; }
+#root .ty { font-family:"Typewriter",monospace; }
+#root .cr { font-family:"CourierP",monospace; font-weight:700; }
+#root .st { font-family:"Stencil",serif; font-weight:700; }
+#root .red { color:#c4241d; } #root .cream { color:#fff3d6; }
+#root .idx { background:#fbf8f0 repeating-linear-gradient(transparent 0 62px,#9fc0e0 62px 64px); background-position:0 90px;
+  box-shadow:5px 9px 0 rgba(0,0,0,.25),0 24px 44px rgba(0,0,0,.4); z-index:2; }
+#root .idx::before { content:""; position:absolute; left:0; right:0; top:80px; height:4px; background:#e08a8a; }
+#root .card { background:#fbf8f0; box-shadow:5px 9px 0 rgba(0,0,0,.25),0 24px 44px rgba(0,0,0,.4); z-index:2; }
+#root .manila { background:#e2c98d; box-shadow:5px 9px 0 rgba(0,0,0,.25),0 24px 44px rgba(0,0,0,.45); z-index:2; }
+#root .pol { background:#f7f5ef; padding:24px 24px 96px; box-shadow:5px 9px 0 rgba(0,0,0,.25),0 26px 48px rgba(0,0,0,.45); z-index:2; }
+#root .pol .ph { background:#2a2622; display:flex; align-items:center; justify-content:center; }
+#root .pol .cap { position:absolute; left:24px; right:24px; bottom:22px; font:52px "Marker",cursive; text-align:center; white-space:nowrap; }
+#root .pin { width:46px; height:46px; border-radius:50%; background:radial-gradient(circle at 35% 35%,#ff8a80,#c4241d 55%,#7a1410); box-shadow:5px 8px 7px rgba(0,0,0,.45); z-index:6; }
+#root .stamp { display:inline-block; font:700 80px "Stencil",serif; letter-spacing:6px; border:10px solid currentColor; border-radius:12px; padding:4px 30px; mix-blend-mode:multiply; opacity:.9; white-space:nowrap; z-index:7; }
+#root .tag { background:#f2d03b; font:700 34px "CourierP",monospace; padding:8px 20px; box-shadow:2px 5px 5px rgba(0,0,0,.3); z-index:7; white-space:nowrap; }
+#root .cctv { font:700 36px "CourierP",monospace; color:#f2f2f2; background:rgba(0,0,0,.6); padding:10px 22px; letter-spacing:2px; z-index:8; white-space:nowrap; }
+#root .rd { display:inline-block; background:#111; color:#111; line-height:1.05; }
+#root .strings { left:0; top:0; z-index:1; overflow:visible; }
+#root .strings path { fill:none; stroke:#c4241d; stroke-width:6; }
+
+#mn-v { left:630px; top:250px; width:360px; height:300px; background:#3b3631; transform:rotate(5deg); box-shadow:5px 9px 0 rgba(0,0,0,.25),0 24px 44px rgba(0,0,0,.4); z-index:2; }
+#mn-vx { position:absolute; left:60px; top:30px; }
+#mn-vl { position:absolute; left:0; right:0; bottom:12px; text-align:center; font-size:36px; }
+#mn-p { left:70px; top:260px; width:520px; transform:rotate(-4deg); }
+#mn-tg { left:330px; top:250px; transform:rotate(8deg); }
+#mn-l { left:560px; top:640px; width:440px; height:250px; transform:rotate(3deg); padding:26px 30px; }
+#mn-t { left:80px; top:930px; font-size:104px; }
+</style>
+<div id="root" data-composition-id="manusia" data-width="1080" data-height="1920" data-start="0" data-duration="8.7">
+<div class="jit" id="manusia-jit">
+
+<svg class="strings" width="1080" height="1920"><path id="mn-s1" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M780 660 Q555.0 530.0 330 300"/></svg>
+<div id="mn-v"><svg id="mn-vx" width="240" height="240" viewBox="0 0 100 100"><path id="mn-x1" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M15 15 L85 85" stroke="#ff6b5e" stroke-width="12" stroke-linecap="butt"/>
+<path id="mn-x2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M85 15 L15 85" stroke="#ff6b5e" stroke-width="12" stroke-linecap="butt"/></svg><div id="mn-vl" class="ty cream">peti besi</div></div>
+<div id="mn-p" class="pol" style="opacity:0"><div class="ph" style="height:400px"><svg width="400" height="280" viewBox="0 0 100 70" fill="none" stroke="#f2ead8" stroke-width="2.5" stroke-linejoin="round"><rect x="18" y="8" width="64" height="40" rx="3"/><path d="M8 56 L92 56 L84 48 L16 48 Z"/><path d="M50 18 L50 32" stroke="#ff6b5e" stroke-width="4"/><circle cx="50" cy="39" r="2.4" fill="#ff6b5e" stroke="none"/></svg></div><div class="cap">laptop jurutera</div></div>
+<div id="mn-pp" class="pin" style="left:307px;top:277px;opacity:0"></div>
+<div id="mn-tg" class="tag" style="opacity:0;font-size:40px">BUKTI #01</div>
+<div id="mn-l" class="card" style="opacity:0"><div class="st" style="font-size:44px">TAWARAN KERJA</div><div class="cr" style="font-size:30px;line-height:1.7;margin-top:10px">temuduga · <span class="rd">██████</span><br>muat turun <span class="rd">████████</span></div>
+<div class="tag" style="position:absolute;right:16px;bottom:14px;font-size:28px">dilaporkan</div></div>
+<div id="mn-lp" class="pin" style="left:757px;top:637px;opacity:0"></div>
+<div id="mn-t" class="an"><span id="mn-t1" style="opacity:0">GODAM</span><br><span id="mn-t2" style="opacity:0;color:#ff7a6e">SEORANG MANUSIA.</span></div>
+
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#manusia-jit",{scale:1,x:0,y:0},{scale:1.04,x:-4.9,y:-7.2,duration:8.7,ease:"none"},0);
+
+tl.fromTo("#mn-v",{opacity:0,y:-40},{opacity:1,y:0,duration:.2},0.2);
+tl.fromTo("#mn-x1",{strokeDashoffset:1},{strokeDashoffset:0,duration:.18,ease:"power2.out"},0.75);
+tl.fromTo("#mn-x2",{strokeDashoffset:1},{strokeDashoffset:0,duration:.18,ease:"power2.out"},0.95);
+tl.fromTo("#mn-t1",{opacity:0},{opacity:1,duration:.08},2.15);
+tl.fromTo("#mn-t2",{opacity:0,scale:1.15},{opacity:1,scale:1,duration:.15,ease:"power4.in",transformOrigin:"0% 50%"},2.6);
+tl.fromTo("#mn-p",{opacity:0,y:-120,rotation:-14},{opacity:1,y:0,rotation:-4,duration:.25,ease:"power3.out"},3.9);
+tl.fromTo("#mn-pp",{opacity:0,scale:1.6},{opacity:1,scale:1,duration:.08},4.15);
+tl.fromTo("#mn-tg",{opacity:0,scale:1.5},{opacity:1,scale:1,duration:.15},4.6);
+tl.fromTo("#mn-l",{opacity:0,x:200},{opacity:1,x:0,duration:.25,ease:"power3.out"},5.85);
+tl.fromTo("#mn-lp",{opacity:0,scale:1.6},{opacity:1,scale:1,duration:.08},6.1);
+tl.fromTo("#mn-s1",{strokeDashoffset:1},{strokeDashoffset:0,duration:.6,ease:"power2.inOut"},6.3);
+
+window.__timelines["manusia"] = tl;
+})();
+</script>
+</template>

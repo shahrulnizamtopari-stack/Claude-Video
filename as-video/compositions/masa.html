@@ -1,0 +1,69 @@
+<template>
+<style>
+@font-face{font-family:"Anton";src:url("assets/fonts/Anton.woff2") format("woff2")}
+@font-face{font-family:"DMSerif";src:url("assets/fonts/DMSerifDisplay.woff2") format("woff2")}
+@font-face{font-family:"Marker";src:url("assets/fonts/PermanentMarker.woff2") format("woff2")}
+@font-face{font-family:"Typewriter";src:url("assets/fonts/SpecialElite.woff2") format("woff2")}
+@font-face{font-family:"Narrow";font-weight:700;src:url("assets/fonts/ArchivoNarrow.woff2") format("woff2")}
+
+#root { position:absolute; inset:0; color:#1d1b18; }
+#root .jit { position:absolute; inset:0; }
+#root .jit > * { position:absolute; }
+#root .serif { font-family:"DMSerif",serif; line-height:.95; }
+#root .anton { font-family:"Anton",sans-serif; line-height:.92; letter-spacing:1px; }
+#root .mk { font-family:"Marker",cursive; line-height:1.05; }
+#root .ty { font-family:"Typewriter",monospace; }
+#root .red { color:#d23820; } #root .blue { color:#2e56b8; }
+#root .card { background:#f6f1e7; box-shadow:5px 7px 0 rgba(0,0,0,.10),0 18px 40px rgba(0,0,0,.14); }
+#root .tape { width:220px; height:62px; background:rgba(236,222,170,.78); box-shadow:0 2px 4px rgba(0,0,0,.12); }
+#root .dymo { display:inline-block; background:#141414; color:#f4f4f4; font:700 52px "Narrow",sans-serif; letter-spacing:7px; padding:16px 28px 13px; border-radius:7px;
+  text-shadow:0 -2px 0 rgba(0,0,0,.8),0 2px 0 rgba(255,255,255,.22); box-shadow:0 4px 7px rgba(0,0,0,.3); white-space:nowrap; }
+#root .stamp { display:inline-block; font:400 66px "Anton",sans-serif; letter-spacing:6px; border:9px solid currentColor; border-radius:14px; padding:6px 26px; mix-blend-mode:multiply; opacity:.9; white-space:nowrap; }
+#root .sticky { background:#f8e36a; box-shadow:5px 9px 18px rgba(0,0,0,.2); font:58px/1.08 "Marker",cursive; padding:36px 32px; }
+#root .riso { position:relative; display:inline-block; }
+#root .riso .ghost { position:absolute; left:7px; top:5px; color:#2e56b8; opacity:.5; mix-blend-mode:multiply; white-space:nowrap; }
+#root .riso .main { position:relative; }
+
+#ms-t { left:80px; top:220px; font-size:104px; width:920px; }
+#ms-svg { left:0; top:0; }
+#root .bar { height:100px; border-radius:6px; transform-origin:0 50%; mix-blend-mode:multiply; }
+#root .bar span { position:absolute; left:24px; top:24px; font:400 50px "Anton"; color:#f6f1e7; letter-spacing:2px; white-space:nowrap; }
+#ms-p { left:140px; top:430px; width:800px; background:#e5422b; }
+#ms-d1 { left:140px; top:880px; width:394px; background:#2e56b8; }
+#ms-d2 { left:546px; top:880px; width:394px; background:#2e56b8; }
+#ms-c { left:440px; top:720px; }
+#ms-ar { left:600px; top:1010px; font-size:60px; color:#e5422b; transform:rotate(-4deg); }
+#ms-ar2 { left:120px; top:1010px; font-size:60px; transform:rotate(-2deg); }
+</style>
+<div id="root" data-composition-id="masa" data-width="1080" data-height="1920" data-start="0" data-duration="7.85">
+<div class="jit" id="masa-jit">
+
+<div id="ms-t" class="serif">Siapa diundi,<br>bila?</div>
+<svg id="ms-svg" width="1080" height="1920"><path id="ms-line" d="M90 700 L990 700" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" stroke="#1d1b18" stroke-width="10"/><g id="ms-ticks" opacity="0"><path d="M140 668 L140 732" stroke="#1d1b18" stroke-width="8"/><text x="140" y="800" text-anchor="middle" font-family="Anton" font-size="54" fill="#1d1b18">2024</text><path d="M340 668 L340 732" stroke="#1d1b18" stroke-width="8"/><text x="340" y="800" text-anchor="middle" font-family="Anton" font-size="54" fill="#1d1b18">2025</text><path d="M540 668 L540 732" stroke="#1d1b18" stroke-width="8"/><text x="540" y="800" text-anchor="middle" font-family="Anton" font-size="54" fill="#1d1b18">2026</text><path d="M740 668 L740 732" stroke="#1d1b18" stroke-width="8"/><text x="740" y="800" text-anchor="middle" font-family="Anton" font-size="54" fill="#1d1b18">2027</text><path d="M940 668 L940 732" stroke="#1d1b18" stroke-width="8"/><text x="940" y="800" text-anchor="middle" font-family="Anton" font-size="54" fill="#1d1b18">2028</text></g></svg>
+<div id="ms-p" class="bar"><span>PRESIDEN · 4 TAHUN</span></div>
+<div id="ms-d1" class="bar"><span>DEWAN · 2 TAHUN</span></div>
+<div id="ms-d2" class="bar"><span>DEWAN · 2 TAHUN</span></div>
+<div id="ms-c"><svg width="240" height="180" viewBox="-20 -20 240 180" style="overflow:visible"><path id="ms-cp" d="M196.1,49.3L202.1,61.0L198.4,73.5L198.9,85.9L193.9,96.9L186.0,109.1L174.2,118.6L161.4,125.3L146.3,130.1L129.3,136.7L112.1,138.6L95.1,140.6L78.2,140.7L60.8,133.7L45.3,129.2L31.9,120.9L17.9,112.8L10.0,102.7L1.7,89.9L0.1,78.9L1.6,66.6L5.1,54.9L8.5,43.7L17.2,30.8L26.4,22.4L37.9,13.9L53.0,7.0L69.9,5.4L87.4,-0.9L104.8,-2.3L121.7,1.9L138.0,5.5L154.5,13.2L169.8,19.0L179.8,27.4L188.2,38.6L196.4,49.2L197.9,61.1L198.7,73.3L196.0,85.0L190.3,97.7" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="#e5422b" stroke-width="10" stroke-linecap="butt"/></svg></div>
+<div id="ms-ar" class="mk" style="opacity:0">↑ undi lagi!</div>
+
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const SM="steps(5)", SM8="steps(8)";
+
+tl.fromTo("#ms-t",{opacity:0,y:-30},{opacity:1,y:0,duration:.25,ease:SM},0.05);
+tl.fromTo("#ms-line",{strokeDashoffset:1},{strokeDashoffset:0,duration:.5,ease:SM8},0.2);
+tl.fromTo("#ms-ticks",{opacity:0},{opacity:1,duration:.2,ease:"steps(2)"},0.6);
+tl.fromTo("#ms-p",{scaleX:0},{scaleX:1,duration:.6,ease:SM8},0.1);
+tl.fromTo("#ms-d1",{scaleX:0},{scaleX:1,duration:.45,ease:SM8},2.2);
+tl.fromTo("#ms-d2",{scaleX:0},{scaleX:1,duration:.45,ease:SM8},3.94);
+tl.fromTo("#ms-cp",{strokeDashoffset:1},{strokeDashoffset:0,duration:.5,ease:SM8},5.08);
+tl.fromTo("#ms-ar",{opacity:0,clipPath:"inset(0 100% 0 0)"},{opacity:1,clipPath:"inset(0 0% 0 0)",duration:.4,ease:SM8},6.66);
+
+tl.set("#masa-jit",{x:0.5,y:-2.3,rotation:-0.11},0.000);tl.set("#masa-jit",{x:0.9,y:1.8,rotation:-0.04},0.083);tl.set("#masa-jit",{x:0.7,y:1.1,rotation:0.04},0.167);tl.set("#masa-jit",{x:1.1,y:1.8,rotation:-0.09},0.250);tl.set("#masa-jit",{x:0.2,y:2.2,rotation:0.10},0.333);tl.set("#masa-jit",{x:-1.8,y:2.1,rotation:-0.10},0.417);tl.set("#masa-jit",{x:-2.0,y:2.1,rotation:0.01},0.500);tl.set("#masa-jit",{x:2.2,y:1.5,rotation:0.14},0.583);tl.set("#masa-jit",{x:-2.2,y:0.7,rotation:0.07},0.667);tl.set("#masa-jit",{x:1.8,y:-1.8,rotation:0.01},0.750);tl.set("#masa-jit",{x:-0.5,y:0.9,rotation:0.05},0.833);tl.set("#masa-jit",{x:-0.7,y:1.8,rotation:0.05},0.917);tl.set("#masa-jit",{x:-0.4,y:0.6,rotation:0.03},1.000);tl.set("#masa-jit",{x:2.2,y:1.7,rotation:-0.11},1.083);tl.set("#masa-jit",{x:2.4,y:1.4,rotation:-0.17},1.167);tl.set("#masa-jit",{x:0.7,y:-1.0,rotation:-0.02},1.250);tl.set("#masa-jit",{x:-1.2,y:1.4,rotation:0.15},1.333);tl.set("#masa-jit",{x:0.8,y:-2.3,rotation:-0.16},1.417);tl.set("#masa-jit",{x:-1.7,y:0.3,rotation:-0.17},1.500);tl.set("#masa-jit",{x:2.4,y:-2.1,rotation:0.06},1.583);tl.set("#masa-jit",{x:-1.2,y:-0.9,rotation:0.02},1.667);tl.set("#masa-jit",{x:-0.1,y:1.4,rotation:0.04},1.750);tl.set("#masa-jit",{x:0.8,y:0.8,rotation:0.14},1.833);tl.set("#masa-jit",{x:-0.1,y:0.2,rotation:-0.10},1.917);tl.set("#masa-jit",{x:-0.6,y:2.5,rotation:-0.04},2.000);tl.set("#masa-jit",{x:-1.9,y:1.4,rotation:0.13},2.083);tl.set("#masa-jit",{x:-0.8,y:-1.3,rotation:0.03},2.167);tl.set("#masa-jit",{x:-0.3,y:0.6,rotation:-0.08},2.250);tl.set("#masa-jit",{x:-1.2,y:-1.3,rotation:-0.11},2.333);tl.set("#masa-jit",{x:0.7,y:-0.5,rotation:0.07},2.417);tl.set("#masa-jit",{x:-1.4,y:-0.0,rotation:0.10},2.500);tl.set("#masa-jit",{x:-1.3,y:-1.1,rotation:0.09},2.583);tl.set("#masa-jit",{x:1.9,y:-2.4,rotation:0.04},2.667);tl.set("#masa-jit",{x:2.5,y:0.4,rotation:0.18},2.750);tl.set("#masa-jit",{x:-1.1,y:2.0,rotation:-0.11},2.833);tl.set("#masa-jit",{x:2.1,y:-1.7,rotation:0.08},2.917);tl.set("#masa-jit",{x:-0.8,y:-1.7,rotation:0.12},3.000);tl.set("#masa-jit",{x:-0.2,y:-0.9,rotation:-0.16},3.083);tl.set("#masa-jit",{x:-1.1,y:2.3,rotation:0.14},3.167);tl.set("#masa-jit",{x:-2.4,y:-2.3,rotation:-0.02},3.250);tl.set("#masa-jit",{x:-0.9,y:2.2,rotation:-0.14},3.333);tl.set("#masa-jit",{x:0.5,y:1.6,rotation:0.09},3.417);tl.set("#masa-jit",{x:-1.4,y:-0.4,rotation:-0.16},3.500);tl.set("#masa-jit",{x:-2.2,y:-2.1,rotation:0.07},3.583);tl.set("#masa-jit",{x:1.6,y:-1.2,rotation:-0.02},3.667);tl.set("#masa-jit",{x:-0.8,y:0.4,rotation:-0.04},3.750);tl.set("#masa-jit",{x:0.5,y:2.5,rotation:-0.01},3.833);tl.set("#masa-jit",{x:-0.9,y:-1.8,rotation:-0.11},3.917);tl.set("#masa-jit",{x:-2.2,y:1.3,rotation:0.07},4.000);tl.set("#masa-jit",{x:-0.2,y:-0.7,rotation:0.10},4.083);tl.set("#masa-jit",{x:-2.3,y:-0.8,rotation:0.16},4.167);tl.set("#masa-jit",{x:1.1,y:-0.2,rotation:-0.08},4.250);tl.set("#masa-jit",{x:-1.6,y:-1.3,rotation:-0.08},4.333);tl.set("#masa-jit",{x:2.0,y:-2.1,rotation:0.05},4.417);tl.set("#masa-jit",{x:-1.8,y:-1.8,rotation:-0.11},4.500);tl.set("#masa-jit",{x:0.6,y:1.5,rotation:0.04},4.583);tl.set("#masa-jit",{x:0.2,y:-0.5,rotation:0.07},4.667);tl.set("#masa-jit",{x:-1.1,y:-0.6,rotation:0.17},4.750);tl.set("#masa-jit",{x:-1.9,y:0.7,rotation:0.03},4.833);tl.set("#masa-jit",{x:-0.7,y:1.1,rotation:0.01},4.917);tl.set("#masa-jit",{x:1.6,y:-1.4,rotation:0.03},5.000);tl.set("#masa-jit",{x:-2.5,y:1.3,rotation:0.09},5.083);tl.set("#masa-jit",{x:1.5,y:1.6,rotation:0.10},5.167);tl.set("#masa-jit",{x:1.4,y:2.5,rotation:-0.06},5.250);tl.set("#masa-jit",{x:2.3,y:1.8,rotation:-0.05},5.333);tl.set("#masa-jit",{x:-2.3,y:-1.4,rotation:-0.15},5.417);tl.set("#masa-jit",{x:0.1,y:1.4,rotation:-0.11},5.500);tl.set("#masa-jit",{x:-2.0,y:-0.1,rotation:0.03},5.583);tl.set("#masa-jit",{x:-2.0,y:-2.4,rotation:-0.14},5.667);tl.set("#masa-jit",{x:0.2,y:-0.9,rotation:0.13},5.750);tl.set("#masa-jit",{x:1.6,y:-2.0,rotation:-0.01},5.833);tl.set("#masa-jit",{x:0.2,y:0.7,rotation:0.16},5.917);tl.set("#masa-jit",{x:0.6,y:-1.8,rotation:-0.14},6.000);tl.set("#masa-jit",{x:-1.1,y:1.7,rotation:0.16},6.083);tl.set("#masa-jit",{x:1.3,y:-0.8,rotation:0.15},6.167);tl.set("#masa-jit",{x:-1.0,y:1.5,rotation:-0.12},6.250);tl.set("#masa-jit",{x:-1.2,y:1.6,rotation:-0.04},6.333);tl.set("#masa-jit",{x:-1.7,y:-2.5,rotation:0.05},6.417);tl.set("#masa-jit",{x:-1.1,y:-0.1,rotation:0.16},6.500);tl.set("#masa-jit",{x:-0.8,y:-1.6,rotation:-0.16},6.583);tl.set("#masa-jit",{x:1.4,y:-1.3,rotation:0.01},6.667);tl.set("#masa-jit",{x:-1.9,y:0.0,rotation:0.14},6.750);tl.set("#masa-jit",{x:-0.1,y:1.5,rotation:0.12},6.833);tl.set("#masa-jit",{x:-1.4,y:0.8,rotation:-0.00},6.917);tl.set("#masa-jit",{x:0.8,y:1.7,rotation:-0.01},7.000);tl.set("#masa-jit",{x:0.9,y:-1.0,rotation:0.05},7.083);tl.set("#masa-jit",{x:-1.7,y:2.2,rotation:-0.11},7.167);tl.set("#masa-jit",{x:-0.9,y:-0.1,rotation:-0.12},7.250);tl.set("#masa-jit",{x:-0.5,y:-1.6,rotation:-0.02},7.333);tl.set("#masa-jit",{x:1.0,y:2.2,rotation:0.00},7.417);tl.set("#masa-jit",{x:2.1,y:-0.5,rotation:-0.13},7.500);tl.set("#masa-jit",{x:2.2,y:-1.0,rotation:-0.16},7.583);tl.set("#masa-jit",{x:0.3,y:-1.3,rotation:0.10},7.667);tl.set("#masa-jit",{x:-1.1,y:1.5,rotation:0.03},7.750);
+window.__timelines["masa"] = tl;
+})();
+</script>
+</template>

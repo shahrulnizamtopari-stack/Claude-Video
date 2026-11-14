@@ -1,0 +1,35 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;src:url(fonts/Anton.woff2)}
+@font-face{font-family:Marker;src:url(fonts/PermanentMarker.woff2)}
+@font-face{font-family:CourierP;font-weight:700;src:url(fonts/CourierPrime.woff2)}
+@font-face{font-family:Stencil;font-weight:700;src:url(fonts/StardosStencil.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#9c6d42}
+#f{position:relative;width:1080px;height:1920px;background:#9c6d42;overflow:hidden;color:#1c1a17}
+#f>*{position:absolute}
+.lamp{inset:0;background:radial-gradient(ellipse 75% 50% at 50% 40%,rgba(255,220,160,.22),transparent 60%),radial-gradient(ellipse 95% 75% at 50% 45%,transparent 42%,rgba(0,0,0,.68))}
+.pol{background:#f7f5ef;padding:26px 26px 110px;box-shadow:5px 9px 0 rgba(0,0,0,.25),0 26px 48px rgba(0,0,0,.45)}
+.pol .ph{background:#2a2622;display:flex;align-items:center;justify-content:center}
+.pol .cap{position:absolute;left:26px;right:26px;bottom:26px;font:56px Marker;text-align:center}
+.idx{background:#fbf8f0 repeating-linear-gradient(transparent 0 62px,#9fc0e0 62px 64px);background-position:0 90px;box-shadow:5px 9px 0 rgba(0,0,0,.25),0 24px 44px rgba(0,0,0,.4)}
+.pin{width:50px;height:50px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8a80,#c4241d 55%,#7a1410);box-shadow:5px 8px 7px rgba(0,0,0,.45);z-index:6}
+.stamp{display:inline-block;font:700 100px Stencil;letter-spacing:6px;border:12px solid currentColor;border-radius:14px;padding:4px 34px;mix-blend-mode:multiply;opacity:.92;white-space:nowrap}
+.tag{background:#f2d03b;font:700 44px CourierP;padding:10px 24px;box-shadow:2px 5px 5px rgba(0,0,0,.3);white-space:nowrap}
+</style></head><body>
+<div id="f">
+ <svg width="0" height="0" style="position:absolute"><defs><filter id="fc" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".45" numOctaves="3" seed="3"/><feColorMatrix values="0 0 0 0 .35  0 0 0 0 .22  0 0 0 0 .12  0 0 0 .9 -.25"/></filter></defs></svg>
+ <svg style="left:0;top:0" width="1080" height="1920"><rect width="1080" height="1920" filter="url(#fc)"/></svg>
+ <svg style="left:0;top:0;z-index:1" width="1080" height="1920"><path d="M540 300 Q560 900 700 1170" fill="none" stroke="#c4241d" stroke-width="7"/></svg>
+ <div class="tag" style="left:80px;top:250px;transform:rotate(-3deg);font-size:40px;z-index:3">FAIL KES #2910 · BINANCE</div>
+ <div class="pol" style="left:110px;top:330px;width:860px;transform:rotate(-3deg);z-index:2"><div class="ph" style="height:480px;font:700 210px CourierP;color:#ff6b5e;letter-spacing:-6px">$6.36B</div><div class="cap">Binance · 29 Okt 2026</div></div>
+ <div class="pin" style="left:515px;top:315px"></div>
+ <div style="left:560px;top:985px;color:#c4241d;transform:rotate(-8deg);z-index:4"><span class="stamp" style="font-size:80px;background:rgba(251,248,240,.15)">LESAP</span></div>
+ <div class="idx" style="left:470px;top:1150px;width:540px;height:260px;transform:rotate(3deg);padding:100px 30px 0;text-align:center;z-index:2"><div style="font:700 50px Stencil;color:#c4241d">SUSPEK</div><div style="font:84px Anton;line-height:1">KOREA UTARA</div></div>
+ <div class="pin" style="left:715px;top:1150px"></div>
+ <div style="left:70px;top:1110px;font:150px/0.92 Anton;color:#fff3d6;z-index:3">20<br>MINIT.</div>
+ <div class="tag" style="left:80px;top:1470px;transform:rotate(-2deg);z-index:3">bermula dengan temuduga kerja?</div>
+ <div class="lamp" style="z-index:9"></div>
+</div>
+</body></html>

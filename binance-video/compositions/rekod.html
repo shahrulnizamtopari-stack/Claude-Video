@@ -1,0 +1,63 @@
+<template>
+<style>
+@font-face{font-family:"Anton";src:url("assets/fonts/Anton.woff2") format("woff2")}
+@font-face{font-family:"Marker";src:url("assets/fonts/PermanentMarker.woff2") format("woff2")}
+@font-face{font-family:"Typewriter";src:url("assets/fonts/SpecialElite.woff2") format("woff2")}
+@font-face{font-family:"CourierP";font-weight:700;src:url("assets/fonts/CourierPrime.woff2") format("woff2")}
+@font-face{font-family:"Stencil";font-weight:700;src:url("assets/fonts/StardosStencil.woff2") format("woff2")}
+
+#root { position:absolute; inset:0; color:#1c1a17; }
+#root .jit { position:absolute; inset:0; transform-origin:50% 45%; }
+#root .jit > * { position:absolute; }
+#root .an { font-family:"Anton",sans-serif; line-height:.92; letter-spacing:1px; }
+#root .mk { font-family:"Marker",cursive; line-height:1.05; }
+#root .ty { font-family:"Typewriter",monospace; }
+#root .cr { font-family:"CourierP",monospace; font-weight:700; }
+#root .st { font-family:"Stencil",serif; font-weight:700; }
+#root .red { color:#c4241d; } #root .cream { color:#fff3d6; }
+#root .idx { background:#fbf8f0 repeating-linear-gradient(transparent 0 62px,#9fc0e0 62px 64px); background-position:0 90px;
+  box-shadow:5px 9px 0 rgba(0,0,0,.25),0 24px 44px rgba(0,0,0,.4); z-index:2; }
+#root .idx::before { content:""; position:absolute; left:0; right:0; top:80px; height:4px; background:#e08a8a; }
+#root .card { background:#fbf8f0; box-shadow:5px 9px 0 rgba(0,0,0,.25),0 24px 44px rgba(0,0,0,.4); z-index:2; }
+#root .manila { background:#e2c98d; box-shadow:5px 9px 0 rgba(0,0,0,.25),0 24px 44px rgba(0,0,0,.45); z-index:2; }
+#root .pol { background:#f7f5ef; padding:24px 24px 96px; box-shadow:5px 9px 0 rgba(0,0,0,.25),0 26px 48px rgba(0,0,0,.45); z-index:2; }
+#root .pol .ph { background:#2a2622; display:flex; align-items:center; justify-content:center; }
+#root .pol .cap { position:absolute; left:24px; right:24px; bottom:22px; font:52px "Marker",cursive; text-align:center; white-space:nowrap; }
+#root .pin { width:46px; height:46px; border-radius:50%; background:radial-gradient(circle at 35% 35%,#ff8a80,#c4241d 55%,#7a1410); box-shadow:5px 8px 7px rgba(0,0,0,.45); z-index:6; }
+#root .stamp { display:inline-block; font:700 80px "Stencil",serif; letter-spacing:6px; border:10px solid currentColor; border-radius:12px; padding:4px 30px; mix-blend-mode:multiply; opacity:.9; white-space:nowrap; z-index:7; }
+#root .tag { background:#f2d03b; font:700 34px "CourierP",monospace; padding:8px 20px; box-shadow:2px 5px 5px rgba(0,0,0,.3); z-index:7; white-space:nowrap; }
+#root .cctv { font:700 36px "CourierP",monospace; color:#f2f2f2; background:rgba(0,0,0,.6); padding:10px 22px; letter-spacing:2px; z-index:8; white-space:nowrap; }
+#root .rd { display:inline-block; background:#111; color:#111; line-height:1.05; }
+#root .strings { left:0; top:0; z-index:1; overflow:visible; }
+#root .strings path { fill:none; stroke:#c4241d; stroke-width:6; }
+
+#rk-a { left:70px; top:330px; width:300px; transform:rotate(-6deg); }
+#rk-b { left:380px; top:240px; width:620px; transform:rotate(4deg); }
+#rk-4 { left:80px; top:820px; font-size:300px; transform:rotate(-6deg); line-height:1; }
+#rk-t { left:560px; top:1000px; transform:rotate(-3deg); }
+</style>
+<div id="root" data-composition-id="rekod" data-width="1080" data-height="1920" data-start="0" data-duration="3.55">
+<div class="jit" id="rekod-jit">
+
+<div id="rk-a" class="pol"><div class="ph cr" style="height:200px;font-size:60px;color:#f2ead8">$1.5B</div><div class="cap" style="font-size:40px">Bybit · 2025</div></div><div class="pin"  style="left:197px;top:317px"></div>
+<div id="rk-b" class="pol" style="opacity:0"><div class="ph cr" style="height:440px;font-size:130px;color:#ff6b5e">$6.36B</div><div class="cap">Binance · 2026</div></div>
+<div id="rk-pb" class="pin" style="left:667px;top:227px;opacity:0"></div>
+<div id="rk-4" class="mk cream" style="opacity:0">4×</div>
+<div id="rk-t" class="tag" style="opacity:0;font-size:44px">REKOD BARU</div>
+
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#rekod-jit",{scale:1,x:0,y:0},{scale:1.04,x:-3.4,y:3.8,duration:3.55,ease:"none"},0);
+
+tl.fromTo("#rk-b",{opacity:0,scale:1.15,rotation:10},{opacity:1,scale:1,rotation:4,duration:.2,ease:"power4.in"},0.1);
+tl.fromTo("#rk-pb",{opacity:0},{opacity:1,duration:.05},0.32);
+tl.fromTo("#rk-4",{opacity:0,clipPath:"inset(0 100% 0 0)"},{opacity:1,clipPath:"inset(0 0% 0 0)",duration:.5,ease:"steps(6)"},0.85);
+tl.fromTo("#rk-t",{opacity:0,scale:1.4},{opacity:1,scale:1,duration:.15},1.4);
+
+window.__timelines["rekod"] = tl;
+})();
+</script>
+</template>

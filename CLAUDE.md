@@ -14,6 +14,9 @@ Vertical 3D explainer videos (Malay voiceover) made with HyperFrames + Three.js.
   For beautiful physical subjects use the v4 cinematic look: `lebah-video/` (skill §0b).
   Older looks: `lift-video/` (v2), `plane-video/` (v1).
 - **Style guide for the user (Malay):** `STYLES.md`, with a sample still per look in `docs/styles/`. Keep it current when a look changes.
+- **Second style, "READOUT":** dark motion-graphic / kinetic-text news explainers. When the user says "style readout",
+  "macam video suhu naik" or "macam video siber tu", use the `readout-style` skill (`.claude/skills/readout-style/SKILL.md`).
+  Reference project: `siber-video/` ("Suhu Naik").
 - **HyperFrames skills:** `.agents/skills/hyperframes*`. Read `/hyperframes` before writing compositions.
 - **Approval stops:** always show a storyboard, then wait. Then show a 540×960 preview, then wait. Only after that, render the final 1080×1920.
 - **Final render in two layers:** a clean plate (no captions) plus a transparent captions layer, composited with ffmpeg,

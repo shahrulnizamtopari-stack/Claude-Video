@@ -1,0 +1,59 @@
+<template>
+<style>
+@font-face{font-family:"Anton";src:url("assets/fonts/Anton.woff2") format("woff2")}
+@font-face{font-family:"DMSerif";src:url("assets/fonts/DMSerifDisplay.woff2") format("woff2")}
+@font-face{font-family:"Marker";src:url("assets/fonts/PermanentMarker.woff2") format("woff2")}
+@font-face{font-family:"Typewriter";src:url("assets/fonts/SpecialElite.woff2") format("woff2")}
+@font-face{font-family:"Narrow";font-weight:700;src:url("assets/fonts/ArchivoNarrow.woff2") format("woff2")}
+
+#root { position:absolute; inset:0; color:#1d1b18; }
+#root .jit { position:absolute; inset:0; }
+#root .jit > * { position:absolute; }
+#root .serif { font-family:"DMSerif",serif; line-height:.95; }
+#root .anton { font-family:"Anton",sans-serif; line-height:.92; letter-spacing:1px; }
+#root .mk { font-family:"Marker",cursive; line-height:1.05; }
+#root .ty { font-family:"Typewriter",monospace; }
+#root .red { color:#d23820; } #root .blue { color:#2e56b8; }
+#root .card { background:#f6f1e7; box-shadow:5px 7px 0 rgba(0,0,0,.10),0 18px 40px rgba(0,0,0,.14); }
+#root .tape { width:220px; height:62px; background:rgba(236,222,170,.78); box-shadow:0 2px 4px rgba(0,0,0,.12); }
+#root .dymo { display:inline-block; background:#141414; color:#f4f4f4; font:700 52px "Narrow",sans-serif; letter-spacing:7px; padding:16px 28px 13px; border-radius:7px;
+  text-shadow:0 -2px 0 rgba(0,0,0,.8),0 2px 0 rgba(255,255,255,.22); box-shadow:0 4px 7px rgba(0,0,0,.3); white-space:nowrap; }
+#root .stamp { display:inline-block; font:400 66px "Anton",sans-serif; letter-spacing:6px; border:9px solid currentColor; border-radius:14px; padding:6px 26px; mix-blend-mode:multiply; opacity:.9; white-space:nowrap; }
+#root .sticky { background:#f8e36a; box-shadow:5px 9px 18px rgba(0,0,0,.2); font:58px/1.08 "Marker",cursive; padding:36px 32px; }
+#root .riso { position:relative; display:inline-block; }
+#root .riso .ghost { position:absolute; left:7px; top:5px; color:#2e56b8; opacity:.5; mix-blend-mode:multiply; white-space:nowrap; }
+#root .riso .main { position:relative; }
+
+#ak-a { left:80px; top:240px; font-size:40px; letter-spacing:4px; }
+#ak-b { left:80px; top:310px; width:940px; font-size:150px; }
+#ak-c { left:76px; top:800px; font-size:172px; color:#e5422b; }
+#ak-u { left:60px; top:1120px; }
+</style>
+<div id="root" data-composition-id="akhir" data-width="1080" data-height="1920" data-start="0" data-duration="6.95">
+<div class="jit" id="akhir-jit">
+
+<div id="ak-a" class="ty" style="opacity:0">PENGAJARANNYA?</div>
+<div id="ak-b" class="serif"><span id="ak-b1" style="opacity:0">Di Amerika,</span> <span id="ak-b2" style="opacity:0">presiden boleh kalah.</span></div>
+<div id="ak-c" class="anton" style="opacity:0"><span class="riso " data-layout-allow-overlap><span class="ghost">TANPA</span><span class="main">TANPA</span></span><br><span class="riso " data-layout-allow-overlap><span class="ghost">BERTANDING.</span><span class="main">BERTANDING.</span></span></div>
+<svg id="ak-u" width="960" height="70" viewBox="0 0 960 70"><path id="ak-u1" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M10 20 C260 8 600 34 940 14" stroke="#1d1b18" stroke-width="12" fill="none"/>
+<path id="ak-u2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M30 52 C300 40 640 62 920 46" stroke="#1d1b18" stroke-width="12" fill="none"/></svg>
+
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const SM="steps(5)", SM8="steps(8)";
+
+tl.fromTo("#ak-a",{opacity:0},{opacity:1,duration:.4,ease:"steps(6)"},0.15);
+tl.fromTo("#ak-b1",{opacity:0},{opacity:1,duration:.1,ease:"steps(1)"},1.12);
+tl.fromTo("#ak-b2",{opacity:0},{opacity:1,duration:.1,ease:"steps(1)"},2.2);
+tl.fromTo("#ak-c",{opacity:0,scale:1.2},{opacity:1,scale:1,duration:.15,ease:"power4.in",transformOrigin:"0% 50%"},3.65);
+tl.fromTo("#ak-u1",{strokeDashoffset:1},{strokeDashoffset:0,duration:.35,ease:"steps(6)"},4.2);
+tl.fromTo("#ak-u2",{strokeDashoffset:1},{strokeDashoffset:0,duration:.35,ease:"steps(6)"},4.6);
+
+tl.set("#akhir-jit",{x:-1.4,y:-0.3,rotation:-0.05},0.000);tl.set("#akhir-jit",{x:-1.2,y:-0.8,rotation:0.09},0.083);tl.set("#akhir-jit",{x:2.1,y:2.1,rotation:0.04},0.167);tl.set("#akhir-jit",{x:-0.6,y:-1.1,rotation:0.18},0.250);tl.set("#akhir-jit",{x:2.1,y:1.0,rotation:0.14},0.333);tl.set("#akhir-jit",{x:-2.0,y:1.2,rotation:0.16},0.417);tl.set("#akhir-jit",{x:-2.5,y:0.7,rotation:-0.06},0.500);tl.set("#akhir-jit",{x:0.4,y:-2.0,rotation:0.06},0.583);tl.set("#akhir-jit",{x:-1.5,y:0.0,rotation:0.11},0.667);tl.set("#akhir-jit",{x:1.6,y:0.4,rotation:-0.17},0.750);tl.set("#akhir-jit",{x:0.5,y:0.4,rotation:-0.15},0.833);tl.set("#akhir-jit",{x:0.2,y:-1.1,rotation:0.10},0.917);tl.set("#akhir-jit",{x:-0.0,y:0.2,rotation:-0.12},1.000);tl.set("#akhir-jit",{x:-0.3,y:-1.4,rotation:0.02},1.083);tl.set("#akhir-jit",{x:-2.1,y:-1.6,rotation:0.16},1.167);tl.set("#akhir-jit",{x:1.2,y:0.2,rotation:0.14},1.250);tl.set("#akhir-jit",{x:2.2,y:-1.0,rotation:0.18},1.333);tl.set("#akhir-jit",{x:2.5,y:-1.9,rotation:0.12},1.417);tl.set("#akhir-jit",{x:-2.3,y:2.4,rotation:0.03},1.500);tl.set("#akhir-jit",{x:-1.2,y:-1.2,rotation:-0.18},1.583);tl.set("#akhir-jit",{x:1.0,y:1.5,rotation:0.05},1.667);tl.set("#akhir-jit",{x:-0.6,y:0.8,rotation:-0.00},1.750);tl.set("#akhir-jit",{x:-0.5,y:-0.5,rotation:-0.06},1.833);tl.set("#akhir-jit",{x:0.9,y:0.6,rotation:-0.05},1.917);tl.set("#akhir-jit",{x:0.2,y:0.0,rotation:0.04},2.000);tl.set("#akhir-jit",{x:-2.2,y:1.6,rotation:-0.08},2.083);tl.set("#akhir-jit",{x:0.4,y:2.2,rotation:0.07},2.167);tl.set("#akhir-jit",{x:-1.7,y:-1.1,rotation:0.06},2.250);tl.set("#akhir-jit",{x:0.9,y:2.0,rotation:0.15},2.333);tl.set("#akhir-jit",{x:-2.4,y:-1.1,rotation:-0.05},2.417);tl.set("#akhir-jit",{x:0.7,y:-1.7,rotation:-0.06},2.500);tl.set("#akhir-jit",{x:2.1,y:-1.2,rotation:-0.03},2.583);tl.set("#akhir-jit",{x:2.0,y:0.5,rotation:0.02},2.667);tl.set("#akhir-jit",{x:-2.1,y:2.5,rotation:-0.15},2.750);tl.set("#akhir-jit",{x:-2.0,y:2.1,rotation:0.04},2.833);tl.set("#akhir-jit",{x:-1.5,y:-1.8,rotation:0.13},2.917);tl.set("#akhir-jit",{x:0.5,y:-0.2,rotation:0.02},3.000);tl.set("#akhir-jit",{x:0.2,y:1.2,rotation:-0.04},3.083);tl.set("#akhir-jit",{x:-2.4,y:2.1,rotation:-0.13},3.167);tl.set("#akhir-jit",{x:-1.7,y:-0.0,rotation:-0.05},3.250);tl.set("#akhir-jit",{x:-1.1,y:1.5,rotation:0.12},3.333);tl.set("#akhir-jit",{x:0.8,y:-0.2,rotation:-0.16},3.417);tl.set("#akhir-jit",{x:-2.2,y:-1.1,rotation:0.13},3.500);tl.set("#akhir-jit",{x:-2.4,y:0.6,rotation:-0.15},3.583);tl.set("#akhir-jit",{x:-2.0,y:0.4,rotation:0.06},3.667);tl.set("#akhir-jit",{x:2.0,y:-0.0,rotation:-0.11},3.750);tl.set("#akhir-jit",{x:-0.0,y:1.9,rotation:0.02},3.833);tl.set("#akhir-jit",{x:-0.9,y:-1.5,rotation:0.13},3.917);tl.set("#akhir-jit",{x:2.0,y:1.8,rotation:-0.09},4.000);tl.set("#akhir-jit",{x:2.0,y:-0.6,rotation:0.06},4.083);tl.set("#akhir-jit",{x:-1.4,y:1.9,rotation:-0.04},4.167);tl.set("#akhir-jit",{x:2.5,y:-0.1,rotation:-0.08},4.250);tl.set("#akhir-jit",{x:-1.4,y:-2.4,rotation:-0.09},4.333);tl.set("#akhir-jit",{x:0.2,y:-1.7,rotation:-0.03},4.417);tl.set("#akhir-jit",{x:-0.5,y:-0.3,rotation:-0.05},4.500);tl.set("#akhir-jit",{x:1.2,y:-1.5,rotation:-0.03},4.583);tl.set("#akhir-jit",{x:1.7,y:1.4,rotation:0.07},4.667);tl.set("#akhir-jit",{x:-0.2,y:-2.3,rotation:0.04},4.750);tl.set("#akhir-jit",{x:0.7,y:-1.1,rotation:0.09},4.833);tl.set("#akhir-jit",{x:2.2,y:-0.8,rotation:0.10},4.917);tl.set("#akhir-jit",{x:-0.9,y:-1.6,rotation:-0.16},5.000);tl.set("#akhir-jit",{x:-0.9,y:1.7,rotation:-0.05},5.083);tl.set("#akhir-jit",{x:-1.6,y:-0.3,rotation:0.13},5.167);tl.set("#akhir-jit",{x:1.3,y:2.4,rotation:0.11},5.250);tl.set("#akhir-jit",{x:-1.9,y:1.5,rotation:-0.00},5.333);tl.set("#akhir-jit",{x:-2.2,y:1.9,rotation:-0.01},5.417);tl.set("#akhir-jit",{x:-0.9,y:1.0,rotation:0.06},5.500);tl.set("#akhir-jit",{x:-0.2,y:-0.1,rotation:-0.05},5.583);tl.set("#akhir-jit",{x:-1.5,y:2.1,rotation:-0.18},5.667);tl.set("#akhir-jit",{x:1.3,y:0.9,rotation:-0.00},5.750);tl.set("#akhir-jit",{x:2.0,y:-1.3,rotation:0.08},5.833);tl.set("#akhir-jit",{x:0.4,y:-0.1,rotation:0.06},5.917);tl.set("#akhir-jit",{x:1.4,y:0.4,rotation:0.01},6.000);tl.set("#akhir-jit",{x:-1.1,y:0.7,rotation:0.08},6.083);tl.set("#akhir-jit",{x:1.2,y:0.9,rotation:-0.15},6.167);tl.set("#akhir-jit",{x:0.8,y:2.3,rotation:-0.17},6.250);tl.set("#akhir-jit",{x:-0.3,y:-0.4,rotation:0.05},6.333);tl.set("#akhir-jit",{x:1.7,y:1.9,rotation:0.17},6.417);tl.set("#akhir-jit",{x:-1.9,y:0.7,rotation:-0.11},6.500);tl.set("#akhir-jit",{x:-0.1,y:-1.6,rotation:0.06},6.583);tl.set("#akhir-jit",{x:-2.3,y:2.0,rotation:0.06},6.667);tl.set("#akhir-jit",{x:-1.8,y:1.4,rotation:0.10},6.750);tl.set("#akhir-jit",{x:-1.8,y:-1.8,rotation:0.02},6.833);
+window.__timelines["akhir"] = tl;
+})();
+</script>
+</template>

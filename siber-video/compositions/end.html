@@ -1,0 +1,53 @@
+<template>
+<style>
+#root { position:absolute; inset:0; color:#e9eef3; font-family:"Inter",sans-serif; }
+#root .hud { position:absolute; left:80px; right:80px; top:196px; height:36px; font:500 28px "JetBrains Mono",monospace; letter-spacing:3px; color:#6b7785; }
+#root .hud .l { position:absolute; left:0; top:0; }
+#root .hud .r { position:absolute; right:0; top:0; text-align:right; }
+#root .title { position:absolute; left:80px; right:80px; font-family:"Inter",sans-serif; font-weight:900; font-size:116px; letter-spacing:-4px; line-height:.94; }
+#root .mono { font-family:"JetBrains Mono",monospace; }
+#root .ice { color:#5ad1ff; } #root .warm { color:#ff9a3c; } #root .hot { color:#ff3b30; } #root .dim { color:#6b7785; }
+#root .tag { display:inline-block; font:700 28px "JetBrains Mono",monospace; letter-spacing:5px; padding:12px 22px; border:3px solid currentColor; border-radius:8px; }
+
+#end-tmp { position:absolute; left:0; right:0; top:250px; text-align:center; font:700 170px "JetBrains Mono"; letter-spacing:-6px; line-height:1; color:#ff3b30; }
+#end-a { top:520px; font-size:100px; text-align:center; }
+#end-b { top:660px; font-size:64px; letter-spacing:-1px; text-align:center; color:#6b7785; }
+#end-c { top:540px; font-size:160px; text-align:center; }
+#end-d { top:720px; font-size:160px; text-align:center; color:#5d6976; }
+#end-x { position:absolute; left:250px; width:580px; top:800px; height:14px; background:#ff3b30; border-radius:7px; transform-origin:0 50%; }
+#end-tag { position:absolute; left:0; right:0; top:980px; text-align:center; }
+#end-tag .tag { font-size:40px; padding:16px 30px; color:#e9eef3; }
+</style>
+<div id="root" data-composition-id="end" data-width="1080" data-height="1920" data-start="0" data-duration="8.4">
+
+<div class="hud"><span class="l">FREEZER-03 · LORONG 7</span><span class="r hot" id="end-s1">▲ ALARM</span><span class="r ice" id="end-s2" style="opacity:0">● PULIH</span></div>
+<div id="end-tmp">50°</div>
+<div class="title" id="end-a" style="opacity:0">INI PERSEDIAAN.</div>
+<div class="title" id="end-b" style="opacity:0">BUKAN AMARAN PERANG.</div>
+<div class="title" id="end-c" style="opacity:0">BERSEDIA.</div>
+<div class="title" id="end-d" style="opacity:0">PANIK.</div>
+<div id="end-x"></div>
+<div id="end-tag" style="opacity:0"><span class="tag">JANGAN BELI BORONG</span></div>
+
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+
+const tmp=document.getElementById("end-tmp"); const T={v:50};
+tl.fromTo(T,{v:50},{v:-18,duration:4.9,ease:"power1.inOut",onUpdate:()=>{tmp.textContent=Math.round(T.v)+"°";}},0.6);
+tl.fromTo("#end-tmp",{color:"#ff3b30",textShadow:"0 0 70px rgba(255,59,48,.6)"},{color:"#5ad1ff",textShadow:"0 0 70px rgba(90,209,255,.5)",duration:4.9,ease:"power1.inOut"},0.6);
+tl.fromTo("#end-s1",{opacity:1},{opacity:0,duration:.2},5.4);
+tl.fromTo("#end-s2",{opacity:0},{opacity:1,duration:.2},5.4);
+tl.fromTo("#end-a",{opacity:0,y:30},{opacity:1,y:0,duration:.3,ease:"power3.out"},0.85);
+tl.fromTo("#end-b",{opacity:0,y:20},{opacity:1,y:0,duration:.3,ease:"power3.out"},1.8);
+tl.fromTo("#end-tag",{opacity:0,scale:1.2},{opacity:1,scale:1,duration:.25,ease:"back.out(2)"},4.48);
+tl.to(["#end-a","#end-b"],{opacity:0,duration:.15},5.4);
+tl.fromTo("#end-c",{opacity:0,scale:1.25},{opacity:1,scale:1,duration:.28,ease:"power4.out"},5.58);
+tl.fromTo("#end-d",{opacity:0,y:20},{opacity:1,y:0,duration:.25},6.16);
+tl.fromTo("#end-x",{scaleX:0},{scaleX:1,duration:.3,ease:"power3.out"},6.4);
+
+window.__timelines["end"] = tl;
+})();
+</script>
+</template>

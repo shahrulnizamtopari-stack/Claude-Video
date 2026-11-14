@@ -1,0 +1,72 @@
+<template>
+<style>
+@font-face{font-family:"Anton";src:url("assets/fonts/Anton.woff2") format("woff2")}
+@font-face{font-family:"Marker";src:url("assets/fonts/PermanentMarker.woff2") format("woff2")}
+@font-face{font-family:"Typewriter";src:url("assets/fonts/SpecialElite.woff2") format("woff2")}
+@font-face{font-family:"CourierP";font-weight:700;src:url("assets/fonts/CourierPrime.woff2") format("woff2")}
+@font-face{font-family:"Stencil";font-weight:700;src:url("assets/fonts/StardosStencil.woff2") format("woff2")}
+
+#root { position:absolute; inset:0; color:#1c1a17; }
+#root .jit { position:absolute; inset:0; transform-origin:50% 45%; }
+#root .jit > * { position:absolute; }
+#root .an { font-family:"Anton",sans-serif; line-height:.92; letter-spacing:1px; }
+#root .mk { font-family:"Marker",cursive; line-height:1.05; }
+#root .ty { font-family:"Typewriter",monospace; }
+#root .cr { font-family:"CourierP",monospace; font-weight:700; }
+#root .st { font-family:"Stencil",serif; font-weight:700; }
+#root .red { color:#c4241d; } #root .cream { color:#fff3d6; }
+#root .idx { background:#fbf8f0 repeating-linear-gradient(transparent 0 62px,#9fc0e0 62px 64px); background-position:0 90px;
+  box-shadow:5px 9px 0 rgba(0,0,0,.25),0 24px 44px rgba(0,0,0,.4); z-index:2; }
+#root .idx::before { content:""; position:absolute; left:0; right:0; top:80px; height:4px; background:#e08a8a; }
+#root .card { background:#fbf8f0; box-shadow:5px 9px 0 rgba(0,0,0,.25),0 24px 44px rgba(0,0,0,.4); z-index:2; }
+#root .manila { background:#e2c98d; box-shadow:5px 9px 0 rgba(0,0,0,.25),0 24px 44px rgba(0,0,0,.45); z-index:2; }
+#root .pol { background:#f7f5ef; padding:24px 24px 96px; box-shadow:5px 9px 0 rgba(0,0,0,.25),0 26px 48px rgba(0,0,0,.45); z-index:2; }
+#root .pol .ph { background:#2a2622; display:flex; align-items:center; justify-content:center; }
+#root .pol .cap { position:absolute; left:24px; right:24px; bottom:22px; font:52px "Marker",cursive; text-align:center; white-space:nowrap; }
+#root .pin { width:46px; height:46px; border-radius:50%; background:radial-gradient(circle at 35% 35%,#ff8a80,#c4241d 55%,#7a1410); box-shadow:5px 8px 7px rgba(0,0,0,.45); z-index:6; }
+#root .stamp { display:inline-block; font:700 80px "Stencil",serif; letter-spacing:6px; border:10px solid currentColor; border-radius:12px; padding:4px 30px; mix-blend-mode:multiply; opacity:.9; white-space:nowrap; z-index:7; }
+#root .tag { background:#f2d03b; font:700 34px "CourierP",monospace; padding:8px 20px; box-shadow:2px 5px 5px rgba(0,0,0,.3); z-index:7; white-space:nowrap; }
+#root .cctv { font:700 36px "CourierP",monospace; color:#f2f2f2; background:rgba(0,0,0,.6); padding:10px 22px; letter-spacing:2px; z-index:8; white-space:nowrap; }
+#root .rd { display:inline-block; background:#111; color:#111; line-height:1.05; }
+#root .strings { left:0; top:0; z-index:1; overflow:visible; }
+#root .strings path { fill:none; stroke:#c4241d; stroke-width:6; }
+
+#sp-a { left:60px; top:230px; width:300px; transform:rotate(-6deg); }
+#sp-b { left:720px; top:250px; width:300px; transform:rotate(5deg); }
+#sp-c { left:220px; top:580px; width:640px; height:360px; transform:rotate(-1deg); padding:110px 30px 0; text-align:center; }
+#sp-f { left:60px; top:1000px; width:400px; height:140px; transform:rotate(3deg); padding:94px 24px 0; }
+#sp-g { left:560px; top:980px; width:480px; height:190px; transform:rotate(-3deg); padding:90px 24px 0; }
+#sp-st { left:250px; top:900px; transform:rotate(-8deg); color:#1c1a17; }
+</style>
+<div id="root" data-composition-id="suspek" data-width="1080" data-height="1920" data-start="0" data-duration="5.2">
+<div class="jit" id="suspek-jit">
+
+<svg class="strings" width="1080" height="1920"><path id="sp-s1" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M210 250 Q375.0 475.0 540 600"/><path id="sp-s2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M870 270 Q705.0 485.0 540 600"/><path id="sp-s3" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M260 1010 Q400.0 855.0 540 600"/><path id="sp-s4" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M820 1000 Q680.0 850.0 540 600"/></svg>
+<div id="sp-a" class="pol"><div class="ph" style="height:180px"><svg width="200" height="140" viewBox="0 0 100 70" fill="none" stroke="#f2ead8" stroke-width="2.5" stroke-linejoin="round"><rect x="18" y="8" width="64" height="40" rx="3"/><path d="M8 56 L92 56 L84 48 L16 48 Z"/><path d="M50 18 L50 32" stroke="#ff6b5e" stroke-width="4"/><circle cx="50" cy="39" r="2.4" fill="#ff6b5e" stroke="none"/></svg></div><div class="cap" style="font-size:36px">laptop</div></div><div class="pin"  style="left:187px;top:227px"></div>
+<div id="sp-b" class="pol"><div class="ph cr" style="height:180px;font-size:56px;color:#f2ead8">$1.5B</div><div class="cap" style="font-size:36px">Bybit</div></div><div class="pin"  style="left:847px;top:247px"></div>
+<div id="sp-c" class="idx" style="opacity:0"><div class="st red" style="font-size:56px">SUSPEK</div><div class="an" style="font-size:104px">KOREA UTARA</div><div class="cr" style="font-size:32px;margin-top:6px">unit TraderTraitor (Lazarus)</div></div>
+<div id="sp-cp" class="pin" style="left:517px;top:577px;opacity:0"></div>
+<div id="sp-f" class="idx" style="opacity:0"><div class="cr" style="font-size:36px">FBI: dikaitkan</div></div><div id="sp-fp" class="pin" style="left:237px;top:987px;opacity:0"></div>
+<div id="sp-g" class="idx" style="opacity:0"><div class="cr" style="font-size:28px;line-height:1.3">Chainalysis · Elliptic<br>· TRM</div></div><div id="sp-gp" class="pin" style="left:797px;top:977px;opacity:0"></div>
+<div id="sp-st" data-layout-allow-overlap style="opacity:0"><span class="stamp" style="font-size:58px;background:rgba(251,248,240,.75)">DINAFIKAN · PYONGYANG</span></div>
+
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#suspek-jit",{scale:1,x:0,y:0},{scale:1.04,x:-11.1,y:-1.3,duration:5.2,ease:"none"},0);
+
+tl.fromTo("#sp-f",{opacity:0,y:100},{opacity:1,y:0,duration:.2,ease:"power3.out"},0.95);
+tl.fromTo("#sp-fp",{opacity:0},{opacity:1,duration:.05},1.1);
+tl.fromTo("#sp-g",{opacity:0,y:100},{opacity:1,y:0,duration:.2,ease:"power3.out"},1.25);
+tl.fromTo("#sp-gp",{opacity:0},{opacity:1,duration:.05},1.4);
+tl.fromTo("#sp-c",{opacity:0,scale:1.15},{opacity:1,scale:1,duration:.18,ease:"power4.in"},2.6);
+tl.fromTo("#sp-cp",{opacity:0,scale:1.6},{opacity:1,scale:1,duration:.08},2.75);
+["#sp-s1","#sp-s2","#sp-s3","#sp-s4"].forEach((s,i)=>tl.fromTo(s,{strokeDashoffset:1},{strokeDashoffset:0,duration:.35,ease:"power2.inOut"},2.85+i*.18));
+tl.fromTo("#sp-st",{opacity:0,scale:1.9},{opacity:1,scale:1,duration:.12,ease:"power4.in"},4.7);
+
+window.__timelines["suspek"] = tl;
+})();
+</script>
+</template>

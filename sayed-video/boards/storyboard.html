@@ -1,0 +1,94 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;src:url(../fonts/Anton.woff2)}
+@font-face{font-family:Serif;src:url(../fonts/DMSerifDisplay.woff2)}
+@font-face{font-family:Marker;src:url(../fonts/PermanentMarker.woff2)}
+@font-face{font-family:Type;src:url(../fonts/SpecialElite.woff2)}
+@font-face{font-family:Narrow;font-weight:700;src:url(../fonts/ArchivoNarrow.woff2)}
+:root{--paper:#ece4d6;--ink:#1d1b18;--red:#d23820;--blue:#2e56b8;--hl:#f6dc3c}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#2a2622;padding:40px;color:#f2ece2;font-family:Narrow,sans-serif}
+h1{font:400 44px Anton;letter-spacing:1px}
+.sub{font:16px Type;color:#cfc6b8;margin:6px 0 28px}
+.grid{display:grid;grid-template-columns:repeat(5,405px);gap:40px 32px}
+.no{font:15px Type;color:#d9cfbf;margin:12px 0 4px}
+.vo{font:15px/1.45 Narrow;color:#f0e9de}
+.fx{font:13px/1.4 Type;color:#a89f92;margin-top:5px}
+.f{width:405px;height:720px;position:relative;overflow:hidden;background:var(--paper);color:var(--ink);border-radius:3px}
+.f>*{position:absolute}
+.grain{inset:0;width:100%;height:100%;mix-blend-mode:multiply;opacity:.55;pointer-events:none;z-index:50}
+.serif{font-family:Serif;line-height:.95}.anton{font-family:Anton;line-height:.92;letter-spacing:.5px}.mk{font-family:Marker;line-height:1.05}.ty{font-family:Type}
+.riso{position:relative;display:inline-block}.riso::after{content:attr(data-t);position:absolute;left:3px;top:2px;color:var(--blue);mix-blend-mode:multiply;opacity:.5;z-index:-1}
+.tape{width:90px;height:26px;background:rgba(236,222,170,.78);box-shadow:0 1px 2px rgba(0,0,0,.15);z-index:20}
+.card{background:#f6f1e7;box-shadow:2px 3px 0 rgba(0,0,0,.12),0 8px 18px rgba(0,0,0,.14)}
+.print{box-shadow:2px 3px 0 rgba(0,0,0,.12),0 10px 20px rgba(0,0,0,.18);background-size:cover;background-position:center}
+.dymo{display:inline-block;background:#141414;color:#f4f4f4;font:700 18px Narrow;letter-spacing:3px;padding:6px 10px 5px;border-radius:3px;box-shadow:0 2px 3px rgba(0,0,0,.3);white-space:nowrap}
+.stamp{font:400 26px Anton;letter-spacing:3px;border:4px solid currentColor;border-radius:6px;padding:3px 12px;mix-blend-mode:multiply;opacity:.9;white-space:nowrap}
+.cred{font:9px Type;color:#555;background:rgba(246,241,231,.85);padding:2px 5px}
+.sticky{background:#f8e36a;box-shadow:2px 4px 8px rgba(0,0,0,.2);font:22px/1.1 Marker;padding:14px 12px}
+.ransom span{display:inline-block;margin:2px 1px;padding:2px 5px 0;line-height:1}
+</style></head><body>
+<h1>STORYBOARD · "237 TAHUN" · ABDUL EL-SAYED · GAYA KERTAS + FOTO</h1>
+<div class="sub">1080×1920 · ±58 s · gambar sebenar dicetak halftone riso (biru/hitam), ditampal tape · grafik "Thank you, Michigan!" warna penuh untuk klimaks · stop-motion 12fps · kredit foto di setiap babak bergambar</div>
+<div class="grid" id="g"></div>
+<svg width="0" height="0" style="position:absolute"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .45  0 0 0 0 .4  0 0 0 0 .34  0 0 0 .55 0"/></filter>
+<filter id="blot"><feTurbulence type="fractalNoise" baseFrequency=".015" numOctaves="3" seed="9"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .42  0 0 0 0 .3  0 0 0 .35 -.05"/></filter>
+<filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="1" seed="2" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="2.5"/></filter></svg>
+<script>
+let seed=21;const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646};
+const grain=`<svg class="grain"><rect width="100%" height="100%" filter="url(#blot)"/><rect width="100%" height="100%" filter="url(#noise)"/></svg>`;
+const torn=(n=24,j=6)=>{let p=[];for(let i=0;i<=n;i++)p.push(`${i/n*100}% ${rnd()*j}px`);for(let i=0;i<=n;i++)p.push(`calc(100% - ${rnd()*j}px) ${i/n*100}%`);for(let i=n;i>=0;i--)p.push(`${i/n*100}% calc(100% - ${rnd()*j}px)`);for(let i=n;i>=0;i--)p.push(`${rnd()*j}px ${i/n*100}%`);return `clip-path:polygon(${p.join(',')})`};
+const F=["Anton","Serif","Type","Narrow","Marker"];
+const ransom=(t,size)=>`<div class="ransom">`+t.split(' ').map(w=>`<span style="display:inline-block;white-space:nowrap;margin-right:6px">`+[...w].map(ch=>{const f=F[Math.floor(rnd()*5)],r=rnd();const bg=r<.25?'#1d1b18':r<.5?'#d23820':r<.6?'#fffaf0':r<.8?'#f6dc3c':'#d8cfc0';const c=r<.5?'#f6f1e7':'#1d1b18';return `<span style="font-family:${f};font-size:${size*(0.85+rnd()*.35)}px;background:${bg};color:${c};transform:rotate(${(rnd()-.5)*12}deg);box-shadow:1px 1px 0 rgba(0,0,0,.18)">${ch}</span>`}).join('')+`</span>`).join('')+`</div>`;
+const P=f=>`background-image:url(../assets/print/${f})`;
+const CH=`<div class="cred" style="z-index:30">Foto: Conlan Houston / CC BY-SA 4.0 (diubah)</div>`;
+const S=[];
+S.push({t:"01 · 0:00–0:06 · HOOK",vo:"“Dua ratus tiga puluh tujuh tahun. Tak pernah ada seorang Muslim dipilih jadi senator Amerika. Sampai malam ni.”",
+fx:"Frame 0: '237' sudah tercetak. Garis masa marker dilukis 1789 → 2026; kaunter tahun berlari. Cop merah 'SAMPAI MALAM NI' hentak.",
+html:`<div class="ty" style="left:30px;top:80px;font-size:15px;letter-spacing:2px">SENAT AMERIKA SYARIKAT</div>
+<div class="anton" style="left:24px;top:110px;font-size:190px;color:var(--red)"><span class="riso" data-t="237">237</span></div>
+<div class="anton" style="left:30px;top:300px;font-size:52px">TAHUN.</div>
+<div class="serif" style="left:30px;top:380px;width:345px;font-size:30px">Tak pernah ada seorang <span style="background:linear-gradient(transparent 55%,var(--hl) 55%)">Muslim</span> dipilih jadi senator.</div>
+<svg style="left:20px;top:520px" width="370" height="60"><path d="M10 30 L360 30" stroke="#1d1b18" stroke-width="4"/><text x="10" y="58" font-family="Anton" font-size="18">1789</text><text x="320" y="58" font-family="Anton" font-size="18" fill="#d23820">2026</text></svg>
+<div class="stamp" style="left:150px;top:600px;color:var(--red);transform:rotate(-8deg)">SAMPAI MALAM NI</div>`});
+S.push({t:"02 · 0:06–0:09 · NAMA",vo:"“Nama dia Abdul El-Sayed.”",fx:"Cetakan halftone biru ditolak masuk & ditampal tape (stop-motion). Label Dymo dicetak.",
+html:`<div class="print" style="left:22px;top:70px;width:360px;height:420px;${P('riso-houston-6.png')};transform:rotate(-2deg);${torn()}"></div><div class="tape" style="left:150px;top:58px;transform:rotate(-4deg)"></div>
+<div style="left:30px;top:520px;transform:rotate(-2deg)"><span class="dymo" style="font-size:24px">ABDUL EL-SAYED</span></div><div style="left:40px;top:575px;transform:rotate(2deg)"><span class="dymo">UMUR 42 · MICHIGAN</span></div>
+<div style="left:30px;top:680px">${CH}</div>`});
+S.push({t:"03 · 0:09–0:13 · ASAL",vo:"“Anak pendatang Mesir, dan bapanya seorang imam.”",fx:"Peta dunia lakaran marker; anak panah melengkung Mesir → Michigan dilukis. Kad 'BAPA' ditampal.",
+html:`<div class="card" style="left:40px;top:100px;width:150px;height:190px;transform:rotate(-6deg);border:6px dashed #f6f1e7;outline:3px solid #2e56b8;padding:14px;text-align:center"><div class="anton" style="font-size:30px;color:#d23820;margin-top:30px">MESIR</div><div class="ty" style="font-size:11px;margin-top:10px">asal keluarga</div></div>
+<div class="card" style="left:215px;top:150px;width:150px;height:190px;transform:rotate(5deg);border:6px dashed #f6f1e7;outline:3px solid #2e56b8;padding:14px;text-align:center"><div class="anton" style="font-size:26px;color:#2e56b8;margin-top:30px">MICHIGAN</div><div class="ty" style="font-size:11px;margin-top:10px">lahir 1984</div></div>
+<svg style="left:0;top:0;z-index:25" width="405" height="400"><path d="M130 110 C170 40 260 50 290 140" fill="none" stroke="#d23820" stroke-width="4" stroke-dasharray="8 6"/><path d="M280 128 L291 142 L297 124" fill="none" stroke="#d23820" stroke-width="4"/></svg>
+<div class="card" style="left:40px;top:420px;width:325px;padding:16px 18px;transform:rotate(-2deg)"><div class="ty" style="font-size:14px">IBU BAPA: pendatang dari Mesir</div><div class="serif" style="font-size:30px;margin-top:8px">Bapa: profesor<br>kejuruteraan &amp; <span style="color:var(--blue)">imam</span>.</div></div>`});
+S.push({t:"04 · 0:13–0:20 · BUKAN CALANG-CALANG",vo:"“Dia bukan calang-calang orang: doktor perubatan, PhD dari Oxford. Umur tiga puluh, dah jadi ketua kesihatan Detroit.”",fx:"Kad CV ditaip; ✓ marker satu-satu ikut VO. Cetakan hitam (podium) di sudut. Cop 'TERMUDA'.",
+html:`<div class="anton" style="left:30px;top:66px;font-size:46px">BUKAN<br><span style="color:var(--blue)">CALANG-CALANG.</span></div>
+<div class="card" style="left:24px;top:200px;width:300px;padding:16px 16px;transform:rotate(-1.5deg)">${[["DOKTOR PERUBATAN","Columbia"],["PhD · OXFORD","Rhodes Scholar"],["UMUR 30: KETUA","Kesihatan Detroit"]].map(([a,b])=>`<div style="display:flex;gap:10px;align-items:center;margin:14px 0;line-height:1.15"><span class="mk" style="color:var(--red);font-size:26px">✓</span><div><div class="anton" style="font-size:20px">${a}</div><div class="ty" style="font-size:12px;margin-top:4px">${b}</div></div></div>`).join('')}</div>
+<div class="print" style="left:180px;top:440px;width:210px;height:118px;${P('riso-user-3.png')};transform:rotate(4deg)"></div><div class="tape" style="left:240px;top:430px;transform:rotate(3deg)"></div>
+<div class="stamp" style="left:40px;top:470px;color:var(--red);transform:rotate(-10deg)">TERMUDA</div>
+<div style="left:180px;top:565px"><div class="cred">Foto: via Threads</div></div>`});
+S.push({t:"05 · 0:20–0:27 · KALAH, CUBA LAGI",vo:"“Lapan tahun lepas, dia bertanding… dan kalah teruk. Tahun ni, dia cuba lagi.”",fx:"Keratan akhbar 2018 dicop 'KALAH', dipangkah marker. Kemudian cetakan biru (mic) ditampal atasnya: '2026: CUBA LAGI'.",
+html:`<div class="card" style="left:20px;top:70px;width:250px;padding:12px;transform:rotate(-4deg)"><div class="ty" style="font-size:11px;border-bottom:2px solid #222">2018 · GABENOR MICHIGAN</div><div class="anton" style="font-size:34px;margin-top:6px">EL-SAYED<br>~30%</div><div class="stamp" style="position:absolute;left:140px;top:40px;color:var(--red);transform:rotate(-12deg);font-size:22px">KALAH</div></div>
+<div class="print" style="left:110px;top:250px;width:280px;height:290px;${P('riso-user-2.png')};transform:rotate(3deg);${torn()}"></div><div class="tape" style="left:200px;top:240px;transform:rotate(-3deg)"></div>
+<div class="mk" style="left:30px;top:560px;font-size:34px;color:var(--blue);transform:rotate(-3deg)">2026: cuba lagi.</div>
+<div style="left:110px;top:545px"><div class="cred">Foto: via Threads</div></div>`});
+S.push({t:"06 · 0:27–0:35 · SERANGAN",vo:"“Trump dan sekutunya panggil dia ‘jihadist’. Ted Cruz kata kalau dia menang… rakyat Amerika akan mati.”",fx:"Huruf keratan 'JIHADIST' jatuh satu-satu. Kad petikan Cruz merah diselit. Tag kecil 'DIA NAFI' ditampal.",
+html:`<div class="ty" style="left:30px;top:70px;font-size:14px">DIPANGGIL OLEH TRUMP &amp; SEKUTU:</div>
+<div style="left:20px;top:100px;width:370px;transform:rotate(-3deg)">${ransom("“JIHADIST”",44)}</div>
+<div class="card" style="left:30px;top:300px;width:345px;padding:16px;transform:rotate(2deg);background:#d23820;color:#fff3e8"><div class="serif" style="font-size:24px">“There is a very real risk that Americans will die.”</div><div class="ty" style="font-size:12px;margin-top:8px">— Senator Ted Cruz</div></div>
+<div style="left:220px;top:470px;transform:rotate(-4deg)"><span class="dymo" style="background:#2e56b8">DIA NAFI</span></div>`});
+S.push({t:"07 · 0:35–0:42 · TARUHAN",vo:"“Lebih dua ratus tujuh puluh juta dolar dibelanjakan dalam pertandingan ni. Dan dua hari sebelum mengundi, bekas lawan dari parti sendiri pun sokong musuh dia.”",fx:"Resit panjang dicetak; '$270,000,000+' digaris highlighter. Sticky note '−2 HARI' ditepuk.",
+html:`<div style="left:40px;top:70px;width:240px;background:#fbfaf6;padding:16px 14px 26px;box-shadow:0 6px 14px rgba(0,0,0,.18);transform:rotate(-2deg)"><div class="ty" style="font-size:12px;text-align:center">SENAT MICHIGAN 2026<br>PALING MAHAL DALAM SEJARAH</div><div class="ty" style="font-size:12px;border-top:1px dashed #555;margin:8px 0"></div><div class="anton" style="font-size:40px;background:linear-gradient(transparent 50%,#f6dc3c 50%)">$270J+</div><div class="ty" style="font-size:11px;margin-top:6px">perbelanjaan didedahkan</div></div>
+<div class="sticky" style="left:170px;top:360px;width:210px;transform:rotate(4deg)">−2 HARI:<br>Stevens (D) sokong <span style="color:var(--red)">Rogers (R)</span></div>`});
+S.push({t:"08 · 0:42–0:53 · MENANG",vo:"“Keputusannya? Dia menang. Hampir enam mata. Malam tu dia cakap: ‘Kau pilih kebencian… Michigan pilih harapan.’”",fx:"Grafik 'Thank you, Michigan!' (warna penuh) dihentak ke tengah dengan 4 tape. Cop biru 'MENANG · ~6 MATA'. Petikan ucapan ditaip di bawah.",
+html:`<div class="print" style="left:42px;top:60px;width:320px;height:398px;background-image:url(../assets/print/thankyou.jpg);transform:rotate(-2deg)"></div>${[[40,52,-30],[310,52,30],[40,440,30],[310,440,-30]].map(([x,y,r])=>`<div class="tape" style="left:${x}px;top:${y}px;width:60px;transform:rotate(${r}deg)"></div>`).join('')}
+<div class="stamp" style="left:150px;top:452px;color:var(--blue);transform:rotate(-6deg);background:rgba(246,241,231,.9);font-size:24px;mix-blend-mode:normal;z-index:30">MENANG · ~6 MATA</div>
+<div class="card" style="left:30px;top:500px;width:345px;padding:14px 16px;transform:rotate(1deg)"><div class="serif" style="font-size:22px">“You chose hate, and Michigan chose hope.”</div><div class="mk" style="font-size:16px;color:var(--red);margin-top:6px">= kau pilih kebencian, Michigan pilih harapan</div></div>
+<div style="left:42px;top:462px"><div class="cred">Grafik kempen via Threads</div></div>`});
+S.push({t:"09 · 0:53–0:58 · PENUTUP",vo:"“Dua ratus tiga puluh tujuh tahun… akhirnya berubah.”",fx:"Garis masa 1789 → 2026 kembali; marker bulatkan 2026. Cetakan kecil tangan terangkat (Houston #10). Kredit penuh di bawah.",
+html:`<div class="anton" style="left:30px;top:80px;font-size:120px;color:var(--red)"><span class="riso" data-t="237">237</span></div><div class="serif" style="left:30px;top:220px;font-size:40px">tahun…<br>akhirnya berubah.</div>
+<svg style="left:20px;top:360px" width="370" height="90"><path d="M10 40 L360 40" stroke="#1d1b18" stroke-width="4"/><text x="10" y="72" font-family="Anton" font-size="20">1789</text><text x="306" y="72" font-family="Anton" font-size="20" fill="#d23820">2026</text><ellipse cx="327" cy="64" rx="38" ry="22" fill="none" stroke="#d23820" stroke-width="4" filter="url(#rough)"/></svg>
+<div class="print" style="left:170px;top:460px;width:210px;height:200px;${P('riso-houston-10.png')};transform:rotate(3deg)"></div><div class="tape" style="left:230px;top:450px"></div>
+<div style="left:20px;top:672px;width:370px"><div class="cred">Foto: Conlan Houston / CC BY-SA 4.0 · via Threads</div></div>`});
+document.getElementById('g').innerHTML=S.map(s=>`<div><div class="f">${s.html}${grain}</div><div class="no">${s.t}</div><div class="vo">${s.vo}</div><div class="fx">${s.fx}</div></div>`).join('');
+</script></body></html>

@@ -1,0 +1,44 @@
+<template>
+<style>
+#root { position:absolute; inset:0; color:#ece6df; font-family:"Inter",sans-serif; }
+#root .hud { position:absolute; left:80px; right:80px; top:196px; height:36px; font:500 28px "JetBrains Mono",monospace; letter-spacing:3px; color:#8a8178; }
+#root .hud .l { position:absolute; left:0; top:0; } #root .hud .r { position:absolute; right:0; top:0; text-align:right; }
+#root .title { position:absolute; left:80px; right:80px; font-family:"Inter",sans-serif; font-weight:900; font-size:116px; letter-spacing:-4px; line-height:.94; }
+#root .mono { font-family:"JetBrains Mono",monospace; }
+#root .big { font-family:"JetBrains Mono",monospace; font-weight:700; letter-spacing:-10px; line-height:1; }
+#root .baik{color:#3aa0ff} #root .sed{color:#3ccf6e} #root .ts{color:#ffd23f} #root .sts{color:#ff8a1f} #root .bhy{color:#ff2d2d} #root .ember{color:#ff6a1f} #root .dim{color:#8a8178}
+#root .tag { display:inline-block; font:700 28px "JetBrains Mono",monospace; letter-spacing:5px; padding:12px 22px; border:3px solid currentColor; border-radius:8px; }
+#root .stamp { display:inline-block; font:900 70px "Inter"; letter-spacing:4px; border:9px solid currentColor; border-radius:14px; padding:12px 28px; }
+#root .src { font:500 28px "JetBrains Mono"; color:#8a8178; letter-spacing:1px; }
+
+#mati-t { top:240px; font-size:120px; }
+#root .ac { position:absolute; left:80px; width:920px; height:160px; border:3px solid #2e2823; border-radius:16px; background:#12100e; }
+#root .ac .ai { position:absolute; left:30px; top:30px; }
+#root .ac .an { position:absolute; left:180px; top:52px; font:900 50px "Inter"; letter-spacing:1px; }
+#root .ac .aq { position:absolute; right:140px; top:40px; font-size:72px; letter-spacing:-3px; color:#ff6a1f; }
+#root .ac .ax { position:absolute; right:40px; top:34px; font:700 76px "JetBrains Mono"; color:#ff2d2d; opacity:0; }
+#mati-l { position:absolute; left:80px; top:1070px; }
+</style>
+<div id="root" data-composition-id="mati" data-width="1080" data-height="1920" data-start="0" data-duration="6.3">
+
+<div class="hud"><span class="l">KALIMANTAN SELATAN</span><span class="r bhy">▲ TAK SEMPAT</span></div>
+<div class="title" id="mati-t">ADA YANG<br><span class="ember">TAK SEMPAT.</span></div>
+<div class="ac" id="mati-c0" style="top:480px;opacity:0"><svg class="ai" width="120" height="100" viewBox="0 0 80 84" fill="none" stroke="#ece6df" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" style="color:#ece6df"><circle cx="40" cy="30" r="16"/><path d="M40 36c-6 4-6 14 2 14s6-10 0-14"/><circle cx="34" cy="26" r="1.8" fill="currentColor"/><circle cx="46" cy="26" r="1.8" fill="currentColor"/><path d="M28 48c-6 10-6 22 0 30M52 48c6 10 6 22 0 30M30 78h20"/></svg><div class="an">BEKANTAN</div><div class="aq big">×12</div><div class="ax" id="mati-x0">✕</div></div><div class="ac" id="mati-c1" style="top:670px;opacity:0"><svg class="ai" width="120" height="100" viewBox="0 0 80 84" fill="none" stroke="#ece6df" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" style="color:#ece6df"><path d="M8 60c10-16 22 16 32 0s22 16 32 0"/><circle cx="72" cy="58" r="3"/><path d="M76 58l6-2"/></svg><div class="an">ULAR SAWA</div><div class="aq big">×1</div><div class="ax" id="mati-x1">✕</div></div><div class="ac" id="mati-c2" style="top:860px;opacity:0"><svg class="ai" width="120" height="100" viewBox="0 0 80 84" fill="none" stroke="#ece6df" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" style="color:#ece6df"><path d="M40 74c-14 0-20-8-10-14s20-6 10-16"/><path d="M40 44c-10-2-14-14-10-24 4-10 16-10 20 0 4 10 0 22-10 24z"/><circle cx="36" cy="26" r="1.8" fill="currentColor"/><circle cx="44" cy="26" r="1.8" fill="currentColor"/></svg><div class="an">KING KOBRA</div><div class="aq big">×1</div><div class="ax" id="mati-x2">✕</div></div>
+<div id="mati-l" style="opacity:0"><span class="tag bhy">DITEMUI MATI TERBAKAR</span></div>
+
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#mati-t",{opacity:0,y:24},{opacity:1,y:0,duration:.35,ease:"power3.out"},0.1);
+tl.fromTo("#mati-c0",{opacity:0,x:60},{opacity:1,x:0,duration:.3,ease:"power3.out"},1.47);tl.fromTo("#mati-c1",{opacity:0,x:60},{opacity:1,x:0,duration:.3,ease:"power3.out"},2.43);tl.fromTo("#mati-c2",{opacity:0,x:60},{opacity:1,x:0,duration:.3,ease:"power3.out"},3.51);
+tl.fromTo("#mati-l",{opacity:0,scale:1.3},{opacity:1,scale:1,duration:.25,ease:"power4.out",transformOrigin:"0% 50%"},4.68);
+[0,1,2].forEach(i=>{
+  tl.to(`#mati-c${i}`,{filter:"grayscale(1)",opacity:.55,duration:.5},4.9+i*.12);
+  tl.fromTo(`#mati-x${i}`,{opacity:0,scale:1.8},{opacity:1,scale:1,duration:.18},4.9+i*.12);});
+
+window.__timelines["mati"] = tl;
+})();
+</script>
+</template>

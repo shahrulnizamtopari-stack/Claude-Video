@@ -1,0 +1,151 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+:root{--bg:#0a0908;--ink:#ece6df;--dim:#7d746b;--line:#2b2622;
+  --baik:#3aa0ff;--sed:#3ccf6e;--ts:#ffd23f;--sts:#ff8a1f;--bhy:#ff2d2d;--haze:#b8a48a;--ember:#ff6a1f}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#141210;font-family:"Inter",sans-serif;color:var(--ink);padding:40px}
+h1{font-family:"Inter Display";font-weight:800;font-size:34px;letter-spacing:-.5px}
+.sub{color:#9a9087;margin:6px 0 28px;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(5,405px);gap:36px 32px}
+.cell .no{font:700 13px "DejaVu Sans Mono";color:#9a9087;margin:12px 0 4px}
+.cell .vo{font-size:14px;line-height:1.45;color:#ddd5cc}
+.cell .fx{font-size:12px;line-height:1.4;color:#8a8076;margin-top:5px}
+.f{width:405px;height:720px;background:var(--bg);position:relative;overflow:hidden;border-radius:6px}
+.f::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);pointer-events:none;z-index:9}
+.haze{position:absolute;inset:0;pointer-events:none;z-index:8}
+.mono{font-family:"DejaVu Sans Mono",monospace}
+.disp{font-family:"Inter Display";font-weight:800;letter-spacing:-1.5px;line-height:.95}
+.hud{position:absolute;left:22px;right:22px;top:22px;display:flex;justify-content:space-between;font:11px "DejaVu Sans Mono";color:var(--dim);letter-spacing:1px;z-index:5}
+.tag{display:inline-block;font:700 11px "DejaVu Sans Mono";letter-spacing:2px;padding:5px 9px;border:1px solid currentColor;border-radius:3px}
+.stamp{position:absolute;font:800 26px "Inter Display";letter-spacing:2px;color:var(--bhy);border:4px solid var(--bhy);padding:6px 12px;border-radius:6px;transform:rotate(-9deg);z-index:6}
+.big{font:700 96px "DejaVu Sans Mono";letter-spacing:-5px;line-height:1}
+.ctr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.at{position:absolute;left:30px;right:30px}
+svg text{font-family:"DejaVu Sans Mono"}
+</style></head><body>
+<h1>STORYBOARD — "IPU 519" (Jerebu 2026)</h1>
+<div class="sub">Gaya READOUT · 1080×1920 · ±62 s · meter IPU jadi benang cerita · skrin makin "berkabus" ikut bacaan IPU · warna ikut skala IPU rasmi (biru ➜ hijau ➜ kuning ➜ oren ➜ merah)</div>
+<div class="grid" id="g"></div>
+<script>
+const S=[];
+const hazeL=(a)=>`<div class="haze" style="background:radial-gradient(ellipse 120% 70% at 50% 60%,rgba(184,164,138,${a}),rgba(120,100,80,${a*0.6}) 60%,rgba(40,30,20,${a*0.4}))"></div>`;
+// meter
+function meter(v,y=300){const pct=Math.min(1,v/520);const c=v<=50?'var(--baik)':v<=100?'var(--sed)':v<=200?'var(--ts)':v<=300?'var(--sts)':'var(--bhy)';
+ const segs=[['var(--baik)',50],['var(--sed)',50],['var(--ts)',100],['var(--sts)',100],['var(--bhy)',220]];let x=0;
+ return `<div class="at" style="top:${y}px"><div style="position:relative;height:14px;border-radius:7px;overflow:hidden;display:flex">${segs.map(([cc,w])=>`<div style="flex:${w};background:${cc};opacity:.9"></div>`).join('')}</div>
+ <div style="position:absolute;left:${pct*100}%;top:-10px;width:4px;height:34px;background:#fff;box-shadow:0 0 10px #fff;transform:translateX(-2px)"></div>
+ <div class="mono" style="display:flex;justify-content:space-between;font-size:10px;color:var(--dim);margin-top:8px"><span>0</span><span>BAIK</span><span>SEDERHANA</span><span>TIDAK SIHAT</span><span>BAHAYA</span><span>500</span></div></div>`;}
+
+S.push({t:"01 · 0:00–0:05 · HOOK — 'OKSIGEN'",vo:"“Kami bukan hantar asap saja. Bila tiada asap… kami hantar oksigen.” Itu kata seorang pegawai Indonesia.",
+fx:"Frame 0: petikan besar sudah di skrin. Perkataan OKSIGEN berkelip biru. Tag sumber muncul. Langit masih jernih (IPU 32).",
+html:`<div class="f"><div class="hud"><span>KENYATAAN · OKT 2026</span><span style="color:var(--baik)">● IPU 32 · BAIK</span></div>
+<div class="at" style="top:120px"><div class="mono" style="font-size:80px;color:#3a332d;line-height:.6">“</div>
+<div class="disp" style="font-size:44px;margin-top:6px">KAMI BUKAN<br>HANTAR ASAP.</div>
+<div class="disp" style="font-size:58px;margin-top:22px;color:var(--baik);text-shadow:0 0 30px rgba(58,160,255,.5)">KAMI HANTAR<br>OKSIGEN.</div>
+<div style="margin-top:26px"><span class="tag" style="color:var(--dim)">— PEGAWAI INDONESIA · KOMPAS</span></div></div>
+<div class="at mono" style="top:560px;font-size:12px;color:var(--dim);line-height:1.6">▲ diperli netizen Malaysia &amp; Singapura<br><span style="color:var(--ink)">The Star · Malay Mail · 12 Okt 2026</span></div></div>`});
+
+S.push({t:"02 · 0:05–0:12 · IPU MELONJAK",vo:"“Masa tu, bacaan IPU di Serian, Sarawak… cecah lima ratus sembilan belas. Darurat diisytiharkan.”",
+fx:"Nombor berpusing 32 → 519, jarum melintas zon warna. Kabus coklat naik menutup skrin. Cop DARURAT hentak. Batuk/siren lemah.",
+html:`<div class="f" style="background:radial-gradient(circle at 50% 35%,#3a0c0a,#0a0908 70%)"><div class="hud"><span>SERIAN · SARAWAK</span><span style="color:var(--bhy)">▲ BERBAHAYA</span></div>
+<div class="ctr" style="justify-content:flex-start;top:90px"><div class="tag" style="color:var(--bhy)">INDEKS PENCEMAR UDARA</div>
+<div class="big" style="font-size:150px;color:var(--bhy);margin-top:10px;text-shadow:0 0 50px rgba(255,45,45,.7)">519</div></div>
+${meter(519,330)}
+<div class="stamp" style="left:70px;top:430px">DARURAT · SERIAN</div>
+<div class="at mono" style="top:560px;font-size:12px;color:var(--ink);line-height:1.7">paras berbahaya bermula: 301<br><span style="color:var(--dim)">darurat jerebu terakhir Sarawak: 1997</span></div>
+${hazeL(.32)}</div>`});
+
+// map
+const L0=94,L1=120,A0=-6.5,A1=7.5,W=405,H=330;
+const px=(lo,la)=>[(lo-L0)/(L1-L0)*W,(A1-la)/(A1-A0)*H];
+const P={sum:[[95.3,5.6],[97.5,5.2],[100.3,2.5],[103.8,1.0],[104.5,-1.0],[106.0,-3.0],[105.8,-5.8],[104.5,-5.9],[102.3,-4.0],[100.4,-1.0],[98.7,1.7],[96.0,3.9]],
+bor:[[109.0,1.8],[109.6,2.1],[111.0,1.6],[113.0,3.2],[115.4,4.9],[117.0,6.9],[119.2,5.2],[118.0,4.3],[117.6,1.0],[116.5,-1.5],[116.0,-3.6],[114.5,-4.1],[110.2,-3.0],[109.0,-0.5]],
+pen:[[100.2,6.4],[102.2,6.2],[103.4,4.5],[103.5,2.6],[104.3,1.4],[103.5,1.3],[101.3,2.8],[100.3,4.5]],
+jav:[[105.2,-6.0],[106.5,-5.9],[108.5,-6.4],[111,-6.4],[114.5,-7.5],[114.4,-8.3],[110,-8.1],[106.5,-7.3]]};
+function inside(p,poly){let c=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const[a,b]=poly[i],[x,y]=poly[j];if(((b>p[1])!=(y>p[1]))&&(p[0]<(x-a)*(p[1]-b)/(y-b)+a))c=!c}return c}
+const HS=[[101.5,0.6,1.3],[103,-1.6,1.1],[104.6,-3,1.2],[110.3,-1.6,1.3],[113.5,-2.3,1.5],[115,-3,0.9],[111,-0.3,0.8]];
+function map(){let d="";for(let lo=L0;lo<=L1;lo+=0.42)for(let la=A0;la<=A1;la+=0.42){if(Object.values(P).some(p=>inside([lo,la],p))){const[x,y]=px(lo,la);
+ const hot=HS.some(([a,b,r])=>Math.hypot(lo-a,la-b)<r);d+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${hot?2.6:1.6}" fill="${hot?'#ff6a1f':'#3a332d'}"/>`;}}
+ let g=HS.map(([a,b,r])=>{const[x,y]=px(a,b);return `<circle cx="${x}" cy="${y}" r="${r*22}" fill="url(#ember)"/>`}).join('');
+ const lab=[["SUMATERA",99,-2.8,"end"],["KALIMANTAN",116.3,2.6,"middle"],["SERIAN ●",110.6,1.2,"start"],["SINGAPURA ●",103.8,1.35,"end"],["KL ●",101.7,3.1,"end"]].map(([t,a,b,an])=>{const[x,y]=px(a,b);return `<text x="${x}" y="${y}" text-anchor="${an}" font-size="10" font-weight="700" fill="#ece6df">${t}</text>`}).join('');
+ return `<svg width="${W}" height="${H}"><defs><radialGradient id="ember"><stop offset="0" stop-color="#ff6a1f" stop-opacity=".55"/><stop offset="1" stop-color="#ff6a1f" stop-opacity="0"/></radialGradient></defs>${g}${d}${lab}</svg>`;}
+
+S.push({t:"03 · 0:12–0:19 · PUNCA",vo:"“Puncanya? Hampir dua juta hektar hutan Indonesia terbakar. Tiga puluh lapan peratus lebih teruk daripada 2019.”",
+fx:"Peta titik Sumatera & Kalimantan; titik api menyala merebak. Kaunter 0 → 1.92 juta ha. Chip +38% vs 2019 & '≈12× saiz London'.",
+html:`<div class="f"><div class="hud"><span>JAN–SEP 2026</span><span style="color:var(--ember)">▲ TITIK API</span></div>
+<div class="at" style="top:60px"><div class="big" style="font-size:84px;color:var(--ember);text-shadow:0 0 40px rgba(255,106,31,.5)">1.92<span style="font-size:34px;letter-spacing:0"> JUTA</span></div>
+<div class="disp" style="font-size:22px;margin-top:6px">HEKTAR TERBAKAR</div></div>
+<div style="position:absolute;left:0;top:200px">${map()}</div>
+<div class="at" style="top:560px;display:flex;gap:8px;flex-wrap:wrap"><span class="tag" style="color:var(--ember)">+38% VS 2019</span><span class="tag" style="color:var(--dim)">≈ 12× SAIZ LONDON</span></div>
+${hazeL(.12)}</div>`});
+
+S.push({t:"04 · 0:19–0:25 · KONSESI",vo:"“Dan di Kalimantan, tujuh puluh empat peratus titik api… berada dalam kawasan konsesi syarikat.”",
+fx:"74% slam-in. Bar mendatar tumbuh ikut jenis konsesi (data WALHI). Bunyi 'thunk' pada 74.",
+html:`<div class="f"><div class="hud"><span>KALIMANTAN · WALHI</span><span style="color:var(--sts)">TITIK API</span></div>
+<div class="at" style="top:90px"><div class="big" style="font-size:150px;color:var(--sts)">74%</div>
+<div class="disp" style="font-size:28px;margin-top:8px">DALAM KAWASAN<br><span style="color:var(--sts)">KONSESI SYARIKAT.</span></div></div>
+${[["SAWIT",10739,"var(--sts)"],["LOMBONG",7880,"var(--ts)"],["BALAK",6905,"#c9a27a"]].map(([n,v,c],i)=>`<div class="at" style="top:${380+i*70}px"><div class="mono" style="font-size:11px;color:var(--dim);letter-spacing:2px">${n}</div><div style="margin-top:6px;height:26px;width:${v/10739*300}px;background:${c};border-radius:4px;font:700 13px 'DejaVu Sans Mono';color:#0a0908;padding:5px 8px">${v.toLocaleString('en')}</div></div>`).join('')}
+${hazeL(.1)}</div>`});
+
+const ico={sekolah:`<path d="M6 26h40M10 26V14l16-8 16 8v12"/><rect x="21" y="16" width="10" height="10"/><path d="M8 32h36"/>`,
+topeng:`<path d="M8 18c6-4 30-4 36 0v10c-4 8-32 8-36 0z"/><path d="M4 18l4 2M48 18l-4 2M14 24h24"/>`,
+rumah:`<path d="M6 24L26 8l20 16"/><path d="M11 21v17h30V21"/><rect x="22" y="28" width="8" height="10"/>`};
+S.push({t:"05 · 0:25–0:31 · KITA",vo:"“Kita? Sekolah ditutup. Kita pakai topeng. Kita duduk dalam rumah. Kita boleh lari.”",
+fx:"3 ikon masuk ikut sebutan dengan ✓ biru. 'KITA BOLEH LARI.' muncul tenang. Kabus masih ada tapi kita 'selamat'.",
+html:`<div class="f"><div class="hud"><span>MANUSIA</span><span style="color:var(--baik)">● ADA PILIHAN</span></div>
+<div class="at" style="top:90px">${[["sekolah","SEKOLAH DITUTUP","6 negeri/wilayah · 9 Okt"],["topeng","PAKAI TOPENG","N95"],["rumah","DUDUK DALAM RUMAH",""]].map(([k,n,s],i)=>`<div style="display:flex;align-items:center;gap:16px;height:84px;border:1.5px solid var(--line);border-radius:10px;padding:0 14px;margin-bottom:14px;background:#11100e"><svg width="52" height="44" viewBox="0 0 52 44" fill="none" stroke="#ece6df" stroke-width="2.4" stroke-linejoin="round">${ico[k]}</svg><div><div style="font:800 17px 'Inter Display'">${n}</div><div class="mono" style="font-size:10px;color:var(--dim);margin-top:3px">${s}</div></div><div style="margin-left:auto;color:var(--baik);font:700 18px 'DejaVu Sans Mono'">✓</div></div>`).join('')}</div>
+<div class="at disp" style="top:440px;font-size:50px">KITA<br><span style="color:var(--baik)">BOLEH LARI.</span></div>
+${hazeL(.18)}</div>`});
+
+const oran=(c="#ece6df",s=1)=>`<svg width="${130*s}" height="${170*s}" viewBox="0 0 130 170" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="65" cy="34" r="22"/><path d="M55 45c5-3 15-3 20 0"/><path d="M51 28l10-4M79 28l-10-4"/><circle cx="57" cy="29" r="2" fill="${c}"/><circle cx="73" cy="29" r="2" fill="${c}"/>
+<path d="M44 60c-6 30-4 60 6 80M86 60c6 30 4 60-6 80"/><path d="M48 58c-20 10-30 40-34 80M82 58c20 10 30 40 34 80"/><path d="M50 140h30"/></svg>`;
+S.push({t:"06 · 0:31–0:42 · MEREKA TAK BOLEH",vo:"“Tapi mereka… tak boleh. Hampir tiga ratus haiwan liar terpaksa diselamatkan, sembilan puluh enam daripadanya orangutan. Ada yang tak sempat: bekantan, ular sawa, king kobra… ditemui mati terbakar.”",
+fx:"Senyap 0.5s. Siluet orangutan line-art muncul perlahan, bara oren di bawah. Kaunter 290 / 96. Senarai mati terbakar ditaip, setiap baris jadi kelabu.",
+html:`<div class="f" style="background:radial-gradient(ellipse 90% 40% at 50% 100%,rgba(255,106,31,.35),#0a0908 60%)"><div class="hud"><span>HAIWAN LIAR</span><span style="color:var(--ember)">▲ TIADA PILIHAN</span></div>
+<div class="at disp" style="top:60px;font-size:44px">TAPI MEREKA…<br><span style="color:var(--ember)">TAK BOLEH.</span></div>
+<div style="position:absolute;left:138px;top:180px">${oran()}</div>
+<div class="at" style="top:380px;display:flex;gap:26px"><div><div class="big" style="font-size:58px;color:var(--ember)">290</div><div class="mono" style="font-size:11px;color:var(--dim)">HAIWAN DISELAMATKAN</div></div><div><div class="big" style="font-size:58px">96</div><div class="mono" style="font-size:11px;color:var(--dim)">ORANGUTAN</div></div></div>
+<div class="at mono" style="top:520px;font-size:12px;line-height:1.9;color:var(--dim)">DITEMUI MATI TERBAKAR · KALSEL<br><span style="color:var(--ink)">✕ bekantan ×12<br>✕ ular sawa ×1<br>✕ king kobra ×1</span></div>
+${hazeL(.14)}</div>`});
+
+S.push({t:"07 · 0:42–0:48 · 200 → ?",vo:"“Di satu kawasan, dianggarkan dua ratus orangutan pernah tinggal. Selepas api datang… tiada siapa tahu berapa yang tinggal.”",
+fx:"Grid 200 titik (setiap satu = 1 orangutan) menyala oren, lalu pudar satu-satu dari tepi. Tanda soal besar muncul. Hampir senyap.",
+html:`<div class="f"><div class="hud"><span>KAWASAN PEMULIHARAAN · 2,330 HA</span><span>KALBAR</span></div>
+<div class="at" style="top:70px"><div class="big" style="font-size:90px">200</div><div class="mono" style="font-size:12px;color:var(--dim);margin-top:4px">ORANGUTAN · SEBELUM API</div></div>
+<svg style="position:absolute;left:42px;top:230px" width="320" height="250">${Array.from({length:200},(_,i)=>{const c=i%20,r=Math.floor(i/20);const keep=((i*37)%200)<28;return `<circle cx="${c*16+8}" cy="${r*24+10}" r="5.5" fill="${keep?'#ff6a1f':'#2b2622'}"/>`}).join('')}</svg>
+<div class="at disp" style="top:500px;font-size:40px">SELEPAS API?</div>
+<div style="position:absolute;right:30px;top:470px;font:800 140px 'Inter Display';color:var(--ember);opacity:.9">?</div>
+${hazeL(.1)}</div>`});
+
+S.push({t:"08 · 0:48–0:53 · NYAWA",vo:"“Satu kajian menganggarkan, asap ni dikaitkan dengan tiga ribu lima ratus kematian di Indonesia. Dalam bulan September saja.”",
+fx:"Kaunter 0 → 3,560 perlahan dan berat. Label kecil 'anggaran CREA'. Kabus paling tebal di sini.",
+html:`<div class="f"><div class="hud"><span>INDONESIA · SEPTEMBER 2026</span><span style="color:var(--bhy)">ANGGARAN</span></div>
+<div class="ctr"><div class="big" style="font-size:120px;color:var(--ink)">3,560</div><div class="disp" style="font-size:30px;margin-top:14px">KEMATIAN.</div>
+<div class="disp" style="font-size:22px;color:var(--dim);margin-top:10px">DALAM SEBULAN.</div>
+<div class="mono" style="font-size:10px;color:var(--dim);margin-top:40px">ANGGARAN KAJIAN · CREA · INDONESIA SAHAJA</div></div>
+${hazeL(.3)}</div>`});
+
+S.push({t:"09 · 0:53–1:01 · SIAPA BAYAR?",vo:"“Siapa bayar? Singapura dah hantar notis kepada sepuluh syarikat. Denda sampai seratus ribu dolar sehari. Tapi sejak 2014… belum ada satu pun syarikat didenda.”",
+fx:"10 kad 'NOTIS' bertindan masuk. Angka S$100,000/HARI. Lalu kaunter 'DIDENDA SEJAK 2014' berhenti di 0 — cop merah hentak.",
+html:`<div class="f"><div class="hud"><span>FAIL UNDANG-UNDANG · THPA</span><span>SINGAPURA</span></div>
+<div class="at disp" style="top:60px;font-size:48px">SIAPA<br><span style="color:var(--ts)">BAYAR?</span></div>
+<div style="position:absolute;left:30px;top:200px;width:200px;height:130px">${Array.from({length:10},(_,i)=>`<div style="position:absolute;left:${i*9}px;top:${i*6}px;width:150px;height:70px;border:1.5px solid #4a423b;border-radius:6px;background:#15130f;font:700 10px 'DejaVu Sans Mono';color:var(--dim);padding:8px">NOTIS #${i+1}</div>`).join('')}</div>
+<div class="at" style="top:360px"><div class="mono" style="font-size:11px;color:var(--dim)">DENDA MAKSIMUM</div><div class="big" style="font-size:44px;color:var(--ts);margin-top:4px">S$100K<span style="font-size:20px;letter-spacing:0">/hari</span></div></div>
+<div class="at" style="top:470px"><div class="mono" style="font-size:11px;color:var(--dim)">SYARIKAT DIDENDA SEJAK 2014</div><div class="big" style="font-size:110px;margin-top:4px">0</div></div>
+<div class="stamp" style="left:150px;top:520px">BELUM ADA</div></div>`});
+
+S.push({t:"10 · 1:01–1:08 · PENUTUP",vo:"“Hari ni langit dah cerah. Tapi gambut boleh terus membara… di bawah tanah. Bila asap datang lagi, kita boleh lari. Mereka tak boleh.”",
+fx:"Kabus surut, IPU turun ke 45 biru. Kamera 'turun' bawah garis tanah: bara oren berdenyut dalam lapisan gambut. Teks akhir. Siluet orangutan kecil sebagai frame terakhir.",
+html:`<div class="f"><div class="hud"><span>HARI INI</span><span style="color:var(--baik)">● IPU 45 · BAIK</span></div>
+<div class="at disp" style="top:80px;font-size:40px">LANGIT<br><span style="color:var(--baik)">DAH CERAH.</span></div>
+<div style="position:absolute;left:0;right:0;top:300px;height:2px;background:#4a423b"></div>
+<div class="mono" style="position:absolute;left:30px;top:310px;font-size:10px;color:var(--dim)">PERMUKAAN TANAH ↓ GAMBUT</div>
+<div style="position:absolute;left:0;right:0;top:302px;height:150px;background:repeating-linear-gradient(0deg,#1a1410 0 6px,#211913 6px 12px)"></div>
+${[[60,380],[150,410],[230,370],[320,420],[110,440]].map(([x,y])=>`<div style="position:absolute;left:${x}px;top:${y}px;width:40px;height:16px;border-radius:50%;background:radial-gradient(#ffb36b,#ff6a1f 40%,transparent 70%);filter:blur(1px)"></div>`).join('')}
+<div class="at" style="top:480px"><div class="disp" style="font-size:30px">KITA BOLEH LARI.</div><div class="disp" style="font-size:44px;color:var(--ember);margin-top:8px">MEREKA<br>TAK BOLEH.</div></div>
+<div style="position:absolute;right:20px;top:500px;opacity:.85">${oran('#ff6a1f',.6)}</div></div>`});
+
+document.getElementById('g').innerHTML=S.map(s=>`<div class="cell">${s.html}<div class="no">${s.t}</div><div class="vo">${s.vo}</div><div class="fx">${s.fx}</div></div>`).join('');
+</script></body></html>

@@ -1,0 +1,43 @@
+<template>
+<style>
+#root { position:absolute; inset:0; color:#e9eef3; font-family:"Inter",sans-serif; }
+#root .hud { position:absolute; left:80px; right:80px; top:196px; height:36px; font:500 28px "JetBrains Mono",monospace; letter-spacing:3px; color:#6b7785; }
+#root .hud .l { position:absolute; left:0; top:0; }
+#root .hud .r { position:absolute; right:0; top:0; text-align:right; }
+#root .title { position:absolute; left:80px; right:80px; font-family:"Inter",sans-serif; font-weight:900; font-size:116px; letter-spacing:-4px; line-height:.94; }
+#root .mono { font-family:"JetBrains Mono",monospace; }
+#root .ice { color:#5ad1ff; } #root .warm { color:#ff9a3c; } #root .hot { color:#ff3b30; } #root .dim { color:#6b7785; }
+#root .tag { display:inline-block; font:700 28px "JetBrains Mono",monospace; letter-spacing:5px; padding:12px 22px; border:3px solid currentColor; border-radius:8px; }
+
+#who-t { top:236px; }
+#who-q { position:absolute; left:0; right:0; top:380px; text-align:center; font:900 640px "Inter"; line-height:1; color:#151c25; }
+#who-s { position:absolute; left:0; right:0; top:640px; text-align:center; }
+#who-s span { display:inline-block; font:900 84px "Inter"; letter-spacing:4px; color:#ff3b30; border:9px solid #ff3b30; border-radius:14px; padding:14px 30px; }
+#root .chk { position:absolute; left:80px; font:700 36px "JetBrains Mono"; letter-spacing:1px; }
+</style>
+<div id="root" data-composition-id="who" data-width="1080" data-height="1920" data-start="0" data-duration="4.35">
+
+<div class="hud"><span class="l">FAIL SIASATAN</span><span class="r">STATUS: TERBUKA</span></div>
+<div id="who-q" data-layout-ignore>?</div>
+<div class="title" id="who-t">SIAPA<br>DALANG?</div>
+<div id="who-s"><span id="who-st">BELUM DISAHKAN</span></div>
+<div class="chk" id="who-c1" style="top:930px;opacity:0"><span class="ice">✓</span> TIADA PIHAK MENGAKU</div>
+<div class="chk" id="who-c2" style="top:1010px;opacity:0"><span class="ice">✓</span> SIASATAN MASIH BERJALAN</div>
+
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#who-t",{opacity:0,y:30},{opacity:1,y:0,duration:.3,ease:"power3.out"},0.11);
+tl.fromTo("#who-q",{opacity:0,scale:.85},{opacity:1,scale:1,duration:.6,ease:"power2.out"},0.11);
+tl.fromTo("#who-q",{rotation:0},{rotation:4,duration:.5,yoyo:true,repeat:7,ease:"sine.inOut"},0.7);
+tl.fromTo("#who-c1",{opacity:0,x:-30},{opacity:1,x:0,duration:.3},1.73);
+tl.fromTo("#who-st",{opacity:0,scale:2.2,rotation:-9},{opacity:.95,scale:1,rotation:-9,duration:.16,ease:"power4.in"},2.25);
+tl.fromTo("#who-s",{y:0},{y:6,duration:.05,yoyo:true,repeat:3},2.41);
+tl.fromTo("#who-c2",{opacity:0,x:-30},{opacity:1,x:0,duration:.3},3.12);
+
+window.__timelines["who"] = tl;
+})();
+</script>
+</template>

@@ -1,0 +1,38 @@
+<template>
+<style>
+#root { position:absolute; inset:0; color:#ece6df; font-family:"Inter",sans-serif; }
+#root .hud { position:absolute; left:80px; right:80px; top:196px; height:36px; font:500 28px "JetBrains Mono",monospace; letter-spacing:3px; color:#8a8178; }
+#root .hud .l { position:absolute; left:0; top:0; } #root .hud .r { position:absolute; right:0; top:0; text-align:right; }
+#root .title { position:absolute; left:80px; right:80px; font-family:"Inter",sans-serif; font-weight:900; font-size:116px; letter-spacing:-4px; line-height:.94; }
+#root .mono { font-family:"JetBrains Mono",monospace; }
+#root .big { font-family:"JetBrains Mono",monospace; font-weight:700; letter-spacing:-10px; line-height:1; }
+#root .baik{color:#3aa0ff} #root .sed{color:#3ccf6e} #root .ts{color:#ffd23f} #root .sts{color:#ff8a1f} #root .bhy{color:#ff2d2d} #root .ember{color:#ff6a1f} #root .dim{color:#8a8178}
+#root .tag { display:inline-block; font:700 28px "JetBrains Mono",monospace; letter-spacing:5px; padding:12px 22px; border:3px solid currentColor; border-radius:8px; }
+#root .stamp { display:inline-block; font:900 70px "Inter"; letter-spacing:4px; border:9px solid currentColor; border-radius:14px; padding:12px 28px; }
+#root .src { font:500 28px "JetBrains Mono"; color:#8a8178; letter-spacing:1px; }
+
+#root .kr { position:absolute; left:80px; width:920px; height:150px; border:3px solid #2e2823; border-radius:16px; background:#12100e; }
+#root .kr svg { position:absolute; left:30px; top:31px; }
+#root .kt { position:absolute; left:170px; top:32px; }
+#root .kn { font:900 46px "Inter"; letter-spacing:.5px; }
+#root .ks { font:500 28px "JetBrains Mono"; color:#8a8178; margin-top:8px; }
+#root .kc { position:absolute; right:34px; top:44px; font:700 52px "JetBrains Mono"; color:#3aa0ff; }
+#kita-t { top:830px; font-size:130px; }
+</style>
+<div id="root" data-composition-id="kita" data-width="1080" data-height="1920" data-start="0" data-duration="5.9">
+
+<div class="hud"><span class="l">MANUSIA</span><span class="r baik">● ADA PILIHAN</span></div>
+<div class="kr" id="kita-r0" style="top:250px;opacity:0"><svg width="104" height="88" viewBox="0 0 52 44" fill="none" stroke="#ece6df" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M6 26h40M10 26V14l16-8 16 8v12"/><rect x="21" y="16" width="10" height="10"/><path d="M8 32h36"/></svg><div class="kt"><div class="kn">SEKOLAH DITUTUP</div><div class="ks">4 negeri + KL & Putrajaya</div></div><div class="kc" id="kita-c0" style="opacity:0">✓</div></div><div class="kr" id="kita-r1" style="top:425px;opacity:0"><svg width="104" height="88" viewBox="0 0 52 44" fill="none" stroke="#ece6df" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M8 18c6-4 30-4 36 0v10c-4 8-32 8-36 0z"/><path d="M4 18l4 2M48 18l-4 2M14 24h24"/></svg><div class="kt"><div class="kn">PAKAI TOPENG</div><div class="ks">bila IPU tinggi</div></div><div class="kc" id="kita-c1" style="opacity:0">✓</div></div><div class="kr" id="kita-r2" style="top:600px;opacity:0"><svg width="104" height="88" viewBox="0 0 52 44" fill="none" stroke="#ece6df" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M6 24L26 8l20 16"/><path d="M11 21v17h30V21"/><rect x="22" y="28" width="8" height="10"/></svg><div class="kt"><div class="kn">DUDUK DALAM RUMAH</div><div class="ks">aktiviti luar dihentikan</div></div><div class="kc" id="kita-c2" style="opacity:0">✓</div></div>
+<div class="title" id="kita-t" style="opacity:0">KITA<br><span class="baik">BOLEH LARI.</span></div>
+
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#kita-r0",{opacity:0,x:-40},{opacity:1,x:0,duration:.3,ease:"power3.out"},0.25);tl.fromTo("#kita-c0",{opacity:0,scale:1.8},{opacity:1,scale:1,duration:.2},0.55);tl.fromTo("#kita-r1",{opacity:0,x:-40},{opacity:1,x:0,duration:.3,ease:"power3.out"},1.95);tl.fromTo("#kita-c1",{opacity:0,scale:1.8},{opacity:1,scale:1,duration:.2},2.25);tl.fromTo("#kita-r2",{opacity:0,x:-40},{opacity:1,x:0,duration:.3,ease:"power3.out"},3.30);tl.fromTo("#kita-c2",{opacity:0,scale:1.8},{opacity:1,scale:1,duration:.2},3.60);
+tl.fromTo("#kita-t",{opacity:0,y:30},{opacity:1,y:0,duration:.35,ease:"power3.out"},4.7);
+
+window.__timelines["kita"] = tl;
+})();
+</script>
+</template>

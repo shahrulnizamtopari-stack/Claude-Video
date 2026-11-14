@@ -1,0 +1,42 @@
+<template>
+<style>
+#root { position:absolute; inset:0; color:#ece6df; font-family:"Inter",sans-serif; }
+#root .hud { position:absolute; left:80px; right:80px; top:196px; height:36px; font:500 28px "JetBrains Mono",monospace; letter-spacing:3px; color:#8a8178; }
+#root .hud .l { position:absolute; left:0; top:0; } #root .hud .r { position:absolute; right:0; top:0; text-align:right; }
+#root .title { position:absolute; left:80px; right:80px; font-family:"Inter",sans-serif; font-weight:900; font-size:116px; letter-spacing:-4px; line-height:.94; }
+#root .mono { font-family:"JetBrains Mono",monospace; }
+#root .big { font-family:"JetBrains Mono",monospace; font-weight:700; letter-spacing:-10px; line-height:1; }
+#root .baik{color:#3aa0ff} #root .sed{color:#3ccf6e} #root .ts{color:#ffd23f} #root .sts{color:#ff8a1f} #root .bhy{color:#ff2d2d} #root .ember{color:#ff6a1f} #root .dim{color:#8a8178}
+#root .tag { display:inline-block; font:700 28px "JetBrains Mono",monospace; letter-spacing:5px; padding:12px 22px; border:3px solid currentColor; border-radius:8px; }
+#root .stamp { display:inline-block; font:900 70px "Inter"; letter-spacing:4px; border:9px solid currentColor; border-radius:14px; padding:12px 28px; }
+#root .src { font:500 28px "JetBrains Mono"; color:#8a8178; letter-spacing:1px; }
+
+#kon-n { position:absolute; left:80px; top:230px; font-size:250px; color:#ff8a1f; text-shadow:0 0 80px rgba(255,138,31,.4); }
+#kon-t { top:490px; font-size:66px; letter-spacing:-2px; }
+#root .kb { position:absolute; left:80px; width:920px; height:120px; }
+#root .kl { font:700 28px "JetBrains Mono"; letter-spacing:4px; color:#8a8178; }
+#root .kbar { position:absolute; left:0; top:44px; height:64px; border-radius:10px; transform-origin:0 50%; }
+#root .kbar span { position:absolute; left:20px; top:12px; font:700 36px "JetBrains Mono"; color:#0a0908; }
+#kon-src { position:absolute; left:80px; top:1110px; }
+</style>
+<div id="root" data-composition-id="kon" data-width="1080" data-height="1920" data-start="0" data-duration="6.55">
+
+<div class="hud"><span class="l">KALIMANTAN · TITIK API</span><span class="r sts">DATA WALHI</span></div>
+<div id="kon-n" class="big">0%</div>
+<div class="title" id="kon-t" style="opacity:0">DALAM KAWASAN<br><span class="sts">KONSESI SYARIKAT.</span></div>
+<div class="kb" id="kon-r0" style="top:700px;opacity:0"><div class="mono kl">SAWIT</div><div class="kbar" id="kon-b0" style="width:900px;background:#ff8a1f"><span>10,739</span></div></div><div class="kb" id="kon-r1" style="top:840px;opacity:0"><div class="mono kl">LOMBONG</div><div class="kbar" id="kon-b1" style="width:660px;background:#ffd23f"><span>7,880</span></div></div><div class="kb" id="kon-r2" style="top:980px;opacity:0"><div class="mono kl">BALAK</div><div class="kbar" id="kon-b2" style="width:578px;background:#c9a27a"><span>6,905</span></div></div>
+
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+
+const kn=document.getElementById("kon-n"), K={v:0};
+tl.fromTo(K,{v:0},{v:74,duration:.6,ease:"power3.out",onUpdate:()=>{kn.textContent=Math.round(K.v)+"%";}},1.65);
+tl.fromTo("#kon-n",{scale:1.25},{scale:1,duration:.3,ease:"power4.out",transformOrigin:"0% 50%"},2.25);
+tl.fromTo("#kon-t",{opacity:0,y:20},{opacity:1,y:0,duration:.3},3.0);
+tl.fromTo("#kon-r0",{opacity:0},{opacity:1,duration:.2},4.00);tl.fromTo("#kon-b0",{scaleX:0},{scaleX:1,duration:.5,ease:"power3.out"},4.00);tl.fromTo("#kon-r1",{opacity:0},{opacity:1,duration:.2},4.45);tl.fromTo("#kon-b1",{scaleX:0},{scaleX:1,duration:.5,ease:"power3.out"},4.45);tl.fromTo("#kon-r2",{opacity:0},{opacity:1,duration:.2},4.90);tl.fromTo("#kon-b2",{scaleX:0},{scaleX:1,duration:.5,ease:"power3.out"},4.90);
+window.__timelines["kon"] = tl;
+})();
+</script>
+</template>

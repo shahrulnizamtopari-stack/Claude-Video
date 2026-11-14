@@ -1,0 +1,69 @@
+<template>
+<style>
+@font-face{font-family:"Anton";src:url("assets/fonts/Anton.woff2") format("woff2")}
+@font-face{font-family:"DMSerif";src:url("assets/fonts/DMSerifDisplay.woff2") format("woff2")}
+@font-face{font-family:"Marker";src:url("assets/fonts/PermanentMarker.woff2") format("woff2")}
+@font-face{font-family:"Typewriter";src:url("assets/fonts/SpecialElite.woff2") format("woff2")}
+@font-face{font-family:"Narrow";font-weight:700;src:url("assets/fonts/ArchivoNarrow.woff2") format("woff2")}
+
+#root { position:absolute; inset:0; color:#1d1b18; }
+#root .jit { position:absolute; inset:0; }
+#root .jit > * { position:absolute; }
+#root .serif { font-family:"DMSerif",serif; line-height:.95; }
+#root .anton { font-family:"Anton",sans-serif; line-height:.92; letter-spacing:1px; }
+#root .mk { font-family:"Marker",cursive; line-height:1.05; }
+#root .ty { font-family:"Typewriter",monospace; }
+#root .red { color:#d23820; } #root .blue { color:#2e56b8; }
+#root .card { background:#f6f1e7; box-shadow:5px 7px 0 rgba(0,0,0,.10),0 18px 40px rgba(0,0,0,.14); }
+#root .tape { width:220px; height:62px; background:rgba(236,222,170,.78); box-shadow:0 2px 4px rgba(0,0,0,.12); }
+#root .dymo { display:inline-block; background:#141414; color:#f4f4f4; font:700 52px "Narrow",sans-serif; letter-spacing:7px; padding:16px 28px 13px; border-radius:7px;
+  text-shadow:0 -2px 0 rgba(0,0,0,.8),0 2px 0 rgba(255,255,255,.22); box-shadow:0 4px 7px rgba(0,0,0,.3); white-space:nowrap; }
+#root .stamp { display:inline-block; font:400 66px "Anton",sans-serif; letter-spacing:6px; border:9px solid currentColor; border-radius:14px; padding:6px 26px; mix-blend-mode:multiply; opacity:.9; white-space:nowrap; }
+#root .sticky { background:#f8e36a; box-shadow:5px 9px 18px rgba(0,0,0,.2); font:58px/1.08 "Marker",cursive; padding:36px 32px; }
+#root .riso { position:relative; display:inline-block; }
+#root .riso .ghost { position:absolute; left:7px; top:5px; color:#2e56b8; opacity:.5; mix-blend-mode:multiply; white-space:nowrap; }
+#root .riso .main { position:relative; }
+
+#root .print { box-shadow:5px 8px 0 rgba(0,0,0,.12),0 20px 40px rgba(0,0,0,.18); background:#f6f1e7; }
+#root .cred { font:500 28px "Typewriter",monospace; color:#3b3833; background:rgba(246,241,231,.9); padding:4px 12px; white-space:nowrap; }
+#root .tl { height:10px; background:#1d1b18; transform-origin:0 50%; }
+
+#ak-n { left:66px; top:200px; font-size:260px; color:#d23820; }
+#ak-y { left:80px; top:470px; font-size:96px; }
+#ak-tl { left:80px; top:640px; width:920px; }
+#ak-a { left:80px; top:665px; font-size:44px; } #ak-b { left:880px; top:665px; font-size:44px; color:#d23820; }
+#ak-c { left:820px; top:620px; }
+#ak-m { left:80px; top:760px; font-size:72px; width:580px; transform:rotate(-3deg); }
+#ak-cr { left:80px; top:1030px; }
+#ak-cta { left:80px; top:1095px; }
+</style>
+<div id="root" data-composition-id="akhir" data-width="1080" data-height="1920" data-start="0" data-duration="7.55">
+<div class="jit" id="akhir-jit">
+
+<div id="ak-n" class="anton"><span class="riso " data-layout-allow-overlap><span class="ghost">237</span><span class="main">237</span></span></div>
+<div id="ak-y" class="serif" style="opacity:0">tahun… dipecahkan.</div>
+<div id="ak-tl" class="tl"></div><div id="ak-a" class="anton">1789</div><div id="ak-b" class="anton">2026</div>
+<div id="ak-c"><svg width="210" height="150" viewBox="-20 -20 210 150" style="overflow:visible"><path id="ak-cp" d="M164.4,38.7L168.1,48.3L170.1,57.7L167.3,67.1L163.5,75.7L155.2,85.1L147.9,92.5L137.5,99.2L124.7,102.9L110.5,108.8L95.9,108.8L80.9,111.8L66.5,110.8L51.3,104.2L39.7,102.1L28.1,94.0L15.9,88.0L8.1,79.4L4.3,71.5L3.1,61.7L-0.8,52.2L-0.2,43.2L6.6,33.2L13.5,24.8L23.8,18.9L34.8,12.8L46.0,6.0L59.8,3.9L74.6,1.7L89.3,-2.1L104.3,3.1L117.1,2.5L131.0,7.8L142.2,14.8L152.8,21.9L161.1,30.8L167.2,38.3L167.7,48.1L171.1,57.7L166.4,66.9L163.4,75.5" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="#d23820" stroke-width="10" stroke-linecap="butt"/></svg></div>
+<div id="ak-p" class="print" style="left:680px;top:740px;width:340px;height:380px;transform:rotate(3deg);clip-path:polygon(0.0% 12.5px,3.6% 11.2px,7.1% 9.9px,10.7% 12.1px,14.3% 8.8px,17.9% 5.7px,21.4% 8.4px,25.0% 7.1px,28.6% 13.8px,32.1% 11.3px,35.7% 3.6px,39.3% 12.8px,42.9% 10.4px,46.4% 10.9px,50.0% 11.4px,53.6% 5.7px,57.1% 12.6px,60.7% 12.3px,64.3% 9.7px,67.9% 10.7px,71.4% 10.7px,75.0% 5.7px,78.6% 10.1px,82.1% 1.0px,85.7% 4.8px,89.3% 6.6px,92.9% 0.1px,96.4% 5.0px,100.0% 8.9px,calc(100% - 8.7px) 0.0%,calc(100% - 3.2px) 3.6%,calc(100% - 13.2px) 7.1%,calc(100% - 9.3px) 10.7%,calc(100% - 4.7px) 14.3%,calc(100% - 9.2px) 17.9%,calc(100% - 8.0px) 21.4%,calc(100% - 7.5px) 25.0%,calc(100% - 5.5px) 28.6%,calc(100% - 14.0px) 32.1%,calc(100% - 9.0px) 35.7%,calc(100% - 9.8px) 39.3%,calc(100% - 10.7px) 42.9%,calc(100% - 13.7px) 46.4%,calc(100% - 0.3px) 50.0%,calc(100% - 8.6px) 53.6%,calc(100% - 10.3px) 57.1%,calc(100% - 3.6px) 60.7%,calc(100% - 5.6px) 64.3%,calc(100% - 0.7px) 67.9%,calc(100% - 2.7px) 71.4%,calc(100% - 5.3px) 75.0%,calc(100% - 1.4px) 78.6%,calc(100% - 3.5px) 82.1%,calc(100% - 12.7px) 85.7%,calc(100% - 7.7px) 89.3%,calc(100% - 7.1px) 92.9%,calc(100% - 13.5px) 96.4%,calc(100% - 8.0px) 100.0%,100.0% calc(100% - 13.9px),96.4% calc(100% - 8.9px),92.9% calc(100% - 11.3px),89.3% calc(100% - 1.1px),85.7% calc(100% - 8.4px),82.1% calc(100% - 10.6px),78.6% calc(100% - 0.6px),75.0% calc(100% - 13.0px),71.4% calc(100% - 2.2px),67.9% calc(100% - 6.6px),64.3% calc(100% - 2.4px),60.7% calc(100% - 6.9px),57.1% calc(100% - 8.6px),53.6% calc(100% - 0.8px),50.0% calc(100% - 13.2px),46.4% calc(100% - 5.9px),42.9% calc(100% - 7.4px),39.3% calc(100% - 8.4px),35.7% calc(100% - 5.1px),32.1% calc(100% - 4.0px),28.6% calc(100% - 9.2px),25.0% calc(100% - 7.8px),21.4% calc(100% - 4.0px),17.9% calc(100% - 10.0px),14.3% calc(100% - 4.1px),10.7% calc(100% - 0.2px),7.1% calc(100% - 3.4px),3.6% calc(100% - 0.6px),0.0% calc(100% - 2.2px),10.6px 100.0%,5.5px 96.4%,12.6px 92.9%,10.5px 89.3%,0.7px 85.7%,13.8px 82.1%,13.2px 78.6%,1.0px 75.0%,12.7px 71.4%,6.0px 67.9%,6.7px 64.3%,13.6px 60.7%,3.4px 57.1%,7.3px 53.6%,13.1px 50.0%,10.1px 46.4%,6.6px 42.9%,13.7px 39.3%,11.4px 35.7%,8.5px 32.1%,1.6px 28.6%,8.7px 25.0%,6.4px 21.4%,2.9px 17.9%,0.7px 14.3%,7.4px 10.7%,1.7px 7.1%,6.2px 3.6%,9.4px 0.0%);opacity:0"><img src="assets/print/riso-houston-10.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+<div id="ak-m" class="mk blue" style="opacity:0">…oleh seorang anak pendatang.</div>
+<div id="ak-cta" style="opacity:0"><span class="dymo" style="font-size:34px">APA PENDAPAT KAU? KOMEN ↓</span></div>
+<div id="ak-cr"><div class="cred">Foto: Conlan Houston / CC BY-SA 4.0 (diubah)</div></div>
+
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const SM="steps(5)", SM8="steps(8)";
+
+tl.fromTo("#ak-y",{opacity:0,clipPath:"inset(0 100% 0 0)"},{opacity:1,clipPath:"inset(0 0% 0 0)",duration:.6,ease:"steps(8)"},0.9);
+tl.fromTo("#ak-cp",{strokeDashoffset:1},{strokeDashoffset:0,duration:.5,ease:SM8},1.75);
+tl.fromTo("#ak-p",{opacity:0,y:300,rotation:14},{opacity:1,y:0,rotation:3,duration:.3,ease:SM},2.0);
+tl.fromTo("#ak-m",{opacity:0,clipPath:"inset(0 100% 0 0)"},{opacity:1,clipPath:"inset(0 0% 0 0)",duration:1.0,ease:"steps(12)"},2.7);
+tl.fromTo("#ak-cta",{opacity:0,clipPath:"inset(0 100% 0 0)"},{opacity:1,clipPath:"inset(0 0% 0 0)",duration:.4,ease:"steps(8)"},5.4);
+
+tl.set("#akhir-jit",{x:-2.4,y:-1.8,rotation:0.04},0.000);tl.set("#akhir-jit",{x:0.8,y:0.5,rotation:-0.08},0.083);tl.set("#akhir-jit",{x:2.3,y:-2.5,rotation:0.08},0.167);tl.set("#akhir-jit",{x:1.4,y:1.0,rotation:0.16},0.250);tl.set("#akhir-jit",{x:0.2,y:0.0,rotation:0.17},0.333);tl.set("#akhir-jit",{x:-0.7,y:1.7,rotation:0.06},0.417);tl.set("#akhir-jit",{x:-1.8,y:-2.3,rotation:-0.16},0.500);tl.set("#akhir-jit",{x:-1.4,y:-2.2,rotation:-0.09},0.583);tl.set("#akhir-jit",{x:0.4,y:0.2,rotation:0.08},0.667);tl.set("#akhir-jit",{x:-1.8,y:1.8,rotation:-0.04},0.750);tl.set("#akhir-jit",{x:-0.1,y:-1.3,rotation:0.16},0.833);tl.set("#akhir-jit",{x:-0.6,y:1.7,rotation:-0.17},0.917);tl.set("#akhir-jit",{x:-0.5,y:-2.0,rotation:0.18},1.000);tl.set("#akhir-jit",{x:-2.0,y:1.6,rotation:-0.02},1.083);tl.set("#akhir-jit",{x:-1.0,y:2.0,rotation:0.05},1.167);tl.set("#akhir-jit",{x:1.6,y:0.2,rotation:0.07},1.250);tl.set("#akhir-jit",{x:0.9,y:-2.1,rotation:0.05},1.333);tl.set("#akhir-jit",{x:0.1,y:-0.3,rotation:-0.02},1.417);tl.set("#akhir-jit",{x:1.0,y:-0.1,rotation:0.14},1.500);tl.set("#akhir-jit",{x:2.0,y:0.1,rotation:0.13},1.583);tl.set("#akhir-jit",{x:-0.7,y:-0.9,rotation:0.00},1.667);tl.set("#akhir-jit",{x:0.2,y:-0.8,rotation:-0.06},1.750);tl.set("#akhir-jit",{x:-2.3,y:-0.6,rotation:0.14},1.833);tl.set("#akhir-jit",{x:2.3,y:0.8,rotation:-0.05},1.917);tl.set("#akhir-jit",{x:1.5,y:2.4,rotation:0.16},2.000);tl.set("#akhir-jit",{x:0.7,y:-0.3,rotation:-0.13},2.083);tl.set("#akhir-jit",{x:-1.1,y:-2.3,rotation:0.09},2.167);tl.set("#akhir-jit",{x:-1.9,y:-1.9,rotation:0.05},2.250);tl.set("#akhir-jit",{x:0.6,y:1.7,rotation:-0.04},2.333);tl.set("#akhir-jit",{x:1.0,y:0.6,rotation:-0.02},2.417);tl.set("#akhir-jit",{x:-0.1,y:-1.4,rotation:-0.16},2.500);tl.set("#akhir-jit",{x:2.4,y:0.7,rotation:-0.13},2.583);tl.set("#akhir-jit",{x:0.3,y:1.7,rotation:0.07},2.667);tl.set("#akhir-jit",{x:1.5,y:1.9,rotation:0.05},2.750);tl.set("#akhir-jit",{x:0.1,y:-1.8,rotation:-0.17},2.833);tl.set("#akhir-jit",{x:-1.6,y:-1.6,rotation:0.07},2.917);tl.set("#akhir-jit",{x:-0.8,y:-2.4,rotation:0.04},3.000);tl.set("#akhir-jit",{x:0.7,y:-0.3,rotation:0.14},3.083);tl.set("#akhir-jit",{x:1.2,y:-0.3,rotation:0.08},3.167);tl.set("#akhir-jit",{x:-1.2,y:-2.5,rotation:0.18},3.250);tl.set("#akhir-jit",{x:-1.5,y:-2.0,rotation:0.16},3.333);tl.set("#akhir-jit",{x:-2.4,y:1.8,rotation:0.00},3.417);tl.set("#akhir-jit",{x:-0.7,y:-1.3,rotation:-0.09},3.500);tl.set("#akhir-jit",{x:2.1,y:2.3,rotation:-0.01},3.583);tl.set("#akhir-jit",{x:-0.5,y:-1.2,rotation:0.17},3.667);tl.set("#akhir-jit",{x:0.3,y:1.6,rotation:0.15},3.750);tl.set("#akhir-jit",{x:0.1,y:0.9,rotation:0.08},3.833);tl.set("#akhir-jit",{x:1.0,y:2.4,rotation:-0.11},3.917);tl.set("#akhir-jit",{x:-2.0,y:-2.0,rotation:-0.17},4.000);tl.set("#akhir-jit",{x:0.6,y:0.3,rotation:0.16},4.083);tl.set("#akhir-jit",{x:2.0,y:-1.4,rotation:0.09},4.167);tl.set("#akhir-jit",{x:-2.5,y:-2.1,rotation:0.12},4.250);tl.set("#akhir-jit",{x:1.5,y:1.8,rotation:-0.17},4.333);tl.set("#akhir-jit",{x:-2.2,y:0.2,rotation:0.18},4.417);tl.set("#akhir-jit",{x:-2.5,y:-2.3,rotation:-0.06},4.500);tl.set("#akhir-jit",{x:-2.0,y:-1.5,rotation:0.12},4.583);tl.set("#akhir-jit",{x:-0.1,y:0.3,rotation:-0.15},4.667);tl.set("#akhir-jit",{x:-0.9,y:-0.3,rotation:-0.11},4.750);tl.set("#akhir-jit",{x:0.4,y:0.7,rotation:0.15},4.833);tl.set("#akhir-jit",{x:0.8,y:1.2,rotation:0.06},4.917);tl.set("#akhir-jit",{x:0.9,y:-2.3,rotation:0.08},5.000);tl.set("#akhir-jit",{x:0.2,y:0.6,rotation:-0.05},5.083);tl.set("#akhir-jit",{x:2.2,y:-2.1,rotation:-0.17},5.167);tl.set("#akhir-jit",{x:2.1,y:0.3,rotation:-0.08},5.250);tl.set("#akhir-jit",{x:-0.3,y:0.5,rotation:0.01},5.333);tl.set("#akhir-jit",{x:1.2,y:0.4,rotation:-0.11},5.417);tl.set("#akhir-jit",{x:-0.6,y:-1.8,rotation:-0.08},5.500);tl.set("#akhir-jit",{x:-2.4,y:1.4,rotation:0.03},5.583);tl.set("#akhir-jit",{x:-1.0,y:1.4,rotation:-0.16},5.667);tl.set("#akhir-jit",{x:-1.2,y:-0.8,rotation:0.03},5.750);tl.set("#akhir-jit",{x:0.4,y:2.1,rotation:-0.06},5.833);tl.set("#akhir-jit",{x:-0.7,y:-1.4,rotation:-0.08},5.917);tl.set("#akhir-jit",{x:-0.6,y:-1.9,rotation:0.16},6.000);tl.set("#akhir-jit",{x:-0.7,y:-1.1,rotation:-0.01},6.083);tl.set("#akhir-jit",{x:-1.1,y:2.4,rotation:-0.00},6.167);tl.set("#akhir-jit",{x:-0.7,y:-1.9,rotation:0.06},6.250);tl.set("#akhir-jit",{x:1.3,y:-1.4,rotation:0.14},6.333);tl.set("#akhir-jit",{x:0.8,y:-0.4,rotation:-0.13},6.417);tl.set("#akhir-jit",{x:-1.0,y:-0.1,rotation:0.02},6.500);tl.set("#akhir-jit",{x:1.4,y:-0.9,rotation:-0.06},6.583);tl.set("#akhir-jit",{x:0.6,y:-2.3,rotation:0.09},6.667);tl.set("#akhir-jit",{x:2.2,y:2.0,rotation:-0.14},6.750);tl.set("#akhir-jit",{x:2.5,y:0.9,rotation:0.12},6.833);tl.set("#akhir-jit",{x:0.4,y:0.4,rotation:-0.16},6.917);tl.set("#akhir-jit",{x:0.5,y:0.4,rotation:-0.05},7.000);tl.set("#akhir-jit",{x:1.4,y:-0.4,rotation:0.14},7.083);tl.set("#akhir-jit",{x:-1.7,y:-1.8,rotation:0.12},7.167);tl.set("#akhir-jit",{x:-1.5,y:0.9,rotation:-0.12},7.250);tl.set("#akhir-jit",{x:-2.4,y:0.8,rotation:0.14},7.333);tl.set("#akhir-jit",{x:1.7,y:0.9,rotation:-0.07},7.417);
+window.__timelines["akhir"] = tl;
+})();
+</script>
+</template>

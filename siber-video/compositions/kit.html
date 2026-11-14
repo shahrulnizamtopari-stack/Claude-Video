@@ -1,0 +1,52 @@
+<template>
+<style>
+#root { position:absolute; inset:0; color:#e9eef3; font-family:"Inter",sans-serif; }
+#root .hud { position:absolute; left:80px; right:80px; top:196px; height:36px; font:500 28px "JetBrains Mono",monospace; letter-spacing:3px; color:#6b7785; }
+#root .hud .l { position:absolute; left:0; top:0; }
+#root .hud .r { position:absolute; right:0; top:0; text-align:right; }
+#root .title { position:absolute; left:80px; right:80px; font-family:"Inter",sans-serif; font-weight:900; font-size:116px; letter-spacing:-4px; line-height:.94; }
+#root .mono { font-family:"JetBrains Mono",monospace; }
+#root .ice { color:#5ad1ff; } #root .warm { color:#ff9a3c; } #root .hot { color:#ff3b30; } #root .dim { color:#6b7785; }
+#root .tag { display:inline-block; font:700 28px "JetBrains Mono",monospace; letter-spacing:5px; padding:12px 22px; border:3px solid currentColor; border-radius:8px; }
+
+#kit-tag { position:absolute; left:80px; top:250px; }
+#kit-t1, #kit-t2 { top:330px; }
+#root .it { position:absolute; width:300px; height:250px; border:3px solid #2a3440; border-radius:16px; background:#0b1016; }
+#root .it svg { position:absolute; left:28px; top:24px; }
+#root .it .nm { position:absolute; left:28px; top:152px; white-space:nowrap; font:900 32px "Inter"; letter-spacing:.5px; }
+#root .it .sb { position:absolute; left:28px; top:200px; font:500 28px "JetBrains Mono"; color:#6b7785; }
+#root .it .ok { position:absolute; right:22px; top:18px; font:700 36px "JetBrains Mono"; color:#5ad1ff; }
+</style>
+<div id="root" data-composition-id="kit" data-width="1080" data-height="1920" data-start="0" data-duration="9.15">
+
+<div class="hud"><span class="l">KIT KECEMASAN</span><span class="r warm">06 ITEM</span></div>
+<div id="kit-tag" style="opacity:0"><span class="tag warm">PESANAN KERAJAAN EROPAH</span></div>
+<div class="title" id="kit-t1" style="opacity:0">DALAM MASA<br>YANG SAMA…</div>
+<div class="title" id="kit-t2" style="opacity:0">SIMPAN<br><span class="warm">DI RUMAH.</span></div>
+<div class="it" id="kit-i0" style="left:80px;top:590px;opacity:0"><svg width="104" height="124" viewBox="0 0 52 62" fill="none" stroke="#e9eef3" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><rect x="20" y="8" width="12" height="8" rx="2"/><path d="M16 16h20v40a4 4 0 0 1-4 4H20a4 4 0 0 1-4-4z"/><path d="M16 32h20"/></svg><span class="ok" id="kit-k0" style="opacity:0">✓</span><span class="nm">AIR</span><span class="sb">3 L/orang/hari</span></div>
+<div class="it" id="kit-i1" style="left:410px;top:590px;opacity:0"><svg width="104" height="124" viewBox="0 0 52 62" fill="none" stroke="#e9eef3" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><ellipse cx="26" cy="16" rx="14" ry="5"/><path d="M12 16v34c0 3 6 6 14 6s14-3 14-6V16"/><path d="M12 30h28"/></svg><span class="ok" id="kit-k1" style="opacity:0">✓</span><span class="nm">MAKANAN</span><span class="sb">tak perlu masak</span></div>
+<div class="it" id="kit-i2" style="left:740px;top:590px;opacity:0"><svg width="104" height="124" viewBox="0 0 52 62" fill="none" stroke="#e9eef3" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M14 10h24l-5 16H19z"/><rect x="20" y="26" width="12" height="30" rx="3"/></svg><span class="ok" id="kit-k2" style="opacity:0">✓</span><span class="nm">LAMPU SULUH</span><span class="sb">+ bateri</span></div>
+<div class="it" id="kit-i3" style="left:80px;top:870px;opacity:0"><svg width="104" height="124" viewBox="0 0 52 62" fill="none" stroke="#e9eef3" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><rect x="8" y="20" width="36" height="30" rx="4"/><circle cx="20" cy="35" r="7"/><path d="M32 30h6M32 38h6M16 20l20-12"/></svg><span class="ok" id="kit-k3" style="opacity:0">✓</span><span class="nm">RADIO</span><span class="sb">bateri/engkol</span></div>
+<div class="it" id="kit-i4" style="left:410px;top:870px;opacity:0"><svg width="104" height="124" viewBox="0 0 52 62" fill="none" stroke="#e9eef3" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><rect x="6" y="18" width="40" height="24" rx="3"/><circle cx="26" cy="30" r="6"/></svg><span class="ok" id="kit-k4" style="opacity:0">✓</span><span class="nm">DUIT TUNAI</span><span class="sb">syiling & not</span></div>
+<div class="it" id="kit-i5" style="left:740px;top:870px;opacity:0"><svg width="104" height="124" viewBox="0 0 52 62" fill="none" stroke="#e9eef3" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><rect x="8" y="22" width="36" height="16" rx="8" transform="rotate(-35 26 30)"/><path d="M20 22l12 16"/></svg><span class="ok" id="kit-k5" style="opacity:0">✓</span><span class="nm">UBAT</span><span class="sb">+ first aid</span></div>
+
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#kit-t1",{opacity:0,y:30},{opacity:1,y:0,duration:.3,ease:"power3.out"},0.12);
+tl.fromTo("#kit-tag",{opacity:0,y:-14},{opacity:1,y:0,duration:.25},1.22);
+tl.to("#kit-t1",{opacity:0,duration:.12},2.96);
+tl.fromTo("#kit-t2",{opacity:0,scale:1.15},{opacity:1,scale:1,duration:.28,ease:"power4.out",transformOrigin:"0% 50%"},3.08);
+tl.fromTo("#kit-i0",{opacity:0,y:-80},{opacity:1,y:0,duration:.35,ease:"back.out(1.8)"},5.03);tl.fromTo("#kit-k0",{opacity:0,scale:1.8},{opacity:1,scale:1,duration:.2},5.31);
+tl.fromTo("#kit-i1",{opacity:0,y:-80},{opacity:1,y:0,duration:.35,ease:"back.out(1.8)"},5.26);tl.fromTo("#kit-k1",{opacity:0,scale:1.8},{opacity:1,scale:1,duration:.2},5.54);
+tl.fromTo("#kit-i2",{opacity:0,y:-80},{opacity:1,y:0,duration:.35,ease:"back.out(1.8)"},6.02);tl.fromTo("#kit-k2",{opacity:0,scale:1.8},{opacity:1,scale:1,duration:.2},6.30);
+tl.fromTo("#kit-i3",{opacity:0,y:-80},{opacity:1,y:0,duration:.35,ease:"back.out(1.8)"},7.05);tl.fromTo("#kit-k3",{opacity:0,scale:1.8},{opacity:1,scale:1,duration:.2},7.33);
+tl.fromTo("#kit-i4",{opacity:0,y:-80},{opacity:1,y:0,duration:.35,ease:"back.out(1.8)"},7.67);tl.fromTo("#kit-k4",{opacity:0,scale:1.8},{opacity:1,scale:1,duration:.2},7.95);
+tl.fromTo("#kit-i5",{opacity:0,y:-80},{opacity:1,y:0,duration:.35,ease:"back.out(1.8)"},8.63);tl.fromTo("#kit-k5",{opacity:0,scale:1.8},{opacity:1,scale:1,duration:.2},8.91);
+
+window.__timelines["kit"] = tl;
+})();
+</script>
+</template>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;src:url(../fonts/Anton.woff2)}
+@font-face{font-family:Marker;src:url(../fonts/PermanentMarker.woff2)}
+@font-face{font-family:Type;src:url(../fonts/SpecialElite.woff2)}
+@font-face{font-family:Courier;font-weight:700;src:url(../fonts/CourierPrime.woff2)}
+@font-face{font-family:Stencil;font-weight:700;src:url(../fonts/StardosStencil.woff2)}
+@font-face{font-family:Narrow;font-weight:700;src:url(../fonts/ArchivoNarrow.woff2)}
+:root{--cork:#9c6d42;--ink:#1c1a17;--red:#c4241d;--manila:#e2c98d;--card:#fbf8f0;--ice:#7cc6e6;--tag:#f2d03b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1612;padding:40px;color:#efe6d8;font-family:Narrow,sans-serif}
+h1{font:700 44px Stencil;letter-spacing:2px}
+.sub{font:16px Type;color:#c9bca8;margin:6px 0 28px}
+.grid{display:grid;grid-template-columns:repeat(5,405px);gap:40px 32px}
+.no{font:15px Type;color:#d8ccb8;margin:12px 0 4px}
+.vo{font:15px/1.45 Narrow;color:#efe6d8}
+.fx{font:13px/1.4 Type;color:#a39784;margin-top:5px}
+.f{width:405px;height:720px;position:relative;overflow:hidden;background:var(--cork);color:var(--ink);border-radius:3px}
+.f>*{position:absolute}
+.corkt{inset:0;width:100%;height:100%;pointer-events:none}
+.lamp{inset:0;background:radial-gradient(ellipse 75% 55% at 50% 40%,rgba(255,220,160,.18),transparent 60%),radial-gradient(ellipse 90% 80% at 50% 45%,transparent 45%,rgba(0,0,0,.62));pointer-events:none;z-index:40}
+.card{background:var(--card);box-shadow:2px 4px 0 rgba(0,0,0,.25),0 10px 18px rgba(0,0,0,.35)}
+.idx{background:var(--card) repeating-linear-gradient(transparent 0 23px,#9fc0e0 23px 24px);background-position:0 34px;box-shadow:2px 4px 0 rgba(0,0,0,.25),0 10px 18px rgba(0,0,0,.35);border-top:6px solid #fbf8f0}
+.idx::before{content:"";position:absolute;left:0;right:0;top:30px;height:2px;background:#e08a8a}
+.pol{background:#f7f5ef;padding:10px 10px 38px;box-shadow:2px 4px 0 rgba(0,0,0,.25),0 12px 20px rgba(0,0,0,.4)}
+.pol .ph{background:#2a2622;display:flex;align-items:center;justify-content:center}
+.pol .cap{position:absolute;left:12px;right:12px;bottom:8px;font:20px Marker;text-align:center}
+.f>.idx,.f>.pol,.f>.card{z-index:2}
+.pin{width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8a80,#c4241d 55%,#7a1410);box-shadow:2px 3px 3px rgba(0,0,0,.45);z-index:30}
+.stamp{font:700 30px Stencil;letter-spacing:3px;border:4px solid currentColor;border-radius:5px;padding:2px 12px;mix-blend-mode:multiply;opacity:.9;white-space:nowrap}
+.ty{font-family:Type}.cr{font-family:Courier;font-weight:700}.mk{font-family:Marker}.st{font-family:Stencil;font-weight:700}.an{font-family:Anton}
+.tag{background:var(--tag);font:700 13px Courier;padding:3px 8px;box-shadow:1px 2px 2px rgba(0,0,0,.3)}
+.red{color:var(--red)}
+.rd{display:inline-block;background:#111;color:#111;line-height:1}
+.cctv{font:15px Courier;font-weight:700;color:#f2f2f2;background:rgba(0,0,0,.55);padding:4px 8px;letter-spacing:1px;z-index:35}
+</style></head><body>
+<h1>STORYBOARD · "20 MINIT" · GAYA "FAIL KES"</h1>
+<div class="sub">Rompakan Binance $6.36B · 1080×1920 · ±85 s · papan siasatan gabus diterangi lampu meja · polaroid, kad indeks, benang merah, pin, folder SULIT, bar redaksi · kamera "tangan" bergerak perlahan antara bukti (pan/zoom), benang merah ditarik ikut VO</div>
+<div class="grid" id="g"></div>
+<svg width="0" height="0" style="position:absolute"><filter id="cork"><feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="3" seed="3"/><feColorMatrix values="0 0 0 0 .35  0 0 0 0 .22  0 0 0 0 .12  0 0 0 .9 -.25"/></filter>
+<filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="1" seed="2" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="2"/></filter></svg>
+<script>
+const cork=`<svg class="corkt"><rect width="100%" height="100%" filter="url(#cork)"/></svg>`;
+const lamp=`<div class="lamp"></div>`;
+const pin=(x,y)=>`<div class="pin" style="left:${x-9}px;top:${y-9}px"></div>`;
+const str=(pts)=>`<svg style="left:0;top:0;z-index:1;overflow:visible" width="405" height="720">${pts.map(([a,b,c,d])=>`<path d="M${a} ${b} Q${(a+c)/2} ${(b+d)/2+18} ${c} ${d}" stroke="#c4241d" stroke-width="2.6" fill="none"/>`).join('')}</svg>`;
+const laptop=(w=150)=>`<svg width="${w}" height="${w*.7}" viewBox="0 0 100 70" fill="none" stroke="#f2ead8" stroke-width="2.5" stroke-linejoin="round" filter="url(#rough)"><rect x="18" y="8" width="64" height="40" rx="3"/><path d="M8 56 L92 56 L84 48 L16 48 Z"/><path d="M50 18 L50 32" stroke="#ff6b5e" stroke-width="4"/><circle cx="50" cy="39" r="2.4" fill="#ff6b5e" stroke="none"/></svg>`;
+const wallet=(w=120)=>`<svg width="${w}" height="${w*.7}" viewBox="0 0 100 70" fill="none" stroke="#f2ead8" stroke-width="2.5" filter="url(#rough)"><rect x="10" y="14" width="80" height="48" rx="6"/><path d="M10 26 L70 8 L74 14"/><rect x="62" y="32" width="28" height="14" rx="4"/><circle cx="72" cy="39" r="2.5" fill="#f2ead8"/></svg>`;
+const S=[];
+
+S.push({t:"01 · 0:00–0:07 · HOOK",vo:"“Dua puluh minit. Enam ribu tiga ratus juta dolar. Hilang. Ini rompakan terbesar… dalam sejarah crypto.”",
+fx:"Frame 0: folder manila sudah atas papan, lampu meja berkelip hidup. Kad wang ditaip digit demi digit (bunyi mesin taip). Cop HILANG hentak. Polaroid jam '20 MIN'.",
+html:`<div class="card" style="left:30px;top:70px;width:345px;height:250px;background:var(--manila);transform:rotate(-2deg)"><div style="position:absolute;left:0;top:-22px;width:140px;height:26px;background:var(--manila);border-radius:6px 6px 0 0"></div>
+<div class="st" style="position:absolute;left:20px;top:20px;font-size:20px;letter-spacing:2px">FAIL KES #2910</div><div class="cr" style="position:absolute;left:20px;top:50px;font-size:15px">SUBJEK: BINANCE · 29.10.2026</div>
+<div class="stamp red" style="position:absolute;left:150px;top:140px;transform:rotate(-8deg);font-size:24px">SULIT</div></div>
+${pin(200,82)}
+<div class="idx" style="left:20px;top:360px;width:365px;height:120px;transform:rotate(1.5deg);padding:40px 14px 0"><div class="cr" style="font-size:30px;letter-spacing:-1px">$6,360,000,000</div></div>${pin(200,368)}
+<div class="stamp red" style="left:150px;top:470px;transform:rotate(-10deg);font-size:40px">HILANG</div>
+<div class="pol" style="left:40px;top:540px;width:150px;transform:rotate(-6deg)"><div class="ph" style="height:96px;font:34px Courier;color:#ff6b5e;font-weight:700">20:00</div><div class="cap">20 minit</div></div>${pin(115,546)}
+${lamp}`});
+
+S.push({t:"02 · 0:07–0:15 · 4 PAGI",vo:"“29 Oktober. Di Malaysia, jam empat pagi. Dompet Binance, bursa crypto terbesar dunia, tiba-tiba mula hantar duit… kepada orang yang salah.”",
+fx:"Overlay rakaman CCTV (REC berkelip, jam berdetik). Polaroid dompet dipin, anak panah marker merah ke kad '???'. Kamera pan perlahan kiri→kanan.",
+html:`<div class="cctv" style="left:16px;top:16px"><span class="red">●</span> REC · 30 OKT 2026 · 04:05:12 MYT</div>
+<div class="pol" style="left:30px;top:110px;width:200px;transform:rotate(-3deg)"><div class="ph" style="height:150px">${wallet(150)}</div><div class="cap">dompet Binance</div></div>${pin(130,116)}
+<div class="mk red" style="left:220px;top:200px;font-size:64px;transform:rotate(-8deg)">→</div>
+<div class="idx" style="left:250px;top:150px;width:130px;height:110px;transform:rotate(4deg);padding:36px 10px 0;text-align:center"><div class="cr" style="font-size:40px">???</div></div>${pin(315,156)}
+<div class="idx" style="left:30px;top:350px;width:345px;height:150px;transform:rotate(-1deg);padding:40px 14px 0"><div class="ty" style="font-size:15px;line-height:24px">LOKASI: BINANCE<br>bursa crypto terbesar dunia<br>WAKTU: 04:05 pagi (MYT)</div></div>${pin(200,357)}
+<div class="mk" style="left:40px;top:540px;width:330px;font-size:26px;color:#fff3d6;line-height:1.15;transform:rotate(-2deg)">…hantar duit kepada <span style="color:#ff8a80">orang yang salah.</span></div>
+${lamp}`});
+
+const tl=[["04:05","XRP","233J XRP"],["04:10","SOLANA","970K SOL"],["04:20","BITCOIN","18,270 BTC"],["04:23","ETHEREUM","DIKOSONGKAN"]];
+S.push({t:"03 · 0:15–0:24 · GARIS MASA",vo:"“XRP dulu. Lepas tu Solana. Lapan belas ribu Bitcoin. Dan dalam tiga minit… seluruh dompet Ethereum dikosongkan.”",
+fx:"Benang merah ditarik ke bawah papan; 4 kad masa dipin satu-satu ikut VO (bunyi pin). Jam CCTV berlari laju. Kad terakhir dicop KOSONG + '3 MIN 24 S'.",
+html:`<div class="cctv" style="left:16px;top:16px"><span class="red">●</span> REC · 04:23:41 MYT ▶▶</div>
+<svg style="left:0;top:0;z-index:25" width="405" height="720"><path d="M70 90 L70 640" stroke="#c4241d" stroke-width="3"/></svg>
+${tl.map(([t,c,v],i)=>`<div class="idx" style="left:${95+(i%2)*14}px;top:${74+i*136}px;width:270px;height:124px;transform:rotate(${i%2?2:-2}deg);padding:34px 12px 0"><div class="cr" style="font-size:14px;color:#666">${t} MYT</div><div class="an" style="font-size:30px">${c}</div><div class="cr" style="font-size:14px">${v}</div></div>${pin(70,100+i*140)}`).join('')}
+<div class="stamp red" style="left:215px;top:648px;transform:rotate(-8deg);font-size:24px">KOSONG</div>
+<div class="tag" style="left:100px;top:660px;transform:rotate(3deg)">3 MIN 24 S</div>
+${lamp}`});
+
+S.push({t:"04 · 0:24–0:28 · 4× REKOD",vo:"“Empat kali lebih besar daripada rekod sebelum ni.”",
+fx:"Polaroid kecil BYBIT 2025 dipin; polaroid besar BINANCE 2026 dihentak di sebelah. Marker tulis '4×' besar.",
+html:`<div class="pol" style="left:30px;top:130px;width:130px;transform:rotate(-5deg)"><div class="ph" style="height:90px;font:22px Courier;font-weight:700;color:#f2ead8">$1.5B</div><div class="cap" style="font-size:16px">Bybit · 2025</div></div>${pin(95,136)}
+<div class="pol" style="left:150px;top:100px;width:235px;transform:rotate(4deg)"><div class="ph" style="height:200px;font:44px Courier;font-weight:700;color:#ff6b5e">$6.36B</div><div class="cap">Binance · 2026</div></div>${pin(267,106)}
+<div class="mk" style="left:40px;top:390px;font-size:170px;color:#fff3d6;transform:rotate(-6deg);line-height:1">4×</div>
+<div class="tag" style="left:230px;top:470px;transform:rotate(-3deg);font-size:15px">REKOD BARU</div>
+${lamp}`});
+
+S.push({t:"05 · 0:28–0:41 · SEORANG MANUSIA",vo:"“Macam mana? Mereka tak pecah peti besi. Mereka godam… seorang manusia. Laptop seorang jurutera Binance diceroboh. Dan dilaporkan, semuanya bermula… dengan temuduga kerja palsu.”",
+fx:"Lakaran peti besi dipangkah. Polaroid laptop + tag BUKTI #01. Surat 'TAWARAN KERJA' — bar redaksi ditarik keluar satu-satu. Benang merah: surat → laptop → dompet. Label kecil 'dilaporkan'.",
+html:`<div class="card" style="left:240px;top:60px;width:140px;height:110px;background:#3b3631;transform:rotate(5deg);display:flex;align-items:center;justify-content:center"><div class="mk" style="color:#ff6b5e;font-size:70px;line-height:1">✕</div><div class="ty" style="position:absolute;bottom:-26px;left:0;font-size:12px;color:#fff3d6">peti besi</div></div>
+<div class="pol" style="left:30px;top:80px;width:200px;transform:rotate(-4deg)"><div class="ph" style="height:150px">${laptop(160)}</div><div class="cap">laptop jurutera</div></div>${pin(130,86)}
+<div class="tag" style="left:160px;top:70px;transform:rotate(8deg)">BUKTI #01</div>
+<div class="card" style="left:40px;top:330px;width:325px;height:230px;transform:rotate(2deg);padding:18px"><div class="st" style="font-size:20px">TAWARAN KERJA</div>
+<div class="cr" style="font-size:13px;line-height:1.7;margin-top:8px">Tahniah! Anda dijemput ke temuduga untuk jawatan <span class="rd">████████</span>.<br>Sila muat turun <span class="rd">████████████</span> sebelum sesi.<br>Gaji: <span class="rd">█████</span></div>
+<div class="tag" style="position:absolute;right:10px;bottom:10px">dilaporkan</div></div>${pin(200,338)}
+${str([[200,338,130,86]])}
+<div class="mk" style="left:40px;top:600px;width:330px;font-size:28px;color:#fff3d6;transform:rotate(-2deg)">Godam <span style="color:#ff8a80">seorang manusia.</span></div>
+${lamp}`});
+
+S.push({t:"06 · 0:41–0:55 · SUSPEK",vo:"“Siapa dalangnya? FBI dah tuding jari: Korea Utara. Unit penggodam mereka, TraderTraitor, juga dikenali sebagai Lazarus. Kumpulan sama yang dikaitkan dengan rompakan Bybit tahun lepas. Korea Utara nafi.”",
+fx:"Kamera tarik ke belakang — seluruh papan. Kad SUSPEK di tengah; benang merah ditarik dari setiap bukti ke suspek satu-satu. Cop 'DINAFIKAN' (kecil, senget) di hujung.",
+html:`<div class="idx" style="left:85px;top:300px;width:235px;height:150px;transform:rotate(-1deg);padding:38px 12px 0;text-align:center"><div class="st red" style="font-size:22px">SUSPEK</div><div class="an" style="font-size:34px;line-height:1">KOREA UTARA</div><div class="cr" style="font-size:13px;margin-top:6px">unit TraderTraitor<br>a.k.a. LAZARUS</div></div>${pin(202,306)}
+<div class="pol" style="left:16px;top:60px;width:110px;transform:rotate(-6deg)"><div class="ph" style="height:70px">${laptop(80)}</div><div class="cap" style="font-size:13px">laptop</div></div>${pin(70,66)}
+<div class="pol" style="left:280px;top:70px;width:110px;transform:rotate(5deg)"><div class="ph" style="height:70px;font:18px Courier;color:#f2ead8;font-weight:700">$1.5B</div><div class="cap" style="font-size:13px">Bybit</div></div>${pin(335,76)}
+<div class="idx" style="left:20px;top:520px;width:150px;height:90px;transform:rotate(3deg);padding:36px 8px 0"><div class="cr" style="font-size:13px">FBI: dikaitkan</div></div>${pin(95,528)}
+<div class="idx" style="left:235px;top:510px;width:150px;height:90px;transform:rotate(-3deg);padding:36px 8px 0"><div class="cr" style="font-size:13px">Chainalysis · Elliptic · TRM</div></div>${pin(310,518)}
+${str([[70,66,202,306],[335,76,202,306],[95,528,202,306],[310,518,202,306]])}
+<div class="stamp" style="left:100px;top:452px;color:#1c1a17;transform:rotate(-8deg);font-size:16px;z-index:3;background:rgba(251,248,240,.7)">DINAFIKAN · PYONGYANG</div>
+${lamp}`});
+
+S.push({t:"07 · 0:55–1:06 · DIBEKUKAN",vo:"“Tapi dalam masa sejam, dunia crypto melawan. Tether bekukan sembilan ratus tujuh puluh juta. Circle, lapan ratus dua puluh tiga juta. Akhirnya, kira-kira tiga bilion berjaya dibekukan.”",
+fx:"Pita biru-ais ditampal atas kad satu-satu (bunyi pita). Kaunter $0 → ~$3B ditaip. Jam CCTV '+56 MIN'.",
+html:`<div class="cctv" style="left:16px;top:16px"><span class="red">●</span> REC · 05:01 MYT (+56 MIN)</div>
+${[["TETHER","$971.1J",70,-3],["CIRCLE","$823J",230,3]].map(([n,v,y,r],i)=>`<div class="idx" style="left:${40+i*30}px;top:${y+40}px;width:320px;height:120px;transform:rotate(${r}deg);padding:38px 14px 0"><div class="an" style="font-size:30px">${n}</div><div class="cr" style="font-size:20px">bekukan ${v}</div><div style="position:absolute;right:-14px;top:40px;width:120px;height:34px;background:rgba(124,198,230,.75);transform:rotate(-20deg)"></div></div>${pin(200+i*30,y+48)}`).join('')}
+<div class="card" style="left:40px;top:430px;width:325px;height:150px;transform:rotate(-1deg);padding:16px;background:#e8f4fa"><div class="cr" style="font-size:14px">JUMLAH DIBEKUKAN (anggaran)</div><div class="an" style="font-size:72px;color:#1f6f99">~$3B</div></div>
+<div class="mk" style="left:60px;top:610px;font-size:26px;color:#fff3d6">❄ dunia crypto melawan</div>
+${lamp}`});
+
+S.push({t:"08 · 1:06–1:13 · PENGGUNA",vo:"“Pengguna? Binance kata: duit pengguna selamat. Kerugian ditanggung dana kecemasan dan duit syarikat sendiri.”",
+fx:"Memo rasmi ditaip baris demi baris. Cop 'KENYATAAN RASMI'. Highlighter kuning atas ayat utama.",
+html:`<div class="card" style="left:30px;top:90px;width:345px;height:440px;transform:rotate(-1.5deg);padding:22px"><div class="cr" style="font-size:14px;border-bottom:2px solid #222;padding-bottom:6px">MEMO · KENYATAAN BINANCE · NOV 2026</div>
+<div class="ty" style="font-size:22px;line-height:1.35;margin-top:22px"><span style="background:linear-gradient(transparent 50%,#f2d03b 50%)">“Users will not bear the financial impact.”</span></div>
+<div class="cr" style="font-size:15px;line-height:1.6;margin-top:18px">Kerugian ditanggung:<br>• SAFU (dana kecemasan pengguna)<br>• dana insurans<br>• simpanan syarikat</div></div>${pin(200,98)}
+<div class="stamp red" style="left:70px;top:480px;transform:rotate(-8deg);font-size:22px">KENYATAAN RASMI</div>
+<div class="tag" style="left:40px;top:580px">menurut Binance</div>
+${lamp}`});
+
+S.push({t:"09 · 1:13–1:21 · KENAPA?",vo:"“Kenapa Korea Utara curi crypto? Pemantau sekatan antarabangsa kata, hasilnya bantu biayai program nuklear dan peluru berpandu mereka.”",
+fx:"Folder SULIT dibuka; bar redaksi ditarik satu-satu mendedahkan 'NUKLEAR' & 'PELURU BERPANDU'. Lakaran peluru berpandu kapur di papan. Tag sumber MSMT.",
+html:`<div class="card" style="left:25px;top:80px;width:355px;height:420px;background:var(--manila);transform:rotate(1.5deg);padding:22px"><div class="stamp red" style="display:inline-block;font-size:30px">SULIT</div>
+<div class="cr" style="font-size:16px;line-height:1.9;margin-top:22px">Hasil kecurian aset maya<br>digunakan untuk membiayai<br>program <b style="background:#fff3d6;padding:0 4px">NUKLEAR</b> <span class="rd">████</span><br>dan <b style="background:#fff3d6;padding:0 4px">PELURU BERPANDU</b><br><span class="rd">██████████████</span><br><span class="rd">████████</span> $2.84B sejak 2024</div>
+<div class="tag" style="position:absolute;left:22px;bottom:18px">MSMT · pemantau sekatan · 11 negara</div></div>${pin(200,88)}
+<svg style="left:250px;top:470px" width="120" height="200" viewBox="0 0 60 100" fill="none" stroke="#fff3d6" stroke-width="2.5" filter="url(#rough)"><path d="M30 6 C40 20 40 40 40 70 L20 70 C20 40 20 20 30 6 Z"/><path d="M20 58 L10 78 L20 74 M40 58 L50 78 L40 74"/><path d="M26 74 L30 92 L34 74" stroke="#ff8a80"/></svg>
+<div class="mk" style="left:40px;top:560px;font-size:30px;color:#fff3d6">Kenapa?</div>
+${lamp}`});
+
+S.push({t:"10 · 1:21–1:30 · PENGAJARAN",vo:"“Pengajarannya? Sistem paling canggih di dunia… boleh tumbang sebab satu laptop. Satu klik. Jadi kalau ada tawaran kerja yang terlalu bagus… fikir dua kali.”",
+fx:"Kamera zoom perlahan ke polaroid laptop (BUKTI #01). Marker bulatkan butang. 'SATU KLIK.' Kad terakhir ditaip; lampu meja dipadam — gelap.",
+html:`<div class="pol" style="left:40px;top:70px;width:325px;transform:rotate(-2deg)"><div class="ph" style="height:240px">${laptop(260)}</div><div class="cap" style="font-size:26px">BUKTI #01</div></div>${pin(202,76)}
+<div class="an" style="left:40px;top:380px;font-size:72px;color:#fff3d6;line-height:.95">SATU<br><span style="color:#ff6b5e">KLIK.</span></div>
+<div class="idx" style="left:40px;top:540px;width:325px;height:110px;transform:rotate(1deg);padding:38px 12px 0"><div class="ty" style="font-size:17px;line-height:24px">Tawaran kerja terlalu bagus?<br><b>Fikir dua kali.</b></div></div>${pin(202,548)}
+${lamp}`});
+
+document.getElementById('g').innerHTML=S.map(s=>`<div><div class="f">${cork}${s.html}</div><div class="no">${s.t}</div><div class="vo">${s.vo}</div><div class="fx">${s.fx}</div></div>`).join('');
+</script></body></html>

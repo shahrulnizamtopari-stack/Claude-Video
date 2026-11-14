@@ -1,0 +1,42 @@
+<template>
+<style>
+#root { position:absolute; inset:0; color:#ece6df; font-family:"Inter",sans-serif; }
+#root .hud { position:absolute; left:80px; right:80px; top:196px; height:36px; font:500 28px "JetBrains Mono",monospace; letter-spacing:3px; color:#8a8178; }
+#root .hud .l { position:absolute; left:0; top:0; } #root .hud .r { position:absolute; right:0; top:0; text-align:right; }
+#root .title { position:absolute; left:80px; right:80px; font-family:"Inter",sans-serif; font-weight:900; font-size:116px; letter-spacing:-4px; line-height:.94; }
+#root .mono { font-family:"JetBrains Mono",monospace; }
+#root .big { font-family:"JetBrains Mono",monospace; font-weight:700; letter-spacing:-10px; line-height:1; }
+#root .baik{color:#3aa0ff} #root .sed{color:#3ccf6e} #root .ts{color:#ffd23f} #root .sts{color:#ff8a1f} #root .bhy{color:#ff2d2d} #root .ember{color:#ff6a1f} #root .dim{color:#8a8178}
+#root .tag { display:inline-block; font:700 28px "JetBrains Mono",monospace; letter-spacing:5px; padding:12px 22px; border:3px solid currentColor; border-radius:8px; }
+#root .stamp { display:inline-block; font:900 70px "Inter"; letter-spacing:4px; border:9px solid currentColor; border-radius:14px; padding:12px 28px; }
+#root .src { font:500 28px "JetBrains Mono"; color:#8a8178; letter-spacing:1px; }
+
+#hook-q { position:absolute; left:80px; top:300px; font:700 220px "JetBrains Mono"; color:#3a322b; line-height:.6; }
+#hook-a { top:430px; font-size:108px; }
+#hook-b { top:690px; font-size:122px; color:#3aa0ff; text-shadow:0 0 60px rgba(58,160,255,.55); }
+#hook-src { position:absolute; left:80px; top:1030px; }
+#hook-pk { position:absolute; left:80px; top:1110px; }
+</style>
+<div id="root" data-composition-id="hook" data-width="1080" data-height="1920" data-start="0" data-duration="6.3">
+
+<div class="hud"><span class="l">KENYATAAN · OKT 2026</span><span class="r baik">● UDARA BERSIH</span></div>
+<div id="hook-q" data-layout-ignore>“</div>
+<div class="title" id="hook-a">KAMI BUKAN<br>HANTAR ASAP.</div>
+<div class="title" id="hook-b" style="opacity:0">KAMI HANTAR<br>OKSIGEN.</div>
+<div id="hook-src" style="opacity:0"><span class="tag dim">— PEGAWAI INDONESIA · KOMPAS</span></div>
+<div id="hook-pk" class="src" style="opacity:0">▲ diperli netizen Malaysia &amp; Singapura</div>
+
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#hook-b",{opacity:0,scale:1.12},{opacity:1,scale:1,duration:.3,ease:"power4.out",transformOrigin:"0% 50%"},3.45);
+tl.fromTo("#hook-b",{textShadow:"0 0 60px rgba(58,160,255,.55)"},{textShadow:"0 0 110px rgba(58,160,255,.9)",duration:.35,yoyo:true,repeat:3},3.8);
+tl.fromTo("#hook-src",{opacity:0,y:16},{opacity:1,y:0,duration:.3},4.2);
+tl.fromTo("#hook-pk",{opacity:0},{opacity:1,duration:.3},4.9);
+
+window.__timelines["hook"] = tl;
+})();
+</script>
+</template>

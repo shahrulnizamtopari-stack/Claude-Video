@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="assets/lib/gsap.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:1080px; height:1920px; overflow:hidden; background:#0a0908; }
+#root { position:relative; width:1080px; height:1920px; overflow:hidden; }
+#bg { position:absolute; inset:0; background:#0a0908; }
+#dots { position:absolute; inset:0; background-image:radial-gradient(circle,rgba(255,240,220,.06) 1.6px,transparent 2px); background-size:36px 36px; }
+.glow { position:absolute; inset:0; opacity:0; }
+#g-blue { background:radial-gradient(ellipse 80% 45% at 50% 38%,rgba(58,160,255,.16),transparent 70%); }
+#g-red { background:radial-gradient(ellipse 80% 45% at 50% 38%,rgba(255,45,45,.24),transparent 70%); }
+#g-ember { background:radial-gradient(ellipse 80% 45% at 50% 45%,rgba(255,106,31,.2),transparent 70%); }
+#g-yellow { background:radial-gradient(ellipse 80% 45% at 50% 38%,rgba(255,210,63,.14),transparent 70%); }
+#haze { position:absolute; inset:0; opacity:0; }
+#haze i { position:absolute; display:block; border-radius:50%; }
+#veil { position:absolute; inset:0; z-index:12; opacity:0; background:linear-gradient(180deg,rgba(150,120,90,.10),rgba(150,120,90,.22) 60%,rgba(150,120,90,.06)); }
+#scan { position:absolute; inset:0; background:repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0 2px,transparent 2px 6px); z-index:20; }
+#vig { position:absolute; inset:0; background:radial-gradient(ellipse 75% 60% at 50% 45%,transparent 55%,rgba(0,0,0,.7)); z-index:21; }
+#glitch { position:absolute; inset:0; z-index:22; opacity:0; }
+#glitch i { position:absolute; left:0; right:0; display:block; }
+#captions { z-index:15; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="82.6" data-width="1080" data-height="1920" data-fps="30">
+  <div id="bg" data-layout-ignore></div>
+  <div id="dots" data-layout-ignore></div>
+  <div class="glow" id="g-blue" data-layout-ignore></div>
+  <div class="glow" id="g-red" data-layout-ignore></div>
+  <div class="glow" id="g-ember" data-layout-ignore></div>
+  <div class="glow" id="g-yellow" data-layout-ignore></div>
+  <div id="haze" data-layout-ignore>
+    <i id="hz1" style="left:-600px;top:200px;width:2000px;height:1100px;background:radial-gradient(closest-side,rgba(176,146,110,.55),rgba(176,146,110,0))"></i>
+    <i id="hz2" style="left:-300px;top:700px;width:1800px;height:1200px;background:radial-gradient(closest-side,rgba(150,118,84,.5),rgba(150,118,84,0))"></i>
+    <i id="hz3" style="left:-900px;top:-100px;width:2200px;height:900px;background:radial-gradient(closest-side,rgba(190,165,130,.4),rgba(190,165,130,0))"></i>
+  </div>
+  <div id="hook" data-composition-id="hook" data-composition-src="compositions/hook.html" data-start="0.0" data-duration="6.3" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="ipu" data-composition-id="ipu" data-composition-src="compositions/ipu.html" data-start="6.3" data-duration="7.15" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="map" data-composition-id="map" data-composition-src="compositions/map.html" data-start="13.45" data-duration="7.85" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="kon" data-composition-id="kon" data-composition-src="compositions/kon.html" data-start="21.3" data-duration="6.55" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="kita" data-composition-id="kita" data-composition-src="compositions/kita.html" data-start="27.85" data-duration="5.9" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="mereka" data-composition-id="mereka" data-composition-src="compositions/mereka.html" data-start="33.75" data-duration="9.25" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="mati" data-composition-id="mati" data-composition-src="compositions/mati.html" data-start="43.0" data-duration="6.3" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="dua" data-composition-id="dua" data-composition-src="compositions/dua.html" data-start="49.3" data-duration="7.3" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="maut" data-composition-id="maut" data-composition-src="compositions/maut.html" data-start="56.6" data-duration="7.1" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="bayar" data-composition-id="bayar" data-composition-src="compositions/bayar.html" data-start="63.7" data-duration="9.5" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="end" data-composition-id="end" data-composition-src="compositions/end.html" data-start="73.2" data-duration="9.4" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+  <div id="veil" data-layout-ignore></div>
+  <div id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="82.6" data-track-index="3" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+  <div id="scan" data-layout-ignore></div>
+  <div id="vig" data-layout-ignore></div>
+  <div id="glitch" data-layout-ignore><i style="top:420px;height:26px;background:rgba(255,106,31,.5)"></i><i style="top:760px;height:10px;background:rgba(58,160,255,.45)"></i><i style="top:1010px;height:40px;background:rgba(255,255,255,.15)"></i><i style="top:1240px;height:8px;background:rgba(255,45,45,.55)"></i></div>
+  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="80.3" data-track-index="4" data-volume="1"></audio>
+  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="82.6" data-track-index="5" data-volume="0.5"></audio>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.set("#glitch",{opacity:0,x:0},0);
+tl.set("#haze",{opacity:0},0);
+tl.set("#veil",{opacity:0},0);
+tl.fromTo("#g-blue",{opacity:0},{opacity:1,duration:.4},0);
+tl.to("#haze",{opacity:0.12,duration:6.30,ease:"sine.inOut"},0.00);tl.to("#haze",{opacity:0.25,duration:1.70,ease:"sine.inOut"},6.30);tl.to("#haze",{opacity:0.75,duration:2.40,ease:"sine.inOut"},8.00);tl.to("#haze",{opacity:0.45,duration:3.05,ease:"sine.inOut"},10.40);tl.to("#haze",{opacity:0.35,duration:7.85,ease:"sine.inOut"},13.45);tl.to("#haze",{opacity:0.4,duration:6.55,ease:"sine.inOut"},21.30);tl.to("#haze",{opacity:0.3,duration:5.90,ease:"sine.inOut"},27.85);tl.to("#haze",{opacity:0.3,duration:15.55,ease:"sine.inOut"},33.75);tl.to("#haze",{opacity:0.55,duration:7.30,ease:"sine.inOut"},49.30);tl.to("#haze",{opacity:0.3,duration:7.10,ease:"sine.inOut"},56.60);tl.to("#haze",{opacity:0.3,duration:9.70,ease:"sine.inOut"},63.70);tl.to("#haze",{opacity:0,duration:2.20,ease:"sine.inOut"},73.40);
+tl.fromTo("#veil",{opacity:0},{opacity:1,duration:1.6},9.0);
+tl.to("#veil",{opacity:.35,duration:1.2},13.45);
+tl.to("#veil",{opacity:.8,duration:1.2},56.6);
+tl.to("#veil",{opacity:0,duration:2},73.4);
+tl.fromTo("#hz1",{x:-200},{x:500,duration:82.6,ease:"none"},0);
+tl.fromTo("#hz2",{x:300},{x:-400,duration:82.6,ease:"none"},0);
+tl.fromTo("#hz3",{x:-100},{x:400,y:120,duration:82.6,ease:"none"},0);
+tl.to("#g-blue",{opacity:0,duration:.5},6.30);tl.to("#g-red",{opacity:1,duration:.5},6.30);tl.to("#g-red",{opacity:0,duration:.5},13.45);tl.to("#g-ember",{opacity:1,duration:.5},13.45);tl.to("#g-ember",{opacity:0,duration:.5},27.85);tl.to("#g-blue",{opacity:1,duration:.5},27.85);tl.to("#g-blue",{opacity:0,duration:.5},33.75);tl.to("#g-ember",{opacity:1,duration:.5},33.75);tl.to("#g-ember",{opacity:0,duration:.5},56.60);tl.to("#g-red",{opacity:1,duration:.5},56.60);tl.to("#g-red",{opacity:0,duration:.5},63.70);tl.to("#g-yellow",{opacity:1,duration:.5},63.70);tl.to("#g-yellow",{opacity:0,duration:.5},73.20);tl.to("#g-blue",{opacity:1,duration:.5},73.20);tl.to("#g-blue",{opacity:0,duration:.5},78.40);tl.to("#g-ember",{opacity:1,duration:.5},78.40);
+[6.3, 13.45, 21.3, 27.85, 33.75, 43.0, 49.3, 56.6, 63.7, 73.2].forEach(t => {
+  tl.to("#glitch",{opacity:1,duration:.03},t-0.05);
+  tl.to("#glitch",{x:18,duration:.03},t-0.02);
+  tl.to("#glitch",{opacity:0,duration:.05},t+0.07);
+  tl.set("#glitch",{x:0},t+0.12);
+});
+window.__timelines["main"] = tl;
+</script>
+</body>
+</html>
