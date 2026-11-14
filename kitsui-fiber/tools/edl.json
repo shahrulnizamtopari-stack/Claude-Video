@@ -1,0 +1,101 @@
+{
+ "total": 29.24,
+ "segments": [
+  {
+   "id": "A1",
+   "clip": "th1_sayur",
+   "src_in": 0.72,
+   "src_out": 2.3,
+   "start": 0.0,
+   "dur": 1.58
+  },
+  {
+   "id": "A2",
+   "clip": "th1_sayur",
+   "src_in": 2.74,
+   "src_out": 5.92,
+   "start": 1.58,
+   "dur": 3.18
+  },
+  {
+   "id": "B1",
+   "clip": "th2_serat",
+   "src_in": 0.85,
+   "src_out": 2.2,
+   "start": 4.76,
+   "dur": 1.35
+  },
+  {
+   "id": "B2",
+   "clip": "th2_serat",
+   "src_in": 2.36,
+   "src_out": 5.97,
+   "start": 6.11,
+   "dur": 3.61
+  },
+  {
+   "id": "C1",
+   "clip": "th3_produk",
+   "src_in": 0.3,
+   "src_out": 2.1,
+   "start": 9.72,
+   "dur": 1.8
+  },
+  {
+   "id": "C2",
+   "clip": "th3_produk",
+   "src_in": 2.3,
+   "src_out": 4.62,
+   "start": 11.52,
+   "dur": 2.32
+  },
+  {
+   "id": "C3",
+   "clip": "th3_produk",
+   "src_in": 4.86,
+   "src_out": 6.1,
+   "start": 13.84,
+   "dur": 1.24
+  },
+  {
+   "id": "C4",
+   "clip": "th3_produk",
+   "src_in": 6.4,
+   "src_out": 7.5,
+   "start": 15.08,
+   "dur": 1.1
+  },
+  {
+   "id": "D1",
+   "clip": "th4_arahan",
+   "src_in": 0.0,
+   "src_out": 2.98,
+   "start": 16.18,
+   "dur": 2.98
+  },
+  {
+   "id": "D2",
+   "clip": "th4_arahan",
+   "src_in": 3.4,
+   "src_out": 7.04,
+   "start": 19.16,
+   "dur": 3.64
+  },
+  {
+   "id": "E1",
+   "clip": "th5_cta",
+   "src_in": 0.3,
+   "src_out": 3.6,
+   "start": 22.8,
+   "dur": 3.3
+  },
+  {
+   "id": "E2",
+   "clip": "th5_cta",
+   "src_in": 4.4,
+   "src_out": 7.54,
+   "start": 26.1,
+   "dur": 3.14
+  }
+ ]
+}
