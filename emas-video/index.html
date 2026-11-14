@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ms" data-composition-variables='[{"id":"previewScale","type":"number","label":"3D render scale (0.5 for previews)","default":1,"min":0.25,"max":1,"step":0.25},{"id":"fx","type":"string","label":"effects override (JSON, testing only)","default":""}]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/lib/gsap.min.js"></script>
+    <script type="importmap">{ "imports": { "three": "./assets/lib/three.module.min.js" } }</script>
+    <style>
+      @font-face { font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 600; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 700; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 800; src: url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #07050a; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "Inter", sans-serif; }
+      #world { position: absolute; inset: 0; }
+      #world canvas { width: 1080px; height: 1920px; display: block; }
+      #ui { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+      .fade-top { position: absolute; left: 0; right: 0; top: 0; height: 520px; background: linear-gradient(rgba(7,5,10,0.85) 0%, rgba(7,5,10,0.5) 40%, rgba(7,5,10,0) 100%); }
+      .fade-bot { position: absolute; left: 0; right: 0; bottom: 0; height: 420px; background: linear-gradient(rgba(7,5,10,0), rgba(7,5,10,0.75) 70%, #07050a); }
+      #title { position: absolute; left: 60px; right: 60px; top: 150px; text-align: center; font-weight: 700; font-size: 54px; letter-spacing: -1.2px; color: #fff6e6; line-height: 1.15; text-shadow: 0 2px 20px rgba(0,0,0,0.5); }
+      #title em { font-style: normal; color: #ffc94a; }
+      .hud { position: absolute; display: flex; align-items: center; gap: 18px; padding: 14px 26px; border-radius: 40px; background: rgba(255,255,255,0.92);
+        box-shadow: 0 8px 28px rgba(30,40,80,0.12); transform: translateX(-50%); white-space: nowrap; }
+      .hud .st { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 30px; }
+      .hud .dot { width: 16px; height: 16px; border-radius: 50%; }
+      .hud .sep { width: 2px; height: 36px; background: #dfe3ea; }
+      .hud .val { font-weight: 700; font-size: 44px; color: #14161c; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+      .hud .unit { font-weight: 500; font-size: 26px; color: #8a90a0; margin-left: 6px; }
+      .lbl { position: absolute; height: 0; }
+      .lbl .pt { position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; border-radius: 50%; background: #ffc94a; border: 3px solid #07050a; }
+      .lbl .ln { position: absolute; top: -1.5px; height: 3px; background: #fff6e6; }
+      .lbl .tx { position: absolute; top: -30px; padding: 6px 12px; font-weight: 800; font-size: 26px; letter-spacing: 3px; color: #14161c; background: rgba(255,255,255,0.94); border-bottom: 3px solid #14161c; white-space: nowrap; }
+      #note { position: absolute; left: 40px; top: 1450px; padding: 7px 14px; border-radius: 8px; background: rgba(255,255,255,0.8); font-weight: 500; font-size: 22px; color: #6b7183; }
+      .card { position: absolute; left: 60px; right: 60px; background: rgba(36,22,10,0.88); border: 2px solid rgba(255,201,74,0.35); border-radius: 26px; padding: 26px 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(255,170,40,0.15); color: #fff6e6; }
+      .card .k { font-weight: 800; font-size: 22px; letter-spacing: 3px; color: #ffc94a; margin-bottom: 14px; }
+      #yr { top: 400px; } #yr .big { font-weight: 800; font-size: 120px; letter-spacing: -4px; color: #ffc94a; line-height: 1; text-shadow: 0 0 40px rgba(255,180,60,0.5); }
+      #yr .sub { margin-top: 10px; font-weight: 700; font-size: 34px; color: #fff6e6; } #yr .row { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+      #yr .row span { padding: 8px 16px; border-radius: 20px; border: 2px solid rgba(255,201,74,0.45); font-weight: 700; font-size: 24px; color: #ffe0a0; }
+      #captions-host { z-index: 10; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1080" data-height="1920" data-fps="30">
+      <div id="world" class="clip" data-start="0" data-duration="60" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+        <canvas id="world-canvas" width="1080" height="1920"></canvas>
+      </div>
+      <div id="ui" class="clip" data-start="0" data-duration="60" data-track-index="2" data-track-kind="graphics" data-layout-ignore>
+        <div class="fade-top"></div><div class="fade-bot"></div>
+        <div id="title"></div>
+        <div class="hud" id="hud-main"><div class="st"><span class="dot"></span><span class="sl"></span></div><span class="sep"></span><div><span class="val"></span><span class="unit"></span></div></div>
+        <div class="hud" id="hud-a"><div class="st"><span class="dot"></span><span class="sl"></span></div><span class="sep"></span><div><span class="val"></span><span class="unit"></span></div></div>
+        <div class="hud" id="hud-b"><div class="st"><span class="dot"></span><span class="sl"></span></div><span class="sep"></span><div><span class="val"></span><span class="unit"></span></div></div>
+        <div id="labels"></div>
+        <div id="note"></div>
+        <div id="yr" class="card"><div class="k">PERTAMA KALI DILIHAT</div><div class="big">17.8.2017</div><div class="sub">GW170817 · gelombang graviti + cahaya</div>
+          <div class="row"><span>LIGO</span><span>Virgo</span><span>~70 teleskop</span></div></div>
+      </div>
+      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="60"
+        data-track-index="3" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+    </div>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      let resolveWorld;
+      window.__hf.buildReady["world"] = new Promise((r) => (resolveWorld = r));
+    </script>
+    <script type="module">
+      import { createWorld } from "./assets/world.js";
+      import { warp } from "./assets/timing.js";
+      const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
+      const scale = Number(vars.previewScale) || 1;
+      await Promise.all(["500", "600", "700", "800"].map((w) => document.fonts.load(`${w} 40px "Inter"`)));
+      let fxOpts = {}; try { fxOpts = vars.fx ? JSON.parse(vars.fx) : {}; } catch (e) {}
+      const world = createWorld(document.getElementById("world-canvas"), 1080, 1920, scale, fxOpts);
+      const T = world.T;
+
+      const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+      const ss = (e0, e1, x) => { const u = clamp((x - e0) / (e1 - e0)); return u * u * (3 - 2 * u); };
+      const win = (t, t0, t1, fin = 0.3, fout = 0.3) => (t0 <= 0 ? 1 : ss(t0, t0 + fin, t)) * (t1 >= 60 ? 1 : 1 - ss(t1 - fout, t1, t));
+
+      const HOOK = "Emas <em>lebih tua</em> dari Bumi";
+      const CH = [
+        [0, 7, HOOK], [7, 16, "Dapur bintang: <em>sampai besi</em> je"], [16, 27, "<em>Bintang neutron</em>"], [27, 38, "<em>Kilonova</em>"],
+        [38, 46, "Disahkan tahun <em>2017</em>"], [46, 54, "Debu emas → <em>Bumi</em>"], [54, 58.8, "Cincin = <em>serpihan bintang</em>"], [58.8, 60, HOOK],
+      ];
+      const NOTES = [[13.2, 16, "Pelakuran dalam bintang membebaskan tenaga hingga besi; selepas besi ia menyerap tenaga"],
+        [16.3, 21.5, "Kebanyakan unsur lebih berat dari besi terhasil melalui ‘proses-r’"],
+        [24.2, 27, "Anggaran lazim: 1 sudu teh jirim bintang neutron ≈ 1 bilion tan"],
+        [35.4, 38, "Anggaran emas dari GW170817: ~3–13 kali jisim Bumi"],
+        [42.8, 46, "Galaksi NGC 4993 · ~130 juta tahun cahaya"]];
+      const LABELS = [
+        ["h", "HIDROGEN", 10.02, 15.6, 1], ["he", "HELIUM", 10.99, 15.6, 1], ["c", "KARBON", 11.47, 15.6, 1], ["o", "OKSIGEN", 11.96, 15.6, 1], ["fe", "BESI", 12.93, 18.2, 1],
+        ["ns", "BINTANG NEUTRON", 19.7, 22.0, 1], ["city", "SEBESAR BANDAR · ~20 km", 22.3, 26.9, -1], ["spoon", "1 SUDU TEH", 23.3, 26.9, -1],
+        ["gw", "GELOMBANG GRAVITI", 29.0, 30.9, 1], ["kilo", "KILONOVA", 32.69, 35.0, -1], ["gold", "EMAS", 35.27, 37.9, 1], ["earths", "BUMI → EMAS", 36.2, 37.9, -1],
+        ["far", "BUMI", 40.3, 45.9, 1], ["sun", "MATAHARI", 51.91, 53.9, -1], ["babyEarth", "BUMI", 52.88, 53.9, 1],
+      ];
+      const HUDS = [
+        [24.06, 27.0, "#9cc4ff", "1 sudu teh", (t) => (t > 26.05 ? "1 bilion" : "?"), "tan"],
+        [35.27, 38.0, "#ffb020", "Emas", () => "3–13 ×", "berat Bumi"],
+        [42.75, 46.0, "#ffb020", "Jarak", (t) => String(Math.round(130 * ss(42.75, 44.3, t))), "juta tahun cahaya"],
+      ];
+      const $ = (s) => document.querySelector(s);
+      const titleEl = $("#title"), noteEl = $("#note"), labelsEl = $("#labels");
+      const lblEls = LABELS.map(() => { const d = document.createElement("div"); d.className = "lbl"; d.innerHTML = '<span class="ln"></span><span class="pt"></span><span class="tx"></span>'; labelsEl.appendChild(d); return d; });
+      function overlay(o, t) {
+        const ch = CH.find(([a, b]) => t >= a && t < b) || CH[CH.length - 1];
+        const ta = win(t, ch[0], ch[1], 0.35, 0.3);
+        if (titleEl.innerHTML !== ch[2]) titleEl.innerHTML = ch[2];
+        titleEl.style.opacity = ta; titleEl.style.filter = `blur(${(1 - ta) * 10}px)`; titleEl.style.transform = `scale(${0.96 + 0.04 * ta})`;
+        const hm = $("#hud-main"); const h = HUDS.find(([a, b]) => t >= a && t < b);
+        hm.style.opacity = h ? win(t, h[0], h[1], 0.3, 0.3) : 0; hm.style.left = "540px"; hm.style.top = "300px";
+        if (h) { hm.querySelector(".dot").style.background = h[2]; hm.querySelector(".sl").textContent = h[3]; hm.querySelector(".sl").style.color = "#6b5320";
+          hm.querySelector(".val").textContent = h[4](t); hm.querySelector(".unit").textContent = h[5]; }
+        $("#hud-a").style.opacity = 0; $("#hud-b").style.opacity = 0;
+        LABELS.forEach(([k, txt, t0, t1, side], i) => {
+          const el = lblEls[i], p = o.anchors[k]; const la = p && p[2] ? win(t, t0, t1, 0.25, 0.25) : 0;
+          el.style.opacity = la; if (la <= 0) return;
+          el.style.left = p[0] + "px"; el.style.top = p[1] + "px";
+          const L = 110 * ss(t0, t0 + 0.35, t);
+          const ln = el.querySelector(".ln"), tx = el.querySelector(".tx");
+          ln.style.width = L + "px"; ln.style.left = side > 0 ? "0px" : -L + "px";
+          if (tx.textContent !== txt) tx.textContent = txt;
+          tx.style.left = side > 0 ? L + "px" : "auto"; tx.style.right = side > 0 ? "auto" : L + "px";
+        });
+        const n = NOTES.find(([a, b]) => t >= a && t < b);
+        noteEl.style.opacity = n ? win(t, n[0], n[1]) : 0; if (n && noteEl.textContent !== n[2]) noteEl.textContent = n[2];
+        const ya = win(t, 38.4, 42.4, 0.35, 0.35); $("#yr").style.opacity = ya; $("#yr").style.transform = `translateY(${(1 - ss(38.4, 38.8, t)) * 30}px)`;
+      }
+      function renderAt(t) { const ct = warp(t); const o = world.render(ct); overlay(o, ct); }
+      window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+      renderAt(0);
+      resolveWorld();
+    </script>
+  </body>
+</html>

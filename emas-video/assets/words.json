@@ -1,0 +1,806 @@
+[
+ {
+  "text": "Cincin",
+  "start": 0.25,
+  "end": 0.597,
+  "cstart": 0.25
+ },
+ {
+  "text": "emas",
+  "start": 0.597,
+  "end": 0.945,
+  "cstart": 0.597
+ },
+ {
+  "text": "kat",
+  "start": 0.945,
+  "end": 1.292,
+  "cstart": 0.945
+ },
+ {
+  "text": "jari",
+  "start": 1.292,
+  "end": 1.639,
+  "cstart": 1.292
+ },
+ {
+  "text": "kau",
+  "start": 1.639,
+  "end": 1.987,
+  "cstart": 1.639
+ },
+ {
+  "text": "ni...",
+  "start": 1.987,
+  "end": 2.334,
+  "cstart": 1.987
+ },
+ {
+  "text": "lebih",
+  "start": 2.334,
+  "end": 2.682,
+  "cstart": 2.334
+ },
+ {
+  "text": "tua",
+  "start": 2.682,
+  "end": 3.029,
+  "cstart": 2.682
+ },
+ {
+  "text": "dari",
+  "start": 3.029,
+  "end": 3.376,
+  "cstart": 3.029
+ },
+ {
+  "text": "Bumi.",
+  "start": 3.376,
+  "end": 3.724,
+  "cstart": 3.376
+ },
+ {
+  "text": "Dia",
+  "start": 3.724,
+  "end": 4.071,
+  "cstart": 3.724
+ },
+ {
+  "text": "ditempa",
+  "start": 4.071,
+  "end": 4.418,
+  "cstart": 4.071
+ },
+ {
+  "text": "dalam",
+  "start": 4.418,
+  "end": 4.766,
+  "cstart": 4.418
+ },
+ {
+  "text": "letupan",
+  "start": 4.766,
+  "end": 5.113,
+  "cstart": 4.766
+ },
+ {
+  "text": "paling",
+  "start": 5.113,
+  "end": 5.461,
+  "cstart": 5.113
+ },
+ {
+  "text": "ganas",
+  "start": 5.461,
+  "end": 5.808,
+  "cstart": 5.461
+ },
+ {
+  "text": "di",
+  "start": 5.808,
+  "end": 6.155,
+  "cstart": 5.808
+ },
+ {
+  "text": "alam",
+  "start": 6.155,
+  "end": 6.503,
+  "cstart": 6.155
+ },
+ {
+  "text": "semesta.",
+  "start": 6.503,
+  "end": 6.85,
+  "cstart": 6.503
+ },
+ {
+  "text": "Bintang",
+  "start": 7.1,
+  "end": 7.586,
+  "cstart": 7.1
+ },
+ {
+  "text": "hasilkan",
+  "start": 7.586,
+  "end": 8.072,
+  "cstart": 7.586
+ },
+ {
+  "text": "unsur",
+  "start": 8.072,
+  "end": 8.558,
+  "cstart": 8.072
+ },
+ {
+  "text": "dengan",
+  "start": 8.558,
+  "end": 9.044,
+  "cstart": 8.558
+ },
+ {
+  "text": "mencantum",
+  "start": 9.044,
+  "end": 9.531,
+  "cstart": 9.044
+ },
+ {
+  "text": "atom.",
+  "start": 9.531,
+  "end": 10.017,
+  "cstart": 9.531
+ },
+ {
+  "text": "Hidrogen",
+  "start": 10.017,
+  "end": 10.503,
+  "cstart": 10.017
+ },
+ {
+  "text": "jadi",
+  "start": 10.503,
+  "end": 10.989,
+  "cstart": 10.503
+ },
+ {
+  "text": "helium,",
+  "start": 10.989,
+  "end": 11.475,
+  "cstart": 10.989
+ },
+ {
+  "text": "karbon,",
+  "start": 11.475,
+  "end": 11.961,
+  "cstart": 11.475
+ },
+ {
+  "text": "oksigen...",
+  "start": 11.961,
+  "end": 12.447,
+  "cstart": 11.961
+ },
+ {
+  "text": "sampai",
+  "start": 12.447,
+  "end": 12.933,
+  "cstart": 12.447
+ },
+ {
+  "text": "besi.",
+  "start": 12.933,
+  "end": 13.419,
+  "cstart": 12.933
+ },
+ {
+  "text": "Lepas",
+  "start": 13.419,
+  "end": 13.906,
+  "cstart": 13.419
+ },
+ {
+  "text": "besi,",
+  "start": 13.906,
+  "end": 14.392,
+  "cstart": 13.906
+ },
+ {
+  "text": "dapur",
+  "start": 14.392,
+  "end": 14.878,
+  "cstart": 14.392
+ },
+ {
+  "text": "bintang",
+  "start": 14.878,
+  "end": 15.364,
+  "cstart": 14.878
+ },
+ {
+  "text": "berhenti.",
+  "start": 15.364,
+  "end": 15.85,
+  "cstart": 15.364
+ },
+ {
+  "text": "Jadi",
+  "start": 16.1,
+  "end": 16.498,
+  "cstart": 16.1
+ },
+ {
+  "text": "kebanyakan",
+  "start": 16.498,
+  "end": 16.896,
+  "cstart": 16.498
+ },
+ {
+  "text": "emas",
+  "start": 16.896,
+  "end": 17.294,
+  "cstart": 16.896
+ },
+ {
+  "text": "perlukan",
+  "start": 17.294,
+  "end": 17.693,
+  "cstart": 17.294
+ },
+ {
+  "text": "benda",
+  "start": 17.693,
+  "end": 18.091,
+  "cstart": 17.693
+ },
+ {
+  "text": "yang",
+  "start": 18.091,
+  "end": 18.489,
+  "cstart": 18.091
+ },
+ {
+  "text": "lebih",
+  "start": 18.489,
+  "end": 18.887,
+  "cstart": 18.489
+ },
+ {
+  "text": "gila:",
+  "start": 18.887,
+  "end": 19.285,
+  "cstart": 18.887
+ },
+ {
+  "text": "bintang",
+  "start": 19.285,
+  "end": 19.683,
+  "cstart": 19.285
+ },
+ {
+  "text": "neutron.",
+  "start": 19.683,
+  "end": 20.081,
+  "cstart": 19.683
+ },
+ {
+  "text": "Bintang",
+  "start": 20.081,
+  "end": 20.48,
+  "cstart": 20.081
+ },
+ {
+  "text": "mati",
+  "start": 20.48,
+  "end": 20.878,
+  "cstart": 20.48
+ },
+ {
+  "text": "yang",
+  "start": 20.878,
+  "end": 21.276,
+  "cstart": 20.878
+ },
+ {
+  "text": "runtuh",
+  "start": 21.276,
+  "end": 21.674,
+  "cstart": 21.276
+ },
+ {
+  "text": "jadi",
+  "start": 21.674,
+  "end": 22.072,
+  "cstart": 21.674
+ },
+ {
+  "text": "sebesar",
+  "start": 22.072,
+  "end": 22.47,
+  "cstart": 22.072
+ },
+ {
+  "text": "bandar.",
+  "start": 22.47,
+  "end": 22.869,
+  "cstart": 22.47
+ },
+ {
+  "text": "Satu",
+  "start": 22.869,
+  "end": 23.267,
+  "cstart": 22.869
+ },
+ {
+  "text": "sudu",
+  "start": 23.267,
+  "end": 23.665,
+  "cstart": 23.267
+ },
+ {
+  "text": "teh",
+  "start": 23.665,
+  "end": 24.063,
+  "cstart": 23.665
+ },
+ {
+  "text": "dia,",
+  "start": 24.063,
+  "end": 24.461,
+  "cstart": 24.063
+ },
+ {
+  "text": "beratnya",
+  "start": 24.461,
+  "end": 24.859,
+  "cstart": 24.461
+ },
+ {
+  "text": "lebih",
+  "start": 24.859,
+  "end": 25.257,
+  "cstart": 24.859
+ },
+ {
+  "text": "kurang",
+  "start": 25.257,
+  "end": 25.656,
+  "cstart": 25.257
+ },
+ {
+  "text": "satu",
+  "start": 25.656,
+  "end": 26.054,
+  "cstart": 25.656
+ },
+ {
+  "text": "bilion",
+  "start": 26.054,
+  "end": 26.452,
+  "cstart": 26.054
+ },
+ {
+  "text": "tan.",
+  "start": 26.452,
+  "end": 26.85,
+  "cstart": 26.452
+ },
+ {
+  "text": "Bila",
+  "start": 27.1,
+  "end": 27.53,
+  "cstart": 27.1
+ },
+ {
+  "text": "dua",
+  "start": 27.53,
+  "end": 27.96,
+  "cstart": 27.53
+ },
+ {
+  "text": "bintang",
+  "start": 27.96,
+  "end": 28.39,
+  "cstart": 27.96
+ },
+ {
+  "text": "neutron",
+  "start": 28.39,
+  "end": 28.82,
+  "cstart": 28.39
+ },
+ {
+  "text": "berpusing",
+  "start": 28.82,
+  "end": 29.25,
+  "cstart": 28.82
+ },
+ {
+  "text": "makin",
+  "start": 29.25,
+  "end": 29.68,
+  "cstart": 29.25
+ },
+ {
+  "text": "laju",
+  "start": 29.68,
+  "end": 30.11,
+  "cstart": 29.68
+ },
+ {
+  "text": "dan",
+  "start": 30.11,
+  "end": 30.54,
+  "cstart": 30.11
+ },
+ {
+  "text": "akhirnya",
+  "start": 30.54,
+  "end": 30.97,
+  "cstart": 30.54
+ },
+ {
+  "text": "berlanggar,",
+  "start": 30.97,
+  "end": 31.4,
+  "cstart": 30.97
+ },
+ {
+  "text": "berlaku",
+  "start": 31.4,
+  "end": 31.83,
+  "cstart": 31.4
+ },
+ {
+  "text": "letupan",
+  "start": 31.83,
+  "end": 32.26,
+  "cstart": 31.83
+ },
+ {
+  "text": "bernama",
+  "start": 32.26,
+  "end": 32.69,
+  "cstart": 32.26
+ },
+ {
+  "text": "kilonova.",
+  "start": 32.69,
+  "end": 33.12,
+  "cstart": 32.69
+ },
+ {
+  "text": "Dalam",
+  "start": 33.12,
+  "end": 33.55,
+  "cstart": 33.12
+ },
+ {
+  "text": "beberapa",
+  "start": 33.55,
+  "end": 33.98,
+  "cstart": 33.55
+ },
+ {
+  "text": "saat,",
+  "start": 33.98,
+  "end": 34.41,
+  "cstart": 33.98
+ },
+ {
+  "text": "ia",
+  "start": 34.41,
+  "end": 34.84,
+  "cstart": 34.41
+ },
+ {
+  "text": "hasilkan",
+  "start": 34.84,
+  "end": 35.27,
+  "cstart": 34.84
+ },
+ {
+  "text": "emas",
+  "start": 35.27,
+  "end": 35.7,
+  "cstart": 35.27
+ },
+ {
+  "text": "beberapa",
+  "start": 35.7,
+  "end": 36.13,
+  "cstart": 35.7
+ },
+ {
+  "text": "kali",
+  "start": 36.13,
+  "end": 36.56,
+  "cstart": 36.13
+ },
+ {
+  "text": "ganda",
+  "start": 36.56,
+  "end": 36.99,
+  "cstart": 36.56
+ },
+ {
+  "text": "berat",
+  "start": 36.99,
+  "end": 37.42,
+  "cstart": 36.99
+ },
+ {
+  "text": "Bumi.",
+  "start": 37.42,
+  "end": 37.85,
+  "cstart": 37.42
+ },
+ {
+  "text": "Tahun",
+  "start": 38.1,
+  "end": 38.488,
+  "cstart": 38.1
+ },
+ {
+  "text": "dua",
+  "start": 38.488,
+  "end": 38.875,
+  "cstart": 38.488
+ },
+ {
+  "text": "ribu",
+  "start": 38.875,
+  "end": 39.263,
+  "cstart": 38.875
+ },
+ {
+  "text": "tujuh",
+  "start": 39.263,
+  "end": 39.65,
+  "cstart": 39.263
+ },
+ {
+  "text": "belas,",
+  "start": 39.65,
+  "end": 40.038,
+  "cstart": 39.65
+ },
+ {
+  "text": "ahli",
+  "start": 40.038,
+  "end": 40.425,
+  "cstart": 40.038
+ },
+ {
+  "text": "sains",
+  "start": 40.425,
+  "end": 40.812,
+  "cstart": 40.425
+ },
+ {
+  "text": "akhirnya",
+  "start": 40.812,
+  "end": 41.2,
+  "cstart": 40.812
+ },
+ {
+  "text": "nampak",
+  "start": 41.2,
+  "end": 41.587,
+  "cstart": 41.2
+ },
+ {
+  "text": "benda",
+  "start": 41.587,
+  "end": 41.975,
+  "cstart": 41.587
+ },
+ {
+  "text": "ni",
+  "start": 41.975,
+  "end": 42.363,
+  "cstart": 41.975
+ },
+ {
+  "text": "berlaku.",
+  "start": 42.363,
+  "end": 42.75,
+  "cstart": 42.363
+ },
+ {
+  "text": "Seratus",
+  "start": 42.75,
+  "end": 43.138,
+  "cstart": 42.75
+ },
+ {
+  "text": "tiga",
+  "start": 43.138,
+  "end": 43.525,
+  "cstart": 43.138
+ },
+ {
+  "text": "puluh",
+  "start": 43.525,
+  "end": 43.913,
+  "cstart": 43.525
+ },
+ {
+  "text": "juta",
+  "start": 43.913,
+  "end": 44.3,
+  "cstart": 43.913
+ },
+ {
+  "text": "tahun",
+  "start": 44.3,
+  "end": 44.688,
+  "cstart": 44.3
+ },
+ {
+  "text": "cahaya",
+  "start": 44.688,
+  "end": 45.075,
+  "cstart": 44.688
+ },
+ {
+  "text": "dari",
+  "start": 45.075,
+  "end": 45.462,
+  "cstart": 45.075
+ },
+ {
+  "text": "sini.",
+  "start": 45.462,
+  "end": 45.85,
+  "cstart": 45.462
+ },
+ {
+  "text": "Debu",
+  "start": 46.1,
+  "end": 46.584,
+  "cstart": 46.1
+ },
+ {
+  "text": "emas",
+  "start": 46.584,
+  "end": 47.069,
+  "cstart": 46.584
+ },
+ {
+  "text": "tu",
+  "start": 47.069,
+  "end": 47.553,
+  "cstart": 47.069
+ },
+ {
+  "text": "hanyut",
+  "start": 47.553,
+  "end": 48.038,
+  "cstart": 47.553
+ },
+ {
+  "text": "berbilion",
+  "start": 48.038,
+  "end": 48.522,
+  "cstart": 48.038
+ },
+ {
+  "text": "tahun,",
+  "start": 48.522,
+  "end": 49.006,
+  "cstart": 48.522
+ },
+ {
+  "text": "dan",
+  "start": 49.006,
+  "end": 49.491,
+  "cstart": 49.006
+ },
+ {
+  "text": "jadi",
+  "start": 49.491,
+  "end": 49.975,
+  "cstart": 49.491
+ },
+ {
+  "text": "sebahagian",
+  "start": 49.975,
+  "end": 50.459,
+  "cstart": 49.975
+ },
+ {
+  "text": "awan",
+  "start": 50.459,
+  "end": 50.944,
+  "cstart": 50.459
+ },
+ {
+  "text": "yang",
+  "start": 50.944,
+  "end": 51.428,
+  "cstart": 50.944
+ },
+ {
+  "text": "membentuk",
+  "start": 51.428,
+  "end": 51.913,
+  "cstart": 51.428
+ },
+ {
+  "text": "Matahari",
+  "start": 51.913,
+  "end": 52.397,
+  "cstart": 51.913
+ },
+ {
+  "text": "dan",
+  "start": 52.397,
+  "end": 52.881,
+  "cstart": 52.397
+ },
+ {
+  "text": "Bumi",
+  "start": 52.881,
+  "end": 53.366,
+  "cstart": 52.881
+ },
+ {
+  "text": "kita.",
+  "start": 53.366,
+  "end": 53.85,
+  "cstart": 53.366
+ },
+ {
+  "text": "Jadi",
+  "start": 54.1,
+  "end": 54.739,
+  "cstart": 54.1
+ },
+ {
+  "text": "cincin",
+  "start": 54.739,
+  "end": 55.378,
+  "cstart": 54.739
+ },
+ {
+  "text": "kau",
+  "start": 55.378,
+  "end": 56.017,
+  "cstart": 55.378
+ },
+ {
+  "text": "tu...",
+  "start": 56.017,
+  "end": 56.656,
+  "cstart": 56.017
+ },
+ {
+  "text": "sebenarnya",
+  "start": 56.656,
+  "end": 57.294,
+  "cstart": 56.656
+ },
+ {
+  "text": "serpihan",
+  "start": 57.294,
+  "end": 57.933,
+  "cstart": 57.294
+ },
+ {
+  "text": "bintang",
+  "start": 57.933,
+  "end": 58.572,
+  "cstart": 57.933
+ },
+ {
+  "text": "yang",
+  "start": 58.572,
+  "end": 59.211,
+  "cstart": 58.572
+ },
+ {
+  "text": "berlanggar.",
+  "start": 59.211,
+  "end": 59.85,
+  "cstart": 59.211
+ }
+]
