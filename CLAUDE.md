@@ -4,6 +4,9 @@ Vertical 3D explainer videos (Malay voiceover) made with HyperFrames + Three.js.
 
 - **House style and process:** use the `explainer-style` skill (`.claude/skills/explainer-style/SKILL.md`) for any new
   video or edit. It covers the look, camera, captions, voiceover handling, sound, the approval stops and reusable code.
+- **TikTok affiliate / UGC product edits** (talking-head + B-roll footage): use the `ugc-affiliate-style` skill
+  (`.claude/skills/ugc-affiliate-style/SKILL.md`). Reference project: `kitsui-fiber/` (v2 "clean" look).
+  The approval stops below are for explainers; for these edits follow what the user asks (often: render straight to MP4).
 - **Reference project:** `plane-video/` ("How a plane flies, the simple way"). New topics start as a copy of it.
 - **HyperFrames skills:** `.agents/skills/hyperframes*`. Read `/hyperframes` before writing compositions.
 - **Approval stops:** always show a storyboard, then wait. Then show a 540×960 preview, then wait. Only after that, render the final 1080×1920.
