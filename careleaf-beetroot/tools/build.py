@@ -101,18 +101,9 @@ SFX = [
     ("sx-tick1", "click-soft.mp3", 27.90, 0.45),
     ("sx-tick2", "click-soft.mp3", 29.04, 0.45),
     ("sx-tick3", "click-soft.mp3", 29.70, 0.45),
-    ("sx-sym", "whoosh-short.mp3", 1.06, 0.14),
-    ("sx-s2", "click-soft.mp3", 4.26, 0.35),
-    ("sx-s3", "click-soft.mp3", 7.68, 0.35),
-    ("sx-flow", "whoosh-short.mp3", 11.36, 0.16),
-    ("sx-call", "click-soft.mp3", 17.62, 0.35),
-    ("sx-no", "whoosh-short.mp3", 19.56, 0.16),
-    ("sx-dose", "whoosh-short.mp3", 25.28, 0.16),
-    ("sx-promo", "whoosh-short.mp3", 31.38, 0.2),
-    ("sx-bx", "click-soft.mp3", 31.72, 0.35),
     ("sx-cta", "click-soft.mp3", 33.22, 0.5),
-    ("sx-tap2", "click.mp3", 34.6, 0.22),
     ("sx-tap", "click.mp3", 33.62, 0.3),
+    ("sx-tap2", "click.mp3", 34.6, 0.22),
 ]
 MUSIC_VOL = 0.3
 
@@ -154,7 +145,7 @@ CAPS = [
     (25.32, 27.66, [("s", 3), ("K", 1), ("s", 3)], TOP, "c", "dark"),  # Dua biji je / sehari, / kunyah sampai habis.
     (27.68, 30.24, [("s", 5)], 0, "c", "none"),                    # Zero sugar, halal, perisa peach -> checklist card (gfx)
     (30.40, 31.40, [("s", 2), ("K", 1)], TOP, "c", "dark"),        # Sekarang ada / promo.
-    (31.42, 33.16, [("s", 5)], 0, "c", "none"),                    # Ambil tiga kotak, lagi murah -> promo card (gfx)
+    (31.42, 33.16, [("s", 1), ("K", 2), ("s", 2)], TOP, "c", "dark"),  # Ambil / tiga kotak, / lagi murah.
     (33.18, DUR, [("s", 4)], 0, "c", "none"),                      # Tekan beg kuning sekarang -> CTA card (gfx)
 ]
 
