@@ -15,11 +15,11 @@
       #world { position: absolute; inset: 0; }
       #world canvas { width: 1080px; height: 1920px; display: block; }
       #ui { position: absolute; inset: 0; }
-      .cap { position: absolute; left: 90px; right: 90px; top: 1182px; text-align: center; font-weight: 600; font-size: 50px; line-height: 1.22; letter-spacing: -0.2px; text-shadow: 0 3px 14px rgba(0,0,0,0.6); }
+      .cap { position: absolute; left: 90px; right: 90px; top: 1182px; text-align: center; font-weight: 600; font-size: 50px; line-height: 1.22; letter-spacing: -0.2px; text-shadow: 0 2px 4px rgba(0,0,0,0.9), 0 0 18px rgba(0,0,0,0.75), 0 0 36px rgba(0,0,0,0.5); }
       .cap .w, .title .w { display: inline-block; white-space: pre; }
-      .k { color: #ff7a1a; text-shadow: 0 0 18px rgba(255,122,26,0.85), 0 0 4px rgba(255,160,80,0.9); }
+      .k { color: #ff8a2a; text-shadow: 0 2px 4px rgba(0,0,0,0.9), 0 0 16px rgba(255,122,26,0.9), 0 0 30px rgba(0,0,0,0.6); }
       .title { position: absolute; left: 70px; right: 70px; top: 300px; text-align: center; font-weight: 700; font-size: 68px; line-height: 1.18; text-shadow: 0 3px 16px rgba(0,0,0,0.6); }
-      #pill { position: absolute; left: 62px; top: 1338px; height: 50px; padding: 0 20px 0 8px; border-radius: 25px; background: #f4f4f2; color: #16161a; font-weight: 600; font-size: 25px; display: flex; align-items: center; gap: 10px; }
+      #pill { position: absolute; left: 62px; top: 1352px; height: 50px; padding: 0 20px 0 8px; border-radius: 25px; background: #f4f4f2; color: #16161a; font-weight: 600; font-size: 25px; display: flex; align-items: center; gap: 10px; }
       #pill i { width: 34px; height: 34px; border-radius: 50%; background: #16161a; color: #fff; font-style: normal; font-size: 19px; display: flex; align-items: center; justify-content: center; }
       .lab { position: absolute; left: 0; top: 0; font-weight: 500; font-size: 31px; white-space: nowrap; text-shadow: 0 2px 10px rgba(0,0,0,0.7); transform: translate(-50%, -50%); }
       .lab.hi { color: #ff7a1a; text-shadow: 0 0 16px rgba(255,122,26,0.8); }
@@ -31,17 +31,19 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1080" data-height="1920" data-fps="30">
-      <div id="world" class="clip" data-start="0" data-duration="60" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="48" data-width="1080" data-height="1920" data-fps="30">
+      <div id="world" class="clip" data-start="0" data-duration="48" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
         <canvas id="world-canvas" width="1080" height="1920"></canvas>
       </div>
-      <div id="ui" class="clip" data-start="0" data-duration="60" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
+      <div id="ui" class="clip" data-start="0" data-duration="48" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
         <svg id="lines" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
         <div id="labels"></div>
         <div id="caps"></div>
         <div id="pill"><i id="pill-i"></i><span id="pill-t"></span></div>
         <div id="fade"></div>
       </div>
+      <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="48" data-track-index="6" data-volume="0.5"></audio>
+      <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="44.74" data-track-index="5" data-volume="1"></audio>
     </div>
 
     <script>
@@ -52,7 +54,8 @@
     </script>
     <script type="module">
       import { createWorld } from "./assets/world.js";
-      import { LINES, TITLE, LABELS, HANDLE, DURATION } from "./assets/story.js";
+      import { LINES } from "./assets/story.js";
+      import { LABELS, HANDLE, DURATION, END_TITLE, END_LINE } from "./assets/beats.js";
       const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
       const scale = Number(vars.previewScale) || 1;
       await Promise.all([500, 600, 700].map((w) => document.fonts.load(`${w} 40px "Lexend"`)));
@@ -66,21 +69,16 @@
 
       // captions: every line is laid out whole, words fade/slide in one by one
       const caps = document.getElementById("caps");
-      const lines = [...LINES.map((l) => [...l, "cap"]), [...TITLE, "title"]].map(([a, b, text, cls]) => {
-        const el = document.createElement("div"); el.className = cls; caps.appendChild(el);
-        const words = text.split(" ").map((raw, i, all) => {
-          const s = document.createElement("span"); const key = /^\*.*\*$/.test(raw);
-          s.className = "w" + (key ? " k" : ""); s.textContent = raw.replace(/\*/g, "") + (i < all.length - 1 ? " " : ""); el.appendChild(s);
-          return { s, at: a + ((b - a) * 0.86 * i) / all.length };
-        });
-        return { el, a, b, words, hold: cls === "title" ? 0.2 : 0.25 };
-      });
+      const mk = (cls, words, a, b) => { const el = document.createElement("div"); el.className = cls; caps.appendChild(el);
+        return { el, a, b, words: words.map((w, i) => { const sp = document.createElement("span"); sp.className = "w" + (w.k ? " k" : ""); sp.textContent = w.t + (i < words.length - 1 ? " " : ""); el.appendChild(sp); return { s: sp, at: w.at }; }) }; };
+      const spread = ([a, b, text]) => { const ws = text.split(" "); return [ws.map((raw, i) => ({ t: raw.replace(/\*/g, ""), k: raw.startsWith("*"), at: a + (i * 0.22) })), a, b]; };
+      const lines = [...LINES.map((l) => mk("cap", l.words, l.a, l.b)), mk("title", ...spread(END_TITLE)), mk("cap", ...spread(END_LINE))];
       function drawCaps(t) {
         for (const L of lines) {
-          const out = clamp((t - L.b - L.hold) / 0.18), on = t >= L.a - 0.05 && out < 1;
+          const out = clamp((t - L.b + 0.06) / 0.1), on = t >= L.a - 0.05 && out < 1;
           L.el.style.display = on ? "block" : "none"; if (!on) continue;
           L.el.style.opacity = 1 - out;
-          for (const w of L.words) { const u = clamp((t - w.at) / 0.16); w.s.style.opacity = u; w.s.style.transform = `translateY(${(1 - u) * 10}px)`; }
+          for (const w of L.words) { const u = clamp((t - w.at + 0.04) / 0.12); w.s.style.opacity = u; w.s.style.transform = `translateY(${(1 - u) * 10}px)`; }
         }
       }
 
@@ -111,7 +109,7 @@
       const fade = document.getElementById("fade");
       function renderAt(t) {
         world.render(t); drawCaps(t); drawLabels(t);
-        fade.style.opacity = clamp((t - (DURATION - 0.6)) / 0.5);
+        fade.style.opacity = clamp((t - (DURATION - 0.7)) / 0.55);
       }
       window.__renderAt = renderAt;
       window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));

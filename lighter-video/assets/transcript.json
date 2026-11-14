@@ -1,0 +1,728 @@
+[
+  {
+    "text": "Benda",
+    "start": 0.02,
+    "end": 0.3,
+    "id": "w0"
+  },
+  {
+    "text": "kecil",
+    "start": 0.3,
+    "end": 0.6,
+    "id": "w1"
+  },
+  {
+    "text": "ini",
+    "start": 0.6,
+    "end": 0.78,
+    "id": "w2"
+  },
+  {
+    "text": "simpan",
+    "start": 0.78,
+    "end": 1.14,
+    "id": "w3"
+  },
+  {
+    "text": "gas",
+    "start": 1.14,
+    "end": 1.32,
+    "id": "w4"
+  },
+  {
+    "text": "yang",
+    "start": 1.32,
+    "end": 1.56,
+    "id": "w5"
+  },
+  {
+    "text": "boleh",
+    "start": 1.56,
+    "end": 1.86,
+    "id": "w6"
+  },
+  {
+    "text": "meletup,",
+    "start": 1.86,
+    "end": 2.43,
+    "id": "w7"
+  },
+  {
+    "text": "tapi",
+    "start": 2.45,
+    "end": 2.65,
+    "id": "w8"
+  },
+  {
+    "text": "kau",
+    "start": 2.69,
+    "end": 2.78,
+    "id": "w9"
+  },
+  {
+    "text": "selamber",
+    "start": 2.85,
+    "end": 3.27,
+    "id": "w10"
+  },
+  {
+    "text": "je",
+    "start": 3.32,
+    "end": 3.39,
+    "id": "w11"
+  },
+  {
+    "text": "simpan",
+    "start": 3.39,
+    "end": 3.73,
+    "id": "w12"
+  },
+  {
+    "text": "dalam",
+    "start": 3.73,
+    "end": 3.95,
+    "id": "w13"
+  },
+  {
+    "text": "poket.",
+    "start": 4.02,
+    "end": 4.42,
+    "id": "w14"
+  },
+  {
+    "text": "Macam",
+    "start": 4.59,
+    "end": 4.7,
+    "id": "w15"
+  },
+  {
+    "text": "mana",
+    "start": 4.7,
+    "end": 4.89,
+    "id": "w16"
+  },
+  {
+    "text": "dia",
+    "start": 4.98,
+    "end": 5.1,
+    "id": "w17"
+  },
+  {
+    "text": "boleh",
+    "start": 5.1,
+    "end": 5.38,
+    "id": "w18"
+  },
+  {
+    "text": "keluar",
+    "start": 5.39,
+    "end": 5.74,
+    "id": "w19"
+  },
+  {
+    "text": "api",
+    "start": 5.74,
+    "end": 5.89,
+    "id": "w20"
+  },
+  {
+    "text": "dengan",
+    "start": 5.9,
+    "end": 6.24,
+    "id": "w21"
+  },
+  {
+    "text": "satu",
+    "start": 6.25,
+    "end": 6.4,
+    "id": "w22"
+  },
+  {
+    "text": "petik",
+    "start": 6.5,
+    "end": 6.76,
+    "id": "w23"
+  },
+  {
+    "text": "je.",
+    "start": 6.87,
+    "end": 7.11,
+    "id": "w24"
+  },
+  {
+    "text": "Jom",
+    "start": 7.21,
+    "end": 7.39,
+    "id": "w25"
+  },
+  {
+    "text": "kita",
+    "start": 7.39,
+    "end": 7.76,
+    "id": "w26"
+  },
+  {
+    "text": "bongka.",
+    "start": 7.76,
+    "end": 8.34,
+    "id": "w27"
+  },
+  {
+    "text": "Badan",
+    "start": 8.53,
+    "end": 8.7,
+    "id": "w28"
+  },
+  {
+    "text": "dia",
+    "start": 8.77,
+    "end": 8.95,
+    "id": "w29"
+  },
+  {
+    "text": "ni",
+    "start": 8.95,
+    "end": 9.1,
+    "id": "w30"
+  },
+  {
+    "text": "sebenarnya",
+    "start": 9.1,
+    "end": 9.86,
+    "id": "w31"
+  },
+  {
+    "text": "tanki.",
+    "start": 9.86,
+    "end": 10.28,
+    "id": "w32"
+  },
+  {
+    "text": "Dalam",
+    "start": 10.47,
+    "end": 10.64,
+    "id": "w33"
+  },
+  {
+    "text": "tu",
+    "start": 10.71,
+    "end": 10.75,
+    "id": "w34"
+  },
+  {
+    "text": "ada",
+    "start": 10.84,
+    "end": 11.02,
+    "id": "w35"
+  },
+  {
+    "text": "butanan,",
+    "start": 11.02,
+    "end": 11.66,
+    "id": "w36"
+  },
+  {
+    "text": "gas",
+    "start": 11.71,
+    "end": 11.91,
+    "id": "w37"
+  },
+  {
+    "text": "yang",
+    "start": 11.91,
+    "end": 12.2,
+    "id": "w38"
+  },
+  {
+    "text": "dimampat",
+    "start": 12.21,
+    "end": 12.8,
+    "id": "w39"
+  },
+  {
+    "text": "kuat-kuat",
+    "start": 12.8,
+    "end": 13.47,
+    "id": "w40"
+  },
+  {
+    "text": "sampai",
+    "start": 13.47,
+    "end": 13.92,
+    "id": "w41"
+  },
+  {
+    "text": "jadi",
+    "start": 13.92,
+    "end": 14.22,
+    "id": "w42"
+  },
+  {
+    "text": "cecair.",
+    "start": 14.22,
+    "end": 14.72,
+    "id": "w43"
+  },
+  {
+    "text": "Sekarang",
+    "start": 14.91,
+    "end": 15.19,
+    "id": "w44"
+  },
+  {
+    "text": "kita",
+    "start": 15.28,
+    "end": 15.52,
+    "id": "w45"
+  },
+  {
+    "text": "belah",
+    "start": 15.52,
+    "end": 15.85,
+    "id": "w46"
+  },
+  {
+    "text": "dia.",
+    "start": 15.85,
+    "end": 16.28,
+    "id": "w47"
+  },
+  {
+    "text": "Kat",
+    "start": 16.47,
+    "end": 16.51,
+    "id": "w48"
+  },
+  {
+    "text": "atas",
+    "start": 16.51,
+    "end": 16.75,
+    "id": "w49"
+  },
+  {
+    "text": "ada",
+    "start": 16.84,
+    "end": 17.04,
+    "id": "w50"
+  },
+  {
+    "text": "rodah",
+    "start": 17.04,
+    "end": 17.42,
+    "id": "w51"
+  },
+  {
+    "text": "besi.",
+    "start": 17.42,
+    "end": 18,
+    "id": "w52"
+  },
+  {
+    "text": "Bawah",
+    "start": 18.09,
+    "end": 18.45,
+    "id": "w53"
+  },
+  {
+    "text": "rodah",
+    "start": 18.45,
+    "end": 18.89,
+    "id": "w54"
+  },
+  {
+    "text": "tu",
+    "start": 18.9,
+    "end": 19.08,
+    "id": "w55"
+  },
+  {
+    "text": "ada",
+    "start": 19.08,
+    "end": 19.35,
+    "id": "w56"
+  },
+  {
+    "text": "batu",
+    "start": 19.35,
+    "end": 19.71,
+    "id": "w57"
+  },
+  {
+    "text": "api.",
+    "start": 19.71,
+    "end": 20,
+    "id": "w58"
+  },
+  {
+    "text": "Dan",
+    "start": 20.19,
+    "end": 20.21,
+    "id": "w59"
+  },
+  {
+    "text": "spring",
+    "start": 20.21,
+    "end": 20.64,
+    "id": "w60"
+  },
+  {
+    "text": "ni",
+    "start": 20.64,
+    "end": 20.78,
+    "id": "w61"
+  },
+  {
+    "text": "tolak",
+    "start": 20.78,
+    "end": 21.13,
+    "id": "w62"
+  },
+  {
+    "text": "batu",
+    "start": 21.13,
+    "end": 21.38,
+    "id": "w63"
+  },
+  {
+    "text": "tu",
+    "start": 21.43,
+    "end": 21.54,
+    "id": "w64"
+  },
+  {
+    "text": "supaya",
+    "start": 21.55,
+    "end": 21.97,
+    "id": "w65"
+  },
+  {
+    "text": "sentiasa",
+    "start": 21.97,
+    "end": 22.53,
+    "id": "w66"
+  },
+  {
+    "text": "rapat",
+    "start": 22.59,
+    "end": 22.89,
+    "id": "w67"
+  },
+  {
+    "text": "dengan",
+    "start": 22.89,
+    "end": 23.27,
+    "id": "w68"
+  },
+  {
+    "text": "rodah.",
+    "start": 23.32,
+    "end": 23.95,
+    "id": "w69"
+  },
+  {
+    "text": "Bila",
+    "start": 24.08,
+    "end": 24.33,
+    "id": "w70"
+  },
+  {
+    "text": "ibu",
+    "start": 24.33,
+    "end": 24.57,
+    "id": "w71"
+  },
+  {
+    "text": "jari",
+    "start": 24.57,
+    "end": 24.89,
+    "id": "w72"
+  },
+  {
+    "text": "kau",
+    "start": 24.9,
+    "end": 25.15,
+    "id": "w73"
+  },
+  {
+    "text": "pusing",
+    "start": 25.15,
+    "end": 25.65,
+    "id": "w74"
+  },
+  {
+    "text": "rodah,",
+    "start": 25.65,
+    "end": 26.2,
+    "id": "w75"
+  },
+  {
+    "text": "dia",
+    "start": 26.45,
+    "end": 26.53,
+    "id": "w76"
+  },
+  {
+    "text": "kikis",
+    "start": 26.59,
+    "end": 27.02,
+    "id": "w77"
+  },
+  {
+    "text": "batu",
+    "start": 27.02,
+    "end": 27.38,
+    "id": "w78"
+  },
+  {
+    "text": "api",
+    "start": 27.38,
+    "end": 27.65,
+    "id": "w79"
+  },
+  {
+    "text": "tu,",
+    "start": 27.65,
+    "end": 27.95,
+    "id": "w80"
+  },
+  {
+    "text": "terus",
+    "start": 28.02,
+    "end": 28.33,
+    "id": "w81"
+  },
+  {
+    "text": "keluar",
+    "start": 28.55,
+    "end": 28.87,
+    "id": "w82"
+  },
+  {
+    "text": "pecikan",
+    "start": 28.87,
+    "end": 29.33,
+    "id": "w83"
+  },
+  {
+    "text": "panas.",
+    "start": 29.41,
+    "end": 29.84,
+    "id": "w84"
+  },
+  {
+    "text": "Ibu",
+    "start": 29.92,
+    "end": 30.09,
+    "id": "w85"
+  },
+  {
+    "text": "jari",
+    "start": 30.09,
+    "end": 30.42,
+    "id": "w86"
+  },
+  {
+    "text": "yang",
+    "start": 30.42,
+    "end": 30.76,
+    "id": "w87"
+  },
+  {
+    "text": "sama",
+    "start": 30.76,
+    "end": 31.1,
+    "id": "w88"
+  },
+  {
+    "text": "tekan",
+    "start": 31.1,
+    "end": 31.52,
+    "id": "w89"
+  },
+  {
+    "text": "tuas",
+    "start": 31.52,
+    "end": 31.82,
+    "id": "w90"
+  },
+  {
+    "text": "ni,",
+    "start": 31.92,
+    "end": 32.04,
+    "id": "w91"
+  },
+  {
+    "text": "injap",
+    "start": 32.29,
+    "end": 32.62,
+    "id": "w92"
+  },
+  {
+    "text": "pun",
+    "start": 32.62,
+    "end": 32.87,
+    "id": "w93"
+  },
+  {
+    "text": "terbuka.",
+    "start": 32.87,
+    "end": 33.79,
+    "id": "w94"
+  },
+  {
+    "text": "Cecair",
+    "start": 33.94,
+    "end": 34.16,
+    "id": "w95"
+  },
+  {
+    "text": "butanan",
+    "start": 34.22,
+    "end": 34.73,
+    "id": "w96"
+  },
+  {
+    "text": "tadi",
+    "start": 34.73,
+    "end": 35.02,
+    "id": "w97"
+  },
+  {
+    "text": "terus",
+    "start": 35.02,
+    "end": 35.38,
+    "id": "w98"
+  },
+  {
+    "text": "jadi",
+    "start": 35.39,
+    "end": 35.67,
+    "id": "w99"
+  },
+  {
+    "text": "gas,",
+    "start": 35.68,
+    "end": 36,
+    "id": "w100"
+  },
+  {
+    "text": "naik",
+    "start": 36.18,
+    "end": 36.32,
+    "id": "w101"
+  },
+  {
+    "text": "ikut",
+    "start": 36.32,
+    "end": 36.58,
+    "id": "w102"
+  },
+  {
+    "text": "tiob,",
+    "start": 36.65,
+    "end": 37.02,
+    "id": "w103"
+  },
+  {
+    "text": "keluar",
+    "start": 37.02,
+    "end": 37.46,
+    "id": "w104"
+  },
+  {
+    "text": "kat",
+    "start": 37.46,
+    "end": 37.68,
+    "id": "w105"
+  },
+  {
+    "text": "atas.",
+    "start": 37.68,
+    "end": 38.36,
+    "id": "w106"
+  },
+  {
+    "text": "Pecikan",
+    "start": 38.51,
+    "end": 38.83,
+    "id": "w107"
+  },
+  {
+    "text": "jumpe",
+    "start": 38.92,
+    "end": 39.27,
+    "id": "w108"
+  },
+  {
+    "text": "gas",
+    "start": 39.27,
+    "end": 39.5,
+    "id": "w109"
+  },
+  {
+    "text": "pub",
+    "start": 39.5,
+    "end": 39.73,
+    "id": "w110"
+  },
+  {
+    "text": "menyala.",
+    "start": 39.73,
+    "end": 40.56,
+    "id": "w111"
+  },
+  {
+    "text": "Lepas",
+    "start": 40.65,
+    "end": 41.01,
+    "id": "w112"
+  },
+  {
+    "text": "je",
+    "start": 41.01,
+    "end": 41.19,
+    "id": "w113"
+  },
+  {
+    "text": "tuas,",
+    "start": 41.19,
+    "end": 41.73,
+    "id": "w114"
+  },
+  {
+    "text": "injap",
+    "start": 41.73,
+    "end": 42.18,
+    "id": "w115"
+  },
+  {
+    "text": "tutup",
+    "start": 42.18,
+    "end": 42.54,
+    "id": "w116"
+  },
+  {
+    "text": "api",
+    "start": 42.64,
+    "end": 42.9,
+    "id": "w117"
+  },
+  {
+    "text": "padam.",
+    "start": 43.01,
+    "end": 43.67,
+    "id": "w118"
+  },
+  {
+    "text": "Simple",
+    "start": 43.87,
+    "end": 44.31,
+    "id": "w119"
+  },
+  {
+    "text": "kan?",
+    "start": 44.31,
+    "end": 44.68,
+    "id": "w120"
+  }
+]
