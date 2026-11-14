@@ -1,6 +1,6 @@
 # Careleaf Beetroot Gummies — TikTok affiliate edit (gelap)
 
-Gaya: `ugc-affiliate-style` v2 "clean" (sama macam `kitsui-fiber/`), versi **gelap**:
+Gaya: `ugc-affiliate-style` v2 "clean", kad kaca gelap "premium" + motion graphic ikut dialog (sama macam `kitsui-fiber/`), versi **gelap**:
 gradient hitam dari bawah (≈48% skrin) + gradient nipis dari atas, grade lebih gelap (blacks −0.14,
 shadows −0.12, vignette 0.45), muzik electric-piano dalam D minor.
 Output: `renders/careleaf_beetroot.mp4` (upload) dan `renders/careleaf_beetroot_master.mp4`. 35.5 s.
@@ -47,3 +47,10 @@ python3 tools/edl.py && python3 tools/music.py && python3 tools/build.py
 npx hyperframes check
 npx hyperframes render -q delivery -o renders/careleaf_beetroot_master.mp4
 ```
+
+## v2: motion graphic premium
+Kad putih ditukar ke kaca gelap (border nipis, jalur kuning, sapuan cahaya). Grafik baru, semua ikut masa perkataan:
+kad "Tanda-tanda" (pening / pitam / penat menyala), denyut merah + chip AMARAN pada "toilet", diagram aliran
+(laju → perlahan, "Ilustrasi"), bracket + sapuan cahaya + kilauan pada kotak, callout NO₃⁻ pada beetroot,
+NO₃⁻ → NO, kad dos (2 gummy), checklist dengan tick dilukis, kad PROMO dengan 3 kotak (`assets/img/box.png`,
+crop dari frame terakhir v4), CTA kaca dengan ikon kuning gradient. Output: `renders/careleaf_beetroot_v2.mp4`.
