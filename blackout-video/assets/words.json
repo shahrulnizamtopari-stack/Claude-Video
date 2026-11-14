@@ -1,0 +1,746 @@
+[
+ {
+  "text": "Macam",
+  "start": 0.15,
+  "end": 0.592,
+  "cstart": 0.15
+ },
+ {
+  "text": "mana",
+  "start": 0.592,
+  "end": 1.035,
+  "cstart": 0.592
+ },
+ {
+  "text": "kalau",
+  "start": 1.035,
+  "end": 1.477,
+  "cstart": 1.035
+ },
+ {
+  "text": "satu",
+  "start": 1.477,
+  "end": 1.919,
+  "cstart": 1.477
+ },
+ {
+  "text": "Malaysia",
+  "start": 1.919,
+  "end": 2.362,
+  "cstart": 1.919
+ },
+ {
+  "text": "blackout,",
+  "start": 2.362,
+  "end": 2.804,
+  "cstart": 2.362
+ },
+ {
+  "text": "tujuh",
+  "start": 2.804,
+  "end": 3.246,
+  "cstart": 2.804
+ },
+ {
+  "text": "hari?",
+  "start": 3.246,
+  "end": 3.688,
+  "cstart": 3.246
+ },
+ {
+  "text": "Semua",
+  "start": 3.688,
+  "end": 4.131,
+  "cstart": 3.688
+ },
+ {
+  "text": "gelap.",
+  "start": 4.131,
+  "end": 4.573,
+  "cstart": 4.131
+ },
+ {
+  "text": "Kecuali",
+  "start": 4.573,
+  "end": 5.015,
+  "cstart": 4.573
+ },
+ {
+  "text": "satu",
+  "start": 5.015,
+  "end": 5.458,
+  "cstart": 5.015
+ },
+ {
+  "text": "rumah.",
+  "start": 5.458,
+  "end": 6.0,
+  "cstart": 5.458
+ },
+ {
+  "text": "Hari",
+  "start": 6.0,
+  "end": 6.493,
+  "cstart": 6.0
+ },
+ {
+  "text": "pertama,",
+  "start": 6.493,
+  "end": 6.986,
+  "cstart": 6.493
+ },
+ {
+  "text": "semua",
+  "start": 6.986,
+  "end": 7.479,
+  "cstart": 6.986
+ },
+ {
+  "text": "orang",
+  "start": 7.479,
+  "end": 7.971,
+  "cstart": 7.479
+ },
+ {
+  "text": "relaks",
+  "start": 7.971,
+  "end": 8.464,
+  "cstart": 7.971
+ },
+ {
+  "text": "lagi.",
+  "start": 8.464,
+  "end": 8.957,
+  "cstart": 8.464
+ },
+ {
+  "text": "Pasang",
+  "start": 8.957,
+  "end": 9.45,
+  "cstart": 8.957
+ },
+ {
+  "text": "lilin,",
+  "start": 9.45,
+  "end": 9.943,
+  "cstart": 9.45
+ },
+ {
+  "text": "lepak",
+  "start": 9.943,
+  "end": 10.436,
+  "cstart": 9.943
+ },
+ {
+  "text": "depan",
+  "start": 10.436,
+  "end": 10.929,
+  "cstart": 10.436
+ },
+ {
+  "text": "rumah,",
+  "start": 10.929,
+  "end": 11.421,
+  "cstart": 10.929
+ },
+ {
+  "text": "rasa",
+  "start": 11.421,
+  "end": 11.914,
+  "cstart": 11.421
+ },
+ {
+  "text": "macam",
+  "start": 11.914,
+  "end": 12.407,
+  "cstart": 11.914
+ },
+ {
+  "text": "camping.",
+  "start": 12.407,
+  "end": 13.0,
+  "cstart": 12.407
+ },
+ {
+  "text": "Hari",
+  "start": 13.0,
+  "end": 13.395,
+  "cstart": 13.0
+ },
+ {
+  "text": "kedua,",
+  "start": 13.395,
+  "end": 13.79,
+  "cstart": 13.395
+ },
+ {
+  "text": "telefon",
+  "start": 13.79,
+  "end": 14.185,
+  "cstart": 13.79
+ },
+ {
+  "text": "mula",
+  "start": 14.185,
+  "end": 14.58,
+  "cstart": 14.185
+ },
+ {
+  "text": "mati.",
+  "start": 14.58,
+  "end": 14.975,
+  "cstart": 14.58
+ },
+ {
+  "text": "Powerbank",
+  "start": 14.975,
+  "end": 15.37,
+  "cstart": 14.975
+ },
+ {
+  "text": "pun",
+  "start": 15.37,
+  "end": 15.765,
+  "cstart": 15.37
+ },
+ {
+  "text": "habis.",
+  "start": 15.765,
+  "end": 16.16,
+  "cstart": 15.765
+ },
+ {
+  "text": "Tak",
+  "start": 16.16,
+  "end": 16.555,
+  "cstart": 16.16
+ },
+ {
+  "text": "ada",
+  "start": 16.555,
+  "end": 16.95,
+  "cstart": 16.555
+ },
+ {
+  "text": "line,",
+  "start": 16.95,
+  "end": 17.345,
+  "cstart": 16.95
+ },
+ {
+  "text": "tak",
+  "start": 17.345,
+  "end": 17.74,
+  "cstart": 17.345
+ },
+ {
+  "text": "ada",
+  "start": 17.74,
+  "end": 18.135,
+  "cstart": 17.74
+ },
+ {
+  "text": "berita,",
+  "start": 18.135,
+  "end": 18.53,
+  "cstart": 18.135
+ },
+ {
+  "text": "tak",
+  "start": 18.53,
+  "end": 18.925,
+  "cstart": 18.53
+ },
+ {
+  "text": "tahu",
+  "start": 18.925,
+  "end": 19.32,
+  "cstart": 18.925
+ },
+ {
+  "text": "apa",
+  "start": 19.32,
+  "end": 19.715,
+  "cstart": 19.32
+ },
+ {
+  "text": "jadi",
+  "start": 19.715,
+  "end": 20.11,
+  "cstart": 19.715
+ },
+ {
+  "text": "kat",
+  "start": 20.11,
+  "end": 20.505,
+  "cstart": 20.11
+ },
+ {
+  "text": "luar.",
+  "start": 20.505,
+  "end": 21.0,
+  "cstart": 20.505
+ },
+ {
+  "text": "Hari",
+  "start": 21.0,
+  "end": 21.527,
+  "cstart": 21.0
+ },
+ {
+  "text": "ketiga,",
+  "start": 21.527,
+  "end": 22.053,
+  "cstart": 21.527
+ },
+ {
+  "text": "makanan",
+  "start": 22.053,
+  "end": 22.58,
+  "cstart": 22.053
+ },
+ {
+  "text": "dalam",
+  "start": 22.58,
+  "end": 23.107,
+  "cstart": 22.58
+ },
+ {
+  "text": "peti",
+  "start": 23.107,
+  "end": 23.633,
+  "cstart": 23.107
+ },
+ {
+  "text": "ais",
+  "start": 23.633,
+  "end": 24.16,
+  "cstart": 23.633
+ },
+ {
+  "text": "mula",
+  "start": 24.16,
+  "end": 24.687,
+  "cstart": 24.16
+ },
+ {
+  "text": "rosak.",
+  "start": 24.687,
+  "end": 25.213,
+  "cstart": 24.687
+ },
+ {
+  "text": "Malam",
+  "start": 25.213,
+  "end": 25.74,
+  "cstart": 25.213
+ },
+ {
+  "text": "pula",
+  "start": 25.74,
+  "end": 26.267,
+  "cstart": 25.74
+ },
+ {
+  "text": "panas,",
+  "start": 26.267,
+  "end": 26.793,
+  "cstart": 26.267
+ },
+ {
+  "text": "gelap,",
+  "start": 26.793,
+  "end": 27.32,
+  "cstart": 26.793
+ },
+ {
+  "text": "susah",
+  "start": 27.32,
+  "end": 27.847,
+  "cstart": 27.32
+ },
+ {
+  "text": "nak",
+  "start": 27.847,
+  "end": 28.373,
+  "cstart": 27.847
+ },
+ {
+  "text": "tidur.",
+  "start": 28.373,
+  "end": 29.0,
+  "cstart": 28.373
+ },
+ {
+  "text": "Tapi",
+  "start": 29.0,
+  "end": 29.527,
+  "cstart": 29.0
+ },
+ {
+  "text": "rumah",
+  "start": 29.527,
+  "end": 30.053,
+  "cstart": 29.527
+ },
+ {
+  "text": "yang",
+  "start": 30.053,
+  "end": 30.58,
+  "cstart": 30.053
+ },
+ {
+  "text": "satu",
+  "start": 30.58,
+  "end": 31.107,
+  "cstart": 30.58
+ },
+ {
+  "text": "tu?",
+  "start": 31.107,
+  "end": 31.633,
+  "cstart": 31.107
+ },
+ {
+  "text": "Dah",
+  "start": 31.633,
+  "end": 32.16,
+  "cstart": 31.633
+ },
+ {
+  "text": "tiga",
+  "start": 32.16,
+  "end": 32.687,
+  "cstart": 32.16
+ },
+ {
+  "text": "malam,",
+  "start": 32.687,
+  "end": 33.213,
+  "cstart": 32.687
+ },
+ {
+  "text": "lampu",
+  "start": 33.213,
+  "end": 33.74,
+  "cstart": 33.213
+ },
+ {
+  "text": "dia",
+  "start": 33.74,
+  "end": 34.267,
+  "cstart": 33.74
+ },
+ {
+  "text": "masih",
+  "start": 34.267,
+  "end": 34.793,
+  "cstart": 34.267
+ },
+ {
+  "text": "menyala.",
+  "start": 34.793,
+  "end": 35.32,
+  "cstart": 34.793
+ },
+ {
+  "text": "Telefon",
+  "start": 35.32,
+  "end": 35.847,
+  "cstart": 35.32
+ },
+ {
+  "text": "semua",
+  "start": 35.847,
+  "end": 36.373,
+  "cstart": 35.847
+ },
+ {
+  "text": "penuh.",
+  "start": 36.373,
+  "end": 37.0,
+  "cstart": 36.373
+ },
+ {
+  "text": "Rahsia",
+  "start": 37.0,
+  "end": 37.45,
+  "cstart": 37.0
+ },
+ {
+  "text": "dia,",
+  "start": 37.45,
+  "end": 37.9,
+  "cstart": 37.45
+ },
+ {
+  "text": "kotak",
+  "start": 37.9,
+  "end": 38.35,
+  "cstart": 37.9
+ },
+ {
+  "text": "ni",
+  "start": 38.35,
+  "end": 38.8,
+  "cstart": 38.35
+ },
+ {
+  "text": "je.",
+  "start": 38.8,
+  "end": 39.25,
+  "cstart": 38.8
+ },
+ {
+  "text": "Power",
+  "start": 39.25,
+  "end": 39.7,
+  "cstart": 39.25
+ },
+ {
+  "text": "station.",
+  "start": 39.7,
+  "end": 40.15,
+  "cstart": 39.7
+ },
+ {
+  "text": "Macam",
+  "start": 40.15,
+  "end": 40.6,
+  "cstart": 40.15
+ },
+ {
+  "text": "powerbank,",
+  "start": 40.6,
+  "end": 41.05,
+  "cstart": 40.6
+ },
+ {
+  "text": "tapi",
+  "start": 41.05,
+  "end": 41.5,
+  "cstart": 41.05
+ },
+ {
+  "text": "jauh",
+  "start": 41.5,
+  "end": 41.95,
+  "cstart": 41.5
+ },
+ {
+  "text": "lebih",
+  "start": 41.95,
+  "end": 42.4,
+  "cstart": 41.95
+ },
+ {
+  "text": "besar.",
+  "start": 42.4,
+  "end": 42.85,
+  "cstart": 42.4
+ },
+ {
+  "text": "Boleh",
+  "start": 42.85,
+  "end": 43.3,
+  "cstart": 42.85
+ },
+ {
+  "text": "hidupkan",
+  "start": 43.3,
+  "end": 43.75,
+  "cstart": 43.3
+ },
+ {
+  "text": "lampu,",
+  "start": 43.75,
+  "end": 44.2,
+  "cstart": 43.75
+ },
+ {
+  "text": "cas",
+  "start": 44.2,
+  "end": 44.65,
+  "cstart": 44.2
+ },
+ {
+  "text": "telefon,",
+  "start": 44.65,
+  "end": 45.1,
+  "cstart": 44.65
+ },
+ {
+  "text": "siap",
+  "start": 45.1,
+  "end": 45.55,
+  "cstart": 45.1
+ },
+ {
+  "text": "boleh",
+  "start": 45.55,
+  "end": 46.0,
+  "cstart": 45.55
+ },
+ {
+  "text": "pasang",
+  "start": 46.0,
+  "end": 46.45,
+  "cstart": 46.0
+ },
+ {
+  "text": "kipas.",
+  "start": 46.45,
+  "end": 47.0,
+  "cstart": 46.45
+ },
+ {
+  "text": "Jiran-jiran",
+  "start": 47.0,
+  "end": 47.75,
+  "cstart": 47.0
+ },
+ {
+  "text": "pun",
+  "start": 47.75,
+  "end": 48.5,
+  "cstart": 47.75
+ },
+ {
+  "text": "datang",
+  "start": 48.5,
+  "end": 49.25,
+  "cstart": 48.5
+ },
+ {
+  "text": "tumpang",
+  "start": 49.25,
+  "end": 50.0,
+  "cstart": 49.25
+ },
+ {
+  "text": "cas.",
+  "start": 50.0,
+  "end": 50.75,
+  "cstart": 50.0
+ },
+ {
+  "text": "Satu",
+  "start": 50.75,
+  "end": 51.5,
+  "cstart": 50.75
+ },
+ {
+  "text": "rumah,",
+  "start": 51.5,
+  "end": 52.25,
+  "cstart": 51.5
+ },
+ {
+  "text": "tolong",
+  "start": 52.25,
+  "end": 53.0,
+  "cstart": 52.25
+ },
+ {
+  "text": "satu",
+  "start": 53.0,
+  "end": 53.75,
+  "cstart": 53.0
+ },
+ {
+  "text": "taman.",
+  "start": 53.75,
+  "end": 54.6,
+  "cstart": 53.75
+ },
+ {
+  "text": "Blackout",
+  "start": 54.6,
+  "end": 54.953,
+  "cstart": 54.6
+ },
+ {
+  "text": "tujuh",
+  "start": 54.953,
+  "end": 55.307,
+  "cstart": 54.953
+ },
+ {
+  "text": "hari",
+  "start": 55.307,
+  "end": 55.66,
+  "cstart": 55.307
+ },
+ {
+  "text": "mungkin",
+  "start": 55.66,
+  "end": 56.013,
+  "cstart": 55.66
+ },
+ {
+  "text": "tak",
+  "start": 56.013,
+  "end": 56.367,
+  "cstart": 56.013
+ },
+ {
+  "text": "jadi.",
+  "start": 56.367,
+  "end": 56.72,
+  "cstart": 56.367
+ },
+ {
+  "text": "Tapi",
+  "start": 56.72,
+  "end": 57.073,
+  "cstart": 56.72
+ },
+ {
+  "text": "blackout",
+  "start": 57.073,
+  "end": 57.427,
+  "cstart": 57.073
+ },
+ {
+  "text": "satu",
+  "start": 57.427,
+  "end": 57.78,
+  "cstart": 57.427
+ },
+ {
+  "text": "malam?",
+  "start": 57.78,
+  "end": 58.133,
+  "cstart": 57.78
+ },
+ {
+  "text": "Selalu.",
+  "start": 58.133,
+  "end": 58.487,
+  "cstart": 58.133
+ },
+ {
+  "text": "Link",
+  "start": 58.487,
+  "end": 58.84,
+  "cstart": 58.487
+ },
+ {
+  "text": "kat",
+  "start": 58.84,
+  "end": 59.193,
+  "cstart": 58.84
+ },
+ {
+  "text": "beg",
+  "start": 59.193,
+  "end": 59.547,
+  "cstart": 59.193
+ },
+ {
+  "text": "kuning.",
+  "start": 59.547,
+  "end": 59.9,
+  "cstart": 59.547
+ }
+]
