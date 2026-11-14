@@ -16,7 +16,7 @@ VOICE = json.load(open(os.path.join(ROOT, "tools/edl.json")))["total"]
 W, H = 1080, 1920
 KEY = "#F5C518"      # key-phrase yellow
 INK = "#14261A"
-TOP, BOT = 214, 1112  # caption rows: dark space above the head / over the bottom gradient
+TOP, BOT = 390, 1112  # caption rows: dark space above the head / over the bottom gradient
 
 # ---------------------------------------------------------------- picture edit
 # (id, file, T start, T end, media start)   -- the voice track runs underneath, untouched
@@ -128,7 +128,7 @@ WORDS = [(WORDS[i], float(WORDS[i + 1])) for i in range(0, len(WORDS), 2)]
 # (T start, T end, lines, top px, align, theme)
 # lines: (kind, n words): s = small white setup line, K = big key phrase (tracks in). theme "static" = on from frame 0.
 CAPS = [
-    (0.00, 2.12, [("s", 3), ("K", 1), ("s", 2)], TOP, "c", "static"),  # Abang kak, selalu / PENING-PENING / kepala tak?
+    (0.00, 2.12, [("s", 3), ("K", 1), ("s", 2)], TOP - 40, "c", "static"),  # Abang kak, selalu / PENING-PENING / kepala tak?
     (2.20, 3.66, [("s", 2), ("K", 2)], BOT, "c", "dark"),          # Bangun dari / duduk je,
     (3.68, 4.70, [("s", 3), ("K", 1)], BOT, "c", "dark"),          # terus rasa nak / pitam.
     (4.86, 6.08, [("s", 2), ("K", 2)], BOT, "c", "dark"),          # Kerja tak / berat pun,
@@ -137,7 +137,7 @@ CAPS = [
     (10.17, 11.18, [("s", 1), ("K", 1)], BOT, "c", "dark"),        # dalam / toilet.
     (11.46, 13.68, [("s", 3), ("K", 2), ("s", 2)], BOT, "c", "dark"),  # Selalunya ni sebab / aliran darah / tak lancar.
     (13.86, 15.22, [("s", 4), ("K", 1)], TOP, "c", "dark"),        # Sebab tu ramai dah / amalkan
-    (15.24, 16.74, [("s", 1), ("K", 1), ("K", 2)], TOP, "c", "dark"),  # Careleaf / Beetroot / Gummies ni.
+    (15.24, 16.74, [("s", 1), ("K", 1), ("K", 2)], TOP - 170, "c", "dark"),  # Careleaf / Beetroot / Gummies ni.
     (16.86, 18.88, [("s", 3), ("K", 1), ("K", 1)], BOT, "c", "dark"),  # Beetroot ni ada / dietary / nitrate,
     (18.96, 21.02, [("s", 3), ("K", 2)], TOP, "c", "dark"),        # bantu badan hasilkan / nitric oxide,
     (21.10, 23.40, [("s", 5), ("K", 2)], BOT, "c", "dark"),        # sokong aliran darah sampai ke / hujung jari.
