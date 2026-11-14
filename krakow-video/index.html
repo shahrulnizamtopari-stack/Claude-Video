@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ms" data-composition-variables='[{"id":"previewScale","type":"number","label":"3D render scale (0.5 for previews)","default":1,"min":0.25,"max":1,"step":0.25},{"id":"fx","type":"string","label":"effects override (JSON, testing only)","default":""},{"id":"captions","type":"boolean","label":"burn in captions (false = clean plate)","default":true}]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/lib/gsap.min.js"></script>
+    <script type="importmap">{ "imports": { "three": "./assets/lib/three.module.min.js" } }</script>
+    <style>
+      @font-face { font-family: "Montserrat"; font-weight: 800; src: url("assets/fonts/montserrat-latin-800-normal.woff2") format("woff2"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #060911; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "Montserrat", sans-serif; font-weight: 800; }
+      #world { position: absolute; inset: 0; }
+      #world canvas { width: 1080px; height: 1920px; display: block; }
+      .stroke { color: #fff; -webkit-text-stroke: 10px #000; paint-order: stroke fill; }
+      /* real photos */
+      #photos { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+      .ph { position: absolute; inset: 0; opacity: 0; }
+      .ph .full { position: absolute; inset: 0; overflow: hidden; }
+      .ph .full img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 45%; }
+      .ph .full::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,9,17,0.55) 0%, rgba(6,9,17,0.05) 30%, rgba(6,9,17,0.1) 60%, rgba(6,9,17,0.75) 100%); }
+      .ph .card { position: absolute; left: 50px; right: 50px; top: 1150px; height: 560px; border-radius: 26px; overflow: hidden; border: 6px solid #fff; box-shadow: 0 24px 60px rgba(0,0,0,0.6); background: #000; }
+      .ph .card img { width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 50%; }
+      .ph .tag { position: absolute; left: 22px; top: 18px; padding: 8px 18px; border-radius: 12px; background: #ff2d3d; color: #fff; font-size: 30px; letter-spacing: 1px; }
+      .ph .cap { position: absolute; left: 22px; bottom: 54px; font-size: 34px; }
+      .ph .credit { position: absolute; left: 22px; bottom: 16px; font-size: 20px; color: rgba(255,255,255,0.8); font-weight: 800; text-shadow: 0 2px 4px #000; }
+      .ph .full .cap { left: 50px; bottom: 300px; font-size: 40px; z-index: 2; }
+      .ph .full .credit { left: 50px; bottom: 260px; z-index: 2; }
+      .gray img { filter: grayscale(1) contrast(1.05) brightness(0.9); }
+      /* HUD */
+      #hud { position: absolute; left: 48px; top: 96px; z-index: 6; font-size: 30px; letter-spacing: 1px; color: #dfe8ff; display: flex; align-items: center; gap: 14px; text-shadow: 0 2px 6px #000; }
+      #hud .dot { width: 20px; height: 20px; border-radius: 50%; background: #ff2d3d; box-shadow: 0 0 18px #ff2d3d; }
+      #osm { position: absolute; left: 48px; bottom: 40px; z-index: 6; font-size: 20px; color: rgba(220,230,255,0.7); text-shadow: 0 2px 4px #000; }
+      /* dossier */
+      #dossier { position: absolute; left: 60px; right: 60px; top: 1160px; z-index: 4; padding: 30px 36px; border-radius: 26px; background: rgba(8,12,22,0.88); border: 4px solid #ffc531; opacity: 0; }
+      #dossier .h { font-size: 34px; color: #ffc531; letter-spacing: 2px; margin-bottom: 18px; }
+      #dossier .row { display: flex; justify-content: space-between; font-size: 34px; color: #fff; padding: 12px 0; border-top: 2px solid rgba(255,255,255,0.12); opacity: 0; }
+      #dossier .row span:first-child { color: #9fb0d6; }
+      /* fact cards at the top */
+      #stat { position: absolute; left: 0; right: 0; top: 190px; display: flex; justify-content: center; z-index: 5; }
+      #stat .card { text-align: center; transform-origin: 50% 60%; }
+      #stat .big { font-size: 150px; line-height: 1; color: #fff; -webkit-text-stroke: 18px #000; paint-order: stroke fill; font-variant-numeric: tabular-nums; white-space: nowrap; }
+      #stat .sub { margin-top: 18px; font-size: 46px; color: #fff; -webkit-text-stroke: 10px #000; paint-order: stroke fill; letter-spacing: 1px; white-space: nowrap; }
+      #captions-host { position: absolute; inset: 0; z-index: 10; display: var(--caps, block); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="69" data-width="1080" data-height="1920" data-fps="30">
+      <div id="world" class="clip" data-start="0" data-duration="69" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+        <canvas id="world-canvas" width="1080" height="1920"></canvas>
+      </div>
+      <div id="photos" class="clip" data-start="0" data-duration="69" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
+        <div class="ph" id="ph-aerial"><div class="full"><img src="assets/photos/aerial.jpg" alt="" /><div class="cap stroke">RYNEK GŁÓWNY, KRAKÓW</div><div class="credit">Foto: Jorge Lascar · CC BY 2.0</div></div></div>
+        <div class="ph" id="ph-cctv"><div class="card"><img src="assets/photos/cctv.jpg" alt="" /><div class="tag">CCTV</div><div class="cap stroke">Kereta suspek masuk ke dataran</div><div class="credit">Rakaman CCTV · via cedarnews.net / Wikimedia Commons</div></div></div>
+        <div class="ph gray" id="ph-mary"><div class="card"><img src="assets/photos/mariacki.jpg" alt="" /><div class="cap stroke">Gereja St. Mary, Rynek Główny</div><div class="credit">Foto: Zygmunt Put · CC BY-SA 4.0</div></div></div>
+        <div class="ph" id="ph-square"><div class="full"><img src="assets/photos/square.jpg" alt="" /><div class="cap stroke">Dataran Rynek pada hari biasa</div><div class="credit">Foto: Zygmunt Put · CC BY-SA 4.0</div></div></div>
+      </div>
+      <div id="hud" class="clip" data-start="0" data-duration="69" data-track-index="6" data-track-kind="graphics"><div class="dot" id="hud-dot"></div><div>KRAKÓW · RYNEK GŁÓWNY · 7.11.2026</div></div>
+      <div id="osm" class="clip" data-start="0" data-duration="69" data-track-index="7" data-track-kind="graphics">Peta: © OpenStreetMap contributors</div>
+      <div id="dossier" class="clip" data-start="0" data-duration="69" data-track-index="8" data-track-kind="graphics">
+        <div class="h">FAIL SUSPEK</div>
+        <div class="row"><span>Umur</span><span>20-an</span></div>
+        <div class="row"><span>Bertindak</span><span>Seorang diri</span></div>
+        <div class="row"><span>Senjata</span><span>Sah · permit sukan</span></div>
+        <div class="row"><span>Fahaman</span><span>Ekstrem kanan (kata menteri)</span></div>
+        <div class="row"><span>Status</span><span>Ditahan</span></div>
+      </div>
+      <audio id="vo" class="clip" src="assets/voiceover_paced.wav" data-start="0" data-duration="69" data-track-index="4" data-volume="0.89"></audio>
+      <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="69" data-track-index="5" data-volume="1"></audio>
+      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="69"
+        data-track-index="3" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+      <div id="stat" class="clip" data-start="0" data-duration="69" data-track-index="2" data-track-kind="graphics">
+        <div class="card" id="stat-card"><div class="big" id="stat-big"></div><div class="sub" id="stat-sub"></div></div>
+      </div>
+    </div>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      let resolveWorld;
+      window.__hf.buildReady["world"] = new Promise((r) => (resolveWorld = r));
+    </script>
+    <script type="module">
+      import { createWorld } from "./assets/world.js";
+      import MAP from "./assets/map.js";
+      import { warp } from "./assets/timing.js";
+      const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
+      const scale = Number(vars.previewScale) || 1;
+      if (vars.captions === false || vars.captions === "false") document.getElementById("root").style.setProperty("--caps", "none");
+      await document.fonts.load('800 40px "Montserrat"');
+      await Promise.all([...document.images].map((im) => (im.complete ? 0 : new Promise((r) => { im.onload = im.onerror = r; }))));
+      let fxOpts = {}; try { fxOpts = vars.fx ? JSON.parse(vars.fx) : {}; } catch (e) {}
+      const world = createWorld(document.getElementById("world-canvas"), 1080, 1920, scale, fxOpts, MAP);
+
+      const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+      const ss = (a, b, x) => { const u = clamp((x - a) / (b - a)); return u * u * (3 - 2 * u); };
+      const back = (u) => { if (u <= 0) return 0; if (u >= 1) return 1; const c1 = 2.2, c3 = c1 + 1; return 1 + c3 * Math.pow(u - 1, 3) + c1 * Math.pow(u - 1, 2); };
+
+      // real photos (canonical time): [id, start, end, full-screen?]
+      const PHOTOS = [["ph-aerial", -1, 5.0, true], ["ph-cctv", 7.4, 12.4, false], ["ph-mary", 30.0, 33.4, false], ["ph-square", 46.6, 53.9, true]];
+      const phEls = PHOTOS.map(([id]) => document.getElementById(id));
+      function drawPhotos(ct) {
+        PHOTOS.forEach(([id, a, b, full], i) => { const el = phEls[i]; const o = ss(a, a + 0.4, ct) * (1 - ss(b - 0.5, b, ct)); el.style.opacity = o;
+          const img = el.querySelector("img"); const u = clamp((ct - a) / (b - a)); img.style.transform = `scale(${1.04 + 0.1 * u}) translateY(${(full ? -1 : 0) * 18 * u}px)`;
+          if (!full) el.querySelector(".card").style.transform = `translateY(${(1 - back(clamp((ct - a) / 0.45))) * 140}px)`; });
+      }
+      // dossier rows appear one by one
+      const dos = document.getElementById("dossier"), rows = [...dos.querySelectorAll(".row")];
+      function drawDossier(ct) { const o = ss(37.2, 37.6, ct) * (1 - ss(45.6, 46.1, ct)); dos.style.opacity = o; dos.style.transform = `translateY(${(1 - back(clamp((ct - 37.2) / 0.45))) * 120}px)`;
+        const T = [37.8, 38.8, 39.6, 42.0, 43.4]; rows.forEach((r, i) => (r.style.opacity = ss(T[i], T[i] + 0.3, ct))); }
+      // fact cards: [start, end, big, sub, colour]
+      const mmss = (s) => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+      const STATS = [
+        [0.3, 4.8, () => "15:00", "SABTU · 7 NOV 2026", "#fff"],
+        [6.0, 13.0, (ct) => mmss(70 * Math.min(1, (ct - 6) / 6.5)), "TEMBAKAN TAK BERHENTI", "#ff5a4a"],
+        [13.2, 17.0, () => "15 SAAT", "PANGGILAN KECEMASAN", "#ffc531"],
+        [17.0, 21.0, () => "< 3 MIN", "POLIS TIBA", "#7eb6ff"],
+        [22.4, 29.0, () => "1 KM", "DARI DATARAN", "#7eb6ff"],
+        [29.4, 31.6, () => "6", "TERKORBAN", "#fff"],
+        [31.6, 33.6, () => "15", "CEDERA", "#fff"],
+        [34.6, 37.0, () => "+3", "DI RUMAH SUSPEK, OSTROWIEC", "#ffc46b"],
+        [42.2, 46.2, () => "PENGGANAS", "KATA PERDANA MENTERI", "#ff5a4a"],
+        [48.4, 54.0, () => "JARANG", "TEMBAKAN BESAR-BESARAN DI POLAND", "#a8f07a"],
+        [55.0, 60.0, () => "?", "KOMEN KAT BAWAH", "#ffc531"],
+      ];
+      const card = document.getElementById("stat-card"), big = document.getElementById("stat-big"), sub = document.getElementById("stat-sub");
+      function drawStat(ct) {
+        const s = STATS.find((r) => ct >= r[0] && ct < r[1]);
+        if (!s) { card.style.opacity = 0; return; }
+        const inU = (ct - s[0]) / 0.35, outU = (s[1] - ct) / 0.25;
+        const sc = Math.min(0.6 + 0.4 * back(inU), outU < 1 ? 0.7 + 0.3 * outU : 1);
+        big.textContent = s[2](ct); big.style.color = s[4]; sub.textContent = s[3];
+        big.style.fontSize = Math.min(150, (1080 * 0.82) / (0.78 * big.textContent.length)) + "px";
+        card.style.opacity = Math.min(1, inU * 3, outU * 3); card.style.transform = `scale(${sc})`;
+      }
+      const dot = document.getElementById("hud-dot"), osm = document.getElementById("osm");
+      function renderAt(t) { const ct = warp(t); world.render(ct); drawPhotos(ct); drawDossier(ct); drawStat(ct);
+        dot.style.opacity = Math.floor(t * 2) % 2 ? 0.25 : 1; const fullPh = ss(-1, -0.6, ct) * (1 - ss(4.5, 5.0, ct)) + ss(46.6, 47.0, ct) * (1 - ss(53.4, 53.9, ct)); osm.style.opacity = 1 - fullPh; }
+      window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+      renderAt(0);
+      resolveWorld();
+    </script>
+  </body>
+</html>
