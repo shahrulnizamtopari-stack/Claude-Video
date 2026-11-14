@@ -1,6 +1,6 @@
 ---
 name: ugc-affiliate-style
-description: House style for TikTok affiliate / UGC product edits from talking-head + B-roll footage (Malay dialogue). The "clean" look - cinematic grade, two-tier Inter captions (small white setup line + big yellow key phrase, word-by-word reveal), flat white UI cards for product and CTA, thin glowing highlights, quiet sound. Use whenever the user sends talking-head / UGC / AI-UGC footage of a product and asks for an edit, "macam style Kitsui tu", "version 2 punya style", a TikTok affiliate video, or a re-edit of one. Holds the look in numbers, the process, the reusable code in kitsui-fiber/, and the pitfalls already solved.
+description: House style for TikTok affiliate / UGC product edits from talking-head + B-roll footage (Malay dialogue). The "clean" look - cinematic grade, two-tier Inter captions (small white setup line + big yellow key phrase, word-by-word reveal), flat white UI cards for product and CTA, thin glowing highlights, quiet sound. Has a DARK variant (user's current favourite, careleaf-beetroot/): bottom black gradient, darker grade, dark-glass checklist and CTA cards. Use whenever the user sends talking-head / UGC / AI-UGC footage of a product and asks for an edit, "macam style Kitsui tu", "version 2 punya style", "macam Careleaf tu", "style gelap", a TikTok affiliate video, a UGC script / Flow video prompts for one, or a re-edit of one. Holds the look in numbers, the process, the reusable code in kitsui-fiber/ and careleaf-beetroot/, and the pitfalls already solved.
 ---
 
 # UGC affiliate style: the "clean" edit (v2)
@@ -17,6 +17,9 @@ Everything lives in four files, so a new edit means editing data, not code:
 
 Other tools: `tools/transcribe.py` (faster-whisper word times), `tools/import_footage.sh` (re-encode uploads).
 `NOTES.md` records the edit decisions; write one for every new project.
+
+Second reference: **`careleaf-beetroot/`** (Careleaf Beetroot Gummies, 35.5 s): the **dark variant** (§1b), the user's
+current favourite. Start from it when the user asks for "gelap", "macam Careleaf" or doesn't say which look.
 
 Engine: **HyperFrames** (read `/hyperframes` first). The v1 "cheeky" look (thick-outline captions, KANTOI stamp,
 shake, boing) is in git history (commit `93202bf`) for when the user asks for a louder, meme-style cut.
@@ -55,9 +58,49 @@ shake, boing) is in git history (commit `93202bf`) for when the user asks for a 
   which the user flagged as weaker than v1's stamp; put the first caption on from frame 0 next time.
 - **Safe zone:** words inside y 168–1330 and clear of the right action rail (x > ~960). Decorative strokes may go lower.
 
+
+## 1b. Dark variant ("gelap", careleaf-beetroot/, approved as v3)
+
+Everything in §1 applies, with these changes:
+
+- **Gradients** in `gfx`, full length, under the captions: bottom `linear-gradient(to top, rgba(0,0,0,.94) 0%, .82 14%,
+  .55 27%, .22 38%, 0 48%)`; top `linear-gradient(to bottom, rgba(0,0,0,.6) 0%, .3 12%, 0 26%)`.
+- **Grade:** `contrast .16, highlights -.3, shadows -.12, blacks -.14, vibrance -.08, temperature .03`, vignette .45.
+  Daylight B-roll gets `exposure -.3, saturation -.12` and vignette .55 so it sits with a dim room; already-dim B-roll
+  keeps the base grade (exposure pull on it goes nearly black).
+- **Caption rows:** two fixed rows. `BOT = 1112` (on the gradient) when the bottom third is clear; `TOP = 390` (dark
+  space above the head) when the product is held low in frame. The user asked for the top row "lower, but not onto the
+  character": ~390 for 2-line groups, raise a 3-line group or a punched-in shot (head sits higher) by 40-170 px so the
+  key line never touches the hair. Hook group: all words on from frame 0 (theme `static`).
+- **Cards = dark glass** (only two of them, see below): `linear-gradient(160deg, rgba(58,30,34,.72), rgba(20,11,13,.82)
+  55%, rgba(12,7,8,.88))`, 1.5 px border `rgba(255,255,255,.13)`, radius 30-36, shadow `0 34px 80px rgba(0,0,0,.6)` +
+  inset top highlight, a 4 px yellow accent bar on the left with glow, small caps grey kicker ("CIRI PRODUK").
+  Checklist: centred (`left 320`, width 440), ticks drawn as yellow circle + check strokes at the spoken word.
+  CTA: centred at the top row, yellow-gradient bag tile, "Tekan sekarang" grey + "beg **kuning**" (kuning in yellow),
+  tap ripple on "Tekan", a light sweep across the card, a second tap near the end.
+- **Product moment:** keep it simple: soft spotlight + thin white highlight rect on the held box while the name is said,
+  push-in capped at ~1.26× (AI pack text is garbled).
+- **End:** freeze the last A-roll frame (`v4_hold.mp4`) under a slow 1.17→1.21 drift so the CTA stays ≥ 2 s.
+- **Small print** from the dose line on: dark pill at y 1300, 28 px ("Wanita hamil / menyusu, rujuk doktor dahulu.").
+- **Restraint:** the user tried a version with ~10 extra motion graphics (symptom tracker, warning pulse, flow diagram,
+  NO₃⁻ callouts, dose card, promo card with three boxes; still in git, commit `ce7c1a3`) and preferred the quieter cut.
+  Default to captions + spotlight + checklist + CTA; offer extras only if asked.
+- **Music:** same e-piano bed in D minor (Dm-Bb-F-C), dropping out under the warning punchline.
+
 ## 2. Process
 
-The user usually wants the **finished MP4 without approval stops** for this kind of edit. Follow what they say in the
+**Script + prompts first (when asked):** the user may send a reference video and product screenshots and ask for a
+"tiruan" script. Transcribe the reference, map its beats (hook question → scare → cause → product + mechanism →
+second symptom → dose + trust → warning → promo CTA), then write 4 × 10 s parts for Google Flow (Veo): one
+self-contained English prompt per part with the Malay dialogue inside it (~23-25 words per 10 s), same setting text
+in all four, plus a start-frame image prompt for "no product" and "holding product", plus B-roll prompts (image→video
+for product shots). Soften medical claims ("sokong aliran darah", not "buka saluran tersumbat"), no unverified
+KKM/FDA claims, avoid "saya guna" (user prefers "ramai dah amalkan"), and have the character show the gummy rather
+than talk while chewing.
+
+The user usually wants the **finished MP4 without approval stops** for this kind of edit. For **changes after the
+first render**, they want a **storyboard image first** (14 labelled snapshots, changed panels outlined in yellow,
+composited with PIL from `npx hyperframes snapshot --at ...`), then "render". A full render takes ~12-13 min here. Follow what they say in the
 request. If they don't say, show a short edit plan (beats + which footage), then render.
 
 1. **Ingest:** `tools/import_footage.sh <upload dir>` (edit its filename patterns) re-encodes with keyframes every
@@ -103,3 +146,7 @@ request. If they don't say, show a short edit plan (beats + which footage), then
 - Yellow/white text on a white shirt fails contrast: move the group over the jacket, or align left.
 - Caption groups ending after a cut flash over the next shot for a few frames: end them at the cut.
 - A sub-composition's ids must be unique across the page; scene root id = `root`, host id = composition id.
+- Flow/Veo clips arrive as 24 fps (B-roll often 720×1280): `import_footage.sh` scales to 1080×1920 and 30 fps.
+- Dark-glass cards need `color: #fff` on the gfx `#root`; without it the row text renders black on black.
+- Clips are exactly 10 s, so a CTA at the end can run out of footage: hold a freeze frame instead of shifting the
+  picture against the voice.

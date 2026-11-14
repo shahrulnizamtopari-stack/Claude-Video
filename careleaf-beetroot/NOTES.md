@@ -3,7 +3,7 @@
 Gaya: `ugc-affiliate-style` v2 "clean", kad kaca gelap "premium" + motion graphic ikut dialog (sama macam `kitsui-fiber/`), versi **gelap**:
 gradient hitam dari bawah (≈48% skrin) + gradient nipis dari atas, grade lebih gelap (blacks −0.14,
 shadows −0.12, vignette 0.45), muzik electric-piano dalam D minor.
-Output: `renders/careleaf_beetroot.mp4` (upload) dan `renders/careleaf_beetroot_master.mp4`. 35.5 s.
+Output akhir: `renders/careleaf_beetroot_v3.mp4` (lihat v3 di bawah). 35.5 s.
 
 ## Footage
 A-roll AI (Flow), 4 × 10 s: `v1_hook`, `v2_produk`, `v3_cara`, `v4_cta`.
@@ -54,3 +54,8 @@ kad "Tanda-tanda" (pening / pitam / penat menyala), denyut merah + chip AMARAN p
 (laju → perlahan, "Ilustrasi"), bracket + sapuan cahaya + kilauan pada kotak, callout NO₃⁻ pada beetroot,
 NO₃⁻ → NO, kad dos (2 gummy), checklist dengan tick dilukis, kad PROMO dengan 3 kotak (`assets/img/box.png`,
 crop dari frame terakhir v4), CTA kaca dengan ikon kuning gradient. Output: `renders/careleaf_beetroot_v2.mp4`.
+
+## v3 (final, diluluskan)
+Balik ke v1 (grafik minimum). Cuma kad checklist dan CTA guna gaya kaca gelap v2. Kapsyen atas diturunkan ke y≈390
+(hook −40, nama produk −170 sebab 3 baris + shot di-zoom). Checklist di tengah (left 320, top 316), CTA top 390.
+Output: `renders/careleaf_beetroot_v3.mp4`. Versi v2 (banyak motion graphic) ada di commit `ce7c1a3`.
