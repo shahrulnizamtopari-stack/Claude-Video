@@ -1,15 +1,21 @@
 """Generates index.html, compositions/captions.html and compositions/gfx.html from the edit plan below.
 
-Every number that matters (cuts, reframes, caption groups, graphics, SFX) lives in this file.
-Edit here, run `python3 tools/build.py`, then `npx hyperframes check`.
+Style v2 "clean": cinematic grade, two-tier captions (small white setup line + big yellow key phrase,
+word-by-word fade/blur reveal, tracking-in on the key phrase), flat UI cards, thin glowing highlights,
+quiet sound design.  The cheeky v1 lives in git history.
+
+Every number that matters (cuts, reframes, caption groups, graphics, SFX) lives here or in
+tools/gfx.template.html.  Edit, run `python3 tools/build.py`, then `npx hyperframes check`.
 Timeline seconds (T) match tools/edl.json (voice track).
 """
-import json, os, re
+import json, os, subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DUR = 29.40
 W, H = 1080, 1920
-YEL, GRN, RED = "#FFD21F", "#1E9E4A", "#FF3B30"
+KEY = "#F5C518"      # key-phrase yellow
+INK = "#14261A"      # dark ink for text on the white product card
+BRAND = "#1E7A3C"    # pack green
 
 # ---------------------------------------------------------------- picture edit
 # (id, file, T start, T end, media start)   -- the voice track runs underneath, untouched
@@ -18,7 +24,7 @@ SHOTS = [
     ("v-a2",    "th1_sayur",    1.58,  4.76, 2.74),
     ("v-b1",    "th2_serat",    4.76,  6.11, 0.85),
     ("v-b2",    "th2_serat",    6.11,  9.72, 2.36),
-    ("v-c1",    "br_box",       9.72, 11.52, 0.30),   # product hero on the product name
+    ("v-c1",    "br_box",       9.72, 11.52, 0.30),   # product hero, shown as a card on white
     ("v-c2",    "th3_produk",  11.52, 13.84, 2.30),
     ("v-c3",    "th3_produk",  13.84, 15.08, 4.86),
     ("v-c4",    "th3_produk",  15.08, 16.18, 6.40),
@@ -29,6 +35,11 @@ SHOTS = [
     ("v-e2a",   "br_sayur",    26.10, 27.70, 2.20),   # callback: "sayur dalam pinggan tu"
     ("v-e2b",   "th5_cta",     27.70, DUR,   6.00),
 ]
+NO_VIGNETTE = {"v-c1"}  # sits inside a card
+
+GRADE = {"adjust": {"contrast": 0.14, "highlights": -0.32, "shadows": -0.04, "blacks": -0.08,
+                    "vibrance": -0.2, "temperature": 0.05}, "details": {"vignette": 0.3}}
+GRADE_CARD = {"adjust": GRADE["adjust"]}
 
 # reframes on the root timeline: (T, selector, props, duration or 0 for a hard set, ease)
 # transform origin is the frame centre; |x| <= 540*(s-1), |y| <= 960*(s-1) keeps the frame covered
@@ -36,88 +47,87 @@ MOVES = [
     (0.00, "#v-hook", dict(scale=1.08, x=-20, y=-40), 0, None),
     (0.00, "#v-hook", dict(scale=1.16, x=-50, y=-60), 1.58, "none"),
     (1.58, "#v-a2", dict(scale=1.0, x=0, y=0), 0, None),
-    (1.58, "#v-a2", dict(scale=1.06, y=20), 2.15, "none"),
-    (3.76, "#v-a2", dict(scale=1.45, x=0, y=290), 0, None),          # PUNCH: "Seimbang kat mana, bang?"
-    (3.76, "#v-a2", dict(scale=1.52, y=300), 1.0, "power1.out"),
-    (4.40, "#v-a2", dict(rotation=-1.6), 0.06, "power2.out"),
-    (4.46, "#v-a2", dict(rotation=1.2), 0.07, "power2.inOut"),
-    (4.53, "#v-a2", dict(rotation=0), 0.08, "power2.out"),
+    (1.58, "#v-a2", dict(scale=1.05, y=20), 2.18, "none"),
+    (3.76, "#v-a2", dict(scale=1.38, x=0, y=250), 0, None),          # punch-in on the punchline
+    (3.76, "#v-a2", dict(scale=1.42, y=258), 1.0, "none"),
     (4.76, "#v-b1", dict(scale=1.0, x=0, y=0), 0, None),
-    (6.11, "#v-b2", dict(scale=1.14, x=0, y=60), 0, None),           # jump-cut punch on "semua on"
-    (6.11, "#v-b2", dict(scale=1.2, y=70), 3.6, "none"),
-    (9.72, "#v-c1", dict(scale=1.0, x=0, y=0), 0, None),
-    (9.72, "#v-c1", dict(scale=1.06, y=-20), 1.8, "none"),
+    (4.76, "#v-b1", dict(scale=1.03), 1.35, "none"),
+    (6.11, "#v-b2", dict(scale=1.14, x=0, y=60), 0, None),           # jump-cut punch
+    (6.11, "#v-b2", dict(scale=1.18, y=66), 3.6, "none"),
+    # product card on white: the clip itself becomes a rounded card
+    (9.72, "#v-c1", dict(scale=0.5, x=0, y=-270, opacity=0), 0, None),
+    (9.72, "#v-c1", dict(scale=0.55, y=-280, opacity=1), 0.45, "power3.out"),
+    (10.17, "#v-c1", dict(scale=0.575, y=-284), 1.35, "none"),
     (11.52, "#v-c2", dict(scale=1.0, x=0, y=0), 0, None),
+    (11.52, "#v-c2", dict(scale=1.04, y=-10), 2.32, "none"),
     (13.84, "#v-c3", dict(scale=1.42, x=-90, y=-400), 0, None),      # product close-up "yang ni"
-    (13.84, "#v-c3", dict(scale=1.5, x=-95, y=-470), 1.24, "none"),
-    (15.08, "#v-c4", dict(scale=1.56, x=-100, y=-500), 0, None),
-    (15.08, "#v-c4", dict(scale=1.6, x=-100, y=-520), 1.1, "none"),
+    (13.84, "#v-c3", dict(scale=1.48, x=-95, y=-450), 1.24, "none"),
+    (15.08, "#v-c4", dict(scale=1.52, x=-100, y=-480), 0, None),
+    (15.08, "#v-c4", dict(scale=1.56, x=-100, y=-500), 1.1, "none"),
     (16.18, "#v-d1", dict(scale=1.0, x=0, y=0), 0, None),
-    (17.40, "#v-d1", dict(scale=1.6, x=-320, y=-150), 0.55, "power3.inOut"),  # push to the pack: "ikut sukatan"
+    (17.36, "#v-d1", dict(scale=1.6, x=-320, y=-150), 0.6, "power3.inOut"),   # push to the pack
     (19.16, "#v-d2", dict(scale=1.12, x=60, y=40), 0, None),
-    (19.16, "#v-d2", dict(scale=1.18, x=60, y=50), 2.04, "none"),
+    (19.16, "#v-d2", dict(scale=1.16, x=60, y=46), 2.04, "none"),
     (21.20, "#v-rew", dict(scale=1.12, x=-30, y=-40), 0, None),
+    (21.20, "#v-rew", dict(scale=1.16, x=-35, y=-45), 1.6, "none"),
     (22.80, "#v-e1", dict(scale=1.0, x=0, y=0), 0, None),
-    (22.80, "#v-e1", dict(scale=1.07, y=30), 3.3, "none"),
+    (22.80, "#v-e1", dict(scale=1.06, y=28), 3.3, "none"),
     (26.10, "#v-e2a", dict(scale=1.1, x=-30, y=-40), 0, None),
     (26.10, "#v-e2a", dict(scale=1.18, x=-40, y=-60), 1.6, "none"),
-    (27.70, "#v-e2b", dict(scale=1.35, x=0, y=230), 0, None),       # final face punch
-    (27.70, "#v-e2b", dict(scale=1.42, y=250), 1.7, "none"),
+    (27.70, "#v-e2b", dict(scale=1.3, x=0, y=210), 0, None),         # final face punch
+    (27.70, "#v-e2b", dict(scale=1.36, y=226), 1.7, "none"),
 ]
 
-# ---------------------------------------------------------------- sound
-# (id, file, T, volume)
+# ---------------------------------------------------------------- sound: quiet, only on visible actions
 SFX = [
-    ("sx-stamp", "pop.mp3", 0.02, 0.9),
-    ("sx-ring", "whoosh-short.mp3", 0.08, 0.35),
-    ("sx-boing", "sfx_boing.wav", 3.76, 0.75),
-    ("sx-tick1", "click.mp3", 5.32, 0.55),
-    ("sx-tick2", "click.mp3", 5.62, 0.55),
-    ("sx-on", "pop.mp3", 6.52, 0.6),
-    ("sx-serat", "error.mp3", 7.32, 0.28),
-    ("sx-cut-c1", "whoosh-short.mp3", 9.66, 0.45),
-    ("sx-shine", "sparkle.mp3", 10.10, 0.45),
-    ("sx-tag", "pop.mp3", 13.04, 0.6),
-    ("sx-sachet", "ping.mp3", 15.14, 0.35),
-    ("sx-push", "whoosh-short.mp3", 17.40, 0.4),
-    ("sx-rewind", "sfx_rewind.wav", 21.18, 0.7),
-    ("sx-bag", "pop.mp3", 25.30, 0.85),
-    ("sx-tap", "click.mp3", 25.62, 0.7),
-    ("sx-ring2", "whoosh-short.mp3", 26.12, 0.3),
-    ("sx-end", "pop.mp3", 28.82, 0.7),
+    ("sx-ring", "whoosh-short.mp3", 0.10, 0.18),
+    ("sx-tick1", "click-soft.mp3", 5.32, 0.45),
+    ("sx-tick2", "click-soft.mp3", 5.62, 0.45),
+    ("sx-serat", "click-soft.mp3", 7.30, 0.5),
+    ("sx-card", "whoosh-short.mp3", 9.62, 0.28),
+    ("sx-shine", "sparkle.mp3", 10.06, 0.16),
+    ("sx-push", "whoosh-short.mp3", 17.34, 0.22),
+    ("sx-rew", "whoosh-short.mp3", 21.16, 0.3),
+    ("sx-cta", "click-soft.mp3", 25.30, 0.5),
+    ("sx-tap", "click.mp3", 25.62, 0.3),
+    ("sx-ring2", "whoosh-short.mp3", 26.12, 0.15),
 ]
-MUSIC_VOL = 0.30
+MUSIC_VOL = 0.34
 
 # ---------------------------------------------------------------- captions
-# (T start, T end, text, style, top px)
-# *word@t*  = key word, lights up yellow at t ;  +word@t+ = product green
+# Word clock (timeline seconds), from faster-whisper on assets/audio/voice.wav, checked against the envelope.
+WORDS = """Sayur .38 kau .84 letak .94 tepi. 1.12 Lepas 1.74 tu 1.88 cakap 1.98 makan 2.30 dah 2.66 seimbang. 3.00
+Seimbang 3.76 kat 4.12 mana, 4.22 bang? 4.40 Bila 5.04 bab 5.26 makan, 5.38 semua 6.20 on. 6.52 Bab 7.10 serat? 7.30
+Haa, 8.20 yang 8.46 tu 8.60 selalu 8.70 kita 8.98 lupa 9.14 nak 9.42 fikir. 9.54 Ini 9.82 Kitsui 10.06 Belloss 10.56 Fiber. 11.00
+Kalau 11.84 tengah 12.00 cari 12.34 pilihan 12.62 minuman 13.04 serat, 13.38 boleh 14.20 tengok 14.34 yang 14.64 ni, 14.88
+dalam 15.12 sachet. 15.52 Nak 16.40 bancuh? 16.52 Ikut 17.52 sukatan 17.72 pada 18.20 pek 18.50 ni. 18.72
+Tapi 19.30 sayur 19.68 dengan 20.14 buah 20.38 tu, 20.70 jangan 21.28 pula 21.54 terus 21.78 tinggal. 22.00
+Nak 22.98 tengok 23.06 detail 23.34 dengan 23.70 harga 23.98 semasa? 24.32 Tekan 25.28 beg 25.52 kuning. 25.70
+Sayur 26.36 dalam 26.76 pinggan 27.00 tu, 27.36 jangan 28.12 tinggal 28.30 lagi, 28.62 bang. 28.80""".split()
+WORDS = [(WORDS[i], float(WORDS[i + 1])) for i in range(0, len(WORDS), 2)]
+
+# (T start, T end, lines, top px, align, theme)
+# lines: list of (kind, n words)   kind s = small white setup line, K = big key phrase (tracks in)
+# Words are consumed from WORDS in order, so every caption word keeps its own spoken time.
 CAPS = [
-    (0.32, 1.62, "Sayur kau letak *tepi.@1.12*", "hook", 300),
-    (1.70, 2.28, "Lepas tu cakap", "norm", 960),
-    (2.28, 3.72, "makan dah *“seimbang”.@3.00*", "norm", 960),
-    (3.76, 4.74, "Seimbang kat mana, *bang?@4.40*", "punch", 1080),
-    (5.00, 6.14, "Bila bab makan,", "norm", 1150),
-    (6.18, 7.02, "semua *ON.@6.52*", "norm", 1150),
-    (7.06, 8.06, "Bab *serat?@7.30*", "norm", 1150),
-    (8.16, 8.70, "Haa, yang tu", "norm", 1150),
-    (8.70, 9.70, "selalu kita *lupa@9.14* nak fikir.", "norm", 1150),
-    (9.80, 11.50, "Ini +Kitsui@10.06+ +Belloss@10.56+ +Fiber.@11.00+", "prod", 1080),
-    (11.80, 12.62, "Kalau tengah cari", "norm", 860),
-    (12.62, 13.84, "pilihan *minuman@13.04* *serat,@13.38*", "norm", 860),
-    (14.16, 15.08, "boleh tengok *yang ni,@14.64*", "norm", 330),
-    # 15.12-16.16 "dalam sachet" is carried by the sachet sticker in gfx
-    (16.36, 17.30, "Nak *bancuh?@16.52*", "norm", 735),
-    (17.48, 18.20, "Ikut *sukatan@17.72*", "norm", 445),
-    (18.20, 19.10, "pada pek ni.", "norm", 445),
-    (19.26, 20.14, "Tapi *sayur@19.68*", "norm", 745),
-    (20.14, 21.20, "dengan *buah@20.38* tu,", "norm", 745),
-    (21.24, 21.78, "jangan pula", "norm", 400),
-    (21.78, 22.70, "terus *tinggal.@22.00*", "norm", 400),
-    (22.94, 23.70, "Nak tengok detail", "norm", 930),
-    (23.70, 25.14, "dengan harga *semasa?@24.32*", "norm", 930),
-    (25.24, 26.08, "Tekan *beg@25.52* *kuning.@25.70*", "cta", 900),
-    (26.32, 27.66, "Sayur dalam *pinggan@27.00* tu,", "norm", 330),
-    (28.08, 29.40, "jangan tinggal lagi, *bang.@28.80*", "punch2", 1080),
+    (0.30, 1.56, [("s", 3), ("K", 1)], 400, "c", "dark"),          # Sayur kau letak / TEPI.
+    (1.66, 3.72, [("s", 5), ("K", 1)], 880, "c", "dark"),          # Lepas tu cakap makan dah / seimbang.
+    (3.74, 4.74, [("s", 1), ("K", 3)], 1010, "c", "dark"),         # Seimbang / kat mana, bang?
+    (4.98, 7.02, [("s", 3), ("K", 2)], 1195, "c", "dark"),         # Bila bab makan, / semua on.
+    (7.06, 8.10, [("s", 1), ("K", 1)], 1195, "c", "dark"),         # Bab / serat?
+    (8.14, 9.70, [("s", 5), ("K", 1), ("s", 2)], 1110, "c", "dark"),  # Haa, yang tu selalu kita / lupa / nak fikir.
+    (9.78, 11.50, [("s", 2), ("K", 2)], 1250, "c", "light"),       # Ini Kitsui / Belloss Fiber.  (on the white card)
+    (11.80, 13.84, [("s", 4), ("K", 2)], 840, "c", "dark"),        # Kalau tengah cari pilihan / minuman serat,
+    (14.14, 15.08, [("s", 2), ("K", 2)], 330, "l", "dark"),        # boleh tengok / yang ni,
+    (15.10, 16.16, [("s", 1), ("K", 1)], 330, "l", "dark"),        # dalam / sachet.
+    (16.36, 17.30, [("s", 1), ("K", 1)], 720, "l", "dark"),        # Nak / bancuh?
+    (17.48, 19.10, [("s", 2), ("K", 3)], 405, "c", "dark"),        # Ikut sukatan / pada pek ni.
+    (19.26, 21.18, [("s", 2), ("K", 3)], 690, "l", "dark"),        # Tapi sayur / dengan buah tu,
+    (21.24, 22.74, [("s", 3), ("K", 1)], 330, "c", "dark"),        # jangan pula terus / tinggal.
+    (22.94, 25.16, [("s", 4), ("K", 2)], 840, "c", "dark"),        # Nak tengok detail dengan / harga semasa?
+    (25.24, 26.08, [("s", 1), ("K", 2)], 0, "c", "none"),          # Tekan beg kuning -> carried by the CTA card (gfx)
+    (26.30, 27.66, [("s", 2), ("K", 2)], 320, "c", "dark"),        # Sayur dalam / pinggan tu,
+    (28.06, 29.40, [("s", 3), ("K", 1)], 990, "c", "dark"),        # jangan tinggal lagi, / bang.
 ]
 
 # ---------------------------------------------------------------- html helpers
@@ -131,15 +141,21 @@ def js_props(d):
     return "{" + ", ".join(f"{k}: {fmt(v) if isinstance(v, (int, float)) else json.dumps(v)}" for k, v in d.items()) + "}"
 
 
+def attr_json(d):
+    return json.dumps(d, separators=(",", ":")).replace('"', "&quot;")
+
+
 def build_index():
     vids = []
     for i, (vid, f, a, b, ms) in enumerate(SHOTS):
-        vids.append(f'      <video id="{vid}" class="clip shot" src="assets/footage/{f}.mp4" muted playsinline '
+        g = GRADE_CARD if vid in NO_VIGNETTE else GRADE
+        cls = "clip shot card" if vid in NO_VIGNETTE else "clip shot"
+        vids.append(f'      <video id="{vid}" class="{cls}" src="assets/footage/{f}.mp4" muted playsinline '
+                    f'data-color-grading="{attr_json(g)}" '
                     f'data-start="{fmt(a)}" data-duration="{fmt(b - a)}" data-media-start="{fmt(ms)}" '
-                    f'data-track-index="{1 + i % 2}" style="z-index:{1 + i}"></video>')
+                    f'data-track-index="{1 + i % 2}" style="z-index:{2 + i}"></video>')
     auds = [f'      <audio id="voice" class="clip" src="assets/audio/voice.wav" data-start="0" data-duration="29.24" data-track-index="10" data-volume="1"></audio>',
-            f'      <audio id="music" class="clip" src="assets/audio/music.wav" data-start="0" data-duration="{fmt(DUR)}" data-track-index="11" data-volume="{MUSIC_VOL}" data-fade-out="0.25"></audio>']
-    import subprocess
+            f'      <audio id="music" class="clip" src="assets/audio/music.wav" data-start="0" data-duration="{fmt(DUR)}" data-track-index="11" data-volume="{MUSIC_VOL}" data-fade-out="0.3"></audio>']
     for k, (sid, f, t, v) in enumerate(SFX):
         d = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0",
                                   os.path.join(ROOT, "assets/audio", f)], capture_output=True, text=True).stdout)
@@ -162,11 +178,14 @@ def build_index():
       html, body {{ width: {W}px; height: {H}px; overflow: hidden; background: #111; }}
       #root {{ position: relative; width: 100%; height: 100%; overflow: hidden; background: #111; }}
       .shot {{ position: absolute; left: 0; top: 0; width: {W}px; height: {H}px; object-fit: cover; }}
+      .shot.card {{ border-radius: 56px; box-shadow: 0 40px 90px rgba(20, 30, 20, 0.28), 0 8px 24px rgba(20, 30, 20, 0.18); }}
+      #paper {{ position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 30%, #ffffff 0%, #F3F2EE 70%, #E9E7E1 100%); }}
     </style>
   </head>
   <body>
-    <!-- Kitsui Belloss Fiber - TikTok affiliate edit. Generated by tools/build.py (edit the plan there). -->
+    <!-- Kitsui Belloss Fiber - TikTok affiliate edit, clean style. Generated by tools/build.py (edit the plan there). -->
     <div id="root" data-composition-id="main" data-start="0" data-duration="{fmt(DUR)}" data-width="{W}" data-height="{H}">
+      <div id="paper" class="clip" data-start="9.72" data-duration="1.8" data-track-index="3" style="z-index:1"></div>
 {chr(10).join(vids)}
 {chr(10).join(auds)}
       <div id="gfx" data-composition-id="gfx" data-composition-src="compositions/gfx.html" data-start="0" data-duration="{fmt(DUR)}"
@@ -183,61 +202,69 @@ def build_index():
   </body>
 </html>
 '''
+    # the paper card sits under v-c1 only: give v-c1 a z-index above paper (paper z=1, videos 2+)
     open(os.path.join(ROOT, "index.html"), "w").write(html)
 
 
-TOKEN = re.compile(r"([*+])(.+?)@([\d.]+)\1|(\S+)")
+def letters(text):
+    """Key phrase as one span per letter so the tracking-in runs on transforms only."""
+    return "".join(f'<span class="c">{"&nbsp;" if ch == " " else ch}</span>' for ch in text)
+
+
+def track_in(sel, n, st, spread=26, dur=0.55):
+    mid = (n - 1) / 2
+    return (f'    tl.fromTo("{sel}", {{ x: (i) => (i - {mid}) * {spread}, opacity: 0, filter: "blur(10px)" }}, '
+            f'{{ x: 0, opacity: 1, filter: "blur(0px)", duration: {dur}, ease: "power3.out", stagger: 0.008 }}, {fmt(st)});')
 
 
 def build_captions():
     rows, anims = [], []
-    for gi, (a, b, text, style, top) in enumerate(CAPS):
+    wi = 0
+    for gi, (a, b, lines, top, align, theme) in enumerate(CAPS):
         gid = f"cap{gi}"
-        spans = []
-        for m in TOKEN.finditer(text):
-            if m.group(4):
-                spans.append(f'<span class="w">{m.group(4)}</span>')
+        lhtml = []
+        for li, (kind, n) in enumerate(lines):
+            words = WORDS[wi: wi + n]
+            wi += n
+            if theme == "none":
+                continue
+            lid = f"{gid}l{li}"
+            if kind == "s":
+                spans = []
+                for k, (w, t) in enumerate(words):
+                    sid = f"{lid}w{k}"
+                    spans.append(f'<span class="w" id="{sid}">{w}</span>')
+                    st = max(a, t - 0.04)
+                    anims.append(f'    tl.fromTo("#{sid}", {{ opacity: 0, y: 10, filter: "blur(8px)" }}, '
+                                 f'{{ opacity: 1, y: 0, filter: "blur(0px)", duration: 0.26, ease: "power2.out" }}, {fmt(st)});')
+                lhtml.append(f'<div class="ln s" id="{lid}">{" ".join(spans)}</div>')
             else:
-                kind = "hl" if m.group(1) == "*" else "pr"
-                k = len(spans)
-                spans.append(f'<span class="w {kind}" id="{gid}w{k}">{m.group(2)}</span>')
-                t = float(m.group(3))
-                col = YEL if kind == "hl" else "#7CF29A"
-                anims.append(f'    tl.fromTo("#{gid}w{k}", {{ color: "#ffffff", scale: 1 }}, {{ color: "{col}", scale: 1.14, duration: 0.09, ease: "power2.out" }}, {fmt(t)});')
-                anims.append(f'    tl.to("#{gid}w{k}", {{ scale: 1, duration: 0.16, ease: "power2.inOut" }}, {fmt(t + 0.09)});')
-        rows.append(f'    <div id="{gid}" class="clip cap {style}" data-start="{fmt(a)}" data-duration="{fmt(b - a)}" data-track-index="1" '
-                    f'style="top:{top}px"><div class="in" id="{gid}in">{" ".join(spans)}</div></div>')
-        if style in ("punch", "punch2", "cta"):
-            anims.append(f'    tl.fromTo("#{gid}in", {{ scale: 1.7, opacity: 0, rotation: -7 }}, {{ scale: 1, opacity: 1, rotation: -3, duration: 0.22, ease: "back.out(2.6)" }}, {fmt(a)});')
-        elif style == "hook":
-            anims.append(f'    tl.fromTo("#{gid}in", {{ scale: 0.6, opacity: 0 }}, {{ scale: 1, opacity: 1, duration: 0.18, ease: "back.out(2.2)" }}, {fmt(a)});')
-        elif style == "prod":
-            anims.append(f'    tl.fromTo("#{gid}in", {{ y: 60, opacity: 0, clipPath: "inset(0% 100% 0% 0%)" }}, {{ y: 0, opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.35, ease: "power3.out" }}, {fmt(a)});')
-        else:
-            anims.append(f'    tl.fromTo("#{gid}in", {{ y: 16, opacity: 0, scale: 0.94 }}, {{ y: 0, opacity: 1, scale: 1, duration: 0.13, ease: "power2.out" }}, {fmt(a)});')
-        anims.append(f'    tl.to("#{gid}in", {{ opacity: 0, duration: 0.07, ease: "power2.in" }}, {fmt(b - 0.07)});')
-    stroke = "-webkit-text-stroke: 12px #000; paint-order: stroke fill;"
+                text = " ".join(w for w, _ in words)
+                st = max(a, words[0][1] - 0.06)
+                lhtml.append(f'<div class="ln k" id="{lid}">{letters(text)}</div>')
+                anims.append(track_in(f"#{lid} .c", len(text), st))
+        if theme == "none":
+            continue
+        rows.append(f'    <div id="{gid}" class="clip cap {theme} al-{align}" data-start="{fmt(a)}" data-duration="{fmt(b - a)}" data-track-index="1" '
+                    f'style="top:{top}px"><div class="in" id="{gid}in">{"".join(lhtml)}</div></div>')
+        anims.append(f'    tl.fromTo("#{gid}in", {{ opacity: 1 }}, {{ opacity: 0, filter: "blur(6px)", duration: 0.16, ease: "power2.in" }}, {fmt(b - 0.16)});')
+    assert wi == len(WORDS), (wi, len(WORDS))
     html = f'''<template>
   <style>
-    @font-face {{ font-family: "Montserrat"; font-weight: 800; src: url("assets/fonts/montserrat-latin-800-normal.woff2") format("woff2"); }}
     #root {{ position: absolute; inset: 0; pointer-events: none; }}
-    #root .cap {{ position: absolute; left: 0; width: 100%; text-align: center; overflow: visible; }}
-    #root .in {{ display: inline-block; max-width: 840px; line-height: 1.08; }}
-    #root .w {{ display: inline-block; margin: 0 0.12em; font-family: "Montserrat", sans-serif; font-weight: 800; color: #fff; {stroke}
-      text-shadow: 0 8px 0 rgba(0,0,0,0.85), 0 14px 28px rgba(0,0,0,0.45); }}
-    #root .norm .w {{ font-size: 76px; letter-spacing: -1px; }}
-    #root .hook .w {{ font-size: 104px; letter-spacing: -2px; text-transform: uppercase; }}
-    #root .punch .w, #root .punch2 .w, #root .cta .w {{ font-family: "Archivo Black", sans-serif; font-weight: 400; font-size: 98px; color: {YEL};
-      text-transform: uppercase; letter-spacing: -1px; -webkit-text-stroke: 14px #000; }}
-    #root .punch .w.hl, #root .punch2 .w.hl {{ color: #fff; }}
-    #root .punch2 .in {{ max-width: 1000px; }}
-    #root .punch2 .w {{ font-size: 84px; }}
-    #root .cta .in {{ background: {YEL}; padding: 18px 34px 26px; border-radius: 28px; border: 8px solid #000; box-shadow: 0 14px 0 #000; }}
-    #root .cta .w {{ color: #111; -webkit-text-stroke: 0; text-shadow: none; font-size: 84px; }}
-    #root .cta .w.hl {{ color: #111; }}
-    #root .prod .in {{ background: {GRN}; padding: 20px 36px 26px; border-radius: 26px; box-shadow: 0 16px 40px rgba(0,0,0,0.45); }}
-    #root .prod .w {{ font-size: 80px; -webkit-text-stroke: 0; text-shadow: 0 4px 0 rgba(0,0,0,0.25); letter-spacing: -1px; }}
-    #root .prod .w.pr {{ color: #fff; }}
+    #root .cap {{ position: absolute; left: 0; width: 100%; overflow: visible; }}
+    #root .cap.al-c {{ text-align: center; }}
+    #root .cap.al-l {{ text-align: left; padding-left: 84px; }}
+    #root .in {{ display: inline-block; max-width: 900px; position: relative; }}
+    #root .dark .in::before {{ content: ""; position: absolute; left: -90px; right: -90px; top: -50px; bottom: -50px; z-index: -1;
+      background: radial-gradient(closest-side, rgba(0,0,0,0.46), rgba(0,0,0,0.22) 60%, rgba(0,0,0,0)); }}
+    #root .ln {{ font-family: "Inter", sans-serif; white-space: nowrap; }}
+    #root .ln.s {{ font-weight: 400; font-size: 50px; line-height: 1.12; letter-spacing: -0.01em; color: rgba(255,255,255,0.96); }}
+    #root .ln.k {{ font-weight: 700; font-size: 104px; line-height: 1.0; letter-spacing: -0.015em; color: {KEY}; margin-top: 2px; }}
+    #root .ln .w, #root .ln .c {{ display: inline-block; }}
+    #root .dark .ln {{ text-shadow: 0 2px 4px rgba(0,0,0,0.35), 0 6px 26px rgba(0,0,0,0.45); }}
+    #root .light .ln.s {{ color: #5B635D; font-size: 46px; }}
+    #root .light .ln.k {{ color: {INK}; font-size: 100px; }}
   </style>
   <div id="root" data-composition-id="caps" data-width="{W}" data-height="{H}" data-layout-allow-overflow>
 {chr(10).join(rows)}
@@ -250,11 +277,6 @@ def build_captions():
   </script>
 </template>
 '''
-    # punch keywords stay white -> override the colour tween target for punch groups
-    html = re.sub(r'(tl\.fromTo\("#(cap\d+)w\d+", \{ color: "#ffffff", scale: 1 \}, \{ color: ")' + re.escape(YEL),
-                  lambda m: m.group(1) + ("#ffffff" if CAPS[int(m.group(2)[3:])][3] in ("punch", "punch2") else ("#111111" if CAPS[int(m.group(2)[3:])][3] == "cta" else YEL)), html)
-    html = re.sub(r'(tl\.fromTo\("#(cap\d+)w\d+", \{ color: )"#ffffff"',
-                  lambda m: m.group(1) + ('"#FFD21F"' if CAPS[int(m.group(2)[3:])][3] in ("punch", "punch2") else ('"#111111"' if CAPS[int(m.group(2)[3:])][3] == "cta" else '"#ffffff"')), html)
     open(os.path.join(ROOT, "compositions/captions.html"), "w").write(html)
 
 

@@ -1,5 +1,16 @@
 # Kitsui Belloss Fiber — TikTok affiliate edit
 
+## v2 "clean" (current source)
+
+Restyled after a reference clip: cinematic grade (lower contrast in the highlights, -20% vibrance, vignette),
+two-tier captions in Inter (small white setup line + big yellow key phrase, word-by-word fade/blur reveal,
+letter tracking-in on the key phrase), flat white UI cards (checklist, product card on white, CTA card),
+thin glowing highlight rings and spotlight on the veg, softer electric-piano music bed, quiet SFX.
+Same dialogue, same cuts, 29.4 s.  Output: `renders/kitsui_belloss_fiber_v2_clean.mp4` (upload) and
+`renders/kitsui_belloss_fiber_v2_clean_master.mp4`.  The cheeky v1 (stamps, shake, boing) is the previous commit.
+
+## v1 notes
+
 **Output:** `renders/kitsui_belloss_fiber_final.mp4` (master, 1080×1920, 30 fps, 29.4 s, H.264 + AAC 48 kHz)
 and `renders/kitsui_belloss_fiber_tiktok.mp4` (same edit, lighter file for upload).
 MP4 files aren't committed (repo `.gitignore` rule); rebuild them with the steps below.

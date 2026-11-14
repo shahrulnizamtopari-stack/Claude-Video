@@ -7,7 +7,7 @@ import numpy as np, wave, os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SR = 48000
-BPM = 104
+BPM = 96
 BEAT = 60 / BPM
 LEN = 29.6
 rng = np.random.default_rng(7)
@@ -30,6 +30,14 @@ def marimba(f, d=0.5, v=0.5):
     e = np.exp(-t * 9)
     s = np.sin(2 * np.pi * f * t) + 0.35 * np.sin(2 * np.pi * f * 4 * t) * np.exp(-t * 30) + 0.12 * np.sin(2 * np.pi * f * 10 * t) * np.exp(-t * 60)
     return v * s * e * np.minimum(1, t * 400)
+
+
+def epiano(f, d=1.2, v=0.3):
+    """Soft Rhodes-ish tone: sine + bell partial, slow decay, gentle tremolo."""
+    t = np.arange(int(d * SR)) / SR
+    e = np.exp(-t * 2.2) * np.minimum(1, t * 120)
+    s = np.sin(2 * np.pi * f * t) + 0.18 * np.sin(2 * np.pi * f * 2 * t) + 0.08 * np.sin(2 * np.pi * f * 7 * t) * np.exp(-t * 12)
+    return v * s * e * (1 + 0.12 * np.sin(2 * np.pi * 4.5 * t))
 
 
 def bass(f, d, v=0.5):
@@ -71,21 +79,22 @@ def music():
     # F - Dm - Bb - C  (one chord per bar)
     prog = [(53, [65, 69, 72]), (50, [62, 65, 69]), (46, [58, 62, 65]), (48, [60, 64, 67])]
     # syncopated marimba pattern in eighths (1 = play), with chord-tone index
-    pat = [(0, 0), (1, 1), (3, 2), (4, 1), (6, 2), (7, 0)]
     bars = int(LEN / (4 * BEAT)) + 1
     for b in range(bars):
         root, ch = prog[b % 4]
         t0 = b * 4 * BEAT
-        add(rhy, bass(hz(root - 12), 1.5 * BEAT, 0.42), t0)
-        add(rhy, bass(hz(root - 12), 1.0 * BEAT, 0.32), t0 + 2.5 * BEAT)
-        for e, k in pat:
-            up = 12 if (b % 2 == 1 and e == 6) else 0
-            add(mel, marimba(hz(ch[k] + up), 0.45, 0.22), t0 + e * BEAT / 2)
+        add(rhy, bass(hz(root - 12), 2.5 * BEAT, 0.34), t0)
+        add(rhy, bass(hz(root - 12), 1.2 * BEAT, 0.22), t0 + 2.75 * BEAT)
+        for k, m in enumerate(ch):                       # soft chord, slightly strummed
+            add(mel, epiano(hz(m), 2.2, 0.16), t0 + k * 0.012)
+            add(mel, epiano(hz(m), 1.2, 0.09), t0 + 2.5 * BEAT + k * 0.012)
+        top = ch[2] + 12 if b % 2 else ch[1] + 12        # sparse top-line note
+        add(mel, epiano(hz(top), 1.0, 0.07), t0 + 3.5 * BEAT)
         for q in range(4):
-            add(rhy, kick(0.55 if q in (0, 2) else 0.0), t0 + q * BEAT)
-            if q in (1, 3): add(rhy, snap(0.22), t0 + q * BEAT)
+            if q in (0, 2): add(rhy, kick(0.38), t0 + q * BEAT)
+            if q in (1, 3): add(rhy, snap(0.10), t0 + q * BEAT)
         for e in range(8):
-            add(rhy, shaker(0.06 if e % 2 else 0.035), t0 + e * BEAT / 2)
+            add(rhy, shaker(0.035 if e % 2 else 0.02), t0 + e * BEAT / 2)
     x = mel + rhy
     # gain automation (seconds -> gain): drop out for the hook punchline, ease in after
     t = np.arange(N) / SR
@@ -94,7 +103,7 @@ def music():
     x = x * g
     # end button: a single bright chord at 29.0
     for m in (65, 69, 72, 77):
-        add(x, marimba(hz(m), 0.6, 0.25), 29.0)
+        add(x, epiano(hz(m), 0.8, 0.12), 28.95)
     x = x / np.max(np.abs(x)) * 0.5
     # simple stereo widening via short delay on one side
     d = int(0.011 * SR)
