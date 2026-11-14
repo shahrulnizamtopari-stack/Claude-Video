@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ms" data-composition-variables='[{"id":"previewScale","type":"number","label":"3D render scale (0.5 for previews)","default":1,"min":0.25,"max":1,"step":0.25},{"id":"fx","type":"string","label":"effects override (JSON, testing only)","default":""}]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/lib/gsap.min.js"></script>
+    <script type="importmap">{ "imports": { "three": "./assets/lib/three.module.min.js" } }</script>
+    <style>
+      @font-face { font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 600; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 700; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 800; src: url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #eef1f8; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "Inter", sans-serif; }
+      #world { position: absolute; inset: 0; }
+      #world canvas { width: 1080px; height: 1920px; display: block; }
+      #ui { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+      .fade-top { position: absolute; left: 0; right: 0; top: 0; height: 520px; background: linear-gradient(#eef1f8 0%, rgba(238,241,248,0.92) 40%, rgba(238,241,248,0) 100%); }
+      .fade-bot { position: absolute; left: 0; right: 0; bottom: 0; height: 420px; background: linear-gradient(rgba(240,242,248,0), rgba(240,242,248,0.85) 70%, #f0f2f8); }
+      #title { position: absolute; left: 60px; right: 60px; top: 150px; text-align: center; font-weight: 700; font-size: 54px; letter-spacing: -1.2px; color: #14161c; line-height: 1.15; }
+      #title em { font-style: normal; color: #2f5bff; }
+      .hud { position: absolute; display: flex; align-items: center; gap: 18px; padding: 14px 26px; border-radius: 40px; background: rgba(255,255,255,0.92);
+        box-shadow: 0 8px 28px rgba(30,40,80,0.12); transform: translateX(-50%); white-space: nowrap; }
+      .hud .st { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 30px; }
+      .hud .dot { width: 16px; height: 16px; border-radius: 50%; }
+      .hud .sep { width: 2px; height: 36px; background: #dfe3ea; }
+      .hud .val { font-weight: 700; font-size: 44px; color: #14161c; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+      .hud .unit { font-weight: 500; font-size: 26px; color: #8a90a0; margin-left: 6px; }
+      .lbl { position: absolute; height: 0; }
+      .lbl .pt { position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; border-radius: 50%; background: #14161c; border: 3px solid #fff; }
+      .lbl .ln { position: absolute; top: -1.5px; height: 3px; background: #14161c; }
+      .lbl .tx { position: absolute; top: -30px; padding: 6px 12px; font-weight: 800; font-size: 26px; letter-spacing: 3px; color: #14161c; background: rgba(255,255,255,0.94); border-bottom: 3px solid #14161c; white-space: nowrap; }
+      #note { position: absolute; left: 40px; top: 1645px; padding: 7px 14px; border-radius: 8px; background: rgba(255,255,255,0.8); font-weight: 500; font-size: 22px; color: #6b7183; }
+      #card { position: absolute; left: 70px; top: 470px; width: 470px; padding: 26px 30px; border-radius: 22px; background: rgba(255,255,255,0.95); box-shadow: 0 14px 40px rgba(30,40,80,0.14); }
+      #card .k { font-weight: 800; font-size: 22px; letter-spacing: 3px; color: #6b7183; }
+      #card .big { font-weight: 800; font-size: 96px; letter-spacing: -3px; color: #14161c; line-height: 1.05; margin-top: 6px; }
+      #card .sub { font-weight: 600; font-size: 30px; color: #2f5bff; }
+      #card .bar { margin-top: 18px; height: 12px; border-radius: 6px; background: #e4e8f0; overflow: hidden; }
+      #card .bar i { display: block; height: 100%; width: 0; background: #2f5bff; border-radius: 6px; }
+      #card .barl { display: flex; justify-content: space-between; margin-top: 8px; font-weight: 600; font-size: 22px; color: #8a90a0; }
+      #cmp { position: absolute; left: 40px; right: 40px; top: 420px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+      #cmp .col { background: rgba(255,255,255,0.96); border-radius: 26px; padding: 22px 22px 26px; box-shadow: 0 14px 40px rgba(30,40,80,0.14); }
+      #cmp .lcd { background: #1d2430; border-radius: 16px; padding: 10px 18px; display: flex; justify-content: space-between; align-items: baseline; }
+      #cmp .lcd b { font-weight: 800; font-size: 72px; color: #8fd0ff; letter-spacing: -2px; font-variant-numeric: tabular-nums; }
+      #cmp .lcd span { font-weight: 700; font-size: 22px; letter-spacing: 3px; color: #8a96a8; }
+      #cmp .k { margin-top: 18px; font-weight: 800; font-size: 20px; letter-spacing: 3px; color: #6b7183; }
+      #cmp svg { display: block; width: 100%; height: 260px; margin-top: 6px; }
+      #cmp .bar { margin-top: 10px; height: 18px; border-radius: 9px; background: #e4e8f0; overflow: hidden; }
+      #cmp .bar i { display: block; height: 100%; width: 0; border-radius: 9px; }
+      #cmp .chip { margin-top: 14px; display: inline-block; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 24px; }
+      #cmp .lcd b { font-size: 56px; }
+      #stamp { position: absolute; left: 50%; top: 440px; transform: translateX(-50%) rotate(-6deg); padding: 14px 34px; border: 8px solid #e5483a; border-radius: 18px; color: #e5483a; font-weight: 800; font-size: 76px; letter-spacing: 4px; background: rgba(255,255,255,0.9); white-space: nowrap; }
+      #cta { position: absolute; left: 0; right: 0; top: 1665px; text-align: center; font-weight: 600; font-size: 34px; color: #4a5060; }
+      #rew { position: absolute; right: 60px; top: 300px; font-weight: 800; font-size: 34px; letter-spacing: 2px; color: #2f5bff; }
+      #captions-host { z-index: 10; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="64.367" data-width="1080" data-height="1920" data-fps="30">
+      <div id="world" class="clip" data-start="0" data-duration="64.367" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+        <canvas id="world-canvas" width="1080" height="1920"></canvas>
+      </div>
+      <div id="ui" class="clip" data-start="0" data-duration="64.367" data-track-index="2" data-track-kind="graphics" data-layout-ignore>
+        <div class="fade-top"></div><div class="fade-bot"></div>
+        <div id="title"></div>
+        <div class="hud" id="hud-main"><div class="st"><span class="dot"></span><span class="sl"></span></div><span class="sep"></span><div><span class="val"></span><span class="unit"></span></div></div>
+        <div class="hud" id="hud-a"><div class="st"><span class="dot"></span><span class="sl"></span></div><span class="sep"></span><div><span class="val"></span><span class="unit"></span></div></div>
+        <div class="hud" id="hud-b"><div class="st"><span class="dot"></span><span class="sl"></span></div><span class="sep"></span><div><span class="val"></span><span class="unit"></span></div></div>
+        <div id="labels"></div>
+        <div id="note"></div>
+        <div id="cmp">
+          <div class="col" id="cA"><div class="lcd"><span>PERIUK BIASA</span><b>100°C</b></div><div class="k">DAGING EMPUK DALAM</div>
+            <svg viewBox="0 0 460 260"><circle cx="230" cy="130" r="100" fill="none" stroke="#e4e8f0" stroke-width="22"/><circle class="arc" cx="230" cy="130" r="100" fill="none" stroke="#e5483a" stroke-width="22" stroke-linecap="round" transform="rotate(-90 230 130)" pathLength="100" stroke-dasharray="0 100"/>
+              <text class="tm" x="230" y="146" text-anchor="middle" font-size="58" font-weight="800" fill="#14161c">0:00</text></svg>
+            <div class="chip" style="background:#ffe4df;color:#c8321f">2 jam</div></div>
+          <div class="col" id="cB"><div class="lcd"><span>PERIUK TEKANAN</span><b>120°C</b></div><div class="k">DAGING EMPUK DALAM</div>
+            <svg viewBox="0 0 460 260"><circle cx="230" cy="130" r="100" fill="none" stroke="#e4e8f0" stroke-width="22"/><circle class="arc" cx="230" cy="130" r="100" fill="none" stroke="#22a95b" stroke-width="22" stroke-linecap="round" transform="rotate(-90 230 130)" pathLength="100" stroke-dasharray="0 100"/>
+              <text class="tm" x="230" y="146" text-anchor="middle" font-size="58" font-weight="800" fill="#14161c">0:00</text></svg>
+            <div class="chip" style="background:#dcf5e6;color:#167a41">40 minit ✓</div></div>
+        </div>
+        <div id="stamp">JANGAN BUKA</div>
+        <div id="cta">Barang apa nak aku bedah lepas ni? ↓</div>
+        <div id="rew">◀◀ UNDUR</div>
+      </div>
+      <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="64.367" data-track-index="4" data-volume="1"></audio>
+      <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="64.367" data-track-index="5" data-volume="0.35"></audio>
+      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="64.367"
+        data-track-index="3" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+    </div>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      let resolveWorld;
+      window.__hf.buildReady["world"] = new Promise((r) => (resolveWorld = r));
+    </script>
+    <script type="module">
+      import { createWorld } from "./assets/world.js";
+      import { warp } from "./assets/timing.js";
+      const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
+      const scale = Number(vars.previewScale) || 1;
+      await Promise.all(["500", "600", "700", "800"].map((w) => document.fonts.load(`${w} 40px "Inter"`)));
+      let fxOpts = {}; try { fxOpts = vars.fx ? JSON.parse(vars.fx) : {}; } catch (e) {}
+      const world = createWorld(document.getElementById("world-canvas"), 1080, 1920, scale, fxOpts);
+      const T = world.T;
+
+      const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+      const ss = (e0, e1, x) => { const u = clamp((x - e0) / (e1 - e0)); return u * u * (3 - 2 * u); };
+      const win = (t, t0, t1, fin = 0.3, fout = 0.3) => (t0 <= 0 ? 1 : ss(t0, t0 + fin, t)) * (t1 >= 60 ? 1 : 1 - ss(t1 - fout, t1, t));
+
+      const HOOK = "Had air: <em>100°C</em>";
+      const CH = [
+        [0, 3.4, HOOK], [3.4, 7, "Periuk ni <em>langgar had</em>"], [7, 15, "Takat didih <em>ikut tekanan</em>"], [15, 25, "Kunci wap, <em>tekanan naik</em>"],
+        [25, 35, "120°C = <em>masak laju</em>"], [35, 43, "Wisel = <em>injap keselamatan</em>"], [43, 52, "Jangan buka <em>masa bertekanan</em>"],
+        [52, 58.8, "Paksa air <em>lebih panas</em>"], [58.8, 60, HOOK],
+      ];
+      const NOTES = [[7.2, 15, "Takat didih air di puncak Everest ≈ 70°C (tekanan udara ≈ ⅓ atm)"], [25.2, 35, "2 atm mutlak → takat didih ≈ 120°C · masa masak anggaran"],
+        [43.2, 52, "Lepaskan wap dulu ikut arahan pengeluar sebelum buka penutup"]];
+      const LABELS = [
+        ["everest", "PUNCAK EVEREST", 10.4, 14.6, 1],
+        ["getah", "GETAH PENUTUP", 17.3, 24.6, -1], ["steam", "WAP", 18.7, 24.6, -1],
+        ["weight", "PEMBERAT", 36.3, 42.8, 1], ["vent", "LUBANG WAP", 37.2, 42.8, -1],
+        ["water", "AIR 120°C", 46.0, 48.6, 1],
+      ];
+      const ST = { boil: ["Mendidih", "#2f5bff"], press: ["Bertekanan", "#e5483a"], pres: ["Tekanan", "#e5483a"], temp: ["Suhu air", "#ff7a1a"], drop: ["Tekanan jatuh", "#e5483a"] };
+
+      const $ = (s) => document.querySelector(s);
+      const titleEl = $("#title"), noteEl = $("#note"), labelsEl = $("#labels"), cta = $("#cta"), rew = $("#rew"), cmp = $("#cmp"), stamp = $("#stamp");
+      const lblEls = LABELS.map(() => { const d = document.createElement("div"); d.className = "lbl"; d.innerHTML = '<span class="ln"></span><span class="pt"></span><span class="tx"></span>'; labelsEl.appendChild(d); return d; });
+      function setHud(el, st, val, unit, x, y, a) {
+        el.style.opacity = a; el.style.left = x + "px"; el.style.top = y + "px";
+        const [name, col] = ST[st]; el.querySelector(".dot").style.background = col; el.querySelector(".dot").style.boxShadow = `0 0 0 5px ${col}22`;
+        el.querySelector(".sl").textContent = name; el.querySelector(".sl").style.color = col;
+        el.querySelector(".val").textContent = val; el.querySelector(".unit").textContent = unit;
+      }
+      const fmt = (v, d = 1) => v.toFixed(d).replace(".", ",");
+
+      function overlay(o, t) {
+        const ch = CH.find(([a, b]) => t >= a && t < b) || CH[CH.length - 1];
+        const hard = ch[1] === 3.4 || ch[0] === 3.4;
+        const ta = hard ? 1 : win(t, ch[0], ch[1], 0.35, 0.3);
+        if (titleEl.innerHTML !== ch[2]) titleEl.innerHTML = ch[2];
+        titleEl.style.opacity = ta; titleEl.style.filter = `blur(${(1 - ta) * 10}px)`;
+        // main HUD
+        let a = 1, st = "boil", val = "100,0", unit = "°C";
+        if (t < 3.4) { st = "boil"; val = fmt(100 + 0.15 * Math.sin(t * 40)); }
+        else if (t < 8.3) { st = "press"; val = fmt(100 + 20 * ss(3.6, 6.1, t)); a = 1 - ss(8.0, 8.3, t); }
+        else if (t < 9.8) { a = 0; }
+        else if (t < 15.2) { st = "boil"; val = "70,0"; unit = "°C · Everest"; a = ss(9.8, 10.2, t) * (1 - ss(14.8, 15.2, t)); }
+        else if (t < 25.2) { a = 0; }
+        else if (t < 30.7) { st = "temp"; val = fmt(o.temp); a = ss(25.2, 25.6, t) * (1 - ss(30.4, 30.7, t)); }
+        else if (t < 35.1) { a = 0; }
+        else if (t < 43.2) { st = "pres"; val = fmt(o.p); unit = "atm"; a = ss(35.1, 35.5, t) * (1 - ss(42.9, 43.2, t)); }
+        else if (t < 52) { st = t > 48.3 ? "drop" : "pres"; val = fmt(o.p); unit = "atm"; a = ss(43.2, 43.6, t) * (1 - ss(51.7, 52, t)); }
+        else { a = ss(59.2, 59.7, t); st = "boil"; val = "100,0"; }
+        setHud($("#hud-main"), st, val, unit, 540, 300, a);
+        // bedah: pressure + temperature side by side
+        const sa = ss(15.6, 16.0, t) * (1 - ss(24.8, 25.2, t));
+        setHud($("#hud-a"), "pres", fmt(o.p), "atm", 290, 300, sa);
+        setHud($("#hud-b"), "temp", fmt(o.temp), "°C", 790, 300, sa);
+        LABELS.forEach(([k, txt, t0, t1, side], i) => {
+          const el = lblEls[i], p = o.anchors[k]; const la = p ? win(t, t0, t1, 0.25, 0.25) : 0;
+          el.style.opacity = la; if (la <= 0) return;
+          el.style.left = p[0] + "px"; el.style.top = p[1] + "px";
+          const L = 110 * ss(t0, t0 + 0.35, t);
+          const ln = el.querySelector(".ln"), tx = el.querySelector(".tx");
+          ln.style.width = L + "px"; ln.style.left = side > 0 ? "0px" : -L + "px";
+          if (tx.textContent !== txt) tx.textContent = txt;
+          tx.style.left = side > 0 ? L + "px" : "auto"; tx.style.right = side > 0 ? "auto" : L + "px";
+        });
+        const n = NOTES.find(([a, b]) => t >= a && t < b);
+        noteEl.style.opacity = n ? win(t, n[0], n[1]) : 0; if (n && noteEl.textContent !== n[2]) noteEl.textContent = n[2];
+        // cooking-time clocks: 2 h vs 40 min
+        const ca = win(t, 30.7, 35.0, 0.4, 0.4); cmp.style.opacity = ca; cmp.style.transform = `translateY(${(1 - ss(30.7, 31.2, t)) * 30}px)`;
+        const run = ss(31.6, 34.4, t);
+        for (const [id, mins] of [["#cA", 120], ["#cB", 40]]) { const el = $(id); const m = Math.min(run * 120, mins);
+          el.querySelector(".arc").setAttribute("stroke-dasharray", `${(m / 120) * 100} 100`);
+          el.querySelector(".tm").textContent = `${Math.floor(m / 60)}:${String(Math.floor(m % 60)).padStart(2, "0")}`;
+          el.querySelector(".chip").style.opacity = ss(31.6 + (mins / 120) * 2.8, 31.6 + (mins / 120) * 2.8 + 0.3, t); }
+        // warning stamp
+        const sa2 = win(t, 43.7, 47.8, 0.15, 0.3); stamp.style.opacity = sa2; stamp.style.transform = `translateX(-50%) rotate(-6deg) scale(${1.5 - 0.5 * ss(43.7, 43.9, t)})`;
+        cta.style.opacity = 0; rew.style.opacity = 0;
+      }
+      function renderAt(t) { const ct = warp(t); const o = world.render(ct); overlay(o, ct); }
+      window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+      renderAt(0);
+      resolveWorld();
+    </script>
+  </body>
+</html>
