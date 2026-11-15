@@ -1,0 +1,109 @@
+{
+ "total": 34.14,
+ "segments": [
+  {
+   "id": "A1",
+   "clip": "v1",
+   "src_in": 0.18,
+   "src_out": 2.4,
+   "start": 0.0,
+   "dur": 2.22
+  },
+  {
+   "id": "A2",
+   "clip": "v1",
+   "src_in": 2.62,
+   "src_out": 5.52,
+   "start": 2.22,
+   "dur": 2.9
+  },
+  {
+   "id": "A3",
+   "clip": "v1",
+   "src_in": 6.4,
+   "src_out": 9.52,
+   "start": 5.12,
+   "dur": 3.12
+  },
+  {
+   "id": "B1",
+   "clip": "v2",
+   "src_in": 0.22,
+   "src_out": 2.58,
+   "start": 8.24,
+   "dur": 2.36
+  },
+  {
+   "id": "B2",
+   "clip": "v2",
+   "src_in": 3.18,
+   "src_out": 6.52,
+   "start": 10.6,
+   "dur": 3.34
+  },
+  {
+   "id": "B3",
+   "clip": "v2",
+   "src_in": 6.7,
+   "src_out": 9.72,
+   "start": 13.94,
+   "dur": 3.02
+  },
+  {
+   "id": "C1",
+   "clip": "v3",
+   "src_in": 0.0,
+   "src_out": 3.32,
+   "start": 16.96,
+   "dur": 3.32
+  },
+  {
+   "id": "C2",
+   "clip": "v3",
+   "src_in": 3.5,
+   "src_out": 4.88,
+   "start": 20.28,
+   "dur": 1.38
+  },
+  {
+   "id": "C3",
+   "clip": "v3",
+   "src_in": 5.08,
+   "src_out": 9.58,
+   "start": 21.66,
+   "dur": 4.5
+  },
+  {
+   "id": "D1",
+   "clip": "v4",
+   "src_in": 0.28,
+   "src_out": 3.14,
+   "start": 26.16,
+   "dur": 2.86
+  },
+  {
+   "id": "D2",
+   "clip": "v4",
+   "src_in": 3.6,
+   "src_out": 5.14,
+   "start": 29.02,
+   "dur": 1.54
+  },
+  {
+   "id": "D3",
+   "clip": "v4",
+   "src_in": 5.4,
+   "src_out": 8.02,
+   "start": 30.56,
+   "dur": 2.62
+  },
+  {
+   "id": "D4",
+   "clip": "v4",
+   "src_in": 8.26,
+   "src_out": 9.22,
+   "start": 33.18,
+   "dur": 0.96
+  }
+ ]
+}
