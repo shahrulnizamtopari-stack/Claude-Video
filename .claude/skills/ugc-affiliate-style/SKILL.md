@@ -55,6 +55,15 @@ shake, boing) is in git history (commit `93202bf`) for when the user asks for a 
   which the user flagged as weaker than v1's stamp; put the first caption on from frame 0 next time.
 - **Safe zone:** words inside y 168–1330 and clear of the right action rail (x > ~960). Decorative strokes may go lower.
 
+## 1b. Alternative look: "PUNCH" (loud, reference-reel style)
+
+When the user asks for "style power tu", "macam video editing 7 steps", "PUNCH", or a louder version, start from
+**`careleaf-gummies/`** instead of `kitsui-fiber/` (same four files, same process). Its `NOTES.md` has the full recipe:
+Montserrat 900 italic upper-case captions with word-by-word pop, lime `#DFFF4F` key words with glow, red `#FF3B3B`
+bad-news words, black-and-white beats (`saturation: -1`) that flash back to colour through an orange light leak,
+lime number tiles, stacked white cards, ring timer, product B-roll as a card on white→lime paper, punch-ins on most
+phrases. Captions sit on the chest (y 1150) or on the wall above the head (y 300) when the box is in the hands.
+
 ## 2. Process
 
 The user usually wants the **finished MP4 without approval stops** for this kind of edit. Follow what they say in the

@@ -1,0 +1,261 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Montserrat", sans-serif; }
+    #root .g { position: absolute; left: 0; top: 0; }
+    #root svg { overflow: visible; }
+    #root .it { font-style: italic; font-weight: 900; }
+
+    /* ring timer (5 minit je) */
+    #g-timer { left: 690px; top: 240px; width: 320px; height: 320px; }
+    #g-timer-bg { position: absolute; inset: 0; border-radius: 50%; background: rgba(28,28,28,0.82);
+      box-shadow: 0 0 40px rgba(223,255,79,0.35), 0 20px 50px rgba(0,0,0,0.4); }
+    #g-timer svg { position: absolute; left: 0; top: 0; }
+    #g-timer circle.p { filter: drop-shadow(0 0 10px rgba(223,255,79,0.8)); }
+    #g-timer .n { position: absolute; left: 0; top: 98px; width: 320px; text-align: center; font-size: 96px; color: #fff; line-height: 1; }
+    #g-timer .u { position: absolute; left: 0; top: 196px; width: 320px; text-align: center; font-size: 34px; color: #DFFF4F; letter-spacing: 0.04em; }
+
+    /* light leak (bad-news black-and-white back to colour) */
+    #root .leak { width: 1080px; height: 1920px; mix-blend-mode: screen;
+      background: radial-gradient(60% 45% at 78% 28%, rgba(255,170,60,1) 0%, rgba(255,110,30,0.75) 35%, rgba(255,70,0,0) 75%),
+                  radial-gradient(70% 50% at 15% 80%, rgba(255,120,40,0.8) 0%, rgba(255,60,0,0) 70%); }
+
+    /* stacked white cards */
+    #root .stack { left: 0; width: 1080px; text-align: center; }
+    #root .card { display: inline-flex; align-items: center; gap: 22px; height: 100px; padding: 0 40px 0 24px; margin: 7px 0;
+      background: #FFFFFF; border-radius: 26px; box-shadow: 0 24px 50px rgba(0,0,0,0.35), 0 4px 10px rgba(0,0,0,0.15);
+      font-size: 50px; color: #161616; white-space: nowrap; }
+    #root .card .ic { width: 56px; height: 56px; border-radius: 50%; flex: none; position: relative; }
+    #root .card .ic.bad { background: #FF3B3B; }
+    #root .card .ic.bad::after { content: ""; position: absolute; left: 14px; right: 14px; top: 25px; height: 7px; border-radius: 4px; background: #fff; }
+    #root .card .ic.beet { background: radial-gradient(circle at 40% 35%, #E2416B, #8E1238 70%); }
+    #root .row1 { display: block; }
+    #g-symp { top: 228px; }
+    #g-ing { top: 260px; }
+    #g-ing .t { font-size: 44px; color: #fff; margin-bottom: 6px; text-shadow: 0 4px 18px rgba(0,0,0,0.6); }
+
+    /* lime tiles */
+    #root .tile { position: absolute; background: #DFFF4F; border-radius: 34px; color: #141414; text-align: center;
+      box-shadow: 0 0 34px rgba(223,255,79,0.45), 0 24px 50px rgba(0,0,0,0.35); }
+    #root .tile .big { position: absolute; left: 0; width: 100%; line-height: 1; }
+    #root .tile .lab { position: absolute; left: 0; width: 100%; font-size: 40px; line-height: 1; }
+    #g-eq { left: 0; top: 230px; width: 1080px; height: 420px; }
+    #g-t2 { left: 120px; top: 0; width: 300px; height: 300px; }
+    #g-t5 { left: 660px; top: 0; width: 300px; height: 300px; }
+    #g-eq .big { top: 42px; font-size: 170px; }
+    #g-eq .lab { top: 228px; }
+    #g-eqs { position: absolute; left: 470px; top: 92px; width: 140px; text-align: center; font-size: 120px; color: #fff; line-height: 1;
+      text-shadow: 0 0 22px rgba(255,255,255,0.45); }
+    #g-eqt { position: absolute; left: 0; top: 330px; width: 1080px; text-align: center; font-size: 50px; color: #fff;
+      text-shadow: 0 3px 0 rgba(0,0,0,0.35), 0 6px 22px rgba(0,0,0,0.6); }
+
+    #g-feat { left: 0; top: 270px; width: 1080px; height: 400px; }
+    #g-feat .tile { top: 0; width: 300px; height: 210px; }
+    #g-f1 { left: 60px; } #g-f2 { left: 390px; } #g-f3 { left: 720px; }
+    #g-feat .num { top: 40px; font-size: 140px; }
+    #g-feat .lab { top: 50px; font-size: 30px; color: #3B4410; }
+    #g-feat .val { position: absolute; left: 0; width: 100%; top: 92px; font-size: 64px; line-height: 0.95; }
+    #g-feat .val.two { top: 64px; font-size: 56px; }
+    #g-sedap { position: absolute; left: 70px; top: 248px; width: 340px; height: 120px; }
+    #g-sedap .tx { position: absolute; left: 112px; top: 46px; font-size: 54px; color: #fff; transform: rotate(-6deg);
+      text-shadow: 0 4px 18px rgba(0,0,0,0.6); }
+
+    /* step badge */
+    #g-dose { left: 0; top: 300px; width: 1080px; height: 240px; }
+    #g-dose-k { position: absolute; left: 0; top: 0; width: 1080px; text-align: center; font-size: 52px; color: #fff;
+      text-shadow: 0 3px 0 rgba(0,0,0,0.35), 0 6px 22px rgba(0,0,0,0.6); }
+    #g-badge { position: absolute; left: 70px; top: 82px; width: 150px; height: 150px; border-radius: 50%; background: #DFFF4F;
+      color: #141414; text-align: center; font-size: 104px; line-height: 150px;
+      box-shadow: 0 0 34px rgba(223,255,79,0.55), 0 18px 40px rgba(0,0,0,0.4); }
+    #g-dose-t { position: absolute; left: 244px; top: 104px; font-size: 92px; color: #fff; white-space: nowrap; line-height: 1;
+      text-shadow: 0 3px 0 rgba(0,0,0,0.35), 0 6px 22px rgba(0,0,0,0.6); }
+    #g-dose-t .c { display: inline-block; }
+
+    /* red X over the blender */
+    #g-x { left: 250px; top: 420px; width: 580px; height: 580px; }
+    #g-x path { filter: drop-shadow(0 0 16px rgba(255,59,59,0.85)); }
+
+    /* CTA */
+    #g-cta { left: 0; top: 330px; width: 1080px; text-align: center; }
+    #g-cta-in { display: inline-flex; align-items: center; gap: 30px; background: #FFFFFF; border-radius: 44px;
+      padding: 26px 50px 26px 26px; box-shadow: 0 34px 70px rgba(0,0,0,0.4), 0 0 40px rgba(223,255,79,0.25); text-align: left; }
+    #g-cta-icon { width: 140px; height: 140px; border-radius: 34px; background: #F5C518; position: relative; flex: none; }
+    #g-cta-icon svg { position: absolute; left: 30px; top: 26px; }
+    #g-cta .a { font-size: 42px; color: #6B6B6B; line-height: 1.1; }
+    #g-cta .b { font-size: 78px; color: #141414; line-height: 1.0; white-space: nowrap; }
+    #g-cta .b .c { display: inline-block; }
+    #g-tap { left: 0; top: 0; }
+  </style>
+  <div id="root" data-composition-id="gfx" data-width="1080" data-height="1920" data-layout-allow-overflow>
+
+    <!-- 5 minit je: ring timer -->
+    <div id="g-timer" class="clip g" data-start="3.48" data-duration="0.86" data-track-index="1">
+      <div id="g-timer-bg"></div>
+      <svg width="320" height="320" viewBox="0 0 320 320">
+        <circle cx="160" cy="160" r="146" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="12" />
+        <circle id="g-timer-p" class="p" cx="160" cy="160" r="146" fill="none" stroke="#DFFF4F" stroke-width="12" stroke-linecap="round"
+          pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" transform="rotate(-90 160 160)" />
+      </svg>
+      <div class="n it"><span id="g-tn0">0</span></div>
+      <div class="n it"><span id="g-tn1">1</span></div>
+      <div class="n it"><span id="g-tn2">2</span></div>
+      <div class="n it"><span id="g-tn3">3</span></div>
+      <div class="n it"><span id="g-tn4">4</span></div>
+      <div class="n it"><span id="g-tn5">5</span></div>
+      <div class="u it">MINIT JE</div>
+    </div>
+
+    <!-- light leaks -->
+    <div id="g-leak1" class="clip g leak" data-start="8.2" data-duration="0.6" data-track-index="2" data-layout-ignore></div>
+    <div id="g-leak2" class="clip g leak" data-start="21.76" data-duration="0.6" data-track-index="2" data-layout-ignore></div>
+
+    <!-- symptoms: stacked white cards -->
+    <div id="g-symp" class="clip g stack it" data-start="8.41" data-duration="2.48" data-track-index="1">
+      <div class="row1"><div class="card" id="g-s1"><div class="ic bad"></div>CEPAT SEMPUT</div></div>
+      <div class="row1"><div class="card" id="g-s2"><div class="ic bad"></div>BADAN LEMBIK</div></div>
+      <div class="row1"><div class="card" id="g-s3"><div class="ic bad"></div>TANGAN KAKI SEJUK</div></div>
+      <div class="row1"><div class="card" id="g-s4"><div class="ic bad"></div>KEBAS</div></div>
+    </div>
+
+    <!-- 2 gummy = 5 beetroot -->
+    <div id="g-eq" class="clip g it" data-start="17.39" data-duration="3.19" data-track-index="1">
+      <div class="tile" id="g-t2"><div class="big">2</div><div class="lab" id="g-t2l">GUMMY</div></div>
+      <div id="g-eqs">=</div>
+      <div class="tile" id="g-t5"><div class="big">5</div><div class="lab" id="g-t5l">BEETROOT</div></div>
+      <div id="g-eqt">SAMA MACAM MAKAN</div>
+    </div>
+
+    <!-- tak payah blend: red X -->
+    <div id="g-x" class="clip g" data-start="21.08" data-duration="0.89" data-track-index="1" data-layout-ignore>
+      <svg width="580" height="580" viewBox="0 0 580 580">
+        <path id="g-x1" d="M70 70 L510 510" stroke="#FF3B3B" stroke-width="34" stroke-linecap="round" fill="none" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+        <path id="g-x2" d="M510 70 L70 510" stroke="#FF3B3B" stroke-width="34" stroke-linecap="round" fill="none" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+      </svg>
+    </div>
+
+    <!-- ingredients: stacked white cards -->
+    <div id="g-ing" class="clip g stack it" data-start="21.97" data-duration="2.15" data-track-index="1">
+      <div class="t" id="g-ing-t">ADA</div>
+      <div class="row1"><div class="card" id="g-i1"><div class="ic beet"></div>L-CITRULLINE</div></div>
+      <div class="row1"><div class="card" id="g-i2"><div class="ic beet"></div>HAWTHORN</div></div>
+    </div>
+
+    <!-- features: 1 2 3 tiles that turn into PEACH / ZERO SUGAR / HALAL -->
+    <div id="g-feat" class="clip g it" data-start="26.5" data-duration="2.76" data-track-index="1">
+      <div class="tile" id="g-f1"><div class="big num" id="g-f1n">1</div><div class="lab" id="g-f1l">RASA</div><div class="val" id="g-f1v">PEACH</div></div>
+      <div class="tile" id="g-f2"><div class="big num" id="g-f2n">2</div><div class="val two" id="g-f2v">ZERO<br>SUGAR</div></div>
+      <div class="tile" id="g-f3"><div class="big num" id="g-f3n">3</div><div class="val" id="g-f3v">HALAL</div></div>
+      <div id="g-sedap">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <path id="g-arrow" d="M100 80 C 60 86, 30 60, 34 14 M18 32 L34 12 L52 30" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"
+            pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+        </svg>
+        <div class="tx it" id="g-sedap-t">SEDAP!</div>
+      </div>
+    </div>
+
+    <!-- dose: badge 2 + typed title -->
+    <div id="g-dose" class="clip g it" data-start="29.26" data-duration="1.45" data-track-index="1">
+      <div id="g-dose-k">KUNYAH</div>
+      <div id="g-badge">2</div>
+      <div id="g-dose-t"><span class="c">B</span><span class="c">I</span><span class="c">J</span><span class="c">I</span><span class="c">&nbsp;</span><span class="c">J</span><span class="c">E</span><br><span class="c">S</span><span class="c">E</span><span class="c">H</span><span class="c">A</span><span class="c">R</span><span class="c">I</span></div>
+    </div>
+
+    <!-- CTA -->
+    <div id="g-cta" class="clip g it" data-start="33.47" data-duration="1.63" data-track-index="1">
+      <div id="g-cta-in">
+        <div id="g-cta-icon">
+          <svg width="80" height="88" viewBox="0 0 80 88">
+            <path d="M24 30 C 24 8, 56 8, 56 30" fill="none" stroke="#141414" stroke-width="7" stroke-linecap="round" />
+            <path d="M8 28 L72 28 L77 80 Q 77 85 72 85 L8 85 Q 3 85 3 80 Z" fill="none" stroke="#141414" stroke-width="7" stroke-linejoin="round" />
+          </svg>
+          <svg id="g-tap" width="140" height="140" viewBox="-70 -70 140 140" style="position:absolute;left:0;top:0">
+            <circle id="g-tap1" r="44" fill="none" stroke="#fff" stroke-width="6" />
+          </svg>
+        </div>
+        <div>
+          <div class="a" id="g-cta-a">TEKAN</div>
+          <div class="b" id="g-cta-b"><span class="c">B</span><span class="c">E</span><span class="c">G</span><span class="c">&nbsp;</span><span class="c">K</span><span class="c">U</span><span class="c">N</span><span class="c">I</span><span class="c">N</span><span class="c">G</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    const POP = (sel, t, from) => tl.fromTo(sel, { scale: 0, opacity: 0, ...(from || {}) }, { scale: 1, opacity: 1, rotation: 0, duration: 0.26, ease: "back.out(2.2)" }, t);
+
+    for (const [id, t] of [["#g-timer-p", 3.52], ["#g-x1", 21.1], ["#g-x2", 21.24], ["#g-arrow", 27.58]]) {
+      tl.set(id, { opacity: 0 }, 0); tl.set(id, { opacity: 1 }, t);
+    }
+
+    // ring timer: counts 0 -> 5 while the ring fills
+    POP("#g-timer", 3.48);
+    tl.fromTo("#g-timer-p", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.72, ease: "power1.inOut" }, 3.52);
+    for (let i = 0; i <= 5; i++) {
+      tl.set("#g-tn" + i, { opacity: 0 }, 0);
+      tl.set("#g-tn" + i, { opacity: 1 }, 3.48 + i * 0.13);
+      if (i < 5) tl.set("#g-tn" + i, { opacity: 0 }, 3.48 + (i + 1) * 0.13);
+    }
+    tl.fromTo("#g-timer", { scale: 1 }, { scale: 1.12, duration: 0.07, yoyo: true, repeat: 1, ease: "power2.out" }, 4.1);
+    tl.to("#g-timer", { scale: 0.6, opacity: 0, duration: 0.08, ease: "power2.in" }, 4.25);
+
+    // light leaks: flare up over the cut, sweep, fade
+    for (const [id, t] of [["#g-leak1", 8.2], ["#g-leak2", 21.76]]) {
+      tl.fromTo(id, { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: 0.2, ease: "power2.out" }, t);
+      tl.to(id, { opacity: 0, x: -160, duration: 0.38, ease: "power2.in" }, t + 0.2);
+    }
+
+    // symptom cards: two recap cards at once, the next two on their words
+    POP("#g-s1", 8.47, { y: 20 }); POP("#g-s2", 8.57, { y: 20 });
+    POP("#g-s3", 9.86, { y: 20 }); POP("#g-s4", 10.58, { y: 20 });
+    tl.to("#g-symp", { opacity: 0, y: -20, duration: 0.12, ease: "power2.in" }, 10.76);
+
+    // 2 = 5 tiles
+    POP("#g-t2", 17.5, { rotation: -8 });
+    tl.fromTo("#g-t2l", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.18 }, 18.0);
+    POP("#g-eqs", 18.72);
+    tl.fromTo("#g-eqt", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out" }, 18.74);
+    POP("#g-t5", 19.55, { rotation: 8 });
+    tl.fromTo("#g-t5l", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.18 }, 20.16);
+    tl.to("#g-eq", { opacity: 0, scale: 0.94, duration: 0.1, ease: "power2.in" }, 20.47);
+
+    // red X on "blend"
+    tl.fromTo("#g-x1", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.16, ease: "power2.out" }, 21.1);
+    tl.fromTo("#g-x2", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.16, ease: "power2.out" }, 21.24);
+    tl.fromTo("#g-x", { scale: 1.08 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, 21.24);
+
+    // ingredient cards
+    tl.fromTo("#g-ing-t", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18 }, 22.02);
+    POP("#g-i1", 22.3, { y: 20 }); POP("#g-i2", 23.42, { y: 20 });
+    tl.to("#g-ing", { opacity: 0, y: -20, duration: 0.12, ease: "power2.in" }, 23.98);
+
+    // features: numbers pop, then each turns into its word
+    POP("#g-f1", 26.52); POP("#g-f2", 26.58); POP("#g-f3", 26.64);
+    for (const [n, v, t, extra] of [["#g-f1n", "#g-f1v", 26.9, "#g-f1l"], ["#g-f2n", "#g-f2v", 27.94, null], ["#g-f3n", "#g-f3v", 28.84, null]]) {
+      tl.set(v, { opacity: 0 }, 0);
+      if (extra) tl.set(extra, { opacity: 0 }, 0);
+      tl.to(n, { scale: 0.3, opacity: 0, duration: 0.08, ease: "power2.in" }, t);
+      tl.fromTo(v, { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.24, ease: "back.out(2.6)" }, t + 0.06);
+      if (extra) tl.fromTo(extra, { opacity: 0 }, { opacity: 1, duration: 0.14 }, t + 0.06);
+    }
+    tl.fromTo("#g-arrow", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.22, ease: "power2.out" }, 27.58);
+    tl.fromTo("#g-sedap-t", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.22, ease: "back.out(2.4)" }, 27.6);
+    tl.to("#g-feat", { opacity: 0, scale: 0.95, duration: 0.1, ease: "power2.in" }, 29.15);
+
+    // dose badge + typed title
+    tl.fromTo("#g-dose-k", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2.4)" }, 29.26);
+    POP("#g-badge", 29.62, { rotation: -30 });
+    tl.set("#g-dose-t .c", { opacity: 0 }, 0);
+    tl.to("#g-dose-t .c", { opacity: 1, duration: 0.01, stagger: 0.04 }, 29.86);
+    tl.to("#g-dose", { opacity: 0, duration: 0.1 }, 30.6);
+
+    // CTA
+    tl.fromTo("#g-cta-in", { y: 50, opacity: 0, scale: 0.8 }, { y: 0, opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 33.47);
+    tl.fromTo("#g-cta-b .c", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.16, ease: "back.out(2)", stagger: 0.02 }, 33.7);
+    tl.fromTo("#g-cta-icon", { scale: 1 }, { scale: 0.88, duration: 0.07, ease: "power2.in" }, 33.78);
+    tl.to("#g-cta-icon", { scale: 1, duration: 0.22, ease: "back.out(2.5)" }, 33.85);
+    tl.fromTo("#g-tap1", { scale: 0.5, opacity: 0.9 }, { scale: 1.7, opacity: 0, duration: 0.42, ease: "power2.out" }, 33.78);
+
+    window.__timelines["gfx"] = tl;
+  </script>
+</template>

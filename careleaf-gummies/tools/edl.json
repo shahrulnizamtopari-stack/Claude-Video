@@ -1,0 +1,149 @@
+{
+ "total": 34.39,
+ "segments": [
+  {
+   "id": "A1",
+   "clip": "th1_penat",
+   "src_in": 0.04,
+   "src_out": 0.95,
+   "start": 0.0,
+   "dur": 0.91
+  },
+  {
+   "id": "A2",
+   "clip": "th1_penat",
+   "src_in": 1.0,
+   "src_out": 2.34,
+   "start": 0.91,
+   "dur": 1.34
+  },
+  {
+   "id": "A3",
+   "clip": "th1_penat",
+   "src_in": 2.67,
+   "src_out": 5.56,
+   "start": 2.25,
+   "dur": 2.89
+  },
+  {
+   "id": "A4",
+   "clip": "th1_penat",
+   "src_in": 6.34,
+   "src_out": 7.32,
+   "start": 5.14,
+   "dur": 0.98
+  },
+  {
+   "id": "A5",
+   "clip": "th1_penat",
+   "src_in": 7.36,
+   "src_out": 9.65,
+   "start": 6.12,
+   "dur": 2.29
+  },
+  {
+   "id": "B1",
+   "clip": "th2_kotak",
+   "src_in": 0.04,
+   "src_out": 2.52,
+   "start": 8.41,
+   "dur": 2.48
+  },
+  {
+   "id": "B2",
+   "clip": "th2_kotak",
+   "src_in": 3.02,
+   "src_out": 6.49,
+   "start": 10.89,
+   "dur": 3.47
+  },
+  {
+   "id": "B3",
+   "clip": "th2_kotak",
+   "src_in": 6.68,
+   "src_out": 9.71,
+   "start": 14.36,
+   "dur": 3.03
+  },
+  {
+   "id": "C1",
+   "clip": "th3_terang",
+   "src_in": 0.0,
+   "src_out": 1.22,
+   "start": 17.39,
+   "dur": 1.22
+  },
+  {
+   "id": "C2",
+   "clip": "th3_terang",
+   "src_in": 1.35,
+   "src_out": 3.32,
+   "start": 18.61,
+   "dur": 1.97
+  },
+  {
+   "id": "C3",
+   "clip": "th3_terang",
+   "src_in": 3.47,
+   "src_out": 4.86,
+   "start": 20.58,
+   "dur": 1.39
+  },
+  {
+   "id": "C4",
+   "clip": "th3_terang",
+   "src_in": 5.09,
+   "src_out": 9.62,
+   "start": 21.97,
+   "dur": 4.53
+  },
+  {
+   "id": "D1",
+   "clip": "th4_cta",
+   "src_in": 0.25,
+   "src_out": 1.08,
+   "start": 26.5,
+   "dur": 0.83
+  },
+  {
+   "id": "D2",
+   "clip": "th4_cta",
+   "src_in": 1.1,
+   "src_out": 2.42,
+   "start": 27.33,
+   "dur": 1.32
+  },
+  {
+   "id": "D3",
+   "clip": "th4_cta",
+   "src_in": 2.54,
+   "src_out": 3.15,
+   "start": 28.65,
+   "dur": 0.61
+  },
+  {
+   "id": "D4",
+   "clip": "th4_cta",
+   "src_in": 3.63,
+   "src_out": 5.08,
+   "start": 29.26,
+   "dur": 1.45
+  },
+  {
+   "id": "D5",
+   "clip": "th4_cta",
+   "src_in": 5.34,
+   "src_out": 8.1,
+   "start": 30.71,
+   "dur": 2.76
+  },
+  {
+   "id": "D6",
+   "clip": "th4_cta",
+   "src_in": 8.29,
+   "src_out": 9.21,
+   "start": 33.47,
+   "dur": 0.92
+  }
+ ]
+}
