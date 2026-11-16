@@ -1,6 +1,6 @@
 ---
 name: ugc-affiliate-style
-description: House style for TikTok affiliate / UGC product edits from talking-head + B-roll footage (Malay dialogue). The "clean" look - cinematic grade, two-tier Inter captions (small white setup line + big yellow key phrase, word-by-word reveal), flat white UI cards for product and CTA, thin glowing highlights, quiet sound. Use whenever the user sends talking-head / UGC / AI-UGC footage of a product and asks for an edit, "macam style Kitsui tu", "version 2 punya style", a TikTok affiliate video, or a re-edit of one. Holds the look in numbers, the process, the reusable code in kitsui-fiber/, and the pitfalls already solved.
+description: House style for TikTok affiliate / UGC product edits from talking-head + B-roll footage (Malay dialogue). The "clean" look - cinematic grade, two-tier Inter captions (small white setup line + big yellow key phrase, word-by-word reveal), flat white UI cards for product and CTA, thin glowing highlights, quiet sound. Use whenever the user sends talking-head / UGC / AI-UGC footage of a product and asks for an edit, "macam style Kitsui tu", "version 2 punya style", a TikTok affiliate video, or a re-edit of one. For the loud "PUNCH" look use the punch-style skill instead. Holds the look in numbers, the process, the reusable code in kitsui-fiber/, and the pitfalls already solved.
 ---
 
 # UGC affiliate style: the "clean" edit (v2)
@@ -55,14 +55,10 @@ shake, boing) is in git history (commit `93202bf`) for when the user asks for a 
   which the user flagged as weaker than v1's stamp; put the first caption on from frame 0 next time.
 - **Safe zone:** words inside y 168–1330 and clear of the right action rail (x > ~960). Decorative strokes may go lower.
 
-## 1b. Alternative look: "PUNCH" (loud, reference-reel style)
+## 1b. Louder alternative: "PUNCH"
 
-When the user asks for "style power tu", "macam video editing 7 steps", "PUNCH", or a louder version, start from
-**`careleaf-gummies/`** instead of `kitsui-fiber/` (same four files, same process). Its `NOTES.md` has the full recipe:
-Montserrat 900 italic upper-case captions with word-by-word pop, lime `#DFFF4F` key words with glow, red `#FF3B3B`
-bad-news words, black-and-white beats (`saturation: -1`) that flash back to colour through an orange light leak,
-lime number tiles, stacked white cards, ring timer, product B-roll as a card on white→lime paper, punch-ins on most
-phrases. Captions sit on the chest (y 1150) or on the wall above the head (y 300) when the box is in the hands.
+For a loud, energetic cut ("style PUNCH", "style power tu", "macam video Careleaf tu") use the **`punch-style`** skill
+(`.claude/skills/punch-style/SKILL.md`, reference project `careleaf-gummies/`) instead of this one.
 
 ## 2. Process
 

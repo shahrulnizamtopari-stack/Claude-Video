@@ -44,6 +44,26 @@ live, label penunjuk. Ada **versi malam** (latar biru gelap) untuk topik waktu m
 
 ---
 
+## 🔥 PUNCH (video affiliate / UGC yang "power")
+
+![PUNCH: Careleaf](docs/styles/punch-careleaf.jpg)
+
+**Rupa:** talking head + B-roll. Kapsyen italic tebal huruf besar, keluar satu perkataan satu masa ikut suara.
+Perkataan penting **hijau lime bercahaya**, perkataan "masalah" **merah**. Babak masalah jadi **hitam putih** lalu
+flash cahaya oren balik ke warna. Jubin nombor lime (2 = 5, 1-2-3 jadi PEACH / ZERO SUGAR / HALAL), kad putih
+bertindan, timer bulat, produk dalam kad atas latar putih-lime, zoom punch-in hampir setiap ayat, butang beg kuning di hujung.
+
+**Sesuai untuk:** video **TikTok affiliate** dengan footage orang bercakap (UGC / AI-UGC) yang nak rasa laju dan bertenaga.
+Versi lebih tenang: style "clean" (`kitsui-fiber/`).
+
+**Contoh projek:** `careleaf-gummies/`
+
+**Cara minta:**
+> "Edit footage ni guna style **PUNCH**."
+> "Buat macam video **Careleaf** tu."
+
+---
+
 ## Style lama (masih boleh guna)
 
 | v2: Lif | v1: Kapal terbang |
