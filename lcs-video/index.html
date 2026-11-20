@@ -16,6 +16,12 @@
 html,body{width:1080px;height:1920px;overflow:hidden;background:#05070b}
 #root{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:Inter;color:#fff}
 #world,#ui{position:absolute;inset:0}
+#broll{position:absolute;inset:0;z-index:1;opacity:0;overflow:hidden;background:#000}
+#ui{z-index:2}
+.bw{position:absolute;inset:0;opacity:0}.bw video{width:100%;height:100%;object-fit:cover}
+.bshade{position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 70%,rgba(0,0,0,.45))}
+.btag{position:absolute;right:40px;top:300px;font:700 20px Mono;color:#fff;background:rgba(0,0,0,.55);padding:6px 12px;border-radius:4px;letter-spacing:3px}
+
 #gl{position:absolute;inset:0;width:1080px;height:1920px;display:block}
 #fx{position:absolute;inset:0;width:1080px;height:1920px}
 .vig{position:absolute;inset:0;pointer-events:none;background:
@@ -78,6 +84,12 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#05070b}
   <div id="world" class="clip" data-start="0" data-duration="67.7" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
     <canvas id="gl" width="1080" height="1920"></canvas>
   </div>
+  <div id="broll" data-layout-ignore>
+    <div class="bw" id="bw-navy"><video id="v-navy" class="clip" src="assets/broll/navy.mp4" muted playsinline data-start="34.56" data-duration="3.8" data-track-index="2"></video></div>
+    <div class="bw" id="bw-fleet"><video id="v-fleet" class="clip" src="assets/broll/fleet.mp4" muted playsinline data-start="54.65" data-duration="1.96" data-track-index="3"></video></div>
+    <div class="bw" id="bw-rig"><video id="v-rig" class="clip" src="assets/broll/rig.mp4" muted playsinline data-start="59.14" data-duration="1.65" data-track-index="4"></video></div>
+    <div class="bshade"></div><div class="btag">ILUSTRASI · AI</div>
+  </div>
   <div id="ui" class="clip" data-start="0" data-duration="67.7" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
     <canvas id="fx" width="1080" height="1920"></canvas>
     <div class="vig"></div>
@@ -102,7 +114,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#05070b}
 <script type="module">
 import { createGlobe } from "./assets/globe.js";
 import { DURATION, T, CAPS } from "./assets/story.js";
-import { BRAND, MEDIA } from "./assets/brand.js";
+import { BRAND } from "./assets/brand.js";
 
 const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
 const scale = Number(vars.previewScale) || 1;
@@ -232,29 +244,26 @@ const PINS = [
   return p;
 });
 
-const media = (key, prompt) => MEDIA[key]
-  ? `<div class="media" style="padding:0"><video src="${MEDIA[key]}" muted playsinline style="width:100%;height:100%;object-fit:cover"></video><span class="il">ILUSTRASI</span></div>`
-  : `<div class="media">B-ROLL · FLOW AI<em>${prompt}</em><span class="il">ILUSTRASI</span></div>`;
 const card = (top, outlet, date, head, foot, med) => mk(cardWrap, "card", `<div class="hd"><b>${outlet}</b><i>${date}</i></div><div class="bd">${head}<div class="ft">${foot}</div></div>${med || ""}`);
 const stat = (top, k, n, u) => mk(cardWrap, "stat", `<div class="k">${k}</div><div><div class="n"><span class="v">${n}</span><div class="strike"></div></div></div><div class="u">${u}</div><div class="bar"><div></div></div>`);
 const C = {
   trade: stat(0, "DAGANGAN MELALUI LAUT INI", "$0", "SETAHUN · ANGGARAN CSIS"),
   nine: card(0, "9 GARIS PUTUS", "TUNTUTAN CHINA", `Ditolak tribunal antarabangsa, <mark>The Hague, 2016</mark>`, "Timbang tara Filipina lwn China · PCA"),
   km: stat(0, "JARAK DARI PANTAI SARAWAK", "0", "KILOMETER"),
-  fmt: card(0, "FREE MALAYSIA TODAY", "1 JAN 2026", `<mark>Armed forces monitoring Chinese vessel</mark> at South Luconia Shoals`, "Tajuk asal · freemalaysiatoday.com", media("navy", "kapal TLDM membayangi kapal pengawal pantai, laut lepas, mendung")),
+  fmt: card(0, "FREE MALAYSIA TODAY", "1 JAN 2026", `<mark>Armed forces monitoring Chinese vessel</mark> at South Luconia Shoals`, "Tajuk asal · freemalaysiatoday.com"),
   coc: card(0, "KOD TATALAKU", "ASEAN + CHINA", `Peraturan bersama supaya <mark>tiada konflik</mark> di Laut China Selatan`, "Code of Conduct (COC)"),
   y26: stat(0, "SASARAN SIAP", "2026", "HUJUNG TAHUN"),
   upi: card(0, "UPI", "16 NOV 2026", `<mark>ASEAN, China fail to finalize</mark> South China Sea code of conduct`, "Tajuk asal · upi.com"),
   p80: stat(0, "DRAF DIPERSETUJUI", "0%", "PERENGGAN DRAF"),
   mm: card(0, "MALAY MAIL", "17 NOV 2026", `<mark>No new deadline set</mark> for South China Sea code negotiations, says Anwar`, "Tajuk asal · malaymail.com"),
-  rt: card(0, "REUTERS", "12 NOV 2026", `China stages unannounced Pacific drills in <mark>'silent intimidation'</mark> of Taiwan`, "Tajuk asal · reuters.com · kata pegawai Taiwan", media("fleet", "armada kapal perang di laut terbuka, dari udara, senja")),
+  rt: card(0, "REUTERS", "12 NOV 2026", `China stages unannounced Pacific drills in <mark>'silent intimidation'</mark> of Taiwan`, "Tajuk asal · reuters.com · kata pegawai Taiwan"),
 };
 const stampNine = document.createElement("div"); stampNine.className = "stamp"; stampNine.textContent = "CHINA: TAK TERIMA"; stampNine.style.cssText += "right:26px;bottom:-14px"; C.nine.querySelector(".bd").appendChild(stampNine);
 const stampY = document.createElement("div"); stampY.className = "stamp"; stampY.textContent = "TERLEPAS"; stampY.style.cssText += "right:40px;top:40px"; C.y26.appendChild(stampY);
 // schedule: [el, a, b, top]
 const SCH = [
   [C.trade, T.trilion - 0.15, T.cn - 0.15, 1060], [C.nine, T.tahun2016, T.garisan2 - 0.1, 1150], [C.km, T.km80 - 0.2, T.patinggi - 0.15, 1090],
-  [C.fmt, T.kapal, T.sebab - 0.1, 950], [C.coc, T.kod - 0.1, T.sasaran - 0.1, 1150], [C.y26, T.sasaran, T.p80 - 0.15, 1120],
+  [C.fmt, T.kapal, T.sebab - 0.1, 1420], [C.coc, T.kod - 0.1, T.sasaran - 0.1, 1150], [C.y26, T.sasaran, T.p80 - 0.15, 1120],
   [C.upi, T.minggu, T.anwar - 0.15, 860], [C.p80, T.p80 - 0.1, T.anwar - 0.15, 1230], [C.mm, T.anwar, T.dalam - 0.1, 1120],
   [C.rt, T.pegawai - 0.2, T.lautni - 0.1, 960],
 ];
@@ -277,7 +286,18 @@ const hook = document.getElementById("hook"), outro = document.getElementById("o
 document.getElementById("chan").textContent = BRAND.name; document.getElementById("handle").textContent = BRAND.handle;
 const fbtn = document.getElementById("fbtn");
 
+// full-screen FLOW B-roll cutaways (timing lives on the <video> tags)
+const BR = ["navy", "fleet", "rig"].map((k) => { const v = document.getElementById("v-" + k);
+  return { w: document.getElementById("bw-" + k), a: +v.dataset.start, b: +v.dataset.start + +v.dataset.duration }; });
+const brollEl = document.getElementById("broll"), fxEl = document.getElementById("fx"), vigEl = document.querySelector(".vig");
+function brollAt(t) {
+  let on = 0;
+  for (const c of BR) { const k = win(t, c.a, c.b - 0.12, 0.12, 0.12); on = Math.max(on, k);
+    c.w.style.opacity = k > 0 ? 1 : 0; c.w.style.transform = `scale(${1.04 + 0.08 * clamp((t - c.a) / (c.b - c.a))})`; }
+  brollEl.style.opacity = on; pinWrap.style.opacity = 1 - on; fxEl.style.opacity = 1 - on; vigEl.style.opacity = 1 - on * 0.6;
+}
 function renderAt(t) {
+  brollAt(t);
   // camera + globe layers
   const v = cam(t); g.setView(v);
   g.layers.china.mesh.material.opacity = Math.max(win(t, T.direbut, T.lcs - 0.2, 0.5, 0.5), win(t, T.cn3, T.garisan2 + 0.3, 0.5, 0.6), win(t, T.asean, T.lautni, 0.6, 0.8));

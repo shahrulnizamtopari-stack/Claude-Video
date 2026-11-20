@@ -1,3 +1,2 @@
-// Channel name for the outro, and B-roll clips from FLOW (paths under assets/broll/). Empty = placeholder box.
+// Channel name for the outro. B-roll clips are <video> tags in index.html (assets/broll/).
 export const BRAND = { name: "NAMA CHANNEL", handle: "@namachannel" };
-export const MEDIA = { navy: "", fleet: "" };

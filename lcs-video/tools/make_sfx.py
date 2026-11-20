@@ -55,6 +55,9 @@ for t in (0.0, T["lcs"] - 0.3, T["setiap"] - 0.9, T["cn"] - 0.2, T["garisan2"] -
 # zoom punches (same beats as ZP in index.html): short whoosh
 for k in ("trilion", "my", "sembilan", "hague", "km80", "kapal", "kd", "sasaran", "p80", "tiada", "sarawak2", "kita"):
     put(whoosh(.55), T[k] - 0.2, 0.3)
+# B-roll cutaways (starts must match the <video> tags in index.html): whoosh in + low hit
+for t in (34.56, 54.65, 59.14):
+    put(whoosh(.7), t - 0.35, 0.45); put(impact(.4), t, 0.35)
 # hook slam, "tak terima", "terlepas", "100 kapal"
 put(impact(.8), T["direbut"], 0.9)
 put(impact(.5), T["takterima"], 0.7)
