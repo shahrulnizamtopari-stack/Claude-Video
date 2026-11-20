@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="ms" data-composition-variables='[{"id":"previewScale","type":"number","label":"3D render scale (0.5 for previews)","default":1,"min":0.25,"max":1,"step":0.25}]'>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="assets/lib/gsap.min.js"></script>
+<script src="assets/lib/topojson-client.min.js"></script>
+<style>
+@font-face{font-family:Inter;src:url(assets/fonts/Inter-400.woff2);font-weight:400}
+@font-face{font-family:Inter;src:url(assets/fonts/Inter-700.woff2);font-weight:700}
+@font-face{font-family:Inter;src:url(assets/fonts/inter-latin-800-normal.woff2);font-weight:800}
+@font-face{font-family:Mono;src:url(assets/fonts/JetBrainsMono-700.woff2);font-weight:700}
+@font-face{font-family:Serif;src:url(assets/fonts/EBGaramond-400.woff2);font-weight:400}
+@font-face{font-family:Serif;src:url(assets/fonts/EBGaramond-700.woff2);font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#05070b}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:Inter;color:#fff}
+#world,#ui{position:absolute;inset:0}
+#gl{position:absolute;inset:0;width:1080px;height:1920px;display:block}
+#fx{position:absolute;inset:0;width:1080px;height:1920px}
+.vig{position:absolute;inset:0;pointer-events:none;background:
+ linear-gradient(180deg,#05070b 0%,rgba(5,7,11,.92) 7%,rgba(5,7,11,.15) 20%,rgba(5,7,11,0) 36%,rgba(5,7,11,0) 70%,rgba(5,7,11,.55) 88%,#05070b 100%)}
+#tint{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(255,30,50,0) 40%,rgba(255,30,50,.55) 100%);opacity:0}
+.el{position:absolute;display:none}
+/* captions */
+#cap{position:absolute;top:168px;left:60px;right:60px;text-align:center;font:700 48px/1.15 Inter;letter-spacing:-.5px;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+#cap span{white-space:pre}
+/* pins */
+.pin{transform:translate(-50%,-100%);flex-direction:column;align-items:center;gap:6px}
+.lpin{flex-direction:row;align-items:center;gap:0}
+.lab{font:700 21px/1 Mono;letter-spacing:2px;color:#fff;background:#0b0d12;padding:7px 10px 6px;border-radius:4px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.5)}
+.sub{font:700 17px/1 Mono;letter-spacing:1.5px;color:#0b0d12;background:#fff;padding:5px 8px 4px;border-radius:3px;white-space:nowrap}
+.sub.red{background:#ff2d46;color:#fff}
+.flag{width:58px;height:39px;border-radius:4px;box-shadow:0 0 0 3px #fff,0 6px 16px rgba(0,0,0,.6);overflow:hidden}
+.flag svg{width:100%;height:100%;display:block}
+.dot{width:26px;height:26px;border-radius:50%;background:#fff;border:7px solid #0b0d12;box-shadow:0 0 0 3px #fff;margin-right:10px;flex:none}
+.dot.red{border-color:#ff2d46}
+.sea{font:italic 400 64px/1 Serif;letter-spacing:6px;color:rgba(255,255,255,.88);text-shadow:0 4px 20px rgba(0,0,0,.7);transform:translate(-50%,-50%);white-space:nowrap}
+.tag{font:700 16px Mono;letter-spacing:3px;color:rgba(255,255,255,.55);transform:translate(-50%,-50%)}
+/* cards */
+.card{left:160px;width:760px;border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.hd{background:#0e1015;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:16px 24px}
+.hd b{font:800 26px Inter;letter-spacing:.5px}.hd b:before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:#ff2d46;margin-right:12px;vertical-align:3px}
+.hd i{font:700 18px Mono;letter-spacing:2px;color:#9aa3ad;font-style:normal}
+.bd{position:relative;background:#fff;color:#111;padding:22px 28px 16px;font:400 46px/1.18 Serif}
+.bd mark{color:#111;background:linear-gradient(rgba(255,64,110,.45),rgba(255,64,110,.45)) no-repeat;background-size:0% 100%;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 2px}
+.ft{font:700 15px Mono;color:#8a929b;letter-spacing:1px;margin-top:12px}
+.media{position:relative;height:330px;background:linear-gradient(135deg,#1b2633,#0d131b);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#7f8c99;font:700 20px Mono;letter-spacing:2px;text-align:center;border-top:1px solid #222;padding:0 30px}
+.media em{font-style:normal;color:#ffcf4a;font-size:17px;letter-spacing:1px}
+.media .il{position:absolute;right:14px;bottom:12px;font:700 14px Mono;color:#fff;background:rgba(0,0,0,.55);padding:4px 8px;border-radius:3px;letter-spacing:2px}
+.stat{left:160px;width:760px;background:rgba(10,12,17,.94);border-radius:16px;padding:34px 40px 30px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.stat .k{font:700 22px Mono;letter-spacing:4px;color:#c9d0d8}
+.stat .n{position:relative;display:inline-block;font:italic 700 190px/1 Serif;color:#ff2d46;margin:14px 0 6px}
+.stat .n .strike{position:absolute;left:-10px;right:-10px;top:52%;height:12px;background:#fff;transform-origin:left;transform:scaleX(0)}
+.stat .u{font:800 40px Inter;color:#fff;letter-spacing:.5px}
+.stat .bar{height:5px;background:#2a2f38;margin-top:24px;border-radius:3px;overflow:hidden}.stat .bar div{height:100%;background:#ff2d46;width:0}
+.stamp{position:absolute;font:800 40px Inter;letter-spacing:3px;color:#ff2d46;border:6px solid #ff2d46;border-radius:8px;padding:6px 18px;background:rgba(255,255,255,.9);transform:rotate(-8deg);white-space:nowrap}
+.stat .stamp{background:rgba(10,12,17,.85)}
+/* hook + outro */
+#hook{top:250px;left:0;right:0;text-align:center}
+#hook .a{font:800 56px Inter;letter-spacing:4px}
+#hook .b{font:800 158px/1 Inter;letter-spacing:-5px;color:#ff2d46}
+#hook .c{font:800 52px Inter;letter-spacing:7px;margin-top:18px}
+#hook .ln{width:540px;height:6px;background:#ff2d46;margin:24px auto 0;transform-origin:center}
+#outro{inset:0;background:rgba(5,7,11,.7)}
+#outro .box{position:absolute;top:640px;left:0;right:0;text-align:center}
+#outro .chev{font:800 170px/1 Inter;letter-spacing:-40px;color:#fff;margin-left:-40px}
+#outro .nm{font:800 84px Inter;letter-spacing:-1px;margin-top:20px}
+#outro .tg{font:700 24px Mono;letter-spacing:6px;color:#9aa3ad;margin-top:16px}
+#outro .fol{display:inline-flex;align-items:center;gap:22px;margin-top:44px;background:#14171e;border-radius:18px;padding:18px 22px 18px 28px}
+#outro .fol .h{font:800 30px Inter}
+#outro .fol .btn{font:800 28px Inter;background:#ff2d46;border-radius:10px;padding:14px 28px;min-width:190px;text-align:center}
+#fade{position:absolute;inset:0;background:#05070b;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="77.8" data-width="1080" data-height="1920" data-fps="30">
+  <div id="world" class="clip" data-start="0" data-duration="77.8" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+    <canvas id="gl" width="1080" height="1920"></canvas>
+  </div>
+  <div id="ui" class="clip" data-start="0" data-duration="77.8" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
+    <canvas id="fx" width="1080" height="1920"></canvas>
+    <div class="vig"></div>
+    <div id="tint"></div>
+    <div id="pins"></div>
+    <div id="cards"></div>
+    <div id="cap"></div>
+    <div id="hook" class="el"><div class="a">LAUT YANG</div><div class="b">DIREBUT</div><div class="c">6 NEGARA</div><div class="ln"></div></div>
+    <div id="outro" class="el"><div class="box"><div class="chev">›››</div><div class="nm" id="chan">NAMA CHANNEL</div><div class="tg">GEOPOLITIK · DALAM BAHASA KITA</div><div><div class="fol"><span class="h" id="handle">@namachannel</span><span class="btn" id="fbtn">Follow</span></div></div></div></div>
+    <div id="fade"></div>
+  </div>
+  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="74.4" data-track-index="5" data-volume="1"></audio>
+  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="77.8" data-track-index="6" data-volume="0.5"></audio>
+</div>
+
+<script>
+  window.__hf = window.__hf || {};
+  window.__hf.buildReady = window.__hf.buildReady || {};
+  let resolveWorld;
+  window.__hf.buildReady["world"] = new Promise((r) => (resolveWorld = r));
+</script>
+<script type="module">
+import { createGlobe } from "./assets/globe.js";
+import { DURATION, T, CAPS } from "./assets/story.js";
+import { BRAND, MEDIA } from "./assets/brand.js";
+
+const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
+const scale = Number(vars.previewScale) || 1;
+await Promise.all(["400 40px Inter", "700 40px Inter", "800 40px Inter", "700 20px Mono", "400 40px Serif", "italic 700 40px Serif", "700 40px Serif"].map((f) => document.fonts.load(f)));
+
+const W = 1080, H = 1920;
+const g = await createGlobe(document.getElementById("gl"), { W, H, base: "assets/", scale });
+const topo = await (await fetch("assets/geo/countries-10m.json")).json();
+const countries = topojson.feature(topo, topo.objects.countries).features;
+const byId = (id) => countries.find((c) => +c.id === id);
+const CN = byId(156), MY = byId(458);
+
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+const eout = (x) => 1 - Math.pow(1 - clamp(x), 3);
+// visibility envelope: fade in at a, out at b
+const win = (t, a, b, fi = 0.35, fo = 0.35) => clamp((t - a) / fi) * (1 - clamp((t - b) / fo));
+
+// ---------------- static overlay layers ----------------
+const borders = g.layer("borders", 0, { lon0: 92, lon1: 140, lat0: -6, lat1: 34, ppd: 80 });
+const red = g.layer("china", 1, { lon0: 72, lon1: 136, lat0: 16, lat1: 54, ppd: 40 });
+const myl = g.layer("malaysia", 2, { lon0: 99, lon1: 120, lat0: 0, lat1: 8, ppd: 160 });
+{ const L = borders, c = L.ctx; c.strokeStyle = "rgba(255,255,255,.5)"; c.lineWidth = 2; c.lineJoin = "round";
+  for (const f of countries) { L.path(f.geometry); c.stroke(); } L.tex.needsUpdate = true; }
+{ const L = red, c = L.ctx; c.save(); L.path(CN.geometry); c.clip("evenodd");
+  c.fillStyle = "rgba(190,18,40,.6)"; c.fillRect(0, 0, L.OW, L.OH);
+  c.fillStyle = "rgba(60,0,8,.35)"; for (let y = 0; y < L.OH; y += 6) c.fillRect(0, y, L.OW, 2.5);
+  c.restore(); c.strokeStyle = "#ff3d55"; c.lineWidth = 2.5; L.path(CN.geometry); c.stroke(); L.tex.needsUpdate = true; }
+{ const L = myl, c = L.ctx; c.save(); L.path(MY.geometry); c.clip("evenodd");
+  const x0 = L.ox(99.5), x1 = L.ox(119.4), y0 = L.oy(7.5), y1 = L.oy(0.8), sh = (y1 - y0) / 14;
+  for (let i = 0; i < 14; i++) { c.fillStyle = i % 2 ? "rgba(255,255,255,.62)" : "rgba(204,0,1,.7)"; c.fillRect(x0, y0 + i * sh, x1 - x0, sh + 1); }
+  c.fillStyle = "rgba(1,0,102,.78)"; c.fillRect(x0, y0, (x1 - x0) * 0.5, sh * 8);
+  c.fillStyle = "#ffcc00"; const cx = L.ox(103.6), cy = L.oy(5.0), r = sh * 2.6;
+  c.beginPath(); c.arc(cx, cy, r, 0, 7); c.fill(); c.fillStyle = "rgb(1,0,102)"; c.beginPath(); c.arc(cx + r * 0.32, cy, r * 0.82, 0, 7); c.fill();
+  c.restore(); c.strokeStyle = "#fff"; c.lineWidth = 5; L.path(MY.geometry); c.stroke(); L.tex.needsUpdate = true; }
+
+// ---------------- ribbons ----------------
+// Nine-dash line: China has never published coordinates; these are approximate, traced from the 2009 map.
+const DASH = [[108.2, 17.6], [109.6, 14.2], [109.5, 10.3], [110.4, 6.8], [112.3, 4.1], [115.3, 6.6], [117.3, 9.9], [118.9, 14.6], [119.9, 18.6]];
+const dashes = DASH.map(([lon, lat], i) => {
+  const a = DASH[Math.max(0, i - 1)], b = DASH[Math.min(8, i + 1)];
+  let dx = b[0] - a[0], dy = b[1] - a[1]; const n = Math.hypot(dx, dy); dx /= n; dy /= n; const h = 0.75;
+  const pts = [[lon - dx * h, lat - dy * h], [lon + dx * h, lat + dy * h]];
+  return { core: g.ribbon(pts, { width: 1.6, order: 41 }), glow: g.ribbon(pts, { width: 5, glow: 0.55, order: 40 }) };
+});
+const LANES = [[[98.5, 5.5], [101.5, 2.6], [104.2, 1.25], [106.5, 4.5], [109.5, 9], [112.5, 13.5], [115.5, 18], [118.6, 21.6], [120.5, 25], [124, 29]],
+               [[104.2, 1.25], [107, 3.4], [110.5, 7], [113.5, 11], [116.3, 14.5], [119.6, 18.6], [122, 21]]];
+const lanes = LANES.map((p) => g.ribbon(p, { color: 0xffffff, width: 0.9, dash: 70, seg: 10, order: 35 }));
+const km = g.ribbon([[112.25, 3.97], [112.85, 3.42]], { color: 0xffffff, width: 0.7, dash: 7, order: 36 });
+const kdPath = g.ribbon([[113.75, 4.25], [113.2, 4.75], [112.75, 5.05]], { color: 0x9fd4ff, width: 0.55, dash: 14, seg: 10, order: 36 });
+
+// ---------------- camera keys ----------------
+const K = [
+  [0.0, 18, 100, 4.4, 4, -0.1], [T.lcs - 0.3, 13, 111, 3.3, 8, -0.06],
+  [T.setiap + 0.2, 7, 111, 1.8, 14, 0.13], [T.cn - 0.2, 8, 111.5, 1.7, 14, 0.13],
+  [T.cn + 0.7, 12.5, 114, 1.95, 12, 0.12], [T.tapi, 12.3, 114, 1.88, 12, 0.12],
+  [T.seluruh, 11, 113, 1.8, 12, 0.12], [T.garisan2 - 0.1, 10.6, 113, 1.68, 12, 0.12],
+  [T.serupai - 0.1, 3.6, 113.2, 0.36, 20, 0.16], [T.patinggi - 0.3, 3.7, 113.1, 0.32, 20, 0.16],
+  [T.patinggi + 0.8, 4.5, 113.0, 0.38, 20, 0.15], [T.sebab - 0.2, 4.6, 113.0, 0.34, 20, 0.15],
+  [T.kod - 0.3, 10, 115, 2.0, 10, 0.11], [T.dalam - 0.2, 10.5, 115.5, 1.85, 10, 0.11],
+  [T.pegawai + 0.3, 22, 122, 1.5, 14, 0.13], [T.lautni - 0.1, 22.2, 122, 1.38, 14, 0.13],
+  [T.pintu + 0.4, 6, 112, 2.9, 6, 0.04], [DURATION, 6, 109.5, 3.5, 6, 0.04],
+];
+function cam(t) {
+  let i = 0; while (i < K.length - 2 && t > K[i + 1][0]) i++;
+  const A = K[i], B = K[i + 1], u = ease(clamp((t - A[0]) / (B[0] - A[0])));
+  const L = (k) => A[k] + (B[k] - A[k]) * u;
+  // fly "up" a little between far-apart views
+  const hop = Math.sin(Math.PI * u) * Math.min(0.6, Math.hypot(B[1] - A[1], B[2] - A[2]) * 0.04) * (Math.abs(B[3] - A[3]) < 1 ? 1 : 0);
+  return { lat: L(1), lon: L(2), dist: Math.exp(Math.log(A[3]) + (Math.log(B[3]) - Math.log(A[3])) * u) + hop, tilt: L(4), yShift: L(5) };
+}
+
+// ---------------- HTML elements ----------------
+const FL = {
+  MY: '<svg viewBox="0 0 28 14">' + Array.from({ length: 14 }, (_, i) => `<rect y="${i}" width="28" height="1" fill="${i % 2 ? "#fff" : "#cc0001"}"/>`).join("") + '<rect width="14" height="8" fill="#010066"/><circle cx="5.5" cy="4" r="2.6" fill="#fc0"/><circle cx="6.3" cy="4" r="2.1" fill="#010066"/><circle cx="10" cy="4" r="1.4" fill="#fc0"/></svg>',
+  CN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#de2910"/><text x="3" y="10" font-size="9" fill="#ffde00">★</text></svg>',
+  VN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#da251d"/><text x="9.5" y="15" font-size="12" fill="#ff0">★</text></svg>',
+  PH: '<svg viewBox="0 0 30 20"><rect width="30" height="10" fill="#0038a8"/><rect y="10" width="30" height="10" fill="#ce1126"/><path d="M0 0L14 10L0 20Z" fill="#fff"/><circle cx="5" cy="10" r="2" fill="#fcd116"/></svg>',
+  BN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#f7e017"/><path d="M0 4L30 11V16L0 9Z" fill="#fff"/><path d="M0 9L30 16V20L0 13Z" fill="#000"/><circle cx="15" cy="10" r="3" fill="#cf1126"/></svg>',
+  TW: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#fe0000"/><rect width="15" height="10" fill="#000095"/><circle cx="7.5" cy="5" r="2.5" fill="#fff"/></svg>',
+};
+const pinWrap = document.getElementById("pins"), cardWrap = document.getElementById("cards");
+const mk = (parent, cls, html) => { const e = document.createElement("div"); e.className = "el " + cls; e.innerHTML = html; parent.appendChild(e); return e; };
+const PINS = [
+  // [lat, lon, kind, a, b, ...]
+  { ll: [12.5, 114.2], k: "sea", txt: "Laut China Selatan", a: T.lcs, b: T.cn - 0.1 },
+  { ll: [1.9, 102.3], k: "loc", txt: "SELAT MELAKA", sub: "LALUAN KAPAL", a: T.setiap + 0.4, b: T.cn - 0.1 },
+  { ll: [23.6, 113.6], k: "flag", f: "CN", txt: "CHINA", a: T.cn, b: T.garisan2 },
+  { ll: [24.0, 121.0], k: "flag", f: "TW", txt: "TAIWAN", a: T.tw, b: T.tapi },
+  { ll: [14.6, 108.4], k: "flag", f: "VN", txt: "VIETNAM", a: T.vn, b: T.tapi },
+  { ll: [13.2, 121.6], k: "flag", f: "PH", txt: "FILIPINA", a: T.ph, b: T.tapi },
+  { ll: [4.6, 114.7], k: "flag", f: "BN", txt: "BRUNEI", a: T.bn, b: T.tapi },
+  { ll: [2.6, 112.6], k: "flag", f: "MY", txt: "MALAYSIA", a: T.my, b: T.tapi },
+  { ll: [8.0, 113.2], k: "tag", txt: "GARISAN ANGGARAN", a: T.putus + 0.3, b: T.garisan2 },
+  { ll: [3.97, 112.25], k: "loc", red: 1, txt: "BETING SERUPAI", sub: "DITUNTUT CHINA", a: T.serupai, b: T.patinggi - 0.2 },
+  { ll: [3.17, 113.03], k: "loc", txt: "BINTULU", sub: "SARAWAK", a: T.lebih, b: T.patinggi - 0.2 },
+  { ll: [5.05, 112.6], k: "loc", red: 1, txt: "BETING PATINGGI ALI", sub: "KAPAL CCG DIPANTAU", a: T.patinggi, b: T.sebab },
+  { ll: [14.6, 121.0], k: "loc", txt: "MANILA", sub: "SIDANG KEMUNCAK ASEAN", a: T.manila, b: T.dalam },
+  { ll: [24.2, 121.0], k: "flag", f: "TW", txt: "TAIWAN", a: T.pegawai, b: T.lautni },
+  { ll: [25.2, 117.5], k: "flag", f: "CN", txt: "CHINA", a: T.dalam + 0.3, b: T.lautni },
+  { ll: [2.0, 113.4], k: "flag", f: "MY", txt: "SARAWAK", a: T.sarawak2, b: DURATION - 3.2 },
+  { ll: [5.3, 117.1], k: "flag", f: "MY", txt: "SABAH", a: T.sabah, b: DURATION - 3.2 },
+].map((p) => {
+  let html = "";
+  if (p.k === "flag") html = `<div class="flag">${FL[p.f]}</div><div class="lab">${p.txt}</div>`;
+  if (p.k === "loc") html = `<div class="dot ${p.red ? "red" : ""}"></div><div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px"><div class="lab">${p.txt}</div>${p.sub ? `<div class="sub ${p.red ? "red" : ""}">${p.sub}</div>` : ""}</div>`;
+  if (p.k === "sea" || p.k === "tag") html = p.txt;
+  p.el = mk(pinWrap, p.k === "flag" ? "pin" : p.k === "loc" ? "pin lpin" : p.k, html);
+  return p;
+});
+
+const media = (key, prompt) => MEDIA[key]
+  ? `<div class="media" style="padding:0"><video src="${MEDIA[key]}" muted playsinline style="width:100%;height:100%;object-fit:cover"></video><span class="il">ILUSTRASI</span></div>`
+  : `<div class="media">B-ROLL · FLOW AI<em>${prompt}</em><span class="il">ILUSTRASI</span></div>`;
+const card = (top, outlet, date, head, foot, med) => mk(cardWrap, "card", `<div class="hd"><b>${outlet}</b><i>${date}</i></div><div class="bd">${head}<div class="ft">${foot}</div></div>${med || ""}`);
+const stat = (top, k, n, u) => mk(cardWrap, "stat", `<div class="k">${k}</div><div><div class="n"><span class="v">${n}</span><div class="strike"></div></div></div><div class="u">${u}</div><div class="bar"><div></div></div>`);
+const C = {
+  trade: stat(0, "DAGANGAN MELALUI LAUT INI", "$0", "SETAHUN · ANGGARAN CSIS"),
+  nine: card(0, "9 GARIS PUTUS", "TUNTUTAN CHINA", `Ditolak tribunal antarabangsa, <mark>The Hague, 2016</mark>`, "Timbang tara Filipina lwn China · PCA"),
+  km: stat(0, "JARAK DARI PANTAI SARAWAK", "0", "KILOMETER"),
+  fmt: card(0, "FREE MALAYSIA TODAY", "1 JAN 2026", `<mark>Armed forces monitoring Chinese vessel</mark> at South Luconia Shoals`, "Tajuk asal · freemalaysiatoday.com", media("navy", "kapal TLDM membayangi kapal pengawal pantai, laut lepas, mendung")),
+  coc: card(0, "KOD TATALAKU", "ASEAN + CHINA", `Peraturan bersama supaya <mark>tiada konflik</mark> di Laut China Selatan`, "Code of Conduct (COC)"),
+  y26: stat(0, "SASARAN SIAP", "2026", "HUJUNG TAHUN"),
+  upi: card(0, "UPI", "16 NOV 2026", `<mark>ASEAN, China fail to finalize</mark> South China Sea code of conduct`, "Tajuk asal · upi.com"),
+  p80: stat(0, "DRAF DIPERSETUJUI", "0%", "PERENGGAN DRAF"),
+  mm: card(0, "MALAY MAIL", "17 NOV 2026", `<mark>No new deadline set</mark> for South China Sea code negotiations, says Anwar`, "Tajuk asal · malaymail.com"),
+  rt: card(0, "REUTERS", "12 NOV 2026", `China stages unannounced Pacific drills in <mark>'silent intimidation'</mark> of Taiwan`, "Tajuk asal · reuters.com · kata pegawai Taiwan", media("fleet", "armada kapal perang di laut terbuka, dari udara, senja")),
+};
+const stampNine = document.createElement("div"); stampNine.className = "stamp"; stampNine.textContent = "CHINA: TAK TERIMA"; stampNine.style.cssText += "right:26px;bottom:-14px"; C.nine.querySelector(".bd").appendChild(stampNine);
+const stampY = document.createElement("div"); stampY.className = "stamp"; stampY.textContent = "TERLEPAS"; stampY.style.cssText += "right:40px;top:40px"; C.y26.appendChild(stampY);
+// schedule: [el, a, b, top]
+const SCH = [
+  [C.trade, T.trilion - 0.15, T.cn - 0.15, 1060], [C.nine, T.tahun2016, T.garisan2 - 0.1, 1150], [C.km, T.km80 - 0.2, T.patinggi - 0.15, 1090],
+  [C.fmt, T.kapal, T.sebab - 0.1, 950], [C.coc, T.kod - 0.1, T.sasaran - 0.1, 1150], [C.y26, T.sasaran, T.p80 - 0.15, 1120],
+  [C.upi, T.minggu, T.anwar - 0.15, 860], [C.p80, T.p80 - 0.1, T.anwar - 0.15, 1230], [C.mm, T.anwar, T.dalam - 0.1, 1120],
+  [C.rt, T.pegawai - 0.2, T.lautni - 0.1, 960],
+];
+const HL = [[C.nine, T.hague - 0.25, T.tolak + 0.2], [C.fmt, T.kapal + 0.3, T.berlegar], [C.coc, T.peraturan, T.peraturan + 1.3],
+            [C.upi, T.terlepas - 0.3, T.terlepas + 0.6], [C.mm, T.tiada - 0.1, T.tiada + 1.0], [C.rt, T.k100, T.k100 + 1.1]];
+
+// captions
+const capEl = document.getElementById("cap");
+const capSpans = CAPS.map((c) => c.w.map((w, i) => { const s = document.createElement("span"); s.textContent = w.t + (i < c.w.length - 1 ? " " : ""); return s; }));
+
+// screen-space fx canvas: ships, pulses
+const fx = document.getElementById("fx").getContext("2d");
+let seed = 5; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+const SHIPS = []; for (let i = 0; SHIPS.length < 110 && i < 400; i++) { const lo = 119.6 + rnd() * 8.4, la = 18.4 + rnd() * 9.4;
+  if (lo < 122.3 && la > 21.7 && la < 25.5) continue; if (lo < 121 && la > 24.5) continue; SHIPS.push([la, lo, rnd(), rnd() * 6.28]); }
+function drawShip(x, y, rot, col, s = 1) { fx.save(); fx.translate(x, y); fx.rotate(rot); fx.fillStyle = col; fx.beginPath();
+  fx.moveTo(12 * s, 0); fx.lineTo(-8 * s, -5 * s); fx.lineTo(-8 * s, 5 * s); fx.closePath(); fx.fill(); fx.restore(); }
+
+const hook = document.getElementById("hook"), outro = document.getElementById("outro"), fade = document.getElementById("fade"), tint = document.getElementById("tint");
+document.getElementById("chan").textContent = BRAND.name; document.getElementById("handle").textContent = BRAND.handle;
+const fbtn = document.getElementById("fbtn");
+
+function renderAt(t) {
+  // camera + globe layers
+  const v = cam(t); g.setView(v);
+  g.layers.china.mesh.material.opacity = Math.max(win(t, T.direbut, T.lcs - 0.2, 0.5, 0.5), win(t, T.cn3, T.garisan2 + 0.3, 0.5, 0.6), win(t, T.asean, T.lautni, 0.6, 0.8));
+  g.layers.malaysia.mesh.material.opacity = Math.max(win(t, T.malaysia1, T.lcs, 0.3, 0.5), win(t, T.my, T.tapi, 0.3, 0.4), win(t, T.garisan2, T.sebab + 0.4, 0.8, 0.6), win(t, T.pintu, DURATION, 0.6, 0.6)) * 0.95;
+  g.layers.borders.mesh.material.opacity = 0.6 + 0.4 * clamp((t - 3) / 2);
+  dashes.forEach((d, i) => {
+    const hookOn = win(t, T.direbut + 0.12 * i, T.lcs - 0.3, 0.2, 0.5);
+    const mainOn = win(t, T.sembilan + 0.16 * i, T.lautni + 0.3, 0.18, 0.8) * (t > T.pintu ? 0.55 : 1);
+    const o = Math.max(hookOn, mainOn), pop = 1 + 0.6 * (1 - clamp((t - (T.sembilan + 0.16 * i)) / 0.3)) * (t > T.sembilan + 0.16 * i ? 1 : 0);
+    d.core.u.op.value = o; d.glow.u.op.value = o * (0.8 + 0.2 * Math.sin(t * 4 + i));
+    d.core.u.w.value *= pop;
+  });
+  lanes.forEach((l, i) => { l.u.op.value = win(t, T.setiap + 0.1 * i, T.cn - 0.2, 0.4, 0.4); l.u.off.value = t * 1.8; l.u.prog.value = eout((t - T.setiap) / 1.4); });
+  km.u.op.value = win(t, T.lebih, T.patinggi - 0.2, 0.2, 0.3); km.u.prog.value = eout((t - T.lebih) / 0.8);
+  kdPath.u.op.value = win(t, T.kd, T.sebab, 0.3, 0.3) * 0.9; kdPath.u.prog.value = eout((t - T.kd) / 2.2); kdPath.u.off.value = -t * 1.2;
+  g.render();
+
+  // pins
+  for (const p of PINS) {
+    const k = win(t, p.a, p.b, 0.25, 0.25);
+    if (k <= 0) { p.el.style.display = "none"; continue; }
+    const s = g.project(p.ll[0], p.ll[1]);
+    if (!s.visible || s.x < -200 || s.x > W + 200 || s.y < -100 || s.y > H + 100) { p.el.style.display = "none"; continue; }
+    p.el.style.display = "flex"; p.el.style.left = s.x + "px"; p.el.style.top = s.y + "px"; p.el.style.opacity = k;
+    const pop = p.k === "flag" ? 0.6 + 0.4 * eout(clamp((t - p.a) / 0.25)) + 0.08 * Math.sin(clamp((t - p.a) / 0.35) * Math.PI) : 1;
+    const base = p.k === "flag" ? "translate(-50%,-100%)" : p.k === "loc" ? "translate(-13px,-50%)" : "translate(-50%,-50%)";
+    p.el.style.transform = `${base} scale(${pop})`;
+  }
+
+  // cards
+  for (const [el, a, b, top] of SCH) {
+    const k = win(t, a, b, 0.3, 0.25);
+    if (k <= 0) { el.style.display = "none"; continue; }
+    el.style.display = "block"; el.style.opacity = k;
+    el.style.top = top + 50 * (1 - eout((t - a) / 0.4)) + "px";
+  }
+  for (const [el, a, b] of HL) for (const m of el.querySelectorAll("mark")) m.style.backgroundSize = `${100 * clamp((t - a) / (b - a))}% 100%`;
+  // stat values
+  const cnt = (el, a, d, to, fmt) => { const u = eout((t - a) / d); el.querySelector(".v").textContent = fmt(to * u); el.querySelector(".bar div").style.width = 100 * u * (el.dataset.bar || 1) + "%"; };
+  C.trade.dataset.bar = 0.85; cnt(C.trade, T.trilion, 0.9, 3.4, (x) => "$" + x.toFixed(1) + "T");
+  C.km.dataset.bar = 0.4; cnt(C.km, T.km80 - 0.1, 0.7, 80, (x) => Math.round(x));
+  C.p80.dataset.bar = 0.8; cnt(C.p80, T.p80, 0.8, 80, (x) => Math.round(x) + "%");
+  C.y26.querySelector(".bar div").style.width = 100 * eout((t - T.sasaran) / 3.6) + "%";
+  C.y26.querySelector(".strike").style.transform = `scaleX(${eout((t - T.terlepas) / 0.25)})`;
+  C.p80.querySelector(".u").textContent = t >= T.isu ? "ISU PALING BESAR · BELUM" : "PERENGGAN DRAF";
+  C.p80.querySelector(".u").style.color = t >= T.isu ? "#ff2d46" : "#fff";
+  const slam = (el, at) => { const u = clamp((t - at) / 0.22); el.style.display = t >= at ? "block" : "none"; el.style.transform = `rotate(-8deg) scale(${1.7 - 0.7 * eout(u)})`; el.style.opacity = u; };
+  slam(stampNine, T.takterima); slam(stampY, T.terlepas);
+
+  // fx canvas
+  fx.clearRect(0, 0, W, H);
+  const ccgOn = win(t, T.kapal, T.sebab, 0.3, 0.3);
+  if (ccgOn > 0) {
+    const s = g.project(5.25, 112.35); const r = 22 + 30 * ((t * 0.9) % 1);
+    fx.globalAlpha = ccgOn * (1 - ((t * 0.9) % 1)); fx.strokeStyle = "#ff2d46"; fx.lineWidth = 3; fx.beginPath(); fx.arc(s.x, s.y, r, 0, 7); fx.stroke();
+    fx.globalAlpha = ccgOn; drawShip(s.x, s.y, -0.3, "#ff2d46", 1.6);
+    fx.font = "700 18px Mono"; fx.fillStyle = "#ff2d46"; fx.fillText("CCG", s.x + 22, s.y - 14);
+  }
+  const kdOn = win(t, T.kd, T.sebab, 0.3, 0.3);
+  if (kdOn > 0) {
+    const u = eout((t - T.kd) / 2.2), P = [[4.25, 113.75], [4.75, 113.2], [5.05, 112.75]];
+    const seg = u < 0.5 ? 0 : 1, uu = u < 0.5 ? u / 0.5 : (u - 0.5) / 0.5;
+    const la = P[seg][0] + (P[seg + 1][0] - P[seg][0]) * uu, lo = P[seg][1] + (P[seg + 1][1] - P[seg][1]) * uu;
+    const s = g.project(la, lo), s2 = g.project(P[seg + 1][0], P[seg + 1][1]);
+    fx.globalAlpha = kdOn; drawShip(s.x, s.y, Math.atan2(s2.y - s.y, s2.x - s.x), "#9fd4ff", 1.6);
+    fx.font = "700 18px Mono"; fx.fillStyle = "#cfe9ff"; fx.fillText("KD KELANTAN", s.x + 20, s.y + 30);
+  }
+  const shipsOn = win(t, T.k100 - 0.2, T.lautni + 0.2, 0.2, 0.5);
+  if (shipsOn > 0) {
+    fx.shadowColor = "#ff2d46"; fx.shadowBlur = 8;
+    for (const [la, lo, d, rot] of SHIPS) {
+      const k = clamp((t - (T.k100 - 0.2 + d * 1.3)) / 0.2) * shipsOn; if (k <= 0) continue;
+      const s = g.project(la + 0.15 * Math.sin(t * 0.3 + rot), lo + 0.25 * (t - T.k100) * 0.1); fx.globalAlpha = k; drawShip(s.x, s.y, rot, "#ff2d46", 0.9);
+    }
+    fx.shadowBlur = 0;
+  }
+  fx.globalAlpha = 1;
+
+  // captions
+  let ci = -1; for (let i = 0; i < CAPS.length; i++) if (t >= CAPS[i].a && t < CAPS[i].b) ci = i;
+  const hookOn = t < T.lcs - 0.1 && t > 0;
+  if (ci < 0 || hookOn || t > T.end_vo + 0.6) capEl.style.display = "none";
+  else {
+    capEl.style.display = "block";
+    if (capEl.dataset.i != ci) { capEl.innerHTML = ""; capSpans[ci].forEach((s) => capEl.appendChild(s)); capEl.dataset.i = ci; }
+    CAPS[ci].w.forEach((w, j) => { const s = capSpans[ci][j]; s.style.color = t >= w.at - 0.03 ? (w.k ? "#ff2d46" : "#fff") : "rgba(255,255,255,.36)"; });
+  }
+
+  // hook title
+  const hk = win(t, 0.05, T.lcs - 0.35, 0.2, 0.3);
+  hook.style.display = hk > 0 ? "block" : "none"; hook.style.opacity = hk;
+  const [ha, hb, hc, hl] = hook.children;
+  ha.style.opacity = clamp((t - 0.1) / 0.25); ha.style.transform = `translateY(${20 * (1 - eout((t - 0.1) / 0.3))}px)`;
+  const ub = clamp((t - (T.direbut - 0.05)) / 0.2); hb.style.opacity = ub; hb.style.transform = `scale(${1.45 - 0.45 * eout(ub)})`;
+  hc.style.opacity = clamp((t - T.enam) / 0.2); hl.style.transform = `scaleX(${eout((t - T.enam) / 0.5)})`;
+
+  // red pulse on key moments
+  tint.style.opacity = 0.7 * Math.max(win(t, T.direbut, T.direbut + 0.3, 0.05, 0.5), win(t, T.terlepas, T.terlepas + 0.3, 0.05, 0.6), win(t, T.k100, T.k100 + 0.4, 0.1, 0.8), win(t, T.takterima, T.takterima + 0.2, 0.05, 0.5));
+
+  // outro
+  const ot = T.end_vo + 0.4, ok = win(t, ot, DURATION + 1, 0.4, 0.1);
+  outro.style.display = ok > 0 ? "block" : "none"; outro.style.opacity = ok;
+  const box = outro.firstElementChild; box.style.transform = `translateY(${40 * (1 - eout((t - ot) / 0.5))}px)`;
+  const followed = t > ot + 1.6; fbtn.textContent = followed ? "Following" : "Follow"; fbtn.style.background = followed ? "#2a2f38" : "#ff2d46";
+  fade.style.opacity = clamp((t - (DURATION - 0.45)) / 0.4);
+}
+window.__renderAt = renderAt;
+window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+tl.to({}, { duration: DURATION }, 0);
+window.__timelines["main"] = tl;
+renderAt(0);
+resolveWorld();
+</script>
+</body>
+</html>

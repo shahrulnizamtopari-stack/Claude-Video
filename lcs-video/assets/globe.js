@@ -18,9 +18,9 @@ function loadTex(url) {
   return new Promise((res, rej) => new THREE.TextureLoader().load(url, (t) => { t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; res(t); }, undefined, rej));
 }
 
-export async function createGlobe(canvas, { W, H, base = "assets/" } = {}) {
+export async function createGlobe(canvas, { W, H, base = "assets/", scale = 1 } = {}) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
-  renderer.setPixelRatio(1);
+  renderer.setPixelRatio(scale);
   renderer.setSize(W, H, false);
   renderer.setClearColor(0x05070b, 1);
   const scene = new THREE.Scene();
@@ -66,6 +66,49 @@ export async function createGlobe(canvas, { W, H, base = "assets/" } = {}) {
     return (layers[name] = { c, ctx, tex, mesh: m, ox, oy, R, OW, OH, path, ppd: R.ppd });
   }
 
+  // Ribbons: lines lying on the globe (dashes, routes, measures). Width is in screen-ish units:
+  // the "w" uniform is multiplied by camera distance each frame so lines keep a steady pixel width.
+  const ribbons = [];
+  function ribbon(pts, { color = 0xff2d46, width = 1, dash = 0, glow = 0, r = 1.0016, seg = 6, order = 30 } = {}) {
+    // densify along great circles
+    const P = [];
+    for (let i = 0; i < pts.length - 1; i++) {
+      const a = ll(pts[i][1], pts[i][0]), b = ll(pts[i + 1][1], pts[i + 1][0]);
+      for (let k = 0; k < seg; k++) P.push(a.clone().lerp(b, k / seg).normalize());
+    }
+    P.push(ll(pts[pts.length - 1][1], pts[pts.length - 1][0]));
+    const len = [0]; for (let i = 1; i < P.length; i++) len.push(len[i - 1] + P[i].distanceTo(P[i - 1]));
+    const L = len[len.length - 1];
+    const pos = [], side = [], uv = [], idx = [];
+    P.forEach((p, i) => {
+      const t = (P[Math.min(i + 1, P.length - 1)].clone().sub(P[Math.max(i - 1, 0)])).normalize();
+      const sd = p.clone().cross(t).normalize();
+      for (const s of [-1, 1]) { pos.push(p.x * r, p.y * r, p.z * r); side.push(sd.x * s, sd.y * s, sd.z * s); uv.push(len[i] / L, s * 0.5 + 0.5); }
+      if (i) { const q = i * 2; idx.push(q - 2, q - 1, q, q - 1, q + 1, q); }
+    });
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+    g.setAttribute("side", new THREE.Float32BufferAttribute(side, 3));
+    g.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
+    g.setIndex(idx);
+    const mat = new THREE.ShaderMaterial({
+      transparent: true, depthWrite: false, depthTest: true, side: THREE.DoubleSide,
+      uniforms: { col: { value: new THREE.Color(color) }, w: { value: 0.003 * width }, op: { value: 0 }, prog: { value: 1 },
+        dash: { value: dash }, off: { value: 0 }, glow: { value: glow }, Lw: { value: L } },
+      vertexShader: "attribute vec3 side; uniform float w; varying vec2 vUv; void main(){ vUv=uv; vec3 p=position+side*w; gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.); }",
+      fragmentShader: `uniform vec3 col; uniform float op, prog, dash, off, glow; varying vec2 vUv;
+        void main(){ if(vUv.x>prog) discard; float a=op;
+          float e=1.-abs(vUv.y*2.-1.);
+          a*= glow>0. ? pow(e,1.6)*glow : smoothstep(0.,0.25,e);
+          if(dash>0.){ float f=fract(vUv.x*dash-off); a*=step(f,0.42); }
+          gl_FragColor=vec4(col,a);
+          #include <colorspace_fragment>
+        }`,
+    });
+    const m = new THREE.Mesh(g, mat); m.renderOrder = order; m.frustumCulled = false; scene.add(m);
+    const R = { mesh: m, u: mat.uniforms, width, L };
+    ribbons.push(R); return R;
+  }
 
   const camState = { lat: 10, lon: 112, dist: 3, tilt: 0, yShift: 0 };
   function setView(s) {
@@ -80,6 +123,7 @@ export async function createGlobe(canvas, { W, H, base = "assets/" } = {}) {
     // shift the focus point up/down on screen (fraction of height)
     camera.setViewOffset(W, H, 0, yShift * H, W, H);
     camera.updateProjectionMatrix(); camera.updateMatrixWorld(true);
+    for (const r of ribbons) r.u.w.value = 0.0011 * r.width * dist;
   }
 
   function project(lat, lon) {
@@ -88,6 +132,6 @@ export async function createGlobe(canvas, { W, H, base = "assets/" } = {}) {
     return { x: (v.x * 0.5 + 0.5) * W, y: (-v.y * 0.5 + 0.5) * H, visible: facing };
   }
 
-  return { THREE, renderer, scene, camera, setView, project, layer, layers, hiMesh,
+  return { THREE, renderer, scene, camera, setView, project, layer, layers, hiMesh, ribbon, camState,
     render: () => renderer.render(scene, camera) };
 }
