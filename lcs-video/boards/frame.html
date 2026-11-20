@@ -1,0 +1,183 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Inter;src:url(../assets/fonts/Inter-400.woff2);font-weight:400}
+@font-face{font-family:Inter;src:url(../assets/fonts/Inter-700.woff2);font-weight:700}
+@font-face{font-family:Inter;src:url(../assets/fonts/inter-latin-800-normal.woff2);font-weight:800}
+@font-face{font-family:Mono;src:url(../assets/fonts/JetBrainsMono-700.woff2);font-weight:700}
+@font-face{font-family:Serif;src:url(../assets/fonts/EBGaramond-400.woff2);font-weight:400}
+@font-face{font-family:Serif;src:url(../assets/fonts/EBGaramond-700.woff2);font-weight:700}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;background:#05070b;overflow:hidden;font-family:Inter}
+#gl{position:absolute;inset:0;width:1080px;height:1920px}
+.vig{position:absolute;inset:0;pointer-events:none;background:
+ linear-gradient(180deg,#05070b 0%,rgba(5,7,11,.92) 7%,rgba(5,7,11,.15) 22%,rgba(5,7,11,0) 40%,rgba(5,7,11,0) 70%,rgba(5,7,11,.55) 90%,#05070b 100%)}
+#ov{position:absolute;inset:0}
+.cap{position:absolute;top:168px;left:0;right:0;text-align:center;font:700 46px/1.15 Inter;color:#fff;letter-spacing:-.5px;padding:0 70px}
+.cap .r{color:#ff2d46}.cap .g{color:rgba(255,255,255,.38)}
+.pin{position:absolute;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;gap:6px}
+.lab{font:700 20px/1 Mono;letter-spacing:2px;color:#fff;background:#0b0d12;padding:7px 10px 6px;border-radius:4px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.5)}
+.sub{font:700 17px/1 Mono;letter-spacing:1.5px;color:#0b0d12;background:#fff;padding:5px 8px 4px;border-radius:3px;white-space:nowrap;margin-top:-4px}
+.sub.red{background:#ff2d46;color:#fff}
+.flag{width:56px;height:38px;border-radius:4px;box-shadow:0 0 0 3px #fff,0 6px 16px rgba(0,0,0,.6);overflow:hidden}
+.flag svg{width:100%;height:100%;display:block}
+.dot{width:26px;height:26px;border-radius:50%;background:#fff;border:7px solid #0b0d12;box-shadow:0 0 0 3px #fff}
+.card{position:absolute;left:50%;transform:translateX(-50%);width:760px;border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.hd{background:#0e1015;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:16px 24px}
+.hd b{font:800 26px Inter;letter-spacing:.5px}.hd b:before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:#ff2d46;margin-right:12px;vertical-align:3px}
+.hd i{font:700 18px Mono;letter-spacing:2px;color:#9aa3ad;font-style:normal}
+.bd{background:#fff;color:#111;padding:22px 28px 16px;font:400 46px/1.16 Serif}
+.bd mark{background:rgba(255,64,110,.42);color:#111;padding:0 2px}
+.ft{font:700 15px Mono;color:#8a929b;letter-spacing:1px;margin-top:12px}
+.media{height:330px;background:linear-gradient(135deg,#1b2633,#0d131b);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#7f8c99;font:700 20px Mono;letter-spacing:2px;text-align:center;border-top:1px solid #222}
+.media em{font-style:normal;color:#ffcf4a;font-size:17px}
+.stat{position:absolute;left:50%;transform:translateX(-50%);width:760px;background:rgba(10,12,17,.94);border-radius:16px;padding:34px 40px 30px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.stat .k{font:700 22px Mono;letter-spacing:4px;color:#c9d0d8}
+.stat .n{font:italic 700 190px/1 Serif;color:#ff2d46;margin:14px 0 6px}
+.stat .u{font:800 40px Inter;color:#fff;letter-spacing:.5px}
+.stat .bar{height:4px;background:#2a2f38;margin-top:24px;border-radius:2px}.stat .bar div{height:100%;background:#ff2d46;width:70%}
+.title{position:absolute;top:250px;left:0;right:0;text-align:center;color:#fff}
+.title .a{font:800 54px Inter;letter-spacing:3px}
+.title .b{font:800 150px/1 Inter;letter-spacing:-5px}.title .b span{color:#ff2d46}
+.title .c{font:800 50px Inter;letter-spacing:6px;margin-top:18px}
+.title .ln{width:520px;height:5px;background:#ff2d46;margin:22px auto 0}
+.person{position:absolute;width:250px;border-radius:12px;overflow:hidden;background:#0e1015;box-shadow:0 18px 40px rgba(0,0,0,.6)}
+.person .ph{height:260px;background:linear-gradient(160deg,#3a4552,#151b22);display:flex;align-items:center;justify-content:center;font:700 16px Mono;color:#8996a3;letter-spacing:1px;text-align:center;padding:10px}
+.person .nm{font:800 24px Inter;color:#fff;padding:12px 14px 2px}.person .rl{font:700 14px Mono;color:#9aa3ad;padding:0 14px 14px;letter-spacing:1.5px}
+.wm{position:absolute;right:40px;bottom:330px;font:800 26px Inter;color:#fff;text-align:right;opacity:.9}
+</style></head><body>
+<canvas id="gl" width="1080" height="1920"></canvas>
+<div class="vig"></div>
+<div id="ov"></div>
+<script src="../assets/lib/topojson-client.min.js"></script>
+<script type="module">
+import { createGlobe, ll } from "../assets/globe.js";
+const W = 1080, H = 1920;
+const F = +(new URLSearchParams(location.search).get("f") || 1);
+const g = await createGlobe(document.getElementById("gl"), { W, H, base: "../assets/" });
+const topo = await (await fetch("../assets/geo/countries-10m.json")).json();
+const countries = topojson.feature(topo, topo.objects.countries).features;
+const byId = (id) => countries.find((c) => +c.id === id);
+const CN = byId(156), MY = byId(458), VN = byId(704), PH = byId(608), BN = byId(96), TW = byId(158);
+
+// ---------- overlay layers ----------
+const borders = g.layer("borders", 0, { lon0: 92, lon1: 140, lat0: -6, lat1: 34, ppd: 80 });
+const red = g.layer("china", 1, { lon0: 72, lon1: 136, lat0: 16, lat1: 54, ppd: 40 });
+const myl = g.layer("malaysia", 2, { lon0: 99, lon1: 120, lat0: 0, lat1: 8, ppd: 160 });
+const lines = g.layer("lines", 3, { lon0: 92, lon1: 140, lat0: -6, lat1: 34, ppd: 80 });
+const near = (f) => { const c = f.geometry.coordinates.flat(3); return true; };
+{ const L = borders, c = L.ctx; c.strokeStyle = "rgba(255,255,255,.5)"; c.lineWidth = 2; c.lineJoin = "round";
+  for (const f of countries) { L.path(f.geometry); c.stroke(); } L.tex.needsUpdate = true; }
+function chinaRed() {
+  const L = red, c = L.ctx; c.save(); L.path(CN.geometry); c.clip("evenodd");
+  c.fillStyle = "rgba(190,18,40,.6)"; c.fillRect(0, 0, L.OW, L.OH);
+  c.fillStyle = "rgba(60,0,8,.35)"; for (let y = 0; y < L.OH; y += 6) c.fillRect(0, y, L.OW, 2.5);
+  c.restore(); c.strokeStyle = "#ff3d55"; c.lineWidth = 2.5; L.path(CN.geometry); c.stroke(); L.tex.needsUpdate = true;
+}
+function malaysiaFlag() {
+  const L = myl, c = L.ctx; c.save(); L.path(MY.geometry); c.clip("evenodd");
+  const x0 = L.ox(99.5), x1 = L.ox(119.4), y0 = L.oy(7.5), y1 = L.oy(0.8), sh = (y1 - y0) / 14;
+  for (let i = 0; i < 14; i++) { c.fillStyle = i % 2 ? "rgba(255,255,255,.62)" : "rgba(204,0,1,.7)"; c.fillRect(x0, y0 + i * sh, x1 - x0, sh + 1); }
+  c.fillStyle = "rgba(1,0,102,.78)"; c.fillRect(x0, y0, (x1 - x0) * 0.5, sh * 8);
+  c.fillStyle = "#ffcc00"; const cx = L.ox(103.6), cy = L.oy(5.0), r = sh * 2.6;
+  c.beginPath(); c.arc(cx, cy, r, 0, 7); c.fill(); c.fillStyle = "rgb(1,0,102)"; c.beginPath(); c.arc(cx + r * 0.32, cy, r * 0.82, 0, 7); c.fill();
+  c.restore(); c.strokeStyle = "#fff"; c.lineWidth = 5; L.path(MY.geometry); c.stroke(); L.tex.needsUpdate = true;
+}
+// Nine-dash line: APPROXIMATE dash centres (lon, lat) for the storyboard; replace with a digitised source before final.
+const DASH = [[108.2, 17.6], [109.6, 14.2], [109.5, 10.3], [110.4, 6.8], [112.3, 4.1], [115.3, 6.6], [117.3, 9.9], [118.9, 14.6], [119.9, 18.6]];
+function nineDash() {
+  const L = lines, c = L.ctx; c.lineCap = "round";
+  DASH.forEach(([lon, lat], i) => {
+    const a = DASH[Math.max(0, i - 1)], b = DASH[Math.min(DASH.length - 1, i + 1)];
+    let dx = L.ox(b[0]) - L.ox(a[0]), dy = L.oy(b[1]) - L.oy(a[1]); const n = Math.hypot(dx, dy); dx /= n; dy /= n;
+    const h = 0.7 * L.ppd, x = L.ox(lon), y = L.oy(lat);
+    c.shadowColor = "rgba(255,40,60,.9)"; c.shadowBlur = 16; c.strokeStyle = "#ff2d46"; c.lineWidth = 10;
+    c.beginPath(); c.moveTo(x - dx * h, y - dy * h); c.lineTo(x + dx * h, y + dy * h); c.stroke();
+  });
+  c.shadowBlur = 0; L.tex.needsUpdate = true;
+}
+function lanes() {
+  const L = lines, c = L.ctx; c.setLineDash([2, 16]); c.lineCap = "round"; c.strokeStyle = "rgba(255,255,255,.95)"; c.lineWidth = 7;
+  const P = [[[98.5, 5.5], [101.5, 2.6], [104.2, 1.25], [106.5, 4.5], [109.5, 9], [112.5, 13.5], [115.5, 18], [118.6, 21.6], [120.5, 25], [124, 29]],
+             [[104.2, 1.25], [107, 3.4], [110.5, 7], [113.5, 11], [116.3, 14.5], [119.6, 18.6], [122, 21]]];
+  for (const p of P) { c.beginPath(); p.forEach(([lo, la], i) => (i ? c.lineTo(L.ox(lo), L.oy(la)) : c.moveTo(L.ox(lo), L.oy(la)))); c.stroke(); }
+  c.setLineDash([]); L.tex.needsUpdate = true;
+}
+function ships(n = 110) {
+  const L = lines, c = L.ctx; let s = 7; const rnd = () => ((s = (s * 16807) % 2147483647) / 2147483647);
+  c.fillStyle = "#ff2d46"; c.shadowColor = "#ff2d46"; c.shadowBlur = 8;
+  for (let i = 0; i < n; i++) { const lo = 119.5 + rnd() * 8.5, la = 18.5 + rnd() * 9; if (lo < 122.2 && la > 21.8 && la < 25.4) continue;
+    c.save(); c.translate(L.ox(lo), L.oy(la)); c.rotate(rnd() * 6); c.fillRect(-7, -2.5, 14, 5); c.restore(); }
+  c.shadowBlur = 0; L.tex.needsUpdate = true;
+}
+function km80() {
+  const L = lines, c = L.ctx; c.strokeStyle = "#fff"; c.lineWidth = 4; c.setLineDash([10, 8]);
+  c.beginPath(); c.moveTo(L.ox(112.25), L.oy(3.97)); c.lineTo(L.ox(112.85), L.oy(3.42)); c.stroke(); c.setLineDash([]); L.tex.needsUpdate = true;
+}
+
+// ---------- HTML helpers ----------
+const ov = document.getElementById("ov");
+const FL = {
+  MY: '<svg viewBox="0 0 28 14"><g>' + Array.from({ length: 14 }, (_, i) => `<rect y="${i}" width="28" height="1" fill="${i % 2 ? "#fff" : "#cc0001"}"/>`).join("") + '</g><rect width="14" height="8" fill="#010066"/><circle cx="5.5" cy="4" r="2.6" fill="#fc0"/><circle cx="6.3" cy="4" r="2.1" fill="#010066"/><circle cx="10" cy="4" r="1.4" fill="#fc0"/></svg>',
+  CN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#de2910"/><text x="3" y="10" font-size="9" fill="#ffde00">★</text></svg>',
+  VN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#da251d"/><text x="9.5" y="15" font-size="12" fill="#ff0">★</text></svg>',
+  PH: '<svg viewBox="0 0 30 20"><rect width="30" height="10" fill="#0038a8"/><rect y="10" width="30" height="10" fill="#ce1126"/><path d="M0 0L14 10L0 20Z" fill="#fff"/><circle cx="5" cy="10" r="2" fill="#fcd116"/></svg>',
+  BN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#f7e017"/><path d="M0 4L30 11V16L0 9Z" fill="#fff"/><path d="M0 9L30 16V20L0 13Z" fill="#000"/><circle cx="15" cy="10" r="3" fill="#cf1126"/></svg>',
+  TW: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#fe0000"/><rect width="15" height="10" fill="#000095"/><circle cx="7.5" cy="5" r="2.5" fill="#fff"/></svg>',
+};
+function flagPin(lat, lon, code, label, dy = 0) {
+  const p = g.project(lat, lon); const e = document.createElement("div"); e.className = "pin";
+  e.style.left = p.x + "px"; e.style.top = p.y + dy + "px";
+  e.innerHTML = `<div class="flag">${FL[code]}</div><div class="lab">${label}</div>`; ov.appendChild(e);
+}
+function locPin(lat, lon, label, sub, red) {
+  const p = g.project(lat, lon); const e = document.createElement("div"); e.className = "pin"; e.style.flexDirection = "row"; e.style.alignItems = "center";
+  e.style.transform = "translate(-13px,-50%)"; e.style.left = p.x + "px"; e.style.top = p.y + "px";
+  e.innerHTML = `<div class="dot"></div><div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px"><div class="lab">${label}</div>${sub ? `<div class="sub ${red ? "red" : ""}">${sub}</div>` : ""}</div>`; ov.appendChild(e);
+}
+const html = (s) => ov.insertAdjacentHTML("beforeend", s);
+const cap = (s) => html(`<div class="cap">${s}</div>`);
+const card = (top, outlet, date, head, foot, media) => html(`<div class="card" style="top:${top}px"><div class="hd"><b>${outlet}</b><i>${date}</i></div><div class="bd">${head}<div class="ft">${foot}</div></div>${media ? `<div class="media">${media}</div>` : ""}</div>`);
+const stat = (top, k, n, u) => html(`<div class="stat" style="top:${top}px"><div class="k">${k}</div><div class="n">${n}</div><div class="u">${u}</div><div class="bar"><div></div></div></div>`);
+
+// ---------- frames ----------
+const FR = {
+  1() { g.setView({ lat: 14, lon: 112, dist: 3.4, tilt: 8, yShift: -0.1 }); chinaRed(); nineDash();
+    html(`<div class="title"><div class="a">LAUT YANG</div><div class="b"><span>DIREBUT</span></div><div class="c">ENAM NEGARA</div><div class="ln"></div></div>`); },
+  2() { g.setView({ lat: 7, lon: 111, dist: 1.75, tilt: 14, yShift: 0.13 }); lanes();
+    cap(`Setiap tahun, dagangan <span class="r">tiga trilion</span> <span class="g">dolar</span>`);
+    flagPin(1.35, 103.8, "MY", "SELAT MELAKA", 0); stat(1010, "DAGANGAN MELALUI LAUT INI", "$3.4T", "SETAHUN · ANGGARAN CSIS"); },
+  3() { g.setView({ lat: 11, lon: 114, dist: 1.8, tilt: 12, yShift: 0.12 });
+    cap(`dituntut <span class="r">enam negara</span> <span class="g">serentak</span>`);
+    flagPin(23.5, 113.5, "CN", "CHINA"); flagPin(14.5, 108.3, "VN", "VIETNAM"); flagPin(13.5, 121.5, "PH", "FILIPINA");
+    flagPin(4.6, 114.7, "BN", "BRUNEI"); flagPin(24.3, 121, "TW", "TAIWAN"); flagPin(2.5, 112.8, "MY", "MALAYSIA"); },
+  4() { g.setView({ lat: 11, lon: 113, dist: 1.8, tilt: 12, yShift: 0.12 }); chinaRed(); nineDash();
+    cap(`China tuntut hampir <span class="r">seluruhnya</span>`);
+    flagPin(24, 113.5, "CN", "CHINA");
+    html(`<div class="card" style="top:1180px"><div class="hd"><b>9 GARIS PUTUS</b><i>TUNTUTAN CHINA</i></div><div class="bd" style="font-size:40px">Ditolak Tribunal Timbang Tara Tetap, <mark>The Hague, 2016</mark><div class="ft">Kes Filipina lwn. China · PCA</div></div></div>`); },
+  5() { g.setView({ lat: 3.6, lon: 113.2, dist: 0.32, tilt: 20, yShift: 0.16 }); malaysiaFlag(); nineDash(); km80();
+    cap(`hanya <span class="r">80 km</span> dari <span class="g">pantai Sarawak</span>`);
+    locPin(3.97, 112.25, "BETING SERUPAI", "DITUNTUT CHINA", true); locPin(3.17, 113.03, "BINTULU", "SARAWAK");
+    stat(1080, "JARAK DARI PANTAI SARAWAK", "80", "KILOMETER"); },
+  6() { g.setView({ lat: 4.4, lon: 113.2, dist: 0.34, tilt: 20, yShift: 0.15 }); malaysiaFlag(); nineDash();
+    cap(`kapal pengawal pantai <span class="r">China</span> <span class="g">berlegar</span>`);
+    locPin(5.05, 112.6, "BETING PATINGGI ALI", "KAPAL CCG DIPANTAU", true);
+    card(960, "FREE MALAYSIA TODAY", "1 JAN 2026", `<mark>Armed forces monitoring Chinese vessel</mark> at South Luconia Shoals`, "Tajuk asal · freemalaysiatoday.com", `B-ROLL · FLOW AI<em>kapal TLDM membayangi kapal pengawal pantai, laut lepas, mendung</em><em>[ILUSTRASI]</em>`); },
+  7() { g.setView({ lat: 10, lon: 115, dist: 2.0, tilt: 10, yShift: 0.11 }); chinaRed(); malaysiaFlag(); nineDash();
+    cap(`sasaran <span class="r">2026</span> — <span class="g">terlepas</span>`);
+    locPin(14.6, 121.0, "MANILA", "SIDANG KEMUNCAK ASEAN");
+    card(880, "UPI", "16 NOV 2026", `<mark>ASEAN, China fail to finalize</mark> South China Sea code of conduct`, "Tajuk asal · upi.com", "");
+    stat(1210, "DRAF YANG DIPERSETUJUI", "80%", "ISU PALING BESAR · BELUM"); },
+  8() { g.setView({ lat: 22, lon: 122, dist: 1.5, tilt: 14, yShift: 0.13 }); chinaRed(); ships();
+    cap(`<span class="r">100+ kapal</span> China dekat <span class="g">Taiwan</span>`);
+    flagPin(24.2, 121, "TW", "TAIWAN"); flagPin(28.2, 116, "CN", "CHINA");
+    card(1020, "REUTERS", "12 NOV 2026", `China stages unannounced Pacific drills in <mark>'silent intimidation'</mark> of Taiwan`, "Tajuk asal · reuters.com", `B-ROLL · FLOW AI<em>armada kapal perang di laut, dari udara, senja</em><em>[ILUSTRASI]</em>`); },
+  9() { g.setView({ lat: 8, lon: 112, dist: 2.6, tilt: 6, yShift: 0.02 }); malaysiaFlag(); nineDash();
+    cap(`ia di depan <span class="r">pintu rumah kita</span>`);
+    html(`<div class="title" style="top:1230px"><div class="c" style="font-size:44px;letter-spacing:3px">[ NAMA CHANNEL KAU ]</div><div class="ln" style="width:300px"></div><div style="font:700 22px Mono;letter-spacing:4px;color:#9aa3ad;margin-top:20px">GEOPOLITIK · DALAM BAHASA KITA</div></div>`); },
+};
+FR[F]();
+window.__pins=[...document.querySelectorAll('.pin')].map(e=>e.style.left+','+e.style.top);
+g.render();
+document.body.dataset.ready = "1";
+</script></body></html>
