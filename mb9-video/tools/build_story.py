@@ -70,16 +70,16 @@ def at(text, n=1):
     raise SystemExit(f"word not found: {text} #{n}")
 
 T = {
-  "siapa": at("Siapa"), "sembilan1": at("Sembilan?"), "hari": at("Hari"), "jelas": at("jelas"), "ni": at("Ni"),
+  "siapa": at("Siapa"), "sembilan1": at("Sembilan?"), "hari": at("Hari"), "jelas": at("jelas"), "ni": at("Ni", 2),
   "ogos": at("Ogos"), "ismail1": at("Ismail"), "sumpah": at("sumpah"), "prn": at("PRN"), "masa": at("Masa"),
   "bn": at("BN"), "s18": at("18"), "ph": at("PH"), "s11": at("11"), "pn": at("PN"), "s7": at("7"),
   "isnin": at("Isnin"), "bn2": at("BN", 2), "letak": at("letak"), "surat1": at("surat"), "tuanku1": at("Tuanku"),
-  "esok": at("Esoknya"), "istana1": at("Istana"), "letak2": at("Letak"), "perkenan": at("perkenan"),
+  "esok": at("Esoknya"), "istana1": at("Istana"), "letak2": at("Letak", 2), "perkenan": at("perkenan"),
   "surat2": at("surat", 2), "disahkan": at("disahkan"), "pagi": at("Pagi"), "menghadap": at("menghadap"),
   "hinggap": at("Hinggap"), "diakata": at("Dia"), "serah": at("serah"), "setuju": at("setuju"), "dihantar": at("dihantar"),
   "tapi": at("Tapi"), "istana3": at("Istana", 3), "istana4": at("Istana", 4), "kekal": at("kekal"), "untuk": at("Untuk"),
-  "majoriti": at("majoriti"), "dun": at("DUN"), "dun2": at("DUN", 2), "s36": at("36"), "majoriti2": at("Majoriti"),
-  "s19": at("19"), "jadi": at("Jadi"), "betul": at("betul"), "tapi2": at("Tapi", 2), "s19b": at("19", 2),
+  "majoriti": at("majoriti"), "dun": at("DUN"), "dun2": at("DUN", 2), "s36": at("36"), "majoriti2": at("Majoriti", 2),
+  "s19": at("19"), "jadi": at("Jadi", 2), "betul": at("betul"), "tapi2": at("Tapi", 2), "s19b": at("19", 2),
   "kita": at("Kita"),
 }
 END_VO = words[-1]["e"]
