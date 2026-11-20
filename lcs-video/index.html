@@ -71,7 +71,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#05070b}
 #outro{inset:0;background:rgba(5,7,11,.7)}
 #outro .box{position:absolute;top:640px;left:0;right:0;text-align:center}
 #outro .chev{font:800 170px/1 Inter;letter-spacing:-40px;color:#fff;margin-left:-40px}
-#outro .nm{font:800 84px Inter;letter-spacing:-1px;margin-top:20px}
+#outro .nm{font:800 92px Inter;letter-spacing:-1px;margin-top:20px}
 #outro .tg{font:700 24px Mono;letter-spacing:6px;color:#9aa3ad;margin-top:16px}
 #outro .fol{display:inline-flex;align-items:center;gap:22px;margin-top:44px;background:#14171e;border-radius:18px;padding:18px 22px 18px 28px}
 #outro .fol .h{font:800 30px Inter}
@@ -98,7 +98,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#05070b}
     <div id="cards"></div>
     <div id="cap"></div>
     <div id="hook" class="el"><div class="a">LAUT YANG</div><div class="b">DIREBUT</div><div class="c">6 NEGARA</div><div class="ln"></div></div>
-    <div id="outro" class="el"><div class="box"><div class="chev">›››</div><div class="nm" id="chan">NAMA CHANNEL</div><div class="tg">GEOPOLITIK · DALAM BAHASA KITA</div><div><div class="fol"><span class="h" id="handle">@namachannel</span><span class="btn" id="fbtn">Follow</span></div></div></div></div>
+    <div id="outro" class="el"><div class="box"><div class="chev">›››</div><div class="nm">JANGAN TERLEPAS</div><div class="tg">GEOPOLITIK · DALAM BAHASA KITA</div><div><div class="fol"><span class="h">Follow untuk part seterusnya</span><span class="btn" id="fbtn">Follow</span></div></div></div></div>
     <div id="fade"></div>
   </div>
   <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="64.75" data-track-index="5" data-volume="1"></audio>
@@ -114,7 +114,6 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#05070b}
 <script type="module">
 import { createGlobe } from "./assets/globe.js";
 import { DURATION, T, CAPS } from "./assets/story.js";
-import { BRAND } from "./assets/brand.js";
 
 const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
 const scale = Number(vars.previewScale) || 1;
@@ -283,7 +282,6 @@ function drawShip(x, y, rot, col, s = 1) { fx.save(); fx.translate(x, y); fx.rot
   fx.moveTo(12 * s, 0); fx.lineTo(-8 * s, -5 * s); fx.lineTo(-8 * s, 5 * s); fx.closePath(); fx.fill(); fx.restore(); }
 
 const hook = document.getElementById("hook"), outro = document.getElementById("outro"), fade = document.getElementById("fade"), tint = document.getElementById("tint");
-document.getElementById("chan").textContent = BRAND.name; document.getElementById("handle").textContent = BRAND.handle;
 const fbtn = document.getElementById("fbtn");
 
 // full-screen FLOW B-roll cutaways (timing lives on the <video> tags)
