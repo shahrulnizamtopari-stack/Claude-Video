@@ -16,11 +16,11 @@
 html,body{width:1080px;height:1920px;overflow:hidden;background:#05070b}
 #root{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:Inter;color:#fff}
 #world,#ui{position:absolute;inset:0}
-#broll{position:absolute;inset:0;z-index:1;opacity:0;overflow:hidden;background:#000}
+#broll{position:absolute;left:220px;top:380px;width:640px;height:800px;z-index:1;opacity:0;overflow:hidden;clip-path:inset(0 round 18px);background:#000;border-radius:18px;border:3px solid rgba(255,255,255,.9);box-shadow:0 30px 80px rgba(0,0,0,.7)}
 #ui{z-index:2}
 .bw{position:absolute;inset:0;opacity:0}.bw video{width:100%;height:100%;object-fit:cover}
-.bshade{position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 70%,rgba(0,0,0,.45))}
-.btag{position:absolute;right:40px;top:300px;font:700 20px Mono;color:#fff;background:rgba(0,0,0,.55);padding:6px 12px;border-radius:4px;letter-spacing:3px}
+.bshade{position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,0) 18%)}
+.btag{position:absolute;right:16px;top:16px;font:700 18px Mono;color:#fff;background:rgba(0,0,0,.55);padding:6px 12px;border-radius:4px;letter-spacing:3px}
 
 #gl{position:absolute;inset:0;width:1080px;height:1920px;display:block}
 #fx{position:absolute;inset:0;width:1080px;height:1920px}
@@ -98,7 +98,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#05070b}
     <div id="cards"></div>
     <div id="cap"></div>
     <div id="hook" class="el"><div class="a">LAUT YANG</div><div class="b">DIREBUT</div><div class="c">6 NEGARA</div><div class="ln"></div></div>
-    <div id="outro" class="el"><div class="box"><div class="chev">›››</div><div class="nm">JANGAN TERLEPAS</div><div class="tg">GEOPOLITIK · DALAM BAHASA KITA</div><div><div class="fol"><span class="h">Follow untuk part seterusnya</span><span class="btn" id="fbtn">Follow</span></div></div></div></div>
+    <div id="outro" class="el"><div class="box"><div class="chev">›››</div><div class="nm">JANGAN TERLEPAS</div><div class="tg">GEOPOLITIK · DALAM BAHASA KITA</div><div><div class="fol"><span class="h">Untuk part seterusnya</span><span class="btn" id="fbtn">Follow</span><span class="btn" id="sbtn">Subscribe</span></div></div></div></div>
     <div id="fade"></div>
   </div>
   <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="64.75" data-track-index="5" data-volume="1"></audio>
@@ -264,7 +264,7 @@ const SCH = [
   [C.trade, T.trilion - 0.15, T.cn - 0.15, 1060], [C.nine, T.tahun2016, T.garisan2 - 0.1, 1150], [C.km, T.km80 - 0.2, T.patinggi - 0.15, 1090],
   [C.fmt, T.kapal, T.sebab - 0.1, 1420], [C.coc, T.kod - 0.1, T.sasaran - 0.1, 1150], [C.y26, T.sasaran, T.p80 - 0.15, 1120],
   [C.upi, T.minggu, T.anwar - 0.15, 860], [C.p80, T.p80 - 0.1, T.anwar - 0.15, 1230], [C.mm, T.anwar, T.dalam - 0.1, 1120],
-  [C.rt, T.pegawai - 0.2, T.lautni - 0.1, 960],
+  [C.rt, T.pegawai - 0.2, T.lautni - 0.1, 1240],
 ];
 const HL = [[C.nine, T.hague - 0.25, T.tolak + 0.2], [C.fmt, T.kapal + 0.3, T.berlegar], [C.coc, T.peraturan, T.peraturan + 1.3],
             [C.upi, T.terlepas - 0.3, T.terlepas + 0.6], [C.mm, T.tiada - 0.1, T.tiada + 1.0], [C.rt, T.k100, T.k100 + 1.1]];
@@ -282,7 +282,7 @@ function drawShip(x, y, rot, col, s = 1) { fx.save(); fx.translate(x, y); fx.rot
   fx.moveTo(12 * s, 0); fx.lineTo(-8 * s, -5 * s); fx.lineTo(-8 * s, 5 * s); fx.closePath(); fx.fill(); fx.restore(); }
 
 const hook = document.getElementById("hook"), outro = document.getElementById("outro"), fade = document.getElementById("fade"), tint = document.getElementById("tint");
-const fbtn = document.getElementById("fbtn");
+const fbtn = document.getElementById("fbtn"), sbtn = document.getElementById("sbtn");
 
 // full-screen FLOW B-roll cutaways (timing lives on the <video> tags)
 const BR = ["navy", "fleet", "rig"].map((k) => { const v = document.getElementById("v-" + k);
@@ -290,9 +290,10 @@ const BR = ["navy", "fleet", "rig"].map((k) => { const v = document.getElementBy
 const brollEl = document.getElementById("broll"), fxEl = document.getElementById("fx"), vigEl = document.querySelector(".vig");
 function brollAt(t) {
   let on = 0;
-  for (const c of BR) { const k = win(t, c.a, c.b - 0.12, 0.12, 0.12); on = Math.max(on, k);
-    c.w.style.opacity = k > 0 ? 1 : 0; c.w.style.transform = `scale(${1.04 + 0.08 * clamp((t - c.a) / (c.b - c.a))})`; }
-  brollEl.style.opacity = on; pinWrap.style.opacity = 1 - on; fxEl.style.opacity = 1 - on; vigEl.style.opacity = 1 - on * 0.6;
+  for (const c of BR) { const k = win(t, c.a, c.b - 0.2, 0.2, 0.2); on = Math.max(on, k);
+    c.w.style.opacity = k > 0 ? 1 : 0; c.w.style.transform = `scale(${1.02 + 0.06 * clamp((t - c.a) / (c.b - c.a))})`; }
+  brollEl.style.opacity = on; brollEl.style.transform = `scale(${0.86 + 0.14 * eout(on)})`;
+  vigEl.style.opacity = 1 - on * 0.3; pinWrap.style.opacity = 1 - on; fxEl.style.opacity = 1 - on;
 }
 function renderAt(t) {
   brollAt(t);
@@ -399,7 +400,8 @@ function renderAt(t) {
   const ot = T.end_vo + 0.4, ok = win(t, ot, DURATION + 1, 0.4, 0.1);
   outro.style.display = ok > 0 ? "block" : "none"; outro.style.opacity = ok;
   const box = outro.firstElementChild; box.style.transform = `translateY(${40 * (1 - eout((t - ot) / 0.5))}px)`;
-  const followed = t > ot + 1.6; fbtn.textContent = followed ? "Following" : "Follow"; fbtn.style.background = followed ? "#2a2f38" : "#ff2d46";
+  const followed = t > ot + 1.2; fbtn.textContent = followed ? "Following" : "Follow"; fbtn.style.background = followed ? "#2a2f38" : "#ff2d46";
+  const subbed = t > ot + 1.7; sbtn.textContent = subbed ? "Subscribed" : "Subscribe"; sbtn.style.background = subbed ? "#2a2f38" : "#ff2d46";
   fade.style.opacity = clamp((t - (DURATION - 0.45)) / 0.4);
 }
 window.__renderAt = renderAt;

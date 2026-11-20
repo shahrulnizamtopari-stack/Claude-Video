@@ -80,7 +80,7 @@ for a, d, k in ((T["trilion"], .9, 12), (T["km80"], .7, 10), (T["p80"], .8, 12))
 # ships swarm: a soft crackle of pops
 for i in range(18): put(pop() * .5, T["k100"] + rng.random() * 1.3, 0.5)
 # outro: follow click
-put(pop(), T["end_vo"] + 2.0, 1)
+put(pop(), T["end_vo"] + 1.6, 1); put(pop(), T["end_vo"] + 2.1, 1)
 
 pk = np.max(np.abs(out)); out = out / pk * 0.85
 with wave.open(os.path.join(ROOT, "assets", "sfx.wav"), "wb") as w:
