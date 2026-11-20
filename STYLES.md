@@ -44,6 +44,24 @@ live, label penunjuk. Ada **versi malam** (latar biru gelap) untuk topik waktu m
 
 ---
 
+## 🌏 Map Animation / PETA (geopolitik, isu semasa)
+
+![Laut China Selatan](docs/styles/peta-laut-china-selatan.jpg)
+
+**Rupa:** glob satelit 3D yang gelap, kamera terbang dan zoom masuk/keluar ikut kata kunci. Negara diisi bendera atau
+merah (pihak lawan), pin bendera pop bila nama disebut, garis putus menyala. Kad berita dengan tajuk asal dan highlight
+pink, nombor merah besar yang count-up, B-roll AI dalam tetingkap kecil atas peta. Caption atas skrin. Outro Follow + Subscribe.
+
+**Sesuai untuk:** konflik, sempadan, laluan dagang, negara lawan negara, berita dunia dengan sudut Malaysia.
+
+**Contoh projek:** `lcs-video/` ("Laut Yang Direbut")
+
+**Cara minta:**
+> "Buat video [topik] guna style **map animation**."
+> "Macam video **Laut China Selatan** tu."
+
+---
+
 ## Style lama (masih boleh guna)
 
 | v2: Lif | v1: Kapal terbang |
