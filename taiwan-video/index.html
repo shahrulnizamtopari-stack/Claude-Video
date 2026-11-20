@@ -32,7 +32,7 @@ html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,h
 #tint{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(255,30,50,0) 40%,rgba(255,30,50,.55) 100%);opacity:0}
 .el{position:absolute;display:none}
 /* captions */
-#cap{position:absolute;top:168px;left:60px;right:60px;text-align:center;font:700 48px/1.15 Inter;letter-spacing:-.5px;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+#cap{position:absolute;top:255px;left:60px;right:60px;text-align:center;font:700 48px/1.15 Inter;letter-spacing:-.5px;text-shadow:0 2px 10px rgba(0,0,0,.6)}
 #cap span{white-space:pre}
 /* pins */
 .pin{transform:translate(-50%,-100%);flex-direction:column;align-items:center;gap:6px}
@@ -46,6 +46,7 @@ html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,h
 .dot.red{border-color:#ff2d46}
 .sea{font:italic 400 64px/1 Serif;letter-spacing:6px;color:rgba(255,255,255,.88);text-shadow:0 4px 20px rgba(0,0,0,.7);transform:translate(-50%,-50%);white-space:nowrap}
 .tag{font:700 16px Mono;letter-spacing:3px;color:rgba(255,255,255,.55);transform:translate(-50%,-50%)}
+.ztag{font:700 17px/1 Mono;letter-spacing:1.5px;color:#fff;background:#ff2d46;padding:5px 8px 4px;border-radius:3px;white-space:nowrap;transform:translate(-50%,-50%)}
 /* cards */
 .card{left:160px;width:760px;border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.6)}
 .hd{background:#0e1015;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:16px 24px}
@@ -66,9 +67,9 @@ html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,h
 .stamp{position:absolute;font:800 40px Inter;letter-spacing:3px;color:#ff2d46;border:6px solid #ff2d46;border-radius:8px;padding:6px 18px;background:rgba(255,255,255,.9);transform:rotate(-8deg);white-space:nowrap}
 .stat .stamp{background:rgba(10,12,17,.85)}
 /* hook + outro */
-#hook{top:250px;left:0;right:0;text-align:center}
+#hook{top:240px;left:0;right:0;text-align:center}
 #hook .a{font:800 56px Inter;letter-spacing:4px}
-#hook .b{font:800 158px/1 Inter;letter-spacing:-5px;color:#ff2d46}
+#hook .b{font:800 170px/1 Inter;letter-spacing:-5px;color:#ff2d46}
 #hook .c{font:800 52px Inter;letter-spacing:7px;margin-top:18px}
 #hook .ln{width:540px;height:6px;background:#ff2d46;margin:24px auto 0;transform-origin:center}
 #outro{inset:0;background:rgba(5,7,11,.7)}
@@ -83,29 +84,30 @@ html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,h
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="67.7" data-width="1080" data-height="1920" data-fps="30">
-  <div id="world" class="clip" data-start="0" data-duration="67.7" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+<div id="root" data-composition-id="main" data-start="0" data-duration="57.4" data-width="1080" data-height="1920" data-fps="30">
+  <div id="world" class="clip" data-start="0" data-duration="57.4" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
     <canvas id="gl" width="1080" height="1920"></canvas>
   </div>
   <div id="broll" data-layout-ignore>
-    <div class="bw" id="bw-navy"><video id="v-navy" class="clip" src="assets/broll/navy.mp4" muted playsinline data-start="34.56" data-duration="3.8" data-track-index="2"></video></div>
-    <div class="bw" id="bw-fleet"><video id="v-fleet" class="clip" src="assets/broll/fleet.mp4" muted playsinline data-start="54.65" data-duration="1.96" data-track-index="3"></video></div>
-    <div class="bw" id="bw-rig"><video id="v-rig" class="clip" src="assets/broll/rig.mp4" muted playsinline data-start="59.14" data-duration="1.65" data-track-index="4"></video></div>
+    <div class="bw" id="bw-ship"><video id="v-ship" class="clip" src="assets/broll/ship.mp4" muted playsinline data-start="10.03" data-duration="3.0" data-track-index="2"></video></div>
+    <div class="bw" id="bw-fleet"><video id="v-fleet" class="clip" src="assets/broll/fleet.mp4" muted playsinline data-start="24.84" data-duration="2.26" data-track-index="3"></video></div>
+    <div class="bw" id="bw-wafer"><video id="v-wafer" class="clip" src="assets/broll/wafer.mp4" muted playsinline data-start="29.28" data-duration="2.62" data-track-index="4"></video></div>
+    <div class="bw" id="bw-robot"><video id="v-robot" class="clip" src="assets/broll/robot.mp4" muted playsinline data-start="33.32" data-duration="2.65" data-track-index="7"></video></div>
     <div class="bshade"></div><div class="btag">ILUSTRASI · AI</div>
   </div>
-  <div id="ui" class="clip" data-start="0" data-duration="67.7" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
+  <div id="ui" class="clip" data-start="0" data-duration="57.4" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
     <canvas id="fx" width="1080" height="1920"></canvas>
     <div class="vig"></div>
     <div id="tint"></div>
     <div id="pins"></div>
     <div id="cards"></div>
     <div id="cap"></div>
-    <div id="hook" class="el"><div class="a">LAUT YANG</div><div class="b">DIREBUT</div><div class="c">6 NEGARA</div><div class="ln"></div></div>
+    <div id="hook" class="el"><div class="a">KALAU CHINA SEKAT</div><div class="b">TAIWAN</div><div class="c">MALAYSIA TERKENA?</div><div class="ln"></div></div>
     <div id="outro" class="el"><div class="box"><div class="chev">›››</div><div class="nm">JANGAN TERLEPAS</div><div class="tg">GEOPOLITIK · DALAM BAHASA KITA</div><div><div class="fol"><span class="h">Untuk part seterusnya</span><span class="btn" id="fbtn">Follow</span><span class="btn" id="sbtn">Subscribe</span></div></div></div></div>
     <div id="fade"></div>
   </div>
-  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="64.75" data-track-index="5" data-volume="1"></audio>
-  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="67.7" data-track-index="6" data-volume="0.9"></audio>
+  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="54.57" data-track-index="5" data-volume="1"></audio>
+  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="57.4" data-track-index="6" data-volume="0.9"></audio>
 </div>
 
 <script>
@@ -131,18 +133,18 @@ if (LAYER === 2) g.render = () => {};  // captions-only layer: no 3D
 const topo = await (await fetch("assets/geo/countries-10m.json")).json();
 const countries = topojson.feature(topo, topo.objects.countries).features;
 const byId = (id) => countries.find((c) => +c.id === id);
-const CN = byId(156), MY = byId(458);
+const CN = byId(156), MY = byId(458), TW = byId(158);
 
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
 const eout = (x) => 1 - Math.pow(1 - clamp(x), 3);
-// visibility envelope: fade in at a, out at b
 const win = (t, a, b, fi = 0.35, fo = 0.35) => clamp((t - a) / fi) * (1 - clamp((t - b) / fo));
 
 // ---------------- static overlay layers ----------------
 const borders = g.layer("borders", 0, { lon0: 92, lon1: 140, lat0: -6, lat1: 34, ppd: 80 });
 const red = g.layer("china", 1, { lon0: 72, lon1: 136, lat0: 16, lat1: 54, ppd: 40 });
 const myl = g.layer("malaysia", 2, { lon0: 99, lon1: 120, lat0: 0, lat1: 8, ppd: 160 });
+const twl = g.layer("taiwan", 3, { lon0: 119, lon1: 123, lat0: 21, lat1: 26, ppd: 400 });
 { const L = borders, c = L.ctx; c.strokeStyle = "rgba(255,255,255,.5)"; c.lineWidth = 2; c.lineJoin = "round";
   for (const f of countries) { L.path(f.geometry); c.stroke(); } L.tex.needsUpdate = true; }
 { const L = red, c = L.ctx; c.save(); L.path(CN.geometry); c.clip("evenodd");
@@ -156,56 +158,52 @@ const myl = g.layer("malaysia", 2, { lon0: 99, lon1: 120, lat0: 0, lat1: 8, ppd:
   c.fillStyle = "#ffcc00"; const cx = L.ox(103.6), cy = L.oy(5.0), r = sh * 2.6;
   c.beginPath(); c.arc(cx, cy, r, 0, 7); c.fill(); c.fillStyle = "rgb(1,0,102)"; c.beginPath(); c.arc(cx + r * 0.32, cy, r * 0.82, 0, 7); c.fill();
   c.restore(); c.strokeStyle = "#fff"; c.lineWidth = 5; L.path(MY.geometry); c.stroke(); L.tex.needsUpdate = true; }
+{ const L = twl, c = L.ctx; c.save(); L.path(TW.geometry); c.clip("evenodd"); c.fillStyle = "rgba(255,45,70,.16)"; c.fillRect(0, 0, L.OW, L.OH); c.restore();
+  c.shadowColor = "#ff2d46"; c.shadowBlur = 40; c.strokeStyle = "#ff5a6e"; c.lineWidth = 14; L.path(TW.geometry); c.stroke(); c.shadowBlur = 0; L.tex.needsUpdate = true; }
 
 // ---------------- ribbons ----------------
-// Nine-dash line: China has never published coordinates; these are approximate, traced from the 2009 map.
-const DASH = [[108.2, 17.6], [109.6, 14.2], [109.5, 10.3], [110.4, 6.8], [112.3, 4.1], [115.3, 6.6], [117.3, 9.9], [118.9, 14.6], [119.9, 18.6]];
-const dashes = DASH.map(([lon, lat], i) => {
-  const a = DASH[Math.max(0, i - 1)], b = DASH[Math.min(8, i + 1)];
-  let dx = b[0] - a[0], dy = b[1] - a[1]; const n = Math.hypot(dx, dy); dx /= n; dy /= n; const h = 0.75;
-  const pts = [[lon - dx * h, lat - dy * h], [lon + dx * h, lat + dy * h]];
-  return { core: g.ribbon(pts, { width: 1.6, order: 41 }), glow: g.ribbon(pts, { width: 5, glow: 0.55, order: 40 }) };
-});
-const LANES = [[[98.5, 5.5], [101.5, 2.6], [104.2, 1.25], [106.5, 4.5], [109.5, 9], [112.5, 13.5], [115.5, 18], [118.6, 21.6], [120.5, 25], [124, 29]],
-               [[104.2, 1.25], [107, 3.4], [110.5, 7], [113.5, 11], [116.3, 14.5], [119.6, 18.6], [122, 21]]];
-const lanes = LANES.map((p) => g.ribbon(p, { color: 0xffffff, width: 0.9, dash: 70, seg: 10, order: 35 }));
-const km = g.ribbon([[112.25, 3.97], [112.85, 3.42]], { color: 0xffffff, width: 0.7, dash: 7, order: 36 });
-const kdPath = g.ribbon([[113.75, 4.25], [113.2, 4.75], [112.75, 5.05]], { color: 0x9fd4ff, width: 0.55, dash: 14, seg: 10, order: 36 });
+const HSINCHU = [121.0, 24.8], PENANG = [100.3, 5.35], CUT = [119.1, 21.1];
+const WAFER = [HSINCHU, [119.6, 22.0], [116.5, 17.0], [112.0, 11.0], [107.5, 6.6], [104.4, 2.0], [102.0, 3.2], PENANG];
+const wGlow = g.ribbon(WAFER, { color: 0x7fdcff, width: 5, glow: 0.5, seg: 10, order: 40 });
+const wCore = g.ribbon(WAFER, { color: 0xdff8ff, width: 1.5, dash: 60, seg: 10, order: 41 });
+const rNear = g.ribbon([HSINCHU, [119.6, 22.0], CUT], { color: 0xff2d46, width: 1.6, dash: 9, seg: 10, order: 42 });
+const rNearG = g.ribbon([HSINCHU, [119.6, 22.0], CUT], { color: 0xff2d46, width: 5, glow: 0.6, seg: 10, order: 41 });
+const rFar = g.ribbon([CUT, ...WAFER.slice(2)], { color: 0xff2d46, width: 1.2, dash: 60, seg: 10, order: 42 });
+const LANES = [[[114, 20.5], [117.5, 22.3], [119.6, 24.2], [121.2, 26.6], [123, 29.5]], [[115, 19.5], [118.6, 22.2], [120.2, 24.9], [122.5, 28.5]], [[118, 18.5], [120.9, 20.8], [122.6, 23], [124.5, 27]]];
+const lanes = LANES.map((p) => g.ribbon(p, { color: 0xffffff, width: 0.9, dash: 40, seg: 10, order: 35 }));
 
-// ---------------- camera keys ----------------
+// ---------------- camera keys [t, lat, lon, dist, tilt, yShift] ----------------
 const K = [
-  [0.0, 18, 100, 6.2, 4, -0.1], [T.lcs - 0.3, 13, 111, 3.3, 8, -0.06],
-  [T.setiap + 0.2, 7, 111, 1.8, 14, 0.13], [T.cn - 0.2, 8, 111.5, 1.7, 14, 0.13],
-  [T.cn + 0.7, 12.5, 114, 1.95, 12, 0.12], [T.tapi, 12.3, 114, 1.88, 12, 0.12],
-  [T.seluruh, 11, 113, 1.8, 12, 0.12], [T.garisan2 - 0.1, 10.6, 113, 1.68, 12, 0.12],
-  [T.serupai - 0.1, 3.6, 113.2, 0.36, 20, 0.16], [T.patinggi - 0.3, 3.7, 113.1, 0.32, 20, 0.16],
-  [T.patinggi + 0.8, 4.5, 113.0, 0.38, 20, 0.15], [T.sebab - 0.2, 4.6, 113.0, 0.34, 20, 0.15],
-  [T.kod - 0.3, 10, 115, 2.0, 10, 0.11], [T.dalam - 0.2, 10.5, 115.5, 1.85, 10, 0.11],
-  [T.pegawai + 0.3, 22, 122, 1.5, 14, 0.13], [T.lautni - 0.1, 22.2, 122, 1.38, 14, 0.13],
-  [T.pintu + 0.4, 6, 112, 2.9, 6, 0.04], [DURATION, 6, 109.5, 3.5, 6, 0.04],
+  [0.0, 18, 104, 5.2, 4, -0.1], [T.sebab - 0.2, 15, 112, 3.0, 8, -0.1],
+  [T.tw + 0.4, 23.6, 120.9, 0.6, 16, 0.14], [T.dan - 0.2, 23.6, 120.9, 0.55, 16, 0.14],
+  [T.dan + 0.6, 23.6, 120.0, 0.95, 14, 0.13], [T.cn - 0.2, 23.7, 120.1, 0.92, 14, 0.13],
+  [T.cn + 0.6, 25.5, 118.5, 1.5, 12, 0.12], [T.hujung, 25.3, 118.8, 1.42, 12, 0.12],
+  [T.justice + 0.3, 23.7, 120.6, 0.52, 16, 0.13], [T.awal - 0.2, 23.7, 120.6, 0.47, 16, 0.13],
+  [T.pegawai + 0.4, 23.0, 124.5, 1.6, 12, 0.13], [T.kita - 0.3, 23.2, 124.2, 1.5, 12, 0.13],
+  [T.wafer - 0.1, 14, 111, 2.3, 8, 0.11], [T.malaysia - 0.4, 14, 111, 2.2, 8, 0.11],
+  [T.malaysia + 0.6, 6.0, 101.0, 0.75, 16, 0.15], [T.kalau2 - 0.3, 6.1, 101.0, 0.7, 16, 0.15],
+  [T.disekat + 0.4, 22.4, 119.4, 0.85, 14, 0.13], [T.bloomberg - 0.2, 22.5, 119.3, 0.8, 14, 0.13],
+  [T.tapi + 0.3, 19, 116, 2.0, 10, 0.12], [T.jauh, 18, 114, 2.2, 10, 0.12],
+  [T.kesannya + 0.2, 12, 110, 3.0, 6, 0.03], [DURATION, 12, 108.5, 3.4, 6, 0.03],
 ];
-// zoom punches on key words: quick move (0.3 s), short hold, slow settle back. neg = push in, pos = pull out
 const ZP = [
-  [T.direbut, -0.16, 0.6], [T.trilion, -0.14, 0.8], [T.my, -0.12, 0.7], [T.sembilan, 0.10, 0.6],
-  [T.hague, -0.10, 0.6], [T.takterima, -0.16, 0.4], [T.km80, -0.14, 0.8], [T.kapal, -0.10, 0.8],
-  [T.kd, -0.14, 0.8], [T.sasaran, -0.08, 0.5], [T.terlepas, -0.18, 0.5], [T.p80, 0.08, 0.6],
-  [T.tiada, -0.12, 0.6], [T.k100, -0.16, 0.7], [T.sarawak2, -0.12, 0.4], [T.kita, 0.10, 0.8],
+  [T.tw1, -0.12, 0.5], [T.tw, -0.14, 0.6], [T.p90, -0.12, 0.8], [T.cn, 0.10, 0.5], [T.kepung, -0.12, 0.6],
+  [T.keelung, -0.10, 0.4], [T.kaohsiung, -0.10, 0.5], [T.k100, -0.16, 0.7], [T.kita, 0.10, 0.6],
+  [T.pinang2, -0.10, 0.6], [T.p13, -0.14, 0.7], [T.disekat, -0.12, 0.5], [T.taksampai, -0.16, 0.5],
+  [T.berhenti, -0.10, 0.5], [T.p5, -0.14, 0.6], [T.tertutup, -0.14, 0.5], [T.pinang3, -0.10, 0.6],
 ];
 function zoomMod(t) {
   let m = 0;
   for (const [a, amt, hold] of ZP) {
     const x = t - a + 0.08; if (x < 0 || x > hold + 1.6) continue;
-    const up = ease(clamp(x / 0.3)), down = 1 - ease(clamp((x - 0.3 - hold) / 1.3));
-    m += amt * up * down;
+    m += amt * ease(clamp(x / 0.3)) * (1 - ease(clamp((x - 0.3 - hold) / 1.3)));
   }
-  // slow breathing push so holds never sit still
   return (1 + m) * (1 - 0.035 * Math.sin(t * 0.9));
 }
 function cam(t) {
   let i = 0; while (i < K.length - 2 && t > K[i + 1][0]) i++;
   const A = K[i], B = K[i + 1], u = ease(clamp((t - A[0]) / (B[0] - A[0])));
   const L = (k) => A[k] + (B[k] - A[k]) * u;
-  // fly "up" a little between far-apart views
   const hop = Math.sin(Math.PI * u) * Math.min(0.6, Math.hypot(B[1] - A[1], B[2] - A[2]) * 0.04) * (Math.abs(B[3] - A[3]) < 1 ? 1 : 0);
   const d = Math.exp(Math.log(A[3]) + (Math.log(B[3]) - Math.log(A[3])) * u) + hop;
   return { lat: L(1), lon: L(2), dist: d * zoomMod(t), tilt: L(4), yShift: L(5) };
@@ -215,84 +213,162 @@ function cam(t) {
 const FL = {
   MY: '<svg viewBox="0 0 28 14">' + Array.from({ length: 14 }, (_, i) => `<rect y="${i}" width="28" height="1" fill="${i % 2 ? "#fff" : "#cc0001"}"/>`).join("") + '<rect width="14" height="8" fill="#010066"/><circle cx="5.5" cy="4" r="2.6" fill="#fc0"/><circle cx="6.3" cy="4" r="2.1" fill="#010066"/><circle cx="10" cy="4" r="1.4" fill="#fc0"/></svg>',
   CN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#de2910"/><text x="3" y="10" font-size="9" fill="#ffde00">★</text></svg>',
-  VN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#da251d"/><text x="9.5" y="15" font-size="12" fill="#ff0">★</text></svg>',
-  PH: '<svg viewBox="0 0 30 20"><rect width="30" height="10" fill="#0038a8"/><rect y="10" width="30" height="10" fill="#ce1126"/><path d="M0 0L14 10L0 20Z" fill="#fff"/><circle cx="5" cy="10" r="2" fill="#fcd116"/></svg>',
-  BN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#f7e017"/><path d="M0 4L30 11V16L0 9Z" fill="#fff"/><path d="M0 9L30 16V20L0 13Z" fill="#000"/><circle cx="15" cy="10" r="3" fill="#cf1126"/></svg>',
   TW: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#fe0000"/><rect width="15" height="10" fill="#000095"/><circle cx="7.5" cy="5" r="2.5" fill="#fff"/></svg>',
 };
 const pinWrap = document.getElementById("pins"), cardWrap = document.getElementById("cards");
 const mk = (parent, cls, html) => { const e = document.createElement("div"); e.className = "el " + cls; e.innerHTML = html; parent.appendChild(e); return e; };
 const PINS = [
-  // [lat, lon, kind, a, b, ...]
-  { ll: [12.5, 114.2], k: "sea", txt: "Laut China Selatan", a: T.lcs, b: T.cn - 0.1 },
-  { ll: [1.9, 102.3], k: "loc", txt: "SELAT MELAKA", sub: "LALUAN KAPAL", a: T.setiap + 0.4, b: T.cn - 0.1 },
-  { ll: [23.6, 113.6], k: "flag", f: "CN", txt: "CHINA", a: T.cn, b: T.garisan2 },
-  { ll: [24.0, 121.0], k: "flag", f: "TW", txt: "TAIWAN", a: T.tw, b: T.tapi },
-  { ll: [14.6, 108.4], k: "flag", f: "VN", txt: "VIETNAM", a: T.vn, b: T.tapi },
-  { ll: [13.2, 121.6], k: "flag", f: "PH", txt: "FILIPINA", a: T.ph, b: T.tapi },
-  { ll: [4.6, 114.7], k: "flag", f: "BN", txt: "BRUNEI", a: T.bn, b: T.tapi },
-  { ll: [2.6, 112.6], k: "flag", f: "MY", txt: "MALAYSIA", a: T.my, b: T.tapi },
-  { ll: [8.0, 113.2], k: "tag", txt: "GARISAN ANGGARAN", a: T.putus + 0.3, b: T.garisan2 },
-  { ll: [3.97, 112.25], k: "loc", red: 1, txt: "BETING SERUPAI", sub: "DITUNTUT CHINA", a: T.serupai, b: T.patinggi - 0.2 },
-  { ll: [3.17, 113.03], k: "loc", txt: "BINTULU", sub: "SARAWAK", a: T.lebih, b: T.patinggi - 0.2 },
-  { ll: [5.05, 112.6], k: "loc", red: 1, txt: "BETING PATINGGI ALI", sub: "KAPAL CCG DIPANTAU", a: T.patinggi, b: T.sebab },
-  { ll: [14.6, 121.0], k: "loc", txt: "MANILA", sub: "SIDANG KEMUNCAK ASEAN", a: T.manila, b: T.dalam },
-  { ll: [24.2, 121.0], k: "flag", f: "TW", txt: "TAIWAN", a: T.pegawai, b: T.lautni },
-  { ll: [25.2, 117.5], k: "flag", f: "CN", txt: "CHINA", a: T.dalam + 0.3, b: T.lautni },
-  { ll: [2.0, 113.4], k: "flag", f: "MY", txt: "SARAWAK", a: T.sarawak2, b: DURATION - 3.2 },
-  { ll: [5.3, 117.1], k: "flag", f: "MY", txt: "SABAH", a: T.sabah, b: DURATION - 3.2 },
+  { ll: [23.2, 121.6], k: "flag", f: "TW", txt: "TAIWAN", a: T.tw, b: T.dan },
+  { ll: [24.8, 121.0], k: "loc", txt: "HSINCHU", sub: "TSMC", a: T.p90 - 0.3, b: T.dan },
+  { ll: [24.3, 119.6], k: "loc", txt: "SELAT TAIWAN", sub: "LALUAN KAPAL", a: T.dan + 0.2, b: T.kontena - 0.2 },
+  { ll: [27.6, 116.6], k: "flag", f: "CN", txt: "CHINA", a: T.wilayah - 0.1, b: T.justice },
+  { ll: [23.0, 121.9], k: "flag", f: "TW", txt: "TAIWAN", a: T.wilayah + 0.2, b: T.justice },
+  { ll: [25.13, 121.74], k: "loc", red: 1, txt: "KEELUNG", sub: "SEKATAN · LATIHAN", a: T.keelung, b: T.awal },
+  { ll: [22.62, 120.27], k: "loc", red: 1, txt: "KAOHSIUNG", sub: "SEKATAN · LATIHAN", a: T.kaohsiung, b: T.awal },
+  { ll: [21.3, 127.6], k: "sea", txt: "Pasifik Barat", a: T.pasifik - 0.1, b: T.apa },
+  { ll: [24.8, 121.0], k: "loc", txt: "HSINCHU", sub: "KILANG WAFER", a: T.wafer, b: T.malaysia - 0.3 },
+  { ll: [5.35, 100.3], k: "loc", txt: "PULAU PINANG", sub: "PASANG & UJI CIP", a: T.pinang2, b: T.kalau2 - 0.2 },
+  { ll: [3.0, 102.8], k: "flag", f: "MY", txt: "MALAYSIA", a: T.malaysia, b: T.kalau2 - 0.2 },
+  { ll: [23.4, 121.9], k: "flag", f: "TW", txt: "TAIWAN", a: T.jauh, b: DURATION - 3.2 },
+  { ll: [5.35, 100.3], k: "loc", red: 1, txt: "PULAU PINANG", sub: "KESANNYA SAMPAI SINI", a: T.kesannya, b: DURATION - 3.2 },
 ].map((p) => {
   let html = "";
   if (p.k === "flag") html = `<div class="flag">${FL[p.f]}</div><div class="lab">${p.txt}</div>`;
   if (p.k === "loc") html = `<div class="dot ${p.red ? "red" : ""}"></div><div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px"><div class="lab">${p.txt}</div>${p.sub ? `<div class="sub ${p.red ? "red" : ""}">${p.sub}</div>` : ""}</div>`;
-  if (p.k === "sea" || p.k === "tag") html = p.txt;
+  if (p.k === "sea" || p.k === "ztag") html = p.txt;
   p.el = mk(pinWrap, p.k === "flag" ? "pin" : p.k === "loc" ? "pin lpin" : p.k, html);
   return p;
 });
+// red map tags (drill zones, ships turning back)
+const ZT = [
+  { ll: [26.62, 121.95], txt: "ZON LATIHAN · ANGGARAN", a: T.kepung - 0.1, b: T.awal },
+  { ll: [20.95, 120.55], txt: "ZON LATIHAN · ANGGARAN", a: T.kepung - 0.1, b: T.awal },
+  { ll: [19.3, 116.9], txt: "KAPAL PATAH BALIK", a: T.taksampai + 0.4, b: T.tapi },
+].map((p) => ({ ...p, el: mk(pinWrap, "ztag", p.txt) }));
+const stampCut = mk(pinWrap, "stamp", "TERPUTUS");
 
-const card = (top, outlet, date, head, foot, med) => mk(cardWrap, "card", `<div class="hd"><b>${outlet}</b><i>${date}</i></div><div class="bd">${head}<div class="ft">${foot}</div></div>${med || ""}`);
-const stat = (top, k, n, u) => mk(cardWrap, "stat", `<div class="k">${k}</div><div><div class="n"><span class="v">${n}</span><div class="strike"></div></div></div><div class="u">${u}</div><div class="bar"><div></div></div>`);
+const card = (outlet, date, head, foot) => mk(cardWrap, "card", `<div class="hd"><b>${outlet}</b><i>${date}</i></div><div class="bd">${head}<div class="ft">${foot}</div></div>`);
+const stat = (k, n, u) => mk(cardWrap, "stat", `<div class="k">${k}</div><div><div class="n"><span class="v">${n}</span><div class="strike"></div></div></div><div class="u">${u}</div><div class="bar"><div></div></div>`);
 const C = {
-  trade: stat(0, "DAGANGAN MELALUI LAUT INI", "$0", "SETAHUN · ANGGARAN CSIS"),
-  nine: card(0, "9 GARIS PUTUS", "TUNTUTAN CHINA", `Ditolak tribunal antarabangsa, <mark>The Hague, 2016</mark>`, "Timbang tara Filipina lwn China · PCA"),
-  km: stat(0, "JARAK DARI PANTAI SARAWAK", "0", "KILOMETER"),
-  fmt: card(0, "FREE MALAYSIA TODAY", "1 JAN 2026", `<mark>Armed forces monitoring Chinese vessel</mark> at South Luconia Shoals`, "Tajuk asal · freemalaysiatoday.com"),
-  coc: card(0, "KOD TATALAKU", "ASEAN + CHINA", `Peraturan bersama supaya <mark>tiada konflik</mark> di Laut China Selatan`, "Code of Conduct (COC)"),
-  y26: stat(0, "SASARAN SIAP", "2026", "HUJUNG TAHUN"),
-  upi: card(0, "UPI", "16 NOV 2026", `<mark>ASEAN, China fail to finalize</mark> South China Sea code of conduct`, "Tajuk asal · upi.com"),
-  p80: stat(0, "DRAF DIPERSETUJUI", "0%", "PERENGGAN DRAF"),
-  mm: card(0, "MALAY MAIL", "17 NOV 2026", `<mark>No new deadline set</mark> for South China Sea code negotiations, says Anwar`, "Tajuk asal · malaymail.com"),
-  rt: card(0, "REUTERS", "12 NOV 2026", `China stages unannounced Pacific drills in <mark>'silent intimidation'</mark> of Taiwan`, "Tajuk asal · reuters.com · kata pegawai Taiwan"),
+  s90: stat("CIP PALING CANGGIH DUNIA", "0%", "BUATAN TAIWAN · 5nm KE BAWAH"),
+  s48: stat("KAPAL KONTENA DUNIA LALU SELAT TAIWAN", "0%", "DATA BLOOMBERG · 2022"),
+  usni: card("USNI NEWS", "30 DIS 2025", `Chinese Forces <mark>Fire Rockets Near Taiwan</mark>, Practice Port Seizure`, "Tajuk asal · news.usni.org"),
+  rt: card("REUTERS", "12 NOV 2026", `China stages unannounced Pacific drills in <mark>'silent intimidation'</mark> of Taiwan`, "Tajuk asal · reuters.com · kata pegawai Taiwan"),
+  s13: stat("KERJA PASANG, UJI & BUNGKUS CIP DUNIA", "0%", "MALAYSIA · ANGGARAN MIDA"),
+  see: stat("EKSPORT ELEKTRIK & ELEKTRONIK", "0%", "DARIPADA EKSPORT MALAYSIA · JAN–OGOS 2026"),
+  bb: card("BLOOMBERG ECONOMICS", "FEB 2026", `Kemungkinan Taiwan disekat: <mark>sangat rendah</mark>`, "Ringkasan · bloomberg.com"),
+  s5: stat("EKONOMI DUNIA JIKA TAIWAN DISEKAT", "0%", "ANGGARAN BLOOMBERG · TAHUN PERTAMA"),
 };
-const stampNine = document.createElement("div"); stampNine.className = "stamp"; stampNine.textContent = "CHINA: TAK TERIMA"; stampNine.style.cssText += "right:26px;bottom:-14px"; C.nine.querySelector(".bd").appendChild(stampNine);
-const stampY = document.createElement("div"); stampY.className = "stamp"; stampY.textContent = "TERLEPAS"; stampY.style.cssText += "right:40px;top:40px"; C.y26.appendChild(stampY);
-// schedule: [el, a, b, top]
 const SCH = [
-  [C.trade, T.trilion - 0.15, T.cn - 0.15, 1060], [C.nine, T.tahun2016, T.garisan2 - 0.1, 1150], [C.km, T.km80 - 0.2, T.patinggi - 0.15, 1090],
-  [C.fmt, T.kapal, T.sebab - 0.1, 1420], [C.coc, T.kod - 0.1, T.sasaran - 0.1, 1150], [C.y26, T.sasaran, T.p80 - 0.15, 1120],
-  [C.upi, T.minggu, T.anwar - 0.15, 860], [C.p80, T.p80 - 0.1, T.anwar - 0.15, 1230], [C.mm, T.anwar, T.dalam - 0.1, 1120],
-  [C.rt, T.pegawai - 0.2, T.lautni - 0.1, 1240],
+  [C.s90, T.p90 - 0.15, T.dan - 0.1, 1080], [C.s48, T.dan, T.wilayah - 0.1, 1220],
+  [C.usni, T.justice - 0.2, T.awal - 0.1, 1260], [C.rt, T.pegawai - 0.2, T.apa - 0.1, 1240],
+  [C.s13, T.p13 - 0.15, T.elektrik - 0.1, 1220], [C.see, T.elektrik - 0.1, T.kalau2 - 0.1, 1120],
+  [C.bb, T.bloomberg - 0.1, T.tapi - 0.05, 1240], [C.s5, T.ekonomi - 0.1, T.jauh - 0.1, 1180],
 ];
-const HL = [[C.nine, T.hague - 0.25, T.tolak + 0.2], [C.fmt, T.kapal + 0.3, T.berlegar], [C.coc, T.peraturan, T.peraturan + 1.3],
-            [C.upi, T.terlepas - 0.3, T.terlepas + 0.6], [C.mm, T.tiada - 0.1, T.tiada + 1.0], [C.rt, T.k100, T.k100 + 1.1]];
+const HL = [[C.usni, T.kepung - 0.2, T.kepung + 0.9], [C.rt, T.k100, T.k100 + 1.1], [C.bb, T.rendah - 0.6, T.rendah + 0.3]];
 
-// captions
 const capEl = document.getElementById("cap");
 const capSpans = CAPS.map((c) => c.w.map((w, i) => { const s = document.createElement("span"); s.textContent = w.t + (i < c.w.length - 1 ? " " : ""); return s; }));
 
-// screen-space fx canvas: ships, pulses
+// ---------------- fx canvas: ships, rockets, zones, sparks ----------------
 const fx = document.getElementById("fx").getContext("2d");
 let seed = 5; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
-const SHIPS = []; for (let i = 0; SHIPS.length < 110 && i < 400; i++) { const lo = 119.6 + rnd() * 8.4, la = 18.4 + rnd() * 9.4;
-  if (lo < 122.3 && la > 21.7 && la < 25.5) continue; if (lo < 121 && la > 24.5) continue; SHIPS.push([la, lo, rnd(), rnd() * 6.28]); }
-function drawShip(x, y, rot, col, s = 1) { fx.save(); fx.translate(x, y); fx.rotate(rot); fx.fillStyle = col; fx.beginPath();
-  fx.moveTo(12 * s, 0); fx.lineTo(-8 * s, -5 * s); fx.lineTo(-8 * s, 5 * s); fx.closePath(); fx.fill(); fx.restore(); }
+const P = (lat, lon) => g.project(lat, lon);
+// top-down ship (pointed bow) with a wake; size follows camera distance
+function ship(x, y, rot, col, s, alpha = 1, wake = 1) {
+  fx.save(); fx.globalAlpha = alpha; fx.translate(x, y); fx.rotate(rot); fx.scale(s, s);
+  if (wake > 0) { fx.strokeStyle = `rgba(255,255,255,${0.5 * wake})`; fx.lineWidth = 2 / s; fx.beginPath(); fx.moveTo(-14, -4); fx.lineTo(-36, -10); fx.moveTo(-14, 4); fx.lineTo(-36, 10); fx.stroke(); }
+  fx.shadowColor = col; fx.shadowBlur = 10; fx.fillStyle = col;
+  fx.beginPath(); fx.moveTo(17, 0); fx.lineTo(6, -5.5); fx.lineTo(-14, -5.5); fx.lineTo(-14, 5.5); fx.lineTo(6, 5.5); fx.closePath(); fx.fill();
+  fx.shadowBlur = 0; fx.fillStyle = "rgba(0,0,0,.45)"; fx.fillRect(-6, -2.5, 8, 5); fx.restore();
+}
+// draw a ship following a path function pos(t) -> [lat, lon]; heading from the projected motion
+function shipAt(pos, t, col, s, alpha) {
+  const [la, lo] = pos(t), [la2, lo2] = pos(t + 0.05), a = P(la, lo), b = P(la2, lo2);
+  if (!a.visible) return; ship(a.x, a.y, Math.atan2(b.y - a.y, b.x - a.x), col, s, alpha);
+}
+const lerpPath = (pts, u) => { const n = pts.length - 1, f = clamp(u) * n, i = Math.min(n - 1, Math.floor(f)), k = f - i;
+  return [pts[i][1] + (pts[i + 1][1] - pts[i][1]) * k, pts[i][0] + (pts[i + 1][0] - pts[i][0]) * k]; };
+// cargo ships on the strait lanes
+const CARGO = [0, 1, 2, 0, 1, 2, 1].map((l, i) => ({ l, o: (i * 0.37) % 1, v: 0.045 + 0.01 * (i % 3) }));
+// warship ring around Taiwan: sail in from a wider ring, then keep circling
+const TWC = [23.7, 120.9];
+const RING = Array.from({ length: 16 }, (_, i) => ({ a: (i / 16) * 6.283 + 0.2, d: rnd() * 0.9 }))
+  .filter(({ a }) => { const lo = TWC[1] + 1.75 * 1.1 * Math.cos(a), la = TWC[0] + 1.75 * Math.sin(a); return !(lo < 119.6 && la > 24.2); });
+function ringPos(r0, a0, t0, r) { return (t) => { const u = eout((t - t0) / 2.0); const a = a0 - 0.9 * (1 - u) + 0.015 * (t - t0); const rr = r * (1 + 0.5 * (1 - u));
+  return [TWC[0] + rr * Math.sin(a), TWC[1] + rr * 1.1 * Math.cos(a)]; }; }
+// rockets from the Fujian coast into two drill zones (zones are approximate)
+const ZN = { lo0: 121.3, la0: 25.6, lo1: 122.6, la1: 26.4 }, ZS = { lo0: 119.9, la0: 21.2, lo1: 121.2, la1: 21.9 };
+const RK = [
+  [[119.7, 25.5], [121.8, 26.0], 0.15], [[117.9, 24.0], [120.4, 21.5], 0.5], [[119.5, 25.3], [122.2, 25.9], 0.85],
+  [[118.2, 24.3], [120.8, 21.6], 1.2], [[119.8, 25.7], [121.6, 26.15], 1.55], [[117.6, 23.7], [120.2, 21.7], 1.9],
+  [[119.6, 25.4], [122.0, 26.2], 2.4], [[118.0, 24.1], [120.6, 21.45], 2.8],
+].map(([A, B, d]) => ({ A, B, t0: T.kepung + d, fl: 1.1 }));
+// 100+ ship swarm east of Taiwan
+const SWARM = []; for (let i = 0; SWARM.length < 110 && i < 400; i++) { const lo = 123 + rnd() * 9, la = 17 + rnd() * 13;
+  if (lo < 124 && la > 22 && la < 26) continue; SWARM.push([la, lo, rnd(), rnd() * 6.28]); }
+// cargo ships that reach the blockade ring and turn back
+const TURN = [{ from: [115.4, 18.5], to: [118.0, 20.35] }, { from: [114.6, 17.9], to: [116.9, 19.7] }];
+function turnPos(c, tArr) {
+  const dx = c.to[0] - c.from[0], dy = c.to[1] - c.from[1], n = Math.hypot(dx, dy), d = [dx / n, dy / n], p = [d[1], -d[0]], R = 0.28;
+  return (t) => {
+    if (t < tArr) { const u = clamp(1 - (tArr - t) / 2.2); return [c.from[1] + dy * u, c.from[0] + dx * u]; }
+    const s = clamp((t - tArr) / 1.0), th = Math.PI * s;
+    let x = c.to[0] + p[0] * R * (1 - Math.cos(th)) + d[0] * R * Math.sin(th), y = c.to[1] + p[1] * R * (1 - Math.cos(th)) + d[1] * R * Math.sin(th);
+    const back = Math.max(0, t - tArr - 1.0) * 0.45; x -= d[0] * back; y -= d[1] * back; return [y, x];
+  };
+}
+function zoneBox(Z, k) {
+  const pts = [[Z.la0, Z.lo0], [Z.la0, Z.lo1], [Z.la1, Z.lo1], [Z.la1, Z.lo0]].map(([a, b]) => P(a, b));
+  fx.save(); fx.globalAlpha = k; fx.beginPath(); pts.forEach((p, i) => (i ? fx.lineTo(p.x, p.y) : fx.moveTo(p.x, p.y))); fx.closePath();
+  fx.fillStyle = "rgba(255,45,70,.16)"; fx.fill(); fx.setLineDash([14, 9]); fx.strokeStyle = "#ff2d46"; fx.lineWidth = 4; fx.stroke(); fx.setLineDash([]); fx.restore();
+}
+function rocket(r, t) {
+  const A = P(r.A[1], r.A[0]), B = P(r.B[1], r.B[0]), dd = Math.hypot(B.x - A.x, B.y - A.y);
+  const Cc = { x: (A.x + B.x) / 2, y: (A.y + B.y) / 2 - dd * 0.55 };
+  const q = (u) => ({ x: (1 - u) ** 2 * A.x + 2 * (1 - u) * u * Cc.x + u * u * B.x, y: (1 - u) ** 2 * A.y + 2 * (1 - u) * u * Cc.y + u * u * B.y });
+  const x = (t - r.t0) / r.fl; if (x < 0) return 0;
+  // launch flash
+  const lf = 1 - clamp(x * r.fl / 0.35);
+  if (lf > 0) { const gr = fx.createRadialGradient(A.x, A.y, 0, A.x, A.y, 46); gr.addColorStop(0, `rgba(255,255,230,${lf})`); gr.addColorStop(0.3, `rgba(255,150,50,${0.8 * lf})`); gr.addColorStop(1, "rgba(255,80,30,0)");
+    fx.fillStyle = gr; fx.beginPath(); fx.arc(A.x, A.y, 46, 0, 7); fx.fill(); }
+  const u = Math.min(1, x), tailFade = 1 - clamp((x - 1) / 0.5);
+  if (tailFade > 0) {
+    const u0 = Math.max(0, u - 0.5);
+    fx.save(); fx.lineCap = "round";
+    for (let k = 0; k < 14; k++) { const a = u0 + (u - u0) * (k / 14), b = u0 + (u - u0) * ((k + 1) / 14), pa = q(a), pb = q(b);
+      fx.globalAlpha = tailFade * (k / 14); fx.strokeStyle = "#ff7a2a"; fx.lineWidth = 9; fx.shadowColor = "#ff6a2a"; fx.shadowBlur = 16;
+      fx.beginPath(); fx.moveTo(pa.x, pa.y); fx.lineTo(pb.x, pb.y); fx.stroke();
+      fx.strokeStyle = "#fff1d6"; fx.lineWidth = 3; fx.shadowBlur = 0; fx.stroke(); }
+    fx.restore();
+  }
+  if (x < 1) { const h = q(u); const gr = fx.createRadialGradient(h.x, h.y, 0, h.x, h.y, 20); gr.addColorStop(0, "#fff"); gr.addColorStop(0.35, "rgba(255,190,90,.9)"); gr.addColorStop(1, "rgba(255,120,40,0)");
+    fx.fillStyle = gr; fx.beginPath(); fx.arc(h.x, h.y, 20, 0, 7); fx.fill(); }
+  // impact: flash + splash rings
+  const s = (x - 1) * r.fl;
+  if (s >= 0 && s < 1.4) {
+    const fl = 1 - clamp(s / 0.25); if (fl > 0) { const gr = fx.createRadialGradient(B.x, B.y, 0, B.x, B.y, 60); gr.addColorStop(0, `rgba(255,255,240,${fl})`); gr.addColorStop(1, "rgba(255,120,40,0)"); fx.fillStyle = gr; fx.beginPath(); fx.arc(B.x, B.y, 60, 0, 7); fx.fill(); }
+    fx.strokeStyle = "#ffe0b8"; fx.lineWidth = 3;
+    for (let k = 0; k < 3; k++) { const v = clamp((s - k * 0.15) / 1.0); if (v <= 0 || v >= 1) continue; fx.globalAlpha = 1 - v; fx.beginPath(); fx.ellipse(B.x, B.y, 8 + 46 * v, (8 + 46 * v) * 0.6, 0, 0, 7); fx.stroke(); }
+    fx.globalAlpha = 1;
+  }
+  return s >= 0 && s < 0.3 ? 1 - s / 0.3 : 0;
+}
+function spark(x, y, s) {
+  if (s < 0 || s > 0.9) return;
+  const k = 1 - s / 0.9; let sd = 11; const r2 = () => ((sd = (sd * 16807) % 2147483647) / 2147483647);
+  const gr = fx.createRadialGradient(x, y, 0, x, y, 80 * k + 10); gr.addColorStop(0, `rgba(255,255,235,${k})`); gr.addColorStop(0.3, `rgba(255,170,70,${0.8 * k})`); gr.addColorStop(1, "rgba(255,80,30,0)");
+  fx.fillStyle = gr; fx.beginPath(); fx.arc(x, y, 80 * k + 10, 0, 7); fx.fill();
+  fx.strokeStyle = "#ffd28a"; fx.lineWidth = 3; fx.globalAlpha = k;
+  for (let i = 0; i < 18; i++) { const a = r2() * 6.28, v = 60 + r2() * 90, d0 = v * s, d1 = v * s + 18; fx.beginPath(); fx.moveTo(x + Math.cos(a) * d0, y + Math.sin(a) * d0); fx.lineTo(x + Math.cos(a) * d1, y + Math.sin(a) * d1); fx.stroke(); }
+  fx.globalAlpha = 1;
+}
 
 const hook = document.getElementById("hook"), outro = document.getElementById("outro"), fade = document.getElementById("fade"), tint = document.getElementById("tint");
 const fbtn = document.getElementById("fbtn"), sbtn = document.getElementById("sbtn");
 
-// full-screen FLOW B-roll cutaways (timing lives on the <video> tags)
-const BR = ["navy", "fleet", "rig"].map((k) => { const v = document.getElementById("v-" + k);
+// framed FLOW B-roll windows (timing lives on the <video> tags)
+const BR = ["ship", "fleet", "wafer", "robot"].map((k) => { const v = document.getElementById("v-" + k);
   return { w: document.getElementById("bw-" + k), a: +v.dataset.start, b: +v.dataset.start + +v.dataset.duration }; });
 const brollEl = document.getElementById("broll"), fxEl = document.getElementById("fx"), vigEl = document.querySelector(".vig");
 function brollAt(t) {
@@ -302,89 +378,82 @@ function brollAt(t) {
   brollEl.style.opacity = on; brollEl.style.transform = `scale(${0.86 + 0.14 * eout(on)})`;
   vigEl.style.opacity = 1 - on * 0.3; pinWrap.style.opacity = 1 - on; fxEl.style.opacity = 1 - on;
 }
+
 function renderAt(t) {
   brollAt(t);
-  // camera + globe layers
   const v = cam(t); g.setView(v);
-  g.layers.china.mesh.material.opacity = Math.max(win(t, T.direbut, T.lcs - 0.2, 0.5, 0.5), win(t, T.cn3, T.garisan2 + 0.3, 0.5, 0.6), win(t, T.asean, T.lautni, 0.6, 0.8));
-  g.layers.malaysia.mesh.material.opacity = Math.max(win(t, T.malaysia1, T.lcs, 0.3, 0.5), win(t, T.my, T.tapi, 0.3, 0.4), win(t, T.garisan2, T.sebab + 0.4, 0.8, 0.6), win(t, T.pintu, DURATION, 0.6, 0.6)) * 0.95;
+  const sz = clamp(0.5 / v.dist, 0.55, 1.6);
+  g.layers.china.mesh.material.opacity = Math.max(win(t, T.cn, T.awal + 0.3, 0.5, 0.6), win(t, T.kalau2, T.jauh, 0.5, 0.8));
+  g.layers.malaysia.mesh.material.opacity = Math.max(win(t, 0.3, T.sebab, 0.5, 0.5), win(t, T.kita, T.kalau2 + 0.3, 0.5, 0.6), win(t, T.jauh, DURATION, 0.6, 0.6)) * 0.95;
+  g.layers.taiwan.mesh.material.opacity = Math.max(win(t, T.tw1 - 0.1, T.sebab, 0.2, 0.4), win(t, T.tw - 0.1, DURATION, 0.3, 0.5)) * (0.8 + 0.2 * Math.sin(t * 5));
   g.layers.borders.mesh.material.opacity = 0.6 + 0.4 * clamp((t - 3) / 2);
-  dashes.forEach((d, i) => {
-    const hookOn = win(t, T.direbut + 0.12 * i, T.lcs - 0.3, 0.2, 0.5);
-    const mainOn = win(t, T.sembilan + 0.16 * i, T.lautni + 0.3, 0.18, 0.8) * (t > T.pintu ? 0.55 : 1);
-    const o = Math.max(hookOn, mainOn), pop = 1 + 0.6 * (1 - clamp((t - (T.sembilan + 0.16 * i)) / 0.3)) * (t > T.sembilan + 0.16 * i ? 1 : 0);
-    d.core.u.op.value = o; d.glow.u.op.value = o * (0.8 + 0.2 * Math.sin(t * 4 + i));
-    d.core.u.w.value *= pop;
-  });
-  lanes.forEach((l, i) => { l.u.op.value = win(t, T.setiap + 0.1 * i, T.cn - 0.2, 0.4, 0.4); l.u.off.value = t * 1.8; l.u.prog.value = eout((t - T.setiap) / 1.4); });
-  km.u.op.value = win(t, T.lebih, T.patinggi - 0.2, 0.2, 0.3); km.u.prog.value = eout((t - T.lebih) / 0.8);
-  kdPath.u.op.value = win(t, T.kd, T.sebab, 0.3, 0.3) * 0.9; kdPath.u.prog.value = eout((t - T.kd) / 2.2); kdPath.u.off.value = -t * 1.2;
+  // wafer line: hook draw, Taiwan -> Penang beat, closing glow; breaks at "tak sampai"
+  const wOn = Math.max(win(t, 0.4, T.sebab - 0.1, 0.3, 0.4), win(t, T.wafer - 0.2, T.taksampai, 0.3, 0.15), win(t, T.jauh + 0.2, DURATION, 0.5, 0.6));
+  const wProg = t < T.sebab ? eout((t - 0.4) / 2.0) : t < T.jauh ? eout((t - T.wafer + 0.2) / (T.pinang2 - T.wafer + 0.4)) : eout((t - T.jauh - 0.2) / 2.0);
+  for (const r of [wGlow, wCore]) { r.u.op.value = wOn; r.u.prog.value = wProg; }
+  wCore.u.off.value = -t * 1.5; wGlow.u.op.value = wOn * (0.75 + 0.25 * Math.sin(t * 3));
+  const cutOn = win(t, T.taksampai, T.jauh + 0.2, 0.1, 0.5);
+  rNear.u.op.value = cutOn; rNearG.u.op.value = cutOn * (0.7 + 0.3 * Math.sin(t * 6)); rNear.u.off.value = -t * 1.2;
+  rFar.u.op.value = cutOn * 0.32;
+  lanes.forEach((l, i) => { l.u.op.value = win(t, T.dan + 0.1 * i, T.cn - 0.2, 0.4, 0.4) * 0.8; l.u.off.value = t * 1.6; l.u.prog.value = eout((t - T.dan) / 1.2); });
   g.render();
 
-  // pins
-  for (const p of PINS) {
-    const k = win(t, p.a, p.b, 0.25, 0.25);
-    if (k <= 0) { p.el.style.display = "none"; continue; }
-    const s = g.project(p.ll[0], p.ll[1]);
-    if (!s.visible || s.x < -200 || s.x > W + 200 || s.y < -100 || s.y > H + 100) { p.el.style.display = "none"; continue; }
-    p.el.style.display = "flex"; p.el.style.left = s.x + "px"; p.el.style.top = s.y + "px"; p.el.style.opacity = k;
-    const pop = p.k === "flag" ? 0.6 + 0.4 * eout(clamp((t - p.a) / 0.25)) + 0.08 * Math.sin(clamp((t - p.a) / 0.35) * Math.PI) : 1;
-    const base = p.k === "flag" ? "translate(-50%,-100%)" : p.k === "loc" ? "translate(-13px,-50%)" : "translate(-50%,-50%)";
-    p.el.style.transform = `${base} scale(${pop})`;
-  }
+  // pins + tags
+  const place = (el, ll, a, b, base, popK) => {
+    const k = win(t, a, b, 0.25, 0.25);
+    if (k <= 0) { el.style.display = "none"; return; }
+    const s = g.project(ll[0], ll[1]);
+    if (!s.visible || s.x < -200 || s.x > W + 200 || s.y < -100 || s.y > H + 100) { el.style.display = "none"; return; }
+    el.style.display = "flex"; el.style.left = s.x + "px"; el.style.top = s.y + "px"; el.style.opacity = k;
+    const pop = popK ? 0.6 + 0.4 * eout(clamp((t - a) / 0.25)) + 0.08 * Math.sin(clamp((t - a) / 0.35) * Math.PI) : 1;
+    el.style.transform = `${base} scale(${pop})`;
+  };
+  for (const p of PINS) place(p.el, p.ll, p.a, p.b, p.k === "flag" ? "translate(-50%,-100%)" : p.k === "loc" ? "translate(-13px,-50%)" : "translate(-50%,-50%)", p.k === "flag");
+  for (const z of ZT) place(z.el, z.ll, z.a, z.b, "translate(-50%,-50%)", 1);
+  { const s = g.project(CUT[1] + 0.9, CUT[0] + 0.3), u = clamp((t - T.taksampai - 0.1) / 0.22), on = win(t, T.taksampai + 0.1, T.bloomberg - 0.1, 0.05, 0.3);
+    stampCut.style.display = on > 0 ? "block" : "none"; stampCut.style.left = s.x + "px"; stampCut.style.top = s.y + "px"; stampCut.style.opacity = on;
+    stampCut.style.transform = `translate(-50%,-50%) rotate(-8deg) scale(${1.7 - 0.7 * eout(u)})`; }
 
   // cards
   for (const [el, a, b, top] of SCH) {
     const k = win(t, a, b, 0.3, 0.25);
     if (k <= 0) { el.style.display = "none"; continue; }
-    el.style.display = "block"; el.style.opacity = k;
-    el.style.top = top + 50 * (1 - eout((t - a) / 0.4)) + "px";
+    el.style.display = "block"; el.style.opacity = k; el.style.top = top + 50 * (1 - eout((t - a) / 0.4)) + "px";
   }
   for (const [el, a, b] of HL) for (const m of el.querySelectorAll("mark")) m.style.backgroundSize = `${100 * clamp((t - a) / (b - a))}% 100%`;
-  // stat values
-  const cnt = (el, a, d, to, fmt) => { const u = eout((t - a) / d); el.querySelector(".v").textContent = fmt(to * u); el.querySelector(".bar div").style.width = 100 * u * (el.dataset.bar || 1) + "%"; };
-  C.trade.dataset.bar = 0.85; cnt(C.trade, T.trilion, 0.9, 3.4, (x) => "$" + x.toFixed(1) + "T");
-  C.km.dataset.bar = 0.4; cnt(C.km, T.km80 - 0.1, 0.7, 80, (x) => Math.round(x));
-  C.p80.dataset.bar = 0.8; cnt(C.p80, T.p80, 0.8, 80, (x) => Math.round(x) + "%");
-  C.y26.querySelector(".bar div").style.width = 100 * eout((t - T.sasaran) / 3.6) + "%";
-  C.y26.querySelector(".strike").style.transform = `scaleX(${eout((t - T.terlepas) / 0.25)})`;
-  C.p80.querySelector(".u").textContent = t >= T.isu ? "ISU PALING BESAR · BELUM" : "PERENGGAN DRAF";
-  C.p80.querySelector(".u").style.color = t >= T.isu ? "#ff2d46" : "#fff";
-  const slam = (el, at) => { const u = clamp((t - at) / 0.22); el.style.display = t >= at ? "block" : "none"; el.style.transform = `rotate(-8deg) scale(${1.7 - 0.7 * eout(u)})`; el.style.opacity = u; };
-  slam(stampNine, T.takterima); slam(stampY, T.terlepas);
+  const cnt = (el, a, d, to, fmt, bar) => { const u = eout((t - a) / d); el.querySelector(".v").textContent = fmt(to * u); el.querySelector(".bar div").style.width = 100 * u * bar + "%"; };
+  cnt(C.s90, T.p90, 0.8, 90, (x) => Math.round(x) + "%" + (x > 89.5 ? "+" : ""), 0.9);
+  cnt(C.s48, T.dan + 0.1, 0.8, 48, (x) => Math.round(x) + "%", 0.48);
+  cnt(C.s13, T.p13, 0.7, 13, (x) => Math.round(x) + "%", 0.13);
+  cnt(C.see, T.elektrik + 0.3, 1.2, 48, (x) => Math.round(x) + "%", 0.48);
+  cnt(C.s5, T.ekonomi + 0.3, 1.0, 5, (x) => "−" + Math.round(x) + "%", 0.5);
 
   // fx canvas
   fx.clearRect(0, 0, W, H);
-  const ccgOn = win(t, T.kapal, T.sebab, 0.3, 0.3);
-  if (ccgOn > 0) {
-    const s = g.project(5.25, 112.35); const r = 22 + 30 * ((t * 0.9) % 1);
-    fx.globalAlpha = ccgOn * (1 - ((t * 0.9) % 1)); fx.strokeStyle = "#ff2d46"; fx.lineWidth = 3; fx.beginPath(); fx.arc(s.x, s.y, r, 0, 7); fx.stroke();
-    fx.globalAlpha = ccgOn; drawShip(s.x, s.y, -0.3, "#ff2d46", 1.6);
-    fx.font = "700 18px Mono"; fx.fillStyle = "#ff2d46"; fx.fillText("CCG", s.x + 22, s.y - 14);
+  let hit = 0;
+  const cargoOn = win(t, T.dan + 0.3, T.cn - 0.1, 0.4, 0.4);
+  if (cargoOn > 0) for (const c of CARGO) { const pts = LANES[c.l]; shipAt((tt) => lerpPath(pts, (c.o + tt * c.v) % 1), t, "#eaf6ff", sz * 1.05, cargoOn); }
+  const ringOn = win(t, T.justice - 0.4, T.awal + 0.2, 0.3, 0.5);
+  if (ringOn > 0) for (const r of RING) shipAt(ringPos(1.75, r.a, T.justice - 0.4 + r.d, 1.75), t, "#ff2d46", sz * 1.3, ringOn);
+  const zOn = win(t, T.kepung - 0.1, T.awal, 0.3, 0.4);
+  if (zOn > 0) { zoneBox(ZN, zOn); zoneBox(ZS, zOn); }
+  if (t > T.kepung && t < T.awal + 0.5) for (const r of RK) hit = Math.max(hit, rocket(r, t));
+  const swOn = win(t, T.k100 - 0.2, T.kita, 0.2, 0.5);
+  if (swOn > 0) for (const [la, lo, d, rot] of SWARM) {
+    const k = clamp((t - (T.k100 - 0.2 + d * 1.3)) / 0.2) * swOn; if (k <= 0) continue;
+    const s = P(la + 0.12 * Math.sin(t * 0.3 + rot), lo + 0.06 * (t - T.k100)); if (s.visible) ship(s.x, s.y, rot, "#ff2d46", sz * 0.8, k, 0.6);
   }
-  const kdOn = win(t, T.kd, T.sebab, 0.3, 0.3);
-  if (kdOn > 0) {
-    const u = eout((t - T.kd) / 2.2), P = [[4.25, 113.75], [4.75, 113.2], [5.05, 112.75]];
-    const seg = u < 0.5 ? 0 : 1, uu = u < 0.5 ? u / 0.5 : (u - 0.5) / 0.5;
-    const la = P[seg][0] + (P[seg + 1][0] - P[seg][0]) * uu, lo = P[seg][1] + (P[seg + 1][1] - P[seg][1]) * uu;
-    const s = g.project(la, lo), s2 = g.project(P[seg + 1][0], P[seg + 1][1]);
-    fx.globalAlpha = kdOn; drawShip(s.x, s.y, Math.atan2(s2.y - s.y, s2.x - s.x), "#9fd4ff", 1.6);
-    fx.font = "700 18px Mono"; fx.fillStyle = "#cfe9ff"; fx.fillText("KD KELANTAN", s.x + 20, s.y + 30);
-  }
-  const shipsOn = win(t, T.k100 - 0.2, T.lautni + 0.2, 0.2, 0.5);
-  if (shipsOn > 0) {
-    fx.shadowColor = "#ff2d46"; fx.shadowBlur = 8;
-    for (const [la, lo, d, rot] of SHIPS) {
-      const k = clamp((t - (T.k100 - 0.2 + d * 1.3)) / 0.2) * shipsOn; if (k <= 0) continue;
-      const s = g.project(la + 0.15 * Math.sin(t * 0.3 + rot), lo + 0.25 * (t - T.k100) * 0.1); fx.globalAlpha = k; drawShip(s.x, s.y, rot, "#ff2d46", 0.9);
-    }
-    fx.shadowBlur = 0;
+  const bOn = win(t, T.kalau2 + 0.2, T.jauh, 0.4, 0.6);
+  if (bOn > 0) {
+    for (const r of RING) shipAt(ringPos(1.9, r.a, T.kalau2 + 0.2 + r.d * 0.6, 1.9), t, "#ff2d46", Math.max(0.8, sz * 1.3), bOn);
+    TURN.forEach((c, i) => shipAt(turnPos(c, T.taksampai - 0.2 + i * 0.25), t, "#eaf6ff", Math.max(0.9, sz * 1.4), bOn));
+    const s = P(CUT[1], CUT[0]); spark(s.x, s.y, t - T.taksampai);
   }
   fx.globalAlpha = 1;
 
   // captions
   let ci = -1; for (let i = 0; i < CAPS.length; i++) if (t >= CAPS[i].a && t < CAPS[i].b) ci = i;
-  const hookOn = t < T.lcs - 0.1 && t > 0;
+  const hookOn = t < T.sebab - 0.1 && t > 0;
   if (ci < 0 || hookOn || t > T.end_vo + 0.6) capEl.style.display = "none";
   else {
     capEl.style.display = "block";
@@ -393,20 +462,19 @@ function renderAt(t) {
   }
 
   // hook title
-  const hk = win(t, 0.05, T.lcs - 0.35, 0.2, 0.3);
+  const hk = win(t, 0.05, T.sebab - 0.35, 0.2, 0.3);
   hook.style.display = hk > 0 ? "block" : "none"; hook.style.opacity = hk;
   const [ha, hb, hc, hl] = hook.children;
   ha.style.opacity = clamp((t - 0.1) / 0.25); ha.style.transform = `translateY(${20 * (1 - eout((t - 0.1) / 0.3))}px)`;
-  const ub = clamp((t - (T.direbut - 0.05)) / 0.2); hb.style.opacity = ub; hb.style.transform = `scale(${1.45 - 0.45 * eout(ub)})`;
-  hc.style.opacity = clamp((t - T.enam) / 0.2); hl.style.transform = `scaleX(${eout((t - T.enam) / 0.5)})`;
+  const ub = clamp((t - (T.tw1 - 0.05)) / 0.2); hb.style.opacity = ub; hb.style.transform = `scale(${1.45 - 0.45 * eout(ub)})`;
+  hc.style.opacity = clamp((t - T.pinang1) / 0.2); hl.style.transform = `scaleX(${eout((t - T.pinang1) / 0.5)})`;
 
-  // red pulse on key moments
-  tint.style.opacity = 0.7 * Math.max(win(t, T.direbut, T.direbut + 0.3, 0.05, 0.5), win(t, T.terlepas, T.terlepas + 0.3, 0.05, 0.6), win(t, T.k100, T.k100 + 0.4, 0.1, 0.8), win(t, T.takterima, T.takterima + 0.2, 0.05, 0.5));
+  tint.style.opacity = Math.max(0.7 * win(t, T.tw1, T.tw1 + 0.3, 0.05, 0.5), 0.35 * hit, 0.7 * win(t, T.k100, T.k100 + 0.4, 0.1, 0.8), 0.6 * win(t, T.taksampai, T.taksampai + 0.3, 0.05, 0.6));
 
   // outro
   const ot = T.end_vo + 0.4, ok = win(t, ot, DURATION + 1, 0.4, 0.1);
   outro.style.display = ok > 0 ? "block" : "none"; outro.style.opacity = ok;
-  const box = outro.firstElementChild; box.style.transform = `translateY(${40 * (1 - eout((t - ot) / 0.5))}px)`;
+  outro.firstElementChild.style.transform = `translateY(${40 * (1 - eout((t - ot) / 0.5))}px)`;
   const followed = t > ot + 1.2; fbtn.textContent = followed ? "Following" : "Follow"; fbtn.style.background = followed ? "#2a2f38" : "#ff2d46";
   const subbed = t > ot + 1.7; sbtn.textContent = subbed ? "Subscribed" : "Subscribe"; sbtn.style.background = subbed ? "#2a2f38" : "#ff2d46";
   fade.style.opacity = clamp((t - (DURATION - 0.45)) / 0.4);

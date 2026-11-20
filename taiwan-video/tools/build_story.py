@@ -7,15 +7,13 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 d = json.load(open(os.path.join(ROOT, "assets", "transcript.json")))
 W = d if isinstance(d, list) else d["words"]
 
-FIX = {"direbot": "direbut", "triliun": "trilion", "berting": "Beting", "serupai.": "Serupai.", "Serawak.": "Sarawak.",
-       "Serawak": "Sarawak", "belegar.": "berlegar.", "Sasaranya": "Sasarannya", "Pantai": "pantai", "patinggi": "Patinggi",
-       "Sasaran": "sasaran", "antara": "antarabangsa", "baru.": "baharu.", "6": "6", "3": "$3"}
-DROP = {"bangsa"}  # "antara bangsa" -> one word
-DISPLAY = {"km": "km", "2016,": "2016,", "80": "80", "100": "100+"}
-KEY = {"direbut", "6", "negara", "Malaysia", "Malaysia.", "China,", "Taiwan,", "Vietnam,", "Filipina,", "Brunei", "seluruhnya,",
-       "Sembilan", "garis", "putus.", "2016,", "Hague", "terima.", "Beting", "Serupai.", "80", "km", "Patinggi", "Ali,",
-       "China", "TLDM", "KD", "Kelantan", "kod", "tatalaku,", "2026.", "terlepas.", "peratus", "belum.", "tiada", "tarikh", "akhir",
-       "baharu.", "100+", "kapal", "Sarawak", "Sabah.", "kita.", "$3", "trilion", "dolar", "Selatan."}
+FIX = {"chip": "cip", "Ini": "Ni", "ini": "ni", "ini,": "ni,", "Kelung": "Keelung", "Pacific": "Pasifik", "mengenai": "mengena",
+       "ekspor": "eksport", "Belum": "Bloomberg", "berkata": "kata", "itu": "tu", "Kepung": "kepung", "100": "100+"}
+DROP = set()
+DISPLAY = {}
+KEY = {"Taiwan,", "Pulau", "Pinang", "terhenti.", "90%", "canggih", "kapal", "kontena", "wilayahnya.", "Justice", "Mission,",
+       "kepung", "Keelung", "Kaohsiung.", "100+", "diumumkan.", "kita?", "wafer", "13%", "separuh", "disekat,", "berhenti.",
+       "rendah.", "5%.", "tertutup,", "Pinang.", "Malaysia"}
 SOFT = {"China"}  # only key inside specific beats (handled below by index)
 
 words = []
@@ -24,6 +22,7 @@ for i, w in enumerate(W):
     if t in DROP:
         words[-1]["e"] = w["end"]; continue
     t = FIX.get(t, t); t = DISPLAY.get(t, t)
+    if t == "dunia" and i + 1 < len(W) and W[i + 1]["text"] == "dan": t = "dunia."  # VO pauses here
     words.append({"t": t, "s": round(w["start"], 3), "e": round(w["end"], 3), "i": i})
 
 def key(w):
@@ -36,12 +35,12 @@ def flush():
     if cur: groups.append(cur); cur = []
 for w in words:
     cand = " ".join(x["t"] for x in cur + [w])
-    if cur and len(cand) > 24: flush()
+    if cur and len(cand) > 26: flush()
     cur.append(w)
-    if re.search(r"[.…]$", w["t"]) or (w["t"].endswith(",") and len(" ".join(x["t"] for x in cur)) > 12): flush()
+    if re.search(r"[.…?]$", w["t"]) or (w["t"].endswith(",") and len(" ".join(x["t"] for x in cur)) > 12): flush()
 flush()
 # never end a group on a weak word
-WEAK = {"di", "ke", "dan", "yang", "dari", "untuk", "satu", "ada", "tak", "kod", "supaya", "salah"}
+WEAK = {"Pulau", "di", "ke", "dan", "yang", "dari", "untuk", "satu", "ada", "tak", "kod", "supaya", "salah"}
 for k in range(len(groups) - 1):
     while groups[k] and groups[k][-1]["t"] in WEAK and len(groups[k]) > 1:
         groups[k + 1].insert(0, groups[k].pop())
@@ -65,24 +64,23 @@ for k, g in enumerate(groups):
 def at(text, n=1):
     c = 0
     for w in words:
-        if w["t"].lower().strip(".,") == text.lower().strip(".,"):
+        if w["t"].lower().strip(".,?") == text.lower().strip(".,?"):
             c += 1
             if c == n: return w["s"]
     raise SystemExit(f"word not found: {text} #{n}")
 
 T = {
-  "direbut": at("direbut"), "enam": at("6"), "malaysia1": at("Malaysia"), "lcs": at("Laut", 2), "setiap": at("Setiap"),
-  "trilion": at("$3"), "cn": at("China", 2), "tw": at("Taiwan"), "vn": at("Vietnam"), "ph": at("Filipina"), "bn": at("Brunei"),
-  "my": at("Malaysia", 2), "semua": at("Semua"), "tapi": at("Tapi"), "cn3": at("China", 3), "seluruh": at("seluruhnya"),
-  "sembilan": at("Sembilan"), "putus": at("putus"), "tahun2016": at("Tahun", 2), "tribunal": at("tribunal"), "hague": at("Hague"),
-  "tolak": at("tolak"), "takterima": at("tak"), "garisan2": at("Garisan", 2), "serupai": at("Beting"), "lebih": at("Lebih"),
-  "km80": at("80"), "pantai": at("pantai"), "patinggi": at("Beting", 2), "kapal": at("kapal"), "berlegar": at("berlegar"),
-  "hujung": at("Hujung"), "tldm": at("TLDM"), "kd": at("KD"), "membayangi": at("membayangi"), "sebab": at("Sebab"),
-  "asean": at("ASEAN"), "kod": at("kod"), "peraturan": at("peraturan"), "sasaran": at("Sasarannya"), "y2026": at("2026"),
-  "minggu": at("Minggu"), "manila": at("Manila"), "terlepas": at("terlepas"), "p80": at("80", 2), "isu": at("isu"),
-  "belum": at("belum"), "anwar": at("Perdana"), "tiada": at("tiada"), "dalam": at("Dalam"), "pegawai": at("pegawai"),
-  "k100": at("100+"), "pasifik": at("Pasifik"), "lautni": at("Laut", 4), "pintu": at("pintu"), "sarawak2": at("Sarawak", 2),
-  "sabah": at("Sabah"), "dan_apa": at("apa"), "kita": at("kita"),
+  "sekat": at("sekat"), "pinang1": at("Pinang"), "terhenti": at("terhenti"), "sebab": at("sebabnya"), "tw": at("Taiwan", 2),
+  "p90": at("90%"), "dan": at("dan"), "kontena": at("kontena"), "selat": at("selat"), "cn": at("China", 2),
+  "wilayah": at("wilayahnya"), "hujung": at("Hujung"), "justice": at("Justice"), "kepung": at("kepung"),
+  "berlatih": at("berlatih"), "keelung": at("Keelung"), "kaohsiung": at("Kaohsiung"), "awal": at("Awal"),
+  "pegawai": at("pegawai"), "k100": at("100+"), "pasifik": at("Pasifik"), "tanpa": at("tanpa"), "apa": at("Apa"),
+  "kita": at("kita?"), "wafer": at("wafer"), "dihantar": at("dihantar"), "pinang2": at("Pinang", 2), "diuji": at("diuji"),
+  "malaysia": at("Malaysia"), "p13": at("13%"), "elektrik": at("Elektrik"), "separuh2": at("separuh", 2),
+  "kalau2": at("Kalau", 2), "disekat": at("disekat"), "taksampai": at("sampai"), "barisan": at("Barisan"),
+  "berhenti": at("berhenti"), "bloomberg": at("Bloomberg"), "rendah": at("rendah"), "tapi": at("Tapi"),
+  "ekonomi": at("ekonomi"), "p5": at("5%"), "jauh": at("jauh"), "tapi2": at("Tapi", 2), "tertutup": at("tertutup"),
+  "kesannya": at("kesannya"), "pinang3": at("Pinang", 3), "tw1": at("Taiwan"),
 }
 END_VO = words[-1]["e"]
 T["end_vo"] = END_VO
