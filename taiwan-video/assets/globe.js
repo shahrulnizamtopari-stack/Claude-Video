@@ -43,7 +43,8 @@ export async function createGlobe(canvas, { W, H, base = "assets/", scale = 1 } 
     vertexShader: "varying vec3 n; varying vec3 v; void main(){ n=normalize(normalMatrix*normal); vec4 mv=modelViewMatrix*vec4(position,1.); v=normalize(-mv.xyz); gl_Position=projectionMatrix*mv; }",
     fragmentShader: "uniform vec3 c; varying vec3 n; varying vec3 v; void main(){ float i=pow(1.0-abs(dot(n,v)),5.0)*0.0+pow(max(0.0,0.62-dot(n,v)),3.0)*2.2; gl_FragColor=vec4(c,clamp(i,0.,0.55)); }",
   }));
-  scene.add(atm);
+  // atmosphere rim removed (user: thick blue band at the globe edge)
+  // scene.add(atm);
 
   // Overlay layers on a regional patch
   // Each layer has its own lon/lat window and pixels-per-degree; draw with L.ox/L.oy.

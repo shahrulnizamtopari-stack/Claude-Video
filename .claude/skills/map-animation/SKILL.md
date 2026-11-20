@@ -14,7 +14,7 @@ pure function of time). For 3D object explainers see `explainer-style`; for text
 
 ## 1. The look
 
-- **Globe:** NASA Blue Marble *topo + bathy* (August) on a sphere, dark space around it, thin blue atmosphere rim.
+- **Globe:** NASA Blue Marble *topo + bathy* (August) on a sphere, dark space around it, **no atmosphere rim** (the user found the blue band at the edge too thick; `scene.add(atm)` is commented out in `taiwan-video/assets/globe.js`).
   A hi-res regional patch (cropped from the 21600² BMNG tile) sits on top with a feathered edge so close-ups stay sharp.
   Base and patch **must be the same product** (bathy) or the ocean colour jumps.
 - **Borders:** thin white country lines from Natural Earth (`world-atlas@2.0.2` countries-10m TopoJSON), drawn on
