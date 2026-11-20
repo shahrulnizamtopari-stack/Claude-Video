@@ -20,7 +20,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#05070b}
 #ui{z-index:2}
 html.clean #cap{display:none!important}
 html.caps,html.caps body{background:transparent}
-html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,html.caps #pins,html.caps #cards,html.caps #hook,html.caps #outro,html.caps .tl,html.caps .duo,html.caps .letter,html.caps .seats,html.caps .ncard,html.caps #fade{visibility:hidden}
+html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,html.caps #pins,html.caps #cards,html.caps #hook,html.caps #outro,html.caps #broll,html.caps .tl,html.caps .duo,html.caps .letter,html.caps .seats,html.caps .ncard,html.caps #fade{visibility:hidden}
 .bw{position:absolute;inset:0;opacity:0}.bw video{width:100%;height:100%;object-fit:cover}
 .bshade{position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,0) 18%)}
 .btag{position:absolute;right:16px;top:16px;font:700 18px Mono;color:#fff;background:rgba(0,0,0,.55);padding:6px 12px;border-radius:4px;letter-spacing:3px}
@@ -90,6 +90,15 @@ html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,h
 .duo .arrow{font:800 70px Inter;color:#fff;opacity:.7}
 .seats .v{transition:none}
 #hook .b{font:800 230px/1 Inter!important}
+.bags,.ppl{position:absolute;left:140px;width:800px;background:rgba(10,12,17,.94);border-radius:16px;padding:26px 24px 22px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6);overflow:hidden}
+.bags .k,.ppl .k{font:700 22px Mono;letter-spacing:4px;color:#c9d0d8;margin-bottom:18px}
+.bags .row{display:flex;justify-content:center;gap:24px}
+.bags .scan{position:absolute;left:62%;top:60px;width:10px;height:150px;background:#7fdcff;box-shadow:0 0 30px 12px rgba(127,220,255,.7)}
+.nost{margin-top:16px;font:700 20px Mono;letter-spacing:2px;color:#9aa3ad}.nost .x{color:#ff2d46;margin-left:14px}
+.ppl .row{display:flex;justify-content:center;gap:40px;align-items:flex-end}.ppl .ic{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:300px}
+.ppl .gl{font:800 26px Inter;margin-top:12px}.ppl .ft2{font:700 15px Mono;color:#8a929b;letter-spacing:1px;margin-top:16px}
+.bags .bg{transform-origin:50% 100%}
+#hook .b{font:800 200px/1 Inter!important;color:#ff2d46}
 /* hook + outro */
 #hook{top:240px;left:0;right:0;text-align:center}
 #hook .a{font:800 56px Inter;letter-spacing:4px}
@@ -108,23 +117,29 @@ html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,h
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="53.84" data-width="1080" data-height="1920" data-fps="30">
-  <div id="world" class="clip" data-start="0" data-duration="53.84" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+<div id="root" data-composition-id="main" data-start="0" data-duration="54.55" data-width="1080" data-height="1920" data-fps="30">
+  <div id="world" class="clip" data-start="0" data-duration="54.55" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
     <canvas id="gl" width="1080" height="1920"></canvas>
   </div>
-  <div id="ui" class="clip" data-start="0" data-duration="53.84" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
+  <div id="broll" data-layout-ignore>
+    <div class="bw" id="bw-plane2"><video id="v-plane2" class="clip" src="assets/broll/plane2.mp4" muted playsinline data-start="3.97" data-duration="3.3" data-track-index="2"></video></div>
+    <div class="bw" id="bw-bags"><video id="v-bags" class="clip" src="assets/broll/bags.mp4" muted playsinline data-start="10.88" data-duration="3.8" data-track-index="3"></video></div>
+    <div class="bw" id="bw-plane1"><video id="v-plane1" class="clip" src="assets/broll/plane1.mp4" muted playsinline data-start="44.13" data-duration="3.75" data-track-index="4"></video></div>
+    <div class="bshade"></div><div class="btag">ILUSTRASI · AI</div>
+  </div>
+  <div id="ui" class="clip" data-start="0" data-duration="54.55" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
     <canvas id="fx" width="1080" height="1920"></canvas>
     <div class="vig"></div>
     <div id="tint"></div>
     <div id="pins"></div>
     <div id="cards"></div>
     <div id="cap"></div>
-    <div id="hook" class="el"><div class="a">SIAPA SEBENARNYA</div><div class="b">MB</div><div class="c">NEGERI SEMBILAN?</div><div class="ln"></div></div>
-    <div id="outro" class="el"><div class="box"><div class="chev">›››</div><div class="nm">JANGAN TERLEPAS</div><div class="tg">POLITIK · DALAM BAHASA KITA</div><div><div class="fol"><span class="h">Untuk part seterusnya</span><span class="btn" id="fbtn">Follow</span><span class="btn" id="sbtn">Subscribe</span></div></div></div></div>
+    <div id="hook" class="el"><div class="b">96 KG</div><div class="c">SYABU</div><div class="a" style="margin-top:14px">DI PANGKALAN TENTERA</div><div class="ln"></div></div>
+    <div id="outro" class="el"><div class="box"><div class="chev">›››</div><div class="nm">JANGAN TERLEPAS</div><div class="tg">ISU SEMASA · DALAM BAHASA KITA</div><div><div class="fol"><span class="h">Untuk part seterusnya</span><span class="btn" id="fbtn">Follow</span><span class="btn" id="sbtn">Subscribe</span></div></div></div></div>
     <div id="fade"></div>
   </div>
-  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="50.88" data-track-index="5" data-volume="1"></audio>
-  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="53.84" data-track-index="6" data-volume="0.9"></audio>
+  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="51.56" data-track-index="5" data-volume="1"></audio>
+  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="54.55" data-track-index="6" data-volume="0.9"></audio>
 </div>
 
 <script>
@@ -143,7 +158,6 @@ if (LAYER === 1) document.documentElement.classList.add("clean");
 if (LAYER === 2) document.documentElement.classList.add("caps");
 const scale = LAYER === 2 ? 0.25 : Number(vars.previewScale) || 1;
 await Promise.all(["400 40px Inter", "700 40px Inter", "800 40px Inter", "700 20px Mono", "400 40px Serif", "italic 700 40px Serif", "700 40px Serif"].map((f) => document.fonts.load(f)));
-await Promise.all(["assets/photos/ismail.jpg", "assets/photos/tuanku.jpg"].map((src) => new Promise((r) => { const i = new Image(); i.onload = i.onerror = r; i.src = src; })));
 
 const W = 1080, H = 1920;
 const g = await createGlobe(document.getElementById("gl"), { W, H, base: "assets/", scale });
@@ -151,7 +165,6 @@ if (LAYER === 2) g.render = () => {};
 const topo = await (await fetch("assets/geo/countries-10m.json")).json();
 const countries = topojson.feature(topo, topo.objects.countries).features;
 const ST = (await (await fetch("assets/geo/my-states.json")).json()).features;
-const N9 = ST.find((f) => f.properties.name === "Negeri Sembilan");
 
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
@@ -162,28 +175,25 @@ const win = (t, a, b, fi = 0.35, fo = 0.35) => clamp((t - a) / fi) * (1 - clamp(
 const borders = g.layer("borders", 0, { lon0: 92, lon1: 140, lat0: -6, lat1: 34, ppd: 80 });
 { const L = borders, c = L.ctx; c.strokeStyle = "rgba(255,255,255,.35)"; c.lineWidth = 1; c.lineJoin = "round";
   for (const f of countries) { L.path(f.geometry); c.stroke(); } L.tex.needsUpdate = true; }
-const stl = g.layer("states", 1, { lon0: 99, lon1: 105, lat0: 0.8, lat1: 7, ppd: 300 });
-{ const L = stl, c = L.ctx; c.lineJoin = "round"; c.strokeStyle = "rgba(255,255,255,.45)"; c.lineWidth = 1.5; for (const f of ST) { L.path(f.geometry); c.stroke(); } L.tex.needsUpdate = true; }
-const n9l = g.layer("n9", 2, { lon0: 101.2, lon1: 102.9, lat0: 2.2, lat1: 3.4, ppd: 900 });
-{ const L = n9l, c = L.ctx; c.save(); L.path(N9.geometry); c.clip("evenodd"); c.fillStyle = "rgba(255,206,0,.2)"; c.fillRect(0, 0, L.OW, L.OH);
-  c.fillStyle = "rgba(255,206,0,.09)"; for (let y = 0; y < L.OH; y += 18) c.fillRect(0, y, L.OW, 7); c.restore();
-  c.shadowColor = "#ffce00"; c.shadowBlur = 60; c.strokeStyle = "#ffd84a"; c.lineWidth = 12; L.path(N9.geometry); c.stroke(); c.shadowBlur = 0; L.tex.needsUpdate = true; }
+const stl = g.layer("states", 1, { lon0: 99, lon1: 120, lat0: 0.5, lat1: 7.5, ppd: 160 });
+{ const L = stl, c = L.ctx; c.lineJoin = "round"; c.strokeStyle = "rgba(255,255,255,.4)"; c.lineWidth = 1.2; for (const f of ST) { L.path(f.geometry); c.stroke(); } L.tex.needsUpdate = true; }
 
 // ---------------- camera ----------------
+const SUBANG = [3.13, 101.55], LABUAN = [5.28, 115.24], TAWAU = [4.24, 117.89], KV = [3.08, 101.70];
 const K = [
-  [0, 8, 106, 3.2, 4, -0.1], [T.ni - 0.3, 2.3, 102.1, 0.75, 12, -0.1],
-  [T.ogos + 0.2, 2.75, 102.1, 0.2, 18, 0.12], [T.masa - 0.2, 2.75, 102.1, 0.19, 18, 0.12],
-  [T.masa + 0.5, 2.75, 102.1, 0.24, 18, 0.25], [T.isnin - 0.2, 2.75, 102.1, 0.23, 18, 0.25],
-  [T.isnin + 0.6, 2.75, 102.0, 0.2, 18, 0.12], [T.pagi - 0.2, 2.75, 102.0, 0.19, 18, 0.12],
-  [T.pagi + 0.8, 2.72, 101.95, 0.14, 20, -0.12], [T.tapi - 0.2, 2.72, 101.95, 0.13, 20, -0.12],
-  [T.tapi + 0.7, 2.75, 102.1, 0.22, 18, 0.12], [T.dun2 - 0.2, 2.75, 102.1, 0.21, 18, 0.12],
-  [T.dun2 + 0.6, 2.75, 102.1, 0.26, 16, 0.25], [T.kita - 0.2, 2.75, 102.1, 0.25, 16, 0.25],
-  [DURATION, 3.0, 102.2, 0.9, 10, 0.0],
+  [0, 5.5, 109, 1.6, 6, -0.1], [T.ni - 0.3, 3.3, 103.5, 0.7, 10, -0.1],
+  [T.subang - 0.4, 3.13, 101.6, 0.13, 20, 0.2], [T.ujian - 0.3, 3.13, 101.6, 0.12, 20, 0.2],
+  [T.ujian + 0.4, 3.13, 101.6, 0.14, 20, 0.2], [T.polis, 3.13, 101.6, 0.14, 20, 0.2],
+  [T.polis + 0.9, 4.4, 108.6, 1.15, 8, 0.16], [T.panglima - 0.2, 4.4, 108.8, 1.1, 8, 0.16],
+  [T.panglima + 0.7, 3.13, 101.6, 0.2, 18, 0.2], [T.tawau - 0.2, 3.13, 101.6, 0.19, 18, 0.2],
+  [T.tawau + 0.7, 4.9, 116.6, 0.42, 14, 0.13], [T.tudm3 - 0.2, 4.9, 116.6, 0.4, 14, 0.13],
+  [T.tudm3 + 0.7, 3.13, 101.6, 0.15, 20, 0.12], [T.siasatan, 3.13, 101.6, 0.14, 20, 0.12],
+  [DURATION, 3.3, 101.8, 0.35, 14, 0.05],
 ];
 const ZP = [
-  [T.sembilan1, -0.14, 0.5], [T.ismail1, -0.10, 0.6], [T.s18, -0.08, 0.4], [T.letak, -0.12, 0.5], [T.surat1, -0.08, 0.4],
-  [T.perkenan, -0.10, 0.5], [T.disahkan, -0.12, 0.4], [T.kekal, -0.14, 0.5], [T.majoriti, -0.10, 0.5], [T.s36, 0.08, 0.5],
-  [T.s19, -0.12, 0.5], [T.s19b, -0.16, 0.6],
+  [T.k96, -0.14, 0.5], [T.subang, -0.10, 0.5], [T.pelekat, -0.10, 0.4], [T.bungkusan, -0.12, 0.5], [T.k97, -0.14, 0.6],
+  [T.s11, -0.10, 0.5], [T.s7, -0.10, 0.5], [T.juruterbang, -0.10, 0.4], [T.direman, -0.12, 0.5], [T.kompromi, -0.08, 0.4],
+  [T.tentera2, -0.14, 0.5], [T.didakwa, -0.16, 0.6],
 ];
 function zoomMod(t) {
   let m = 0;
@@ -195,7 +205,8 @@ function cam(t) {
   let i = 0; while (i < K.length - 2 && t > K[i + 1][0]) i++;
   const A = K[i], B = K[i + 1], u = ease(clamp((t - A[0]) / (B[0] - A[0])));
   const L = (k) => A[k] + (B[k] - A[k]) * u;
-  const d = Math.exp(Math.log(A[3]) + (Math.log(B[3]) - Math.log(A[3])) * u);
+  const hop = Math.sin(Math.PI * u) * Math.min(0.6, Math.hypot(B[1] - A[1], B[2] - A[2]) * 0.04) * (Math.abs(B[3] - A[3]) < 1 ? 1 : 0);
+  const d = Math.exp(Math.log(A[3]) + (Math.log(B[3]) - Math.log(A[3])) * u) + hop;
   return { lat: L(1), lon: L(2), dist: d * zoomMod(t), tilt: L(4), yShift: L(5) };
 }
 
@@ -204,118 +215,101 @@ const pinWrap = document.getElementById("pins"), cardWrap = document.getElementB
 const mk = (parent, cls, html) => { const e = document.createElement("div"); e.className = "el " + cls; e.innerHTML = html; parent.appendChild(e); return e; };
 const loc = (txt, sub, red) => `<div class="dot ${red ? "red" : ""}"></div><div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px"><div class="lab">${txt}</div>${sub ? `<div class="sub ${red ? "red" : ""}">${sub}</div>` : ""}</div>`;
 const PINS = [
-  { ll: [2.7259, 101.9378], txt: "SEREMBAN", sub: "IBU NEGERI", a: T.ogos, b: T.masa },
-  { ll: [2.70, 101.95], txt: "ISTANA HINGGAP", sub: "SEREMBAN", a: T.letak, b: T.pagi },
-  { ll: [2.70, 101.95], txt: "ISTANA HINGGAP", sub: "20 NOV · PAGI", red: 1, a: T.pagi, b: T.tapi },
+  { ll: SUBANG, txt: "SUBANG", sub: "", red: 1, a: 0.9, b: T.ni - 0.3 },
+  { ll: SUBANG, txt: "PANGKALAN UDARA SUBANG", sub: "17 NOV · RONDAAN RUTIN", red: 1, a: T.subang, b: T.polis + 0.3 },
+  { ll: KV, txt: "LEMBAH KLANG", sub: "OPERASI POLIS", red: 1, a: T.lembah, b: T.panglima },
+  { ll: LABUAN, txt: "LABUAN", sub: "OPERASI POLIS", red: 1, a: T.labuan, b: T.panglima },
+  { ll: TAWAU, txt: "TAWAU", sub: "REMAN 7 HARI", red: 1, a: T.tawau + 0.2, b: T.tudm3 },
+  { ll: LABUAN, txt: "LABUAN", sub: "OPERASI POLIS", a: T.tawau + 0.5, b: T.tudm3 },
+  { ll: SUBANG, txt: "PANGKALAN UDARA SUBANG", sub: "SIASATAN BERJALAN", red: 1, a: T.tudm3 + 0.6, b: T.end_vo },
 ].map((p) => ({ ...p, el: mk(pinWrap, "pin lpin", loc(p.txt, p.sub, p.red)) }));
 
 const card = (outlet, date, head, foot) => mk(cardWrap, "card", `<div class="hd"><b>${outlet}</b><i>${date}</i></div><div class="bd">${head}<div class="ft">${foot}</div></div>`);
 const C = {
-  tv3: card("BULETIN TV3", "16 NOV 2026", `<mark>Ismail Lasim letak jawatan</mark>`, "Tajuk asal · buletintv3.my · kenyataan SU Agung BN"),
-  b17: card("BERNAMA", "17 NOV 2026", `Peletakan Jawatan MB Negeri Sembilan <mark>Perlu Perkenan Tuanku Muhriz</mark> - Istana`, "Tajuk asal · bernama.com"),
-  b20a: card("BERNAMA", "20 NOV 2026", `Ismail <mark>Tidak Pernah Setuju</mark> Surat Peletakan Jawatan Dikemukakan Kepada Tuanku Muhriz`, "Tajuk asal · bernama.com · kata Ismail"),
-  b20b: card("BERNAMA", "20 NOV 2026", `Istana Negeri Sembilan: Ismail Lasim <mark>Mesti Buktikan Sokongan Majoriti</mark> Untuk Kekal Sebagai MB`, "Tajuk asal · bernama.com"),
+  fmt: card("FREE MALAYSIA TODAY", "20 NOV 2026", `Bagasi tanpa pelekat keselamatan cetus <mark>penemuan 96kg dadah</mark>`, "Tajuk asal · freemalaysiatoday.com"),
+  tv3: card("BULETIN TV3", "20 NOV 2026", `Seludup dadah: <mark>Juruterbang TUDM</mark> berpangkat Leftenan dan Kapten antara ditahan`, "Tajuk asal · buletintv3.my"),
+  bh1: card("BERITA HARIAN", "19 NOV 2026", `Edar dadah guna aset tentera: <mark>Dua anggota TUDM direman</mark>`, "Tajuk asal · bharian.com.my · Seksyen 39B ADB 1952"),
+  bh2: card("BERITA HARIAN", "20 NOV 2026", `Kes dadah 96.6kg: TUDM sahkan 7 anggota, pegawainya ditahan, <mark>tekad tak akan berkompromi</mark>`, "Tajuk asal · bharian.com.my"),
 };
-const SCH = [[C.tv3, T.bn2 - 0.1, T.esok - 0.1, 1080], [C.b17, T.istana1 - 0.1, T.pagi - 0.1, 1060], [C.b20a, T.diakata - 0.1, T.tapi - 0.1, 1150], [C.b20b, T.istana3 - 0.1, T.dun2 - 0.1, 1000]];
-const HL = [[C.tv3, T.letak - 0.2, T.letak + 0.8], [C.b17, T.perkenan - 0.4, T.perkenan + 0.6], [C.b20a, T.serah - 0.6, T.serah + 0.5], [C.b20b, T.untuk, T.majoriti + 0.3]];
+const SCH = [[C.fmt, T.syabu2 - 0.1, T.polis - 0.1, 1450], [C.tv3, T.laporan - 0.1, T.tawau - 0.2, 1300], [C.bh1, T.direman - 0.4, T.tudm3 - 0.1, 1150], [C.bh2, T.tudm3 - 0.1, T.siasatan - 0.1, 1230]];
+const HL = [[C.fmt, T.syabu2, T.syabu2 + 0.9], [C.tv3, T.juruterbang - 0.4, T.juruterbang + 0.5], [C.bh1, T.direman - 0.1, T.direman + 0.8], [C.bh2, T.kompromi - 0.6, T.kompromi + 0.4]];
 
-const ncard = mk(cardWrap, "ncard", `<div class="ini" style="overflow:hidden"><img src="assets/photos/ismail.jpg" style="width:100%;height:100%;object-fit:cover"></div><div><div class="nm">ISMAIL LASIM</div><div class="rl">MENTERI BESAR · ADUN JUASSEH</div></div>`);
-ncard.style.left = "160px";
-const duo = mk(cardWrap, "duo", `<div class="pt"><img src="assets/photos/ismail.jpg"><b>ISMAIL LASIM</b><i>MENGHADAP · PAGI TADI</i></div><div class="arrow">›</div><div class="pt royal"><img src="assets/photos/tuanku.jpg"><b>TUANKU MUHRIZ</b><i>YANG DI-PERTUAN BESAR</i></div>`);
-const [ptI, arrowEl, ptT] = duo.children;
-const letter = mk(cardWrap, "letter", `<svg width="260" height="190" viewBox="0 0 260 190"><rect x="4" y="4" width="252" height="182" rx="10" fill="#f4f1ea" stroke="#d9d3c4" stroke-width="3"/><path d="M8 10 L130 100 L252 10" fill="none" stroke="#cfc7b4" stroke-width="5"/>${[0, 1, 2].map((i) => `<rect x="40" y="${120 + i * 18}" width="${180 - i * 40}" height="8" rx="4" fill="#d9d3c4"/>`).join("")}</svg><div class="stamp" style="left:14px;top:60px;font-size:32px">BELUM DISAHKAN</div>`);
-const stampEl = letter.querySelector(".stamp");
-
-// seats
-const PARTY = [["BN", 18, "#2f6bff", "bn", "s18"], ["PH", 11, "#e3262f", "ph", "s11"], ["PN", 7, "#19a974", "pn", "s7"]];
-const pts = []; [8, 12, 16].forEach((n, r) => { const R = 150 + r * 62; for (let i = 0; i < n; i++) { const a = Math.PI - (i / (n - 1)) * Math.PI; pts.push({ a, x: 380 + R * Math.cos(a), y: 360 - R * Math.sin(a) }); } });
-pts.sort((p, q) => q.a - p.a);
-function seatsCard(grey) {
-  const e = mk(cardWrap, "seats", `<div class="k">${grey ? "DUN NEGERI SEMBILAN" : "KEPUTUSAN PRN · 1 OGOS 2026"}</div>
-    <svg width="760" height="380" viewBox="0 0 760 380">${pts.map((p) => `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="21" fill="#252a33" stroke="rgba(0,0,0,.35)" stroke-width="3"/>`).join("")}
-    <line class="mj" x1="380" y1="20" x2="380" y2="372" stroke="#fff" stroke-width="4" stroke-dasharray="10 8"/>
-    ${grey ? `<text class="q" x="380" y="330" text-anchor="middle" font-family="Serif" font-style="italic" font-weight="700" font-size="150" fill="#ff2d46">?</text>` : ""}</svg>
-    <div class="maj">MAJORITI <b>19</b> / <span class="tot">36</span></div>${grey ? "" : `<div class="leg">${PARTY.map(([p, n, c]) => `<span><i style="background:${c}"></i>${p} <b class="pc">0</b></span>`).join("")}</div>`}`);
-  e.style.left = "160px"; return e;
-}
-const S1 = seatsCard(false), S2 = seatsCard(true);
-const S1c = [...S1.querySelectorAll("circle")], S2c = [...S2.querySelectorAll("circle")], S1n = [...S1.querySelectorAll(".pc")];
-
-// timeline strip
-const TL = [["2 OGOS", "ANGKAT SUMPAH", T.ogos], ["16 NOV", "BN: LETAK JAWATAN", T.isnin], ["17 NOV", "ISTANA: PERLU PERKENAN", T.esok], ["20 NOV", "MENGHADAP · KENYATAAN ISTANA", T.pagi]];
-const tlEl = mk(cardWrap, "tl", `${TL.map(([d, s]) => `<div class="tn"><b></b><i>${d}</i><u>${s}</u></div>`).join("")}<div class="tbar"><div></div></div>`);
-const tns = [...tlEl.querySelectorAll(".tn")], tbar = tlEl.querySelector(".tbar div");
+// stat
+const stat = mk(cardWrap, "stat", `<div class="k">SYABU DIRAMPAS · UJIAN AWAL</div><div><div class="n"><span class="v">0</span></div></div><div class="u">KILOGRAM</div><div class="bar"><div></div></div>`);
+stat.querySelector(".n").style.fontSize = "200px";
+// bags
+const bagSvg = `<svg width="110" height="130" viewBox="0 0 110 130"><rect x="38" y="4" width="34" height="18" rx="6" fill="none" stroke="#9aa3ad" stroke-width="5"/><rect x="6" y="20" width="98" height="104" rx="12" fill="#14171d" stroke="#3a404b" stroke-width="3"/>${[0, 1, 2, 3, 4].map((i) => `<path d="M6 ${34 + i * 20} L104 ${26 + i * 20}" stroke="rgba(255,255,255,.18)" stroke-width="3"/>`).join("")}<g class="pk"><rect x="24" y="44" width="62" height="30" rx="4" fill="#ff9a3c"/><rect x="24" y="80" width="62" height="30" rx="4" fill="#ff9a3c" opacity=".8"/></g></svg>`;
+const bags = mk(cardWrap, "bags", `<div class="k">5 BEG · DEKAT TUNTUTAN BAGASI</div><div class="row">${[0, 1, 2, 3, 4].map(() => `<div class="bg">${bagSvg}</div>`).join("")}</div><div class="scan"></div><div class="nost"><span class="st">PELEKAT SARINGAN</span><span class="x">✕ TIADA</span></div>`);
+const bagEls = [...bags.querySelectorAll(".bg")], pkEls = [...bags.querySelectorAll(".pk")], scanEl = bags.querySelector(".scan"), nostX = bags.querySelector(".x"), bagsK = bags.querySelector(".k");
+// people grids
+const person = (c) => `<svg width="44" height="58" viewBox="0 0 44 58"><circle cx="22" cy="14" r="11" fill="${c}"/><path d="M2 58 Q2 30 22 30 Q42 30 42 58Z" fill="${c}"/></svg>`;
+const ppl = (k, groups, foot) => mk(cardWrap, "ppl", `<div class="k">${k}</div><div class="row">${groups.map(([n, c, lab]) => `<div class="grp"><div class="ic">${Array.from({ length: n }, () => person(c)).join("")}</div><div class="gl" style="color:${c}">${n} ${lab}</div></div>`).join("")}</div><div class="ft2">${foot}</div>`);
+const P1 = ppl("POLIS · 11 DITAHAN", [[5, "#ff2d46", "ANGGOTA TUDM"], [6, "#9aa3ad", "ORANG AWAM"]], "Lembah Klang & Labuan · menurut polis");
+const P2 = ppl("PANGLIMA TUDM · 7 ANGGOTA DITAHAN", [[5, "#ffce00", "PEGAWAI"], [2, "#ff2d46", "LAIN-LAIN PANGKAT"]], "Kenyataan Panglima TUDM · Berita Harian");
+const P1i = [...P1.querySelectorAll("svg")], P2i = [...P2.querySelectorAll("svg")], P1g = [...P1.querySelectorAll(".gl")], P2g = [...P2.querySelectorAll(".gl")];
+const stampEl = mk(cardWrap, "stamp", "BELUM DIDAKWA"); stampEl.style.fontSize = "64px";
 
 const capEl = document.getElementById("cap");
 const capSpans = CAPS.map((c) => c.w.map((w, i) => { const s = document.createElement("span"); s.textContent = w.t + (i < c.w.length - 1 ? " " : ""); return s; }));
 const hook = document.getElementById("hook"), outro = document.getElementById("outro"), fade = document.getElementById("fade"), tint = document.getElementById("tint");
 const fbtn = document.getElementById("fbtn"), sbtn = document.getElementById("sbtn");
-const fxEl = document.getElementById("fx"); fxEl.style.display = "none";
+document.getElementById("fx").style.display = "none";
 
-function show(el, a, b, top, fi = 0.3, fo = 0.25) {
-  const k = win(globalT, a, b, fi, fo);
-  if (k <= 0) { el.style.display = "none"; return 0; }
-  el.style.display = el.classList.contains("duo") || el.classList.contains("tl") || el.classList.contains("ncard") ? "flex" : "block";
-  el.style.opacity = k; if (top != null) el.style.top = top + 50 * (1 - eout((globalT - a) / 0.4)) + "px"; return k;
+// framed FLOW B-roll windows (timing lives on the <video> tags)
+const BR = ["plane2", "bags", "plane1"].map((k) => { const v = document.getElementById("v-" + k);
+  return { w: document.getElementById("bw-" + k), a: +v.dataset.start, b: +v.dataset.start + +v.dataset.duration }; });
+const brollEl = document.getElementById("broll"), vigEl = document.querySelector(".vig");
+function brollAt(t) {
+  let on = 0;
+  for (const c of BR) { const k = win(t, c.a, c.b - 0.2, 0.2, 0.2); on = Math.max(on, k);
+    c.w.style.opacity = k > 0 ? 1 : 0; c.w.style.transform = `scale(${1.02 + 0.06 * clamp((t - c.a) / (c.b - c.a))})`; }
+  brollEl.style.opacity = on; brollEl.style.transform = `scale(${0.86 + 0.14 * eout(on)})`;
+  vigEl.style.opacity = 1 - on * 0.3; pinWrap.style.opacity = 1 - on;
 }
-let globalT = 0;
-function renderAt(t) {
-  globalT = t;
-  const v = cam(t); g.setView(v);
-  g.layers.n9.mesh.material.opacity = clamp((t - T.sembilan1 + 0.3) / 0.4) * (0.85 + 0.15 * Math.sin(t * 3));
-  g.layers.states.mesh.material.opacity = clamp((t - 1.0) / 1.0);
-  g.render();
+const show = (el, t, a, b, top, disp = "block") => {
+  const k = win(t, a, b, 0.3, 0.25);
+  if (k <= 0) { el.style.display = "none"; return 0; }
+  el.style.display = disp; el.style.opacity = k; if (top != null) el.style.top = top + 50 * (1 - eout((t - a) / 0.4)) + "px"; return k;
+};
+const popIcons = (els, t, a, step) => els.forEach((e, i) => { const u = clamp((t - a - i * step) / 0.2); e.style.opacity = u; e.style.transform = `scale(${0.4 + 0.6 * eout(u)})`; });
 
-  // pins
+function renderAt(t) {
+  brollAt(t);
+  const v = cam(t); g.setView(v); g.render();
+
   for (const p of PINS) {
     const k = win(t, p.a, p.b, 0.25, 0.25);
     if (k <= 0) { p.el.style.display = "none"; continue; }
     const s = g.project(p.ll[0], p.ll[1]);
+    if (!s.visible) { p.el.style.display = "none"; continue; }
     p.el.style.display = "flex"; p.el.style.left = s.x + "px"; p.el.style.top = s.y + "px"; p.el.style.opacity = k;
-    p.el.style.transform = `translate(-13px,-50%) scale(${0.7 + 0.3 * eout((t - p.a) / 0.25)})`;
+    const pulse = p.red ? 1 + 0.06 * Math.sin(t * 6) : 1;
+    p.el.style.transform = `translate(-13px,-50%) scale(${(0.7 + 0.3 * eout((t - p.a) / 0.25)) * pulse})`;
   }
 
-  // cards + highlights
-  for (const [el, a, b, top] of SCH) show(el, a, b, top);
+  for (const [el, a, b, top] of SCH) show(el, t, a, b, top);
   for (const [el, a, b] of HL) for (const m of el.querySelectorAll("mark")) m.style.backgroundSize = `${100 * clamp((t - a) / (b - a))}% 100%`;
 
-  // name card
-  show(ncard, T.ismail1 - 0.2, T.masa - 0.15, 1120);
-  // seats: PRN result fills party by party
-  if (show(S1, T.masa - 0.1, T.isnin - 0.15, 800) > 0) {
-    let i0 = 0;
-    PARTY.forEach(([, n, c, a, z], pi) => { const u = clamp((t - T[a] + 0.1) / Math.max(0.5, T[z] - T[a] + 0.3));
-      const k = Math.floor(u * n + 1e-6); for (let i = 0; i < n; i++) S1c[i0 + i].setAttribute("fill", i < k ? c : "#252a33"); S1n[pi].textContent = k; i0 += n; });
+  // bags: appear one by one, sticker missing, X-ray pass lights the packages
+  if (show(bags, t, T.bagasi + 0.3, T.ujian - 0.1, 1080) > 0) {
+    popIcons(bagEls, t, T.bagasi + 0.3, 0.1);
+    nostX.style.opacity = clamp((t - T.pelekat) / 0.2); nostX.style.transform = `scale(${1.6 - 0.6 * eout((t - T.pelekat) / 0.25)})`; nostX.style.display = "inline-block";
+    const su = clamp((t - T.diimbas) / 1.1); scanEl.style.display = su > 0 && su < 1 ? "block" : "none"; scanEl.style.left = su * 800 + "px";
+    pkEls.forEach((p, i) => { const lit = su >= (77 + 55 + i * 134) / 800; p.style.opacity = lit ? 0.95 * (0.85 + 0.15 * Math.sin(t * 8 + i)) : 0; });
+    bagsK.textContent = t >= T.diimbas ? "IMBASAN · PASUKAN HANDAU TUDM" : "5 BEG · DEKAT TUNTUTAN BAGASI";
   }
-  if (show(S2, T.dun2 - 0.1, T.kita + 1.5, 780) > 0) {
-    const u = clamp((t - T.dun2) / 1.2); S2c.forEach((c, i) => c.setAttribute("fill", i < Math.floor(u * 36 + 1e-6) ? "#3a404b" : "#1c2027"));
-    const mj = clamp((t - T.majoriti2 + 0.1) / 0.3); S2.querySelector(".mj").setAttribute("stroke", mj > 0 ? "#ff2d46" : "#fff");
-    S2c.forEach((c, i) => { if (i < 19 && t > T.s19) c.setAttribute("stroke", "rgba(255,45,70,.9)"); else c.setAttribute("stroke", "rgba(0,0,0,.35)"); });
-    const q = S2.querySelector(".q"), uq = clamp((t - T.tapi2) / 0.25); q.style.opacity = uq;
-    q.setAttribute("transform", `translate(380 290) scale(${1.6 - 0.6 * eout(uq) + 0.05 * Math.sin(t * 4) * uq}) translate(-380 -290)`);
+  // stat 96.6 kg
+  if (show(stat, t, T.ujian - 0.1, T.polis - 0.1, 900) > 0) {
+    const u = eout((t - T.k97 + 0.3) / 0.9); stat.querySelector(".v").textContent = (96.6 * u).toFixed(1);
+    stat.querySelector(".bar div").style.width = 100 * u * 0.97 + "%";
+    stat.querySelector(".u").textContent = t >= T.rm - 0.1 ? "KILOGRAM · ≈ RM4.83 JUTA" : "KILOGRAM";
   }
-  // letter flies to the palace pin, then gets the stamp
-  { const k = win(t, T.surat1 - 0.3, T.pagi - 0.1, 0.2, 0.3);
-    letter.style.display = k > 0 ? "block" : "none";
-    if (k > 0) { const s = g.project(2.70, 101.95), u = eout((t - T.surat1 + 0.3) / 0.7);
-      const x = -320 + (s.x + 40 - -320) * u, y = s.y - 330 + 140 * (1 - u) * Math.sin(u * Math.PI);
-      letter.style.left = x + "px"; letter.style.top = y + "px"; letter.style.opacity = k; letter.style.transform = `rotate(${-4 - 20 * (1 - u)}deg)`;
-      const us = clamp((t - T.disahkan) / 0.22); stampEl.style.display = t >= T.disahkan ? "block" : "none"; stampEl.style.opacity = us;
-      stampEl.style.transform = `rotate(-8deg) scale(${1.7 - 0.7 * eout(us)})`; } }
-  // audience: Ismail, then Tuanku (official portrait, no effects)
-  if (show(duo, T.menghadap - 0.4, T.tapi - 0.1, null) > 0) {
-    duo.style.top = "560px";
-    ptI.style.opacity = clamp((t - T.menghadap + 0.4) / 0.3); ptI.style.transform = `translateY(${30 * (1 - eout((t - T.menghadap + 0.4) / 0.4))}px)`;
-    arrowEl.style.opacity = 0.7 * clamp((t - T.menghadap) / 0.3);
-    ptT.style.opacity = clamp((t - T.menghadap - 0.2) / 0.4); ptT.style.transform = `translateY(${30 * (1 - eout((t - T.menghadap - 0.2) / 0.5))}px)`;
-  }
-  // timeline
-  if (show(tlEl, T.ogos - 0.2, T.end_vo + 0.3, null) > 0) {
-    let on = 0; TL.forEach(([, , a], i) => { if (t >= a) on = i + 1; });
-    tns.forEach((n, i) => { n.classList.toggle("done", i < on); n.classList.toggle("now", i === on - 1);
-      const pop = clamp((t - TL[i][2]) / 0.3); n.querySelector("b").style.transform = `scale(${i === on - 1 ? 1 + 0.4 * (1 - pop) : 1})`; });
-    const prev = on > 1 ? TL[on - 1][2] : 0; tbar.style.width = Math.max(0, (on - 2 + eout((t - prev) / 0.6)) / 3) * 100 + "%";
-  }
+  if (show(P1, t, T.s11 - 0.3, T.panglima - 0.1, 1060) > 0) { popIcons(P1i, t, T.s11 - 0.2, 0.07); P1g[0].style.opacity = clamp((t - T.s11) / 0.3); P1g[1].style.opacity = clamp((t - T.s11 - 0.3) / 0.3); }
+  if (show(P2, t, T.panglima, T.tawau - 0.2, 820) > 0) { popIcons(P2i, t, T.s7 - 0.2, 0.09); P2g[0].style.opacity = clamp((t - T.pegawai + 0.2) / 0.3); P2g[1].style.opacity = clamp((t - T.lain + 0.2) / 0.3); }
+  // stamp
+  { const on = win(t, T.didakwa, T.end_vo + 0.3, 0.05, 0.3), u = clamp((t - T.didakwa) / 0.22);
+    stampEl.style.display = on > 0 ? "block" : "none"; stampEl.style.left = "260px"; stampEl.style.top = "640px"; stampEl.style.opacity = on;
+    stampEl.style.transform = `rotate(-8deg) scale(${1.7 - 0.7 * eout(u)})`; }
 
   // captions
   let ci = -1; for (let i = 0; i < CAPS.length; i++) if (t >= CAPS[i].a && t < CAPS[i].b) ci = i;
@@ -330,14 +324,14 @@ function renderAt(t) {
   // hook
   const hk = win(t, 0.05, T.ni - 0.3, 0.2, 0.3);
   hook.style.display = hk > 0 ? "block" : "none"; hook.style.opacity = hk;
-  const [ha, hb, hc, hl] = hook.children;
-  ha.style.opacity = clamp((t - 0.1) / 0.25); ha.style.transform = `translateY(${20 * (1 - eout((t - 0.1) / 0.3))}px)`;
-  const ub = clamp((t - 0.62) / 0.2); hb.style.opacity = ub; hb.style.transform = `scale(${1.45 - 0.45 * eout(ub)})`;
-  hc.style.opacity = clamp((t - T.sembilan1 + 0.25) / 0.2); hl.style.transform = `scaleX(${eout((t - T.sembilan1) / 0.5)})`;
+  const [hb, hc, ha, hl] = hook.children;
+  const ub = clamp((t - T.k96 + 0.05) / 0.2); hb.style.opacity = ub; hb.style.transform = `scale(${1.45 - 0.45 * eout(ub)})`;
+  hc.style.opacity = clamp((t - T.syabu1 + 0.1) / 0.2);
+  ha.style.opacity = clamp((t - T.dijumpai) / 0.25); ha.style.transform = `translateY(${20 * (1 - eout((t - T.dijumpai) / 0.3))}px)`;
+  hl.style.transform = `scaleX(${eout((t - T.tentera1 + 0.3) / 0.5)})`;
 
-  tint.style.opacity = Math.max(0.6 * win(t, 0.62, 0.9, 0.05, 0.5), 0.6 * win(t, T.disahkan, T.disahkan + 0.25, 0.05, 0.5), 0.7 * win(t, T.kekal, T.kekal + 0.4, 0.1, 0.8), 0.5 * win(t, T.tapi2, T.tapi2 + 0.3, 0.05, 0.6));
+  tint.style.opacity = Math.max(0.7 * win(t, T.k96, T.k96 + 0.3, 0.05, 0.5), 0.5 * win(t, T.syabu2, T.syabu2 + 0.3, 0.05, 0.6), 0.5 * win(t, T.bungkusan, T.bungkusan + 0.3, 0.05, 0.6), 0.6 * win(t, T.didakwa, T.didakwa + 0.3, 0.05, 0.6));
 
-  // outro
   const ot = T.end_vo + 0.4, ok = win(t, ot, DURATION + 1, 0.4, 0.1);
   outro.style.display = ok > 0 ? "block" : "none"; outro.style.opacity = ok;
   outro.firstElementChild.style.transform = `translateY(${40 * (1 - eout((t - ot) / 0.5))}px)`;

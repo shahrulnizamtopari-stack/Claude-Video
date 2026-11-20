@@ -7,13 +7,21 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 d = json.load(open(os.path.join(ROOT, "assets", "transcript.json")))
 W = d if isinstance(d, list) else d["words"]
 
-FIX = {"Semilan?": "Sembilan?", "Semilan": "Sembilan", "Ini": "Ni", "berlaku?": "berlaku.", "Lassem": "Lasim", "Sumpah": "sumpah",
-       "Muhris.": "Muhriz.", "perkenaan": "perkenan", "hinggap.": "Hinggap.", "majority": "majoriti", "Majority,": "Majoriti,",
-       "dunia.": "DUN.", "Besar": "Besar"}
+FIX = {"shabu": "syabu.", "shabu.": "syabu.", "Ini": "Ni", "berlaku?": "berlaku.", "2DM": "TUDM", "3DM": "TUDM", "bag": "beg",
+       "perlekat": "pelekat", "kira": "kira-kira", "lembah": "Lembah", "kelang": "Klang", "labuan.": "Labuan.",
+       "Ditawaw": "Di Tawau", "berkompromis.": "berkompromi.", "didakua": "didakwa", "siasatan": "Siasatan", "awal,": "awal:"}
+# ASR split words: join "di"+"tahan." -> "ditahan.", "di"+"reman" -> "direman", "jurur"+"terbang." -> "juruterbang."
+JOIN = {("di", "tahan."): "ditahan.", ("di", "reman"): "direman", ("jurur", "terbang."): "juruterbang."}
+_W = []
+for w in W:
+    if _W and (_W[-1]["text"], w["text"]) in JOIN:
+        _W[-1] = {**_W[-1], "text": JOIN[(_W[-1]["text"], w["text"])], "end": w["end"]}; continue
+    _W.append(dict(w))
+W = _W
 DROP = set()
 DISPLAY = {}
-KEY = {"Sembilan?", "jelas.", "Lasim", "sumpah", "18", "11,", "7.", "letak", "jawatan", "surat", "perkenan",
-       "disahkan.", "menghadap", "Hinggap.", "tak", "pernah", "kekal.", "majoriti", "36", "19.", "19?", "betul."}
+KEY = {"96", "syabu", "tentera.", "Di Tawau", "Subang,", "lima", "beg", "pelekat", "mencurigakan.", "syabu.", "97", "4.8", "11",
+       "7", "pegawai,", "juruterbang.", "Tawau", "direman", "berkompromi.", "tentera?", "belum", "didakwa"}
 SOFT = {"China"}  # only key inside specific beats (handled below by index)
 
 words = []
@@ -22,7 +30,6 @@ for i, w in enumerate(W):
     if t in DROP:
         words[-1]["e"] = w["end"]; continue
     t = FIX.get(t, t); t = DISPLAY.get(t, t)
-    if t == "2" and i + 1 < len(W) and W[i + 1]["text"] == "Negeri": t = "DUN"  # ASR heard "DUN" as "2"
     words.append({"t": t, "s": round(w["start"], 3), "e": round(w["end"], 3), "i": i})
 
 def key(w):
@@ -70,17 +77,15 @@ def at(text, n=1):
     raise SystemExit(f"word not found: {text} #{n}")
 
 T = {
-  "siapa": at("Siapa"), "sembilan1": at("Sembilan?"), "hari": at("Hari"), "jelas": at("jelas"), "ni": at("Ni", 2),
-  "ogos": at("Ogos"), "ismail1": at("Ismail"), "sumpah": at("sumpah"), "prn": at("PRN"), "masa": at("Masa"),
-  "bn": at("BN"), "s18": at("18"), "ph": at("PH"), "s11": at("11"), "pn": at("PN"), "s7": at("7"),
-  "isnin": at("Isnin"), "bn2": at("BN", 2), "letak": at("letak"), "surat1": at("surat"), "tuanku1": at("Tuanku"),
-  "esok": at("Esoknya"), "istana1": at("Istana"), "letak2": at("Letak", 2), "perkenan": at("perkenan"),
-  "surat2": at("surat", 2), "disahkan": at("disahkan"), "pagi": at("Pagi"), "menghadap": at("menghadap"),
-  "hinggap": at("Hinggap"), "diakata": at("Dia"), "serah": at("serah"), "setuju": at("setuju"), "dihantar": at("dihantar"),
-  "tapi": at("Tapi"), "istana3": at("Istana", 3), "istana4": at("Istana", 4), "kekal": at("kekal"), "untuk": at("Untuk"),
-  "majoriti": at("majoriti"), "dun": at("DUN"), "dun2": at("DUN", 2), "s36": at("36"), "majoriti2": at("Majoriti", 2),
-  "s19": at("19"), "jadi": at("Jadi", 2), "betul": at("betul"), "tapi2": at("Tapi", 2), "s19b": at("19", 2),
-  "kita": at("Kita"),
+  "k96": at("96"), "syabu1": at("syabu"), "dijumpai": at("Dijumpai"), "tentera1": at("tentera"), "ni": at("Ni"),
+  "selasa": at("Selasa"), "subang": at("Subang"), "anggota1": at("anggota"), "rondaan": at("rondaan"), "lima": at("lima"),
+  "beg": at("beg"), "plastik": at("plastik"), "bagasi": at("bagasi"), "tak1": at("Tak"), "pelekat": at("pelekat"),
+  "bila": at("Bila"), "diimbas": at("diimbas"), "bungkusan": at("bungkusan"), "ujian": at("Ujian"), "syabu2": at("syabu", 2),
+  "hampir": at("Hampir"), "k97": at("97"), "rm": at("4.8"), "polis": at("Polis"), "s11": at("11"), "lembah": at("Lembah"),
+  "labuan": at("Labuan"), "panglima": at("Panglima"), "s7": at("7"), "pegawai": at("pegawai"), "lain": at("lain-lain"),
+  "laporan": at("Laporan"), "juruterbang": at("juruterbang"), "tawau": at("Di Tawau"), "direman": at("direman"),
+  "tudm3": at("TUDM", 3), "kompromi": at("berkompromi"), "soalan": at("Soalannya"), "macam": at("macam"),
+  "tentera2": at("tentera", 2), "siasatan": at("Siasatan"), "mereka": at("Mereka"), "belum": at("belum"), "didakwa": at("didakwa"),
 }
 END_VO = words[-1]["e"]
 T["end_vo"] = END_VO
