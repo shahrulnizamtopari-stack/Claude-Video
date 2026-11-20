@@ -1,0 +1,185 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Inter;src:url(../assets/fonts/Inter-400.woff2);font-weight:400}
+@font-face{font-family:Inter;src:url(../assets/fonts/Inter-700.woff2);font-weight:700}
+@font-face{font-family:Inter;src:url(../assets/fonts/inter-latin-800-normal.woff2);font-weight:800}
+@font-face{font-family:Mono;src:url(../assets/fonts/JetBrainsMono-700.woff2);font-weight:700}
+@font-face{font-family:Serif;src:url(../assets/fonts/EBGaramond-400.woff2);font-weight:400}
+@font-face{font-family:Serif;src:url(../assets/fonts/EBGaramond-700.woff2);font-weight:700}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;background:#05070b;overflow:hidden;font-family:Inter}
+#gl{position:absolute;inset:0;width:1080px;height:1920px}
+.vig{position:absolute;inset:0;pointer-events:none;background:
+ linear-gradient(180deg,#05070b 0%,rgba(5,7,11,.92) 7%,rgba(5,7,11,.15) 22%,rgba(5,7,11,0) 40%,rgba(5,7,11,0) 70%,rgba(5,7,11,.55) 90%,#05070b 100%)}
+#ov{position:absolute;inset:0}
+.cap{position:absolute;top:168px;left:0;right:0;text-align:center;font:700 46px/1.15 Inter;color:#fff;letter-spacing:-.5px;padding:0 70px}
+.cap .r{color:#ff2d46}.cap .g{color:rgba(255,255,255,.38)}
+.pin{position:absolute;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;gap:6px}
+.lab{font:700 20px/1 Mono;letter-spacing:2px;color:#fff;background:#0b0d12;padding:7px 10px 6px;border-radius:4px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.5)}
+.sub{font:700 17px/1 Mono;letter-spacing:1.5px;color:#0b0d12;background:#fff;padding:5px 8px 4px;border-radius:3px;white-space:nowrap;margin-top:-4px}
+.sub.red{background:#ff2d46;color:#fff}
+.flag{width:56px;height:38px;border-radius:4px;box-shadow:0 0 0 3px #fff,0 6px 16px rgba(0,0,0,.6);overflow:hidden}
+.flag svg{width:100%;height:100%;display:block}
+.dot{width:26px;height:26px;border-radius:50%;background:#fff;border:7px solid #0b0d12;box-shadow:0 0 0 3px #fff}
+.card{position:absolute;left:50%;transform:translateX(-50%);width:760px;border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.hd{background:#0e1015;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:16px 24px}
+.hd b{font:800 26px Inter;letter-spacing:.5px}.hd b:before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:#ff2d46;margin-right:12px;vertical-align:3px}
+.hd i{font:700 18px Mono;letter-spacing:2px;color:#9aa3ad;font-style:normal}
+.bd{background:#fff;color:#111;padding:22px 28px 16px;font:400 46px/1.16 Serif}
+.bd mark{background:rgba(255,64,110,.42);color:#111;padding:0 2px}
+.ft{font:700 15px Mono;color:#8a929b;letter-spacing:1px;margin-top:12px}
+.media{height:330px;background:linear-gradient(135deg,#1b2633,#0d131b);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#7f8c99;font:700 20px Mono;letter-spacing:2px;text-align:center;border-top:1px solid #222}
+.media em{font-style:normal;color:#ffcf4a;font-size:17px}
+.stat{position:absolute;left:50%;transform:translateX(-50%);width:760px;background:rgba(10,12,17,.94);border-radius:16px;padding:34px 40px 30px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.stat .k{font:700 22px Mono;letter-spacing:4px;color:#c9d0d8}
+.stat .n{font:italic 700 190px/1 Serif;color:#ff2d46;margin:14px 0 6px}
+.stat .u{font:800 40px Inter;color:#fff;letter-spacing:.5px}
+.stat .bar{height:4px;background:#2a2f38;margin-top:24px;border-radius:2px}.stat .bar div{height:100%;background:#ff2d46;width:70%}
+.title{position:absolute;top:250px;left:0;right:0;text-align:center;color:#fff}
+.title .a{font:800 54px Inter;letter-spacing:3px}
+.title .b{font:800 150px/1 Inter;letter-spacing:-5px}.title .b span{color:#ff2d46}
+.title .c{font:800 50px Inter;letter-spacing:6px;margin-top:18px}
+.title .ln{width:520px;height:5px;background:#ff2d46;margin:22px auto 0}
+.person{position:absolute;width:250px;border-radius:12px;overflow:hidden;background:#0e1015;box-shadow:0 18px 40px rgba(0,0,0,.6)}
+.person .ph{height:260px;background:linear-gradient(160deg,#3a4552,#151b22);display:flex;align-items:center;justify-content:center;font:700 16px Mono;color:#8996a3;letter-spacing:1px;text-align:center;padding:10px}
+.person .nm{font:800 24px Inter;color:#fff;padding:12px 14px 2px}.person .rl{font:700 14px Mono;color:#9aa3ad;padding:0 14px 14px;letter-spacing:1.5px}
+.win{position:absolute;left:220px;top:380px;width:640px;height:800px;border:3px solid rgba(255,255,255,.9);border-radius:18px;background:linear-gradient(160deg,#243142,#0c1118);box-shadow:0 30px 80px rgba(0,0,0,.7);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#8fa0b2;font:700 22px Mono;letter-spacing:2px;text-align:center;padding:0 40px}.win em{font-style:normal;color:#ffcf4a;font-size:19px;letter-spacing:1px}.win i{position:absolute;right:14px;top:14px;font:700 16px Mono;color:#fff;background:rgba(0,0,0,.55);padding:5px 10px;border-radius:4px;font-style:normal}
+.stamp{position:absolute;font:800 46px Inter;color:#ff2d46;border:5px solid #ff2d46;padding:4px 18px;border-radius:8px;transform:rotate(-8deg);letter-spacing:2px;background:rgba(10,12,17,.6)}
+.wm{position:absolute;right:40px;bottom:330px;font:800 26px Inter;color:#fff;text-align:right;opacity:.9}
+</style></head><body>
+<canvas id="gl" width="1080" height="1920"></canvas>
+<div class="vig"></div>
+<div id="ov"></div>
+<script src="../assets/lib/topojson-client.min.js"></script>
+<script type="module">
+import { createGlobe, ll } from "../assets/globe.js";
+const W = 1080, H = 1920;
+const F = +(new URLSearchParams(location.search).get("f") || 1);
+const g = await createGlobe(document.getElementById("gl"), { W, H, base: "../assets/" });
+const topo = await (await fetch("../assets/geo/countries-10m.json")).json();
+const countries = topojson.feature(topo, topo.objects.countries).features;
+const byId = (id) => countries.find((c) => +c.id === id);
+const CN = byId(156), MY = byId(458), VN = byId(704), PH = byId(608), BN = byId(96), TW = byId(158);
+
+// ---------- overlay layers ----------
+const borders = g.layer("borders", 0, { lon0: 92, lon1: 140, lat0: -6, lat1: 34, ppd: 80 });
+const red = g.layer("china", 1, { lon0: 72, lon1: 136, lat0: 16, lat1: 54, ppd: 40 });
+const myl = g.layer("malaysia", 2, { lon0: 99, lon1: 120, lat0: 0, lat1: 8, ppd: 160 });
+const lines = g.layer("lines", 3, { lon0: 92, lon1: 140, lat0: -6, lat1: 34, ppd: 80 });
+const near = (f) => { const c = f.geometry.coordinates.flat(3); return true; };
+{ const L = borders, c = L.ctx; c.strokeStyle = "rgba(255,255,255,.5)"; c.lineWidth = 2; c.lineJoin = "round";
+  for (const f of countries) { L.path(f.geometry); c.stroke(); } L.tex.needsUpdate = true; }
+function chinaRed() {
+  const L = red, c = L.ctx; c.save(); L.path(CN.geometry); c.clip("evenodd");
+  c.fillStyle = "rgba(190,18,40,.6)"; c.fillRect(0, 0, L.OW, L.OH);
+  c.fillStyle = "rgba(60,0,8,.35)"; for (let y = 0; y < L.OH; y += 6) c.fillRect(0, y, L.OW, 2.5);
+  c.restore(); c.strokeStyle = "#ff3d55"; c.lineWidth = 2.5; L.path(CN.geometry); c.stroke(); L.tex.needsUpdate = true;
+}
+function malaysiaFlag() {
+  const L = myl, c = L.ctx; c.save(); L.path(MY.geometry); c.clip("evenodd");
+  const x0 = L.ox(99.5), x1 = L.ox(119.4), y0 = L.oy(7.5), y1 = L.oy(0.8), sh = (y1 - y0) / 14;
+  for (let i = 0; i < 14; i++) { c.fillStyle = i % 2 ? "rgba(255,255,255,.62)" : "rgba(204,0,1,.7)"; c.fillRect(x0, y0 + i * sh, x1 - x0, sh + 1); }
+  c.fillStyle = "rgba(1,0,102,.78)"; c.fillRect(x0, y0, (x1 - x0) * 0.5, sh * 8);
+  c.fillStyle = "#ffcc00"; const cx = L.ox(103.6), cy = L.oy(5.0), r = sh * 2.6;
+  c.beginPath(); c.arc(cx, cy, r, 0, 7); c.fill(); c.fillStyle = "rgb(1,0,102)"; c.beginPath(); c.arc(cx + r * 0.32, cy, r * 0.82, 0, 7); c.fill();
+  c.restore(); c.strokeStyle = "#fff"; c.lineWidth = 5; L.path(MY.geometry); c.stroke(); L.tex.needsUpdate = true;
+}
+// Taiwan-specific drawing
+const HSINCHU = [121.0, 24.8], PENANG = [100.3, 5.35];
+const WAFER = [HSINCHU, [119.6, 22.0], [116.5, 17.0], [112.0, 11.0], [107.5, 6.6], [104.4, 2.0], [102.0, 3.2], PENANG];
+function polyline(L, P) { const c = L.ctx; c.beginPath(); P.forEach(([lo, la], k) => (k ? c.lineTo(L.ox(lo), L.oy(la)) : c.moveTo(L.ox(lo), L.oy(la)))); c.stroke(); }
+function waferLine(broken) {
+  const L = lines, c = L.ctx; c.lineCap = "round"; c.setLineDash([18, 14]);
+  c.shadowColor = broken ? "rgba(255,40,60,.9)" : "rgba(120,220,255,.9)"; c.shadowBlur = 14;
+  c.strokeStyle = broken ? "#ff2d46" : "#bff1ff"; c.lineWidth = 11;
+  polyline(L, broken ? WAFER.slice(0, 3) : WAFER); if (broken) { c.globalAlpha = .25; polyline(L, WAFER.slice(2)); c.globalAlpha = 1; }
+  c.setLineDash([]); c.shadowBlur = 0; L.tex.needsUpdate = true;
+}
+function twGlow() { const L = lines, c = L.ctx; c.shadowColor = "#ff2d46"; c.shadowBlur = 20; c.strokeStyle = "#ff5a6e"; c.lineWidth = 5; L.path(TW.geometry); c.stroke(); c.shadowBlur = 0; L.tex.needsUpdate = true; }
+function ring(n = 46, r = 1.9) {
+  const L = lines, c = L.ctx; c.fillStyle = "#ff2d46"; c.shadowColor = "#ff2d46"; c.shadowBlur = 8;
+  for (let i = 0; i < n; i++) { const a = i / n * 6.283, lo = 120.9 + r * 1.1 * Math.cos(a), la = 23.7 + r * Math.sin(a);
+    if (lo < 119.3 && la > 24.6) continue; c.save(); c.translate(L.ox(lo), L.oy(la)); c.rotate(a + 1.57); c.fillRect(-8, -3, 16, 6); c.restore(); }
+  c.shadowBlur = 0; L.tex.needsUpdate = true;
+}
+function ships(n = 110) {
+  const L = lines, c = L.ctx; let s = 7; const rnd = () => ((s = (s * 16807) % 2147483647) / 2147483647);
+  c.fillStyle = "#ff2d46"; c.shadowColor = "#ff2d46"; c.shadowBlur = 8;
+  for (let i = 0; i < n; i++) { const lo = 123 + rnd() * 9, la = 17 + rnd() * 13;
+    c.save(); c.translate(L.ox(lo), L.oy(la)); c.rotate(rnd() * 6); c.fillRect(-7, -2.5, 14, 5); c.restore(); }
+  c.shadowBlur = 0; L.tex.needsUpdate = true;
+}
+function lanes() {
+  const L = lines, c = L.ctx; c.setLineDash([2, 16]); c.lineCap = "round"; c.strokeStyle = "rgba(255,255,255,.95)"; c.lineWidth = 7;
+  for (const p of [[[114, 20.5], [117.5, 22.3], [119.6, 24.2], [121.2, 26.6], [123, 29.5]], [[115, 19.5], [118.6, 22.2], [120.2, 24.9], [122.5, 28.5]], [[118, 18.5], [120.9, 20.8], [122.6, 23], [124.5, 27]]]) polyline(L, p);
+  c.setLineDash([]); L.tex.needsUpdate = true;
+}
+
+// ---------- HTML helpers ----------
+const ov = document.getElementById("ov");
+const FL = {
+  MY: '<svg viewBox="0 0 28 14"><g>' + Array.from({ length: 14 }, (_, i) => `<rect y="${i}" width="28" height="1" fill="${i % 2 ? "#fff" : "#cc0001"}"/>`).join("") + '</g><rect width="14" height="8" fill="#010066"/><circle cx="5.5" cy="4" r="2.6" fill="#fc0"/><circle cx="6.3" cy="4" r="2.1" fill="#010066"/><circle cx="10" cy="4" r="1.4" fill="#fc0"/></svg>',
+  CN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#de2910"/><text x="3" y="10" font-size="9" fill="#ffde00">★</text></svg>',
+  VN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#da251d"/><text x="9.5" y="15" font-size="12" fill="#ff0">★</text></svg>',
+  PH: '<svg viewBox="0 0 30 20"><rect width="30" height="10" fill="#0038a8"/><rect y="10" width="30" height="10" fill="#ce1126"/><path d="M0 0L14 10L0 20Z" fill="#fff"/><circle cx="5" cy="10" r="2" fill="#fcd116"/></svg>',
+  BN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#f7e017"/><path d="M0 4L30 11V16L0 9Z" fill="#fff"/><path d="M0 9L30 16V20L0 13Z" fill="#000"/><circle cx="15" cy="10" r="3" fill="#cf1126"/></svg>',
+  TW: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#fe0000"/><rect width="15" height="10" fill="#000095"/><circle cx="7.5" cy="5" r="2.5" fill="#fff"/></svg>',
+};
+function flagPin(lat, lon, code, label, dy = 0) {
+  const p = g.project(lat, lon); const e = document.createElement("div"); e.className = "pin";
+  e.style.left = p.x + "px"; e.style.top = p.y + dy + "px";
+  e.innerHTML = `<div class="flag">${FL[code]}</div><div class="lab">${label}</div>`; ov.appendChild(e);
+}
+function locPin(lat, lon, label, sub, red) {
+  const p = g.project(lat, lon); const e = document.createElement("div"); e.className = "pin"; e.style.flexDirection = "row"; e.style.alignItems = "center";
+  e.style.transform = "translate(-13px,-50%)"; e.style.left = p.x + "px"; e.style.top = p.y + "px";
+  e.innerHTML = `<div class="dot"></div><div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px"><div class="lab">${label}</div>${sub ? `<div class="sub ${red ? "red" : ""}">${sub}</div>` : ""}</div>`; ov.appendChild(e);
+}
+const html = (s) => ov.insertAdjacentHTML("beforeend", s);
+const cap = (s) => html(`<div class="cap">${s}</div>`);
+const card = (top, outlet, date, head, foot, media) => html(`<div class="card" style="top:${top}px"><div class="hd"><b>${outlet}</b><i>${date}</i></div><div class="bd">${head}<div class="ft">${foot}</div></div>${media ? `<div class="media">${media}</div>` : ""}</div>`);
+const stat = (top, k, n, u) => html(`<div class="stat" style="top:${top}px"><div class="k">${k}</div><div class="n">${n}</div><div class="u">${u}</div><div class="bar"><div></div></div></div>`);
+
+// ---------- frames ----------
+const win = (txt) => html(`<div class="win">B-ROLL · FLOW AI<em>${txt}</em><i>ILUSTRASI · AI</i></div>`);
+const FR = {
+  1() { g.setView({ lat: 15, lon: 112, dist: 3.0, tilt: 8, yShift: -0.1 }); twGlow(); waferLine(false); malaysiaFlag();
+    html(`<div class="title"><div class="a">KALAU CHINA SEKAT</div><div class="b"><span>TAIWAN</span></div><div class="c">MALAYSIA TERKENA?</div><div class="ln"></div></div>`); },
+  2() { g.setView({ lat: 23.6, lon: 120.9, dist: 0.55, tilt: 16, yShift: 0.14 }); twGlow();
+    cap(`buat lebih <span class="r">90%</span> cip <span class="g">paling canggih</span>`);
+    flagPin(23.2, 121.6, "TW", "TAIWAN"); locPin(24.8, 120.95, "HSINCHU", "TSMC");
+    stat(1080, "CIP PALING CANGGIH DUNIA", "90%+", "BUATAN TAIWAN · 5nm KE BAWAH"); },
+  3() { g.setView({ lat: 23.8, lon: 120.2, dist: 0.95, tilt: 14, yShift: 0.13 }); lanes(); twGlow();
+    cap(`hampir separuh <span class="r">kapal kontena</span> <span class="g">dunia</span>`);
+    locPin(24.3, 119.6, "SELAT TAIWAN", "LALUAN KAPAL");
+    stat(1100, "KAPAL KONTENA DUNIA LALU SELAT TAIWAN", "48%", "DATA BLOOMBERG · 2022"); },
+  4() { g.setView({ lat: 24.2, lon: 120.4, dist: 1.25, tilt: 12, yShift: 0.13 }); chinaRed(); ring(); twGlow();
+    cap(`latihan <span class="r">Justice Mission</span>: <span class="g">kepung Taiwan</span>`);
+    flagPin(28.5, 116.5, "CN", "CHINA"); locPin(25.13, 121.74, "KEELUNG", "SEKATAN · LATIHAN", true); locPin(22.62, 120.27, "KAOHSIUNG", "SEKATAN · LATIHAN", true);
+    card(1150, "USNI NEWS", "31 DIS 2025", `China Wraps 'Justice Mission' <mark>Taiwan Blockade Drills</mark>`, "Tajuk asal · news.usni.org", ""); },
+  5() { g.setView({ lat: 23, lon: 124.5, dist: 1.6, tilt: 12, yShift: 0.13 }); chinaRed(); ships(); twGlow();
+    cap(`<span class="r">100+ kapal</span> China di <span class="g">Pasifik Barat</span>`);
+    win("armada kapal perang dari udara, senja (klip fleet dari video LCS)");
+    card(1220, "TAIPEI TIMES", "13 NOV 2026", `China stages Pacific drills in <mark>'silent intimidation'</mark> of Taiwan`, "Tajuk asal · taipeitimes.com · kata pegawai Taiwan", ""); },
+  6() { g.setView({ lat: 14, lon: 111, dist: 2.3, tilt: 8, yShift: 0.11 }); malaysiaFlag(); waferLine(false); twGlow();
+    cap(`wafer dari Taiwan ke <span class="r">Pulau Pinang</span>`);
+    locPin(24.8, 121.0, "HSINCHU", "KILANG WAFER"); locPin(5.35, 100.3, "PULAU PINANG", "PASANG & UJI CIP");
+  },
+  7() { g.setView({ lat: 6.4, lon: 101.6, dist: 0.75, tilt: 16, yShift: 0.15 }); malaysiaFlag(); win("lengan robot meletak cip atas papan litar, makro, cahaya biru");
+    cap(`<span class="r">13%</span> kerja pasang & uji <span class="g">cip dunia</span>`);
+    stat(1220, "KERJA PASANG, UJI & BUNGKUS CIP DUNIA", "13%", "MALAYSIA · ANGGARAN MIDA");
+    html(`<div class="stat" style="top:1640px;padding:16px 40px;display:none"><div class="k">EKSPORT E&amp;E 2025</div><div class="n" style="font-size:96px;margin:6px 0 0">RM712b</div><div class="u" style="font-size:30px">≈ 44% EKSPORT MALAYSIA</div></div>`); },
+  8() { g.setView({ lat: 14.5, lon: 112, dist: 2.3, tilt: 8, yShift: 0.11 }); chinaRed(); malaysiaFlag(); ring(); waferLine(true);
+    cap(`wafer <span class="r">tak sampai</span>`);
+    html(`<div class="stamp" style="left:560px;top:600px">TERPUTUS</div>`);
+    stat(1120, "EKONOMI DUNIA JIKA TAIWAN DISEKAT", "−5%", "ANGGARAN BLOOMBERG · KEMUNGKINAN SANGAT RENDAH"); },
+  9() { g.setView({ lat: 12, lon: 110, dist: 3.0, tilt: 6, yShift: 0.03 }); malaysiaFlag(); waferLine(false); twGlow();
+    cap(`kesannya sampai ke <span class="r">Pulau Pinang</span>`);
+    html(`<div class="title" style="top:1230px"><div class="c" style="font-size:52px;letter-spacing:2px">JANGAN TERLEPAS</div><div class="ln" style="width:300px"></div><div style="font:800 26px Inter;margin-top:24px">Untuk part seterusnya &nbsp;<span style="background:#ff2d46;padding:10px 20px;border-radius:8px">Follow</span> <span style="background:#ff2d46;padding:10px 20px;border-radius:8px">Subscribe</span></div></div>`); },
+};
+FR[F]();
+window.__pins=[...document.querySelectorAll('.pin')].map(e=>e.style.left+','+e.style.top);
+g.render();
+document.body.dataset.ready = "1";
+</script></body></html>
