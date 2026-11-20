@@ -13,9 +13,13 @@
 | Malaysia ≈13% kerja pasang, uji & bungkus cip dunia | ✅ | Anggaran MIDA. **Bukan** 13% semua cip dunia. Kad: "ANGGARAN MIDA". |
 | E&E ≈ separuh eksport Malaysia | ✅ | 2025: RM712 bilion (≈44% eksport); Jan–Ogos 2026: 48.4% (Menteri Johari, Dewan Rakyat, Okt 2026). VO "hampir separuh". |
 | Sekatan Taiwan → ekonomi dunia susut ≈5% | ⚠️ | Bloomberg Economics (Feb 2026, dipetik Chatham House / Taiwan News: 5–5.3% KDNK dunia, tahun pertama). Bloomberg nilai kebarangkalian sekatan "sangat rendah" → VO sebut dua-dua. Perang penuh ≈ $10.6T (9.6%) tak diguna. |
+| Justice Mission: roket ditembak ke perairan utara & selatan Taiwan (30 Dis 2025) | ✅ | USNI News 30 Dis 2025 ("Chinese Forces Fire Rockets Near Taiwan, Practice Port Seizure"); Al Jazeera 30 Dis (pengawal pantai Taiwan: 7 roket di 2 zon); MND Taiwan: 27 roket (Marine Link). Angka berbeza → VO tak sebut jumlah. Roket dari darat (pantai Fujian), bukan dari kapal → animasi tembakan dari pantai. Zon dilukis anggaran. |
 | Kilang Pulau Pinang "pasti" tutup | ❌ | Tiada sumber. VO guna "boleh terhenti" (kemungkinan), bukan pasti. |
 
 ## Sumber
+- https://news.usni.org/2025/12/30/chinese-forces-fire-rockets-near-taiwan-practice-port-seizure-amphibious-forces
+- https://www.aljazeera.com/news/2025/12/30/china-kicks-off-second-day-of-military-drills-around-taiwan
+- https://www.marinelink.com/news/china-launches-rockets-taiwan-waters-533929
 - https://www.taipeitimes.com/News/taiwan/archives/2026/11/13/2003867684
 - https://www.france24.com/en/asia-pacific/20261113-chinese-army-military-exercises-taiwan
 - https://news.usni.org/2025/12/31/china-wraps-justice-mission-taiwan-blockade-drills
