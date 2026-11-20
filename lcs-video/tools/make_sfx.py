@@ -52,6 +52,9 @@ put(drone * 0.035, 0, 1)
 for t in (0.0, T["lcs"] - 0.3, T["setiap"] - 0.9, T["cn"] - 0.2, T["garisan2"] - 0.2, T["patinggi"] - 0.3,
           T["sebab"] - 0.2, T["dalam"] - 0.1, T["lautni"] + 0.1):
     put(whoosh(1.4), t, 0.35)
+# zoom punches (same beats as ZP in index.html): short whoosh
+for k in ("trilion", "my", "sembilan", "hague", "km80", "kapal", "kd", "sasaran", "p80", "tiada", "sarawak2", "kita"):
+    put(whoosh(.55), T[k] - 0.2, 0.3)
 # hook slam, "tak terima", "terlepas", "100 kapal"
 put(impact(.8), T["direbut"], 0.9)
 put(impact(.5), T["takterima"], 0.7)
