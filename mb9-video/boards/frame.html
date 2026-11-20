@@ -64,6 +64,13 @@ html,body{width:1080px;height:1920px;background:#05070b;overflow:hidden;font-fam
 .ncard{position:absolute;width:760px;display:flex;gap:26px;align-items:center;background:rgba(10,12,17,.94);border-radius:16px;padding:26px 30px;box-shadow:0 24px 60px rgba(0,0,0,.6)}
 .ncard .ini{width:120px;height:120px;border-radius:50%;background:#2a2f38;border:4px solid #fff;display:flex;align-items:center;justify-content:center;font:800 48px Inter;color:#fff;flex:none}
 .ncard .nm{font:800 54px Inter;color:#fff}.ncard .rl{font:700 20px Mono;color:#ffce00;letter-spacing:2px;margin-top:8px}
+.ncard .ini img{width:100%;height:100%;object-fit:cover;border-radius:50%}.ncard .ini{overflow:hidden}
+.duo{position:absolute;top:600px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:26px}
+.pt{width:300px;background:rgba(10,12,17,.94);border-radius:14px;padding:12px 12px 16px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.pt img{width:276px;height:330px;object-fit:cover;object-position:50% 20%;border-radius:8px;display:block;border:3px solid #fff}
+.pt.royal img{border-color:#ffce00}
+.pt b{display:block;font:800 26px Inter;color:#fff;margin-top:12px}.pt i{display:block;font:700 15px Mono;font-style:normal;color:#ffce00;letter-spacing:1.5px;margin-top:6px}
+.duo .arrow{font:800 70px Inter;color:#fff;opacity:.7}
 #tintS{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,30,50,0) 40%,rgba(255,30,50,.45) 100%)}
 </style></head><body>
 <canvas id="gl" width="1080" height="1920"></canvas>
@@ -86,7 +93,7 @@ const red = g.layer("china", 1, { lon0: 72, lon1: 136, lat0: 16, lat1: 54, ppd: 
 const myl = g.layer("malaysia", 2, { lon0: 99, lon1: 120, lat0: 0, lat1: 8, ppd: 160 });
 const lines = g.layer("lines", 3, { lon0: 92, lon1: 140, lat0: -6, lat1: 34, ppd: 80 });
 const near = (f) => { const c = f.geometry.coordinates.flat(3); return true; };
-{ const L = borders, c = L.ctx; c.strokeStyle = "rgba(255,255,255,.5)"; c.lineWidth = 2; c.lineJoin = "round";
+{ const L = borders, c = L.ctx; c.strokeStyle = "rgba(255,255,255,.35)"; c.lineWidth = 1; c.lineJoin = "round";
   for (const f of countries) { L.path(f.geometry); c.stroke(); } L.tex.needsUpdate = true; }
 function chinaRed() {
   const L = red, c = L.ctx; c.save(); L.path(CN.geometry); c.clip("evenodd");
@@ -109,10 +116,10 @@ const N9 = ST.find((f) => f.properties.name === "Negeri Sembilan");
 const stl = g.layer("states", 4, { lon0: 99, lon1: 105, lat0: 0.8, lat1: 7, ppd: 300 });
 function states(n9fill = true) {
   const L = stl, c = L.ctx; c.lineJoin = "round";
-  c.strokeStyle = "rgba(255,255,255,.55)"; c.lineWidth = 3; for (const f of ST) { L.path(f.geometry); c.stroke(); }
+  c.strokeStyle = "rgba(255,255,255,.45)"; c.lineWidth = 1.5; for (const f of ST) { L.path(f.geometry); c.stroke(); }
   if (n9fill) { c.save(); L.path(N9.geometry); c.clip("evenodd"); c.fillStyle = "rgba(255,206,0,.22)"; c.fillRect(0, 0, L.OW, L.OH);
     c.fillStyle = "rgba(255,206,0,.10)"; for (let y = 0; y < L.OH; y += 8) c.fillRect(0, y, L.OW, 3); c.restore(); }
-  c.shadowColor = "#ffce00"; c.shadowBlur = 30; c.strokeStyle = "#ffd84a"; c.lineWidth = 8; L.path(N9.geometry); c.stroke(); c.shadowBlur = 0;
+  c.shadowColor = "#ffce00"; c.shadowBlur = 24; c.strokeStyle = "#ffd84a"; c.lineWidth = 5; L.path(N9.geometry); c.stroke(); c.shadowBlur = 0;
   L.tex.needsUpdate = true;
 }
 const SEREMBAN = [2.7259, 101.9378];
@@ -136,7 +143,7 @@ function seats(top, mode = "party", q = false) {
     <div class="maj">MAJORITI <b>19</b> / 36</div>${leg}</div>`);
 }
 const letter = (x, y, stampTxt) => html(`<div class="letter" style="left:${x}px;top:${y}px"><svg width="260" height="190" viewBox="0 0 260 190"><rect x="4" y="4" width="252" height="182" rx="10" fill="#f4f1ea" stroke="#d9d3c4" stroke-width="3"/><path d="M8 10 L130 100 L252 10" fill="none" stroke="#cfc7b4" stroke-width="5"/>${[0,1,2].map(i=>`<rect x="40" y="${120+i*18}" width="${180-i*40}" height="8" rx="4" fill="#d9d3c4"/>`).join("")}</svg>${stampTxt ? `<div class="stamp" style="left:20px;top:56px;font-size:34px">${stampTxt}</div>` : ""}</div>`);
-const nameCard = (x, y, ini, nm, rl) => html(`<div class="ncard" style="left:${x}px;top:${y}px"><div class="ini">${ini}</div><div><div class="nm">${nm}</div><div class="rl">${rl}</div></div></div>`);
+const nameCard = (x, y, ini, nm, rl, ph) => html(`<div class="ncard" style="left:${x}px;top:${y}px"><div class="ini">${ph ? `<img src="../assets/photos/${ph}">` : ini}</div><div><div class="nm">${nm}</div><div class="rl">${rl}</div></div></div>`);
 // ---------- HTML helpers ----------
 const ov = document.getElementById("ov");
 const FL = {
@@ -209,7 +216,7 @@ const FR = {
   2() { g.setView({ lat: 2.75, lon: 102.1, dist: 0.2, tilt: 18, yShift: 0.12 }); states();
     cap(`2 Ogos lalu, <span class="r">Ismail Lasim</span> <span class="g">angkat sumpah</span>`);
     locPin(SEREMBAN[0], SEREMBAN[1], "SEREMBAN", "IBU NEGERI");
-    nameCard(160, 1120, "IL", "ISMAIL LASIM", "MENTERI BESAR · ADUN JUASSEH"); timeline(1); },
+    nameCard(160, 1120, "IL", "ISMAIL LASIM", "MENTERI BESAR · ADUN JUASSEH", "ismail.jpg"); timeline(1); },
   3() { g.setView({ lat: 2.75, lon: 102.1, dist: 0.24, tilt: 18, yShift: 0.25 }); states();
     cap(`BN menang <span class="r">18</span>, PH <span class="r">11</span>, PN <span class="r">7</span>`);
     seats(820); timeline(1); },
@@ -221,10 +228,11 @@ const FR = {
     cap(`dan surat tu <span class="r">belum disahkan</span>`);
     letter(410, 470, "BELUM DISAHKAN");
     card(1060, "BERNAMA", "17 NOV 2026", `Peletakan Jawatan MB Negeri Sembilan <mark>Perlu Perkenan Tuanku Muhriz</mark> - Istana`, "Tajuk asal · bernama.com"); timeline(3); },
-  6() { g.setView({ lat: 2.72, lon: 101.95, dist: 0.14, tilt: 20, yShift: 0.12 }); states();
+  6() { g.setView({ lat: 2.72, lon: 101.95, dist: 0.14, tilt: 20, yShift: -0.12 }); states();
     cap(`Dia kata dia <span class="r">tak pernah</span> serah surat tu`);
     locPin(2.70, 101.95, "ISTANA HINGGAP", "20 NOV · PAGI", true);
-    card(1060, "BERNAMA", "20 NOV 2026", `Ismail <mark>Tidak Pernah Setuju</mark> Surat Peletakan Jawatan Dikemukakan Kepada Tuanku Muhriz`, "Tajuk asal · bernama.com · kata Ismail"); timeline(4); },
+    html(`<div class="duo"><div class="pt"><img src="../assets/photos/ismail.jpg"><b>ISMAIL LASIM</b><i>MENGHADAP · PAGI TADI</i></div><div class="arrow">›</div><div class="pt royal"><img src="../assets/photos/tuanku.jpg"><b>TUANKU MUHRIZ</b><i>YANG DI-PERTUAN BESAR</i></div></div>`);
+    card(1150, "BERNAMA", "20 NOV 2026", `Ismail <mark>Tidak Pernah Setuju</mark> Surat Peletakan Jawatan Dikemukakan Kepada Tuanku Muhriz`, "Tajuk asal · bernama.com · kata Ismail"); timeline(4); },
   7() { g.setView({ lat: 2.75, lon: 102.1, dist: 0.22, tilt: 18, yShift: 0.12 }); states();
     cap(`mesti buktikan sokongan <span class="r">majoriti</span>`);
     html(`<div id="tintS"></div>`);
