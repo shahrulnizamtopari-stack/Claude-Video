@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ms" data-composition-variables='[{"id":"previewScale","type":"number","label":"3D render scale (0.5 for previews)","default":1,"min":0.25,"max":1,"step":0.25}]'>
+<html lang="ms" data-composition-variables='[{"id":"previewScale","type":"number","label":"3D render scale (0.5 for previews)","default":1,"min":0.25,"max":1,"step":0.25},{"id":"layer","type":"number","label":"0 full, 1 clean plate (no captions), 2 captions only (transparent)","default":0,"min":0,"max":2,"step":1}]'>
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=1080, height=1920" />
@@ -18,6 +18,9 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#05070b}
 #world,#ui{position:absolute;inset:0}
 #broll{position:absolute;left:220px;top:380px;width:640px;height:800px;z-index:1;opacity:0;overflow:hidden;clip-path:inset(0 round 18px);background:#000;border-radius:18px;border:3px solid rgba(255,255,255,.9);box-shadow:0 30px 80px rgba(0,0,0,.7)}
 #ui{z-index:2}
+html.clean #cap{display:none!important}
+html.caps,html.caps body{background:transparent}
+html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,html.caps #pins,html.caps #cards,html.caps #hook,html.caps #outro,html.caps #fade{visibility:hidden}
 .bw{position:absolute;inset:0;opacity:0}.bw video{width:100%;height:100%;object-fit:cover}
 .bshade{position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,0) 18%)}
 .btag{position:absolute;right:16px;top:16px;font:700 18px Mono;color:#fff;background:rgba(0,0,0,.55);padding:6px 12px;border-radius:4px;letter-spacing:3px}
@@ -116,11 +119,15 @@ import { createGlobe } from "./assets/globe.js";
 import { DURATION, T, CAPS } from "./assets/story.js";
 
 const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
-const scale = Number(vars.previewScale) || 1;
+const LAYER = Number(vars.layer) || 0;
+if (LAYER === 1) document.documentElement.classList.add("clean");
+if (LAYER === 2) document.documentElement.classList.add("caps");
+const scale = LAYER === 2 ? 0.25 : Number(vars.previewScale) || 1;
 await Promise.all(["400 40px Inter", "700 40px Inter", "800 40px Inter", "700 20px Mono", "400 40px Serif", "italic 700 40px Serif", "700 40px Serif"].map((f) => document.fonts.load(f)));
 
 const W = 1080, H = 1920;
 const g = await createGlobe(document.getElementById("gl"), { W, H, base: "assets/", scale });
+if (LAYER === 2) g.render = () => {};  // captions-only layer: no 3D
 const topo = await (await fetch("assets/geo/countries-10m.json")).json();
 const countries = topojson.feature(topo, topo.objects.countries).features;
 const byId = (id) => countries.find((c) => +c.id === id);
