@@ -107,3 +107,12 @@ pure function of time). For 3D object explainers see `explainer-style`; for text
 - `render --start/--end` only does MP4; transparent MOV needs the full film.
 - Playwright: plain `chromium.launch()`; start the static server with `run_in_background`, not inline `&`.
 - China never published nine-dash coordinates: draw approximate dashes and label them "GARISAN ANGGARAN".
+- Captions moved down: first to y≈255 (Taiwan); for `emas-kasut-video/` the user asked for a **bottom band** (y≈1490,
+  dark backing) under the cards - keep every card ending ≤ ~1420 so nothing covers the subtitles, and don't go lower
+  (TikTok's username/caption UI).
+- Later films in this style: `mb9-video/` (state politics: state outline glow, timeline strip, 36-seat hemicycle, user
+  portraits), `tudm-video/` (crime: bag icons + X-ray scan, people grids, "BELUM DIDAKWA" stamp), `emas-kasut-video/`
+  (AI stills with slow push + gold shine, flight line that stops, engagement ending with comment bubbles + "KOMEN ↓").
+- Crime/politics: no suspect names or faces, "ditahan / direman / belum didakwa", show conflicting official numbers
+  side by side with their source, never draw a route no source gives. The user likes an ending that asks viewers a
+  question to comment on (risk vs reward), not a guess about who is guilty.
