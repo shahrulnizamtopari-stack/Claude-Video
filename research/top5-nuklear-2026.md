@@ -19,6 +19,8 @@ YB26 08 World Nuclear Forces). Semua angka anggaran SIPRI berdasarkan maklumat a
 | Dakwaan dalam skrip | Status | Nota |
 |---|---|---|
 | 9 negara ada senjata nuklear | ✅ | Jadual SIPRI. |
+| "Lebih empat ribu siap dipasang atas peluru berpandu dan pesawat" | ✅ | SIPRI: 4,012 dikerah ("placed on missiles or located on bases with operational forces"). |
+| "Satu negara je pegang lima ribu empat ratus" | ✅ | Rusia 5,420. (Bukan "lebih lima ribu": AS 5,042 pun lebih 5,000.) |
 | Lebih 12,000 kepala peledak dunia | ✅ | 12,187 (Jan 2026). |
 | Ranking ikut jumlah inventori: Rusia, AS, China, Perancis, UK | ✅ | Jadual SIPRI. Kad tulis "JUMLAH INVENTORI · SIPRI 2026". |
 | China paling laju bertambah | ✅ | SIPRI press release 8 Jun 2026: "expanding its nuclear arsenal faster than any other country". |
