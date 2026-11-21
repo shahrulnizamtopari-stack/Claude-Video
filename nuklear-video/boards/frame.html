@@ -89,9 +89,9 @@ html,body{width:1080px;height:1920px;background:#05070b;overflow:hidden;font-fam
 .ppl .row{display:flex;justify-content:center;gap:40px;align-items:flex-end}.ppl .ic{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:300px}
 .ppl .gl{font:800 26px Inter;margin-top:12px}.ppl .ft2{font:700 15px Mono;color:#8a929b;letter-spacing:1px;margin-top:16px}
 .stat .n{font-size:200px}
-.bob{position:absolute;width:300px;height:560px}.bob .body{position:absolute;left:50px;top:300px}.bob .head{position:absolute;left:50%;top:0;height:330px;transform-origin:50% 92%;margin-left:-160px;width:auto;max-width:330px;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(0,0,0,.6))}
-.bob .np{position:absolute;top:495px;left:-20px;right:-20px;text-align:center}.bob .np b{display:block;font:800 26px Inter;color:#fff;text-shadow:0 2px 8px #000}.bob .np i{display:inline-block;font:700 15px Mono;font-style:normal;color:#0b0d12;background:#ffce00;padding:4px 8px;border-radius:3px;letter-spacing:1px;margin-top:4px}
-.rk{position:absolute;left:430px;right:50px;top:900px;background:rgba(10,12,17,.92);border-radius:16px;padding:22px 26px 20px;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.bob{position:absolute;width:340px;height:620px}.bob .bk,.bob .fr{position:absolute;left:0;top:300px}.bob .hh{position:absolute;filter:drop-shadow(0 10px 14px rgba(0,0,0,.5))}
+.bob .np{position:absolute;top:530px;left:0;right:0;text-align:center}.bob .np b{display:block;font:800 26px Inter;color:#fff;text-shadow:0 2px 8px #000}.bob .np i{display:inline-block;font:700 15px Mono;font-style:normal;color:#0b0d12;background:#ffce00;padding:4px 8px;border-radius:3px;letter-spacing:1px;margin-top:4px}
+.rk{position:absolute;left:400px;right:50px;top:900px;background:rgba(10,12,17,.92);border-radius:16px;padding:22px 26px 20px;box-shadow:0 24px 60px rgba(0,0,0,.6)}
 .rk .no{font:800 40px Inter;color:#ffce00;letter-spacing:2px}.rk .num{font:italic 700 150px/1 Serif;color:#ff2d46;margin:6px 0}.rk .kk{font:700 16px Mono;color:#c9d0d8;letter-spacing:2px}.rk .ex{font:800 22px Inter;color:#fff;margin-top:12px}.rk .ex.up{color:#ff2d46}
 .wh{display:flex;flex-wrap:wrap;gap:4px;margin-top:14px;max-height:190px;overflow:hidden}.wh svg{width:16px;height:30px}
 .nd{position:absolute;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:#ff2d46;box-shadow:0 0 0 8px rgba(255,45,70,.35),0 0 30px 8px rgba(255,45,70,.6)}
@@ -267,7 +267,21 @@ const P = {
 };
 const LEADER = { uk: ["ANDY BURNHAM", "PERDANA MENTERI UK"], fr: ["EMMANUEL MACRON", "PRESIDEN PERANCIS"], cn: ["XI JINPING", "PRESIDEN CHINA"], us: ["DONALD TRUMP", "PRESIDEN AS"], ru: ["VLADIMIR PUTIN", "PRESIDEN RUSIA"] };
 const TIE = { uk: "#C8102E", fr: "#0055A4", cn: "#DE2910", us: "#B22234", ru: "#0039A6" };
-const bobble = (k, x, y, rot = -4) => html(`<div class="bob" style="left:${x}px;top:${y}px"><div class="body"><svg width="200" height="190" viewBox="0 0 200 190"><path d="M30 190 L30 70 Q30 30 100 26 Q170 30 170 70 L170 190Z" fill="#1d2433"/><path d="M78 30 L100 80 L122 30Z" fill="#fff"/><path d="M93 40 L107 40 L111 120 L100 134 L89 120Z" fill="${TIE[k]}"/><path d="M30 80 Q8 120 18 170" stroke="#1d2433" stroke-width="26" fill="none" stroke-linecap="round"/><path d="M170 80 Q192 120 182 170" stroke="#1d2433" stroke-width="26" fill="none" stroke-linecap="round"/><circle cx="18" cy="172" r="13" fill="#e8b996"/><circle cx="182" cy="172" r="13" fill="#e8b996"/></svg></div><img class="head" src="../assets/leaders/${k}-head.png" style="transform:rotate(${rot}deg)"><div class="np"><b>${LEADER[k][0]}</b><i>${LEADER[k][1]}</i></div></div>`);
+const BOB = await (await fetch("../assets/leaders/bobble.json")).json();
+// bobblehead: cartoon suit (back) + neck in sampled skin tone, real head cut at the jaw, collar + tie in front hides the join
+function bobbleHTML(k, rot = 0) {
+  const m = BOB[k], nw = m.fw * 0.46, sk = m.skin, t = TIE[k];
+  return `<svg class="bk" width="340" height="300" viewBox="0 0 340 300"><rect x="${170 - nw / 2}" y="0" width="${nw}" height="70" fill="${sk}"/><rect x="${170 - nw / 2}" y="0" width="${nw}" height="70" fill="rgba(0,0,0,.2)"/>
+    <path d="M70 300 L70 120 Q74 66 170 56 Q266 66 270 120 L270 300Z" fill="#1d2433"/>
+    <path d="M78 92 Q40 110 38 170 L40 262 Q58 272 76 262 L80 180Z" fill="#232b3d"/><path d="M262 92 Q300 110 302 170 L300 262 Q282 272 264 262 L260 180Z" fill="#232b3d"/>
+    <ellipse cx="58" cy="272" rx="20" ry="17" fill="${sk}"/><ellipse cx="282" cy="272" rx="20" ry="17" fill="${sk}"/><circle cx="170" cy="230" r="5" fill="#0d111a"/><circle cx="170" cy="262" r="5" fill="#0d111a"/></svg>
+  <img class="hh" src="../assets/leaders/${k}-head.png" style="left:${170 - m.ax}px;top:${360 - m.h}px;width:${m.w}px;height:${m.h}px;transform-origin:${m.ax}px ${m.h - 10}px;transform:rotate(${rot}deg)">
+  <svg class="fr" width="340" height="300" viewBox="0 0 340 300"><path d="M${170 - nw * 0.75} 52 L170 112 L${170 + nw * 0.75} 52 L${170 + nw * 0.62} 40 L170 70 L${170 - nw * 0.62} 40Z" fill="#fff"/>
+    <path d="M${170 - nw * 0.75} 52 L170 112 L${170 - nw * 0.2} 160 L${170 - nw * 1.2} 70Z" fill="#141a26"/><path d="M${170 + nw * 0.75} 52 L170 112 L${170 + nw * 0.2} 160 L${170 + nw * 1.2} 70Z" fill="#141a26"/>
+    <path d="M160 72 L180 72 L186 190 L170 210 L154 190Z" fill="${t}"/></svg>
+  <div class="np"><b>${LEADER[k][0]}</b><i>${LEADER[k][1]}</i></div>`;
+}
+const bobble = (k, x, y, rot = -3) => html(`<div class="bob" style="left:${x}px;top:${y}px">${bobbleHTML(k, rot)}</div>`);
 const warheads = (n) => `<div class="wh">${Array.from({ length: n }, (_, i) => `<svg width="22" height="40" viewBox="0 0 22 40"><path d="M11 0 Q22 14 20 30 L2 30 Q0 14 11 0Z" fill="${i < n ? "#ff2d46" : "#333"}"/><rect x="4" y="31" width="14" height="8" rx="2" fill="#9aa3ad"/></svg>`).join("")}</div>`;
 const rank = (r, n, k, extra = "", icons = 0) => html(`<div class="rk"><div class="no">#${r}</div><div class="num">${n}</div><div class="kk">KEPALA PELEDAK · SIPRI 2026</div>${extra}${icons ? warheads(icons) : ""}</div>`);
 const FR = {
@@ -276,15 +290,15 @@ const FR = {
     html(`<div class="chip" style="top:330px">● 4,012 SIAP DIGUNA · SEKARANG</div>`);
     html(`<div class="title" style="top:1000px"><div class="a">SATU NEGARA PEGANG</div><div class="b"><span>5,420</span></div><div class="c">TEKA SIAPA?</div><div class="ln"></div></div>`); },
   2() { flagFill("fUK", UKf, { lon0: -9, lon1: 3, lat0: 49, lat1: 61, ppd: 120 }, P.uk); g.setView({ lat: 54.5, lon: -3, dist: 0.55, tilt: 14, yShift: 0.2 });
-    bobble("uk", 70, 860); rank(5, "225", "uk", `<div class="ex">UJIAN PERTAMA · 1952</div>`, 2); capB(`Nombor lima: <span class="r">United Kingdom</span>`); },
+    bobble("uk", 40, 800); rank(5, "225", "uk", `<div class="ex">UJIAN PERTAMA · 1952</div>`, 2); capB(`Nombor lima: <span class="r">United Kingdom</span>`); },
   3() { flagFill("fFR", FRf, { lon0: -6, lon1: 10, lat0: 41, lat1: 52, ppd: 100 }, P.fr); g.setView({ lat: 47, lon: 2.5, dist: 0.5, tilt: 14, yShift: 0.2 });
-    bobble("fr", 70, 860); rank(4, "370", "fr", `<div class="ex">TERMASUK 80 BERSARA</div>`, 4); capB(`Nombor empat: <span class="r">Perancis</span>`); },
+    bobble("fr", 40, 800); rank(4, "370", "fr", `<div class="ex">TERMASUK 80 BERSARA</div>`, 4); capB(`Nombor empat: <span class="r">Perancis</span>`); },
   4() { flagFill("fCN", CNf, { lon0: 72, lon1: 136, lat0: 17, lat1: 55, ppd: 20 }, P.cn); g.setView({ lat: 36, lon: 104, dist: 1.5, tilt: 10, yShift: 0.2 });
-    bobble("cn", 70, 860); rank(3, "620", "cn", `<div class="ex up">▲ PALING LAJU BERTAMBAH · 600 → 620</div>`, 6); capB(`paling <span class="r">laju bertambah</span> di dunia`); },
+    bobble("cn", 40, 800); rank(3, "620", "cn", `<div class="ex up">▲ PALING LAJU BERTAMBAH · 600 → 620</div>`, 6); capB(`paling <span class="r">laju bertambah</span> di dunia`); },
   5() { flagFill("fUS", USf, { lon0: -172, lon1: -64, lat0: 18, lat1: 72, ppd: 12 }, P.us); g.setView({ lat: 42, lon: -100, dist: 2.0, tilt: 8, yShift: 0.2 });
-    bobble("us", 70, 860); rank(2, "5,042", "us", `<div class="ex">UJIAN PERTAMA · 1945</div>`, 50); capB(`Nombor dua: <span class="r">Amerika Syarikat</span>`); },
+    bobble("us", 40, 800); rank(2, "5,042", "us", `<div class="ex">UJIAN PERTAMA · 1945</div>`, 50); capB(`Nombor dua: <span class="r">Amerika Syarikat</span>`); },
   6() { flagFill("fRU", RUf, { lon0: 19, lon1: 180, lat0: 41, lat1: 78, ppd: 10 }, P.ru); g.setView({ lat: 56, lon: 95, dist: 3.6, tilt: 6, yShift: 0.2 });
-    bobble("ru", 70, 860); rank(1, "5,420", "ru", `<div class="ex">👑 TERBESAR DI DUNIA</div>`, 54); capB(`Dan nombor satu: <span class="r">Rusia</span>`); },
+    bobble("ru", 40, 800); rank(1, "5,420", "ru", `<div class="ex">👑 TERBESAR DI DUNIA</div>`, 54); capB(`Dan nombor satu: <span class="r">Rusia</span>`); },
   7() { g.setView({ lat: 45, lon: 40, dist: 4.4, tilt: 4, yShift: 0.15 });
     const D = [["RUSIA", 5420, "ru"], ["AS", 5042, "us"], ["CHINA", 620, "cn"], ["PERANCIS", 370, "fr"], ["UK", 225, "uk"]];
     html(`<div class="bars5"><div class="k">KEPALA PELEDAK · SIPRI 2026</div>${D.map(([n, v, k], i) => `<div class="br ${i < 2 ? "hot" : ""}"><img src="../assets/leaders/${k}-head.png"><span class="nm">${n}</span><div class="bb"><div style="width:${v / 5420 * 100}%"></div></div><span class="v">${v.toLocaleString("en")}</span></div>`).join("")}<div class="donut"><b>&gt;80%</b><i>RUSIA + AS</i></div></div>`);
