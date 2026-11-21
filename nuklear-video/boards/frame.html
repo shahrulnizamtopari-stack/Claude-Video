@@ -90,8 +90,8 @@ html,body{width:1080px;height:1920px;background:#05070b;overflow:hidden;font-fam
 .ppl .gl{font:800 26px Inter;margin-top:12px}.ppl .ft2{font:700 15px Mono;color:#8a929b;letter-spacing:1px;margin-top:16px}
 .stat .n{font-size:200px}
 .bob{position:absolute;width:360px;height:700px}.bob .fig{position:absolute;left:50%;top:0;filter:drop-shadow(0 18px 22px rgba(0,0,0,.55))}.bob .fb,.bob .fh{position:absolute;left:0;top:0}
-.bob .np{position:absolute;top:606px;left:-20px;right:-20px;text-align:center}.bob .np b{display:block;font:800 26px Inter;color:#fff;text-shadow:0 2px 8px #000}.bob .np i{display:inline-block;font:700 15px Mono;font-style:normal;color:#0b0d12;background:#ffce00;padding:4px 8px;border-radius:3px;letter-spacing:1px;margin-top:4px}
-.bob .ai{position:absolute;top:8px;left:0;font:700 12px Mono;color:#fff;background:rgba(0,0,0,.55);padding:3px 6px;border-radius:3px;letter-spacing:1px}
+.bob .np{position:absolute;top:604px;left:-30px;right:-40px;text-align:center}.bob .np b{display:inline-block;font:800 34px/1.1 Inter;color:#fff;background:rgba(10,12,17,.88);padding:8px 16px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.5);white-space:nowrap}.bob .np i{display:inline-block;font:800 22px Inter;font-style:normal;color:#0b0d12;background:#ffce00;padding:6px 14px;border-radius:6px;letter-spacing:.5px;margin-top:8px;white-space:nowrap}
+.bob .ai{position:absolute;top:6px;left:0;font:700 16px Mono;color:#fff;background:rgba(0,0,0,.6);padding:4px 8px;border-radius:4px;letter-spacing:1px}
 .rk{position:absolute;left:400px;right:50px;top:900px;background:rgba(10,12,17,.92);border-radius:16px;padding:22px 26px 20px;box-shadow:0 24px 60px rgba(0,0,0,.6)}
 .rk .no{font:800 40px Inter;color:#ffce00;letter-spacing:2px}.rk .num{font:italic 700 150px/1 Serif;color:#ff2d46;margin:6px 0}.rk .kk{font:700 16px Mono;color:#c9d0d8;letter-spacing:2px}.rk .ex{font:800 22px Inter;color:#fff;margin-top:12px}.rk .ex.up{color:#ff2d46}
 .wh{display:flex;flex-wrap:wrap;gap:4px;margin-top:14px;max-height:190px;overflow:hidden}.wh svg{width:16px;height:30px}
@@ -275,7 +275,7 @@ function bobbleHTML(k, rot = 0, H = 600) {
   return `<div class="fig" style="width:${w}px;height:${H}px;margin-left:${-w / 2}px">
     <img class="fb" src="../assets/leaders/${k}-fbody.png" style="width:${w}px;height:${H}px">
     <img class="fh" src="../assets/leaders/${k}-fhead.png" style="width:${w}px;height:${(m.neck + 7) * sc}px;transform-origin:${m.px * sc}px ${m.neck * sc}px;transform:rotate(${rot}deg)"></div>
-    <div class="np"><b>${LEADER[k][0]}</b><i>${LEADER[k][1]}</i></div><div class="ai">KARIKATUR · AI</div>`;
+    <div class="np"><b>${LEADER[k][0]}</b><br><i>${LEADER[k][1]}</i></div><div class="ai">KARIKATUR · AI</div>`;
 }
 const bobble = (k, x, y, rot = -3) => html(`<div class="bob" style="left:${x}px;top:${y}px">${bobbleHTML(k, rot)}</div>`);
 const warheads = (n) => `<div class="wh">${Array.from({ length: n }, (_, i) => `<svg width="22" height="40" viewBox="0 0 22 40"><path d="M11 0 Q22 14 20 30 L2 30 Q0 14 11 0Z" fill="${i < n ? "#ff2d46" : "#333"}"/><rect x="4" y="31" width="14" height="8" rx="2" fill="#9aa3ad"/></svg>`).join("")}</div>`;
