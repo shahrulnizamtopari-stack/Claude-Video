@@ -1,9 +1,10 @@
 # Skrip VO: "Emas Dalam Kasut" (draf 1, 21 Nov 2026)
 
 Gaya: **MAP ANIMATION** (skill `map-animation`), kes jenayah: zoom ke Padang, laluan penerbangan ke Malaysia yang
-terhenti, animasi kasut dan 4 batang emas, kad stat, kad berita. Nada: pembaca berita, laju. ~140 patah perkataan, ~48 s
+terhenti, animasi kasut dan 4 batang emas, kad stat, kad berita. Nada: pembaca berita, laju. ~165 patah perkataan, ~53 s
 selepas 1.15×.
 
+Penutup: soalan "risiko vs upah" untuk komen (bukan meneka siapa pemilik emas, bukan cara elak pemeriksaan).
 Prinsip: suspek tanpa nama / inisial / muka · "jika sabit kesalahan" · status "kurier" disebut sebagai laporan media.
 
 | # | VO | Visual |
@@ -16,11 +17,11 @@ Prinsip: suspek tanpa nama / inisial / muka · "jika sabit kesalahan" · status 
 | 06 | Nilainya kira-kira sepuluh bilion rupiah. Atau lebih kurang dua juta dua ratus lima puluh ribu ringgit. | Stat **Rp10 BILION** bertukar ke **RM2.25 JUTA** · kad Berita Harian tajuk asal |
 | 07 | Media Indonesia lapor, dia cuma kurier. Jadi soalannya: emas ni milik siapa? Asal-usulnya masih disiasat. | Kad TVOne "berstatus kurir" · tanda **?** besar atas batang emas |
 | 08 | Lelaki tu ditahan dua puluh hari untuk siasatan. Kalau sabit kesalahan, undang-undang kastam Indonesia peruntukkan penjara sehingga sepuluh tahun. | Kad **REMAN 20 HARI** · bar "1–10 TAHUN · JIKA SABIT" |
-| 09 | (penutup, 1–2 s senyap) | Zoom out ke Selat Melaka · outro Follow + Subscribe |
+| 09 | Dua kilo dalam setiap kasut… untuk risiko sepuluh tahun penjara. Korang rasa, berapa upah yang berbaloi? Komen kat bawah. Dan follow, kita update bila kes ni ke mahkamah. | Kasut + 2 batang emas setiap belah di tengah skrin, di sebelah jeriji penjara "10 TAHUN" · **gelembung komen** muncul satu-satu: "RM10K?", "RM50K?", "RM100K?", "TAK BERBALOI" · anak panah ke bawah "KOMEN" · outro Follow + Subscribe |
 
 ## Versi satu perenggan (untuk rakam VO)
 
-Empat kilo emas. Disorok dalam kasut. Dan yang ditahan… lelaki Malaysia. Ni apa yang berlaku. Dua belas November lalu, di Lapangan Terbang Antarabangsa Minangkabau, dekat Padang, Indonesia, seorang lelaki Malaysia berumur tiga puluh empat tahun nak naik penerbangan ke Malaysia. Tapi masa pemeriksaan di kawasan pelepasan, pegawai jumpa empat batang emas. Dua dalam setiap kasut. Ujian makmal: lebih sembilan puluh sembilan peratus emas tulen. Nilainya kira-kira sepuluh bilion rupiah. Atau lebih kurang dua juta dua ratus lima puluh ribu ringgit. Media Indonesia lapor, dia cuma kurier. Jadi soalannya: emas ni milik siapa? Asal-usulnya masih disiasat. Lelaki tu ditahan dua puluh hari untuk siasatan. Kalau sabit kesalahan, undang-undang kastam Indonesia peruntukkan penjara sehingga sepuluh tahun.
+Empat kilo emas. Disorok dalam kasut. Dan yang ditahan… lelaki Malaysia. Ni apa yang berlaku. Dua belas November lalu, di Lapangan Terbang Antarabangsa Minangkabau, dekat Padang, Indonesia, seorang lelaki Malaysia berumur tiga puluh empat tahun nak naik penerbangan ke Malaysia. Tapi masa pemeriksaan di kawasan pelepasan, pegawai jumpa empat batang emas. Dua dalam setiap kasut. Ujian makmal: lebih sembilan puluh sembilan peratus emas tulen. Nilainya kira-kira sepuluh bilion rupiah. Atau lebih kurang dua juta dua ratus lima puluh ribu ringgit. Media Indonesia lapor, dia cuma kurier. Jadi soalannya: emas ni milik siapa? Asal-usulnya masih disiasat. Lelaki tu ditahan dua puluh hari untuk siasatan. Kalau sabit kesalahan, undang-undang kastam Indonesia peruntukkan penjara sehingga sepuluh tahun. Dua kilo dalam setiap kasut… untuk risiko sepuluh tahun penjara. Korang rasa, berapa upah yang berbaloi? Komen kat bawah. Dan follow, kita update bila kes ni ke mahkamah.
 
 ## Semakan fakta
 Penuh dalam `research/emas-kasut-minangkabau-2026.md`.
