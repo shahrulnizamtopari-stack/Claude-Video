@@ -275,7 +275,7 @@ function bobbleHTML(k, rot = 0, H = 600) {
   return `<div class="fig" style="width:${w}px;height:${H}px;margin-left:${-w / 2}px">
     <img class="fb" src="../assets/leaders/${k}-fbody.png" style="width:${w}px;height:${H}px">
     <img class="fh" src="../assets/leaders/${k}-fhead.png" style="width:${w}px;height:${(m.neck + 7) * sc}px;transform-origin:${m.px * sc}px ${m.neck * sc}px;transform:rotate(${rot}deg)"></div>
-    <div class="np"><b>${LEADER[k][0]}</b><br><i>${LEADER[k][1]}</i></div><div class="ai">KARIKATUR · AI</div>`;
+    <div class="np"><b>${LEADER[k][0]}</b><br><i>${LEADER[k][1]}</i></div>`;
 }
 const bobble = (k, x, y, rot = -3) => html(`<div class="bob" style="left:${x}px;top:${y}px">${bobbleHTML(k, rot)}</div>`);
 const warheads = (n) => `<div class="wh">${Array.from({ length: n }, (_, i) => `<svg width="22" height="40" viewBox="0 0 22 40"><path d="M11 0 Q22 14 20 30 L2 30 Q0 14 11 0Z" fill="${i < n ? "#ff2d46" : "#333"}"/><rect x="4" y="31" width="14" height="8" rx="2" fill="#9aa3ad"/></svg>`).join("")}</div>`;
