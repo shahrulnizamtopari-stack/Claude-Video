@@ -1,0 +1,306 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Inter;src:url(../assets/fonts/Inter-400.woff2);font-weight:400}
+@font-face{font-family:Inter;src:url(../assets/fonts/Inter-700.woff2);font-weight:700}
+@font-face{font-family:Inter;src:url(../assets/fonts/inter-latin-800-normal.woff2);font-weight:800}
+@font-face{font-family:Mono;src:url(../assets/fonts/JetBrainsMono-700.woff2);font-weight:700}
+@font-face{font-family:Serif;src:url(../assets/fonts/EBGaramond-400.woff2);font-weight:400}
+@font-face{font-family:Serif;src:url(../assets/fonts/EBGaramond-700.woff2);font-weight:700}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;background:#05070b;overflow:hidden;font-family:Inter}
+#gl{position:absolute;inset:0;width:1080px;height:1920px}
+.vig{position:absolute;inset:0;pointer-events:none;background:
+ linear-gradient(180deg,#05070b 0%,rgba(5,7,11,.92) 7%,rgba(5,7,11,.15) 22%,rgba(5,7,11,0) 40%,rgba(5,7,11,0) 70%,rgba(5,7,11,.55) 90%,#05070b 100%)}
+#ov{position:absolute;inset:0}
+.cap{position:absolute;top:168px;left:0;right:0;text-align:center;font:700 46px/1.15 Inter;color:#fff;letter-spacing:-.5px;padding:0 70px}
+.cap .r{color:#ff2d46}.cap .g{color:rgba(255,255,255,.38)}
+.pin{position:absolute;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;gap:6px}
+.lab{font:700 20px/1 Mono;letter-spacing:2px;color:#fff;background:#0b0d12;padding:7px 10px 6px;border-radius:4px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.5)}
+.sub{font:700 17px/1 Mono;letter-spacing:1.5px;color:#0b0d12;background:#fff;padding:5px 8px 4px;border-radius:3px;white-space:nowrap;margin-top:-4px}
+.sub.red{background:#ff2d46;color:#fff}
+.flag{width:56px;height:38px;border-radius:4px;box-shadow:0 0 0 3px #fff,0 6px 16px rgba(0,0,0,.6);overflow:hidden}
+.flag svg{width:100%;height:100%;display:block}
+.dot{width:26px;height:26px;border-radius:50%;background:#fff;border:7px solid #0b0d12;box-shadow:0 0 0 3px #fff}
+.card{position:absolute;left:50%;transform:translateX(-50%);width:760px;border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.hd{background:#0e1015;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:16px 24px}
+.hd b{font:800 26px Inter;letter-spacing:.5px}.hd b:before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:#ff2d46;margin-right:12px;vertical-align:3px}
+.hd i{font:700 18px Mono;letter-spacing:2px;color:#9aa3ad;font-style:normal}
+.bd{background:#fff;color:#111;padding:22px 28px 16px;font:400 46px/1.16 Serif}
+.bd mark{background:rgba(255,64,110,.42);color:#111;padding:0 2px}
+.ft{font:700 15px Mono;color:#8a929b;letter-spacing:1px;margin-top:12px}
+.media{height:330px;background:linear-gradient(135deg,#1b2633,#0d131b);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#7f8c99;font:700 20px Mono;letter-spacing:2px;text-align:center;border-top:1px solid #222}
+.media em{font-style:normal;color:#ffcf4a;font-size:17px}
+.stat{position:absolute;left:50%;transform:translateX(-50%);width:760px;background:rgba(10,12,17,.94);border-radius:16px;padding:34px 40px 30px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.stat .k{font:700 22px Mono;letter-spacing:4px;color:#c9d0d8}
+.stat .n{font:italic 700 190px/1 Serif;color:#ff2d46;margin:14px 0 6px}
+.stat .u{font:800 40px Inter;color:#fff;letter-spacing:.5px}
+.stat .bar{height:4px;background:#2a2f38;margin-top:24px;border-radius:2px}.stat .bar div{height:100%;background:#ff2d46;width:70%}
+.title{position:absolute;top:250px;left:0;right:0;text-align:center;color:#fff}
+.title .a{font:800 54px Inter;letter-spacing:3px}
+.title .b{font:800 150px/1 Inter;letter-spacing:-5px}.title .b span{color:#ff2d46}
+.title .c{font:800 50px Inter;letter-spacing:6px;margin-top:18px}
+.title .ln{width:520px;height:5px;background:#ff2d46;margin:22px auto 0}
+.person{position:absolute;width:250px;border-radius:12px;overflow:hidden;background:#0e1015;box-shadow:0 18px 40px rgba(0,0,0,.6)}
+.person .ph{height:260px;background:linear-gradient(160deg,#3a4552,#151b22);display:flex;align-items:center;justify-content:center;font:700 16px Mono;color:#8996a3;letter-spacing:1px;text-align:center;padding:10px}
+.person .nm{font:800 24px Inter;color:#fff;padding:12px 14px 2px}.person .rl{font:700 14px Mono;color:#9aa3ad;padding:0 14px 14px;letter-spacing:1.5px}
+.win{position:absolute;left:220px;top:380px;width:640px;height:800px;border:3px solid rgba(255,255,255,.9);border-radius:18px;background:linear-gradient(160deg,#243142,#0c1118);box-shadow:0 30px 80px rgba(0,0,0,.7);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#8fa0b2;font:700 22px Mono;letter-spacing:2px;text-align:center;padding:0 40px}.win em{font-style:normal;color:#ffcf4a;font-size:19px;letter-spacing:1px}.win i{position:absolute;right:14px;top:14px;font:700 16px Mono;color:#fff;background:rgba(0,0,0,.55);padding:5px 10px;border-radius:4px;font-style:normal}
+.stamp{position:absolute;font:800 46px Inter;color:#ff2d46;border:5px solid #ff2d46;padding:4px 18px;border-radius:8px;transform:rotate(-8deg);letter-spacing:2px;background:rgba(10,12,17,.6)}
+.wm{position:absolute;right:40px;bottom:330px;font:800 26px Inter;color:#fff;text-align:right;opacity:.9}
+.cap{top:255px!important}
+.cap.capb{top:1490px!important;text-shadow:0 3px 14px rgba(0,0,0,.95),0 0 4px rgba(0,0,0,.9)}
+.cap.capb::before{content:"";position:absolute;left:40px;right:40px;top:-18px;bottom:-18px;background:linear-gradient(rgba(5,7,11,0),rgba(5,7,11,.55) 30%,rgba(5,7,11,.55) 70%,rgba(5,7,11,0));z-index:-1;border-radius:20px}
+.win.img{padding:0;overflow:hidden}.win.img img{width:100%;height:100%;object-fit:cover}
+.xr{position:absolute;left:160px;width:760px;background:rgba(10,12,17,.9);border-radius:16px;padding:22px 0 18px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.xr .k{font:700 22px Mono;letter-spacing:4px;color:#7fdcff;margin-bottom:8px}
+.xr .bigq{position:absolute;left:0;right:0;top:110px;font:italic 700 220px/1 Serif;color:#ff2d46;text-shadow:0 10px 40px rgba(0,0,0,.8)}
+.jail{margin-top:24px;text-align:left}.jail span{font:700 18px Mono;color:#c9d0d8;letter-spacing:2px}.jail .rng{position:relative;height:12px;background:#2a2f38;border-radius:6px;margin:14px 0 8px}.jail .rng b{position:absolute;left:10%;right:0;top:0;bottom:0;background:linear-gradient(90deg,#ff8a8a,#ff2d46);border-radius:6px}.jail .lb{display:inline-block;width:50%}.jail .lb.r{text-align:right;color:#ff2d46}
+.bars{position:relative;width:250px;height:320px;display:flex;justify-content:space-between;padding:0 10px;border-top:14px solid #9aa3ad;border-bottom:14px solid #9aa3ad}.bars div{width:14px;background:linear-gradient(90deg,#6b737e,#c9d0d8,#6b737e)}.bars b{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-6deg);font:800 40px Inter;color:#fff;background:#ff2d46;padding:6px 14px;border-radius:8px;white-space:nowrap}
+.bubs{position:absolute;top:760px;left:90px;right:90px;display:flex;flex-wrap:wrap;gap:18px;justify-content:center}.bubs span{font:800 38px Inter;color:#111;background:#fff;padding:14px 26px;border-radius:30px 30px 30px 6px;box-shadow:0 12px 30px rgba(0,0,0,.5)}.bubs span.r{background:#ff2d46;color:#fff}
+.komen{position:absolute;top:1010px;left:0;right:0;text-align:center;font:800 60px Inter;color:#ffce00;letter-spacing:4px;text-shadow:0 6px 24px rgba(0,0,0,.8)}
+.title .b{font:800 230px/1 Inter!important}
+.tl{position:absolute;left:60px;right:60px;bottom:120px;display:flex;justify-content:space-between}
+.tn{position:relative;z-index:1;width:220px;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.45}
+.tn b{width:26px;height:26px;border-radius:50%;background:#0b0d12;border:5px solid #9aa3ad}
+.tn i{font:700 22px Mono;font-style:normal;color:#fff;letter-spacing:2px}
+.tn u{font:700 14px Mono;text-decoration:none;color:#9aa3ad;letter-spacing:1px;text-align:center}
+.tn.done{opacity:1}.tn.done b{border-color:#fff;background:#fff}.tn.now b{background:#ff2d46;border-color:#ff2d46;box-shadow:0 0 0 8px rgba(255,45,70,.3)}.tn.now u{color:#ff2d46}
+.tbar{position:absolute;left:110px;right:110px;top:13px;height:4px;background:#3a404b}.tbar div{height:100%;background:#fff}
+.seats{position:absolute;left:160px;width:760px;background:rgba(10,12,17,.94);border-radius:16px;padding:26px 0 24px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.seats .k{font:700 22px Mono;letter-spacing:4px;color:#c9d0d8;margin-bottom:6px}
+.seats .maj{font:800 34px Inter;color:#fff;margin-top:-4px}.seats .maj b{color:#ff2d46;font-size:44px}
+.leg{color:#fff;display:flex;justify-content:center;gap:36px;margin-top:14px;font:800 28px Inter}.leg i{display:inline-block;width:20px;height:20px;border-radius:50%;margin-right:10px;vertical-align:-2px}
+.letter{position:absolute;filter:drop-shadow(0 20px 40px rgba(0,0,0,.6));transform:rotate(-4deg)}
+.ncard{position:absolute;width:760px;display:flex;gap:26px;align-items:center;background:rgba(10,12,17,.94);border-radius:16px;padding:26px 30px;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.ncard .ini{width:120px;height:120px;border-radius:50%;background:#2a2f38;border:4px solid #fff;display:flex;align-items:center;justify-content:center;font:800 48px Inter;color:#fff;flex:none}
+.ncard .nm{font:800 54px Inter;color:#fff}.ncard .rl{font:700 20px Mono;color:#ffce00;letter-spacing:2px;margin-top:8px}
+.ncard .ini img{width:100%;height:100%;object-fit:cover;border-radius:50%}.ncard .ini{overflow:hidden}
+.duo{position:absolute;top:600px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:26px}
+.pt{width:300px;background:rgba(10,12,17,.94);border-radius:14px;padding:12px 12px 16px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.pt img{width:276px;height:330px;object-fit:cover;object-position:50% 20%;border-radius:8px;display:block;border:3px solid #fff}
+.pt.royal img{border-color:#ffce00}
+.pt b{display:block;font:800 26px Inter;color:#fff;margin-top:12px}.pt i{display:block;font:700 15px Mono;font-style:normal;color:#ffce00;letter-spacing:1.5px;margin-top:6px}
+.duo .arrow{font:800 70px Inter;color:#fff;opacity:.7}
+.bags,.ppl{position:absolute;left:140px;width:800px;background:rgba(10,12,17,.94);border-radius:16px;padding:26px 24px 22px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6);overflow:hidden}
+.bags .k,.ppl .k{font:700 22px Mono;letter-spacing:4px;color:#c9d0d8;margin-bottom:18px}
+.bags .row{display:flex;justify-content:center;gap:24px}
+.bags .scan{position:absolute;left:62%;top:60px;width:10px;height:150px;background:#7fdcff;box-shadow:0 0 30px 12px rgba(127,220,255,.7)}
+.nost{margin-top:16px;font:700 20px Mono;letter-spacing:2px;color:#9aa3ad}.nost .x{color:#ff2d46;margin-left:14px}
+.ppl .row{display:flex;justify-content:center;gap:40px;align-items:flex-end}.ppl .ic{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:300px}
+.ppl .gl{font:800 26px Inter;margin-top:12px}.ppl .ft2{font:700 15px Mono;color:#8a929b;letter-spacing:1px;margin-top:16px}
+.stat .n{font-size:200px}
+.bob{position:absolute;width:300px;height:560px}.bob .body{position:absolute;left:50px;top:300px}.bob .head{position:absolute;left:50%;top:0;height:330px;transform-origin:50% 92%;margin-left:-160px;width:auto;max-width:330px;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(0,0,0,.6))}
+.bob .np{position:absolute;top:495px;left:-20px;right:-20px;text-align:center}.bob .np b{display:block;font:800 26px Inter;color:#fff;text-shadow:0 2px 8px #000}.bob .np i{display:inline-block;font:700 15px Mono;font-style:normal;color:#0b0d12;background:#ffce00;padding:4px 8px;border-radius:3px;letter-spacing:1px;margin-top:4px}
+.rk{position:absolute;left:430px;right:50px;top:900px;background:rgba(10,12,17,.92);border-radius:16px;padding:22px 26px 20px;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.rk .no{font:800 40px Inter;color:#ffce00;letter-spacing:2px}.rk .num{font:italic 700 150px/1 Serif;color:#ff2d46;margin:6px 0}.rk .kk{font:700 16px Mono;color:#c9d0d8;letter-spacing:2px}.rk .ex{font:800 22px Inter;color:#fff;margin-top:12px}.rk .ex.up{color:#ff2d46}
+.wh{display:flex;flex-wrap:wrap;gap:4px;margin-top:14px;max-height:190px;overflow:hidden}.wh svg{width:16px;height:30px}
+.nd{position:absolute;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:#ff2d46;box-shadow:0 0 0 8px rgba(255,45,70,.35),0 0 30px 8px rgba(255,45,70,.6)}
+.chip{position:absolute;left:0;right:0;text-align:center;font:700 26px Mono;color:#ff2d46;letter-spacing:3px}
+.bars5{position:absolute;left:70px;right:70px;top:640px;background:rgba(10,12,17,.94);border-radius:16px;padding:24px 28px;box-shadow:0 24px 60px rgba(0,0,0,.6)}.bars5 .k{font:700 20px Mono;color:#c9d0d8;letter-spacing:3px;margin-bottom:14px;text-align:center}
+.br{display:flex;align-items:center;gap:14px;margin:10px 0}.br img{width:64px;height:64px;object-fit:contain}.br .nm{width:140px;font:800 24px Inter;color:#fff}.br .bb{flex:1;height:26px;background:#20252e;border-radius:6px;overflow:hidden}.br .bb div{height:100%;background:#5b6573}.br.hot .bb div{background:#ff2d46}.br .v{width:110px;text-align:right;font:800 28px Inter;color:#fff}
+.donut{margin:18px auto 0;width:220px;height:220px;border-radius:50%;background:conic-gradient(#ff2d46 0 83%,#2a2f38 83% 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}.donut::before{content:"";position:absolute;inset:34px;border-radius:50%;background:#0b0d12}.donut b,.donut i{position:relative}.donut b{font:italic 700 64px Serif;color:#ff2d46}.donut i{font:700 16px Mono;color:#c9d0d8;font-style:normal}
+.vs{position:absolute;top:560px;left:60px;right:60px;display:flex;align-items:center;justify-content:center;gap:24px}.opt{width:380px;height:380px;border-radius:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:110px;box-shadow:0 24px 60px rgba(0,0,0,.6)}.opt b{font:800 60px Inter;color:#fff;margin-top:8px}.opt i{font:700 22px Mono;color:#fff;font-style:normal;letter-spacing:4px}.opt.a{background:#b3121f}.opt.b{background:#14834d}.or{font:800 40px Inter;color:#fff}
+#tintS{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,30,50,0) 40%,rgba(255,30,50,.45) 100%)}
+</style></head><body>
+<canvas id="gl" width="1080" height="1920"></canvas>
+<div class="vig"></div>
+<div id="ov"></div>
+<script src="../assets/lib/topojson-client.min.js"></script>
+<script type="module">
+import { createGlobe, ll } from "../assets/globe.js";
+const W = 1080, H = 1920;
+const F = +(new URLSearchParams(location.search).get("f") || 1);
+const g = await createGlobe(document.getElementById("gl"), { W, H, base: "../assets/" });
+const topo = await (await fetch("../assets/geo/countries-10m.json")).json();
+const countries = topojson.feature(topo, topo.objects.countries).features;
+const byId = (id) => countries.find((c) => +c.id === id);
+const CN = byId(156), MY = byId(458), VN = byId(704), PH = byId(608), BN = byId(96), TW = byId(158);
+
+// ---------- overlay layers ----------
+const borders = g.layer("borders", 0, { lon0: 92, lon1: 140, lat0: -6, lat1: 34, ppd: 80 });
+const red = g.layer("china", 1, { lon0: 72, lon1: 136, lat0: 16, lat1: 54, ppd: 40 });
+const myl = g.layer("malaysia", 2, { lon0: 99, lon1: 120, lat0: 0, lat1: 8, ppd: 160 });
+const lines = g.layer("lines", 3, { lon0: 92, lon1: 140, lat0: -6, lat1: 34, ppd: 80 });
+const near = (f) => { const c = f.geometry.coordinates.flat(3); return true; };
+{ const L = borders, c = L.ctx; c.strokeStyle = "rgba(255,255,255,.35)"; c.lineWidth = 1; c.lineJoin = "round";
+  for (const f of countries) { L.path(f.geometry); c.stroke(); } L.tex.needsUpdate = true; }
+function chinaRed() {
+  const L = red, c = L.ctx; c.save(); L.path(CN.geometry); c.clip("evenodd");
+  c.fillStyle = "rgba(190,18,40,.6)"; c.fillRect(0, 0, L.OW, L.OH);
+  c.fillStyle = "rgba(60,0,8,.35)"; for (let y = 0; y < L.OH; y += 6) c.fillRect(0, y, L.OW, 2.5);
+  c.restore(); c.strokeStyle = "#ff3d55"; c.lineWidth = 2.5; L.path(CN.geometry); c.stroke(); L.tex.needsUpdate = true;
+}
+function malaysiaFlag() {
+  const L = myl, c = L.ctx; c.save(); L.path(MY.geometry); c.clip("evenodd");
+  const x0 = L.ox(99.5), x1 = L.ox(119.4), y0 = L.oy(7.5), y1 = L.oy(0.8), sh = (y1 - y0) / 14;
+  for (let i = 0; i < 14; i++) { c.fillStyle = i % 2 ? "rgba(255,255,255,.62)" : "rgba(204,0,1,.7)"; c.fillRect(x0, y0 + i * sh, x1 - x0, sh + 1); }
+  c.fillStyle = "rgba(1,0,102,.78)"; c.fillRect(x0, y0, (x1 - x0) * 0.5, sh * 8);
+  c.fillStyle = "#ffcc00"; const cx = L.ox(103.6), cy = L.oy(5.0), r = sh * 2.6;
+  c.beginPath(); c.arc(cx, cy, r, 0, 7); c.fill(); c.fillStyle = "rgb(1,0,102)"; c.beginPath(); c.arc(cx + r * 0.32, cy, r * 0.82, 0, 7); c.fill();
+  c.restore(); c.strokeStyle = "#fff"; c.lineWidth = 5; L.path(MY.geometry); c.stroke(); L.tex.needsUpdate = true;
+}
+// ---------- Negeri Sembilan ----------
+const ST = (await (await fetch("../assets/geo/my-states.json")).json()).features;
+const N9 = ST.find((f) => f.properties.name === "Negeri Sembilan");
+const stl = g.layer("states", 4, { lon0: 99, lon1: 105, lat0: 0.8, lat1: 7, ppd: 300 });
+function states(n9fill = true) {
+  const L = stl, c = L.ctx; c.lineJoin = "round";
+  c.strokeStyle = "rgba(255,255,255,.45)"; c.lineWidth = 1.5; for (const f of ST) { L.path(f.geometry); c.stroke(); }
+  if (n9fill) { c.save(); L.path(N9.geometry); c.clip("evenodd"); c.fillStyle = "rgba(255,206,0,.22)"; c.fillRect(0, 0, L.OW, L.OH);
+    c.fillStyle = "rgba(255,206,0,.10)"; for (let y = 0; y < L.OH; y += 8) c.fillRect(0, y, L.OW, 3); c.restore(); }
+  if (n9fill) { c.shadowColor = "#ffce00"; c.shadowBlur = 24; c.strokeStyle = "#ffd84a"; c.lineWidth = 5; L.path(N9.geometry); c.stroke(); c.shadowBlur = 0; }
+  L.tex.needsUpdate = true;
+}
+const SEREMBAN = [2.7259, 101.9378];
+// timeline strip at the bottom: dates light up as the story moves
+const TL = [["2 OGOS", "ANGKAT SUMPAH"], ["16 NOV", "BN: LETAK JAWATAN"], ["17 NOV", "ISTANA: PERLU PERKENAN"], ["20 NOV", "ISTANA: BUKTIKAN MAJORITI"]];
+function timeline(on) {
+  html(`<div class="tl">${TL.map(([d, s], i) => `<div class="tn ${i < on ? "done" : ""} ${i === on - 1 ? "now" : ""}"><b></b><i>${d}</i><u>${s}</u></div>`).join("")}<div class="tbar"><div style="width:${Math.max(0, (on - 1) / 3) * 100}%"></div></div></div>`);
+}
+// 36-seat hemicycle
+const PARTY = [["BN", 18, "#2f6bff"], ["PH", 11, "#e3262f"], ["PN", 7, "#19a974"]];
+function seats(top, mode = "party", q = false) {
+  const rows = [8, 12, 16], R0 = 150, dR = 62, pts = [];
+  rows.forEach((n, r) => { const R = R0 + r * dR; for (let i = 0; i < n; i++) { const a = Math.PI - (i / (n - 1)) * Math.PI; pts.push({ a, x: 380 + R * Math.cos(a), y: 360 - R * Math.sin(a) }); } });
+  pts.sort((p, q2) => q2.a - p.a);
+  const col = []; for (const [, n, c] of PARTY) for (let i = 0; i < n; i++) col.push(c);
+  const dots = pts.map((p, i) => `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="21" fill="${mode === "grey" ? "#3a404b" : col[i]}" stroke="rgba(0,0,0,.35)" stroke-width="3"/>`).join("");
+  const leg = mode === "grey" ? "" : `<div class="leg">${PARTY.map(([p, n, c]) => `<span><i style="background:${c}"></i>${p} <b>${n}</b></span>`).join("")}</div>`;
+  html(`<div class="seats" style="top:${top}px"><div class="k">${mode === "grey" ? "DUN NEGERI SEMBILAN" : "KEPUTUSAN PRN · 1 OGOS 2026"}</div>
+    <svg width="760" height="380" viewBox="0 0 760 380">${dots}<line x1="380" y1="20" x2="380" y2="372" stroke="#fff" stroke-width="4" stroke-dasharray="10 8"/>
+    ${q ? `<text x="380" y="330" text-anchor="middle" font-family="Serif" font-style="italic" font-weight="700" font-size="150" fill="#ff2d46">?</text>` : ""}</svg>
+    <div class="maj">MAJORITI <b>19</b> / 36</div>${leg}</div>`);
+}
+const letter = (x, y, stampTxt) => html(`<div class="letter" style="left:${x}px;top:${y}px"><svg width="260" height="190" viewBox="0 0 260 190"><rect x="4" y="4" width="252" height="182" rx="10" fill="#f4f1ea" stroke="#d9d3c4" stroke-width="3"/><path d="M8 10 L130 100 L252 10" fill="none" stroke="#cfc7b4" stroke-width="5"/>${[0,1,2].map(i=>`<rect x="40" y="${120+i*18}" width="${180-i*40}" height="8" rx="4" fill="#d9d3c4"/>`).join("")}</svg>${stampTxt ? `<div class="stamp" style="left:20px;top:56px;font-size:34px">${stampTxt}</div>` : ""}</div>`);
+const nameCard = (x, y, ini, nm, rl, ph) => html(`<div class="ncard" style="left:${x}px;top:${y}px"><div class="ini">${ph ? `<img src="../assets/photos/${ph}">` : ini}</div><div><div class="nm">${nm}</div><div class="rl">${rl}</div></div></div>`);
+// ---------- HTML helpers ----------
+const ov = document.getElementById("ov");
+const FL = {
+  MY: '<svg viewBox="0 0 28 14"><g>' + Array.from({ length: 14 }, (_, i) => `<rect y="${i}" width="28" height="1" fill="${i % 2 ? "#fff" : "#cc0001"}"/>`).join("") + '</g><rect width="14" height="8" fill="#010066"/><circle cx="5.5" cy="4" r="2.6" fill="#fc0"/><circle cx="6.3" cy="4" r="2.1" fill="#010066"/><circle cx="10" cy="4" r="1.4" fill="#fc0"/></svg>',
+  CN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#de2910"/><text x="3" y="10" font-size="9" fill="#ffde00">★</text></svg>',
+  VN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#da251d"/><text x="9.5" y="15" font-size="12" fill="#ff0">★</text></svg>',
+  PH: '<svg viewBox="0 0 30 20"><rect width="30" height="10" fill="#0038a8"/><rect y="10" width="30" height="10" fill="#ce1126"/><path d="M0 0L14 10L0 20Z" fill="#fff"/><circle cx="5" cy="10" r="2" fill="#fcd116"/></svg>',
+  BN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#f7e017"/><path d="M0 4L30 11V16L0 9Z" fill="#fff"/><path d="M0 9L30 16V20L0 13Z" fill="#000"/><circle cx="15" cy="10" r="3" fill="#cf1126"/></svg>',
+  TW: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#fe0000"/><rect width="15" height="10" fill="#000095"/><circle cx="7.5" cy="5" r="2.5" fill="#fff"/></svg>',
+};
+function flagPin(lat, lon, code, label, dy = 0) {
+  const p = g.project(lat, lon); const e = document.createElement("div"); e.className = "pin";
+  e.style.left = p.x + "px"; e.style.top = p.y + dy + "px";
+  e.innerHTML = `<div class="flag">${FL[code]}</div><div class="lab">${label}</div>`; ov.appendChild(e);
+}
+function locPin(lat, lon, label, sub, red) {
+  const p = g.project(lat, lon); const e = document.createElement("div"); e.className = "pin"; e.style.flexDirection = "row"; e.style.alignItems = "center";
+  e.style.transform = "translate(-13px,-50%)"; e.style.left = p.x + "px"; e.style.top = p.y + "px";
+  e.innerHTML = `<div class="dot"></div><div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px"><div class="lab">${label}</div>${sub ? `<div class="sub ${red ? "red" : ""}">${sub}</div>` : ""}</div>`; ov.appendChild(e);
+}
+const html = (s) => ov.insertAdjacentHTML("beforeend", s);
+const cap = (s) => html(`<div class="cap">${s}</div>`);
+const capB = (s) => html(`<div class="cap capb">${s}</div>`);
+const card = (top, outlet, date, head, foot, media) => html(`<div class="card" style="top:${top}px"><div class="hd"><b>${outlet}</b><i>${date}</i></div><div class="bd">${head}<div class="ft">${foot}</div></div>${media ? `<div class="media">${media}</div>` : ""}</div>`);
+const stat = (top, k, n, u) => html(`<div class="stat" style="top:${top}px"><div class="k">${k}</div><div class="n">${n}</div><div class="u">${u}</div><div class="bar"><div></div></div></div>`);
+
+
+// top-down ship silhouette (pointed bow) with a short wake
+function shipIcon(L, lo, la, ang, col, sz = 1, wake = true) {
+  const c = L.ctx; c.save(); c.translate(L.ox(lo), L.oy(la)); c.rotate(ang); c.scale(sz, sz);
+  if (wake) { c.strokeStyle = "rgba(255,255,255,.55)"; c.lineWidth = 2; c.beginPath(); c.moveTo(-14, -4); c.lineTo(-34, -9); c.moveTo(-14, 4); c.lineTo(-34, 9); c.stroke(); }
+  c.shadowColor = col; c.shadowBlur = 10; c.fillStyle = col;
+  c.beginPath(); c.moveTo(16, 0); c.lineTo(6, -5); c.lineTo(-14, -5); c.lineTo(-14, 5); c.lineTo(6, 5); c.closePath(); c.fill();
+  c.shadowBlur = 0; c.fillStyle = "rgba(0,0,0,.45)"; c.fillRect(-6, -2.5, 8, 5); c.restore();
+}
+function ringShips(n = 16, r = 1.55) {
+  for (let i = 0; i < n; i++) { const a = i / n * 6.283 + .2, lo = 120.9 + r * 1.1 * Math.cos(a), la = 23.7 + r * Math.sin(a);
+    if (lo < 119.6 && la > 24.2 && la < 25.6) continue; shipIcon(lines, lo, la, -(a + 1.57), "#ff2d46", 1.6); }
+  lines.tex.needsUpdate = true;
+}
+function cargoShips(P, sz = 2) { for (const [lo, la, a] of P) shipIcon(lines, lo, la, a, "#e9f6ff", sz); lines.tex.needsUpdate = true; }
+// approximate drill zone: dashed red box + hatch
+function zone(lo0, la0, lo1, la1) {
+  const L = lines, c = L.ctx, x = L.ox(lo0), y = L.oy(la1), w = L.ox(lo1) - x, h = L.oy(la0) - y;
+  c.save(); c.beginPath(); c.rect(x, y, w, h); c.clip(); c.strokeStyle = "rgba(255,45,70,.35)"; c.lineWidth = 3;
+  for (let k = -h; k < w; k += 14) { c.beginPath(); c.moveTo(x + k, y + h); c.lineTo(x + k + h, y); c.stroke(); } c.restore();
+  c.setLineDash([12, 8]); c.strokeStyle = "#ff2d46"; c.lineWidth = 4; c.strokeRect(x, y, w, h); c.setLineDash([]); L.tex.needsUpdate = true;
+}
+function splash(lo, la) { const L = lines, c = L.ctx; c.strokeStyle = "#ffd0a0"; for (const [r, a] of [[6, 1], [13, .7], [21, .4]]) { c.globalAlpha = a; c.lineWidth = 3; c.beginPath(); c.arc(L.ox(lo), L.oy(la), r, 0, 7); c.stroke(); } c.globalAlpha = 1; L.tex.needsUpdate = true; }
+// rocket arcs drawn on screen between projected points (lifted bezier), with trail glow + head
+function rockets(pairs, prog = 1) {
+  let svg = `<svg style="position:absolute;inset:0" width="1080" height="1920"><defs><linearGradient id="rg" x1="0" x2="1"><stop offset="0" stop-color="#ff9a3c" stop-opacity="0"/><stop offset="1" stop-color="#ffe2b0"/></linearGradient><filter id="gw"><feGaussianBlur stdDeviation="4"/></filter></defs>`;
+  for (const [a, b, p = prog] of pairs) {
+    const A = g.project(a[1], a[0]), B = g.project(b[1], b[0]); const d = Math.hypot(B.x - A.x, B.y - A.y);
+    const C = { x: (A.x + B.x) / 2, y: (A.y + B.y) / 2 - d * 0.55 };
+    const q = (t) => ({ x: (1 - t) ** 2 * A.x + 2 * (1 - t) * t * C.x + t * t * B.x, y: (1 - t) ** 2 * A.y + 2 * (1 - t) * t * C.y + t * t * B.y });
+    const pts = Array.from({ length: 30 }, (_, i) => q(i / 29 * p)); const path = "M" + pts.map((o) => `${o.x.toFixed(1)} ${o.y.toFixed(1)}`).join(" L");
+    const h = pts[pts.length - 1];
+    svg += `<path d="${path}" stroke="#ff6a2a" stroke-width="10" fill="none" opacity=".55" filter="url(#gw)"/><path d="${path}" stroke="#ffd9a8" stroke-width="3.5" fill="none" stroke-dasharray="2 7" stroke-linecap="round"/>`;
+    if (p < 1) svg += `<circle cx="${h.x}" cy="${h.y}" r="14" fill="#ffb347" filter="url(#gw)"/><circle cx="${h.x}" cy="${h.y}" r="6" fill="#fff"/>`;
+    svg += `<circle cx="${A.x}" cy="${A.y}" r="16" fill="#ff8a2a" opacity=".8" filter="url(#gw)"/><circle cx="${A.x}" cy="${A.y}" r="5" fill="#fff"/>`;
+  }
+  html(svg + "</svg>");
+}
+const tag = (lat, lon, t) => { const p = g.project(lat, lon); html(`<div class="sub red" style="position:absolute;left:${p.x}px;top:${p.y}px;transform:translate(-50%,-50%)">${t}</div>`); };
+
+// ---------- frames ----------
+const C_ = (id) => countries.find((c) => +c.id === id);
+const UKf = C_(826), FRf = C_(250), CNf = C_(156), USf = C_(840), RUf = C_(643);
+const ASEAN = [458, 360, 764, 704, 608, 104, 116, 418, 702, 96].map(C_);
+// flag painters: draw a flag over the country's bbox, clipped to its shape
+function flagFill(name, f, R, paint, alpha = 0.8) {
+  const L = g.layer(name, 6, R), c = L.ctx; c.save(); L.path(f.geometry); c.clip("evenodd"); c.globalAlpha = alpha;
+  paint(c, L); c.restore(); c.strokeStyle = "#fff"; c.lineWidth = 3; L.path(f.geometry); c.stroke(); L.tex.needsUpdate = true; return L;
+}
+const box = (L, lo0, la0, lo1, la1) => ({ x: L.ox(lo0), y: L.oy(la1), w: L.ox(lo1) - L.ox(lo0), h: L.oy(la0) - L.oy(la1) });
+const P = {
+  uk: (c, L) => { const b = box(L, -8.5, 49.8, 2, 59); c.fillStyle = "#012169"; c.fillRect(b.x, b.y, b.w, b.h);
+    c.strokeStyle = "#fff"; c.lineWidth = b.w * 0.12; c.beginPath(); c.moveTo(b.x, b.y); c.lineTo(b.x + b.w, b.y + b.h); c.moveTo(b.x + b.w, b.y); c.lineTo(b.x, b.y + b.h); c.stroke();
+    c.strokeStyle = "#C8102E"; c.lineWidth = b.w * 0.05; c.stroke(); c.fillStyle = "#fff"; c.fillRect(b.x + b.w * 0.42, b.y, b.w * 0.16, b.h); c.fillRect(b.x, b.y + b.h * 0.42, b.w, b.h * 0.16);
+    c.fillStyle = "#C8102E"; c.fillRect(b.x + b.w * 0.46, b.y, b.w * 0.08, b.h); c.fillRect(b.x, b.y + b.h * 0.46, b.w, b.h * 0.08); },
+  fr: (c, L) => { const b = box(L, -5, 42, 8.5, 51.2); ["#0055A4", "#fff", "#EF4135"].forEach((col, i) => { c.fillStyle = col; c.fillRect(b.x + i * b.w / 3, b.y, b.w / 3 + 1, b.h); }); },
+  cn: (c, L) => { const b = box(L, 73, 18, 135, 54); c.fillStyle = "#DE2910"; c.fillRect(b.x, b.y, b.w, b.h); c.fillStyle = "#FFDE00";
+    const star = (x, y, r) => { c.beginPath(); for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * 0.4 : r; c.lineTo(x + rr * Math.cos(a), y + rr * Math.sin(a)); } c.fill(); };
+    star(b.x + b.w * 0.2, b.y + b.h * 0.3, b.h * 0.16); [[0.33, 0.12], [0.38, 0.22], [0.38, 0.36], [0.33, 0.46]].forEach(([u, v]) => star(b.x + b.w * u, b.y + b.h * v, b.h * 0.05)); },
+  us: (c, L) => { const b = box(L, -125, 24, -66, 50); for (let i = 0; i < 13; i++) { c.fillStyle = i % 2 ? "#fff" : "#B22234"; c.fillRect(b.x, b.y + i * b.h / 13, b.w, b.h / 13 + 1); }
+    c.fillStyle = "#3C3B6E"; c.fillRect(b.x, b.y, b.w * 0.4, b.h * 7 / 13); c.fillStyle = "#fff";
+    for (let r = 0; r < 9; r++) for (let k = 0; k < (r % 2 ? 5 : 6); k++) { c.beginPath(); c.arc(b.x + b.w * 0.4 * ((k + (r % 2 ? 1 : 0.5)) / 6), b.y + b.h * 7 / 13 * ((r + 0.6) / 9.6), b.h * 0.012, 0, 7); c.fill(); }
+    // Alaska: stripes only
+    const a2 = box(L, -170, 52, -130, 72); for (let i = 0; i < 13; i++) { c.fillStyle = i % 2 ? "#fff" : "#B22234"; c.fillRect(a2.x, a2.y + i * a2.h / 13, a2.w, a2.h / 13 + 1); } },
+  ru: (c, L) => { const b = box(L, 19, 41, 180, 78); ["#fff", "#0039A6", "#D52B1E"].forEach((col, i) => { c.fillStyle = col; c.fillRect(b.x, b.y + i * b.h / 3, b.w, b.h / 3 + 1); }); },
+};
+const LEADER = { uk: ["ANDY BURNHAM", "PERDANA MENTERI UK"], fr: ["EMMANUEL MACRON", "PRESIDEN PERANCIS"], cn: ["XI JINPING", "PRESIDEN CHINA"], us: ["DONALD TRUMP", "PRESIDEN AS"], ru: ["VLADIMIR PUTIN", "PRESIDEN RUSIA"] };
+const TIE = { uk: "#C8102E", fr: "#0055A4", cn: "#DE2910", us: "#B22234", ru: "#0039A6" };
+const bobble = (k, x, y, rot = -4) => html(`<div class="bob" style="left:${x}px;top:${y}px"><div class="body"><svg width="200" height="190" viewBox="0 0 200 190"><path d="M30 190 L30 70 Q30 30 100 26 Q170 30 170 70 L170 190Z" fill="#1d2433"/><path d="M78 30 L100 80 L122 30Z" fill="#fff"/><path d="M93 40 L107 40 L111 120 L100 134 L89 120Z" fill="${TIE[k]}"/><path d="M30 80 Q8 120 18 170" stroke="#1d2433" stroke-width="26" fill="none" stroke-linecap="round"/><path d="M170 80 Q192 120 182 170" stroke="#1d2433" stroke-width="26" fill="none" stroke-linecap="round"/><circle cx="18" cy="172" r="13" fill="#e8b996"/><circle cx="182" cy="172" r="13" fill="#e8b996"/></svg></div><img class="head" src="../assets/leaders/${k}-head.png" style="transform:rotate(${rot}deg)"><div class="np"><b>${LEADER[k][0]}</b><i>${LEADER[k][1]}</i></div></div>`);
+const warheads = (n) => `<div class="wh">${Array.from({ length: n }, (_, i) => `<svg width="22" height="40" viewBox="0 0 22 40"><path d="M11 0 Q22 14 20 30 L2 30 Q0 14 11 0Z" fill="${i < n ? "#ff2d46" : "#333"}"/><rect x="4" y="31" width="14" height="8" rx="2" fill="#9aa3ad"/></svg>`).join("")}</div>`;
+const rank = (r, n, k, extra = "", icons = 0) => html(`<div class="rk"><div class="no">#${r}</div><div class="num">${n}</div><div class="kk">KEPALA PELEDAK · SIPRI 2026</div>${extra}${icons ? warheads(icons) : ""}</div>`);
+const FR = {
+  1() { g.setView({ lat: 30, lon: 40, dist: 4.6, tilt: 4, yShift: 0.1 });
+    for (const [la, lo] of [[39, -98], [62, 95], [35, 104], [46.5, 2.5], [54, -2], [22, 79], [30, 70], [31, 35], [40, 127]]) { const p = g.project(la, lo); if (p.visible) html(`<div class="nd" style="left:${p.x}px;top:${p.y}px"></div>`); }
+    html(`<div class="chip" style="top:330px">● 4,012 SIAP DIGUNA · SEKARANG</div>`);
+    html(`<div class="title" style="top:1000px"><div class="a">SATU NEGARA PEGANG</div><div class="b"><span>5,420</span></div><div class="c">TEKA SIAPA?</div><div class="ln"></div></div>`); },
+  2() { flagFill("fUK", UKf, { lon0: -9, lon1: 3, lat0: 49, lat1: 61, ppd: 120 }, P.uk); g.setView({ lat: 54.5, lon: -3, dist: 0.55, tilt: 14, yShift: 0.2 });
+    bobble("uk", 70, 860); rank(5, "225", "uk", `<div class="ex">UJIAN PERTAMA · 1952</div>`, 2); capB(`Nombor lima: <span class="r">United Kingdom</span>`); },
+  3() { flagFill("fFR", FRf, { lon0: -6, lon1: 10, lat0: 41, lat1: 52, ppd: 100 }, P.fr); g.setView({ lat: 47, lon: 2.5, dist: 0.5, tilt: 14, yShift: 0.2 });
+    bobble("fr", 70, 860); rank(4, "370", "fr", `<div class="ex">TERMASUK 80 BERSARA</div>`, 4); capB(`Nombor empat: <span class="r">Perancis</span>`); },
+  4() { flagFill("fCN", CNf, { lon0: 72, lon1: 136, lat0: 17, lat1: 55, ppd: 20 }, P.cn); g.setView({ lat: 36, lon: 104, dist: 1.5, tilt: 10, yShift: 0.2 });
+    bobble("cn", 70, 860); rank(3, "620", "cn", `<div class="ex up">▲ PALING LAJU BERTAMBAH · 600 → 620</div>`, 6); capB(`paling <span class="r">laju bertambah</span> di dunia`); },
+  5() { flagFill("fUS", USf, { lon0: -172, lon1: -64, lat0: 18, lat1: 72, ppd: 12 }, P.us); g.setView({ lat: 42, lon: -100, dist: 2.0, tilt: 8, yShift: 0.2 });
+    bobble("us", 70, 860); rank(2, "5,042", "us", `<div class="ex">UJIAN PERTAMA · 1945</div>`, 50); capB(`Nombor dua: <span class="r">Amerika Syarikat</span>`); },
+  6() { flagFill("fRU", RUf, { lon0: 19, lon1: 180, lat0: 41, lat1: 78, ppd: 10 }, P.ru); g.setView({ lat: 56, lon: 95, dist: 3.6, tilt: 6, yShift: 0.2 });
+    bobble("ru", 70, 860); rank(1, "5,420", "ru", `<div class="ex">👑 TERBESAR DI DUNIA</div>`, 54); capB(`Dan nombor satu: <span class="r">Rusia</span>`); },
+  7() { g.setView({ lat: 45, lon: 40, dist: 4.4, tilt: 4, yShift: 0.15 });
+    const D = [["RUSIA", 5420, "ru"], ["AS", 5042, "us"], ["CHINA", 620, "cn"], ["PERANCIS", 370, "fr"], ["UK", 225, "uk"]];
+    html(`<div class="bars5"><div class="k">KEPALA PELEDAK · SIPRI 2026</div>${D.map(([n, v, k], i) => `<div class="br ${i < 2 ? "hot" : ""}"><img src="../assets/leaders/${k}-head.png"><span class="nm">${n}</span><div class="bb"><div style="width:${v / 5420 * 100}%"></div></div><span class="v">${v.toLocaleString("en")}</span></div>`).join("")}<div class="donut"><b>&gt;80%</b><i>RUSIA + AS</i></div></div>`);
+    capB(`pegang <span class="r">lebih lapan puluh peratus</span>`); },
+  8() { const L = g.layer("asean", 6, { lon0: 92, lon1: 141, lat0: -11, lat1: 29, ppd: 40 }), c = L.ctx; c.fillStyle = "rgba(40,200,120,.45)"; c.strokeStyle = "#5dffb0"; c.lineWidth = 3;
+    for (const f of ASEAN) { L.path(f.geometry); c.fill("evenodd"); c.stroke(); } L.tex.needsUpdate = true; malaysiaFlag();
+    g.setView({ lat: 8, lon: 113, dist: 1.7, tilt: 8, yShift: 0.2 });
+    html(`<div class="rk" style="text-align:center"><div class="no" style="color:#5dffb0">MALAYSIA</div><div class="num" style="color:#5dffb0">0</div><div class="kk">ASIA TENGGARA · ZON BEBAS SENJATA NUKLEAR</div><div class="ex">PERJANJIAN BANGKOK · 1995</div></div>`);
+    capB(`Asia Tenggara ialah <span class="r">zon bebas senjata nuklear</span>`); },
+  9() { g.setView({ lat: 30, lon: 60, dist: 4.4, tilt: 4, yShift: 0.15 });
+    html(`<div class="vs"><div class="opt a">☢️<b>DENGAN</b><i>NUKLEAR</i></div><div class="or">ATAU</div><div class="opt b">🕊️<b>TANPA</b><i>NUKLEAR</i></div></div>`);
+    html(`<div class="bubs" style="top:1040px"><span>DENGAN 💥</span><span class="r">TANPA 🕊️</span><span>50-50 🤔</span></div><div class="komen" style="top:1270px">KOMEN ↓</div>`);
+    capB(`dengan nuklear… atau <span class="r">tanpa nuklear?</span>`); },
+};
+FR[F]();
+window.__pins=[...document.querySelectorAll('.pin')].map(e=>e.style.left+','+e.style.top);
+g.render();
+document.body.dataset.ready = "1";
+</script></body></html>
