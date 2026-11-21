@@ -1,0 +1,102 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Inter;src:url(../assets/fonts/inter-latin-800-normal.woff2);font-weight:800}
+@font-face{font-family:Mono;src:url(../assets/fonts/JetBrainsMono-700.woff2)}
+*{margin:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:radial-gradient(ellipse at 50% 55%,#1a1712 0%,#07080b 70%)}
+svg{position:absolute;inset:0}
+.lab{position:absolute;font:800 44px Inter;color:#fff;text-shadow:0 4px 18px rgba(0,0,0,.8)}
+.dim{font:700 30px Mono;fill:#ffd36b}
+</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="gTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3b8"/><stop offset=".5" stop-color="#f6c64a"/><stop offset="1" stop-color="#d59a1e"/></linearGradient>
+    <linearGradient id="gL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e0a52a"/><stop offset="1" stop-color="#9c6a12"/></linearGradient>
+    <linearGradient id="gR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2bd3c"/><stop offset="1" stop-color="#b8801a"/></linearGradient>
+    <linearGradient id="hot" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffbe0"/><stop offset=".4" stop-color="#ffc93c"/><stop offset="1" stop-color="#ff7a12"/></linearGradient>
+    <filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="10" result="b"/><feColorMatrix in="b" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -10" result="g"/><feComposite in="SourceGraphic" in2="g" operator="atop"/></filter>
+    <filter id="glow"><feGaussianBlur stdDeviation="18"/></filter>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <clipPath id="cubeClip"><path id="cubeClipPath"/></clipPath>
+  </defs>
+  <g id="ground"></g>
+  <g id="house"></g>
+  <g id="melt" filter="url(#goo)"></g>
+  <g id="cube"></g>
+  <g id="bars"></g>
+  <g id="dimg"></g>
+</svg>
+<div class="lab" id="t1" style="left:0;right:0;top:300px;text-align:center"></div>
+<script>
+// isometric helpers: x right-down, z left-down, y up. Scale: 1 m = S px
+let S = 62, F = [0, 0, 0], SX = 540, SY = 1250;
+const iso = (x, y, z) => [SX + ((x - F[0]) - (z - F[2])) * S * 0.866, SY + ((x - F[0]) + (z - F[2])) * S * 0.5 - (y - F[1]) * S];
+const pts = (a) => a.map((p) => iso(...p).map((v) => v.toFixed(1)).join(",")).join(" ");
+const el = (tag, at) => { const e = document.createElementNS("http://www.w3.org/2000/svg", tag); for (const k in at) e.setAttribute(k, at[k]); return e; };
+const $ = (id) => document.getElementById(id);
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v)), eout = (x) => 1 - Math.pow(1 - clamp(x), 3), eio = (x) => (x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+const E = 7.5; // cube edge (m)
+function box(g, x0, y0, z0, dx, dy, dz, fills, op = 1) {
+  const top = [[x0, y0 + dy, z0], [x0 + dx, y0 + dy, z0], [x0 + dx, y0 + dy, z0 + dz], [x0, y0 + dy, z0 + dz]];
+  const left = [[x0, y0, z0 + dz], [x0 + dx, y0, z0 + dz], [x0 + dx, y0 + dy, z0 + dz], [x0, y0 + dy, z0 + dz]];
+  const right = [[x0 + dx, y0, z0], [x0 + dx, y0, z0 + dz], [x0 + dx, y0 + dy, z0 + dz], [x0 + dx, y0 + dy, z0]];
+  g.append(el("polygon", { points: pts(left), fill: fills[1], opacity: op }), el("polygon", { points: pts(right), fill: fills[2], opacity: op }), el("polygon", { points: pts(top), fill: fills[0], opacity: op }));
+}
+function render(t) {
+  // camera: start close on the bars, pull back as the cube rises
+  const z = eio(clamp((t - 0.8) / 2.2)); S = 190 + (36 - 190) * z;
+  F = [3.6 + (6.0 - 3.6) * z, 0.4 + (3.4 - 0.4) * z, 3.3 + (3.4 - 3.3) * z]; SY = 1080 + 40 * z; SX = 540;
+  for (const id of ["ground", "house", "melt", "cube", "bars", "dimg"]) $(id).innerHTML = "";
+  // ground grid
+  const gr = $("ground"); for (let i = -2; i <= 16; i += 2) { gr.append(el("polyline", { points: pts([[i, 0, -2], [i, 0, 14]]), stroke: "rgba(255,255,255,.06)", "stroke-width": 2, fill: "none" })); gr.append(el("polyline", { points: pts([[-2, 0, i], [16, 0, i]]), stroke: "rgba(255,255,255,.06)", "stroke-width": 2, fill: "none" })); }
+  // house (2 storeys ~6.5 m to the roof) next to the cube, appears with the cube
+  const hk = clamp((t - 3.0) / 0.5);
+  if (hk > 0) { const h = $("house"); h.setAttribute("opacity", hk);
+    box(h, 10, 0, -4.5, 4, 5.2, 4, ["#3a4150", "#262b35", "#30363f"]);
+    
+    h.append(el("polygon", { points: pts([[10, 5.2, -0.5], [14, 5.2, -0.5], [14, 6.6, -2.5], [10, 6.6, -2.5]]), fill: "#4a5262" }), el("polygon", { points: pts([[14, 5.2, -4.5], [14, 5.2, -0.5], [14, 6.6, -2.5]]), fill: "#3a404c" }));
+    for (const [y, z] of [[1.2, -3.5], [1.2, -1.9], [3.4, -3.5], [3.4, -1.9]]) h.append(el("polygon", { points: pts([[14.01, y, z - 0.5], [14.01, y, z + 0.5], [14.01, y + 1.1, z + 0.5], [14.01, y + 1.1, z - 0.5]]), fill: "#ffd98a", opacity: .7 }));
+    h.append(el("text", { x: iso(12, 0, -0.5)[0] + 40, y: iso(12, 0, -0.5)[1] + 60, "text-anchor": "middle", class: "dim", style: "fill:#c9d0d8" }, ), );
+    h.lastChild.textContent = "RUMAH 2 TINGKAT";
+  }
+  // phase A: stack of bars (0 - 1.3 s), phase B: melt into a glowing pool (1.3 - 2.4 s)
+  const melt = clamp((t - 1.3) / 1.1), heat = clamp((t - 0.9) / 0.6);
+  const bars = $("bars"), mg = $("melt");
+  const BAR = [[2.2, 0, 3, 0], [3.6, 0, 3, 0], [5.0, 0, 3, 0], [2.9, 0.45, 3, 1], [4.3, 0.45, 3, 1], [3.6, 0.9, 3, 2]];
+  if (melt < 1) BAR.forEach(([x, y, z, lv], i) => {
+    const d = clamp(melt * 1.4 - lv * 0.15), sy = 0.45 * (1 - d), yy = y * (1 - d);
+    const f = heat > 0 ? ["url(#hot)", "#ff9a24", "#ffb43a"] : ["url(#gTop)", "url(#gL)", "url(#gR)"];
+    (d > 0.05 ? mg : bars).append(el("g", {}));
+    const g = (d > 0.05 ? mg : bars).lastChild;
+    box(g, x - d * 0.6, yy, z - d * 0.4, 1.2 + d * 1.2, Math.max(0.05, sy), 0.6 + d * 0.8, f);
+  });
+  // pool -> flows into the cube footprint and rises (2.2 - 3.6 s)
+  const rise = eio(clamp((t - 2.2) / 1.4));
+  if (melt > 0.3) {
+    const pool = 1 - rise * 0.9, cx = 3.6, cz = 3.3, r = 2.2 + melt * 1.2;
+    const c = iso(cx, 0, cz); mg.append(el("ellipse", { cx: c[0], cy: c[1], rx: r * S * pool, ry: r * S * 0.5 * pool, fill: "url(#hot)" }));
+  }
+  if (rise > 0) {
+    const g = $("cube"), h = E * rise, solid = clamp((t - 3.6) / 0.5);
+    const hotF = ["url(#hot)", "#ff9a24", "#ffb43a"], goldF = ["url(#gTop)", "url(#gL)", "url(#gR)"];
+    g.append(el("g", { filter: "url(#glow)", opacity: .5 * (1 - solid) })); box(g.lastChild, 0, 0, 0, E, h, E, ["#ffb030", "#ff8a10", "#ffa020"]);
+    box(g, 0, 0, 0, E, h, E, solid < 0.5 ? hotF : goldF);
+    // liquid surface ripple while rising
+    if (solid < 1) { const c = iso(E / 2, h, E / 2); g.append(el("ellipse", { cx: c[0], cy: c[1], rx: 90 * (1 - solid), ry: 30 * (1 - solid), fill: "#fffbe0", opacity: .6 * (1 - solid) })); }
+    // shine sweep after it solidifies
+    if (solid > 0) { const u = clamp((t - 3.9) / 0.8), sx = -2 + u * (E + 4);
+      g.append(el("polygon", { points: pts([[sx, 0, E], [sx + 1.2, 0, E], [sx + 1.2 + 0.0, E, E], [sx, E, E]]), fill: "url(#shine)", opacity: .7 * Math.sin(Math.PI * u) })); }
+    // dimension line + label
+    const dk = clamp((t - 3.7) / 0.4);
+    if (dk > 0) { const d = $("dimg"); d.setAttribute("opacity", dk); const a = iso(-0.6, 0, E + 0.6), b = iso(-0.6, E, E + 0.6);
+      d.append(el("line", { x1: a[0], y1: a[1], x2: b[0], y2: b[1], stroke: "#ffd36b", "stroke-width": 4 }), el("line", { x1: a[0] - 14, y1: a[1], x2: a[0] + 14, y2: a[1], stroke: "#ffd36b", "stroke-width": 4 }), el("line", { x1: b[0] - 14, y1: b[1], x2: b[0] + 14, y2: b[1], stroke: "#ffd36b", "stroke-width": 4 }));
+      const m = el("text", { x: a[0] - 24, y: (a[1] + b[1]) / 2, "text-anchor": "end", class: "dim" }); m.textContent = "7.5 M"; d.append(m);
+      const l = el("text", { x: iso(E, 0, E)[0], y: iso(E, 0, E)[1] + 70, "text-anchor": "middle", class: "dim", style: "font-size:34px;fill:#fff" }); l.textContent = "8,133 TAN · EMAS AMERIKA"; d.append(l); }
+  }
+  $("t1").innerHTML = t < 1.3 ? "EMAS AMERIKA…" : t < 3.6 ? "…DICAIRKAN" : "JADI SATU KIUB";
+}
+const T = +(new URLSearchParams(location.search).get("t") || 0);
+document.fonts.ready.then(() => { render(T); document.body.dataset.ready = 1; });
+window.render = render;
+</script></body></html>
