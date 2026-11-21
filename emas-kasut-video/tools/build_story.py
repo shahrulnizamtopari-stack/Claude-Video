@@ -7,11 +7,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 d = json.load(open(os.path.join(ROOT, "assets", "transcript.json")))
 W = d if isinstance(d, list) else d["words"]
 
-FIX = {"shabu": "syabu.", "shabu.": "syabu.", "Ini": "Ni", "berlaku?": "berlaku.", "2DM": "TUDM", "3DM": "TUDM", "bag": "beg",
-       "perlekat": "pelekat", "kira": "kira-kira", "lembah": "Lembah", "kelang": "Klang", "labuan.": "Labuan.",
-       "Ditawaw": "Di Tawau", "berkompromis.": "berkompromi.", "didakua": "didakwa", "siasatan": "Siasatan", "awal,": "awal:"}
-# ASR split words: join "di"+"tahan." -> "ditahan.", "di"+"reman" -> "direman", "jurur"+"terbang." -> "juruterbang."
-JOIN = {("di", "tahan."): "ditahan.", ("di", "reman"): "direman", ("jurur", "terbang."): "juruterbang."}
+FIX = {"Ini": "Ni", "berlaku?": "berlaku.", "lapangan": "Lapangan", "terbang": "Terbang", "pelipasan,": "pelepasan,",
+       "Makmal.": "makmal:", "lapo,": "lapor,", "curia.": "kurier.", "soalanya,": "soalannya:", "custom": "kastam",
+       "Comment": "Komen", "kasut": "kasut.", "follow": "follow,"}
+# ASR split words
+JOIN = {("antara", "bangsa"): "Antarabangsa", ("Minang", "Kabaw,"): "Minangkabau,", ("kira,", "kira"): "kira-kira",
+        ("Asal", "usulnya"): "Asal-usulnya"}
 _W = []
 for w in W:
     if _W and (_W[-1]["text"], w["text"]) in JOIN:
@@ -20,8 +21,8 @@ for w in W:
 W = _W
 DROP = set()
 DISPLAY = {}
-KEY = {"96", "syabu", "tentera.", "Di Tawau", "Subang,", "lima", "beg", "pelekat", "mencurigakan.", "syabu.", "97", "4.8", "11",
-       "7", "pegawai,", "juruterbang.", "Tawau", "direman", "berkompromi.", "tentera?", "belum", "didakwa"}
+KEY = {"Empat", "emas", "kasut.", "Malaysia.", "Minangkabau,", "34", "empat", "batang", "emas.", "99", "tulen.", "10", "bilion",
+       "2", "juta", "kurier.", "siapa?", "20", "hari", "sabit", "tahun.", "penjara.", "berbaloi?", "Komen", "mahkamah."}
 SOFT = {"China"}  # only key inside specific beats (handled below by index)
 
 words = []
@@ -77,15 +78,16 @@ def at(text, n=1):
     raise SystemExit(f"word not found: {text} #{n}")
 
 T = {
-  "k96": at("96"), "syabu1": at("syabu"), "dijumpai": at("Dijumpai"), "tentera1": at("tentera"), "ni": at("Ni"),
-  "selasa": at("Selasa"), "subang": at("Subang"), "anggota1": at("anggota"), "rondaan": at("rondaan"), "lima": at("lima"),
-  "beg": at("beg"), "plastik": at("plastik"), "bagasi": at("bagasi"), "tak1": at("Tak"), "pelekat": at("pelekat"),
-  "bila": at("Bila"), "diimbas": at("diimbas"), "bungkusan": at("bungkusan"), "ujian": at("Ujian"), "syabu2": at("syabu", 2),
-  "hampir": at("Hampir"), "k97": at("97"), "rm": at("4.8"), "polis": at("Polis"), "s11": at("11"), "lembah": at("Lembah"),
-  "labuan": at("Labuan"), "panglima": at("Panglima"), "s7": at("7"), "pegawai": at("pegawai"), "lain": at("lain-lain"),
-  "laporan": at("Laporan"), "juruterbang": at("juruterbang"), "tawau": at("Di Tawau"), "direman": at("direman"),
-  "tudm3": at("TUDM", 3), "kompromi": at("berkompromi"), "soalan": at("Soalannya"), "macam": at("macam"),
-  "tentera2": at("tentera", 2), "siasatan": at("Siasatan"), "mereka": at("Mereka"), "belum": at("belum"), "didakwa": at("didakwa"),
+  "empat": at("Empat"), "emas1": at("emas"), "kasut1": at("kasut"), "ditahan1": at("ditahan"), "malaysia1": at("Malaysia"),
+  "ni": at("Ni"), "nov": at("November"), "lapangan": at("Lapangan"), "minang": at("Minangkabau"), "padang": at("Padang"),
+  "seorang": at("seorang"), "k34": at("34"), "naik": at("naik"), "penerbangan": at("penerbangan"), "malaysia3": at("Malaysia", 3),
+  "tapi": at("Tapi"), "pelepasan": at("pelepasan"), "jumpa": at("jumpa"), "batang": at("batang"), "dua": at("Dua"),
+  "kasut2": at("kasut", 2), "ujian": at("Ujian"), "p99": at("99"), "tulen": at("tulen"), "nilai": at("Nilainya"),
+  "bilion": at("bilion"), "atau": at("Atau"), "juta": at("juta"), "ringgit": at("ringgit"), "media": at("Media"),
+  "kurier": at("kurier"), "jadi": at("Jadi"), "siapa": at("siapa"), "asal": at("Asal-usulnya"), "lelaki3": at("Lelaki", 3),
+  "h20": at("20"), "kalau": at("Kalau"), "sabit": at("sabit"), "penjara": at("penjara"), "t10": at("10", 2),
+  "k2": at("2", 2), "untuk2": at("Untuk", 2), "risiko": at("risiko"), "korang": at("Korang"), "berbaloi": at("berbaloi"),
+  "komen": at("Komen"), "follow": at("follow"), "mahkamah": at("mahkamah"),
 }
 END_VO = words[-1]["e"]
 T["end_vo"] = END_VO

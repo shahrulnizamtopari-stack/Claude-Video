@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sound bed for tudm-video (assets/sfx.wav, 48 kHz mono). Every sound sits on something visible; times come from
+"""Sound bed for emas-kasut-video (assets/sfx.wav, 48 kHz mono). Every sound sits on something visible; times come from
 assets/story.js (VO time), so run tools/build_story.py first."""
 import os, re, json, wave
 import numpy as np
@@ -49,35 +49,37 @@ drone *= (0.6 + 0.4 * np.sin(2 * np.pi * tt / 9)) * env(n, 2.0, 2.5)
 put(drone * 0.035, 0, 1)
 
 # camera flights (as K in index.html)
-for t in (0.0, T["ni"] - 0.4, T["polis"], T["panglima"], T["tawau"], T["tudm3"]):
+for t in (0.0, T["ni"] - 0.4, T["naik"] - 0.3, T["pelepasan"] - 0.2):
     put(whoosh(1.4), t, 0.35)
 # zoom punches (as ZP)
-for k in ("k96", "subang", "pelekat", "bungkusan", "k97", "s11", "s7", "juruterbang", "direman", "kompromi", "tentera2", "didakwa"):
+for k in ("empat", "minang", "k34", "pelepasan", "batang", "p99", "bilion", "juta", "kurier", "siapa", "h20", "t10", "berbaloi"):
     put(whoosh(.55), T[k] - 0.2, 0.3)
-# B-roll windows (starts as the <video> tags)
-for t in (3.97, 10.88, 44.13):
-    put(whoosh(.7), t - 0.35, 0.45); put(impact(.4), t, 0.35)
 # hook slam
-put(impact(.8), T["k96"], 0.9)
-# pins
-for k in ("subang", "lembah", "labuan", "tawau"): put(ping(660), T[k] + 0.05, 0.45)
-# bags pop in, sticker X, X-ray sweep hum and package pings
-for i in range(5): put(pop(), T["bagasi"] + 0.3 + i * 0.1, 0.7)
-put(impact(.35), T["pelekat"], 0.5)
-n = int(1.1 * SR); tt = np.arange(n) / SR
-put(np.sin(2 * np.pi * (300 + 500 * tt) * tt) * env(n, .05, .2) * .25, T["diimbas"], 1)
-for i in range(5): put(ping(1100), T["diimbas"] + 1.1 * (77 + 55 + i * 134) / 800, 0.4)
-put(impact(.6), T["bungkusan"], 0.6)
-# stat count-up ticks
-for i in range(12): put(tick(), T["k97"] - 0.3 + 0.9 * (1 - (1 - i / 12) ** 2), 1)
-put(impact(.6), T["syabu2"], 0.6)
-# people icons
-for i in range(11): put(pop() * .7, T["s11"] - 0.2 + i * 0.07, 0.6)
-for i in range(7): put(pop() * .7, T["s7"] - 0.2 + i * 0.09, 0.6)
-# cards in
-for t in (T["syabu2"] - 0.1, T["laporan"] - 0.1, T["direman"] - 0.4, T["tudm3"] - 0.1): put(pop(), t, 0.8)
-# stamp
-put(impact(.8), T["didakwa"], 0.95)
+put(impact(.8), T["empat"], 0.9)
+# pins + cards
+for k in ("minang", "malaysia3"): put(ping(660), T[k], 0.45)
+for t in (T["lapangan"] - 0.2, T["seorang"] - 0.1, T["media"] - 0.1, T["lelaki3"] - 0.1, T["bilion"] - 0.4): put(pop(), t, 0.8)
+# flight: rising tone while the line draws, then the stop
+n = int(1.2 * SR); tt = np.arange(n) / SR
+put(np.sin(2 * np.pi * (220 + 160 * tt) * tt) * env(n, .1, .3) * .18, T["naik"], 1)
+put(impact(.8), T["pelepasan"] + 0.2, 0.95)
+# image windows
+for t in (T["jumpa"] - 0.4, T["nilai"] - 0.2): put(whoosh(.7), t - 0.3, 0.45); put(impact(.4), t, 0.3)
+# x-ray scan hum + bar pings
+n = int(0.9 * SR); tt = np.arange(n) / SR
+put(np.sin(2 * np.pi * (300 + 500 * tt) * tt) * env(n, .05, .2) * .25, T["ujian"], 1)
+for i in range(4): put(ping(1200 + 80 * i), T["ujian"] + 0.25 + 0.15 * i, 0.4)
+# count-up ticks, money swap
+for i in range(12): put(tick(), T["p99"] - 0.2 + 0.7 * (1 - (1 - i / 12) ** 2), 1)
+put(ping(1500), T["juta"] - 0.1, 0.6); put(impact(.5), T["juta"], 0.5)
+# question mark, jail bar, sentence
+put(impact(.5), T["siapa"] - 0.3, 0.6)
+for i in range(10): put(tick(), T["sabit"] + (T["t10"] - T["sabit"] + 0.3) * i / 10, 1)
+put(impact(.6), T["t10"], 0.6)
+# ending: bars drop, comment bubbles pop, KOMEN
+put(impact(.6), T["risiko"] - 0.2, 0.7)
+for i in range(4): put(pop(), T["korang"] + 0.2 + i * 0.45, 0.9)
+put(ping(990), T["komen"], 0.6)
 # outro clicks
 put(pop(), T["end_vo"] + 1.6, 1); put(pop(), T["end_vo"] + 2.1, 1)
 
