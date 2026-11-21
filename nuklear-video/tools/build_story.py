@@ -7,12 +7,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 d = json.load(open(os.path.join(ROOT, "assets", "transcript.json")))
 W = d if isinstance(d, list) else d["words"]
 
-FIX = {"Ini": "Ni", "berlaku?": "berlaku.", "lapangan": "Lapangan", "terbang": "Terbang", "pelipasan,": "pelepasan,",
-       "Makmal.": "makmal:", "lapo,": "lapor,", "curia.": "kurier.", "soalanya,": "soalannya:", "custom": "kastam",
-       "Comment": "Komen", "kasut": "kasut.", "follow": "follow,"}
+FIX = {"ini,": "ni,", "4.000": "4,000", "nuclear": "nuklear", "nuclear?": "nuklear?", "5.400.": "5,400.", "Taka": "Teka",
+       "Prancis,": "Perancis,", "5.042.": "5,042.", "5.420.": "5,420.", "zone": "zon", "Komentar": "Komen",
+       "95.": "'95.", "5.": "lima.", "5,": "lima:", "4,": "empat:", "3,": "tiga:", "2,": "dua:", "1,": "satu:",
+       "United": "United", "Kingdom,": "Kingdom,", "Nombor": "Nombor"}
 # ASR split words
-JOIN = {("antara", "bangsa"): "Antarabangsa", ("Minang", "Kabaw,"): "Minangkabau,", ("kira,", "kira"): "kira-kira",
-        ("Asal", "usulnya"): "Asal-usulnya"}
+JOIN = {}
 _W = []
 for w in W:
     if _W and (_W[-1]["text"], w["text"]) in JOIN:
@@ -21,8 +21,8 @@ for w in W:
 W = _W
 DROP = set()
 DISPLAY = {}
-KEY = {"Empat", "emas", "kasut.", "Malaysia.", "Minangkabau,", "34", "empat", "batang", "emas.", "99", "tulen.", "10", "bilion",
-       "2", "juta", "kurier.", "siapa?", "20", "hari", "sabit", "tahun.", "penjara.", "berbaloi?", "Komen", "mahkamah."}
+KEY = {"4,000", "siap", "5,400.", "Teka", "siapa?", "225.", "370.", "620.", "laju", "5,042.", "5,420.", "80%", "Kosong.",
+       "zon", "bebas", "selamat", "tanpa", "nuklear?", "Komen", "Kingdom,", "Perancis,", "China,", "Amerika", "Syarikat,", "Rusia,"}
 SOFT = {"China"}  # only key inside specific beats (handled below by index)
 
 words = []
@@ -31,6 +31,8 @@ for i, w in enumerate(W):
     if t in DROP:
         words[-1]["e"] = w["end"]; continue
     t = FIX.get(t, t); t = DISPLAY.get(t, t)
+    if t == "di" and i + 1 < len(W) and W[i + 1]["text"] == "bawah.": t = "kat"
+    if t == "Nombor" and words and not re.search(r"[.?:,]$", words[-1]["t"]): t = "nombor"
     words.append({"t": t, "s": round(w["start"], 3), "e": round(w["end"], 3), "i": i})
 
 def key(w):
@@ -78,16 +80,13 @@ def at(text, n=1):
     raise SystemExit(f"word not found: {text} #{n}")
 
 T = {
-  "empat": at("Empat"), "emas1": at("emas"), "kasut1": at("kasut"), "ditahan1": at("ditahan"), "malaysia1": at("Malaysia"),
-  "ni": at("Ni"), "nov": at("November"), "lapangan": at("Lapangan"), "minang": at("Minangkabau"), "padang": at("Padang"),
-  "seorang": at("seorang"), "k34": at("34"), "naik": at("naik"), "penerbangan": at("penerbangan"), "malaysia3": at("Malaysia", 3),
-  "tapi": at("Tapi"), "pelepasan": at("pelepasan"), "jumpa": at("jumpa"), "batang": at("batang"), "dua": at("Dua"),
-  "kasut2": at("kasut", 2), "ujian": at("Ujian"), "p99": at("99"), "tulen": at("tulen"), "nilai": at("Nilainya"),
-  "bilion": at("bilion"), "atau": at("Atau"), "juta": at("juta"), "ringgit": at("ringgit"), "media": at("Media"),
-  "kurier": at("kurier"), "jadi": at("Jadi"), "siapa": at("siapa"), "asal": at("Asal-usulnya"), "lelaki3": at("Lelaki", 3),
-  "h20": at("20"), "kalau": at("Kalau"), "sabit": at("sabit"), "penjara": at("penjara"), "t10": at("10", 2),
-  "k2": at("2", 2), "untuk2": at("Untuk", 2), "risiko": at("risiko"), "korang": at("Korang"), "berbaloi": at("berbaloi"),
-  "komen": at("Komen"), "follow": at("follow"), "mahkamah": at("mahkamah"),
+  "saat": at("Saat"), "k4000": at("4,000"), "siap": at("siap"), "pesawat": at("pesawat"), "satu": at("satu"),
+  "k5400": at("5,400"), "teka": at("Teka"), "kira": at("kira"), "n5": at("Nombor", 2), "uk": at("United"), "s225": at("225"),
+  "n4": at("Nombor", 3), "fr": at("Perancis"), "s370": at("370"), "n3": at("Nombor", 4), "cn": at("China"), "s620": at("620"),
+  "laju": at("laju"), "n2": at("Nombor", 5), "us": at("Amerika"), "s5042": at("5,042"), "n1": at("Nombor", 6), "ru": at("Rusia"),
+  "s5420": at("5,420"), "ru2": at("Rusia", 2), "p80": at("80%"), "malaysia": at("Malaysia"), "kosong": at("Kosong"),
+  "asia": at("Asia"), "zon": at("zon"), "bangkok": at("Bangkok"), "y95": at("'95"), "korang": at("Korang"),
+  "dengan": at("dengan"), "tanpa": at("tanpa"), "komen": at("Komen"),
 }
 END_VO = words[-1]["e"]
 T["end_vo"] = END_VO

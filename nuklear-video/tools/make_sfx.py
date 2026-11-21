@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sound bed for emas-kasut-video (assets/sfx.wav, 48 kHz mono). Every sound sits on something visible; times come from
+"""Sound bed for nuklear-video (assets/sfx.wav, 48 kHz mono). Every sound sits on something visible; times come from
 assets/story.js (VO time), so run tools/build_story.py first."""
 import os, re, json, wave
 import numpy as np
@@ -48,39 +48,35 @@ drone = sum(np.sin(2 * np.pi * f * tt + k) / k for k, f in enumerate([55, 110, 1
 drone *= (0.6 + 0.4 * np.sin(2 * np.pi * tt / 9)) * env(n, 2.0, 2.5)
 put(drone * 0.035, 0, 1)
 
-# camera flights (as K in index.html)
-for t in (0.0, T["ni"] - 0.4, T["naik"] - 0.3, T["pelepasan"] - 0.2):
-    put(whoosh(1.4), t, 0.35)
-# zoom punches (as ZP)
-for k in ("empat", "minang", "k34", "pelepasan", "batang", "p99", "bilion", "juta", "kurier", "siapa", "h20", "t10", "berbaloi"):
-    put(whoosh(.55), T[k] - 0.2, 0.3)
-# hook slam
-put(impact(.8), T["empat"], 0.9)
-# pins + cards
-for k in ("minang", "malaysia3"): put(ping(660), T[k], 0.45)
-for t in (T["lapangan"] - 0.2, T["seorang"] - 0.1, T["media"] - 0.1, T["lelaki3"] - 0.1, T["bilion"] - 0.4): put(pop(), t, 0.8)
-# flight: rising tone while the line draws, then the stop
-n = int(1.2 * SR); tt = np.arange(n) / SR
-put(np.sin(2 * np.pi * (220 + 160 * tt) * tt) * env(n, .1, .3) * .18, T["naik"], 1)
-put(impact(.8), T["pelepasan"] + 0.2, 0.95)
-# image windows
-for t in (T["jumpa"] - 0.4, T["nilai"] - 0.2): put(whoosh(.7), t - 0.3, 0.45); put(impact(.4), t, 0.3)
-# x-ray scan hum + bar pings
-n = int(0.9 * SR); tt = np.arange(n) / SR
-put(np.sin(2 * np.pi * (300 + 500 * tt) * tt) * env(n, .05, .2) * .25, T["ujian"], 1)
-for i in range(4): put(ping(1200 + 80 * i), T["ujian"] + 0.25 + 0.15 * i, 0.4)
-# count-up ticks, money swap
-for i in range(12): put(tick(), T["p99"] - 0.2 + 0.7 * (1 - (1 - i / 12) ** 2), 1)
-put(ping(1500), T["juta"] - 0.1, 0.6); put(impact(.5), T["juta"], 0.5)
-# question mark, jail bar, sentence
-put(impact(.5), T["siapa"] - 0.3, 0.6)
-for i in range(10): put(tick(), T["sabit"] + (T["t10"] - T["sabit"] + 0.3) * i / 10, 1)
-put(impact(.6), T["t10"], 0.6)
-# ending: bars drop, comment bubbles pop, KOMEN
-put(impact(.6), T["risiko"] - 0.2, 0.7)
-for i in range(4): put(pop(), T["korang"] + 0.2 + i * 0.45, 0.9)
+# camera flights between countries
+for t in (0.0, T["n5"] - 0.9, T["n4"] - 0.3, T["n3"] - 0.4, T["n2"] - 0.4, T["n1"] - 0.4, T["ru2"] - 0.2, T["malaysia"] - 0.3, T["korang"] - 0.2):
+    put(whoosh(1.4), t, 0.38)
+for k in ("k4000", "k5400", "s225", "s370", "s620", "laju", "s5042", "s5420", "p80", "kosong", "tanpa"):
+    put(whoosh(.55), T[k] - 0.2, 0.28)
+# hook: node pings, chip, title slam
+for i in range(9): put(ping(700 + 60 * i), 0.2 + i * 0.12, 0.35)
+put(impact(.4), T["k4000"], 0.5); put(impact(.8), T["k5400"], 0.9); put(ping(1300), T["teka"], 0.6)
+# caricature drops: fall whistle + boing on landing, card pop
+for a in (T["n5"], T["n4"], T["n3"], T["n2"], T["n1"]):
+    n = int(0.45 * SR); tt = np.arange(n) / SR
+    put(np.sin(2 * np.pi * (1400 - 1600 * tt) * tt) * env(n, .01, .1) * .18, a, 1)
+    n2 = int(0.5 * SR); t2 = np.arange(n2) / SR
+    put(np.sin(2 * np.pi * (180 + 90 * np.sin(2 * np.pi * 9 * t2)) * t2) * np.exp(-t2 * 6) * .5, a + 0.45, 1)
+    put(pop(), a + 0.25, 0.8)
+# count-up ticks per country, more for the big two
+for a, z, n in ((T["n5"], T["s225"], 6), (T["n4"], T["s370"], 8), (T["n3"], T["s620"], 10), (T["n2"], T["s5042"], 18), (T["n1"], T["s5420"], 20)):
+    d = max(0.6, z - a + 0.2)
+    for i in range(n): put(tick(), a + 0.3 + d * (1 - (1 - i / n) ** 2), 1)
+put(impact(.7), T["s5420"], 0.8); put(ping(1500), T["laju"], 0.5)
+# bars, donut
+for i in range(5): put(pop(), T["ru2"] + i * 0.12, 0.6)
+put(ping(1200), T["p80"], 0.6)
+# Malaysia zero, Bangkok
+put(impact(.5), T["kosong"], 0.6); put(ping(990), T["bangkok"], 0.5)
+# poll + comments
+put(pop(), T["korang"], 0.8); put(ping(800), T["dengan"], 0.5); put(ping(1000), T["tanpa"], 0.5)
+for i in range(3): put(pop(), T["tanpa"] + 0.3 + i * 0.35, 0.9)
 put(ping(990), T["komen"], 0.6)
-# outro clicks
 put(pop(), T["end_vo"] + 1.6, 1); put(pop(), T["end_vo"] + 2.1, 1)
 
 pk = np.max(np.abs(out)); out = out / pk * 0.85

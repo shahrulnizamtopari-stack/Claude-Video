@@ -20,7 +20,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#05070b}
 #ui{z-index:2}
 html.clean #cap{display:none!important}
 html.caps,html.caps body{background:transparent}
-html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,html.caps #pins,html.caps #cards,html.caps #hook,html.caps #outro,html.caps .xr,html.caps .bubs,html.caps .komen,html.caps .plane,html.caps #broll,html.caps .tl,html.caps .duo,html.caps .letter,html.caps .seats,html.caps .ncard,html.caps #fade{visibility:hidden}
+html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,html.caps #pins,html.caps #cards,html.caps #hook,html.caps #outro,html.caps .rk,html.caps .bars5,html.caps .vs,html.caps .bob,html.caps .nd,html.caps .chip,html.caps .xr,html.caps .bubs,html.caps .komen,html.caps .plane,html.caps #broll,html.caps .tl,html.caps .duo,html.caps .letter,html.caps .seats,html.caps .ncard,html.caps #fade{visibility:hidden}
 .bw{position:absolute;inset:0;opacity:0}.bw video{width:100%;height:100%;object-fit:cover}
 .bshade{position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,0) 18%)}
 .btag{position:absolute;right:16px;top:16px;font:700 18px Mono;color:#fff;background:rgba(0,0,0,.55);padding:6px 12px;border-radius:4px;letter-spacing:3px}
@@ -37,7 +37,8 @@ html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,h
 #cap{text-shadow:0 3px 14px rgba(0,0,0,.95),0 0 4px rgba(0,0,0,.9)}
 #cap::before{content:"";position:absolute;left:-20px;right:-20px;top:-18px;bottom:-18px;background:linear-gradient(rgba(5,7,11,0),rgba(5,7,11,.55) 30%,rgba(5,7,11,.55) 70%,rgba(5,7,11,0));z-index:-1;border-radius:20px}
 #broll{top:300px!important}
-#hook{top:1060px!important}
+#hook{top:880px!important}
+#hook .a{font:800 50px Inter;letter-spacing:3px}
 .plane{position:absolute;font-size:54px;color:#fff;text-shadow:0 0 18px rgba(127,220,255,.9);transform-origin:50% 50%}
 .shine{position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,0) 35%,rgba(255,245,200,.55) 50%,rgba(255,255,255,0) 65%);mix-blend-mode:screen;pointer-events:none}
 /* pins */
@@ -114,6 +115,21 @@ html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,h
 .bubs{position:absolute;top:760px;left:90px;right:90px;display:flex;flex-wrap:wrap;gap:18px;justify-content:center}.bubs span{font:800 38px Inter;color:#111;background:#fff;padding:14px 26px;border-radius:30px 30px 30px 6px;box-shadow:0 12px 30px rgba(0,0,0,.5)}.bubs span.r{background:#ff2d46;color:#fff}
 .komen{position:absolute;top:1010px;left:0;right:0;text-align:center;font:800 60px Inter;color:#ffce00;letter-spacing:4px;text-shadow:0 6px 24px rgba(0,0,0,.8)}
 .xr,.bubs,.komen{display:none}
+.bob{position:absolute;width:360px;height:700px}.bob .fig{position:absolute;left:50%;top:0;filter:drop-shadow(0 18px 22px rgba(0,0,0,.55))}.bob .fb,.bob .fh{position:absolute;left:0;top:0}
+.bob .np{position:absolute;top:604px;left:-30px;right:-40px;text-align:center}.bob .np b{display:inline-block;font:800 34px/1.1 Inter;color:#fff;background:rgba(10,12,17,.88);padding:8px 16px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.5);white-space:nowrap}.bob .np i{display:inline-block;font:800 22px Inter;font-style:normal;color:#0b0d12;background:#ffce00;padding:6px 14px;border-radius:6px;letter-spacing:.5px;margin-top:8px;white-space:nowrap}
+.bob .ai{position:absolute;top:6px;left:0;font:700 16px Mono;color:#fff;background:rgba(0,0,0,.6);padding:4px 8px;border-radius:4px;letter-spacing:1px}
+.rk{position:absolute;left:400px;right:50px;top:900px;background:rgba(10,12,17,.92);border-radius:16px;padding:22px 26px 20px;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.rk .no{font:800 40px Inter;color:#ffce00;letter-spacing:2px}.rk .num{font:italic 700 150px/1 Serif;color:#ff2d46;margin:6px 0}.rk .kk{font:700 16px Mono;color:#c9d0d8;letter-spacing:2px}.rk .ex{font:800 22px Inter;color:#fff;margin-top:12px}.rk .ex.up{color:#ff2d46}
+.wh{display:flex;flex-wrap:wrap;gap:4px;margin-top:14px;max-height:190px;overflow:hidden}.wh svg{width:16px;height:30px}
+.nd{position:absolute;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:#ff2d46;box-shadow:0 0 0 8px rgba(255,45,70,.35),0 0 30px 8px rgba(255,45,70,.6)}
+.chip{position:absolute;left:0;right:0;text-align:center;font:700 26px Mono;color:#ff2d46;letter-spacing:3px}
+.bars5{position:absolute;left:70px;right:70px;top:640px;background:rgba(10,12,17,.94);border-radius:16px;padding:24px 28px;box-shadow:0 24px 60px rgba(0,0,0,.6)}.bars5 .k{font:700 20px Mono;color:#c9d0d8;letter-spacing:3px;margin-bottom:14px;text-align:center}
+.br{display:flex;align-items:center;gap:14px;margin:10px 0}.br img{width:64px;height:64px;object-fit:contain}.br .nm{width:140px;font:800 24px Inter;color:#fff}.br .bb{flex:1;height:26px;background:#20252e;border-radius:6px;overflow:hidden}.br .bb div{height:100%;background:#5b6573}.br.hot .bb div{background:#ff2d46}.br .v{width:110px;text-align:right;font:800 28px Inter;color:#fff}
+.donut{margin:18px auto 0;width:220px;height:220px;border-radius:50%;background:conic-gradient(#ff2d46 0 83%,#2a2f38 83% 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}.donut::before{content:"";position:absolute;inset:34px;border-radius:50%;background:#0b0d12}.donut b,.donut i{position:relative}.donut b{font:italic 700 64px Serif;color:#ff2d46}.donut i{font:700 16px Mono;color:#c9d0d8;font-style:normal}
+.vs{position:absolute;top:560px;left:60px;right:60px;display:flex;align-items:center;justify-content:center;gap:24px}.opt{width:380px;height:380px;border-radius:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:110px;box-shadow:0 24px 60px rgba(0,0,0,.6)}.opt b{font:800 60px Inter;color:#fff;margin-top:8px}.opt i{font:700 22px Mono;color:#fff;font-style:normal;letter-spacing:4px}.opt.a{background:#b3121f}.opt.b{background:#14834d}.or{font:800 40px Inter;color:#fff}
+
+.rk,.bars5,.vs,.ztag2{display:none}
+.nd{z-index:1}
 /* hook + outro */
 #hook{top:240px;left:0;right:0;text-align:center}
 #hook .a{font:800 56px Inter;letter-spacing:4px}
@@ -132,28 +148,23 @@ html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,h
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="56.81" data-width="1080" data-height="1920" data-fps="30">
-  <div id="world" class="clip" data-start="0" data-duration="56.81" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+<div id="root" data-composition-id="main" data-start="0" data-duration="47.73" data-width="1080" data-height="1920" data-fps="30">
+  <div id="world" class="clip" data-start="0" data-duration="47.73" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
     <canvas id="gl" width="1080" height="1920"></canvas>
   </div>
-  <div id="broll" data-layout-ignore>
-    <div class="bw" id="bw-shoes"><img src="assets/broll/shoes.jpg" style="width:100%;height:100%;object-fit:cover"></div>
-    <div class="bw" id="bw-gold"><img src="assets/broll/gold.jpg" style="width:100%;height:100%;object-fit:cover"><div class="shine" id="shine"></div></div>
-    <div class="bshade"></div><div class="btag">ILUSTRASI · AI</div>
-  </div>
-  <div id="ui" class="clip" data-start="0" data-duration="56.81" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
+  <div id="ui" class="clip" data-start="0" data-duration="47.73" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
     <canvas id="fx" width="1080" height="1920"></canvas>
     <div class="vig"></div>
     <div id="tint"></div>
     <div id="pins"></div>
     <div id="cards"></div>
     <div id="cap"></div>
-    <div id="hook" class="el"><div class="b">4 KG EMAS</div><div class="c">DALAM KASUT</div><div class="ln"></div></div>
-    <div id="outro" class="el"><div class="box"><div class="chev">›››</div><div class="nm">JANGAN TERLEPAS</div><div class="tg">ISU SEMASA · DALAM BAHASA KITA</div><div><div class="fol"><span class="h">Untuk part seterusnya</span><span class="btn" id="fbtn">Follow</span><span class="btn" id="sbtn">Subscribe</span></div></div></div></div>
+    <div id="hook" class="el"><div class="a">SATU NEGARA PEGANG</div><div class="b">5,420</div><div class="c">TEKA SIAPA?</div><div class="ln"></div></div>
+    <div id="outro" class="el"><div class="box"><div class="chev">›››</div><div class="nm">JANGAN TERLEPAS</div><div class="tg">FAKTA DUNIA · DALAM BAHASA KITA</div><div><div class="fol"><span class="h">Untuk part seterusnya</span><span class="btn" id="fbtn">Follow</span><span class="btn" id="sbtn">Subscribe</span></div></div></div></div>
     <div id="fade"></div>
   </div>
-  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="53.76" data-track-index="5" data-volume="1"></audio>
-  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="56.81" data-track-index="6" data-volume="0.9"></audio>
+  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="44.64" data-track-index="5" data-volume="1"></audio>
+  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="47.73" data-track-index="6" data-volume="0.9"></audio>
 </div>
 
 <script>
@@ -172,45 +183,94 @@ if (LAYER === 1) document.documentElement.classList.add("clean");
 if (LAYER === 2) document.documentElement.classList.add("caps");
 const scale = LAYER === 2 ? 0.25 : Number(vars.previewScale) || 1;
 await Promise.all(["400 40px Inter", "700 40px Inter", "800 40px Inter", "700 20px Mono", "400 40px Serif", "italic 700 40px Serif", "700 40px Serif"].map((f) => document.fonts.load(f)));
-await Promise.all(["assets/broll/shoes.jpg", "assets/broll/gold.jpg"].map((src) => new Promise((r) => { const i = new Image(); i.onload = i.onerror = r; i.src = src; })));
+const KS = ["uk", "fr", "cn", "us", "ru"];
+await Promise.all(KS.flatMap((k) => [`assets/leaders/${k}-fbody.png`, `assets/leaders/${k}-fhead.png`]).map((src) => new Promise((r) => { const i = new Image(); i.onload = i.onerror = r; i.src = src; })));
 
 const W = 1080, H = 1920;
 const g = await createGlobe(document.getElementById("gl"), { W, H, base: "assets/", scale });
 if (LAYER === 2) g.render = () => {};
 const topo = await (await fetch("assets/geo/countries-10m.json")).json();
 const countries = topojson.feature(topo, topo.objects.countries).features;
-const ST = (await (await fetch("assets/geo/my-states.json")).json()).features;
+const C_ = (id) => countries.find((c) => +c.id === id);
+const MY = C_(458);
+const FIG = await (await fetch("assets/leaders/fig.json")).json();
 
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
 const eout = (x) => 1 - Math.pow(1 - clamp(x), 3);
 const win = (t, a, b, fi = 0.35, fo = 0.35) => clamp((t - a) / fi) * (1 - clamp((t - b) / fo));
 
-const borders = g.layer("borders", 0, { lon0: 92, lon1: 140, lat0: -6, lat1: 34, ppd: 80 });
+const borders = g.layer("borders", 0, { lon0: -180, lon1: 180, lat0: -60, lat1: 80, ppd: 12 });
 { const L = borders, c = L.ctx; c.strokeStyle = "rgba(255,255,255,.35)"; c.lineWidth = 1; c.lineJoin = "round";
   for (const f of countries) { L.path(f.geometry); c.stroke(); } L.tex.needsUpdate = true; }
-const stl = g.layer("states", 1, { lon0: 99, lon1: 120, lat0: 0.5, lat1: 7.5, ppd: 160 });
-{ const L = stl, c = L.ctx; c.lineJoin = "round"; c.strokeStyle = "rgba(255,255,255,.4)"; c.lineWidth = 1.2; for (const f of ST) { L.path(f.geometry); c.stroke(); } L.tex.needsUpdate = true; }
+function flagFill(name, f, R, paint, alpha = 0.8) {
+  const L = g.layer(name, 6, R), c = L.ctx; c.save(); L.path(f.geometry); c.clip("evenodd"); c.globalAlpha = alpha;
+  paint(c, L); c.restore(); c.strokeStyle = "#fff"; c.lineWidth = 3; L.path(f.geometry); c.stroke(); L.tex.needsUpdate = true; L.mesh.material.opacity = 0; return L;
+}
+const box = (L, lo0, la0, lo1, la1) => ({ x: L.ox(lo0), y: L.oy(la1), w: L.ox(lo1) - L.ox(lo0), h: L.oy(la0) - L.oy(la1) });
+const P = {
+  uk: (c, L) => { const b = box(L, -8.5, 49.8, 2, 59); c.fillStyle = "#012169"; c.fillRect(b.x, b.y, b.w, b.h);
+    c.strokeStyle = "#fff"; c.lineWidth = b.w * 0.12; c.beginPath(); c.moveTo(b.x, b.y); c.lineTo(b.x + b.w, b.y + b.h); c.moveTo(b.x + b.w, b.y); c.lineTo(b.x, b.y + b.h); c.stroke();
+    c.strokeStyle = "#C8102E"; c.lineWidth = b.w * 0.05; c.stroke(); c.fillStyle = "#fff"; c.fillRect(b.x + b.w * 0.42, b.y, b.w * 0.16, b.h); c.fillRect(b.x, b.y + b.h * 0.42, b.w, b.h * 0.16);
+    c.fillStyle = "#C8102E"; c.fillRect(b.x + b.w * 0.46, b.y, b.w * 0.08, b.h); c.fillRect(b.x, b.y + b.h * 0.46, b.w, b.h * 0.08); },
+  fr: (c, L) => { const b = box(L, -5, 42, 8.5, 51.2); ["#0055A4", "#fff", "#EF4135"].forEach((col, i) => { c.fillStyle = col; c.fillRect(b.x + i * b.w / 3, b.y, b.w / 3 + 1, b.h); }); },
+  cn: (c, L) => { const b = box(L, 73, 18, 135, 54); c.fillStyle = "#DE2910"; c.fillRect(b.x, b.y, b.w, b.h); c.fillStyle = "#FFDE00";
+    const star = (x, y, r) => { c.beginPath(); for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * 0.4 : r; c.lineTo(x + rr * Math.cos(a), y + rr * Math.sin(a)); } c.fill(); };
+    star(b.x + b.w * 0.2, b.y + b.h * 0.3, b.h * 0.16); [[0.33, 0.12], [0.38, 0.22], [0.38, 0.36], [0.33, 0.46]].forEach(([u, v]) => star(b.x + b.w * u, b.y + b.h * v, b.h * 0.05)); },
+  us: (c, L) => { const b = box(L, -125, 24, -66, 50); for (let i = 0; i < 13; i++) { c.fillStyle = i % 2 ? "#fff" : "#B22234"; c.fillRect(b.x, b.y + i * b.h / 13, b.w, b.h / 13 + 1); }
+    c.fillStyle = "#3C3B6E"; c.fillRect(b.x, b.y, b.w * 0.4, b.h * 7 / 13); c.fillStyle = "#fff";
+    for (let r = 0; r < 9; r++) for (let k = 0; k < (r % 2 ? 5 : 6); k++) { c.beginPath(); c.arc(b.x + b.w * 0.4 * ((k + (r % 2 ? 1 : 0.5)) / 6), b.y + b.h * 7 / 13 * ((r + 0.6) / 9.6), b.h * 0.012, 0, 7); c.fill(); }
+    // Alaska: stripes only
+    const a2 = box(L, -170, 52, -130, 72); for (let i = 0; i < 13; i++) { c.fillStyle = i % 2 ? "#fff" : "#B22234"; c.fillRect(a2.x, a2.y + i * a2.h / 13, a2.w, a2.h / 13 + 1); } },
+  ru: (c, L) => { const b = box(L, 19, 41, 180, 78); ["#fff", "#0039A6", "#D52B1E"].forEach((col, i) => { c.fillStyle = col; c.fillRect(b.x, b.y + i * b.h / 3, b.w, b.h / 3 + 1); }); },
+};
 
-// flight line Padang -> Malaysia: draws, then stops (red) at the departure check
-const BIM = [-0.787, 100.281], MYS = [2.75, 101.7];
-const ROUTE = [[BIM[1], BIM[0]], [100.6, 0.6], [101.2, 1.8], [MYS[1], MYS[0]]];
-const fw = g.ribbon(ROUTE, { color: 0xdff8ff, width: 1.4, dash: 40, seg: 12, order: 41 });
-const fg = g.ribbon(ROUTE, { color: 0x7fdcff, width: 4.5, glow: 0.45, seg: 12, order: 40 });
-const STOP = 0.42;
+const LEADER = { uk: ["ANDY BURNHAM", "PERDANA MENTERI UK"], fr: ["EMMANUEL MACRON", "PRESIDEN PERANCIS"], cn: ["XI JINPING", "PRESIDEN CHINA"], us: ["DONALD TRUMP", "PRESIDEN AS"], ru: ["VLADIMIR PUTIN", "PRESIDEN RUSIA"] };
 
+function malaysiaFlag() {
+  const L = myl, c = L.ctx; c.save(); L.path(MY.geometry); c.clip("evenodd");
+  const x0 = L.ox(99.5), x1 = L.ox(119.4), y0 = L.oy(7.5), y1 = L.oy(0.8), sh = (y1 - y0) / 14;
+  for (let i = 0; i < 14; i++) { c.fillStyle = i % 2 ? "rgba(255,255,255,.62)" : "rgba(204,0,1,.7)"; c.fillRect(x0, y0 + i * sh, x1 - x0, sh + 1); }
+  c.fillStyle = "rgba(1,0,102,.78)"; c.fillRect(x0, y0, (x1 - x0) * 0.5, sh * 8);
+  c.fillStyle = "#ffcc00"; const cx = L.ox(103.6), cy = L.oy(5.0), r = sh * 2.6;
+  c.beginPath(); c.arc(cx, cy, r, 0, 7); c.fill(); c.fillStyle = "rgb(1,0,102)"; c.beginPath(); c.arc(cx + r * 0.32, cy, r * 0.82, 0, 7); c.fill();
+  c.restore(); c.strokeStyle = "#fff"; c.lineWidth = 5; L.path(MY.geometry); c.stroke(); L.tex.needsUpdate = true;
+}
+const FL = {
+  uk: flagFill("fUK", C_(826), { lon0: -9, lon1: 3, lat0: 49, lat1: 61, ppd: 120 }, P.uk),
+  fr: flagFill("fFR", C_(250), { lon0: -6, lon1: 10, lat0: 41, lat1: 52, ppd: 100 }, P.fr),
+  cn: flagFill("fCN", C_(156), { lon0: 72, lon1: 136, lat0: 17, lat1: 55, ppd: 20 }, P.cn),
+  us: flagFill("fUS", C_(840), { lon0: -172, lon1: -64, lat0: 18, lat1: 72, ppd: 12 }, P.us),
+  ru: flagFill("fRU", C_(643), { lon0: 19, lon1: 180, lat0: 41, lat1: 78, ppd: 10 }, P.ru),
+};
+const asean = g.layer("asean", 6, { lon0: 92, lon1: 141, lat0: -11, lat1: 29, ppd: 40 });
+{ const c = asean.ctx; c.fillStyle = "rgba(40,200,120,.45)"; c.strokeStyle = "#5dffb0"; c.lineWidth = 3;
+  for (const f of [458, 360, 764, 704, 608, 104, 116, 418, 702, 96].map(C_)) { asean.path(f.geometry); c.fill("evenodd"); c.stroke(); } asean.tex.needsUpdate = true; asean.mesh.material.opacity = 0; }
+const myl = g.layer("malaysia", 7, { lon0: 99, lon1: 120, lat0: 0, lat1: 8, ppd: 160 });
+malaysiaFlag(); myl.mesh.material.opacity = 0;
+
+// scenes per country: [key, rank, value, start, end, camera]
+const SC = [
+  ["uk", 5, 225, T.n5, T.n4 - 0.15, "UJIAN PERTAMA · 1952", 2],
+  ["fr", 4, 370, T.n4, T.n3 - 0.15, "TERMASUK 80 BERSARA", 4],
+  ["cn", 3, 620, T.n3, T.n2 - 0.15, "▲ PALING LAJU BERTAMBAH · 600 → 620", 6],
+  ["us", 2, 5042, T.n2, T.n1 - 0.15, "UJIAN PERTAMA · 1945", 50],
+  ["ru", 1, 5420, T.n1, T.ru2 - 0.15, "👑 TERBESAR DI DUNIA", 54],
+];
+const VALAT = { uk: T.s225, fr: T.s370, cn: T.s620, us: T.s5042, ru: T.s5420 };
 const K = [
-  [0, 4, 104, 2.2, 6, 0.12], [T.ni - 0.3, 1.4, 102.5, 0.9, 8, 0.12],
-  [T.nov + 0.4, -0.6, 100.4, 0.16, 20, 0.22], [T.seorang - 0.2, -0.6, 100.4, 0.15, 20, 0.22],
-  [T.naik + 0.2, 1.0, 101.0, 0.55, 12, 0.22], [T.tapi, 0.9, 100.9, 0.52, 12, 0.22],
-  [T.pelepasan + 0.4, -0.6, 100.4, 0.18, 20, 0.22], [T.k2 - 0.2, -0.6, 100.4, 0.17, 20, 0.22],
-  [DURATION, -0.3, 100.8, 0.5, 14, 0.22],
+  [0, 25, 20, 4.8, 4, 0.1], [T.n5 - 0.9, 45, 0, 4.2, 4, 0.1],
+  [T.uk - 0.1, 54.5, -3, 0.55, 14, 0.2], [T.n4 - 0.3, 54.3, -2.8, 0.53, 14, 0.2],
+  [T.fr - 0.1, 47, 2.5, 0.5, 14, 0.2], [T.n3 - 0.4, 46.8, 2.6, 0.49, 14, 0.2],
+  [T.cn - 0.1, 36, 104, 1.5, 10, 0.2], [T.n2 - 0.4, 36.2, 104.5, 1.45, 10, 0.2],
+  [T.us - 0.1, 42, 260, 2.0, 8, 0.2], [T.n1 - 0.4, 42, 259, 1.95, 8, 0.2],
+  [T.ru - 0.1, 56, 455, 3.6, 6, 0.2], [T.ru2 - 0.3, 56, 452, 3.5, 6, 0.2],
+  [T.ru2 + 0.6, 45, 420, 4.4, 4, 0.15], [T.malaysia - 0.3, 42, 418, 4.4, 4, 0.15],
+  [T.malaysia + 0.6, 8, 473, 1.7, 8, 0.2], [T.korang - 0.3, 8, 474, 1.65, 8, 0.2],
+  [T.korang + 0.6, 30, 420, 4.4, 4, 0.15], [DURATION, 30, 410, 4.6, 4, 0.15],
 ];
-const ZP = [
-  [T.empat, -0.12, 0.5], [T.minang, -0.10, 0.5], [T.k34, -0.08, 0.4], [T.pelepasan, -0.12, 0.4], [T.batang, -0.10, 0.4],
-  [T.p99, -0.10, 0.5], [T.bilion, -0.10, 0.4], [T.juta, -0.14, 0.5], [T.kurier, -0.10, 0.4], [T.siapa, -0.12, 0.5],
-  [T.h20, -0.10, 0.4], [T.t10, -0.14, 0.5], [T.berbaloi, -0.12, 0.6],
-];
+const ZP = [[T.k4000, -0.08, 0.4], [T.k5400, -0.1, 0.5], [T.s225, -0.1, 0.4], [T.s370, -0.1, 0.4], [T.s620, -0.1, 0.4], [T.laju, -0.08, 0.4],
+  [T.s5042, -0.12, 0.5], [T.s5420, -0.14, 0.6], [T.p80, -0.08, 0.5], [T.kosong, -0.12, 0.5], [T.tanpa, -0.08, 0.5]];
 function zoomMod(t) {
   let m = 0;
   for (const [a, amt, hold] of ZP) { const x = t - a + 0.08; if (x < 0 || x > hold + 1.6) continue;
@@ -221,51 +281,36 @@ function cam(t) {
   let i = 0; while (i < K.length - 2 && t > K[i + 1][0]) i++;
   const A = K[i], B = K[i + 1], u = ease(clamp((t - A[0]) / (B[0] - A[0])));
   const L = (k) => A[k] + (B[k] - A[k]) * u;
-  const d = Math.exp(Math.log(A[3]) + (Math.log(B[3]) - Math.log(A[3])) * u);
-  return { lat: L(1), lon: L(2), dist: d * zoomMod(t), tilt: L(4), yShift: L(5) };
+  const hop = Math.sin(Math.PI * u) * Math.min(1.4, Math.hypot(B[1] - A[1], B[2] - A[2]) * 0.012) * (Math.hypot(B[1] - A[1], B[2] - A[2]) > 20 ? 1 : 0);
+  const d = Math.exp(Math.log(A[3]) + (Math.log(B[3]) - Math.log(A[3])) * u) + hop;
+  return { lat: L(1), lon: ((L(2) + 180) % 360 + 360) % 360 - 180, dist: d * zoomMod(t), tilt: L(4), yShift: L(5) };
 }
 
 const pinWrap = document.getElementById("pins"), cardWrap = document.getElementById("cards");
 const mk = (parent, cls, html) => { const e = document.createElement("div"); e.className = "el " + cls; e.innerHTML = html; parent.appendChild(e); return e; };
-const loc = (txt, sub, red) => `<div class="dot ${red ? "red" : ""}"></div><div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px"><div class="lab">${txt}</div>${sub ? `<div class="sub ${red ? "red" : ""}">${sub}</div>` : ""}</div>`;
-const PINS = [
-  { ll: BIM, txt: "PADANG", sub: "", red: 1, a: 0.9, b: T.ni - 0.3 },
-  { ll: BIM, txt: "BIA MINANGKABAU", sub: "PADANG · 12 NOV", red: 1, a: T.minang - 0.2, b: T.naik },
-  { ll: BIM, txt: "BIA MINANGKABAU", sub: "PELEPASAN", red: 1, a: T.naik, b: T.pelepasan + 0.2 },
-  { ll: MYS, txt: "MALAYSIA", sub: "DESTINASI", a: T.malaysia3 - 0.3, b: T.pelepasan + 0.2 },
-  { ll: BIM, txt: "BIA MINANGKABAU", sub: "DITAHAN · SIASATAN", red: 1, a: T.lelaki3, b: T.k2 - 0.1 },
-].map((p) => ({ ...p, el: mk(pinWrap, "pin lpin", loc(p.txt, p.sub, p.red)) }));
-const plane = mk(pinWrap, "plane", "✈");
-
-const card = (outlet, date, head, foot) => mk(cardWrap, "card", `<div class="hd"><b>${outlet}</b><i>${date}</i></div><div class="bd">${head}<div class="ft">${foot}</div></div>`);
-const C = {
-  bh: card("BERITA HARIAN", "21 NOV 2026", `Lelaki Malaysia ditahan di lapangan terbang Indonesia, <mark>cuba seludup 4kg emas</mark>`, "Tajuk asal · bharian.com.my"),
-  tv1: card("TVONE NEWS", "21 NOV 2026", `WNA Malaysia pembawa 4 kg emas di sepatu <mark>berstatus kurir</mark>, asal barang ditelusuri`, "Tajuk asal · tvonenews.com"),
-};
-const SCH = [[C.bh, T.lapangan - 0.2, T.seorang - 0.1, 1100], [C.tv1, T.media - 0.1, T.lelaki3 - 0.1, 1100]];
-const HL = [[C.bh, T.minang, T.minang + 0.9], [C.tv1, T.kurier - 0.4, T.kurier + 0.5]];
-
-const person = mk(cardWrap, "ncard", `<div class="ini"><svg width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="44" r="22" fill="#9aa3ad"/><path d="M18 120 Q18 74 60 74 Q102 74 102 120Z" fill="#9aa3ad"/></svg></div><div><div class="nm">LELAKI MALAYSIA</div><div class="rl">34 TAHUN · NAK TERBANG KE MALAYSIA</div></div>`);
-person.style.left = "160px";
-const stampEl = mk(cardWrap, "stamp", "DITAHAN"); stampEl.style.fontSize = "64px";
-
-let gid = 0;
-const shoeSvg = (xray = true) => { const id = "gold" + gid++;
-  const shoe = (x, flip) => `<g transform="translate(${x} 0) ${flip ? "scale(-1 1) translate(-150 0)" : ""}"><path d="M75 10 C120 10 135 60 132 120 C128 200 120 260 110 300 C100 335 50 335 40 300 C28 255 20 200 18 120 C15 60 30 10 75 10Z" fill="${xray ? "rgba(90,190,255,.12)" : "#3b2a20"}" stroke="${xray ? "#7fdcff" : "#6b4a35"}" stroke-width="5"/>
-    <rect class="gb" x="44" y="95" width="62" height="88" rx="6" fill="url(#${id})" stroke="#fff3b0" stroke-width="3"/><rect class="gb" x="44" y="195" width="62" height="88" rx="6" fill="url(#${id})" stroke="#fff3b0" stroke-width="3"/></g>`;
-  return `<svg width="420" height="350" viewBox="0 0 330 350"><defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff1a8"/><stop offset=".45" stop-color="#f2b632"/><stop offset="1" stop-color="#a9741a"/></linearGradient></defs>${shoe(5, false)}${shoe(175, true)}</svg>`;
-};
-const XR = mk(cardWrap, "xr", `<div class="k">IMBASAN · 2 BATANG SETIAP KASUT</div>${shoeSvg()}<div class="bigq">?</div><div class="scan" style="position:absolute;top:50px;width:760px;height:8px;left:0;background:#7fdcff;box-shadow:0 0 30px 10px rgba(127,220,255,.6)"></div>`);
-const xrK = XR.querySelector(".k"), xrQ = XR.querySelector(".bigq"), xrScan = XR.querySelector(".scan"), xrBars = [...XR.querySelectorAll(".gb")];
-const statE = mk(cardWrap, "stat", `<div class="k">UJIAN MAKMAL</div><div><div class="n"><span class="v">0</span></div></div><div class="u">EMAS TULEN · ≈ 4 KG</div><div class="bar"><div></div></div>`);
-const statV = mk(cardWrap, "stat", `<div class="k">NILAI ANGGARAN</div><div class="n" style="font-size:104px;margin:6px 0 0;white-space:nowrap"><span class="v">Rp10 BILION</span></div><div class="u" style="font-size:28px;color:#9aa3ad"><s class="o"></s></div>`);
-statV.style.padding = "20px 40px 22px";
-const statJ = mk(cardWrap, "stat", `<div class="k">STATUS</div><div class="n" style="font-size:130px">20 HARI</div><div class="u">DITAHAN UNTUK SIASATAN</div><div class="jail"><span>HUKUMAN JIKA SABIT</span><div class="rng"><b></b></div><span class="lb">1 TAHUN</span><span class="lb r">10 TAHUN</span></div>`);
-const jailB = statJ.querySelector(".rng b");
-const END = mk(cardWrap, "xr", `<div style="display:flex;align-items:center;gap:20px;justify-content:center">${shoeSvg(false)}<div class="bars"><div></div><div></div><div></div><div></div><div></div><b>10 TAHUN</b></div></div>`);
-END.style.background = "none"; END.style.boxShadow = "none";
-const endBars = END.querySelector(".bars");
-const bubs = mk(cardWrap, "bubs", `<span>RM10K?</span><span>RM50K?</span><span>RM100K?</span><span class="r">TAK BERBALOI 🙅</span>`);
+// hook nodes (9 nuclear states)
+const NODES = [[39, -98], [62, 95], [35, 104], [46.5, 2.5], [54, -2], [22, 79], [30, 70], [31, 35], [40, 127]].map((ll) => ({ ll, el: mk(pinWrap, "nd", "") }));
+const chip = mk(pinWrap, "chip", "● 4,012 SIAP DIGUNA · SEKARANG");
+// caricatures
+const whIcon = `<svg width="16" height="30" viewBox="0 0 22 40"><path d="M11 0 Q22 14 20 30 L2 30 Q0 14 11 0Z" fill="#ff2d46"/><rect x="4" y="31" width="14" height="8" rx="2" fill="#9aa3ad"/></svg>`;
+const SCN = SC.map(([k, r, v, a, b, extra, icons]) => {
+  const m = FIG[k], Hh = 600, sc = Hh / m.h, w = m.w * sc;
+  const bob = mk(cardWrap, "bob", `<div class="fig" style="width:${w}px;height:${Hh}px;margin-left:${-w / 2}px"><img class="fb" src="assets/leaders/${k}-fbody.png" style="width:${w}px;height:${Hh}px"><img class="fh" src="assets/leaders/${k}-fhead.png" style="width:${w}px;height:${(m.neck + 7) * sc}px;transform-origin:${m.px * sc}px ${m.neck * sc}px"></div><div class="np"><b>${LEADER[k][0]}</b><br><i>${LEADER[k][1]}</i></div>`);
+  bob.style.left = "30px"; bob.style.top = "720px";
+  const rk = mk(cardWrap, "rk", `<div class="no">#${r}</div><div class="num">0</div><div class="kk">KEPALA PELEDAK · SIPRI 2026</div><div class="ex ${r === 3 ? "up" : ""}">${extra}</div><div class="wh">${Array.from({ length: icons }, () => whIcon).join("")}</div>`);
+  return { k, r, v, a, b, bob, fig: bob.querySelector(".fig"), head: bob.querySelector(".fh"), np: bob.querySelector(".np"), rk, num: rk.querySelector(".num"), ex: rk.querySelector(".ex"), wh: [...rk.querySelectorAll(".wh svg")] };
+});
+// bar chart
+const D = [["RUSIA", 5420, "ru"], ["AS", 5042, "us"], ["CHINA", 620, "cn"], ["PERANCIS", 370, "fr"], ["UK", 225, "uk"]];
+const bars = mk(cardWrap, "bars5", `<div class="k">KEPALA PELEDAK · SIPRI 2026</div>${D.map(([n, v, k], i) => `<div class="br ${i < 2 ? "hot" : ""}"><img src="assets/leaders/${k}-fhead.png"><span class="nm">${n}</span><div class="bb"><div></div></div><span class="v">${v.toLocaleString("en")}</span></div>`).join("")}<div class="donut"><b>&gt;80%</b><i>RUSIA + AS</i></div>`);
+const barEls = [...bars.querySelectorAll(".bb div")], donut = bars.querySelector(".donut");
+// Malaysia 0 card
+const myc = mk(cardWrap, "rk", `<div style="text-align:center"><div class="no" style="color:#5dffb0">MALAYSIA</div><div class="num" style="color:#5dffb0">0</div><div class="kk">ASIA TENGGARA · ZON BEBAS SENJATA NUKLEAR</div><div class="ex">PERJANJIAN BANGKOK · 1995</div></div>`);
+const mycEx = myc.querySelector(".ex");
+// ending
+const vs = mk(cardWrap, "vs", `<div class="opt a">☢️<b>DENGAN</b><i>NUKLEAR</i></div><div class="or">ATAU</div><div class="opt b">🕊️<b>TANPA</b><i>NUKLEAR</i></div>`);
+const [optA, , optB] = vs.children;
+const bubs = mk(cardWrap, "bubs", `<span>DENGAN 💥</span><span class="r">TANPA 🕊️</span><span>50-50 🤔</span>`);
 const bubEls = [...bubs.children];
 const komen = mk(cardWrap, "komen", "KOMEN ↓");
 
@@ -274,19 +319,6 @@ const capSpans = CAPS.map((c) => c.w.map((w, i) => { const s = document.createEl
 const hook = document.getElementById("hook"), outro = document.getElementById("outro"), fade = document.getElementById("fade"), tint = document.getElementById("tint");
 const fbtn = document.getElementById("fbtn"), sbtn = document.getElementById("sbtn");
 document.getElementById("fx").style.display = "none";
-
-// framed AI stills with a slow push (Ken Burns); gold gets a light sweep
-const BR = [{ k: "shoes", a: T.jumpa - 0.4, b: T.ujian - 0.1, z: [1.0, 1.12], x: [0, -20] }, { k: "gold", a: T.nilai - 0.2, b: T.media - 0.2, z: [1.05, 1.18], x: [10, -25] }]
-  .map((c) => ({ ...c, w: document.getElementById("bw-" + c.k) }));
-const brollEl = document.getElementById("broll"), vigEl = document.querySelector(".vig"), shine = document.getElementById("shine");
-function brollAt(t) {
-  let on = 0;
-  for (const c of BR) { const k = win(t, c.a, c.b - 0.2, 0.2, 0.2); on = Math.max(on, k); const u = clamp((t - c.a) / (c.b - c.a));
-    c.w.style.opacity = k > 0 ? 1 : 0; c.w.style.transform = `translateX(${c.x[0] + (c.x[1] - c.x[0]) * u}px) scale(${c.z[0] + (c.z[1] - c.z[0]) * u})`; }
-  const su = ((t - BR[1].a) % 1.8) / 1.8; shine.style.transform = `translateX(${-120 + 240 * su}%)`;
-  brollEl.style.opacity = on; brollEl.style.transform = `scale(${0.86 + 0.14 * eout(on)})`;
-  vigEl.style.opacity = 1 - on * 0.3; pinWrap.style.opacity = 1 - on;
-}
 const show = (el, t, a, b, top, disp = "block") => {
   const k = win(t, a, b, 0.3, 0.25);
   if (k <= 0) { el.style.display = "none"; return 0; }
@@ -294,86 +326,68 @@ const show = (el, t, a, b, top, disp = "block") => {
 };
 
 function renderAt(t) {
-  brollAt(t);
   const v = cam(t); g.setView(v);
-  // flight line
-  const fOn = win(t, T.naik - 0.2, T.pelepasan + 1.5, 0.3, 0.6);
-  const prog = t < T.pelepasan ? STOP * eout((t - T.naik + 0.1) / (T.malaysia3 - T.naik + 0.6)) : STOP;
-  const stopped = t >= T.pelepasan;
-  for (const r of [fw, fg]) { r.u.op.value = fOn; r.u.prog.value = prog; r.u.col.value.set(stopped ? 0xff2d46 : r === fw ? 0xdff8ff : 0x7fdcff); }
-  fw.u.off.value = -t * 1.5;
+  for (const s of SCN) FL[s.k].mesh.material.opacity = win(t, s.a - 0.1, s.b, 0.4, 0.35) * 0.95;
+  asean.mesh.material.opacity = win(t, T.asia - 0.2, T.korang, 0.5, 0.4);
+  myl.mesh.material.opacity = win(t, T.malaysia, T.korang, 0.4, 0.4);
   g.render();
 
-  for (const p of PINS) {
-    const k = win(t, p.a, p.b, 0.25, 0.25);
-    if (k <= 0) { p.el.style.display = "none"; continue; }
-    const s = g.project(p.ll[0], p.ll[1]);
-    p.el.style.display = "flex"; p.el.style.left = s.x + "px"; p.el.style.top = s.y + "px"; p.el.style.opacity = k;
-    p.el.style.transform = `translate(-13px,-50%) scale(${(0.7 + 0.3 * eout((t - p.a) / 0.25)) * (p.red ? 1 + 0.05 * Math.sin(t * 6) : 1)})`;
-  }
-  // plane icon at the head of the line
-  if (fOn > 0 && t < T.pelepasan + 1.2) {
-    const f = prog * (ROUTE.length - 1), i = Math.min(ROUTE.length - 2, Math.floor(f)), k = f - i;
-    const lo = ROUTE[i][0] + (ROUTE[i + 1][0] - ROUTE[i][0]) * k, la = ROUTE[i][1] + (ROUTE[i + 1][1] - ROUTE[i][1]) * k;
-    const s = g.project(la, lo), s2 = g.project(ROUTE[i + 1][1], ROUTE[i + 1][0]);
-    plane.style.display = "block"; plane.style.left = s.x - 27 + "px"; plane.style.top = s.y - 32 + "px"; plane.style.opacity = fOn;
-    plane.style.color = stopped ? "#ff2d46" : "#fff";
-    plane.style.transform = `rotate(${Math.atan2(s2.y - s.y, s2.x - s.x) * 57.3}deg) scale(${stopped ? 1 + 0.1 * Math.sin(t * 10) : 1})`;
-  } else plane.style.display = "none";
+  // hook nodes + chip
+  NODES.forEach((n, i) => { const k = win(t, 0.2 + i * 0.12, T.n5 - 0.6, 0.15, 0.4); if (k <= 0) { n.el.style.display = "none"; return; }
+    const p = g.project(n.ll[0], n.ll[1]); if (!p.visible) { n.el.style.display = "none"; return; }
+    n.el.style.display = "block"; n.el.style.left = p.x + "px"; n.el.style.top = p.y + "px"; n.el.style.opacity = k * (0.75 + 0.25 * Math.sin(t * 6 + i)); });
+  if (show(chip, t, T.k4000 - 0.1, T.n5 - 0.6, null) > 0) chip.style.top = "320px";
 
-  for (const [el, a, b, top] of SCH) show(el, t, a, b, top);
-  for (const [el, a, b] of HL) for (const m of el.querySelectorAll("mark")) m.style.backgroundSize = `${100 * clamp((t - a) / (b - a))}% 100%`;
-  show(person, t, T.seorang - 0.1, T.tapi - 0.1, 1100, "flex");
-  { const on = win(t, T.pelepasan + 0.2, T.ujian - 0.2, 0.05, 0.3), u = clamp((t - T.pelepasan - 0.2) / 0.22);
-    stampEl.style.display = on > 0 ? "block" : "none"; stampEl.style.left = "330px"; stampEl.style.top = "1170px"; stampEl.style.opacity = on;
-    stampEl.style.transform = `rotate(-8deg) scale(${1.7 - 0.7 * eout(u)})`; }
-
-  // x-ray shoes: scan, bars glow; later the "?" for "milik siapa"
-  const xrOn = Math.max(win(t, T.ujian - 0.1, T.nilai - 0.3, 0.3, 0.25), win(t, T.media - 0.1, T.lelaki3 - 0.1, 0.3, 0.25));
-  if (xrOn > 0) {
-    XR.style.display = "block"; XR.style.opacity = xrOn; XR.style.top = (t < T.nilai ? 420 : 330) + "px";
-    const su = clamp((t - T.ujian) / 0.9); xrScan.style.display = su > 0 && su < 1 ? "block" : "none"; xrScan.style.top = 50 + su * 330 + "px";
-    xrBars.forEach((b, i) => { const lit = t > T.ujian + 0.9 * ((i % 2 ? 195 : 95) / 330); b.style.opacity = lit ? 0.85 + 0.15 * Math.sin(t * 6 + i) : 0.08; });
-    xrK.textContent = t < T.nilai ? "IMBASAN · 2 BATANG SETIAP KASUT" : "MILIK SIAPA?";
-    const uq = clamp((t - T.siapa + 0.3) / 0.25); xrQ.style.display = t >= T.media ? "block" : "none"; xrQ.style.opacity = uq; xrQ.style.transform = `scale(${1.6 - 0.6 * eout(uq)})`;
-  } else XR.style.display = "none";
-  if (show(statE, t, T.ujian + 0.2, T.nilai - 0.3, 1000) > 0) {
-    const u = eout((t - T.p99 + 0.2) / 0.7); statE.querySelector(".v").textContent = (u > 0.99 ? ">" : "") + Math.round(99 * u) + "%";
-    statE.querySelector(".bar div").style.width = 99 * u + "%";
+  // country scenes
+  for (const s of SCN) {
+    const k = win(t, s.a, s.b, 0.25, 0.3);
+    if (k <= 0) { s.bob.style.display = s.rk.style.display = "none"; continue; }
+    s.bob.style.display = "block"; s.bob.style.opacity = k;
+    const x = t - s.a, land = 0.45;
+    const y = x < land ? -900 * Math.pow(1 - x / land, 2) : -60 * Math.exp(-6 * (x - land)) * Math.abs(Math.sin(9 * (x - land)));
+    const sq = x < land ? 1 : 1 - 0.12 * Math.exp(-7 * (x - land)) * Math.cos(14 * (x - land));
+    s.fig.style.transform = `translateY(${y}px) scale(${2 - sq}, ${sq})`; s.fig.style.transformOrigin = "50% 100%";
+    const wob = x < land ? 0 : 12 * Math.exp(-2.6 * (x - land)) * Math.sin(11 * (x - land)) + 2.5 * Math.sin(t * 2.2);
+    s.head.style.transform = `rotate(${wob}deg)`;
+    s.np.style.opacity = clamp((x - land) / 0.3);
+    s.rk.style.display = "block"; s.rk.style.opacity = clamp((x - 0.2) / 0.3) * k; s.rk.style.transform = `translateX(${60 * (1 - eout((x - 0.2) / 0.4))}px)`;
+    const u = eout((t - s.a - 0.3) / Math.max(0.6, VALAT[s.k] - s.a + 0.2)); s.num.textContent = Math.round(s.v * u).toLocaleString("en");
+    s.ex.style.opacity = clamp((t - VALAT[s.k] - 0.5) / 0.3);
+    s.wh.forEach((e, i) => { e.style.opacity = clamp((t - VALAT[s.k] + 0.2 - i * (0.9 / s.wh.length)) / 0.15); });
   }
-  if (show(statV, t, T.bilion - 0.4, T.media - 0.2, 1110) > 0) {
-    const rm = t >= T.juta - 0.1; statV.querySelector(".v").textContent = rm ? "RM2.25 JUTA" : "Rp10 BILION";
-    statV.querySelector(".o").textContent = rm ? "Rp10 BILION" : ""; const u = clamp((t - T.juta + 0.1) / 0.2);
-    statV.querySelector(".n").style.transform = `scale(${rm ? 1.3 - 0.3 * eout(u) : 1})`;
+  // bars
+  if (show(bars, t, T.ru2 - 0.2, T.malaysia - 0.15, 640) > 0) {
+    barEls.forEach((b, i) => { b.style.width = 100 * D[i][1] / 5420 * eout((t - T.ru2 - i * 0.12) / 0.7) + "%"; });
+    const u = eout((t - T.p80 + 0.2) / 0.8); donut.style.background = `conic-gradient(#ff2d46 0 ${83 * u}%,#2a2f38 ${83 * u}% 100%)`; donut.style.opacity = clamp((t - T.p80 + 0.4) / 0.3);
   }
-  if (show(statJ, t, T.lelaki3 - 0.1, T.k2 - 0.1, 880) > 0) {
-    jailB.style.width = 90 * eout((t - T.sabit) / (T.t10 - T.sabit + 0.3)) + "%"; jailB.style.left = "10%";
+  if (show(myc, t, T.malaysia - 0.1, T.korang - 0.15, 1020) > 0) { myc.querySelector(".num").style.transform = `scale(${1.5 - 0.5 * eout((t - T.kosong) / 0.25)})`; mycEx.style.opacity = clamp((t - T.bangkok + 0.3) / 0.3); }
+  // ending poll
+  if (show(vs, t, T.korang - 0.1, T.end_vo + 0.4, null, "flex") > 0) {
+    vs.style.top = "560px";
+    optA.style.transform = `scale(${1 + 0.08 * win(t, T.dengan, T.dengan + 0.5, 0.1, 0.3)})`; optB.style.transform = `scale(${1 + 0.08 * win(t, T.tanpa, T.tanpa + 0.5, 0.1, 0.3)})`;
   }
-  // engagement ending
-  if (show(END, t, T.k2 - 0.1, T.end_vo + 0.4, 330) > 0) { const u = clamp((t - T.risiko + 0.2) / 0.3); endBars.style.opacity = u; endBars.style.transform = `translateY(${-60 * (1 - eout(u))}px)`; }
-  if (show(bubs, t, T.korang, T.end_vo + 0.4, null, "flex") > 0) {
-    bubs.style.top = "800px";
-    bubEls.forEach((b, i) => { const u = clamp((t - T.korang - 0.2 - i * 0.45) / 0.25); b.style.opacity = u; b.style.transform = `scale(${0.5 + 0.5 * eout(u)})`; });
-  }
-  if (show(komen, t, T.komen - 0.1, T.end_vo + 0.4, null) > 0) { komen.style.top = 1060 + 14 * Math.abs(Math.sin(t * 5)) + "px"; }
+  if (show(bubs, t, T.tanpa + 0.2, T.end_vo + 0.4, null, "flex") > 0) { bubs.style.top = "1000px";
+    bubEls.forEach((b, i) => { const u = clamp((t - T.tanpa - 0.3 - i * 0.35) / 0.25); b.style.opacity = u; b.style.transform = `scale(${0.5 + 0.5 * eout(u)})`; }); }
+  if (show(komen, t, T.komen - 0.1, T.end_vo + 0.4, null) > 0) komen.style.top = 1200 + 14 * Math.abs(Math.sin(t * 5)) + "px";
 
   // captions (bottom band)
   let ci = -1; for (let i = 0; i < CAPS.length; i++) if (t >= CAPS[i].a && t < CAPS[i].b) ci = i;
-  const hookOn = t < T.ni - 0.1;
-  if (ci < 0 || hookOn || t > T.end_vo + 0.6) capEl.style.display = "none";
+  if (ci < 0 || t > T.end_vo + 0.6) capEl.style.display = "none";
   else {
     capEl.style.display = "block";
     if (capEl.dataset.i != ci) { capEl.innerHTML = ""; capSpans[ci].forEach((s) => capEl.appendChild(s)); capEl.dataset.i = ci; }
     CAPS[ci].w.forEach((w, j) => { const s = capSpans[ci][j]; s.style.color = t >= w.at - 0.03 ? (w.k ? "#ff2d46" : "#fff") : "rgba(255,255,255,.36)"; });
   }
-
-  const hk = win(t, 0.05, T.ni - 0.3, 0.2, 0.3);
+  // hook title
+  const hk = win(t, T.satu - 0.2, T.n5 - 0.5, 0.2, 0.3);
   hook.style.display = hk > 0 ? "block" : "none"; hook.style.opacity = hk;
-  const [hb, hc, hl] = hook.children;
-  const ub = clamp((t - T.empat + 0.05) / 0.2); hb.style.opacity = ub; hb.style.transform = `scale(${1.45 - 0.45 * eout(ub)})`;
-  hc.style.opacity = clamp((t - T.kasut1 + 0.4) / 0.2); hl.style.transform = `scaleX(${eout((t - T.malaysia1 + 0.4) / 0.5)})`;
+  const [ha, hb, hc, hl] = hook.children;
+  ha.style.opacity = clamp((t - T.satu + 0.2) / 0.25);
+  const ub = clamp((t - T.k5400 + 0.05) / 0.2); hb.style.opacity = ub; hb.style.transform = `scale(${1.45 - 0.45 * eout(ub)})`;
+  hc.style.opacity = clamp((t - T.teka + 0.1) / 0.2); hc.style.transform = `scale(${1 + 0.06 * Math.sin(t * 8) * clamp((t - T.teka) / 0.2)})`;
+  hl.style.transform = `scaleX(${eout((t - T.teka) / 0.5)})`;
 
-  tint.style.opacity = Math.max(0.6 * win(t, T.empat, T.empat + 0.3, 0.05, 0.5), 0.5 * win(t, T.pelepasan + 0.2, T.pelepasan + 0.5, 0.05, 0.6), 0.4 * win(t, T.juta, T.juta + 0.3, 0.05, 0.6), 0.5 * win(t, T.t10, T.t10 + 0.3, 0.05, 0.6));
+  tint.style.opacity = Math.max(0.5 * win(t, T.k5400, T.k5400 + 0.3, 0.05, 0.5), 0.5 * win(t, T.s5420, T.s5420 + 0.3, 0.05, 0.6));
 
   const ot = T.end_vo + 0.4, ok = win(t, ot, DURATION + 1, 0.4, 0.1);
   outro.style.display = ok > 0 ? "block" : "none"; outro.style.opacity = ok;
