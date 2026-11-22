@@ -1,0 +1,18 @@
+# Skrip VO: "Myanmar Bersalah Genosid. Sekarang Apa?" (draf 1, 22 Nov 2026)
+
+Gaya MAP ANIMATION. ~190 patah perkataan (~75 s, tidak dilajukan). Hook + 3 re-hook. Fakta penuh: `research/rohingya-icj-2026.md`.
+
+| # | Babak | VO | Visual |
+|---|---|---|---|
+| 01 | HOOK | Buat pertama kali dalam sejarah… Mahkamah Dunia isytihar sebuah negara bersalah melakukan genosid. Negara tu jiran kita sendiri: Myanmar. Dan mangsanya… ramai kini tinggal di Malaysia. | Glob → zoom Myanmar, merah · cop **GENOSID** menghempas · anak panah Myanmar → Malaysia |
+| 02 | APA JADI | Sembilan belas November lalu, Mahkamah Keadilan Antarabangsa memutuskan, undi sembilan lawan enam: Myanmar lakukan genosid terhadap Rohingya di Rakhine. Sekurang-kurangnya sepuluh ribu dibunuh. Lebih tujuh ratus ribu lari ke Bangladesh. | Kad ICJ **9–6** · zoom Rakhine · kad stat **10,000+** · anak panah pelarian ke Cox's Bazar, kiraan **700,000+** |
+| 03 | RE-HOOK 1 | Tapi yang heret Myanmar ke mahkamah bukan Amerika. Bukan China. Sebuah negara kecil di Afrika: Gambia. | Kamera terbang ke Afrika Barat, Gambia kecil menyala · "NEGARA KECIL, KES BESAR" |
+| 04 | REAKSI | Myanmar kata keputusan ni tak adil. China pula kata ia takkan ubah pendirian mereka. Mahkamah arahkan Myanmar bayar ganti rugi, dan benarkan Rohingya pulang dengan selamat. | Belon petikan Myanmar & China · kad perintah ICJ |
+| 05 | RE-HOOK 2 | Masalahnya… Mahkamah Dunia takde polis. Kalau Myanmar ingkar, kes ni dibawa ke Majlis Keselamatan PBB. Dan siapa ada kuasa veto kat situ? China. | Ikon tukul hakim retak · kerusi Majlis Keselamatan · cop **VETO** merah atas China |
+| 06 | RE-HOOK 3 | Pulang ke mana? Sebahagian besar Rakhine sekarang dikuasai kumpulan bersenjata Arakan Army. Perang belum habis. | Rakhine berbelang, letupan kecil berkelip · tag "DIKUASAI ARAKAN ARMY" |
+| 07 | MALAYSIA | Malaysia kata kita hormati keputusan ni. Tapi di sini ada lebih seratus dua puluh ribu Rohingya berdaftar dengan UNHCR. Dan menurut HRW, tahun ni kerajaan minta UNHCR berhenti daftar pelarian baru buat sementara. | Zoom Malaysia · kad **120,000+** · kad berita highlight "berhenti daftar" |
+| 08 | ENDING | Jadi… lepas Mahkamah Dunia dah putuskan, Rohingya patut dihantar pulang? Atau Malaysia kena terus bantu? Komen pendapat korang, dengan hormat. | Undian **🏠 HANTAR PULANG / 🤝 TERUS BANTU** · **KOMEN ↓** |
+
+## Versi satu perenggan (untuk rakam VO)
+
+Buat pertama kali dalam sejarah… Mahkamah Dunia isytihar sebuah negara bersalah melakukan genosid. Negara tu jiran kita sendiri: Myanmar. Dan mangsanya… ramai kini tinggal di Malaysia. Sembilan belas November lalu, Mahkamah Keadilan Antarabangsa memutuskan, undi sembilan lawan enam: Myanmar lakukan genosid terhadap Rohingya di Rakhine. Sekurang-kurangnya sepuluh ribu dibunuh. Lebih tujuh ratus ribu lari ke Bangladesh. Tapi yang heret Myanmar ke mahkamah bukan Amerika. Bukan China. Sebuah negara kecil di Afrika: Gambia. Myanmar kata keputusan ni tak adil. China pula kata ia takkan ubah pendirian mereka. Mahkamah arahkan Myanmar bayar ganti rugi, dan benarkan Rohingya pulang dengan selamat. Masalahnya… Mahkamah Dunia takde polis. Kalau Myanmar ingkar, kes ni dibawa ke Majlis Keselamatan PBB. Dan siapa ada kuasa veto kat situ? China. Pulang ke mana? Sebahagian besar Rakhine sekarang dikuasai kumpulan bersenjata Arakan Army. Perang belum habis. Malaysia kata kita hormati keputusan ni. Tapi di sini ada lebih seratus dua puluh ribu Rohingya berdaftar dengan UNHCR. Dan menurut HRW, tahun ni kerajaan minta UNHCR berhenti daftar pelarian baru buat sementara. Jadi… lepas Mahkamah Dunia dah putuskan, Rohingya patut dihantar pulang? Atau Malaysia kena terus bantu? Komen pendapat korang, dengan hormat.
