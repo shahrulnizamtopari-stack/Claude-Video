@@ -256,11 +256,11 @@ html.caps #world,html.caps #ui>*:not(#cap){visibility:hidden!important}
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="67.24" data-width="1080" data-height="1920" data-fps="30">
-  <div id="world" class="clip" data-start="0" data-duration="67.24" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+<div id="root" data-composition-id="main" data-start="0" data-duration="73.36" data-width="1080" data-height="1920" data-fps="30">
+  <div id="world" class="clip" data-start="0" data-duration="73.36" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
     <canvas id="gl" width="1080" height="1920"></canvas>
   </div>
-  <div id="ui" class="clip" data-start="0" data-duration="67.24" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
+  <div id="ui" class="clip" data-start="0" data-duration="73.36" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
     <div class="vig"></div>
     <div id="shade" style="position:absolute;inset:0;background:#05070b;opacity:0"></div>
     <svg id="routeSvg" width="1080" height="1920"><polyline id="rt1" fill="none" stroke="#f6f3ec" stroke-width="5" stroke-dasharray="14 10" stroke-linecap="round"/><polyline id="rt2" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="4" stroke-dasharray="3 10" stroke-linecap="round"/></svg>
@@ -272,8 +272,8 @@ html.caps #world,html.caps #ui>*:not(#cap){visibility:hidden!important}
     <div id="cap"></div>
     <div id="fade"></div>
   </div>
-  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="67.24" data-track-index="5" data-volume="1"></audio>
-  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="67.24" data-track-index="6" data-volume="0.5"></audio>
+  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="71.888980" data-track-index="5" data-volume="1"></audio>
+  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="73.36" data-track-index="6" data-volume="0.5"></audio>
 </div>
 
 <script>
@@ -446,8 +446,8 @@ function renderAt(t) {
   rt2.setAttribute("points", rk > 0 ? routePts([SINK, NY], eout((t - T.karam) / 1.0)) : ""); rt2.style.opacity = rk * clamp((t - T.karam) / 0.3);
   if (show(pSot, t, T.pada + 0.1, e3, "flex")) place(pSot, SOTON);
   if (show(pNY, t, T.karam + 0.6, e3, "flex")) place(pNY, NY);
-  if (show(pSink, t, T.karam - 0.1, T.yang - 0.1, "flex")) { place(pSink, SINK); }
-  if (show(ndSink, t, T.karam - 0.1, T.yang - 0.1)) { const p = place(ndSink, SINK, `scale(${1 + 0.25 * Math.sin(t * 6)})`); }
+  if (show(pSink, t, T.karam - 0.1, T.lucy - 0.35, "flex")) { place(pSink, SINK); }
+  if (show(ndSink, t, T.karam - 0.1, T.lucy - 0.35)) { const p = place(ndSink, SINK, `scale(${1 + 0.25 * Math.sin(t * 6)})`); }
   if (show(stat3, t, T.kira - 0.1, e3)) { rise(stat3, t, T.kira - 0.1); const u = eout((t - T.kira) / Math.max(0.6, T.terkorban - T.kira)); s3n.textContent = "~" + Math.round(1500 * u).toLocaleString("en"); s3b.style.width = 100 * u + "%"; }
   // S4 Lucy
   const e4 = T.yang - 0.15;

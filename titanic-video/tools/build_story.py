@@ -7,10 +7,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 d = json.load(open(os.path.join(ROOT, "assets", "transcript.json")))
 W = d if isinstance(d, list) else d["words"]
 
-FIX = {"nomor": "nombor", "Duff-Gordon,": "Duff Gordon,", "Gordon,": "Gordon,", "Comment": "Komen", "Komentar": "Komen",
-       "1912,": "1912,", "1.500": "1,500", "150.000": "150,000", "dakwa,": "dakwa,"}
+FIX = {"Tragedy": "tragedi", "ringgit.": "ringgit!", "kesah": "kisah", "breaker": "pereka", "fashion": "fesyen", "britain": "Britain",
+       "Gordon": "Gordon,", "boat": "bot", "jadi": "je di", "dalamnya.": "dalamnya!", "dulu,": "dulu!",
+       "crew": "kru", "chinchin": "cincin", "1500": "1,500", "karam": "karam,", "pound,": "pound!",
+       "bila-bila.": "bila-bila?", "Comment": "Komen", "lain.": "lain!", "Namun": "Namun,", "Katanya": "Katanya,", "lepas": "Lepas"}
 # ASR split words
-JOIN = {}
+JOIN = {("setia", "usahanya."): "setiausahanya."}
 _W = []
 for w in W:
     if _W and (_W[-1]["text"], w["text"]) in JOIN:
@@ -19,9 +21,9 @@ for w in W:
 W = _W
 DROP = set()
 DISPLAY = {}
-KEY = {"Titanic,", "800", "ribu", "ringgit!", "kontroversi", "15", "April", "1912,", "karam,", "1,500", "terkorban.", "Lucy,",
-       "Lady", "Duff", "Gordon,", "40", "12", "tunggu", "dulu!", "dakwaan", "mengejutkan.", "5", "pound", "hilang.", "rasuah",
-       "berpatah", "balik", "tidak", "berasas.", "114", "150,000", "pound!", "815", "jual", "simpan", "Komen"}
+KEY = {"Titanic,", "Titanic", "800", "ribu", "ringgit!", "kontroversi", "15", "April", "1912,", "karam,", "1,500", "terkorban.",
+       "Lucy,", "Lucy", "Lady", "Duff", "Gordon,", "40", "12", "tunggu", "dulu!", "dakwaan", "mengejutkan.", "5", "pound", "hilang.",
+       "rasuah", "berpatah", "balik,", "tidak", "berasas.", "114", "150", "pound!", "815", "jual", "simpan", "Komen"}
 SOFT = {"China"}  # only key inside specific beats (handled below by index)
 
 words = []
@@ -30,6 +32,9 @@ for i, w in enumerate(W):
     if t in DROP:
         words[-1]["e"] = w["end"]; continue
     t = FIX.get(t, t); t = DISPLAY.get(t, t)
+    nxt = W[i + 1]["text"] if i + 1 < len(W) else ""
+    if t in ("Titanic", "Britain", "Lucy") and nxt in ("kini", "Lucy", "Lady"): t += ","
+    if words and re.search(r"[.?!]$", words[-1]["t"]) and t[:1].islower(): t = t[:1].upper() + t[1:]
     if t == "Nombor" and words and not re.search(r"[.?!:,]$", words[-1]["t"]): t = "nombor"
     if t == "tapi" and words and re.search(r"[.?!]$", words[-1]["t"]): t = "Tapi"
     words.append({"t": t, "s": round(w["start"], 3), "e": round(w["end"], 3), "i": i})
