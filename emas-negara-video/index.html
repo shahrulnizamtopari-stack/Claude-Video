@@ -137,7 +137,7 @@ html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,h
 
 .gk{display:none}
 #pour{position:absolute;inset:0;z-index:1;opacity:0;background:#000}#pour video{width:100%;height:100%;object-fit:cover}#pour .btag{position:absolute;right:24px;top:24px;font:700 20px Mono;color:#fff;background:rgba(0,0,0,.55);padding:6px 12px;border-radius:4px;letter-spacing:3px}
-#hookA{position:absolute;inset:0;z-index:3;display:none;background:radial-gradient(ellipse at 50% 55%,#1a1712 0%,#07080b 70%)}#hookA svg{position:absolute;inset:0}
+#hookA{position:absolute;inset:0;z-index:3;display:none;background:radial-gradient(ellipse at 50% 60%,rgba(20,16,10,.35) 0%,rgba(5,7,11,.6) 60%,rgba(5,7,11,.85) 100%)}#hookA svg{position:absolute;inset:0}
 #hookA .lab{position:absolute;left:0;right:0;top:300px;text-align:center;font:800 54px Inter;color:#fff;text-shadow:0 4px 18px rgba(0,0,0,.8)}
 .dim{font:700 30px Mono;fill:#ffd36b}
 #flash{position:absolute;inset:0;z-index:4;background:#fff;opacity:0;pointer-events:none}
@@ -355,7 +355,7 @@ const SC = [
   ["us", 1, 8133, T.n1, T.malaysia - 0.15, T.s8133, 81],
 ];
 const K = [
-  [0, 30, 20, 4.6, 4, 0.1], [T.ni - 0.3, 30, 30, 4.6, 4, 0.1], [T.n5 - 0.8, 34, 70, 4.0, 4, 0.12],
+  [0, 39, -96, 0.9, 30, -0.05], [T.ni - 0.4, 39, -92, 1.0, 30, -0.05], [T.n5 - 0.8, 34, 70, 4.0, 4, 0.12],
   [T.cn - 0.1, 36, 104, 1.6, 10, 0.26], [T.n4 - 0.4, 36, 103, 1.55, 10, 0.26],
   [T.fr - 0.1, 47, 2.5, 0.55, 14, 0.26], [T.n3 - 0.4, 46.9, 2.6, 0.53, 14, 0.26],
   [T.it - 0.1, 42.5, 12.5, 0.6, 14, 0.26], [T.n2 - 0.4, 42.5, 12.4, 0.58, 14, 0.26],
@@ -428,6 +428,7 @@ function renderAt(t) {
 
   const v = cam(t); g.setView(v);
   for (const s of SCN) FL[s.k].mesh.material.opacity = win(t, s.a - 0.1, s.b, 0.4, 0.35) * 0.95;
+  FL.us.mesh.material.opacity = Math.max(FL.us.mesh.material.opacity, win(t, CUT, T.ni - 0.3, 0.3, 0.4) * 0.5);
   myl.mesh.material.opacity = win(t, T.malaysia - 0.2, DURATION, 0.4, 0.4);
   const aOn = win(t, T.sebahagian, T.n1 - 0.2, 0.3, 0.3), ap = eout((t - T.sebahagian - 0.2) / 1.6);
   for (const r of [arc, arcG]) { r.u.op.value = aOn; r.u.prog.value = ap; } arc.u.off.value = -t * 1.2;
