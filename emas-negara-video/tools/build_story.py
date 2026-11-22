@@ -7,11 +7,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 d = json.load(open(os.path.join(ROOT, "assets", "transcript.json")))
 W = d if isinstance(d, list) else d["words"]
 
-FIX = {"ini,": "ni,", "4.000": "4,000", "nuclear": "nuklear", "nuclear?": "nuklear?", "5.400.": "5,400.", "Taka": "Teka",
-       "Prancis,": "Perancis,", "5.042.": "5,042.", "5.420.": "5,420.", "zone": "zon", "Komentar": "Komen",
-       "95.": "'95.", "5.": "lima.", "5,": "lima:", "4,": "empat:", "3,": "tiga:", "2,": "dua:", "1,": "satu:",
-       "United": "United", "Kingdom,": "Kingdom,", "Nombor": "Nombor"}
-# ASR split words
+FIX = {"dicayarkan": "dicairkan", "cube,": "kiub,", "Ini": "Ni", "No.": "Nombor", "5,": "lima:", "4,": "empat:", "3,": "tiga:",
+       "2,": "dua:", "1,": "satu:", "France.": "Perancis.", "Italy.": "Itali.", "Germany.": "Jerman.", "German": "Jerman",
+       "German.": "Jerman.", "Bezer": "Beza", "Comment": "Komen"}
 JOIN = {}
 _W = []
 for w in W:
@@ -21,8 +19,8 @@ for w in W:
 W = _W
 DROP = set()
 DISPLAY = {}
-KEY = {"4,000", "siap", "5,400.", "Teka", "siapa?", "225.", "370.", "620.", "laju", "5,042.", "5,420.", "80%", "Kosong.",
-       "zon", "bebas", "selamat", "tanpa", "nuklear?", "Komen", "Kingdom,", "Perancis,", "China,", "Amerika", "Syarikat,", "Rusia,"}
+KEY = {"emas", "dicairkan", "kiub,", "tingkat.", "China.", "2,435", "menambah.", "Perancis.", "2,437", "Dua", "Itali.", "2,452",
+       "Jerman.", "3,349", "New", "York.", "Syarikat.", "8,133", "dua", "kali", "ganda", "50", "teratas", "patut", "Komen"}
 SOFT = {"China"}  # only key inside specific beats (handled below by index)
 
 words = []
@@ -31,8 +29,7 @@ for i, w in enumerate(W):
     if t in DROP:
         words[-1]["e"] = w["end"]; continue
     t = FIX.get(t, t); t = DISPLAY.get(t, t)
-    if t == "di" and i + 1 < len(W) and W[i + 1]["text"] == "bawah.": t = "kat"
-    if t == "Nombor" and words and not re.search(r"[.?:,]$", words[-1]["t"]): t = "nombor"
+    if t == "5" and i + 1 < len(W) and W[i + 1]["text"] == "negara": t = "lima"
     words.append({"t": t, "s": round(w["start"], 3), "e": round(w["end"], 3), "i": i})
 
 def key(w):
@@ -80,13 +77,12 @@ def at(text, n=1):
     raise SystemExit(f"word not found: {text} #{n}")
 
 T = {
-  "saat": at("Saat"), "k4000": at("4,000"), "siap": at("siap"), "pesawat": at("pesawat"), "satu": at("satu"),
-  "k5400": at("5,400"), "teka": at("Teka"), "kira": at("kira"), "n5": at("Nombor", 2), "uk": at("United"), "s225": at("225"),
-  "n4": at("Nombor", 3), "fr": at("Perancis"), "s370": at("370"), "n3": at("Nombor", 4), "cn": at("China"), "s620": at("620"),
-  "laju": at("laju"), "n2": at("Nombor", 5), "us": at("Amerika"), "s5042": at("5,042"), "n1": at("Nombor", 6), "ru": at("Rusia"),
-  "s5420": at("5,420"), "ru2": at("Rusia", 2), "p80": at("80%"), "malaysia": at("Malaysia"), "kosong": at("Kosong"),
-  "asia": at("Asia"), "zon": at("zon"), "bangkok": at("Bangkok"), "y95": at("'95"), "korang": at("Korang"),
-  "dengan": at("dengan"), "tanpa": at("tanpa"), "komen": at("Komen"),
+  "kalau": at("Kalau"), "dicairkan": at("dicairkan"), "kiub": at("kiub"), "tingginya": at("tingginya"), "bangunan": at("bangunan"),
+  "tingkat": at("tingkat"), "ni": at("Ni"), "n5": at("Nombor"), "cn": at("China"), "s2435": at("2,435"), "menambah": at("menambah"),
+  "n4": at("Nombor", 2), "fr": at("Perancis"), "s2437": at("2,437"), "beza": at("Beza"), "dua": at("Dua", 2),
+  "n3": at("Nombor", 3), "it": at("Itali"), "s2452": at("2,452"), "n2": at("Nombor", 4), "de": at("Jerman"), "s3349": at("3,349"),
+  "sebahagian": at("sebahagian"), "ny": at("New"), "n1": at("Nombor", 5), "us": at("Amerika", 2), "s8133": at("8,133"),
+  "lebih2": at("Lebih", 2), "malaysia": at("Malaysia"), "tak": at("Tak"), "korang": at("Korang"), "patut": at("patut"), "komen": at("Komen"),
 }
 END_VO = words[-1]["e"]
 T["end_vo"] = END_VO
