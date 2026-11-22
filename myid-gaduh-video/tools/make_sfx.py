@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sound bed for whatif-sg-video (assets/sfx.wav, 48 kHz mono). Every sound sits on something visible; times come from
+"""Sound bed for myid-gaduh-video (assets/sfx.wav, 48 kHz mono). Every sound sits on something visible; times come from
 assets/story.js (VO time), so run tools/build_story.py first."""
 import os, re, json, wave
 import numpy as np
@@ -48,36 +48,41 @@ drone = sum(np.sin(2 * np.pi * f * tt + k) / k for k, f in enumerate([55, 110, 1
 drone *= (0.6 + 0.4 * np.sin(2 * np.pi * tt / 9)) * env(n, 2.0, 2.5)
 put(drone * 0.035, 0, 1)
 
-# zip: fast ratchet ticks while the seam closes, then a bass drop + boom on the merge
-z0, z1 = 0.4, T["apa"] - 0.2
-for i in range(int((z1 - z0) / 0.035)): put(tone(1800 + 400 * (i % 2), .015, .001, .012) * .35, z0 + i * 0.035, 1)
-n = int(1.2 * SR); tt = np.arange(n) / SR
-put(np.sin(2 * np.pi * (120 * np.exp(-tt * 3) + 38) * tt) * np.exp(-tt * 2.2) * 1.0, T["apa"], 0.9)
-put(impact(.9), T["apa"], 0.8)
-# history: two drops, timeline ticks, split hit
-put(impact(.5), T["tahun"] + 0.45, 0.5); put(impact(.5), T["masuk"] - 0.05, 0.5)
-put(ping(880), T["t63"], 0.5); put(ping(660), T["t65"], 0.5)
-put(impact(.9), T["pisah"], 0.9); put(whoosh(.6), T["pisah"] - 0.1, 0.4); put(ping(1320), T["b23"], 0.5)
-put(np.sin(2 * np.pi * (110 * np.exp(-np.arange(int(SR)) / SR * 3) + 40) * np.arange(int(SR)) / SR) * np.exp(-np.arange(int(SR)) / SR * 2.5), T["kalau"], 0.7)
-# leaderboard: merge, climb
-put(whoosh(.6), T["trilion"] - 0.2, 0.4); put(pop(), T["trilion"] + 0.3, 0.7)
-put(whoosh(.8), T["lompat"], 0.5); put(impact(.5), T["lompat"] + 0.7, 0.5); put(ping(1320), T["n20"], 0.5)
-# stat cards: pops + count-up ticks
-for a, d in ((T["pendapatan"], 1.0), (T["j40"] - 0.2, 0.8)):
-    put(pop(), a - 0.1, 0.8)
-    for i in range(12): put(tick(), a + d * (1 - (1 - i / 12) ** 2), 1)
-put(ping(990), T["ganda"], 0.5)
-# 0.2% pings
-for i in range(5): put(ping(1600), T["sg02"] + i / 1.3, 0.35)
-# water + cars
-put(whoosh(1.6), T["air"] - 0.2, 0.35)
-for i in range(10): put(lp(noise(.25), 600) * env(int(.25 * SR), .05, .2) * .5, T["ratusan"] + i * 0.3, 1)
-# camera flights
-for t in (T["tahun"], T["ekonomi"] - 0.2, T["tapi"], T["hari"] + 0.2, T["ibu"] - 1.2): put(whoosh(1.2), t, 0.3)
-# question + comment bubbles
-put(pop(), T["ibu"] - 0.3, 0.8); put(pop(), T["harimau"] - 0.2, 0.8)
-for i in range(3): put(pop(), T["juara"] - 0.2 + i * 0.3, 0.9)
-put(ping(990), T["komen"], 0.5)
+def boom(t, g=0.9):
+    n = int(1.2 * SR); tt = np.arange(n) / SR
+    put(np.sin(2 * np.pi * (110 * np.exp(-tt * 3) + 38) * tt) * np.exp(-tt * 2.4), t, g); put(impact(.8), t, g * 0.8)
+# hook: crackle on the crack, boom on "berperang", pops on chips
+for i in range(14): put(lp(noise(.05), 2500) * env(int(.05 * SR), .001, .04) * .5, 0.5 + i * 0.22, 1)
+boom(T["perang"]); put(whoosh(.8), T["kenapa"] - 0.3, 0.4)
+for k in ("bola", "batik", "makanan"): put(pop(), T[k] - 0.1, 0.9)
+# 1963: flight, drops, VS, stamp slam, battle booms
+put(whoosh(1.2), T["semua"], 0.35); put(ping(660), T["y63"], 0.5)
+put(impact(.5), T["sukarno"] + 0.1, 0.6); put(impact(.5), T["sukarno"] + 0.9, 0.6); put(impact(.6), T["sukarno"] + 1.0, 0.5)
+put(pop(), T["british"] - 0.2, 0.8); boom(T["ganyang"], 1.0)
+for i, d in enumerate([0, .35, .8, 1.1, 1.6, 2.1]): put(impact(.5), T["askar"] + d, 0.35 + 0.1 * (i % 2))
+boom(T["borneo"], 0.8)
+# peace + ASEAN
+put(whoosh(1.2), T["dengar"] + 0.2, 0.35); put(ping(880), T["y66"], 0.5); put(ping(1320), T["damai"], 0.5); put(ping(990), T["setahun"] + 0.3, 0.4)
+put(ping(1320), T["asean"], 0.6); put(ping(1760), T["asean"] + 0.12, 0.4)
+# Sipadan: flight, pin, count ticks, gavel
+put(whoosh(1.4), T["diuji"], 0.4); put(ping(1200), T["sipadan"], 0.5)
+for i in range(16): put(tick(), T["mahkamah"] + 0.9 * (1 - (1 - i / 16) ** 2), 1)
+put(impact(.6), T["milik"], 0.8); put(pop(), T["sulawesi"] - 0.2, 0.6)
+# salah faham
+boom(T["pelik2"], 0.8); put(impact(.5), T["salah"], 0.6)
+# Pendet: arrow whoosh, card pop, accusation pop, stamp slam, correction ping
+put(whoosh(1.6), T["pendet"] - 0.2, 0.4); put(ping(1100), T["bali"], 0.4); put(pop(), T["enigmatic"] - 0.4, 0.8)
+put(pop(), T["ramai"] - 0.1, 0.8); put(impact(.6), T["discovery"], 0.8); put(ping(1320), T["bukannya"], 0.5)
+# boikot bubbles
+put(whoosh(1.0), T["masuk"], 0.3)
+for i in range(6): put(pop(), T["meme"] - 0.2 + i * ((T["boikot"] + 0.6 - T["meme"]) / 6), 0.85)
+# trade: flight, horn, count ticks
+put(whoosh(1.0), T["tapi4"], 0.35); put(tone(110, 0.8, .05, .5) * .5 + tone(165, 0.8, .05, .5) * .3, T["tapi4"] + 0.8, 0.6)
+for i in range(14): put(tick(), T["rm114"] - 0.4 + 1.0 * (1 - (1 - i / 14) ** 2), 1)
+put(ping(1320), T["rm114"] + 0.7, 0.5)
+# ending
+put(whoosh(1.0), T["jadi"], 0.3); put(pop(), T["kalau"] - 0.2, 0.9); put(pop(), T["kalau"] + 0.1, 0.9); put(pop(), T["viral"] - 0.1, 0.8)
+put(ping(990), T["akhir"], 0.5)
 put(pop(), T["end_vo"] + 1.6, 1); put(pop(), T["end_vo"] + 2.1, 1)
 
 pk = np.max(np.abs(out)); out = out / pk * 0.85

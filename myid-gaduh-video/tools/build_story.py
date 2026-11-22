@@ -7,24 +7,29 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 d = json.load(open(os.path.join(ROOT, "assets", "transcript.json")))
 W = d if isinstance(d, list) else d["words"]
 
-FIX = {"Bayangkan,": "Bayangkan…", "63,": "'63,", "65,": "'65,", "berpisah": "berpisah.", "$1,200,000,000.": "$1.2 trilion.",
-       "34,": "34…", "orang,": "orang?", "$40,000,000.": "40 juta.", "keluasan,": "keluasan?", "tambak": "Tambak", "korang.": "korang:",
-       "harimau": "Harimau", "Melayar": "Malaya", "Comment": "Komen", "negara,": "negara,"}
-JOIN = {("kosong", "perpuluhan"): "kosong perpuluhan", ("kosong perpuluhan", "200"): "0.2%", ("ulang", "alit"): "ulang-alik"}
+FIX = {"berperang.": "berperang!", "serumpuh": "serumpun", "ini": "ni", "Aska": "Askar", "Bonyo.": "Borneo!", "ASEAN": "ASEAN!",
+       "mahkamah": "Mahkamah", "sipadan": "Sipadan", "licitan": "Ligitan", "Pandet": "Pendet", "Tarian": "tarian", "disunteng": "disunting",
+       "Channel.": "Channel.", "daripada": "daripada", "mim": "meme", "boycott": "boikot", "perselisehan.": "perselisihan?", "bermusuh.": "bermusuh…",
+       "Ganyang": "\u201cGanyang", "konfrontasi.": "Konfrontasi.", "ni,": "ni.", "114": "RM114", "bilion": "bilion"}
+JOIN = {("antara", "bangsa"): "Antarabangsa", ("Enigmatic", "Malaysia."): "\u201cEnigmatic Malaysia\u201d."}
 _W = []
 for w in W:
     if _W and (_W[-1]["text"], w["text"]) in JOIN:
         _W[-1] = {**_W[-1], "text": JOIN[(_W[-1]["text"], w["text"])], "end": w["end"]}; continue
     _W.append(dict(w))
 W = _W
+for k in range(len(W) - 1):
+    if W[k]["text"] == "ASEAN" and W[k + 1]["text"] == "daripada": W[k + 1] = {**W[k + 1], "text": "Daripada"}
+    if W[k]["text"] == "Ganyang": W[k + 1] = {**W[k + 1], "text": "Malaysia!\u201d"}
 # "Singapura." before "Dan" is a question
 for k in range(len(W) - 1):
     if W[k]["text"] == "Singapura." and W[k + 1]["text"] == "Dan": W[k]["text"] = "Singapura?"
 DROP = set()
 DISPLAY = {}
-KEY = {"keluar", "'63,", "masuk", "'65,", "berpisah.", "23", "bulan.", "$1.2", "trilion.", "34…", "20", "dunia.",
-       "dua", "kali", "ganda.", "$30,000", "40 juta.", "$1.2 trilion.", "berubah.", "0.2%", "air", "Johor", "ratusan", "ribu", "Tambak",
-       "KL", "Singapura?", "juara", "ASEAN", "Komen"}
+KEY = {"berperang!", "bola,", "batik,", "makanan", "gaduh.", "bertelagah?", "1963.", "Sukarno", "British", "\u201cGanyang", "Malaysia!\u201d", "Konfrontasi.",
+       "bertempur", "Borneo!", "1966,", "berdamai.", "ASEAN!", "musuh", "rakan", "serantau.", "2002,", "Sipadan", "Ligitan", "milik", "Sulawesi",
+       "salah", "faham.", "Pendet", "Bali", "\u201cEnigmatic Malaysia\u201d.", "Discovery", "Channel.", "Bukannya", "meme", "boikot", "RM114", "bilion", "ringgit.",
+       "bermusuh…", "media", "sosial", "viral", "korang?"}
 SOFT = {"China"}  # only key inside specific beats (handled below by index)
 
 words = []
@@ -47,7 +52,7 @@ for w in words:
     cand = " ".join(x["t"] for x in cur + [w])
     if cur and len(cand) > 26: flush()
     cur.append(w)
-    if re.search(r"[.…?]$", w["t"]) or (w["t"].endswith(",") and len(" ".join(x["t"] for x in cur)) > 12): flush()
+    if re.search(r"[.…?!”]$", w["t"]) or (w["t"].endswith(",") and len(" ".join(x["t"] for x in cur)) > 12): flush()
 flush()
 # never end a group on a weak word
 WEAK = {"Kalau", "Istana", "Menteri", "Pulau", "di", "ke", "dan", "yang", "dari", "untuk", "satu", "ada", "tak", "kod", "supaya", "salah"}
@@ -74,19 +79,21 @@ for k, g in enumerate(groups):
 def at(text, n=1):
     c = 0
     for w in words:
-        if w["t"].lower().strip(".,?:…") == text.lower().strip(".,?:…"):
+        if w["t"].lower().strip(".,?:…!\u201c\u201d") == text.lower().strip(".,?:…!\u201c\u201d"):
             c += 1
             if c == n: return w["s"]
     raise SystemExit(f"word not found: {text} #{n}")
 
 T = {
-  "bayang": at("Bayangkan"), "keluar": at("keluar"), "apa": at("Apa"), "tahun": at("Tahun"), "t63": at("'63"), "masuk": at("masuk"),
-  "dua": at("Dua"), "ogos": at("Ogos"), "t65": at("'65"), "pisah": at("berpisah"), "b23": at("23"), "kalau": at("Kalau"),
-  "ekonomi": at("ekonomi"), "trilion": at("$1.2 trilion"), "dari": at("Dari", 2), "n34": at("34"), "lompat": at("lompat"), "n20": at("20"),
-  "pendapatan": at("Pendapatan"), "ganda": at("ganda"), "k30": at("$30,000"), "penduduk": at("Penduduk"), "j40": at("40 juta"),
-  "tapi": at("Tapi"), "berubah": at("berubah"), "sg02": at("Singapura", 4), "p02": at("0.2%"), "hari": at("Hari"), "rapat": at("rapat"),
-  "air": at("air"), "ratusan": at("ratusan"), "tambak": at("Tambak"), "soalan": at("Soalan"), "ibu": at("ibu"), "kl": at("KL"),
-  "dan2": at("Dan", 2), "harimau": at("Harimau"), "juara": at("juara"), "komen": at("Komen"),
+  "pelik": at("pelik"), "perang": at("berperang"), "bola": at("bola"), "batik": at("batik"), "makanan": at("makanan"), "kenapa": at("Kenapa"),
+  "semua": at("Semuanya"), "y63": at("1963"), "sukarno": at("Sukarno"), "british": at("British"), "ganyang": at("Ganyang"), "konf": at("Konfrontasi"),
+  "askar": at("Askar"), "borneo": at("Borneo"), "dengar": at("dengar"), "y66": at("1966"), "damai": at("berdamai"), "setahun": at("setahun"),
+  "asean": at("ASEAN"), "musuh": at("musuh"), "serantau": at("serantau"), "diuji": at("diuji"), "y02": at("2002"), "mahkamah": at("Mahkamah"),
+  "sipadan": at("Sipadan"), "milik": at("milik"), "namun": at("Namun"), "sulawesi": at("Sulawesi"), "pelik2": at("pelik", 2), "salah": at("salah"),
+  "y09": at("2009"), "pendet": at("Pendet"), "bali": at("Bali"), "enigmatic": at("Enigmatic Malaysia"), "ramai": at("Ramai"), "rupanya": at("Rupanya"),
+  "discovery": at("Discovery"), "bukannya": at("Bukannya"), "masuk": at("Masuk"), "y26": at("2026"), "meme": at("meme"), "boikot": at("boikot"),
+  "tapi4": at("Tapi", 4), "y25": at("2025"), "rm114": at("RM114"), "jadi": at("Jadi"), "atau": at("Atau"), "kalau": at("Kalau"), "viral": at("viral"),
+  "akhir": at("pendapat") - 0.6, "korang": at("korang"),
 }
 END_VO = words[-1]["e"]
 T["end_vo"] = END_VO
