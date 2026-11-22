@@ -31,3 +31,12 @@ awam biasa (selebriti / anak kecil dalam perang netizen tidak dinamakan). Tiada 
 - https://mediaselangor.com/ms/2026/11/407337
 - https://www.cnnindonesia.com/hiburan/20261004144743-234-1411461/jennifer-coppen-cerita-berantem-dan-dihujat-netizen-malaysia
 - https://en.wikipedia.org/wiki/2026_FIFA_ASEAN_Cup
+
+## Tambahan untuk skrip pengguna (22 Nov 2026)
+| Dakwaan | Status | Nota / sumber |
+|---|---|---|
+| ASEAN ditubuhkan 8 Ogos 1967, Malaysia & Indonesia antara 5 pengasas | ✅ | Deklarasi Bangkok. |
+| Okt 2026: meme "HATI-HATI BEDA LEVEL" oleh jenama grooming Indonesia → seruan boikot di Malaysia; jenama padam & mohon maaf | ✅ | Malay Mail 9 Okt 2026; Malaysiakini. Nama jenama tidak dipapar di skrin. |
+| Dagangan dua hala 2025 ≈ RM114 bilion | ⚠️ | AS$26.61 bilion (+5.3%), corporatekini/RTM; ditukar ≈ RM4.3/USD. VO kata "sekitar". |
+- https://www.malaymail.com/news/life/2026/10/09/from-football-meme-to-boycott-calls-why-indonesian-grooming-brand-kahf-is-facing-backlash-in-malaysia/238351
+- https://corporatekini.com/2026/07/12/dagangan-malaysia-indonesia-dijangka-cecah-as29-3-bilion-kerjasama-halal-jadi-pemacu-utama/
