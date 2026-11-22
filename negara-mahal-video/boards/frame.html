@@ -128,6 +128,26 @@ html,body{width:1080px;height:1920px;background:#05070b;overflow:hidden;font-fam
 #tintR{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,30,50,0) 40%,rgba(255,30,50,.45) 100%)}
 .win{top:300px}.win2{position:absolute;left:220px;top:300px;width:640px;height:800px;border:3px solid rgba(255,255,255,.9);border-radius:18px;background:linear-gradient(160deg,#1d5e74,#0c1118 70%);box-shadow:0 30px 80px rgba(0,0,0,.7);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:#cfe3ea;font:700 24px Mono;letter-spacing:2px;text-align:center;padding:0 40px}
 .win2 em{font-style:normal;color:#ffcf4a;font-size:20px;letter-spacing:1px;line-height:1.4}.win2 i{position:absolute;right:14px;top:14px;font:700 16px Mono;color:#fff;background:rgba(0,0,0,.55);padding:5px 10px;border-radius:4px;font-style:normal}
+/* brief palette: navy/charcoal + gold + warm white, red only for prices */
+.rk .num{color:#f6f3ec}.rk .no{color:#ffce00}
+.cap .r{color:#ffce00!important}
+.title .b span{color:#ffce00}
+.title .ln{background:#ffce00}
+#tintR{background:radial-gradient(ellipse at 50% 45%,rgba(5,10,30,0) 35%,rgba(5,10,30,.85) 100%)!important}
+.rh .l span{color:#ffce00}
+.tt{position:absolute;top:960px;left:0;right:0;text-align:center;color:#f6f3ec}
+.tt .t5{font:800 230px/0.9 Inter;letter-spacing:-8px;color:#ffce00;text-shadow:0 0 60px rgba(255,206,0,.35)}
+.tt .t1{font:800 66px/1.08 Inter;letter-spacing:1px;margin-top:18px}
+.tt .ch{display:inline-block;margin-top:30px;font:700 26px Mono;letter-spacing:4px;color:#0b0d12;background:#ffce00;padding:10px 20px;border-radius:6px}
+.mvs{position:absolute;top:860px;left:70px;right:70px;display:flex;align-items:stretch;justify-content:center;gap:22px}
+.mvs .c{flex:1;background:rgba(10,12,17,.94);border-radius:18px;padding:26px 18px 24px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.mvs .c .fb{width:120px;height:78px;margin:0 auto;border-radius:6px;overflow:hidden;box-shadow:0 0 0 3px #fff}.mvs .c .fb svg{width:100%;height:100%;display:block}
+.mvs .c b{display:block;font:800 40px Inter;color:#fff;margin-top:16px}.mvs .c .n{font:italic 700 150px/1 Serif;margin-top:6px}
+.mvs .vsx{align-self:center;font:800 44px Inter;color:#9aa3ad}
+.cta{position:absolute;top:640px;left:90px;right:90px;background:rgba(10,12,17,.95);border:3px solid #ffce00;border-radius:24px;padding:46px 40px 40px;text-align:center;box-shadow:0 0 70px rgba(255,206,0,.25),0 30px 80px rgba(0,0,0,.7)}
+.cta .k{font:700 26px Mono;letter-spacing:5px;color:#ffce00}.cta .q{font:800 76px/1.08 Inter;color:#f6f3ec;margin-top:18px}.cta .q span{color:#ffce00}
+.cta .row{display:flex;justify-content:center;gap:30px;margin-top:36px}.cta .row div{width:190px;height:124px;border-radius:8px;overflow:hidden;box-shadow:0 0 0 4px #fff}.cta .row svg{width:100%;height:100%;display:block}
+.cta .go{margin-top:36px;font:800 50px Inter;color:#ffce00;letter-spacing:3px}
 </style></head><body>
 <canvas id="gl" width="1080" height="1920"></canvas>
 <div class="vig"></div>
@@ -144,7 +164,7 @@ const C_ = (id) => countries.find((c) => +c.id === id);
 const ov = document.getElementById("ov");
 const html = (s) => ov.insertAdjacentHTML("beforeend", s);
 const capB = (s) => html(`<div class="cap capb">${s}</div>`);
-const src = () => html(`<div class="src">NUMBEO · 2026 MID-YEAR · KOS HIDUP + SEWA · NEW YORK = 100</div>`);
+const src = () => html(`<div class="src">Source: Numbeo | 2026 Mid-Year | Cost of Living + Rent | Sovereign countries only</div>`);
 
 // world borders (antimeridian-safe)
 const borders = g.layer("borders", 0, { lon0: -180, lon1: 180, lat0: -60, lat1: 80, ppd: 12 });
@@ -214,50 +234,61 @@ const SV = {
 function flagPin(lat, lon, k, label, dy = 0) {
   const p = g.project(lat, lon); html(`<div class="pin" style="left:${p.x}px;top:${p.y + dy}px"><div class="flag">${SV[k]}</div><div class="lab">${label}</div></div>`); return p;
 }
-const rank = (r, n, extra = "", gold = false) => html(`<div class="rk ${gold ? "gold" : ""}"><div class="no">${gold ? "👑 " : ""}#${r}</div><div class="num">${n}</div><div class="kk">INDEKS KOS HIDUP + SEWA</div>${extra}</div>`);
+const rank = (r, n, extra = "", gold = false) => html(`<div class="rk ${gold ? "gold" : ""}"><div class="no">${gold ? "👑 " : ""}#${r}</div><div class="num">${n}</div><div class="kk">COST OF LIVING + RENT INDEX · NEW YORK = 100</div>${extra}</div>`);
 // comparison bars: rows [key|"ny", name, value, cls]
 function cmp(top, title, rows, max) {
   html(`<div class="cmp" style="top:${top}px"><div class="k">${title}</div>${rows.map(([k, n, v, cls]) => `<div class="cr ${cls || ""} ${k === "ny" ? "ny" : ""}"><div class="fl">${k === "ny" ? "NY" : SV[k]}</div><span class="nm">${n}</span><div class="bb"><div style="width:${v / max * 100}%"></div></div><span class="v">${v}</span></div>`).join("")}</div>`);
 }
+const SC = {
+  tm: () => { fill("tm"); g.setView({ lat: 39.0, lon: 59, dist: 1.0, tilt: 12, yShift: 0.22 }); flagPin(39.2, 59.5, "tm", "TURKMENISTAN", -40); src();
+    rank(5, "66.1"); cmp(1190, "HARGA BARANG DAPUR · <b>LEBIH TINGGI DARI NEW YORK</b>", [["tm", "TURKMENISTAN", 116.3, "hot"], ["ny", "NEW YORK", 100]], 120); },
+  is: () => { fill("is"); g.setView({ lat: 64.9, lon: -18.6, dist: 0.42, tilt: 14, yShift: 0.22 }); flagPin(64.9, -18.6, "is", "ICELAND", -60); src();
+    rank(4, "74.8"); cmp(1190, "🛒 HARGA BARANG DAPUR", [["is", "ICELAND", 106.3, "hot"], ["ny", "NEW YORK", 100]], 120); },
+};
+const MYSG = () => { malaysiaFlag(); fill("sg", { alpha: 0.9, glow: "#ffce00", lw: 4 }); };
 const FR = {
-  1() { fill("us", { alpha: 0.8 }); fill("jp", { alpha: 0.85 }); g.setView({ lat: 48, lon: -172, dist: 6.0, tilt: 4, yShift: 0.16 });
+  1() { g.setView({ lat: 30, lon: 60, dist: 4.6, tilt: 4, yShift: 0.1 }); html(`<div style="position:absolute;inset:0;background:rgba(5,7,11,.72)"></div>`);
+    const rows = Array.from({ length: 17 }, (_, i) => `<rect x="40" y="${150 + i * 50}" width="${150 + (i * 53) % 130}" height="14" rx="4" fill="#c9c2b2"/><rect x="${330 - (i % 3) * 10}" y="${150 + i * 50}" width="${70 + (i % 3) * 10}" height="14" rx="4" fill="#9b937f"/>`).join("");
+    html(`<svg style="position:absolute;left:300px;top:150px;filter:drop-shadow(0 30px 50px rgba(0,0,0,.7));transform:rotate(-4deg)" width="480" height="1120" viewBox="0 0 480 1120">
+      <path d="M0 0H480V1090l-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30Z" fill="#f4f1ea"/>
+      <rect x="140" y="50" width="200" height="26" rx="6" fill="#2a2a2a"/><rect x="40" y="110" width="400" height="4" fill="#d9d3c4"/>${rows}
+      <rect x="40" y="1010" width="400" height="4" fill="#2a2a2a"/><text x="40" y="1062" font-family="Inter" font-weight="800" font-size="40" fill="#111">TOTAL</text><text x="440" y="1062" text-anchor="end" font-family="Inter" font-weight="800" font-size="40" fill="#e0182d">▲▲▲</text></svg>`);
+    const tag = (x, y, r) => `<svg style="position:absolute;left:${x}px;top:${y}px;transform:rotate(${r}deg);filter:drop-shadow(0 12px 20px rgba(0,0,0,.6))" width="170" height="96" viewBox="0 0 170 96"><path d="M30 0H170V96H30L0 48Z" fill="#e0182d"/><circle cx="30" cy="48" r="9" fill="#05070b"/><text x="102" y="64" text-anchor="middle" font-family="Inter" font-weight="800" font-size="46" fill="#fff">▲</text></svg>`;
+    html(tag(80, 380, -18) + tag(800, 300, 14) + tag(820, 900, -10) + tag(70, 1040, 12) + tag(560, 1240, -6));
+    capB(`Kau ingat <span class="r">Amerika atau Jepun</span>`); },
+  2() { fill("us", { alpha: 0.8 }); fill("jp", { alpha: 0.85 }); g.setView({ lat: 48, lon: -172, dist: 6.0, tilt: 4, yShift: 0.16 });
     const a = g.project(40, -100), b = g.project(37, 139);
     html(`<div class="xst" style="left:${Math.max(a.x, 190)}px;top:${a.y}px">✕ SALAH</div><div class="xst" style="left:${Math.min(b.x, 890)}px;top:${b.y}px">✕ SALAH</div>`);
-    html(`<div class="title" style="top:1010px"><div class="a">KAU INGAT</div><div class="b" style="font-size:120px!important"><span>AMERIKA?</span></div><div class="b" style="font-size:120px!important"><span>JEPUN?</span></div><div class="c">DUA-DUA TAK MASUK TOP 5</div><div class="ln"></div></div>`);
-    capB(`Kau ingat <span class="r">Amerika atau Jepun</span>`); },
-  2() { fill("tm"); g.setView({ lat: 39.0, lon: 59, dist: 1.0, tilt: 12, yShift: 0.22 }); flagPin(39.2, 59.5, "tm", "TURKMENISTAN", -40); src();
-    rank(5, "66.1"); cmp(1190, "HARGA BARANG DAPUR · <b>LEBIH MAHAL DARI NEW YORK</b>", [["tm", "TURKMENISTAN", 116.3, "hot"], ["ny", "NEW YORK", 100]], 120);
-    capB(`Nombor lima: <span class="r">Turkmenistan</span>`); },
-  3() { fill("is"); g.setView({ lat: 64.9, lon: -18.6, dist: 0.42, tilt: 14, yShift: 0.22 }); flagPin(64.9, -18.6, "is", "ICELAND", -60); src();
-    rank(4, "74.8"); cmp(1190, "🛒 TROLI BARANG DAPUR", [["is", "ICELAND", 106.3, "hot"], ["ny", "NEW YORK", 100]], 120);
-    capB(`troli barang dapur dia pun <span class="r">lebih mahal</span>`); },
-  4() { fill("bs", { glow: "#41e0ff", lw: 2.5 }); g.setView({ lat: 24.6, lon: -76.8, dist: 0.5, tilt: 14, yShift: 0.22 }); src();
-    html(`<div class="win2"><i>ILUSTRASI · AI</i>🏝️<div>PANTAI BAHAMAS</div><div>↓</div><div>BIL RESTORAN BERGULIR</div><em>FLOW B-roll 2–3 s, muncul sebelum kad #3</em></div>`);
-    cmp(1150, "#3 BAHAMAS · <b>77.2</b> · 🍽️ HARGA RESTORAN", [["bs", "BAHAMAS", 115.5, "hot"], ["ny", "NEW YORK", 100]], 120);
-    capB(`Nampak macam <span class="r">syurga</span>`); },
-  5() { malaysiaFlag(); fill("sg", { alpha: 0, glow: "#ff2d46", lw: 4 }); g.setView({ lat: 3.6, lon: 106, dist: 1.15, tilt: 8, yShift: 0.12 });
-    const p = g.project(1.35, 103.82); html(`<div class="qpin" style="left:${p.x}px;top:${p.y + 40}px">?</div>`);
+    html(`<div class="title" style="top:1040px"><div class="b" style="font-size:96px!important"><span>DUA-DUA</span></div><div class="c">TAK MASUK TOP 5</div><div class="ln"></div></div>`);
+    capB(`Salah! Dua-dua <span class="r">tak masuk Top 5</span>`); },
+  3() { g.setView({ lat: 20, lon: 20, dist: 4.4, tilt: 4, yShift: 0.06 }); html(`<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(5,7,11,.2),rgba(5,7,11,.8))"></div>`);
+    html(`<div class="tt"><div class="t5">TOP 5</div><div class="t1">NEGARA PALING MAHAL<br>UNTUK HIDUP</div><div class="ch">2026 · TERMASUK SEWA</div></div>`);
+    capB(`lima negara <span class="r">paling mahal</span> untuk hidup`); },
+  4() { SC.tm(); capB(`Nombor lima, <span class="r">Turkmenistan!</span>`); },
+  5() { SC.is(); capB(`harga barang dapur boleh buat kau <span class="r">terkejut!</span>`); },
+  6() { fill("bs", { glow: "#41e0ff", lw: 2.5 }); g.setView({ lat: 24.6, lon: -76.8, dist: 0.5, tilt: 14, yShift: 0.22 }); src();
+    html(`<div class="win2"><i>ILUSTRASI · AI</i>🏝️<div>PANTAI BAHAMAS</div><div>↓ whip pan</div><div>BIL RESTORAN MEMANJANG</div><em>FLOW B-roll ≈3 s, sebelum kad #3</em></div>`);
+    cmp(1150, "#3 BAHAMAS · <span style='color:#ffce00'>77.2</span> · 🍽️ <b>HARGA RESTORAN</b>", [["bs", "BAHAMAS", 115.5, "hot"], ["ny", "NEW YORK", 100]], 120);
+    capB(`tapi kos makan di restoran <span class="r">sangat tinggi!</span>`); },
+  7() { malaysiaFlag(); fill("sg", { alpha: 0, glow: "#ffce00", lw: 4 }); g.setView({ lat: 3.6, lon: 106, dist: 1.15, tilt: 8, yShift: 0.12 });
+    const p = g.project(1.35, 103.82); html(`<div class="qpin" style="left:${p.x}px;top:${p.y + 40}px;border-color:#ffce00;color:#ffce00">?</div>`);
     html(`<div id="tintR"></div><div class="rh"><div class="w">TAPI TUNGGU…</div><div class="l">#2 = <span>JIRAN KITA</span></div><div class="l">#1 = <span>?</span></div><div class="s">BUKAN NEGARA ARAB KAYA MINYAK</div></div>`);
-    capB(`Nombor dua ni <span class="r">jiran sebelah Malaysia</span>`); },
-  6() { fill("sg", { alpha: 0.9, glow: "#ff2d46", lw: 5 }); g.setView({ lat: 2.6, lon: 103.6, dist: 0.62, tilt: 14, yShift: 0.24 });
-    { const q = g.project(1.35, 103.82); html(`<div class="qpin" style="left:${q.x}px;top:${q.y}px;width:150px;height:150px;font-size:0;border-style:solid;background:none;box-shadow:0 0 30px rgba(255,45,70,.8)"></div>`); } flagPin(1.36, 103.82, "sg", "SINGAPURA", -80); src();
-    rank(2, "80.5"); cmp(1170, "🏠 SEWA RUMAH · <b>PALING TINGGI DALAM SENARAI</b>", [["sg", "SINGAPURA", 68.3, "hot"], ["bs", "BAHAMAS", 48.5], ["is", "ICELAND", 47.7], ["tm", "TURKMENISTAN", 23.9]], 70);
-    capB(`Sewa rumah dia <span class="r">paling tinggi</span>`); },
-  7() { fill("ch", { alpha: 0.88, glow: "#ffce00", lw: 4 }); g.setView({ lat: 46.9, lon: 8.2, dist: 0.32, tilt: 16, yShift: 0.22 }); flagPin(46.8, 8.2, "ch", "SWITZERLAND", -70); src();
+    capB(`Negara nombor dua ni <span class="r">jiran sebelah Malaysia</span>`); },
+  8() { fill("sg", { alpha: 0.9, glow: "#ffce00", lw: 5 }); g.setView({ lat: 2.6, lon: 103.6, dist: 0.62, tilt: 14, yShift: 0.24 });
+    { const q = g.project(1.35, 103.82); html(`<div class="qpin" style="left:${q.x}px;top:${q.y}px;width:150px;height:150px;font-size:0;border:5px solid #ffce00;background:none;box-shadow:0 0 30px rgba(255,206,0,.7)"></div>`); } flagPin(1.36, 103.82, "sg", "SINGAPURA", -80); src();
+    rank(2, "80.5"); cmp(1170, "🏠 SEWA RUMAH · <b>TERTINGGI DALAM SENARAI</b>", [["sg", "SINGAPURA", 68.3, "hot"], ["bs", "BAHAMAS", 48.5], ["is", "ICELAND", 47.7], ["tm", "TURKMENISTAN", 23.9]], 70);
+    capB(`Kos sewa rumah memang <span class="r">antara yang tertinggi</span>`); },
+  9() { fill("ch", { alpha: 0.9, glow: "#ffce00", lw: 4 }); g.setView({ lat: 46.9, lon: 8.2, dist: 0.32, tilt: 16, yShift: 0.22 }); flagPin(46.8, 8.2, "ch", "SWITZERLAND", -70); src();
     html(`<div id="tintG"></div>`); rank(1, "81.5", "", true);
-    cmp(1190, "💪 KUASA BELI · <b style='color:#ffce00'>LEBIH KUAT DARI AMERIKA</b>", [["ch", "SWITZERLAND", 165.7, "gold"], ["us", "AMERIKA", 144.5]], 170);
-    capB(`Dan nombor satu… <span class="r">Switzerland</span>`); },
-  8() { malaysiaFlag(); g.setView({ lat: 22, lon: 80, dist: 4.4, tilt: 4, yShift: 0.1 });
-    const D = [["ch", "SWITZERLAND", 81.5, "gold"], ["sg", "SINGAPURA", 80.5, "hot"], ["bs", "BAHAMAS", 77.2], ["is", "ICELAND", 74.8], ["tm", "TURKMENISTAN", 66.1]];
-    html(`<div class="cmp" style="top:640px;padding:24px 28px"><div class="k" style="font-size:20px;margin-bottom:12px">KOS HIDUP + SEWA · NEW YORK = 100</div>${D.map(([k, n, v, c]) => `<div class="cr ${c || ""}" style="margin:14px 0"><div class="fl">${SV[k]}</div><span class="nm">${n}</span><div class="bb" style="height:30px"><div style="width:${v}%"></div></div><span class="v">${v}</span></div>`).join("")}
-      <div style="text-align:center;color:#5b6573;font:800 30px Inter;letter-spacing:8px;margin:4px 0">· · ·</div>
-      <div class="cr grn" style="margin:14px 0"><div class="fl">${SV.my}</div><span class="nm" style="color:#2fd27f">MALAYSIA</span><div class="bb" style="height:30px"><div style="width:22.4%"></div></div><span class="v" style="color:#2fd27f;font-size:34px">22.4</span></div></div>`);
-    capB(`Malaysia? Cuma <span class="r">22.4</span>`); },
-  9() { g.setView({ lat: 8, lon: 104, dist: 4.4, tilt: 4, yShift: 0.15 });
-    html(`<div class="qh">GAJI SAMA,<br><span>KAU PILIH MANA?</span></div>`);
-    html(`<div class="vs" style="top:600px"><div class="opt my"><div class="fb">${SV.my}</div><b>MALAYSIA</b><i>22.4</i></div><div class="or">ATAU</div><div class="opt sg"><div class="fb">${SV.sg}</div><b>SINGAPURA</b><i>80.5</i></div></div>`);
-    html(`<div class="bubs" style="top:1080px;display:flex"><span>MALAYSIA 🏡</span><span class="r">SINGAPURA 💸</span><span>DUA-DUA 🤔</span></div><div class="komen" style="top:1290px;display:block">KOMEN ↓</div>`);
-    capB(`kau pilih hidup kat <span class="r">Malaysia, atau Singapura?</span>`); },
+    cmp(1190, "💪 KUASA BELI PENDUDUK · <b style='color:#ffce00'>#4 DI DUNIA</b>", [["ch", "SWITZERLAND", 165.7, "gold"], ["ny", "NEW YORK", 100]], 170);
+    capB(`Dan nombor satu… <span class="r">SWITZERLAND!</span>`); },
+  10() { MYSG(); g.setView({ lat: 3.2, lon: 104.5, dist: 1.0, tilt: 10, yShift: 0.2 });
+    html(`<div class="mvs"><div class="c"><div class="fb">${SV.my}</div><b>MALAYSIA</b><div class="n" style="color:#2fd27f">22.4</div></div><div class="vsx">VS</div><div class="c"><div class="fb">${SV.sg}</div><b>SINGAPURA</b><div class="n" style="color:#f6f3ec">80.5</div></div></div>`);
+    html(`<div class="src" style="top:1400px">COST OF LIVING + RENT INDEX · NEW YORK = 100</div>`);
+    capB(`Indeks kita <span class="r">cuma 22.4!</span>`); },
+  11() { g.setView({ lat: 3.2, lon: 104.5, dist: 1.6, tilt: 8, yShift: 0.12 }); html(`<div style="position:absolute;inset:0;background:rgba(5,7,11,.6)"></div>`);
+    html(`<div class="cta"><div class="k">KALAU GAJI SAMA</div><div class="q">MALAYSIA<br>ATAU <span>SINGAPURA?</span></div><div class="row"><div>${SV.my}</div><div>${SV.sg}</div></div><div class="go">KOMEN PILIHAN KAU ↓</div></div>`);
+    capB(`kau pilih hidup di <span class="r">Malaysia atau Singapura?</span>`); },
 };
 FR[F]();
 g.render();

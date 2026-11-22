@@ -5,7 +5,7 @@ const fs = require("fs"), path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 const TYPES = { ".html": "text/html", ".js": "text/javascript", ".json": "application/json", ".jpg": "image/jpeg", ".png": "image/png", ".woff2": "font/woff2", ".mp3": "audio/mpeg" };
 (async () => {
-  const fr = process.argv.slice(2).length ? process.argv.slice(2) : ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const fr = process.argv.slice(2).length ? process.argv.slice(2) : Array.from({ length: 11 }, (_, i) => String(i + 1));
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
   await p.route("http://local/**", (r) => {
@@ -19,7 +19,7 @@ const TYPES = { ".html": "text/html", ".js": "text/javascript", ".json": "applic
     await p.goto(`http://local/boards/frame.html?f=${f}`);
     await p.waitForSelector("body[data-ready]", { timeout: 90000 });
     await p.evaluate(() => document.fonts.ready);
-    await p.screenshot({ path: path.join(ROOT, `boards/frame-0${f}.png`) });
+    await p.screenshot({ path: path.join(ROOT, `boards/frame-${String(f).padStart(2, "0")}.png`) });
     console.log("shot", f);
   }
   await b.close();

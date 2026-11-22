@@ -28,7 +28,8 @@ Iceland 74.8, Jersey 71.6*, Hong Kong 68.5*, Turkmenistan 66.1, Solomon Islands 
 | Bahamas: makan di restoran lebih mahal dari New York | ✅ Restaurant 115.5 > 100 |
 | Singapura: sewa paling tinggi dalam senarai (Top 5) | ✅ 68.3; yang lain ≤ 48.5 |
 | #1 bukan negara Arab kaya minyak | ✅ Switzerland |
-| Switzerland: kuasa beli lebih kuat dari orang Amerika | ✅ 165.7 vs 144.5 |
+| Switzerland: kuasa beli "antara yang paling kuat" | ✅ 165.7, nombor 4 dunia (Angola 259.3, Kuwait 175.8, Qatar 168.1); Amerika 144.5 |
+| Singapura: sewa "antara yang tertinggi" | ✅ (malah tertinggi dalam Top 5) |
 | Malaysia 22.4 | ✅ |
 | Singapura "jiran sebelah Malaysia" | ✅ |
 
