@@ -7,14 +7,10 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 d = json.load(open(os.path.join(ROOT, "assets", "transcript.json")))
 W = d if isinstance(d, list) else d["words"]
 
-FIX = {"nomor": "nombor", "Nomor": "Nombor", "index": "indeks", "surga": "syurga", "kwasa": "kuasa", "Comment": "Komen",
-       "Salah,": "Salah!", "masuk.": "masuk", "5.": "5!", "disangka.": "disangka!", "Termasuk": "termasuk", "Kosewa": "kos sewa",
-       "Rumah.": "rumah!", "Rumah": "rumah", "Turkmenistan,": "Turkmenistan!", "Iceland,": "Iceland!", "Bahamas,": "Bahamas!",
-       "Singapura,": "Singapura!", "Switzerland,": "Switzerland!", "York.": "York!", "terkejut.": "terkejut!", "tinggi.": "tinggi!",
-       "tunggu,": "tunggu!", "minyak.": "minyak!", "ni.": "ni!", "kuat.": "kuat!", "pula,": "pula?", "22.4.": "22.4!",
-       "Singapura.": "Singapura?", "cantik.": "cantik,", "Tapi": "tapi"}
+FIX = {"nomor": "nombor", "Duff-Gordon,": "Duff Gordon,", "Gordon,": "Gordon,", "Comment": "Komen", "Komentar": "Komen",
+       "1912,": "1912,", "1.500": "1,500", "150.000": "150,000", "dakwa,": "dakwa,"}
 # ASR split words
-JOIN = {("New", "York."): "New York!"}
+JOIN = {}
 _W = []
 for w in W:
     if _W and (_W[-1]["text"], w["text"]) in JOIN:
@@ -23,9 +19,9 @@ for w in W:
 W = _W
 DROP = set()
 DISPLAY = {}
-KEY = {"Amerika", "Jepun", "Salah!", "Top", "5!", "disangka!", "Turkmenistan!", "66.1.", "New York!", "Iceland!", "74.8.",
-       "terkejut!", "Bahamas!", "77.2.", "syurga", "sangat", "tinggi!", "tunggu!", "jiran", "Malaysia.", "Arab", "minyak!",
-       "Singapura!", "80.5.", "tertinggi", "Switzerland!", "81.5.", "paling", "kuat!", "22.4!", "Malaysia", "Singapura?", "Komen"}
+KEY = {"Titanic,", "800", "ribu", "ringgit!", "kontroversi", "15", "April", "1912,", "karam,", "1,500", "terkorban.", "Lucy,",
+       "Lady", "Duff", "Gordon,", "40", "12", "tunggu", "dulu!", "dakwaan", "mengejutkan.", "5", "pound", "hilang.", "rasuah",
+       "berpatah", "balik", "tidak", "berasas.", "114", "150,000", "pound!", "815", "jual", "simpan", "Komen"}
 SOFT = {"China"}  # only key inside specific beats (handled below by index)
 
 words = []
@@ -83,16 +79,14 @@ def at(text, n=1):
     raise SystemExit(f"word not found: {text} #{n}")
 
 T = {
-  "kau": at("Kau"), "amerika": at("Amerika"), "jepun": at("Jepun"), "salah": at("Salah"), "top": at("Top"), "dan1": at("Dan"),
-  "disangka": at("disangka"), "ini": at("Ini"), "tahun": at("tahun"), "termasuk": at("termasuk"),
-  "n5": at("Nombor", 2), "tm": at("Turkmenistan"), "v66": at("66.1"), "pelik": at("Peliknya"), "ny1": at("New York!"),
-  "n4": at("Nombor", 3), "is": at("Iceland"), "v74": at("74.8"), "pemandangan": at("Pemandangan"), "terkejut": at("terkejut"),
-  "n3": at("Nombor", 4), "bs": at("Bahamas"), "v77": at("77.2"), "syurga": at("syurga"), "restoran": at("restoran"), "sangat": at("sangat"),
-  "tunggu": at("tunggu"), "nb2": at("Nombor", 5), "jiran": at("jiran"), "my1": at("Malaysia"), "nb1": at("Nombor", 6), "arab": at("Arab"),
-  "n2": at("Nombor", 7), "sg": at("Singapura"), "v80": at("80.5"), "tertinggi": at("tertinggi"),
-  "n1": at("Nombor", 8), "ch": at("Switzerland"), "v81": at("81.5"), "kuasa": at("kuasa"), "kuat": at("kuat"),
-  "my2": at("Malaysia", 2), "v22": at("22.4"), "jadi": at("Jadi"), "gaji": at("gaji"), "pilih": at("pilih"),
-  "my3": at("Malaysia", 3), "sg2": at("Singapura", 2), "komen": at("Komen"),
+  "bayangkan": at("Bayangkan"), "titanic1": at("Titanic"), "dijual": at("dijual"), "lebih1": at("lebih"), "ringgit1": at("ringgit"),
+  "tapi1": at("Tapi"), "kontroversi": at("kontroversi"), "pada": at("Pada"), "karam": at("karam"), "kira": at("kira-kira"),
+  "terkorban": at("terkorban"), "seorang": at("Seorang"), "lucy": at("Lucy"), "suami1": at("suami"), "setiausaha": at("setiausahanya"),
+  "yang": at("Yang", 2), "muat": at("muat"), "cuma": at("cuma"), "dalam": at("dalamnya"), "dan2": at("Dan", 3), "tunggu": at("tunggu"),
+  "dakwaan1": at("dakwaan"), "dia": at("Dia"), "pound1": at("pound"), "katanya": at("Katanya"), "ramai": at("ramai"),
+  "rasuah1": at("rasuah"), "namun": at("Namun"), "siasatan": at("siasatan"), "tidak": at("tidak"), "berasas": at("berasas"),
+  "tahun": at("tahun"), "terjual": at("terjual"), "pound2": at("pound", 2), "kurang": at("kurang"), "ringgit2": at("ringgit", 2),
+  "kalau": at("Kalau"), "jual": at("jual"), "simpan": at("simpan"), "komen": at("Komen"),
 }
 END_VO = words[-1]["e"]
 T["end_vo"] = END_VO
