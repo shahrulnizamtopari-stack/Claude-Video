@@ -108,6 +108,20 @@ html,body{width:1080px;height:1920px;background:#05070b;overflow:hidden;font-fam
 .cmp{margin-top:14px}.cmp div{display:flex;align-items:center;gap:12px;margin:8px 0;font:800 22px Inter;color:#c9d0d8}.cmp b{width:210px;font-weight:800}.cmp i{display:block;height:22px;background:#5b6573;border-radius:5px;flex:none;max-width:360px}.cmp u{text-decoration:none;color:#fff}.cmp .me i{background:#ffcf4a}.cmp .me b,.cmp .me u{color:#ffcf4a}
 .rkl{margin-top:14px}.rkl div{display:flex;align-items:center;gap:14px;font:800 26px Inter;color:#c9d0d8;padding:6px 10px;border-radius:8px}.rkl s{text-decoration:none;width:40px;color:#8a929b}.rkl u{margin-left:auto;text-decoration:none;color:#fff}.rkl .me{background:rgba(255,207,74,.18);color:#ffcf4a}.rkl .old{font:700 16px Mono;color:#8a929b}
 .sp{position:absolute;font:800 54px Inter;color:#111;background:#fff;padding:22px 34px;border-radius:40px 40px 40px 8px;box-shadow:0 14px 40px rgba(0,0,0,.6)}.sp.r{border-radius:40px 40px 8px 40px;background:#ffcf4a}
+.hypo{position:absolute;top:240px;left:0;right:0;text-align:center;font:700 22px Mono;letter-spacing:4px;color:#ffcf4a}
+.spk{position:absolute;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;background:radial-gradient(#fff,rgba(255,220,120,.9) 25%,rgba(255,180,40,0) 70%);box-shadow:0 0 60px 20px rgba(255,200,80,.5)}
+.shock{position:absolute;width:1400px;height:1400px;margin:-700px 0 0 -700px;border-radius:50%;border:14px solid rgba(255,220,120,.85);box-shadow:0 0 80px 30px rgba(255,200,60,.35),inset 0 0 80px 20px rgba(255,200,60,.25)}
+.lb{position:absolute;left:70px;right:70px;background:rgba(10,12,17,.94);border-radius:18px;padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.6)}.lb .k{font:700 20px Mono;letter-spacing:3px;color:#c9d0d8;margin-bottom:10px}
+.lr{display:flex;align-items:center;gap:16px;font:800 32px Inter;color:#e9eef3;padding:12px 14px;border-radius:10px;margin:4px 0;background:rgba(255,255,255,.04)}.lr s{text-decoration:none;width:48px;color:#8a929b}.lr u{margin-left:auto;text-decoration:none}
+.lr.me{background:linear-gradient(90deg,#ffcf4a,#f2a51a);color:#111;transform:scale(1.04);box-shadow:0 10px 30px rgba(255,200,60,.4)}.lr.me s{color:#111}
+.lf{margin-top:12px;font:800 24px Inter;color:#fff}.lf b{color:#ffcf4a}.lf i{font-style:normal;color:#ff2d46}
+.dust{position:absolute;width:900px;height:300px;margin:-150px 0 0 -450px;border-radius:50%;border:10px solid rgba(255,230,170,.6);box-shadow:0 0 60px 20px rgba(255,220,150,.3)}
+.slam{position:absolute;top:240px;left:0;right:0;text-align:center;font:800 120px Inter;color:#fff;text-shadow:0 8px 0 #ff2d46,0 12px 30px rgba(0,0,0,.7);transform:rotate(-6deg)}
+.hs{position:absolute;filter:drop-shadow(0 18px 22px rgba(0,0,0,.6))}
+.glint{position:absolute;width:160px;height:160px;margin:-80px 0 0 -80px;border-radius:50%;background:radial-gradient(#fff,rgba(255,220,120,.8) 25%,rgba(255,180,40,0) 70%)}
+.np2{position:absolute;display:flex;flex-direction:column;align-items:flex-start;gap:6px}.np2.r{align-items:flex-end}.np2 b{font:800 30px Inter;color:#fff;background:rgba(10,12,17,.88);padding:6px 14px;border-radius:8px}.np2 i{font:800 18px Inter;font-style:normal;color:#111;background:#ffce00;padding:5px 10px;border-radius:5px}
+.slot{position:absolute;top:880px;left:110px;right:110px;background:rgba(10,12,17,.94);border:4px solid #ffcf4a;border-radius:22px;padding:20px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}.slot .k{font:700 22px Mono;letter-spacing:3px;color:#ffcf4a}
+.reel{margin:10px 0;overflow:hidden}.reel div{font:800 60px/1.25 Inter}.reel .ghost{color:rgba(255,255,255,.25);font-size:44px;filter:blur(1.5px)}.reel .cur{color:#fff}.slot .hint{font:800 26px Inter;color:#ff2d46}
 #tintS{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,30,50,0) 40%,rgba(255,30,50,.45) 100%)}
 </style></head><body>
 <canvas id="gl" width="1080" height="1920"></canvas>
@@ -286,30 +300,36 @@ function borderGlow() { const L = g.layer("bd", 8, SEA), c = L.ctx; c.save(); c.
   const P = (pts) => { c.beginPath(); pts.forEach(([lo, la], i) => (i ? c.lineTo(L.ox(lo), L.oy(la)) : c.moveTo(L.ox(lo), L.oy(la)))); c.stroke(); };
   P([[109.6, 1.7], [111.5, 1.1], [113.5, 1.4], [114.6, 2.3], [115.6, 3.9], [117.6, 4.2]]); P([[98.5, 5.6], [100.8, 3.2], [102.6, 1.8], [104.2, 1.2]]); c.restore(); L.tex.needsUpdate = true; }
 const gcard = (top, html2) => html(`<div class="gk" style="top:${top}px">${html2}</div>`);
+const HAND = await (await fetch("../assets/leaders/hand.json")).json();
+// zip seam: border opened up to a point, sparks at the slider
+function zipSeam(u) { const L = g.layer("zip", 9, SEA), c = L.ctx; const P = [[98.5, 5.6], [100.8, 3.2], [102.6, 1.8], [104.2, 1.2], [107, 1.4], [109.6, 1.7], [111.5, 1.1], [113.5, 1.4], [114.6, 2.3], [115.6, 3.9], [117.6, 4.2]];
+  const n = P.length - 1, k = u * n, i = Math.floor(k), f = k - i, head = i < n ? [P[i][0] + (P[i + 1][0] - P[i][0]) * f, P[i][1] + (P[i + 1][1] - P[i][1]) * f] : P[n];
+  c.lineCap = "round"; c.strokeStyle = "#ffe08a"; c.lineWidth = 9; c.shadowColor = "#ffcf4a"; c.shadowBlur = 24; c.beginPath(); P.slice(0, i + 1).concat([head]).forEach(([lo, la], j) => (j ? c.lineTo(L.ox(lo), L.oy(la)) : c.moveTo(L.ox(lo), L.oy(la)))); c.stroke();
+  c.setLineDash([16, 10]); c.strokeStyle = "#fff"; c.lineWidth = 5; c.shadowBlur = 10; c.beginPath(); [head].concat(P.slice(i + 1)).forEach(([lo, la], j) => (j ? c.lineTo(L.ox(lo), L.oy(la)) : c.moveTo(L.ox(lo), L.oy(la)))); c.stroke(); c.setLineDash([]);
+  L.tex.needsUpdate = true; return head; }
+const sparks = (x, y) => html(`<div class="spk" style="left:${x}px;top:${y}px"></div>`);
+const board = (top, title, rows, foot) => html(`<div class="lb" style="top:${top}px"><div class="k">${title}</div>${rows.map(([r, n, v, cls = ""]) => `<div class="lr ${cls}"><s>${r}</s><span>${n}</span><u>${v}</u></div>`).join("")}${foot ? `<div class="lf">${foot}</div>` : ""}</div>`);
 const FR = {
-  1() { fillL("my", [MYf], "rgba(40,110,255,.55)", "#8fb4ff"); fillL("id", [IDf], "rgba(230,40,50,.55)", "#ff9aa0"); borderGlow();
-    g.setView({ lat: 0, lon: 114, dist: 1.9, tilt: 8, yShift: 0.18 });
-    locPin(4.2, 102.0, "MALAYSIA", ""); locPin(-2.5, 118, "INDONESIA", "");
-    html(`<div class="title" style="top:1060px"><div class="a">BAYANGKAN…</div><div class="b"><span>WHAT IF?</span></div><div class="c">MALAYSIA + INDONESIA</div><div class="ln"></div></div>`); },
-  2() { fillL("mi", [MYf, IDf], gold, "#ffe08a"); g.setView({ lat: 0, lon: 114, dist: 1.9, tilt: 8, yShift: 0.18 });
-    html(`<div class="title" style="top:1060px"><div class="a">SATU NEGARA</div><div class="b"><span style="color:#ffcf4a">= ?</span></div><div class="c">APA JADI?</div><div class="ln" style="background:#ffcf4a"></div></div>`);
+  1() { fillL("my", [MYf], "rgba(40,110,255,.55)", "#8fb4ff"); fillL("id", [IDf], "rgba(230,40,50,.55)", "#ff9aa0");
+    g.setView({ lat: 1, lon: 108, dist: 1.5, tilt: 8, yShift: 0.18 }); const h = zipSeam(0.55); g.render(); const p = g.project(h[1], h[0]); sparks(p.x, p.y);
+    html(`<div class="hypo">VIDEO HIPOTETIKAL</div><div class="title" style="top:1080px"><div class="a">BAYANGKAN…</div><div class="b"><span>WHAT IF?</span></div><div class="c">MALAYSIA + INDONESIA</div><div class="ln"></div></div>`); },
+  2() { fillL("mi", [MYf, IDf], gold, "#ffe08a"); g.setView({ lat: 0, lon: 112, dist: 1.8, tilt: 8, yShift: 0.18 }); g.render();
+    const p = g.project(1.5, 107); html(`<div class="shock" style="left:${p.x}px;top:${p.y}px"></div><div class="title" style="top:1060px"><div class="a">SATU NEGARA</div><div class="b"><span style="color:#ffcf4a">= ?</span></div><div class="c">APA JADI?</div><div class="ln" style="background:#ffcf4a"></div></div>`);
     capB(`Malaysia dan Indonesia <span class="r">jadi satu negara</span>`); },
-  3() { fillL("mi", [MYf, IDf], gold, "#ffe08a"); g.setView({ lat: 0, lon: 114, dist: 2.1, tilt: 8, yShift: 0.26 });
-    gcard(860, `<div class="no">PENDUDUK</div><div class="num">324.5<span class="un"> JUTA</span></div><div class="kk">DOSM 2026 + UNJURAN INDONESIA 2026</div>
-      <div class="cmp"><div><b>🇺🇸 AMERIKA</b><i style="width:100%"></i><u>341.8 J</u></div><div class="me"><b>✨ GABUNGAN</b><i style="width:95%"></i><u>324.5 J</u></div><div><b>🇵🇰 PAKISTAN</b><i style="width:71%"></i><u>241.5 J</u></div></div><div class="ex"><b>#4 DUNIA · <i>17 JUTA</i> DI BELAKANG AS</b></div>`);
+  3() { fillL("mi", [MYf, IDf], gold, "#ffe08a"); g.setView({ lat: 0, lon: 114, dist: 2.3, tilt: 8, yShift: 0.3 });
+    board(700, "PENDUDUK DUNIA · 2026", [["1", "🇮🇳 India", "1,429 J"], ["2", "🇨🇳 China", "1,405 J"], ["3", "🇺🇸 Amerika Syarikat", "341.8 J"], ["4", "✨ MALAYSIA + INDONESIA", "324.5 J", "me"], ["5", "🇵🇰 Pakistan", "241.5 J"]], `▲ MEMOTONG… BERHENTI DI <b>#4</b> · <i>17 JUTA LAGI KE #3!</i>`);
     capB(`Negara <span class="r">keempat</span> paling ramai di dunia`); },
-  4() { // true-size shift of the combined shape onto Europe (lon stretched by 1/cos(lat) so area reads honestly)
-    const R = { lon0: -40, lon1: 70, lat0: 25, lat1: 72, ppd: 20 }, L = g.layer("eu", 8, R), c = L.ctx; c.fillStyle = gold; c.strokeStyle = "#ffe08a"; c.lineWidth = 3;
+  4() { const R = { lon0: -40, lon1: 70, lat0: 25, lat1: 72, ppd: 20 }, L = g.layer("eu", 8, R), c = L.ctx; c.fillStyle = gold; c.strokeStyle = "#ffe08a"; c.lineWidth = 3;
     const shift = (lo, la) => { const la2 = la + 50, k = Math.cos(la2 * Math.PI / 180); return [15 + (lo - 115) / k, la2]; };
     for (const f of [MYf, IDf]) { const polys = f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.coordinates; c.beginPath();
       for (const poly of polys) for (const ring of poly) ring.forEach(([lo, la], i) => { const [x, y] = shift(lo, la); i ? c.lineTo(L.ox(x), L.oy(y)) : c.moveTo(L.ox(x), L.oy(y)); });
       c.fill("evenodd"); c.stroke(); } L.tex.needsUpdate = true;
-    g.setView({ lat: 50, lon: 15, dist: 2.4, tilt: 6, yShift: 0.26 });
-    gcard(900, `<div class="no">KELUASAN</div><div class="num">2.24<span class="un"> JUTA KM²</span></div><div class="kk">UNSD · SAIZ SEBENAR DILETAK ATAS EROPAH</div><div class="ex"><b>#12 DUNIA · LEBIH BESAR DARI <i>ARAB SAUDI</i></b></div>`);
+    g.setView({ lat: 50, lon: 15, dist: 2.4, tilt: 6, yShift: 0.26 }); g.render(); const p = g.project(48, 18);
+    html(`<div class="dust" style="left:${p.x}px;top:${p.y}px"></div><div class="slam">DUM!</div>`);
+    gcard(960, `<div class="no">KELUASAN · SAIZ SEBENAR</div><div class="num">2.24<span class="un"> JUTA KM²</span></div><div class="ex"><b>#12 DUNIA · LEBIH BESAR DARI <i>ARAB SAUDI</i></b></div>`);
     capB(`Nombor dua belas dunia, <span class="r">lebih besar dari Arab Saudi</span>`); },
-  5() { fillL("mi", [MYf, IDf], gold, "#ffe08a"); g.setView({ lat: 0, lon: 114, dist: 2.1, tilt: 8, yShift: 0.26 });
-    gcard(800, `<div class="no">EKONOMI · KDNK 2026</div><div class="num">$2.03<span class="un"> TRILION</span></div><div class="kk">IMF WEO OKT 2026</div>
-      <div class="rkl"><div><s>14</s>Australia<u>2.11 T</u></div><div><s>15</s>Sepanyol<u>2.09 T</u></div><div class="me"><s>16</s>✨ MALAYSIA + INDONESIA<u>2.03 T</u></div><div><s>17</s>Türkiye<u>1.82 T</u></div><div class="old"><s></s>Indonesia #17 · Malaysia #34 sebelum ni</div></div>`);
+  5() { fillL("mi", [MYf, IDf], gold, "#ffe08a"); g.setView({ lat: 0, lon: 114, dist: 2.3, tilt: 8, yShift: 0.3 });
+    board(700, "EKONOMI · KDNK 2026 (IMF)", [["14", "🇦🇺 Australia", "$2.11 T"], ["15", "🇪🇸 Sepanyol", "$2.09 T"], ["16", "✨ MALAYSIA + INDONESIA", "$2.03 T", "me"], ["17", "🇹🇷 Türkiye", "$1.82 T"], ["18", "🇳🇱 Belanda", "$1.42 T"]], `🇮🇩 #17 + 🇲🇾 #34 → <b>#16</b>`);
     capB(`Masuk <span class="r">enam belas terbesar</span> dunia`); },
   6() { fillL("mi", [MYf, IDf], gold, "#ffe08a"); g.setView({ lat: 0, lon: 112, dist: 1.6, tilt: 8, yShift: 0.18 });
     html(`<div class="sp" style="left:90px;top:700px">Apa khabar? 🇲🇾</div><div class="sp r" style="right:90px;top:860px">Apa kabar? 🇮🇩</div><div class="title" style="top:1120px"><div class="c" style="font-size:48px">BAHASA YANG SAMA AKAR</div></div>`);
@@ -317,11 +337,18 @@ const FR = {
   7() { fillL("mph", [MALAYA, IDf, PHf], "rgba(60,200,180,.5)", "#7fffe8"); g.setView({ lat: 5, lon: 115, dist: 2.2, tilt: 8, yShift: 0.22 });
     gcard(940, `<div class="no" style="color:#7fffe8">MAPHILINDO · 1963</div><div class="num" style="font-size:64px;color:#fff;text-shadow:none">Tanah Melayu + Filipina + Indonesia</div><div class="kk">CADANGAN GABUNGAN LONGGAR · PERJANJIAN MANILA</div><div class="stamp" style="position:relative;display:inline-block;margin-top:18px;font-size:40px">TAK PERNAH JADI</div>`);
     capB(`Tahun enam puluh tiga, <span class="r">Maphilindo</span>`); },
-  8() { fillL("mi", [MYf, IDf], gold, "#ffe08a"); g.setView({ lat: -1, lon: 109, dist: 1.75, tilt: 8, yShift: 0.26 });
+  8() { fillL("my", [MYf], "rgba(40,110,255,.45)", "#8fb4ff"); fillL("id", [IDf], "rgba(230,40,50,.45)", "#ff9aa0"); g.setView({ lat: 1, lon: 110, dist: 1.8, tilt: 8, yShift: 0.1 });
+    const A = HAND.anwar, P = HAND.prabowo, Ha = 640, Hp = 600, sa = Ha / A.h, sp = Hp / P.h, Y = 1060, X = 540;
+    const ax = X + 6 - A.hx * sa, ay = Y - A.hy * sa, px = X - 6 - P.hx * sp, py = Y - P.hy * sp;
+    html(`<img class="hs" src="../assets/leaders/anwar-fig.png" style="left:${ax}px;top:${ay}px;height:${Ha}px"><img class="hs" src="../assets/leaders/prabowo-fig.png" style="left:${px}px;top:${py}px;height:${Hp}px">
+      <div class="glint" style="left:${X}px;top:${Y}px"></div>
+      <div class="np2" style="left:40px;top:${ay + Ha + 8}px"><b>ANWAR IBRAHIM</b><i>PERDANA MENTERI MALAYSIA</i></div><div class="np2 r" style="right:40px;top:${ay + Ha + 8}px"><b>PRABOWO SUBIANTO</b><i>PRESIDEN INDONESIA</i></div>
+      <div class="title" style="top:300px"><div class="c" style="font-size:50px">DUA NEGARA BERDAULAT</div><div class="a" style="color:#ffcf4a;margin-top:8px">JIRAN PALING RAPAT 🤝</div></div>`);
+    capB(`dua negara berdaulat… <span class="r">jiran paling rapat</span>`); },
+  9() { fillL("mi", [MYf, IDf], gold, "#ffe08a"); g.setView({ lat: -1, lon: 109, dist: 1.75, tilt: 8, yShift: 0.26 });
     locPin(3.14, 101.69, "KUALA LUMPUR", "?", true); locPin(-6.2, 106.85, "JAKARTA", "?", true); locPin(-0.97, 116.7, "NUSANTARA (IKN)", "?", true);
-    html(`<div class="title" style="top:920px"><div class="c" style="font-size:52px">IBU NEGARA KAT MANA?</div><div class="a" style="margin-top:10px;color:#ffcf4a">NAMA NEGARA APA?</div></div>`);
-    html(`<div class="bubs" style="top:1110px"><span>KL!</span><span class="r">Jakarta</span><span>Nusantara 🤔</span><span>"Malindo"? 😂</span></div><div class="komen" style="top:1330px">KOMEN ↓</div>`);
-    capB(`ibu negara patut <span class="r">kat mana?</span>`); },
+    html(`<div class="slot"><div class="k">NAMA NEGARA BARU?</div><div class="reel"><div class="ghost">MALINDO</div><div class="cur">NUSANTARA RAYA</div><div class="ghost">INDOMALAYA</div></div><div class="hint">…KORANG PILIH APA?</div></div><div class="komen" style="top:1330px">KOMEN ↓</div>`);
+    capB(`Dan nama negara ni <span class="r">apa?</span>`); },
 };
 FR[F]();
 window.__pins=[...document.querySelectorAll('.pin')].map(e=>e.style.left+','+e.style.top);

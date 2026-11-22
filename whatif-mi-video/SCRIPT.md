@@ -15,7 +15,7 @@ warna emas; kad perbandingan "SEBELUM → SELEPAS" dengan ranking dunia naik. Su
 
 ## Versi satu perenggan (untuk rakam VO)
 
-Bayangkan… Malaysia dan Indonesia jadi satu negara. Apa jadi? Penduduk: tiga ratus dua puluh empat juta orang. Negara keempat paling ramai di dunia… cuma tujuh belas juta di belakang Amerika. Keluasan: dua juta dua ratus ribu kilometer persegi. Nombor dua belas dunia, lebih besar dari Arab Saudi. Ekonomi: lebih dua trilion dolar. Masuk enam belas terbesar dunia, hampir sama dengan Sepanyol. Dan semua orang… boleh faham bahasa yang sama. Idea ni pernah wujud. Tahun enam puluh tiga, ada cadangan Maphilindo: gabungan longgar Tanah Melayu, Filipina dan Indonesia. Tapi ia tak pernah jadi. Sekarang soalan untuk korang: kalau betul bergabung, ibu negara patut kat mana? Dan nama negara ni apa? Komen kat bawah.
+Bayangkan… Malaysia dan Indonesia jadi satu negara. Apa jadi? Penduduk: tiga ratus dua puluh empat juta orang. Negara keempat paling ramai di dunia… cuma tujuh belas juta di belakang Amerika. Keluasan: dua juta dua ratus ribu kilometer persegi. Nombor dua belas dunia, lebih besar dari Arab Saudi. Ekonomi: lebih dua trilion dolar. Masuk enam belas terbesar dunia, hampir sama dengan Sepanyol. Dan semua orang… boleh faham bahasa yang sama. Idea ni pernah wujud. Tahun enam puluh tiga, ada cadangan Maphilindo: gabungan longgar Tanah Melayu, Filipina dan Indonesia. Tapi ia tak pernah jadi. Hakikatnya hari ni, dua negara berdaulat… tapi tetap jiran paling rapat. Sekarang soalan untuk korang: kalau betul bergabung, ibu negara patut kat mana? Dan nama negara ni apa? Komen kat bawah.
 
 ## Semakan fakta
 `research/whatif-malaysia-indonesia.md`
