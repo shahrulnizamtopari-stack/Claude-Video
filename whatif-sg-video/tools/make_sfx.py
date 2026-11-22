@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sound bed for whatif-mi-video (assets/sfx.wav, 48 kHz mono). Every sound sits on something visible; times come from
+"""Sound bed for whatif-sg-video (assets/sfx.wav, 48 kHz mono). Every sound sits on something visible; times come from
 assets/story.js (VO time), so run tools/build_story.py first."""
 import os, re, json, wave
 import numpy as np
@@ -54,24 +54,29 @@ for i in range(int((z1 - z0) / 0.035)): put(tone(1800 + 400 * (i % 2), .015, .00
 n = int(1.2 * SR); tt = np.arange(n) / SR
 put(np.sin(2 * np.pi * (120 * np.exp(-tt * 3) + 38) * tt) * np.exp(-tt * 2.2) * 1.0, T["apa"], 0.9)
 put(impact(.9), T["apa"], 0.8)
-# leaderboard rows: swooshes + pops
-for t in (T["p324"] - 0.1, T["trilion"] - 0.2, T["e16"] - 0.2): put(whoosh(.6), t, 0.4); put(pop(), t + 0.5, 0.7)
-# lift, fly, slam
-put(whoosh(1.6), T["luas"], 0.5); put(impact(1.0), T["luas"] + 1.7, 1.0)
-for i in range(10): put(tick(), T["luas"] + 1.8 + 0.8 * (1 - (1 - i / 10) ** 2), 1)
+# history: two drops, timeline ticks, split hit
+put(impact(.5), T["tahun"] + 0.45, 0.5); put(impact(.5), T["masuk"] - 0.05, 0.5)
+put(ping(880), T["t63"], 0.5); put(ping(660), T["t65"], 0.5)
+put(impact(.9), T["pisah"], 0.9); put(whoosh(.6), T["pisah"] - 0.1, 0.4); put(ping(1320), T["b23"], 0.5)
+put(np.sin(2 * np.pi * (110 * np.exp(-np.arange(int(SR)) / SR * 3) + 40) * np.arange(int(SR)) / SR) * np.exp(-np.arange(int(SR)) / SR * 2.5), T["kalau"], 0.7)
+# leaderboard: merge, climb
+put(whoosh(.6), T["trilion"] - 0.2, 0.4); put(pop(), T["trilion"] + 0.3, 0.7)
+put(whoosh(.8), T["lompat"], 0.5); put(impact(.5), T["lompat"] + 0.7, 0.5); put(ping(1320), T["n20"], 0.5)
+# stat cards: pops + count-up ticks
+for a, d in ((T["pendapatan"], 1.0), (T["j40"] - 0.2, 0.8)):
+    put(pop(), a - 0.1, 0.8)
+    for i in range(12): put(tick(), a + d * (1 - (1 - i / 12) ** 2), 1)
+put(ping(990), T["ganda"], 0.5)
+# 0.2% pings
+for i in range(5): put(ping(1600), T["sg02"] + i / 1.3, 0.35)
+# water + cars
+put(whoosh(1.6), T["air"] - 0.2, 0.35)
+for i in range(10): put(lp(noise(.25), 600) * env(int(.25 * SR), .05, .2) * .5, T["ratusan"] + i * 0.3, 1)
 # camera flights
-for t in (T["penduduk"] - 0.2, T["ekonomi"] - 0.2, T["bahasa"] - 0.6, T["tahun"] - 0.1, T["hakikat"] - 0.1, T["sekarang"]): put(whoosh(1.2), t, 0.3)
-# bubbles, stamp
-put(pop(), T["bahasa"] - 0.3, 0.8); put(pop(), T["bahasa"], 0.8); put(impact(.5), T["jadi2"], 0.6)
-# footsteps, handshake clap, sparkle
-for i in range(8): put(lp(noise(.06), 1500) * env(int(.06 * SR), .002, .05) * .6, T["hakikat"] + i * 0.28, 1)
-put(lp(noise(.12), 3000) * env(int(.12 * SR), .001, .1) * 1.2, T["jiran"], 1); put(ping(1600), T["rapat"], 0.5)
-# slot machine: ticks slowing down, then a ding on "???"
-u = 0.0; t0 = T["nama"] - 0.2
-for i in range(22):
-    tt_ = t0 + 1.6 * (1 - (1 - i / 22) ** 0.33); put(tone(2200, .02, .001, .015) * .35, tt_, 1)
-put(ping(1320), t0 + 1.65, 0.8); put(ping(1980), t0 + 1.75, 0.6)
-for i in range(3): put(pop(), T["komen"] + i * 0.3, 0.9)
+for t in (T["tahun"], T["ekonomi"] - 0.2, T["tapi"], T["hari"] + 0.2, T["ibu"] - 1.2): put(whoosh(1.2), t, 0.3)
+# question + comment bubbles
+put(pop(), T["ibu"] - 0.3, 0.8); put(pop(), T["harimau"] - 0.2, 0.8)
+for i in range(3): put(pop(), T["juara"] - 0.2 + i * 0.3, 0.9)
 put(ping(990), T["komen"], 0.5)
 put(pop(), T["end_vo"] + 1.6, 1); put(pop(), T["end_vo"] + 2.1, 1)
 
