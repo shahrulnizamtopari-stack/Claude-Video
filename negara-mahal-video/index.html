@@ -145,26 +145,86 @@ html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,h
 #outro .fol .h{font:800 30px Inter}
 #outro .fol .btn{font:800 28px Inter;background:#ff2d46;border-radius:10px;padding:14px 28px;min-width:190px;text-align:center}
 #fade{position:absolute;inset:0;background:#05070b;opacity:0;pointer-events:none}
+
+/* --- negara-mahal additions --- */
+.rk{left:160px;right:auto;width:760px;top:860px;text-align:center;padding:24px 30px 22px}
+.rk .no{font:800 44px Inter}.rk .num{font:italic 700 170px/1 Serif}
+.rk .kk{font:700 18px Mono;letter-spacing:2px}
+.rk.gold{box-shadow:0 0 0 3px #ffce00,0 0 60px rgba(255,206,0,.35),0 24px 60px rgba(0,0,0,.6)}.rk.gold .num{color:#ffce00}
+.cmp{position:absolute;left:160px;width:760px;background:rgba(10,12,17,.94);border-radius:16px;padding:18px 26px 16px;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.cmp .k{font:700 18px Mono;letter-spacing:3px;color:#c9d0d8;margin-bottom:6px;text-align:center}
+.cmp .k b{color:#ff2d46}
+.cr{display:flex;align-items:center;gap:14px;margin:9px 0}.cr .fl{width:46px;height:31px;border-radius:3px;overflow:hidden;box-shadow:0 0 0 2px #fff;flex:none}.cr .fl svg{width:100%;height:100%;display:block}
+.cr .nm{width:190px;font:800 23px Inter;color:#fff;white-space:nowrap}.cr .bb{flex:1;height:24px;background:#20252e;border-radius:6px;overflow:hidden}.cr .bb div{height:100%;background:#5b6573}
+.cr.hot .bb div{background:#ff2d46}.cr.gold .bb div{background:#ffce00}.cr.grn .bb div{background:#2fd27f}.cr .v{width:86px;text-align:right;font:800 26px Inter;color:#fff}
+.cr.ny .nm{color:#9aa3ad}.ny .fl{background:#2a2f38;color:#fff;font:800 13px Inter;display:flex;align-items:center;justify-content:center}
+.src{position:absolute;top:118px;left:0;right:0;text-align:center;font:700 17px Mono;letter-spacing:2px;color:rgba(255,255,255,.62)}
+.xst{position:absolute;transform:translate(-50%,-50%) rotate(-10deg);font:800 44px Inter;letter-spacing:3px;color:#fff;background:#ff2d46;padding:6px 18px;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.6)}
+.qpin{position:absolute;transform:translate(-50%,-50%);width:120px;height:120px;border-radius:50%;border:5px dashed #ff2d46;display:flex;align-items:center;justify-content:center;font:italic 700 90px/1 Serif;color:#ff2d46;background:rgba(10,12,17,.55)}
+.rh{position:absolute;top:960px;left:0;right:0;text-align:center}
+.rh .w{display:inline-block;font:800 40px Inter;letter-spacing:6px;color:#0b0d12;background:#ffce00;padding:8px 22px;border-radius:8px}
+.rh .l{font:800 92px/1.05 Inter;letter-spacing:-2px;color:#fff;margin-top:26px}.rh .l span{color:#ff2d46}
+.rh .s{font:700 24px Mono;letter-spacing:3px;color:#c9d0d8;margin-top:18px}
+.opt{width:400px;height:400px}.opt .fb{width:170px;height:110px;border-radius:8px;overflow:hidden;box-shadow:0 0 0 4px #fff}.opt .fb svg{width:100%;height:100%;display:block}
+.opt b{font:800 50px Inter}.opt.my{background:#12306b}.opt.sg{background:#b3121f}
+.qh{position:absolute;top:330px;left:0;right:0;text-align:center;font:800 64px/1.1 Inter;color:#fff}.qh span{color:#ffce00}
+#tintG{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(255,206,0,0) 45%,rgba(255,190,0,.35) 100%)}
+#tintR{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,30,50,0) 40%,rgba(255,30,50,.45) 100%)}
+.win{top:300px}.win2{position:absolute;left:220px;top:300px;width:640px;height:800px;border:3px solid rgba(255,255,255,.9);border-radius:18px;background:linear-gradient(160deg,#1d5e74,#0c1118 70%);box-shadow:0 30px 80px rgba(0,0,0,.7);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:#cfe3ea;font:700 24px Mono;letter-spacing:2px;text-align:center;padding:0 40px}
+.win2 em{font-style:normal;color:#ffcf4a;font-size:20px;letter-spacing:1px;line-height:1.4}.win2 i{position:absolute;right:14px;top:14px;font:700 16px Mono;color:#fff;background:rgba(0,0,0,.55);padding:5px 10px;border-radius:4px;font-style:normal}
+/* brief palette: navy/charcoal + gold + warm white, red only for prices */
+.rk .num{color:#f6f3ec}.rk .no{color:#ffce00}
+.cap .r{color:#ffce00!important}
+.title .b span{color:#ffce00}
+.title .ln{background:#ffce00}
+#tintR{background:radial-gradient(ellipse at 50% 45%,rgba(5,10,30,0) 35%,rgba(5,10,30,.85) 100%)!important}
+.rh .l span{color:#ffce00}
+.tt{position:absolute;top:960px;left:0;right:0;text-align:center;color:#f6f3ec}
+.tt .t5{font:800 230px/0.9 Inter;letter-spacing:-8px;color:#ffce00;text-shadow:0 0 60px rgba(255,206,0,.35)}
+.tt .t1{font:800 66px/1.08 Inter;letter-spacing:1px;margin-top:18px}
+.tt .ch{display:inline-block;margin-top:30px;font:700 26px Mono;letter-spacing:4px;color:#0b0d12;background:#ffce00;padding:10px 20px;border-radius:6px}
+.mvs{position:absolute;top:860px;left:70px;right:70px;display:flex;align-items:stretch;justify-content:center;gap:22px}
+.mvs .c{flex:1;background:rgba(10,12,17,.94);border-radius:18px;padding:26px 18px 24px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.mvs .c .fb{width:120px;height:78px;margin:0 auto;border-radius:6px;overflow:hidden;box-shadow:0 0 0 3px #fff}.mvs .c .fb svg{width:100%;height:100%;display:block}
+.mvs .c b{display:block;font:800 40px Inter;color:#fff;margin-top:16px}.mvs .c .n{font:italic 700 150px/1 Serif;margin-top:6px}
+.mvs .vsx{align-self:center;font:800 44px Inter;color:#9aa3ad}
+.cta{position:absolute;top:640px;left:90px;right:90px;background:rgba(10,12,17,.95);border:3px solid #ffce00;border-radius:24px;padding:46px 40px 40px;text-align:center;box-shadow:0 0 70px rgba(255,206,0,.25),0 30px 80px rgba(0,0,0,.7)}
+.cta .k{font:700 26px Mono;letter-spacing:5px;color:#ffce00}.cta .q{font:800 76px/1.08 Inter;color:#f6f3ec;margin-top:18px}.cta .q span{color:#ffce00}
+.cta .row{display:flex;justify-content:center;gap:30px;margin-top:36px}.cta .row div{width:190px;height:124px;border-radius:8px;overflow:hidden;box-shadow:0 0 0 4px #fff}.cta .row svg{width:100%;height:100%;display:block}
+.cta .go{margin-top:36px;font:800 50px Inter;color:#ffce00;letter-spacing:3px}
+
+.rk,.cmp,.mvs,.cta,.tt,.rh,.xst,.qpin,.src,.hk2,.rcpt,.ptag{display:none}
+.hk2{position:absolute;top:1040px;left:0;right:0;text-align:center;color:#f6f3ec}
+.hk2 .b{font:800 120px/1 Inter;letter-spacing:-4px;color:#ffce00}
+.hk2 .c{font:800 52px Inter;letter-spacing:7px;margin-top:14px}
+.hk2 .ln{width:540px;height:6px;background:#ffce00;margin:22px auto 0;transform-origin:center}
+.hk2 .d{font:700 26px Mono;letter-spacing:3px;color:#c9d0d8;margin-top:22px}
+.rcpt{position:absolute;left:300px;top:150px;filter:drop-shadow(0 30px 50px rgba(0,0,0,.7))}
+.ptag{position:absolute;filter:drop-shadow(0 12px 20px rgba(0,0,0,.6))}
+#dim{position:absolute;inset:0;background:#05070b;opacity:0;pointer-events:none}
+#flash{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,#fff6d0,#ffce00 60%,rgba(255,206,0,0));opacity:0;pointer-events:none;mix-blend-mode:screen}
+#tintG,#tintR{opacity:0;pointer-events:none}
+html.caps #world,html.caps #ui>*:not(#cap){visibility:hidden!important}
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="47.73" data-width="1080" data-height="1920" data-fps="30">
-  <div id="world" class="clip" data-start="0" data-duration="47.73" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+<div id="root" data-composition-id="main" data-start="0" data-duration="65.18" data-width="1080" data-height="1920" data-fps="30">
+  <div id="world" class="clip" data-start="0" data-duration="65.18" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
     <canvas id="gl" width="1080" height="1920"></canvas>
   </div>
-  <div id="ui" class="clip" data-start="0" data-duration="47.73" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
-    <canvas id="fx" width="1080" height="1920"></canvas>
+  <div id="ui" class="clip" data-start="0" data-duration="65.18" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
     <div class="vig"></div>
-    <div id="tint"></div>
+    <div id="tintR"></div>
+    <div id="tintG"></div>
+    <div id="dim"></div>
     <div id="pins"></div>
     <div id="cards"></div>
+    <div id="flash"></div>
     <div id="cap"></div>
-    <div id="hook" class="el"><div class="a">SATU NEGARA PEGANG</div><div class="b">5,420</div><div class="c">TEKA SIAPA?</div><div class="ln"></div></div>
-    <div id="outro" class="el"><div class="box"><div class="chev">›››</div><div class="nm">JANGAN TERLEPAS</div><div class="tg">FAKTA DUNIA · DALAM BAHASA KITA</div><div><div class="fol"><span class="h">Untuk part seterusnya</span><span class="btn" id="fbtn">Follow</span><span class="btn" id="sbtn">Subscribe</span></div></div></div></div>
     <div id="fade"></div>
   </div>
-  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="44.64" data-track-index="5" data-volume="1"></audio>
-  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="47.73" data-track-index="6" data-volume="0.9"></audio>
+  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="63.686531" data-track-index="5" data-volume="1"></audio>
+  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="65.18" data-track-index="6" data-volume="0.5"></audio>
 </div>
 
 <script>
@@ -182,9 +242,7 @@ const LAYER = Number(vars.layer) || 0;
 if (LAYER === 1) document.documentElement.classList.add("clean");
 if (LAYER === 2) document.documentElement.classList.add("caps");
 const scale = LAYER === 2 ? 0.25 : Number(vars.previewScale) || 1;
-await Promise.all(["400 40px Inter", "700 40px Inter", "800 40px Inter", "700 20px Mono", "400 40px Serif", "italic 700 40px Serif", "700 40px Serif"].map((f) => document.fonts.load(f)));
-const KS = ["uk", "fr", "cn", "us", "ru"];
-await Promise.all(KS.flatMap((k) => [`assets/leaders/${k}-fbody.png`, `assets/leaders/${k}-fhead.png`]).map((src) => new Promise((r) => { const i = new Image(); i.onload = i.onerror = r; i.src = src; })));
+await Promise.all(["400 40px Inter", "700 40px Inter", "800 40px Inter", "700 20px Mono", "italic 700 40px Serif", "700 40px Serif"].map((f) => document.fonts.load(f)));
 
 const W = 1080, H = 1920;
 const g = await createGlobe(document.getElementById("gl"), { W, H, base: "assets/", scale });
@@ -192,211 +250,265 @@ if (LAYER === 2) g.render = () => {};
 const topo = await (await fetch("assets/geo/countries-10m.json")).json();
 const countries = topojson.feature(topo, topo.objects.countries).features;
 const C_ = (id) => countries.find((c) => +c.id === id);
-const MY = C_(458);
-const FIG = await (await fetch("assets/leaders/fig.json")).json();
 
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
 const eout = (x) => 1 - Math.pow(1 - clamp(x), 3);
 const win = (t, a, b, fi = 0.35, fo = 0.35) => clamp((t - a) / fi) * (1 - clamp((t - b) / fo));
+const pop = (x) => { x = clamp(x); return x < 1 ? 1 + 0.35 * Math.sin(Math.PI * x) * (1 - x) : 1; };
 
+// ---------- globe layers ----------
 const borders = g.layer("borders", 0, { lon0: -180, lon1: 180, lat0: -60, lat1: 80, ppd: 12 });
 { const L = borders, c = L.ctx; c.strokeStyle = "rgba(255,255,255,.35)"; c.lineWidth = 1; c.lineJoin = "round";
-  // break rings where they jump across the antimeridian (Russia, Fiji...) or they draw lines across the whole world
   for (const f of countries) { const polys = f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.type === "MultiPolygon" ? f.geometry.coordinates : [];
     c.beginPath(); for (const poly of polys) for (const ring of poly) ring.forEach(([lo, la], i) => { (i && Math.abs(lo - ring[i - 1][0]) < 180) ? c.lineTo(L.ox(lo), L.oy(la)) : c.moveTo(L.ox(lo), L.oy(la)); }); c.stroke(); }
   L.tex.needsUpdate = true; }
-function flagFill(name, f, R, paint, alpha = 0.8) {
+function flagFill(name, f, R, paint, { alpha = 0.82, glow = null, lw = 3 } = {}) {
   const L = g.layer(name, 6, R), c = L.ctx; c.save(); L.path(f.geometry); c.clip("evenodd"); c.globalAlpha = alpha;
-  paint(c, L); c.restore(); c.strokeStyle = "#fff"; c.lineWidth = 3; L.path(f.geometry); c.stroke(); L.tex.needsUpdate = true; L.mesh.material.opacity = 0; return L;
+  paint(c, L); c.restore();
+  if (glow) { c.shadowColor = glow; c.shadowBlur = 22; c.strokeStyle = glow; c.lineWidth = lw * 1.6; L.path(f.geometry); c.stroke(); c.shadowBlur = 0; }
+  c.strokeStyle = "#fff"; c.lineWidth = lw; L.path(f.geometry); c.stroke(); L.tex.needsUpdate = true; L.mesh.material.opacity = 0; return L;
 }
 const box = (L, lo0, la0, lo1, la1) => ({ x: L.ox(lo0), y: L.oy(la1), w: L.ox(lo1) - L.ox(lo0), h: L.oy(la0) - L.oy(la1) });
+const star = (c, x, y, r) => { c.beginPath(); for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * 0.4 : r; c.lineTo(x + rr * Math.cos(a), y + rr * Math.sin(a)); } c.fill(); };
 const P = {
-  uk: (c, L) => { const b = box(L, -8.5, 49.8, 2, 59); c.fillStyle = "#012169"; c.fillRect(b.x, b.y, b.w, b.h);
-    c.strokeStyle = "#fff"; c.lineWidth = b.w * 0.12; c.beginPath(); c.moveTo(b.x, b.y); c.lineTo(b.x + b.w, b.y + b.h); c.moveTo(b.x + b.w, b.y); c.lineTo(b.x, b.y + b.h); c.stroke();
-    c.strokeStyle = "#C8102E"; c.lineWidth = b.w * 0.05; c.stroke(); c.fillStyle = "#fff"; c.fillRect(b.x + b.w * 0.42, b.y, b.w * 0.16, b.h); c.fillRect(b.x, b.y + b.h * 0.42, b.w, b.h * 0.16);
-    c.fillStyle = "#C8102E"; c.fillRect(b.x + b.w * 0.46, b.y, b.w * 0.08, b.h); c.fillRect(b.x, b.y + b.h * 0.46, b.w, b.h * 0.08); },
-  fr: (c, L) => { const b = box(L, -5, 42, 8.5, 51.2); ["#0055A4", "#fff", "#EF4135"].forEach((col, i) => { c.fillStyle = col; c.fillRect(b.x + i * b.w / 3, b.y, b.w / 3 + 1, b.h); }); },
-  cn: (c, L) => { const b = box(L, 73, 18, 135, 54); c.fillStyle = "#DE2910"; c.fillRect(b.x, b.y, b.w, b.h); c.fillStyle = "#FFDE00";
-    const star = (x, y, r) => { c.beginPath(); for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * 0.4 : r; c.lineTo(x + rr * Math.cos(a), y + rr * Math.sin(a)); } c.fill(); };
-    star(b.x + b.w * 0.2, b.y + b.h * 0.3, b.h * 0.16); [[0.33, 0.12], [0.38, 0.22], [0.38, 0.36], [0.33, 0.46]].forEach(([u, v]) => star(b.x + b.w * u, b.y + b.h * v, b.h * 0.05)); },
+  tm: (c, L) => { const b = box(L, 52.4, 35.1, 66.7, 42.8); c.fillStyle = "#00843D"; c.fillRect(b.x, b.y, b.w, b.h);
+    c.fillStyle = "#B5121B"; c.fillRect(b.x + b.w * 0.12, b.y, b.w * 0.17, b.h); c.fillStyle = "#e9b94a"; for (let i = 0; i < 9; i++) c.fillRect(b.x + b.w * 0.14, b.y + b.h * (0.08 + i * 0.1), b.w * 0.13, b.h * 0.04);
+    c.fillStyle = "#fff"; const cx = b.x + b.w * 0.42, cy = b.y + b.h * 0.25, r = b.h * 0.13; c.beginPath(); c.arc(cx, cy, r, 0, 7); c.fill();
+    c.fillStyle = "#00843D"; c.beginPath(); c.arc(cx + r * 0.35, cy - r * 0.1, r * 0.85, 0, 7); c.fill(); c.fillStyle = "#fff";
+    for (let i = 0; i < 5; i++) star(c, cx + r * 0.9 + (i % 2) * r * 0.5, cy - r * 0.8 + i * r * 0.4, r * 0.18); },
+  is: (c, L) => { const b = box(L, -24.6, 63.3, -13.4, 66.6); c.fillStyle = "#02529C"; c.fillRect(b.x, b.y, b.w, b.h);
+    c.fillStyle = "#fff"; c.fillRect(b.x + b.w * 0.28, b.y, b.w * 0.16, b.h); c.fillRect(b.x, b.y + b.h * 0.4, b.w, b.h * 0.22);
+    c.fillStyle = "#DC1E35"; c.fillRect(b.x + b.w * 0.32, b.y, b.w * 0.08, b.h); c.fillRect(b.x, b.y + b.h * 0.455, b.w, b.h * 0.11); },
+  bs: (c, L) => { const b = box(L, -79.3, 20.9, -72.7, 27.3); ["#00778B", "#FFC72C", "#00778B"].forEach((col, i) => { c.fillStyle = col; c.fillRect(b.x, b.y + i * b.h / 3, b.w, b.h / 3 + 1); });
+    c.fillStyle = "#000"; c.beginPath(); c.moveTo(b.x, b.y); c.lineTo(b.x + b.w * 0.4, b.y + b.h / 2); c.lineTo(b.x, b.y + b.h); c.fill(); },
+  sg: (c, L) => { const b = box(L, 103.6, 1.15, 104.1, 1.48); c.fillStyle = "#EE2536"; c.fillRect(b.x, b.y, b.w, b.h / 2 + 1); c.fillStyle = "#fff"; c.fillRect(b.x, b.y + b.h / 2, b.w, b.h / 2);
+    const cx = b.x + b.w * 0.2, cy = b.y + b.h * 0.25, r = b.h * 0.15; c.beginPath(); c.arc(cx, cy, r, 0, 7); c.fill(); c.fillStyle = "#EE2536"; c.beginPath(); c.arc(cx + r * 0.3, cy, r * 0.85, 0, 7); c.fill(); },
+  ch: (c, L) => { const b = box(L, 5.9, 45.8, 10.5, 47.8); c.fillStyle = "#DA291C"; c.fillRect(b.x, b.y, b.w, b.h);
+    const cx = L.ox(8.2), cy = L.oy(46.8), u = b.h * 0.13; c.fillStyle = "#fff"; c.fillRect(cx - u, cy - 3.2 * u, 2 * u, 6.4 * u); c.fillRect(cx - 3.2 * u, cy - u, 6.4 * u, 2 * u); },
   us: (c, L) => { const b = box(L, -125, 24, -66, 50); for (let i = 0; i < 13; i++) { c.fillStyle = i % 2 ? "#fff" : "#B22234"; c.fillRect(b.x, b.y + i * b.h / 13, b.w, b.h / 13 + 1); }
     c.fillStyle = "#3C3B6E"; c.fillRect(b.x, b.y, b.w * 0.4, b.h * 7 / 13); c.fillStyle = "#fff";
     for (let r = 0; r < 9; r++) for (let k = 0; k < (r % 2 ? 5 : 6); k++) { c.beginPath(); c.arc(b.x + b.w * 0.4 * ((k + (r % 2 ? 1 : 0.5)) / 6), b.y + b.h * 7 / 13 * ((r + 0.6) / 9.6), b.h * 0.012, 0, 7); c.fill(); }
-    // Alaska: stripes only
     const a2 = box(L, -170, 52, -130, 72); for (let i = 0; i < 13; i++) { c.fillStyle = i % 2 ? "#fff" : "#B22234"; c.fillRect(a2.x, a2.y + i * a2.h / 13, a2.w, a2.h / 13 + 1); } },
-  ru: (c, L) => { const b = box(L, 19, 41, 180, 78); ["#fff", "#0039A6", "#D52B1E"].forEach((col, i) => { c.fillStyle = col; c.fillRect(b.x, b.y + i * b.h / 3, b.w, b.h / 3 + 1); }); },
+  jp: (c, L) => { const b = box(L, 122, 24, 150, 46); c.fillStyle = "#fff"; c.fillRect(b.x, b.y, b.w, b.h); c.fillStyle = "#BC002D"; c.beginPath(); c.arc(L.ox(137.5), L.oy(36.5), b.h * 0.2, 0, 7); c.fill(); },
 };
-
-const LEADER = { uk: ["ANDY BURNHAM", "PERDANA MENTERI UK"], fr: ["EMMANUEL MACRON", "PRESIDEN PERANCIS"], cn: ["XI JINPING", "PRESIDEN CHINA"], us: ["DONALD TRUMP", "PRESIDEN AS"], ru: ["VLADIMIR PUTIN", "PRESIDEN RUSIA"] };
-
-function malaysiaFlag() {
-  const L = myl, c = L.ctx; c.save(); L.path(MY.geometry); c.clip("evenodd");
+const W_ = {
+  tm: [795, { lon0: 52, lon1: 67, lat0: 35, lat1: 43, ppd: 80 }], is: [352, { lon0: -25, lon1: -13, lat0: 63, lat1: 67, ppd: 120 }],
+  bs: [44, { lon0: -80, lon1: -72, lat0: 20, lat1: 28, ppd: 150 }], sg: [702, { lon0: 103.5, lon1: 104.2, lat0: 1.1, lat1: 1.55, ppd: 2400 }],
+  ch: [756, { lon0: 5.5, lon1: 11, lat0: 45.5, lat1: 48.2, ppd: 200 }], us: [840, { lon0: -172, lon1: -64, lat0: 18, lat1: 72, ppd: 12 }],
+  jp: [392, { lon0: 122, lon1: 150, lat0: 24, lat1: 46, ppd: 40 }],
+};
+const FL = {
+  us: flagFill("fus", C_(840), W_.us[1], P.us, { alpha: 0.8 }), jp: flagFill("fjp", C_(392), W_.jp[1], P.jp, { alpha: 0.85 }),
+  tm: flagFill("ftm", C_(795), W_.tm[1], P.tm), is: flagFill("fis", C_(352), W_.is[1], P.is),
+  bs: flagFill("fbs", C_(44), W_.bs[1], P.bs, { glow: "#41e0ff", lw: 2.5 }),
+  sgRing: flagFill("fsgr", C_(702), W_.sg[1], P.sg, { alpha: 0, glow: "#ffce00", lw: 4 }),
+  sg: flagFill("fsg", C_(702), W_.sg[1], P.sg, { alpha: 0.9, glow: "#ffce00", lw: 5 }),
+  ch: flagFill("fch", C_(756), W_.ch[1], P.ch, { alpha: 0.9, glow: "#ffce00", lw: 4 }),
+};
+const MY = C_(458), myl = g.layer("malaysia", 7, { lon0: 99, lon1: 120, lat0: 0, lat1: 8, ppd: 160 });
+{ const L = myl, c = L.ctx; c.save(); L.path(MY.geometry); c.clip("evenodd");
   const x0 = L.ox(99.5), x1 = L.ox(119.4), y0 = L.oy(7.5), y1 = L.oy(0.8), sh = (y1 - y0) / 14;
   for (let i = 0; i < 14; i++) { c.fillStyle = i % 2 ? "rgba(255,255,255,.62)" : "rgba(204,0,1,.7)"; c.fillRect(x0, y0 + i * sh, x1 - x0, sh + 1); }
   c.fillStyle = "rgba(1,0,102,.78)"; c.fillRect(x0, y0, (x1 - x0) * 0.5, sh * 8);
   c.fillStyle = "#ffcc00"; const cx = L.ox(103.6), cy = L.oy(5.0), r = sh * 2.6;
   c.beginPath(); c.arc(cx, cy, r, 0, 7); c.fill(); c.fillStyle = "rgb(1,0,102)"; c.beginPath(); c.arc(cx + r * 0.32, cy, r * 0.82, 0, 7); c.fill();
-  c.restore(); c.strokeStyle = "#fff"; c.lineWidth = 5; L.path(MY.geometry); c.stroke(); L.tex.needsUpdate = true;
-}
-const FL = {
-  uk: flagFill("fUK", C_(826), { lon0: -9, lon1: 3, lat0: 49, lat1: 61, ppd: 120 }, P.uk),
-  fr: flagFill("fFR", C_(250), { lon0: -6, lon1: 10, lat0: 41, lat1: 52, ppd: 100 }, P.fr),
-  cn: flagFill("fCN", C_(156), { lon0: 72, lon1: 136, lat0: 17, lat1: 55, ppd: 20 }, P.cn),
-  us: flagFill("fUS", C_(840), { lon0: -172, lon1: -64, lat0: 18, lat1: 72, ppd: 12 }, P.us),
-  ru: flagFill("fRU", C_(643), { lon0: 19, lon1: 180, lat0: 41, lat1: 78, ppd: 10 }, P.ru),
-};
-const asean = g.layer("asean", 6, { lon0: 92, lon1: 141, lat0: -11, lat1: 29, ppd: 40 });
-{ const c = asean.ctx; c.fillStyle = "rgba(40,200,120,.45)"; c.strokeStyle = "#5dffb0"; c.lineWidth = 3;
-  for (const f of [458, 360, 764, 704, 608, 104, 116, 418, 702, 96].map(C_)) { asean.path(f.geometry); c.fill("evenodd"); c.stroke(); } asean.tex.needsUpdate = true; asean.mesh.material.opacity = 0; }
-const myl = g.layer("malaysia", 7, { lon0: 99, lon1: 120, lat0: 0, lat1: 8, ppd: 160 });
-malaysiaFlag(); myl.mesh.material.opacity = 0;
+  c.restore(); c.strokeStyle = "#fff"; c.lineWidth = 5; L.path(MY.geometry); c.stroke(); L.tex.needsUpdate = true; L.mesh.material.opacity = 0; }
 
-// scenes per country: [key, rank, value, start, end, camera]
-const SC = [
-  ["uk", 5, 225, T.n5, T.n4 - 0.15, "UJIAN PERTAMA · 1952", 2],
-  ["fr", 4, 370, T.n4, T.n3 - 0.15, "TERMASUK 80 BERSARA", 4],
-  ["cn", 3, 620, T.n3, T.n2 - 0.15, "▲ PALING LAJU BERTAMBAH · 600 → 620", 6],
-  ["us", 2, 5042, T.n2, T.n1 - 0.15, "UJIAN PERTAMA · 1945", 50],
-  ["ru", 1, 5420, T.n1, T.ru2 - 0.15, "👑 TERBESAR DI DUNIA", 54],
-];
-const VALAT = { uk: T.s225, fr: T.s370, cn: T.s620, us: T.s5042, ru: T.s5420 };
+// ---------- camera: [t, lat, lon(unwrapped), dist, tilt, yShift] ----------
 const K = [
-  [0, 25, 20, 4.8, 4, 0.1], [T.n5 - 0.9, 45, 0, 4.2, 4, 0.1],
-  [T.uk - 0.1, 54.5, -3, 0.55, 14, 0.2], [T.n4 - 0.3, 54.3, -2.8, 0.53, 14, 0.2],
-  [T.fr - 0.1, 47, 2.5, 0.5, 14, 0.2], [T.n3 - 0.4, 46.8, 2.6, 0.49, 14, 0.2],
-  [T.cn - 0.1, 36, 104, 1.5, 10, 0.2], [T.n2 - 0.4, 36.2, 104.5, 1.45, 10, 0.2],
-  [T.us - 0.1, 42, 260, 2.0, 8, 0.2], [T.n1 - 0.4, 42, 259, 1.95, 8, 0.2],
-  [T.ru - 0.1, 56, 455, 3.6, 6, 0.2], [T.ru2 - 0.3, 56, 452, 3.5, 6, 0.2],
-  [T.ru2 + 0.6, 45, 420, 4.4, 4, 0.15], [T.malaysia - 0.3, 42, 418, 4.4, 4, 0.15],
-  [T.malaysia + 0.6, 8, 473, 1.7, 8, 0.2], [T.korang - 0.3, 8, 474, 1.65, 8, 0.2],
-  [T.korang + 0.6, 30, 420, 4.4, 4, 0.15], [DURATION, 30, 410, 4.6, 4, 0.15],
+  [0, 46, -150, 6.6, 4, 0.16], [T.salah, 48, -172, 6.0, 4, 0.16], [T.ini - 0.5, 47, -176, 6.0, 4, 0.16],
+  [T.ini + 0.4, 22, 30, 4.7, 4, 0.06], [T.n5 - 0.6, 24, 44, 4.4, 4, 0.06],
+  [T.tm - 0.1, 39.0, 59, 1.0, 12, 0.22], [T.n4 - 0.3, 39.2, 59.4, 0.96, 12, 0.22],
+  [T.is - 0.1, 64.9, -18.6, 0.42, 14, 0.22], [T.n3 - 0.3, 64.8, -18.3, 0.41, 14, 0.22],
+  [T.bs - 0.1, 24.6, -76.8, 0.5, 14, 0.22], [T.tunggu + 0.05, 24.7, -77.0, 0.49, 14, 0.22], [T.tunggu + 0.45, 24.7, -77.0, 0.49, 14, 0.22],
+  [T.jiran + 0.2, 3.6, 106, 1.15, 8, 0.12], [T.n2 - 0.3, 3.4, 105.6, 1.1, 8, 0.12],
+  [T.sg - 0.1, 2.6, 103.6, 0.62, 14, 0.24], [T.n1 - 0.2, 2.6, 103.7, 0.6, 14, 0.24],
+  [T.ch - 0.05, 46.9, 8.2, 0.32, 16, 0.22], [T.my2 - 0.3, 46.9, 8.3, 0.3, 16, 0.22],
+  [T.my2 + 0.5, 3.2, 104.5, 1.0, 10, 0.2], [T.jadi - 0.2, 3.2, 104.7, 0.97, 10, 0.2],
+  [T.jadi + 0.6, 3.2, 104.5, 1.6, 8, 0.12], [DURATION, 3.3, 105.2, 1.7, 8, 0.12],
 ];
-const ZP = [[T.k4000, -0.08, 0.4], [T.k5400, -0.1, 0.5], [T.s225, -0.1, 0.4], [T.s370, -0.1, 0.4], [T.s620, -0.1, 0.4], [T.laju, -0.08, 0.4],
-  [T.s5042, -0.12, 0.5], [T.s5420, -0.14, 0.6], [T.p80, -0.08, 0.5], [T.kosong, -0.12, 0.5], [T.tanpa, -0.08, 0.5]];
+const ZP = [[T.salah, -0.08, 0.4], [T.v66, -0.12, 0.5], [T.ny1, -0.06, 0.4], [T.v74, -0.12, 0.5], [T.terkejut, -0.08, 0.4], [T.v77, -0.12, 0.5],
+  [T.sangat, -0.08, 0.4], [T.v80, -0.12, 0.5], [T.tertinggi, -0.06, 0.4], [T.ch, -0.16, 0.7], [T.v81, -0.1, 0.5], [T.kuat, -0.06, 0.4],
+  [T.v22, -0.1, 0.5], [T.pilih, 0.08, 0.6]];
 function zoomMod(t) {
   let m = 0;
   for (const [a, amt, hold] of ZP) { const x = t - a + 0.08; if (x < 0 || x > hold + 1.6) continue;
     m += amt * ease(clamp(x / 0.3)) * (1 - ease(clamp((x - 0.3 - hold) / 1.3))); }
-  return (1 + m) * (1 - 0.03 * Math.sin(t * 0.9));
+  const frozen = win(t, T.tunggu, T.tunggu + 0.4, 0.02, 0.05);
+  return (1 + m) * (1 - 0.03 * Math.sin(t * 0.9) * (1 - frozen));
 }
 function cam(t) {
   let i = 0; while (i < K.length - 2 && t > K[i + 1][0]) i++;
   const A = K[i], B = K[i + 1], u = ease(clamp((t - A[0]) / (B[0] - A[0])));
   const L = (k) => A[k] + (B[k] - A[k]) * u;
-  const hop = Math.sin(Math.PI * u) * Math.min(1.4, Math.hypot(B[1] - A[1], B[2] - A[2]) * 0.012) * (Math.hypot(B[1] - A[1], B[2] - A[2]) > 20 ? 1 : 0);
+  const far = Math.hypot(B[1] - A[1], B[2] - A[2]);
+  const hop = far > 20 ? Math.sin(Math.PI * u) * Math.min(1.4, far * 0.012) : 0;
   const d = Math.exp(Math.log(A[3]) + (Math.log(B[3]) - Math.log(A[3])) * u) + hop;
   return { lat: L(1), lon: ((L(2) + 180) % 360 + 360) % 360 - 180, dist: d * zoomMod(t), tilt: L(4), yShift: L(5) };
 }
 
+// ---------- DOM ----------
 const pinWrap = document.getElementById("pins"), cardWrap = document.getElementById("cards");
-const mk = (parent, cls, html) => { const e = document.createElement("div"); e.className = "el " + cls; e.innerHTML = html; parent.appendChild(e); return e; };
-// hook nodes (9 nuclear states)
-const NODES = [[39, -98], [62, 95], [35, 104], [46.5, 2.5], [54, -2], [22, 79], [30, 70], [31, 35], [40, 127]].map((ll) => ({ ll, el: mk(pinWrap, "nd", "") }));
-const chip = mk(pinWrap, "chip", "● 4,012 SIAP DIGUNA · SEKARANG");
-// caricatures
-const whIcon = `<svg width="16" height="30" viewBox="0 0 22 40"><path d="M11 0 Q22 14 20 30 L2 30 Q0 14 11 0Z" fill="#ff2d46"/><rect x="4" y="31" width="14" height="8" rx="2" fill="#9aa3ad"/></svg>`;
-const SCN = SC.map(([k, r, v, a, b, extra, icons]) => {
-  const m = FIG[k], Hh = 600, sc = Hh / m.h, w = m.w * sc;
-  const bob = mk(cardWrap, "bob", `<div class="fig" style="width:${w}px;height:${Hh}px;margin-left:${-w / 2}px"><img class="fb" src="assets/leaders/${k}-fbody.png" style="width:${w}px;height:${Hh}px"><img class="fh" src="assets/leaders/${k}-fhead.png" style="width:${w}px;height:${(m.neck + 7) * sc}px;transform-origin:${m.px * sc}px ${m.neck * sc}px"></div><div class="np"><b>${LEADER[k][0]}</b><br><i>${LEADER[k][1]}</i></div>`);
-  bob.style.left = "30px"; bob.style.top = "720px";
-  const rk = mk(cardWrap, "rk", `<div class="no">#${r}</div><div class="num">0</div><div class="kk">KEPALA PELEDAK · SIPRI 2026</div><div class="ex ${r === 3 ? "up" : ""}">${extra}</div><div class="wh">${Array.from({ length: icons }, () => whIcon).join("")}</div>`);
-  return { k, r, v, a, b, bob, fig: bob.querySelector(".fig"), head: bob.querySelector(".fh"), np: bob.querySelector(".np"), rk, num: rk.querySelector(".num"), ex: rk.querySelector(".ex"), wh: [...rk.querySelectorAll(".wh svg")] };
+const mk = (parent, cls, h) => { const e = document.createElement("div"); e.className = "el " + cls; e.innerHTML = h; parent.appendChild(e); return e; };
+const SV = {
+  tm: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#00843D"/><rect x="3" width="6" height="20" fill="#B5121B"/><circle cx="14" cy="5" r="3" fill="#fff"/><circle cx="15" cy="4.6" r="2.6" fill="#00843D"/></svg>',
+  is: '<svg viewBox="0 0 25 18"><rect width="25" height="18" fill="#02529C"/><rect x="7" width="4" height="18" fill="#fff"/><rect y="7" width="25" height="4" fill="#fff"/><rect x="8" width="2" height="18" fill="#DC1E35"/><rect y="8" width="25" height="2" fill="#DC1E35"/></svg>',
+  bs: '<svg viewBox="0 0 30 15"><rect width="30" height="15" fill="#00778B"/><rect y="5" width="30" height="5" fill="#FFC72C"/><path d="M0 0L13 7.5L0 15Z"/></svg>',
+  sg: '<svg viewBox="0 0 30 20"><rect width="30" height="10" fill="#EE2536"/><rect y="10" width="30" height="10" fill="#fff"/><circle cx="6" cy="5" r="3" fill="#fff"/><circle cx="7" cy="5" r="2.6" fill="#EE2536"/></svg>',
+  ch: '<svg viewBox="0 0 20 20"><rect width="20" height="20" fill="#DA291C"/><rect x="8" y="4" width="4" height="12" fill="#fff"/><rect x="4" y="8" width="12" height="4" fill="#fff"/></svg>',
+  my: '<svg viewBox="0 0 28 14">' + Array.from({ length: 14 }, (_, i) => `<rect y="${i}" width="28" height="1" fill="${i % 2 ? "#fff" : "#cc0001"}"/>`).join("") + '<rect width="14" height="8" fill="#010066"/><circle cx="5.5" cy="4" r="2.6" fill="#fc0"/><circle cx="6.3" cy="4" r="2.1" fill="#010066"/><circle cx="10" cy="4" r="1.4" fill="#fc0"/></svg>',
+};
+const src = mk(pinWrap, "src", "Source: Numbeo | 2026 Mid-Year | Cost of Living + Rent | Sovereign countries only");
+
+// hook A: receipt + price tags
+const rows = Array.from({ length: 17 }, (_, i) => `<rect x="40" y="${150 + i * 50}" width="${150 + (i * 53) % 130}" height="14" rx="4" fill="#c9c2b2"/><rect x="${330 - (i % 3) * 10}" y="${150 + i * 50}" width="${70 + (i % 3) * 10}" height="14" rx="4" fill="#9b937f"/>`).join("");
+const rcpt = mk(cardWrap, "rcpt", `<svg width="480" height="1120" viewBox="0 0 480 1120" style="display:block">
+  <path d="M0 0H480V1090l-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30-20 30-20-30Z" fill="#f4f1ea"/>
+  <rect x="140" y="50" width="200" height="26" rx="6" fill="#2a2a2a"/><rect x="40" y="110" width="400" height="4" fill="#d9d3c4"/>${rows}
+  <rect x="40" y="1010" width="400" height="4" fill="#2a2a2a"/><text x="40" y="1062" font-family="Inter" font-weight="800" font-size="40" fill="#111">TOTAL</text><text x="440" y="1062" text-anchor="end" font-family="Inter" font-weight="800" font-size="40" fill="#e0182d">▲▲▲</text></svg>`);
+const TAGS = [[80, 380, -18], [800, 300, 14], [820, 900, -10], [70, 1040, 12], [560, 1240, -6]].map(([x, y, r]) => {
+  const e = mk(cardWrap, "ptag", `<svg width="170" height="96" viewBox="0 0 170 96" style="display:block"><path d="M30 0H170V96H30L0 48Z" fill="#e0182d"/><circle cx="30" cy="48" r="9" fill="#05070b"/><text x="102" y="64" text-anchor="middle" font-family="Inter" font-weight="800" font-size="46" fill="#fff">▲</text></svg>`);
+  e.style.left = x + "px"; e.style.top = y + "px"; return { e, r }; });
+// hook B
+const xUS = mk(pinWrap, "xst", "✕ SALAH"), xJP = mk(pinWrap, "xst", "✕ SALAH");
+const hk2 = mk(cardWrap, "hk2", `<div class="b">DUA-DUA</div><div class="c">TAK MASUK TOP 5</div><div class="ln"></div><div class="d">…DAN #5 MEMANG TAK DISANGKA</div>`);
+const [hkB, hkC, hkL, hkD] = hk2.children;
+// title
+const tt = mk(cardWrap, "tt", `<div class="t5">TOP 5</div><div class="t1">NEGARA PALING MAHAL<br>UNTUK HIDUP</div><div class="ch">2026 · TERMASUK SEWA</div>`);
+const [tt5, tt1, ttc] = tt.children;
+// country scenes
+const ny = (v) => ["ny", "NEW YORK", v];
+const SC = [
+  { k: "tm", r: 5, v: 66.1, a: T.n5, b: T.n4 - 0.15, vt: T.v66, pin: [39.2, 59.5, "TURKMENISTAN", -40], ct: T.pelik, title: "HARGA BARANG DAPUR · <b>LEBIH TINGGI DARI NEW YORK</b>", rows: [["tm", "TURKMENISTAN", 116.3, "hot"], ny(100)], max: 120 },
+  { k: "is", r: 4, v: 74.8, a: T.n4, b: T.n3 - 0.15, vt: T.v74, pin: [64.9, -18.6, "ICELAND", -60], ct: T.pemandangan + 0.6, title: "🛒 HARGA BARANG DAPUR", rows: [["is", "ICELAND", 106.3, "hot"], ny(100)], max: 120 },
+  { k: "bs", r: 3, v: 77.2, a: T.n3, b: T.tunggu - 0.1, vt: T.v77, pin: [25.05, -77.35, "BAHAMAS", -40], ct: T.syurga + 0.6, title: "🍽️ HARGA RESTORAN · <b>LEBIH TINGGI DARI NEW YORK</b>", rows: [["bs", "BAHAMAS", 115.5, "hot"], ny(100)], max: 120 },
+  { k: "sg", r: 2, v: 80.5, a: T.n2, b: T.n1 - 0.15, vt: T.v80, pin: [1.36, 103.82, "SINGAPURA", -80], ct: T.tertinggi - 1.1, title: "🏠 SEWA RUMAH · <b>TERTINGGI DALAM SENARAI</b>", rows: [["sg", "SINGAPURA", 68.3, "hot"], ["bs", "BAHAMAS", 48.5], ["is", "ICELAND", 47.7], ["tm", "TURKMENISTAN", 23.9]], max: 70, cTop: 1170 },
+  { k: "ch", r: 1, v: 81.5, a: T.ch - 0.2, b: T.my2 - 0.15, vt: T.v81, pin: [46.8, 8.2, "SWITZERLAND", -70], ct: T.kuasa - 0.2, title: "💪 KUASA BELI PENDUDUK · <b style='color:#ffce00'>#4 DI DUNIA</b>", rows: [["ch", "SWITZERLAND", 165.7, "gold"], ny(100)], max: 170, gold: true },
+].map((s) => {
+  s.rk = mk(cardWrap, "rk" + (s.gold ? " gold" : ""), `<div class="no">${s.gold ? "👑 " : ""}#${s.r}</div><div class="num">0.0</div><div class="kk">COST OF LIVING + RENT INDEX · NEW YORK = 100</div>`);
+  s.num = s.rk.querySelector(".num");
+  s.cmp = mk(cardWrap, "cmp", `<div class="k">${s.title}</div>${s.rows.map(([k, n, v, cls]) => `<div class="cr ${cls || ""} ${k === "ny" ? "ny" : ""}"><div class="fl">${k === "ny" ? "NY" : SV[k]}</div><span class="nm">${n}</span><div class="bb"><div></div></div><span class="v">${v}</span></div>`).join("")}`);
+  s.cmp.style.top = (s.cTop || 1190) + "px";
+  s.bars = [...s.cmp.querySelectorAll(".bb div")]; s.vals = [...s.cmp.querySelectorAll(".v")];
+  s.pinEl = mk(pinWrap, "pin", `<div class="flag">${SV[s.k]}</div><div class="lab">${s.pin[2]}</div>`);
+  return s;
 });
-// bar chart
-const D = [["RUSIA", 5420, "ru"], ["AS", 5042, "us"], ["CHINA", 620, "cn"], ["PERANCIS", 370, "fr"], ["UK", 225, "uk"]];
-const bars = mk(cardWrap, "bars5", `<div class="k">KEPALA PELEDAK · SIPRI 2026</div>${D.map(([n, v, k], i) => `<div class="br ${i < 2 ? "hot" : ""}"><img src="assets/leaders/${k}-fhead.png"><span class="nm">${n}</span><div class="bb"><div></div></div><span class="v">${v.toLocaleString("en")}</span></div>`).join("")}<div class="donut"><b>&gt;80%</b><i>RUSIA + AS</i></div>`);
-const barEls = [...bars.querySelectorAll(".bb div")], donut = bars.querySelector(".donut");
-// Malaysia 0 card
-const myc = mk(cardWrap, "rk", `<div style="text-align:center"><div class="no" style="color:#5dffb0">MALAYSIA</div><div class="num" style="color:#5dffb0">0</div><div class="kk">ASIA TENGGARA · ZON BEBAS SENJATA NUKLEAR</div><div class="ex">PERJANJIAN BANGKOK · 1995</div></div>`);
-const mycEx = myc.querySelector(".ex");
-// ending
-const vs = mk(cardWrap, "vs", `<div class="opt a">☢️<b>DENGAN</b><i>NUKLEAR</i></div><div class="or">ATAU</div><div class="opt b">🕊️<b>TANPA</b><i>NUKLEAR</i></div>`);
-const [optA, , optB] = vs.children;
-const bubs = mk(cardWrap, "bubs", `<span>DENGAN 💥</span><span class="r">TANPA 🕊️</span><span>50-50 🤔</span>`);
-const bubEls = [...bubs.children];
-const komen = mk(cardWrap, "komen", "KOMEN ↓");
+// re-hook
+const qpin = mk(pinWrap, "qpin", "?"); qpin.style.borderColor = "#ffce00"; qpin.style.color = "#ffce00";
+const rh = mk(cardWrap, "rh", `<div class="w">TAPI TUNGGU…</div><div class="l">#2 = <span>JIRAN KITA</span></div><div class="l">#1 = <span>?</span></div><div class="s">BUKAN NEGARA ARAB KAYA MINYAK</div>`);
+const [rhW, rhA, rhB, rhS] = rh.children;
+const ring = mk(pinWrap, "qpin", ""); ring.style.cssText += ";width:150px;height:150px;font-size:0;border:5px solid #ffce00;background:none;box-shadow:0 0 30px rgba(255,206,0,.7)";
+// Malaysia vs Singapura
+const mvs = mk(cardWrap, "mvs", `<div class="c"><div class="fb">${SV.my}</div><b>MALAYSIA</b><div class="n" style="color:#2fd27f">0.0</div></div><div class="vsx">VS</div><div class="c"><div class="fb">${SV.sg}</div><b>SINGAPURA</b><div class="n" style="color:#f6f3ec">80.5</div></div>`);
+const [mvA, mvX, mvB] = mvs.children, mvN = mvA.querySelector(".n");
+const mvsrc = mk(cardWrap, "src", "COST OF LIVING + RENT INDEX · NEW YORK = 100");
+// CTA
+const cta = mk(cardWrap, "cta", `<div class="k">KALAU GAJI SAMA</div><div class="q">MALAYSIA<br>ATAU <span>SINGAPURA?</span></div><div class="row"><div>${SV.my}</div><div>${SV.sg}</div></div><div class="go">KOMEN PILIHAN KAU ↓</div>`);
+const ctaGo = cta.querySelector(".go");
 
 const capEl = document.getElementById("cap");
 const capSpans = CAPS.map((c) => c.w.map((w, i) => { const s = document.createElement("span"); s.textContent = w.t + (i < c.w.length - 1 ? " " : ""); return s; }));
-const hook = document.getElementById("hook"), outro = document.getElementById("outro"), fade = document.getElementById("fade"), tint = document.getElementById("tint");
-const fbtn = document.getElementById("fbtn"), sbtn = document.getElementById("sbtn");
-document.getElementById("fx").style.display = "none";
-const show = (el, t, a, b, top, disp = "block") => {
-  const k = win(t, a, b, 0.3, 0.25);
+const fade = document.getElementById("fade"), dim = document.getElementById("dim"), flash = document.getElementById("flash");
+const tintR = document.getElementById("tintR"), tintG = document.getElementById("tintG");
+const show = (el, t, a, b, disp = "block", fi = 0.3, fo = 0.25) => {
+  const k = win(t, a, b, fi, fo);
   if (k <= 0) { el.style.display = "none"; return 0; }
-  el.style.display = disp; el.style.opacity = k; if (top != null) el.style.top = top + 50 * (1 - eout((t - a) / 0.4)) + "px"; return k;
+  el.style.display = disp; el.style.opacity = k; return k;
 };
+const place = (el, lat, lon, dy = 0) => { const p = g.project(lat, lon); if (!p.visible) { el.style.display = "none"; return null; } el.style.left = p.x + "px"; el.style.top = p.y + dy + "px"; return p; };
 
 function renderAt(t) {
-  const v = cam(t); g.setView(v);
-  for (const s of SCN) FL[s.k].mesh.material.opacity = win(t, s.a - 0.1, s.b, 0.4, 0.35) * 0.95;
-  asean.mesh.material.opacity = win(t, T.asia - 0.2, T.korang, 0.5, 0.4);
-  myl.mesh.material.opacity = win(t, T.malaysia, T.korang, 0.4, 0.4);
+  g.setView(cam(t));
+  const tEnd = T.ini - 0.3;
+  FL.us.mesh.material.opacity = win(t, T.amerika - 0.1, tEnd, 0.3, 0.4) * 0.95;
+  FL.jp.mesh.material.opacity = win(t, T.jepun - 0.1, tEnd, 0.3, 0.4) * 0.95;
+  for (const s of SC) FL[s.k].mesh.material.opacity = win(t, s.a - 0.1, s.b, 0.4, 0.35) * 0.95;
+  FL.sgRing.mesh.material.opacity = win(t, T.jiran, T.n2 - 0.1, 0.3, 0.3);
+  myl.mesh.material.opacity = Math.max(win(t, T.my1 - 0.2, T.n2 - 0.1, 0.35, 0.3), win(t, T.my2, DURATION + 1, 0.4, 0.1));
+  if (t >= T.my2) FL.sg.mesh.material.opacity = win(t, T.my2 + 0.3, DURATION + 1, 0.4, 0.1) * 0.95;
   g.render();
 
-  // hook nodes + chip
-  NODES.forEach((n, i) => { const k = win(t, 0.2 + i * 0.12, T.n5 - 0.6, 0.15, 0.4); if (k <= 0) { n.el.style.display = "none"; return; }
-    const p = g.project(n.ll[0], n.ll[1]); if (!p.visible) { n.el.style.display = "none"; return; }
-    n.el.style.display = "block"; n.el.style.left = p.x + "px"; n.el.style.top = p.y + "px"; n.el.style.opacity = k * (0.75 + 0.25 * Math.sin(t * 6 + i)); });
-  if (show(chip, t, T.k4000 - 0.1, T.n5 - 0.6, null) > 0) chip.style.top = "320px";
-
+  // hook A: receipt unrolls, tags pop, then it tears away
+  const rA = 1.9;
+  if (t < rA + 0.5) {
+    rcpt.style.display = "block"; const up = eout((t - rA) / 0.35);
+    rcpt.style.transform = `rotate(-4deg) translateY(${-1150 * (1 - eout(t / 1.1)) - 1500 * up}px)`; rcpt.style.opacity = 1;
+    TAGS.forEach((g2, i) => { const u = clamp((t - 0.25 - i * 0.18) / 0.2); g2.e.style.display = u > 0 && up < 1 ? "block" : "none";
+      g2.e.style.opacity = u * (1 - up); g2.e.style.transform = `rotate(${g2.r}deg) scale(${pop(u) * (0.4 + 0.6 * eout(u))}) translateY(${-900 * up}px)`; });
+  } else { rcpt.style.display = "none"; TAGS.forEach((g2) => (g2.e.style.display = "none")); }
+  dim.style.opacity = 0.72 * (1 - eout((t - rA) / 0.45));
+  // hook B: SALAH stamps on the US and Japan
+  [[xUS, 40, -100, 190, 890], [xJP, 37, 139, 190, 890]].forEach(([el, la, lo, x0, x1]) => {
+    const k = show(el, t, T.salah - 0.02, tEnd, "block", 0.06, 0.3); if (!k) return;
+    const p = g.project(la, lo); el.style.left = clamp(p.x, x0, x1) + "px"; el.style.top = p.y + "px";
+    const u = clamp((t - T.salah) / 0.18); el.style.transform = `translate(-50%,-50%) rotate(-10deg) scale(${1.8 - 0.8 * eout(u)})`; });
+  if (show(hk2, t, T.salah + 0.25, tEnd)) {
+    const u = clamp((t - T.salah - 0.25) / 0.2); hkB.style.transform = `scale(${1.4 - 0.4 * eout(u)})`;
+    hkC.style.opacity = clamp((t - T.salah - 0.5) / 0.25); hkL.style.transform = `scaleX(${eout((t - T.salah - 0.5) / 0.5)})`;
+    hkD.style.opacity = clamp((t - T.dan1 + 0.1) / 0.3);
+  }
+  // title card
+  if (show(tt, t, T.ini - 0.2, T.n5 - 0.35)) {
+    const u = clamp((t - T.ini + 0.2) / 0.25); tt5.style.transform = `scale(${1.5 - 0.5 * eout(u)})`;
+    tt1.style.opacity = clamp((t - T.ini - 0.3) / 0.3); ttc.style.opacity = clamp((t - T.termasuk + 0.1) / 0.25);
+    ttc.style.transform = `scale(${pop(clamp((t - T.termasuk + 0.1) / 0.3))})`;
+  }
   // country scenes
-  for (const s of SCN) {
+  let srcOn = 0;
+  for (const s of SC) {
     const k = win(t, s.a, s.b, 0.25, 0.3);
-    if (k <= 0) { s.bob.style.display = s.rk.style.display = "none"; continue; }
-    s.bob.style.display = "block"; s.bob.style.opacity = k;
-    const x = t - s.a, land = 0.45;
-    const y = x < land ? -900 * Math.pow(1 - x / land, 2) : -60 * Math.exp(-6 * (x - land)) * Math.abs(Math.sin(9 * (x - land)));
-    const sq = x < land ? 1 : 1 - 0.12 * Math.exp(-7 * (x - land)) * Math.cos(14 * (x - land));
-    s.fig.style.transform = `translateY(${y}px) scale(${2 - sq}, ${sq})`; s.fig.style.transformOrigin = "50% 100%";
-    const wob = x < land ? 0 : 12 * Math.exp(-2.6 * (x - land)) * Math.sin(11 * (x - land)) + 2.5 * Math.sin(t * 2.2);
-    s.head.style.transform = `rotate(${wob}deg)`;
-    s.np.style.opacity = clamp((x - land) / 0.3);
-    s.rk.style.display = "block"; s.rk.style.opacity = clamp((x - 0.2) / 0.3) * k; s.rk.style.transform = `translateX(${60 * (1 - eout((x - 0.2) / 0.4))}px)`;
-    const u = eout((t - s.a - 0.3) / Math.max(0.6, VALAT[s.k] - s.a + 0.2)); s.num.textContent = Math.round(s.v * u).toLocaleString("en");
-    s.ex.style.opacity = clamp((t - VALAT[s.k] - 0.5) / 0.3);
-    s.wh.forEach((e, i) => { e.style.opacity = clamp((t - VALAT[s.k] + 0.2 - i * (0.9 / s.wh.length)) / 0.15); });
+    if (k <= 0) { s.rk.style.display = s.cmp.style.display = s.pinEl.style.display = "none"; continue; }
+    srcOn = Math.max(srcOn, k);
+    const x = t - s.a - (s.gold ? 0.35 : 0.15);
+    s.rk.style.display = "block"; s.rk.style.opacity = clamp(x / 0.25) * k;
+    s.rk.style.transform = `translateY(${50 * (1 - eout(x / 0.4))}px) scale(${s.gold ? pop(clamp(x / 0.45)) : 1})`;
+    const u = eout((t - s.a - 0.3) / Math.max(0.6, s.vt - s.a)); s.num.textContent = (s.v * u).toFixed(1);
+    const c = clamp((t - s.ct) / 0.3);
+    if (c > 0) { s.cmp.style.display = "block"; s.cmp.style.opacity = c * k; s.cmp.style.transform = `translateY(${40 * (1 - eout(c))}px)`;
+      const nyFirst = s.rows[s.rows.length - 1][0] === "ny";
+      s.bars.forEach((b, i) => { const order = nyFirst ? (i === s.rows.length - 1 ? 0 : 1) : i;
+        const g2 = eout((t - s.ct - 0.15 - order * 0.35) / 0.6); b.style.width = (s.rows[i][2] / s.max * 100 * g2) + "%";
+        s.vals[i].textContent = (s.rows[i][2] * g2).toFixed(s.rows[i][2] % 1 ? 1 : 0); }); }
+    else s.cmp.style.display = "none";
+    s.pinEl.style.display = "flex"; const p = place(s.pinEl, s.pin[0], s.pin[1], s.pin[3]);
+    if (p) { const pu = clamp((t - s.a - 0.5) / 0.25); s.pinEl.style.opacity = pu * k; s.pinEl.style.transform = `translate(-50%,-100%) scale(${pop(pu)})`; }
   }
-  // bars
-  if (show(bars, t, T.ru2 - 0.2, T.malaysia - 0.15, 640) > 0) {
-    barEls.forEach((b, i) => { b.style.width = 100 * D[i][1] / 5420 * eout((t - T.ru2 - i * 0.12) / 0.7) + "%"; });
-    const u = eout((t - T.p80 + 0.2) / 0.8); donut.style.background = `conic-gradient(#ff2d46 0 ${83 * u}%,#2a2f38 ${83 * u}% 100%)`; donut.style.opacity = clamp((t - T.p80 + 0.4) / 0.3);
+  // Singapore close-up ring
+  if (show(ring, t, T.n2 + 0.2, T.n1 - 0.15, "flex")) { place(ring, 1.35, 103.82); ring.style.transform = `translate(-50%,-50%) scale(${1 + 0.06 * Math.sin(t * 5)})`; }
+  if (show(src, t, T.n5 + 0.2, T.my2 - 0.2) > 0) src.style.opacity = Math.min(srcOn, 1) * (t > T.tunggu - 0.1 && t < T.n2 + 0.2 ? 0 : 1);
+  // re-hook
+  if (show(rh, t, T.tunggu - 0.05, T.n2 - 0.25, "block", 0.12, 0.25)) {
+    rhW.style.transform = `scale(${pop(clamp((t - T.tunggu) / 0.3))})`;
+    rhA.style.opacity = clamp((t - T.jiran + 0.1) / 0.25); rhB.style.opacity = clamp((t - T.nb1 + 0.05) / 0.2);
+    rhB.style.transform = `scale(${pop(clamp((t - T.nb1) / 0.35))})`; rhS.style.opacity = clamp((t - T.arab + 0.15) / 0.3);
   }
-  if (show(myc, t, T.malaysia - 0.1, T.korang - 0.15, 1020) > 0) { myc.querySelector(".num").style.transform = `scale(${1.5 - 0.5 * eout((t - T.kosong) / 0.25)})`; mycEx.style.opacity = clamp((t - T.bangkok + 0.3) / 0.3); }
-  // ending poll
-  if (show(vs, t, T.korang - 0.1, T.end_vo + 0.4, null, "flex") > 0) {
-    vs.style.top = "560px";
-    optA.style.transform = `scale(${1 + 0.08 * win(t, T.dengan, T.dengan + 0.5, 0.1, 0.3)})`; optB.style.transform = `scale(${1 + 0.08 * win(t, T.tanpa, T.tanpa + 0.5, 0.1, 0.3)})`;
+  if (show(qpin, t, T.jiran, T.n2 - 0.1, "flex")) { place(qpin, 1.35, 103.82, 40); qpin.style.transform = `translate(-50%,-50%) scale(${1 + 0.1 * Math.sin(t * 7)})`; }
+  tintR.style.opacity = win(t, T.tunggu - 0.05, T.n2 - 0.2, 0.15, 0.4);
+  // #1 reveal: gold flash + tint
+  flash.style.opacity = 0.75 * win(t, T.ch - 0.05, T.ch + 0.05, 0.05, 0.45);
+  tintG.style.opacity = win(t, T.ch, T.my2 - 0.2, 0.3, 0.4);
+  // Malaysia vs Singapura
+  if (show(mvs, t, T.my2 - 0.05, T.jadi - 0.15, "flex")) {
+    const a = eout((t - T.my2 + 0.05) / 0.4), b = eout((t - T.my2 - 0.25) / 0.4);
+    mvA.style.transform = `translateX(${-500 * (1 - a)}px)`; mvB.style.transform = `translateX(${500 * (1 - b)}px)`; mvX.style.opacity = b;
+    mvN.textContent = (22.4 * eout((t - T.my2 - 0.3) / Math.max(0.6, T.v22 - T.my2))).toFixed(1);
+    mvA.style.boxShadow = t > T.v22 ? `0 0 0 3px #2fd27f,0 24px 60px rgba(0,0,0,.6)` : "";
   }
-  if (show(bubs, t, T.tanpa + 0.2, T.end_vo + 0.4, null, "flex") > 0) { bubs.style.top = "1000px";
-    bubEls.forEach((b, i) => { const u = clamp((t - T.tanpa - 0.3 - i * 0.35) / 0.25); b.style.opacity = u; b.style.transform = `scale(${0.5 + 0.5 * eout(u)})`; }); }
-  if (show(komen, t, T.komen - 0.1, T.end_vo + 0.4, null) > 0) komen.style.top = 1200 + 14 * Math.abs(Math.sin(t * 5)) + "px";
-
-  // captions (bottom band)
+  show(mvsrc, t, T.my2 + 0.3, T.jadi - 0.15); mvsrc.style.top = "1400px";
+  // CTA
+  if (show(cta, t, T.jadi - 0.05, DURATION + 1, "block", 0.35, 0.1)) {
+    cta.style.transform = `translateY(${60 * (1 - eout((t - T.jadi) / 0.45))}px)`;
+    ctaGo.style.opacity = clamp((t - T.komen + 0.1) / 0.25); ctaGo.style.transform = `translateY(${12 * Math.abs(Math.sin(t * 5)) * clamp((t - T.komen) / 0.3)}px)`;
+  }
+  // captions (bottom band), key words gold
   let ci = -1; for (let i = 0; i < CAPS.length; i++) if (t >= CAPS[i].a && t < CAPS[i].b) ci = i;
   if (ci < 0 || t > T.end_vo + 0.6) capEl.style.display = "none";
   else {
     capEl.style.display = "block";
     if (capEl.dataset.i != ci) { capEl.innerHTML = ""; capSpans[ci].forEach((s) => capEl.appendChild(s)); capEl.dataset.i = ci; }
-    CAPS[ci].w.forEach((w, j) => { const s = capSpans[ci][j]; s.style.color = t >= w.at - 0.03 ? (w.k ? "#ff2d46" : "#fff") : "rgba(255,255,255,.36)"; });
+    CAPS[ci].w.forEach((w, j) => { const s = capSpans[ci][j]; s.style.color = t >= w.at - 0.03 ? (w.k ? "#ffce00" : "#fff") : "rgba(255,255,255,.36)"; });
   }
-  // hook title
-  const hk = win(t, T.satu - 0.2, T.n5 - 0.5, 0.2, 0.3);
-  hook.style.display = hk > 0 ? "block" : "none"; hook.style.opacity = hk;
-  const [ha, hb, hc, hl] = hook.children;
-  ha.style.opacity = clamp((t - T.satu + 0.2) / 0.25);
-  const ub = clamp((t - T.k5400 + 0.05) / 0.2); hb.style.opacity = ub; hb.style.transform = `scale(${1.45 - 0.45 * eout(ub)})`;
-  hc.style.opacity = clamp((t - T.teka + 0.1) / 0.2); hc.style.transform = `scale(${1 + 0.06 * Math.sin(t * 8) * clamp((t - T.teka) / 0.2)})`;
-  hl.style.transform = `scaleX(${eout((t - T.teka) / 0.5)})`;
-
-  tint.style.opacity = Math.max(0.5 * win(t, T.k5400, T.k5400 + 0.3, 0.05, 0.5), 0.5 * win(t, T.s5420, T.s5420 + 0.3, 0.05, 0.6));
-
-  const ot = T.end_vo + 0.4, ok = win(t, ot, DURATION + 1, 0.4, 0.1);
-  outro.style.display = ok > 0 ? "block" : "none"; outro.style.opacity = ok;
-  outro.firstElementChild.style.transform = `translateY(${40 * (1 - eout((t - ot) / 0.5))}px)`;
-  const followed = t > ot + 1.2; fbtn.textContent = followed ? "Following" : "Follow"; fbtn.style.background = followed ? "#2a2f38" : "#ff2d46";
-  const subbed = t > ot + 1.7; sbtn.textContent = subbed ? "Subscribed" : "Subscribe"; sbtn.style.background = subbed ? "#2a2f38" : "#ff2d46";
   fade.style.opacity = clamp((t - (DURATION - 0.45)) / 0.4);
 }
 window.__renderAt = renderAt;

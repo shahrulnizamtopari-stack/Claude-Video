@@ -7,12 +7,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 d = json.load(open(os.path.join(ROOT, "assets", "transcript.json")))
 W = d if isinstance(d, list) else d["words"]
 
-FIX = {"ini,": "ni,", "4.000": "4,000", "nuclear": "nuklear", "nuclear?": "nuklear?", "5.400.": "5,400.", "Taka": "Teka",
-       "Prancis,": "Perancis,", "5.042.": "5,042.", "5.420.": "5,420.", "zone": "zon", "Komentar": "Komen",
-       "95.": "'95.", "5.": "lima.", "5,": "lima:", "4,": "empat:", "3,": "tiga:", "2,": "dua:", "1,": "satu:",
-       "United": "United", "Kingdom,": "Kingdom,", "Nombor": "Nombor"}
+FIX = {"nomor": "nombor", "Nomor": "Nombor", "index": "indeks", "surga": "syurga", "kwasa": "kuasa", "Comment": "Komen",
+       "Salah,": "Salah!", "masuk.": "masuk", "5.": "5!", "disangka.": "disangka!", "Termasuk": "termasuk", "Kosewa": "kos sewa",
+       "Rumah.": "rumah!", "Rumah": "rumah", "Turkmenistan,": "Turkmenistan!", "Iceland,": "Iceland!", "Bahamas,": "Bahamas!",
+       "Singapura,": "Singapura!", "Switzerland,": "Switzerland!", "York.": "York!", "terkejut.": "terkejut!", "tinggi.": "tinggi!",
+       "tunggu,": "tunggu!", "minyak.": "minyak!", "ni.": "ni!", "kuat.": "kuat!", "pula,": "pula?", "22.4.": "22.4!",
+       "Singapura.": "Singapura?", "cantik.": "cantik,", "Tapi": "tapi"}
 # ASR split words
-JOIN = {}
+JOIN = {("New", "York."): "New York!"}
 _W = []
 for w in W:
     if _W and (_W[-1]["text"], w["text"]) in JOIN:
@@ -21,8 +23,9 @@ for w in W:
 W = _W
 DROP = set()
 DISPLAY = {}
-KEY = {"4,000", "siap", "5,400.", "Teka", "siapa?", "225.", "370.", "620.", "laju", "5,042.", "5,420.", "80%", "Kosong.",
-       "zon", "bebas", "selamat", "tanpa", "nuklear?", "Komen", "Kingdom,", "Perancis,", "China,", "Amerika", "Syarikat,", "Rusia,"}
+KEY = {"Amerika", "Jepun", "Salah!", "Top", "5!", "disangka!", "Turkmenistan!", "66.1.", "New York!", "Iceland!", "74.8.",
+       "terkejut!", "Bahamas!", "77.2.", "syurga", "sangat", "tinggi!", "tunggu!", "jiran", "Malaysia.", "Arab", "minyak!",
+       "Singapura!", "80.5.", "tertinggi", "Switzerland!", "81.5.", "paling", "kuat!", "22.4!", "Malaysia", "Singapura?", "Komen"}
 SOFT = {"China"}  # only key inside specific beats (handled below by index)
 
 words = []
@@ -31,8 +34,8 @@ for i, w in enumerate(W):
     if t in DROP:
         words[-1]["e"] = w["end"]; continue
     t = FIX.get(t, t); t = DISPLAY.get(t, t)
-    if t == "di" and i + 1 < len(W) and W[i + 1]["text"] == "bawah.": t = "kat"
-    if t == "Nombor" and words and not re.search(r"[.?:,]$", words[-1]["t"]): t = "nombor"
+    if t == "Nombor" and words and not re.search(r"[.?!:,]$", words[-1]["t"]): t = "nombor"
+    if t == "tapi" and words and re.search(r"[.?!]$", words[-1]["t"]): t = "Tapi"
     words.append({"t": t, "s": round(w["start"], 3), "e": round(w["end"], 3), "i": i})
 
 def key(w):
@@ -47,7 +50,7 @@ for w in words:
     cand = " ".join(x["t"] for x in cur + [w])
     if cur and len(cand) > 26: flush()
     cur.append(w)
-    if re.search(r"[.…?]$", w["t"]) or (w["t"].endswith(",") and len(" ".join(x["t"] for x in cur)) > 12): flush()
+    if re.search(r"[.…?!]$", w["t"]) or (w["t"].endswith(",") and len(" ".join(x["t"] for x in cur)) > 12): flush()
 flush()
 # never end a group on a weak word
 WEAK = {"Istana", "Menteri", "Pulau", "di", "ke", "dan", "yang", "dari", "untuk", "satu", "ada", "tak", "kod", "supaya", "salah"}
@@ -74,23 +77,26 @@ for k, g in enumerate(groups):
 def at(text, n=1):
     c = 0
     for w in words:
-        if w["t"].lower().strip(".,?") == text.lower().strip(".,?"):
+        if w["t"].lower().strip(".,?!:") == text.lower().strip(".,?!:"):
             c += 1
             if c == n: return w["s"]
     raise SystemExit(f"word not found: {text} #{n}")
 
 T = {
-  "saat": at("Saat"), "k4000": at("4,000"), "siap": at("siap"), "pesawat": at("pesawat"), "satu": at("satu"),
-  "k5400": at("5,400"), "teka": at("Teka"), "kira": at("kira"), "n5": at("Nombor", 2), "uk": at("United"), "s225": at("225"),
-  "n4": at("Nombor", 3), "fr": at("Perancis"), "s370": at("370"), "n3": at("Nombor", 4), "cn": at("China"), "s620": at("620"),
-  "laju": at("laju"), "n2": at("Nombor", 5), "us": at("Amerika"), "s5042": at("5,042"), "n1": at("Nombor", 6), "ru": at("Rusia"),
-  "s5420": at("5,420"), "ru2": at("Rusia", 2), "p80": at("80%"), "malaysia": at("Malaysia"), "kosong": at("Kosong"),
-  "asia": at("Asia"), "zon": at("zon"), "bangkok": at("Bangkok"), "y95": at("'95"), "korang": at("Korang"),
-  "dengan": at("dengan"), "tanpa": at("tanpa"), "komen": at("Komen"),
+  "kau": at("Kau"), "amerika": at("Amerika"), "jepun": at("Jepun"), "salah": at("Salah"), "top": at("Top"), "dan1": at("Dan"),
+  "disangka": at("disangka"), "ini": at("Ini"), "tahun": at("tahun"), "termasuk": at("termasuk"),
+  "n5": at("Nombor", 2), "tm": at("Turkmenistan"), "v66": at("66.1"), "pelik": at("Peliknya"), "ny1": at("New York!"),
+  "n4": at("Nombor", 3), "is": at("Iceland"), "v74": at("74.8"), "pemandangan": at("Pemandangan"), "terkejut": at("terkejut"),
+  "n3": at("Nombor", 4), "bs": at("Bahamas"), "v77": at("77.2"), "syurga": at("syurga"), "restoran": at("restoran"), "sangat": at("sangat"),
+  "tunggu": at("tunggu"), "nb2": at("Nombor", 5), "jiran": at("jiran"), "my1": at("Malaysia"), "nb1": at("Nombor", 6), "arab": at("Arab"),
+  "n2": at("Nombor", 7), "sg": at("Singapura"), "v80": at("80.5"), "tertinggi": at("tertinggi"),
+  "n1": at("Nombor", 8), "ch": at("Switzerland"), "v81": at("81.5"), "kuasa": at("kuasa"), "kuat": at("kuat"),
+  "my2": at("Malaysia", 2), "v22": at("22.4"), "jadi": at("Jadi"), "gaji": at("gaji"), "pilih": at("pilih"),
+  "my3": at("Malaysia", 3), "sg2": at("Singapura", 2), "komen": at("Komen"),
 }
 END_VO = words[-1]["e"]
 T["end_vo"] = END_VO
-DUR = round(END_VO + 3.0, 2)
+DUR = round(END_VO + 1.6, 2)
 
 js = "// generated by tools/build_story.py — do not edit by hand\n"
 js += f"export const DURATION = {DUR};\nexport const VO_LEN = {d.get('duration', END_VO) if isinstance(d, dict) else END_VO};\n"
