@@ -119,7 +119,8 @@ pure function of time). For 3D object explainers see `explainer-style`; for text
 
 ## 7. Later formats and tools (Nov 2026)
 
-Reference films after LCS, newest first: `whatif-mi-video/` (WHAT IF two countries merge), `emas-negara-video/` (top 5 gold,
+Reference films after LCS, newest first: `whatif-sg-video/` (WHAT IF Singapura tak keluar: history what-if),
+`whatif-mi-video/` (WHAT IF two countries merge), `emas-negara-video/` (top 5 gold,
 AI pour clip + animated hook), `nuklear-video/` (top 5 countdown with caricatures), `emas-kasut-video/`, `tudm-video/`,
 `mb9-video/`, `taiwan-video/`.
 
@@ -137,6 +138,14 @@ AI pour clip + animated hook), `nuklear-video/` (top 5 countdown with caricature
 - **WHAT IF effects** (`whatif-mi-video/index.html`): zip seam (gold ribbon grows, reversed dashed ribbon shrinks, spark at
   the slider), gold shockwave + screen shake on the merge, leaderboard rows that merge and climb (`runBoard`), lift-fly-slam
   of the merged shape onto Europe at **true size** (stretch lon by 1/cos(lat) when moving a shape north), name slot machine.
+- **History what-if** (`whatif-sg-video/index.html`): city-scale close-up layer (`JB` window, ppd 1200) redrawn every
+  frame for the zip along a strait and an animated water-flow dash; timeline bar (`.tl2`) 1963 → 1965 with "23 BULAN";
+  founding-leader caricatures drop in side by side, then slide apart with a dashed split line + red tint on "berpisah";
+  leaderboard where two ranked rows (#28 + #34) merge and climb (row number overridden until merged); pulsing ping +
+  "0.2%" tag for a tiny country; little cars shuttling across a causeway between two projected points.
+  Historical leaders in a history beat are fine (not endorsing anything); still no merged flag.
+- **No local server?** If starting `python3 -m http.server` is refused, take stills with Playwright `page.route`
+  serving files from disk (a small `snapr.cjs`), and `addStyleTag` to hide captions for the cover background.
 - **AI stills as B-roll** work: show them in the window with a slow push (Ken Burns) and, for gold, a light sweep.
 - **Captions** can sit in a bottom band (y≈1490); keep cards ending ≤ ~1420.
 
