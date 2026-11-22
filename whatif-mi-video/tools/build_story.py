@@ -7,9 +7,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 d = json.load(open(os.path.join(ROOT, "assets", "transcript.json")))
 W = d if isinstance(d, list) else d["words"]
 
-FIX = {"dicayarkan": "dicairkan", "cube,": "kiub,", "Ini": "Ni", "No.": "Nombor", "5,": "lima:", "4,": "empat:", "3,": "tiga:",
-       "2,": "dua:", "1,": "satu:", "France.": "Perancis.", "Italy.": "Itali.", "Germany.": "Jerman.", "German": "Jerman",
-       "German.": "Jerman.", "Bezer": "Beza", "Comment": "Komen"}
+FIX = {"Nomor": "Nombor", "triliun": "trilion", "Spaniol.": "Sepanyol.", "Ide": "Idea", "ini": "ni", "ini,": "ni,", "63": "'63,",
+       "mafilindo,": "Maphilindo:", "Comment": "Komen", "korang.": "korang:", "324": "324", "2": "2"}
 JOIN = {}
 _W = []
 for w in W:
@@ -19,8 +18,8 @@ for w in W:
 W = _W
 DROP = set()
 DISPLAY = {}
-KEY = {"emas", "dicairkan", "kiub,", "tingkat.", "China.", "2,435", "menambah.", "Perancis.", "2,437", "Dua", "Itali.", "2,452",
-       "Jerman.", "3,349", "New", "York.", "Syarikat.", "8,133", "dua", "kali", "ganda", "50", "teratas", "patut", "Komen"}
+KEY = {"Malaysia", "Indonesia", "satu", "324", "keempat", "17", "Amerika.", "200", "12", "Arab", "Saudi.", "trilion", "16",
+       "Sepanyol.", "bahasa", "sama.", "Maphilindo:", "jadi.", "berdaulat,", "jiran", "rapat.", "mana?", "apa?", "Komen"}
 SOFT = {"China"}  # only key inside specific beats (handled below by index)
 
 words = []
@@ -29,7 +28,6 @@ for i, w in enumerate(W):
     if t in DROP:
         words[-1]["e"] = w["end"]; continue
     t = FIX.get(t, t); t = DISPLAY.get(t, t)
-    if t == "5" and i + 1 < len(W) and W[i + 1]["text"] == "negara": t = "lima"
     words.append({"t": t, "s": round(w["start"], 3), "e": round(w["end"], 3), "i": i})
 
 def key(w):
@@ -71,18 +69,19 @@ for k, g in enumerate(groups):
 def at(text, n=1):
     c = 0
     for w in words:
-        if w["t"].lower().strip(".,?") == text.lower().strip(".,?"):
+        if w["t"].lower().strip(".,?:") == text.lower().strip(".,?:"):
             c += 1
             if c == n: return w["s"]
     raise SystemExit(f"word not found: {text} #{n}")
 
 T = {
-  "kalau": at("Kalau"), "dicairkan": at("dicairkan"), "kiub": at("kiub"), "tingginya": at("tingginya"), "bangunan": at("bangunan"),
-  "tingkat": at("tingkat"), "ni": at("Ni"), "n5": at("Nombor"), "cn": at("China"), "s2435": at("2,435"), "menambah": at("menambah"),
-  "n4": at("Nombor", 2), "fr": at("Perancis"), "s2437": at("2,437"), "beza": at("Beza"), "dua": at("Dua", 2),
-  "n3": at("Nombor", 3), "it": at("Itali"), "s2452": at("2,452"), "n2": at("Nombor", 4), "de": at("Jerman"), "s3349": at("3,349"),
-  "sebahagian": at("sebahagian"), "ny": at("New"), "n1": at("Nombor", 5), "us": at("Amerika", 2), "s8133": at("8,133"),
-  "lebih2": at("Lebih", 2), "malaysia": at("Malaysia"), "tak": at("Tak"), "korang": at("Korang"), "patut": at("patut"), "komen": at("Komen"),
+  "bayang": at("Bayangkan"), "satu": at("satu"), "apa": at("Apa"), "penduduk": at("Penduduk"), "p324": at("324"),
+  "keempat": at("keempat"), "j17": at("17"), "amerika": at("Amerika"), "luas": at("Keluasan"), "nombor12": at("Nombor"),
+  "arab": at("Arab"), "ekonomi": at("Ekonomi"), "trilion": at("trilion"), "masuk": at("Masuk"), "e16": at("16"),
+  "sepanyol": at("Sepanyol"), "bahasa": at("bahasa"), "idea": at("Idea"), "tahun": at("Tahun"),
+  "maph": at("Maphilindo"), "tapi": at("Tapi"), "jadi2": at("jadi", 3), "hakikat": at("Hakikatnya"), "berdaulat": at("berdaulat"),
+  "jiran": at("jiran"), "rapat": at("rapat"), "sekarang": at("Sekarang"), "ibu": at("ibu"), "mana": at("mana"),
+  "nama": at("nama"), "komen": at("Komen"),
 }
 END_VO = words[-1]["e"]
 T["end_vo"] = END_VO
