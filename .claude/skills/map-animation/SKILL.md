@@ -54,6 +54,8 @@ pure function of time). For 3D object explainers see `explainer-style`; for text
 - **Pace:** the user wants it fast. Their Cartesia VO is recorded at speed 1.2 and still felt slow: speed it up another
   **1.15×** with `atempo` (keep `voiceover-orig.mp3` and `transcript-orig.json`, scale word times by 1/1.15).
   Outro is 3.0 s after the last word.
+  **Exception (Nov 2026):** for `myid-gaduh-video/` the user said "takyah lajukan voiceover" (VO recorded at Cartesia speed 1.1, kept
+  as is). Ask/confirm before speeding up a new VO; when not sped up, use the transcript as-is (no 1/1.15 scaling).
 - **VO** normalised to about −14 LUFS; SFX track `data-volume` 0.9; the final mix is loudnormed to **−14 LUFS, TP −1.2**.
 - `tools/make_sfx.py` (numpy, every sound on a visible event): low drone bed, whooshes on camera flights and zoom
   punches, impacts on slams, pings for dashes/flags/locations, pops for cards, count-up ticks, ship crackle,
