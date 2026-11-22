@@ -190,7 +190,7 @@ import { createGlobe } from "../assets/globe.js";
 const W = 1080, H = 1920;
 const F = +(new URLSearchParams(location.search).get("f") || 1);
 const g = await createGlobe(document.getElementById("gl"), { W, H, base: "../assets/", patches: [
-  { src: "hi-uk.jpg", lon0: -7.5, lon1: 3.5, lat0: 44.5, lat1: 53.6 }, { src: "hi-bn.jpg", lon0: 111.5, lon1: 117.5, lat0: 2.5, lat1: 6.5 }] });
+  { src: "hi-uk.jpg", lon0: -7.5, lon1: 3.5, lat0: 44.5, lat1: 53.6 }, { src: "hi-bn.jpg", lon0: 111.5, lon1: 117.5, lat0: 0.8, lat1: 6.5 }] });
 const topo = await (await fetch("../assets/geo/countries-10m.json")).json();
 const countries = topojson.feature(topo, topo.objects.countries).features;
 const C_ = (id) => countries.find((c) => +c.id === id);
