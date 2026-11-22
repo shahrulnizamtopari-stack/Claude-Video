@@ -295,7 +295,7 @@ await Promise.all(["400 40px Inter", "700 40px Inter", "800 40px Inter", "700 20
 await Promise.all(["lucy-bain.jpg", "cosmo-1896.jpg", "cosmo-inquiry.jpg", "ring-news.jpg"].map((s) => new Promise((r) => { const i = new Image(); i.onload = i.onerror = r; i.src = "assets/photos/" + s; })));
 
 const W = 1080, H = 1920;
-const g = await createGlobe(document.getElementById("gl"), { W, H, base: "assets/", scale, patches: [{ src: "hi-uk.jpg", lon0: -7, lon1: 2.5, lat0: 49.3, lat1: 53.5 }] });
+const g = await createGlobe(document.getElementById("gl"), { W, H, base: "assets/", scale, patches: [{ src: "hi-uk.jpg", lon0: -7.5, lon1: 3.5, lat0: 44.5, lat1: 53.6 }] });
 if (LAYER === 2) g.render = () => {};
 const topo = await (await fetch("assets/geo/countries-10m.json")).json();
 const countries = topojson.feature(topo, topo.objects.countries).features;
@@ -342,7 +342,7 @@ const K = [
   [T.lucy - 0.2, 43, -48, 0.95, 12, 0.12], [T.dan2 - 0.1, 43, -48.5, 0.9, 12, 0.12],
   [T.dan2 + 0.2, 43.5, -46, 1.6, 8, 0.1], [T.namun - 0.2, 44, -44, 1.8, 8, 0.1],
   [T.siasatan + 0.2, 51.3, -1.2, 0.5, 14, 0.2], [T.tahun - 0.6, 51.3, -1.0, 0.48, 14, 0.2],
-  [T.terjual - 0.6, 51.3, -1.8, 0.32, 14, 0.22], [T.kalau - 0.3, 51.3, -1.85, 0.31, 14, 0.22],
+  [T.terjual - 0.6, 51.3, -1.8, 0.32, 14, 0.3], [T.kalau - 0.3, 51.3, -1.85, 0.31, 14, 0.3],
   [T.kalau + 0.9, 46, -30, 3.6, 6, 0.1], [DURATION, 46, -33, 3.7, 6, 0.1],
 ];
 const ZP = [[T.dijual, -0.06, 0.4], [T.karam, -0.08, 0.4], [T.terkorban, -0.06, 0.4], [T.muat, -0.06, 0.4], [T.cuma, -0.1, 0.5],
@@ -364,7 +364,8 @@ const pinWrap = document.getElementById("pins"), cardWrap = document.getElementB
 const mk = (p, cls, h) => { const e = document.createElement("div"); e.className = "el " + cls; e.innerHTML = h; p.appendChild(e); return e; };
 const locPin = (label, sub, red) => mk(pinWrap, "pin lpin", `<div class="dot ${red ? "red" : ""}"></div><div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px"><div class="lab">${label}</div>${sub ? `<div class="sub ${red ? "red" : ""}">${sub}</div>` : ""}</div>`);
 // S1 hook
-const ring1 = mk(cardWrap, "ringw", ringSVG(740) + `<div class="ilu" style="left:10px;top:-10px;display:block">ILUSTRASI</div>`); ring1.style.left = "170px"; ring1.style.top = "430px";
+const ringImg = (w) => `<div style="position:relative;width:${w}px;border-radius:24px;overflow:hidden;border:3px solid rgba(255,255,255,.85);box-shadow:0 0 70px rgba(200,225,255,.25),0 30px 80px rgba(0,0,0,.8)"><img src="assets/photos/ring-news.jpg" style="display:block;width:100%"><span style="position:absolute;right:10px;bottom:8px;font:700 13px Mono;color:#fff;background:rgba(0,0,0,.6);padding:3px 8px;border-radius:3px">FOTO: HENRY ALDRIDGE &amp; SON</span></div>`;
+const ring1 = mk(cardWrap, "ringw", ringImg(740)); ring1.style.left = "170px"; ring1.style.top = "430px";
 const price1 = mk(cardWrap, "price", `<div class="n">£150,000</div><div class="u">LEBIH RM800 RIBU</div>`); price1.style.top = "1060px";
 const [p1n, p1u] = price1.children;
 // S2 news card
@@ -405,7 +406,7 @@ const mark8 = card8.querySelector("mark");
 const st8 = mk(cardWrap, "stamp2 ok", "TIDAK BERASAS"); st8.style.top = "1240px"; st8.style.fontSize = "56px";
 // S9 reveal
 const pDev = locPin("DEVIZES", "HENRY ALDRIDGE & SON");
-const ring9 = mk(cardWrap, "ringw", ringSVG(480)); ring9.style.left = "300px"; ring9.style.top = "560px";
+const ring9 = mk(cardWrap, "ringw", ringImg(520)); ring9.style.left = "280px"; ring9.style.top = "540px";
 const price9 = mk(cardWrap, "price", `<div class="s">114 TAHUN KEMUDIAN · DILAPORKAN TERJUAL</div><div class="n">£0</div><div class="u">≈ RM815 RIBU · ANGGARAN</div>`); price9.style.top = "960px";
 const [p9s, p9n, p9u] = price9.children;
 // S10 CTA
@@ -431,7 +432,7 @@ function renderAt(t) {
   g.setView(cam(t)); g.render();
   // S1 hook
   const e1 = T.tapi1 - 0.1;
-  if (show(ring1, t, 0, e1, "block", 0.4)) { const u = eout(t / 0.8); ring1.style.transform = `scale(${0.7 + 0.3 * u}) rotate(${-6 + 4 * Math.sin(t * 0.8)}deg)`; }
+  if (show(ring1, t, 0, e1, "block", 0.4)) { const u = eout(t / 0.8); ring1.style.transform = `scale(${0.85 + 0.15 * u + 0.03 * clamp(t / 4)})`; }
   if (show(price1, t, T.dijual - 0.1, e1)) { const u = clamp((t - T.dijual + 0.1) / 0.2); p1n.style.transform = `scale(${1.5 - 0.5 * eout(u)})`; p1u.style.opacity = clamp((t - T.lebih1 + 0.1) / 0.25); p1u.style.transform = `scale(${pop(clamp((t - T.lebih1) / 0.35))})`; }
   shade.style.opacity = 0.55 * win(t, -1, T.pada - 0.3, 0.1, 0.5) + 0.55 * win(t, T.kalau, DURATION + 1, 0.5, 0.1);
   // S2 news
@@ -483,7 +484,7 @@ function renderAt(t) {
   const e9 = T.kalau - 0.15;
   gold.style.opacity = win(t, T.terjual - 0.3, e9, 0.5, 0.4);
   if (show(pDev, t, T.tahun + 0.3, e9, "flex")) place(pDev, DEV);
-  if (show(ring9, t, T.tahun, e9)) ring9.style.transform = `scale(${0.8 + 0.2 * eout((t - T.tahun) / 0.6)}) rotate(${3 * Math.sin(t)}deg)`;
+  if (show(ring9, t, T.tahun, e9)) ring9.style.transform = `scale(${0.85 + 0.15 * eout((t - T.tahun) / 0.6)})`;
   if (show(price9, t, T.tahun - 0.1, e9)) { const u = eout((t - T.terjual) / Math.max(0.6, T.pound2 - T.terjual)); p9n.textContent = "£" + (Math.round(150000 * u / 1000) * 1000).toLocaleString("en");
     p9n.style.transform = `scale(${t > T.pound2 ? pop(clamp((t - T.pound2) / 0.35)) : 1})`; p9u.style.opacity = clamp((t - T.kurang + 0.1) / 0.25); }
   // S10 CTA
