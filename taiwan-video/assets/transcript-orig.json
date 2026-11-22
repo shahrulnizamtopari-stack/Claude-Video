@@ -1,0 +1,866 @@
+[
+  {
+    "text": "Kalau",
+    "start": 0.12,
+    "end": 0.43,
+    "id": "w0"
+  },
+  {
+    "text": "China",
+    "start": 0.5,
+    "end": 0.85,
+    "id": "w1"
+  },
+  {
+    "text": "sekat",
+    "start": 0.85,
+    "end": 1.29,
+    "id": "w2"
+  },
+  {
+    "text": "Taiwan,",
+    "start": 1.29,
+    "end": 1.96,
+    "id": "w3"
+  },
+  {
+    "text": "kilang",
+    "start": 2.03,
+    "end": 2.29,
+    "id": "w4"
+  },
+  {
+    "text": "chip",
+    "start": 2.34,
+    "end": 2.48,
+    "id": "w5"
+  },
+  {
+    "text": "di",
+    "start": 2.56,
+    "end": 2.67,
+    "id": "w6"
+  },
+  {
+    "text": "Pulau",
+    "start": 2.73,
+    "end": 2.98,
+    "id": "w7"
+  },
+  {
+    "text": "Pinang",
+    "start": 2.98,
+    "end": 3.34,
+    "id": "w8"
+  },
+  {
+    "text": "boleh",
+    "start": 3.34,
+    "end": 3.65,
+    "id": "w9"
+  },
+  {
+    "text": "terhenti.",
+    "start": 3.65,
+    "end": 4.29,
+    "id": "w10"
+  },
+  {
+    "text": "Ini",
+    "start": 4.44,
+    "end": 4.59,
+    "id": "w11"
+  },
+  {
+    "text": "sebabnya,",
+    "start": 4.59,
+    "end": 5.45,
+    "id": "w12"
+  },
+  {
+    "text": "Taiwan.",
+    "start": 5.55,
+    "end": 6,
+    "id": "w13"
+  },
+  {
+    "text": "Pulau",
+    "start": 6.12,
+    "end": 6.4,
+    "id": "w14"
+  },
+  {
+    "text": "kecil",
+    "start": 6.4,
+    "end": 6.8,
+    "id": "w15"
+  },
+  {
+    "text": "ini",
+    "start": 6.8,
+    "end": 7.03,
+    "id": "w16"
+  },
+  {
+    "text": "buat",
+    "start": 7.05,
+    "end": 7.36,
+    "id": "w17"
+  },
+  {
+    "text": "lebih",
+    "start": 7.36,
+    "end": 7.73,
+    "id": "w18"
+  },
+  {
+    "text": "90%",
+    "start": 7.98,
+    "end": 8.29,
+    "id": "w19"
+  },
+  {
+    "text": "chip",
+    "start": 8.34,
+    "end": 8.64,
+    "id": "w20"
+  },
+  {
+    "text": "paling",
+    "start": 8.64,
+    "end": 9.12,
+    "id": "w21"
+  },
+  {
+    "text": "canggih",
+    "start": 9.12,
+    "end": 9.67,
+    "id": "w22"
+  },
+  {
+    "text": "dunia",
+    "start": 9.67,
+    "end": 10.06,
+    "id": "w23"
+  },
+  {
+    "text": "dan",
+    "start": 10.28,
+    "end": 10.38,
+    "id": "w24"
+  },
+  {
+    "text": "hampir",
+    "start": 10.38,
+    "end": 10.83,
+    "id": "w25"
+  },
+  {
+    "text": "separuh",
+    "start": 10.83,
+    "end": 11.29,
+    "id": "w26"
+  },
+  {
+    "text": "kapal",
+    "start": 11.39,
+    "end": 11.71,
+    "id": "w27"
+  },
+  {
+    "text": "kontena",
+    "start": 11.71,
+    "end": 12.24,
+    "id": "w28"
+  },
+  {
+    "text": "dunia",
+    "start": 12.24,
+    "end": 12.61,
+    "id": "w29"
+  },
+  {
+    "text": "lalu",
+    "start": 12.61,
+    "end": 12.9,
+    "id": "w30"
+  },
+  {
+    "text": "selat",
+    "start": 12.9,
+    "end": 13.27,
+    "id": "w31"
+  },
+  {
+    "text": "Taiwan.",
+    "start": 13.27,
+    "end": 13.8,
+    "id": "w32"
+  },
+  {
+    "text": "China",
+    "start": 13.92,
+    "end": 14.19,
+    "id": "w33"
+  },
+  {
+    "text": "anggap",
+    "start": 14.19,
+    "end": 14.64,
+    "id": "w34"
+  },
+  {
+    "text": "Taiwan",
+    "start": 14.64,
+    "end": 15.11,
+    "id": "w35"
+  },
+  {
+    "text": "wilayahnya.",
+    "start": 15.11,
+    "end": 15.92,
+    "id": "w36"
+  },
+  {
+    "text": "Hujung",
+    "start": 15.98,
+    "end": 16.3,
+    "id": "w37"
+  },
+  {
+    "text": "tahun",
+    "start": 16.3,
+    "end": 16.63,
+    "id": "w38"
+  },
+  {
+    "text": "lepas,",
+    "start": 16.63,
+    "end": 17.05,
+    "id": "w39"
+  },
+  {
+    "text": "China",
+    "start": 17.24,
+    "end": 17.44,
+    "id": "w40"
+  },
+  {
+    "text": "buat",
+    "start": 17.44,
+    "end": 17.7,
+    "id": "w41"
+  },
+  {
+    "text": "latihan",
+    "start": 17.7,
+    "end": 18.09,
+    "id": "w42"
+  },
+  {
+    "text": "Justice",
+    "start": 18.15,
+    "end": 18.59,
+    "id": "w43"
+  },
+  {
+    "text": "Mission,",
+    "start": 18.59,
+    "end": 19.08,
+    "id": "w44"
+  },
+  {
+    "text": "Kepung",
+    "start": 19.16,
+    "end": 19.5,
+    "id": "w45"
+  },
+  {
+    "text": "Taiwan",
+    "start": 19.57,
+    "end": 20.11,
+    "id": "w46"
+  },
+  {
+    "text": "dan",
+    "start": 20.13,
+    "end": 20.33,
+    "id": "w47"
+  },
+  {
+    "text": "berlatih",
+    "start": 20.33,
+    "end": 20.82,
+    "id": "w48"
+  },
+  {
+    "text": "sekat",
+    "start": 21.06,
+    "end": 21.24,
+    "id": "w49"
+  },
+  {
+    "text": "pelabuhan",
+    "start": 21.24,
+    "end": 21.87,
+    "id": "w50"
+  },
+  {
+    "text": "Kelung",
+    "start": 21.87,
+    "end": 22.29,
+    "id": "w51"
+  },
+  {
+    "text": "dan",
+    "start": 22.29,
+    "end": 22.5,
+    "id": "w52"
+  },
+  {
+    "text": "Kaohsiung.",
+    "start": 22.5,
+    "end": 23.24,
+    "id": "w53"
+  },
+  {
+    "text": "Awal",
+    "start": 23.36,
+    "end": 23.52,
+    "id": "w54"
+  },
+  {
+    "text": "bulan",
+    "start": 23.52,
+    "end": 23.87,
+    "id": "w55"
+  },
+  {
+    "text": "ini,",
+    "start": 23.87,
+    "end": 24.2,
+    "id": "w56"
+  },
+  {
+    "text": "pegawai",
+    "start": 24.27,
+    "end": 24.67,
+    "id": "w57"
+  },
+  {
+    "text": "Taiwan",
+    "start": 24.67,
+    "end": 24.97,
+    "id": "w58"
+  },
+  {
+    "text": "kata",
+    "start": 25.11,
+    "end": 25.32,
+    "id": "w59"
+  },
+  {
+    "text": "lebih",
+    "start": 25.32,
+    "end": 25.67,
+    "id": "w60"
+  },
+  {
+    "text": "100",
+    "start": 25.67,
+    "end": 26.31,
+    "id": "w61"
+  },
+  {
+    "text": "kapal",
+    "start": 26.31,
+    "end": 26.68,
+    "id": "w62"
+  },
+  {
+    "text": "China",
+    "start": 26.68,
+    "end": 27.03,
+    "id": "w63"
+  },
+  {
+    "text": "berkumpul",
+    "start": 27.03,
+    "end": 27.61,
+    "id": "w64"
+  },
+  {
+    "text": "di",
+    "start": 27.71,
+    "end": 27.74,
+    "id": "w65"
+  },
+  {
+    "text": "Pacific",
+    "start": 27.74,
+    "end": 28.18,
+    "id": "w66"
+  },
+  {
+    "text": "Barat,",
+    "start": 28.18,
+    "end": 28.68,
+    "id": "w67"
+  },
+  {
+    "text": "tanpa",
+    "start": 28.8,
+    "end": 29.1,
+    "id": "w68"
+  },
+  {
+    "text": "diumumkan.",
+    "start": 29.18,
+    "end": 29.96,
+    "id": "w69"
+  },
+  {
+    "text": "Apa",
+    "start": 30.08,
+    "end": 30.16,
+    "id": "w70"
+  },
+  {
+    "text": "kena",
+    "start": 30.16,
+    "end": 30.38,
+    "id": "w71"
+  },
+  {
+    "text": "mengenai",
+    "start": 30.46,
+    "end": 30.93,
+    "id": "w72"
+  },
+  {
+    "text": "dengan",
+    "start": 30.99,
+    "end": 31.34,
+    "id": "w73"
+  },
+  {
+    "text": "kita?",
+    "start": 31.34,
+    "end": 31.7,
+    "id": "w74"
+  },
+  {
+    "text": "Banyak",
+    "start": 31.91,
+    "end": 32.27,
+    "id": "w75"
+  },
+  {
+    "text": "wafer",
+    "start": 32.34,
+    "end": 32.63,
+    "id": "w76"
+  },
+  {
+    "text": "chip",
+    "start": 32.63,
+    "end": 32.92,
+    "id": "w77"
+  },
+  {
+    "text": "dari",
+    "start": 32.92,
+    "end": 33.21,
+    "id": "w78"
+  },
+  {
+    "text": "Taiwan",
+    "start": 33.21,
+    "end": 33.57,
+    "id": "w79"
+  },
+  {
+    "text": "dihantar",
+    "start": 33.79,
+    "end": 34.11,
+    "id": "w80"
+  },
+  {
+    "text": "ke",
+    "start": 34.11,
+    "end": 34.22,
+    "id": "w81"
+  },
+  {
+    "text": "Pulau",
+    "start": 34.22,
+    "end": 34.49,
+    "id": "w82"
+  },
+  {
+    "text": "Pinang",
+    "start": 34.49,
+    "end": 34.84,
+    "id": "w83"
+  },
+  {
+    "text": "untuk",
+    "start": 34.84,
+    "end": 35.22,
+    "id": "w84"
+  },
+  {
+    "text": "dipasang",
+    "start": 35.22,
+    "end": 35.81,
+    "id": "w85"
+  },
+  {
+    "text": "dan",
+    "start": 35.81,
+    "end": 35.9,
+    "id": "w86"
+  },
+  {
+    "text": "diuji.",
+    "start": 36.2,
+    "end": 36.68,
+    "id": "w87"
+  },
+  {
+    "text": "Malaysia",
+    "start": 36.8,
+    "end": 37.31,
+    "id": "w88"
+  },
+  {
+    "text": "pegang",
+    "start": 37.31,
+    "end": 37.77,
+    "id": "w89"
+  },
+  {
+    "text": "kira-kira",
+    "start": 37.77,
+    "end": 38.41,
+    "id": "w90"
+  },
+  {
+    "text": "13%",
+    "start": 38.66,
+    "end": 38.97,
+    "id": "w91"
+  },
+  {
+    "text": "kerja",
+    "start": 39.03,
+    "end": 39.35,
+    "id": "w92"
+  },
+  {
+    "text": "pasang",
+    "start": 39.41,
+    "end": 39.82,
+    "id": "w93"
+  },
+  {
+    "text": "dan",
+    "start": 39.82,
+    "end": 40.05,
+    "id": "w94"
+  },
+  {
+    "text": "uji",
+    "start": 40.05,
+    "end": 40.22,
+    "id": "w95"
+  },
+  {
+    "text": "chip",
+    "start": 40.29,
+    "end": 40.52,
+    "id": "w96"
+  },
+  {
+    "text": "dunia.",
+    "start": 40.57,
+    "end": 41.35,
+    "id": "w97"
+  },
+  {
+    "text": "Elektrik",
+    "start": 41.48,
+    "end": 41.94,
+    "id": "w98"
+  },
+  {
+    "text": "dan",
+    "start": 41.94,
+    "end": 42.16,
+    "id": "w99"
+  },
+  {
+    "text": "elektronik",
+    "start": 42.16,
+    "end": 42.88,
+    "id": "w100"
+  },
+  {
+    "text": "pula",
+    "start": 42.88,
+    "end": 43.1,
+    "id": "w101"
+  },
+  {
+    "text": "hampir",
+    "start": 43.31,
+    "end": 43.59,
+    "id": "w102"
+  },
+  {
+    "text": "separuh",
+    "start": 43.59,
+    "end": 44.03,
+    "id": "w103"
+  },
+  {
+    "text": "ekspor",
+    "start": 44.1,
+    "end": 44.53,
+    "id": "w104"
+  },
+  {
+    "text": "negara.",
+    "start": 44.53,
+    "end": 45.04,
+    "id": "w105"
+  },
+  {
+    "text": "Kalau",
+    "start": 45.16,
+    "end": 45.37,
+    "id": "w106"
+  },
+  {
+    "text": "Taiwan",
+    "start": 45.37,
+    "end": 45.76,
+    "id": "w107"
+  },
+  {
+    "text": "disekat,",
+    "start": 45.76,
+    "end": 46.36,
+    "id": "w108"
+  },
+  {
+    "text": "wafer",
+    "start": 46.36,
+    "end": 46.74,
+    "id": "w109"
+  },
+  {
+    "text": "tak",
+    "start": 46.74,
+    "end": 46.78,
+    "id": "w110"
+  },
+  {
+    "text": "sampai.",
+    "start": 47.02,
+    "end": 47.68,
+    "id": "w111"
+  },
+  {
+    "text": "Barisan",
+    "start": 47.8,
+    "end": 48.1,
+    "id": "w112"
+  },
+  {
+    "text": "kilang",
+    "start": 48.18,
+    "end": 48.53,
+    "id": "w113"
+  },
+  {
+    "text": "boleh",
+    "start": 48.58,
+    "end": 48.95,
+    "id": "w114"
+  },
+  {
+    "text": "berhenti.",
+    "start": 48.95,
+    "end": 49.56,
+    "id": "w115"
+  },
+  {
+    "text": "Belum",
+    "start": 49.68,
+    "end": 49.91,
+    "id": "w116"
+  },
+  {
+    "text": "berkata",
+    "start": 49.91,
+    "end": 50.4,
+    "id": "w117"
+  },
+  {
+    "text": "kemungkinan",
+    "start": 50.4,
+    "end": 51.17,
+    "id": "w118"
+  },
+  {
+    "text": "sekatan",
+    "start": 51.17,
+    "end": 51.66,
+    "id": "w119"
+  },
+  {
+    "text": "sangat",
+    "start": 51.66,
+    "end": 52.04,
+    "id": "w120"
+  },
+  {
+    "text": "rendah.",
+    "start": 52.12,
+    "end": 52.56,
+    "id": "w121"
+  },
+  {
+    "text": "Tapi",
+    "start": 52.68,
+    "end": 52.84,
+    "id": "w122"
+  },
+  {
+    "text": "kalau",
+    "start": 52.84,
+    "end": 53.19,
+    "id": "w123"
+  },
+  {
+    "text": "berlaku,",
+    "start": 53.19,
+    "end": 53.84,
+    "id": "w124"
+  },
+  {
+    "text": "ekonomi",
+    "start": 53.84,
+    "end": 54.3,
+    "id": "w125"
+  },
+  {
+    "text": "dunia",
+    "start": 54.54,
+    "end": 54.85,
+    "id": "w126"
+  },
+  {
+    "text": "boleh",
+    "start": 54.92,
+    "end": 55.3,
+    "id": "w127"
+  },
+  {
+    "text": "susut",
+    "start": 55.3,
+    "end": 55.73,
+    "id": "w128"
+  },
+  {
+    "text": "kira-kira",
+    "start": 55.73,
+    "end": 56.49,
+    "id": "w129"
+  },
+  {
+    "text": "5%.",
+    "start": 56.49,
+    "end": 57.16,
+    "id": "w130"
+  },
+  {
+    "text": "Taiwan",
+    "start": 57.28,
+    "end": 57.66,
+    "id": "w131"
+  },
+  {
+    "text": "nampak",
+    "start": 57.66,
+    "end": 58.12,
+    "id": "w132"
+  },
+  {
+    "text": "jauh.",
+    "start": 58.19,
+    "end": 58.52,
+    "id": "w133"
+  },
+  {
+    "text": "Tapi",
+    "start": 58.64,
+    "end": 58.84,
+    "id": "w134"
+  },
+  {
+    "text": "kalau",
+    "start": 58.84,
+    "end": 59.24,
+    "id": "w135"
+  },
+  {
+    "text": "selat",
+    "start": 59.24,
+    "end": 59.63,
+    "id": "w136"
+  },
+  {
+    "text": "itu",
+    "start": 59.63,
+    "end": 59.87,
+    "id": "w137"
+  },
+  {
+    "text": "tertutup,",
+    "start": 59.87,
+    "end": 60.65,
+    "id": "w138"
+  },
+  {
+    "text": "kesannya",
+    "start": 60.65,
+    "end": 61.17,
+    "id": "w139"
+  },
+  {
+    "text": "sampai",
+    "start": 61.17,
+    "end": 61.56,
+    "id": "w140"
+  },
+  {
+    "text": "ke",
+    "start": 61.56,
+    "end": 61.69,
+    "id": "w141"
+  },
+  {
+    "text": "Pulau",
+    "start": 61.69,
+    "end": 62.01,
+    "id": "w142"
+  },
+  {
+    "text": "Pinang.",
+    "start": 62.01,
+    "end": 62.56,
+    "id": "w143"
+  }
+]

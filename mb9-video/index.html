@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="ms" data-composition-variables='[{"id":"previewScale","type":"number","label":"3D render scale (0.5 for previews)","default":1,"min":0.25,"max":1,"step":0.25},{"id":"layer","type":"number","label":"0 full, 1 clean plate (no captions), 2 captions only (transparent)","default":0,"min":0,"max":2,"step":1}]'>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="assets/lib/gsap.min.js"></script>
+<script src="assets/lib/topojson-client.min.js"></script>
+<style>
+@font-face{font-family:Inter;src:url(assets/fonts/Inter-400.woff2);font-weight:400}
+@font-face{font-family:Inter;src:url(assets/fonts/Inter-700.woff2);font-weight:700}
+@font-face{font-family:Inter;src:url(assets/fonts/inter-latin-800-normal.woff2);font-weight:800}
+@font-face{font-family:Mono;src:url(assets/fonts/JetBrainsMono-700.woff2);font-weight:700}
+@font-face{font-family:Serif;src:url(assets/fonts/EBGaramond-400.woff2);font-weight:400}
+@font-face{font-family:Serif;src:url(assets/fonts/EBGaramond-700.woff2);font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#05070b}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:Inter;color:#fff}
+#world,#ui{position:absolute;inset:0}
+#broll{position:absolute;left:220px;top:380px;width:640px;height:800px;z-index:1;opacity:0;overflow:hidden;clip-path:inset(0 round 18px);background:#000;border-radius:18px;border:3px solid rgba(255,255,255,.9);box-shadow:0 30px 80px rgba(0,0,0,.7)}
+#ui{z-index:2}
+html.clean #cap{display:none!important}
+html.caps,html.caps body{background:transparent}
+html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,html.caps #pins,html.caps #cards,html.caps #hook,html.caps #outro,html.caps .tl,html.caps .duo,html.caps .letter,html.caps .seats,html.caps .ncard,html.caps #fade{visibility:hidden}
+.bw{position:absolute;inset:0;opacity:0}.bw video{width:100%;height:100%;object-fit:cover}
+.bshade{position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,0) 18%)}
+.btag{position:absolute;right:16px;top:16px;font:700 18px Mono;color:#fff;background:rgba(0,0,0,.55);padding:6px 12px;border-radius:4px;letter-spacing:3px}
+
+#gl{position:absolute;inset:0;width:1080px;height:1920px;display:block}
+#fx{position:absolute;inset:0;width:1080px;height:1920px}
+.vig{position:absolute;inset:0;pointer-events:none;background:
+ linear-gradient(180deg,#05070b 0%,rgba(5,7,11,.92) 7%,rgba(5,7,11,.15) 20%,rgba(5,7,11,0) 36%,rgba(5,7,11,0) 70%,rgba(5,7,11,.55) 88%,#05070b 100%)}
+#tint{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(255,30,50,0) 40%,rgba(255,30,50,.55) 100%);opacity:0}
+.el{position:absolute;display:none}
+/* captions */
+#cap{position:absolute;top:255px;left:60px;right:60px;text-align:center;font:700 48px/1.15 Inter;letter-spacing:-.5px;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+#cap span{white-space:pre}
+/* pins */
+.pin{transform:translate(-50%,-100%);flex-direction:column;align-items:center;gap:6px}
+.lpin{flex-direction:row;align-items:center;gap:0}
+.lab{font:700 21px/1 Mono;letter-spacing:2px;color:#fff;background:#0b0d12;padding:7px 10px 6px;border-radius:4px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.5)}
+.sub{font:700 17px/1 Mono;letter-spacing:1.5px;color:#0b0d12;background:#fff;padding:5px 8px 4px;border-radius:3px;white-space:nowrap}
+.sub.red{background:#ff2d46;color:#fff}
+.flag{width:58px;height:39px;border-radius:4px;box-shadow:0 0 0 3px #fff,0 6px 16px rgba(0,0,0,.6);overflow:hidden}
+.flag svg{width:100%;height:100%;display:block}
+.dot{width:26px;height:26px;border-radius:50%;background:#fff;border:7px solid #0b0d12;box-shadow:0 0 0 3px #fff;margin-right:10px;flex:none}
+.dot.red{border-color:#ff2d46}
+.sea{font:italic 400 64px/1 Serif;letter-spacing:6px;color:rgba(255,255,255,.88);text-shadow:0 4px 20px rgba(0,0,0,.7);transform:translate(-50%,-50%);white-space:nowrap}
+.tag{font:700 16px Mono;letter-spacing:3px;color:rgba(255,255,255,.55);transform:translate(-50%,-50%)}
+.ztag{font:700 17px/1 Mono;letter-spacing:1.5px;color:#fff;background:#ff2d46;padding:5px 8px 4px;border-radius:3px;white-space:nowrap;transform:translate(-50%,-50%)}
+/* cards */
+.card{left:160px;width:760px;border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.hd{background:#0e1015;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:16px 24px}
+.hd b{font:800 26px Inter;letter-spacing:.5px}.hd b:before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:#ff2d46;margin-right:12px;vertical-align:3px}
+.hd i{font:700 18px Mono;letter-spacing:2px;color:#9aa3ad;font-style:normal}
+.bd{position:relative;background:#fff;color:#111;padding:22px 28px 16px;font:400 46px/1.18 Serif}
+.bd mark{color:#111;background:linear-gradient(rgba(255,64,110,.45),rgba(255,64,110,.45)) no-repeat;background-size:0% 100%;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 2px}
+.ft{font:700 15px Mono;color:#8a929b;letter-spacing:1px;margin-top:12px}
+.media{position:relative;height:330px;background:linear-gradient(135deg,#1b2633,#0d131b);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#7f8c99;font:700 20px Mono;letter-spacing:2px;text-align:center;border-top:1px solid #222;padding:0 30px}
+.media em{font-style:normal;color:#ffcf4a;font-size:17px;letter-spacing:1px}
+.media .il{position:absolute;right:14px;bottom:12px;font:700 14px Mono;color:#fff;background:rgba(0,0,0,.55);padding:4px 8px;border-radius:3px;letter-spacing:2px}
+.stat{left:160px;width:760px;background:rgba(10,12,17,.94);border-radius:16px;padding:34px 40px 30px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.stat .k{font:700 22px Mono;letter-spacing:4px;color:#c9d0d8}
+.stat .n{position:relative;display:inline-block;font:italic 700 190px/1 Serif;color:#ff2d46;margin:14px 0 6px}
+.stat .n .strike{position:absolute;left:-10px;right:-10px;top:52%;height:12px;background:#fff;transform-origin:left;transform:scaleX(0)}
+.stat .u{font:800 40px Inter;color:#fff;letter-spacing:.5px}
+.stat .bar{height:5px;background:#2a2f38;margin-top:24px;border-radius:3px;overflow:hidden}.stat .bar div{height:100%;background:#ff2d46;width:0}
+.stamp{position:absolute;font:800 40px Inter;letter-spacing:3px;color:#ff2d46;border:6px solid #ff2d46;border-radius:8px;padding:6px 18px;background:rgba(255,255,255,.9);transform:rotate(-8deg);white-space:nowrap}
+.stat .stamp{background:rgba(10,12,17,.85)}
+.tl{position:absolute;display:none;left:60px;right:60px;bottom:120px;display:flex;justify-content:space-between}
+.tn{position:relative;z-index:1;width:220px;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.45}
+.tn b{width:26px;height:26px;border-radius:50%;background:#0b0d12;border:5px solid #9aa3ad}
+.tn i{font:700 22px Mono;font-style:normal;color:#fff;letter-spacing:2px}
+.tn u{font:700 14px Mono;text-decoration:none;color:#9aa3ad;letter-spacing:1px;text-align:center}
+.tn.done{opacity:1}.tn.done b{border-color:#fff;background:#fff}.tn.now b{background:#ff2d46;border-color:#ff2d46;box-shadow:0 0 0 8px rgba(255,45,70,.3)}.tn.now u{color:#ff2d46}
+.tbar{position:absolute;left:110px;right:110px;top:13px;height:4px;background:#3a404b}.tbar div{height:100%;background:#fff}
+.seats{position:absolute;left:160px;width:760px;background:rgba(10,12,17,.94);border-radius:16px;padding:26px 0 24px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.seats .k{font:700 22px Mono;letter-spacing:4px;color:#c9d0d8;margin-bottom:6px}
+.seats .maj{font:800 34px Inter;color:#fff;margin-top:-4px}.seats .maj b{color:#ff2d46;font-size:44px}
+.leg{color:#fff;display:flex;justify-content:center;gap:36px;margin-top:14px;font:800 28px Inter}.leg i{display:inline-block;width:20px;height:20px;border-radius:50%;margin-right:10px;vertical-align:-2px}
+.letter{position:absolute;filter:drop-shadow(0 20px 40px rgba(0,0,0,.6));transform:rotate(-4deg)}
+.ncard{position:absolute;width:760px;display:flex;gap:26px;align-items:center;background:rgba(10,12,17,.94);border-radius:16px;padding:26px 30px;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.ncard .ini{width:120px;height:120px;border-radius:50%;background:#2a2f38;border:4px solid #fff;display:flex;align-items:center;justify-content:center;font:800 48px Inter;color:#fff;flex:none}
+.ncard .nm{font:800 54px Inter;color:#fff}.ncard .rl{font:700 20px Mono;color:#ffce00;letter-spacing:2px;margin-top:8px}
+.ncard .ini img{width:100%;height:100%;object-fit:cover;border-radius:50%}.ncard .ini{overflow:hidden}
+.duo{position:absolute;top:600px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:26px}
+.pt{width:300px;background:rgba(10,12,17,.94);border-radius:14px;padding:12px 12px 16px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.pt img{width:276px;height:330px;object-fit:cover;object-position:50% 20%;border-radius:8px;display:block;border:3px solid #fff}
+.pt.royal img{border-color:#ffce00}
+.pt b{display:block;font:800 26px Inter;color:#fff;margin-top:12px}.pt i{display:block;font:700 15px Mono;font-style:normal;color:#ffce00;letter-spacing:1.5px;margin-top:6px}
+.duo .arrow{font:800 70px Inter;color:#fff;opacity:.7}
+.seats .v{transition:none}
+#hook .b{font:800 230px/1 Inter!important}
+/* hook + outro */
+#hook{top:240px;left:0;right:0;text-align:center}
+#hook .a{font:800 56px Inter;letter-spacing:4px}
+#hook .b{font:800 170px/1 Inter;letter-spacing:-5px;color:#ff2d46}
+#hook .c{font:800 52px Inter;letter-spacing:7px;margin-top:18px}
+#hook .ln{width:540px;height:6px;background:#ff2d46;margin:24px auto 0;transform-origin:center}
+#outro{inset:0;background:rgba(5,7,11,.7)}
+#outro .box{position:absolute;top:640px;left:0;right:0;text-align:center}
+#outro .chev{font:800 170px/1 Inter;letter-spacing:-40px;color:#fff;margin-left:-40px}
+#outro .nm{font:800 92px Inter;letter-spacing:-1px;margin-top:20px}
+#outro .tg{font:700 24px Mono;letter-spacing:6px;color:#9aa3ad;margin-top:16px}
+#outro .fol{display:inline-flex;align-items:center;gap:22px;margin-top:44px;background:#14171e;border-radius:18px;padding:18px 22px 18px 28px}
+#outro .fol .h{font:800 30px Inter}
+#outro .fol .btn{font:800 28px Inter;background:#ff2d46;border-radius:10px;padding:14px 28px;min-width:190px;text-align:center}
+#fade{position:absolute;inset:0;background:#05070b;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="53.84" data-width="1080" data-height="1920" data-fps="30">
+  <div id="world" class="clip" data-start="0" data-duration="53.84" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+    <canvas id="gl" width="1080" height="1920"></canvas>
+  </div>
+  <div id="ui" class="clip" data-start="0" data-duration="53.84" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
+    <canvas id="fx" width="1080" height="1920"></canvas>
+    <div class="vig"></div>
+    <div id="tint"></div>
+    <div id="pins"></div>
+    <div id="cards"></div>
+    <div id="cap"></div>
+    <div id="hook" class="el"><div class="a">SIAPA SEBENARNYA</div><div class="b">MB</div><div class="c">NEGERI SEMBILAN?</div><div class="ln"></div></div>
+    <div id="outro" class="el"><div class="box"><div class="chev">›››</div><div class="nm">JANGAN TERLEPAS</div><div class="tg">POLITIK · DALAM BAHASA KITA</div><div><div class="fol"><span class="h">Untuk part seterusnya</span><span class="btn" id="fbtn">Follow</span><span class="btn" id="sbtn">Subscribe</span></div></div></div></div>
+    <div id="fade"></div>
+  </div>
+  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="50.88" data-track-index="5" data-volume="1"></audio>
+  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="53.84" data-track-index="6" data-volume="0.9"></audio>
+</div>
+
+<script>
+  window.__hf = window.__hf || {};
+  window.__hf.buildReady = window.__hf.buildReady || {};
+  let resolveWorld;
+  window.__hf.buildReady["world"] = new Promise((r) => (resolveWorld = r));
+</script>
+<script type="module">
+import { createGlobe } from "./assets/globe.js";
+import { DURATION, T, CAPS } from "./assets/story.js";
+
+const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
+const LAYER = Number(vars.layer) || 0;
+if (LAYER === 1) document.documentElement.classList.add("clean");
+if (LAYER === 2) document.documentElement.classList.add("caps");
+const scale = LAYER === 2 ? 0.25 : Number(vars.previewScale) || 1;
+await Promise.all(["400 40px Inter", "700 40px Inter", "800 40px Inter", "700 20px Mono", "400 40px Serif", "italic 700 40px Serif", "700 40px Serif"].map((f) => document.fonts.load(f)));
+await Promise.all(["assets/photos/ismail.jpg", "assets/photos/tuanku.jpg"].map((src) => new Promise((r) => { const i = new Image(); i.onload = i.onerror = r; i.src = src; })));
+
+const W = 1080, H = 1920;
+const g = await createGlobe(document.getElementById("gl"), { W, H, base: "assets/", scale });
+if (LAYER === 2) g.render = () => {};
+const topo = await (await fetch("assets/geo/countries-10m.json")).json();
+const countries = topojson.feature(topo, topo.objects.countries).features;
+const ST = (await (await fetch("assets/geo/my-states.json")).json()).features;
+const N9 = ST.find((f) => f.properties.name === "Negeri Sembilan");
+
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+const eout = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const win = (t, a, b, fi = 0.35, fo = 0.35) => clamp((t - a) / fi) * (1 - clamp((t - b) / fo));
+
+// ---------------- overlay layers ----------------
+const borders = g.layer("borders", 0, { lon0: 92, lon1: 140, lat0: -6, lat1: 34, ppd: 80 });
+{ const L = borders, c = L.ctx; c.strokeStyle = "rgba(255,255,255,.35)"; c.lineWidth = 1; c.lineJoin = "round";
+  for (const f of countries) { L.path(f.geometry); c.stroke(); } L.tex.needsUpdate = true; }
+const stl = g.layer("states", 1, { lon0: 99, lon1: 105, lat0: 0.8, lat1: 7, ppd: 300 });
+{ const L = stl, c = L.ctx; c.lineJoin = "round"; c.strokeStyle = "rgba(255,255,255,.45)"; c.lineWidth = 1.5; for (const f of ST) { L.path(f.geometry); c.stroke(); } L.tex.needsUpdate = true; }
+const n9l = g.layer("n9", 2, { lon0: 101.2, lon1: 102.9, lat0: 2.2, lat1: 3.4, ppd: 900 });
+{ const L = n9l, c = L.ctx; c.save(); L.path(N9.geometry); c.clip("evenodd"); c.fillStyle = "rgba(255,206,0,.2)"; c.fillRect(0, 0, L.OW, L.OH);
+  c.fillStyle = "rgba(255,206,0,.09)"; for (let y = 0; y < L.OH; y += 18) c.fillRect(0, y, L.OW, 7); c.restore();
+  c.shadowColor = "#ffce00"; c.shadowBlur = 60; c.strokeStyle = "#ffd84a"; c.lineWidth = 12; L.path(N9.geometry); c.stroke(); c.shadowBlur = 0; L.tex.needsUpdate = true; }
+
+// ---------------- camera ----------------
+const K = [
+  [0, 8, 106, 3.2, 4, -0.1], [T.ni - 0.3, 2.3, 102.1, 0.75, 12, -0.1],
+  [T.ogos + 0.2, 2.75, 102.1, 0.2, 18, 0.12], [T.masa - 0.2, 2.75, 102.1, 0.19, 18, 0.12],
+  [T.masa + 0.5, 2.75, 102.1, 0.24, 18, 0.25], [T.isnin - 0.2, 2.75, 102.1, 0.23, 18, 0.25],
+  [T.isnin + 0.6, 2.75, 102.0, 0.2, 18, 0.12], [T.pagi - 0.2, 2.75, 102.0, 0.19, 18, 0.12],
+  [T.pagi + 0.8, 2.72, 101.95, 0.14, 20, -0.12], [T.tapi - 0.2, 2.72, 101.95, 0.13, 20, -0.12],
+  [T.tapi + 0.7, 2.75, 102.1, 0.22, 18, 0.12], [T.dun2 - 0.2, 2.75, 102.1, 0.21, 18, 0.12],
+  [T.dun2 + 0.6, 2.75, 102.1, 0.26, 16, 0.25], [T.kita - 0.2, 2.75, 102.1, 0.25, 16, 0.25],
+  [DURATION, 3.0, 102.2, 0.9, 10, 0.0],
+];
+const ZP = [
+  [T.sembilan1, -0.14, 0.5], [T.ismail1, -0.10, 0.6], [T.s18, -0.08, 0.4], [T.letak, -0.12, 0.5], [T.surat1, -0.08, 0.4],
+  [T.perkenan, -0.10, 0.5], [T.disahkan, -0.12, 0.4], [T.kekal, -0.14, 0.5], [T.majoriti, -0.10, 0.5], [T.s36, 0.08, 0.5],
+  [T.s19, -0.12, 0.5], [T.s19b, -0.16, 0.6],
+];
+function zoomMod(t) {
+  let m = 0;
+  for (const [a, amt, hold] of ZP) { const x = t - a + 0.08; if (x < 0 || x > hold + 1.6) continue;
+    m += amt * ease(clamp(x / 0.3)) * (1 - ease(clamp((x - 0.3 - hold) / 1.3))); }
+  return (1 + m) * (1 - 0.03 * Math.sin(t * 0.9));
+}
+function cam(t) {
+  let i = 0; while (i < K.length - 2 && t > K[i + 1][0]) i++;
+  const A = K[i], B = K[i + 1], u = ease(clamp((t - A[0]) / (B[0] - A[0])));
+  const L = (k) => A[k] + (B[k] - A[k]) * u;
+  const d = Math.exp(Math.log(A[3]) + (Math.log(B[3]) - Math.log(A[3])) * u);
+  return { lat: L(1), lon: L(2), dist: d * zoomMod(t), tilt: L(4), yShift: L(5) };
+}
+
+// ---------------- HTML ----------------
+const pinWrap = document.getElementById("pins"), cardWrap = document.getElementById("cards");
+const mk = (parent, cls, html) => { const e = document.createElement("div"); e.className = "el " + cls; e.innerHTML = html; parent.appendChild(e); return e; };
+const loc = (txt, sub, red) => `<div class="dot ${red ? "red" : ""}"></div><div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px"><div class="lab">${txt}</div>${sub ? `<div class="sub ${red ? "red" : ""}">${sub}</div>` : ""}</div>`;
+const PINS = [
+  { ll: [2.7259, 101.9378], txt: "SEREMBAN", sub: "IBU NEGERI", a: T.ogos, b: T.masa },
+  { ll: [2.70, 101.95], txt: "ISTANA HINGGAP", sub: "SEREMBAN", a: T.letak, b: T.pagi },
+  { ll: [2.70, 101.95], txt: "ISTANA HINGGAP", sub: "20 NOV · PAGI", red: 1, a: T.pagi, b: T.tapi },
+].map((p) => ({ ...p, el: mk(pinWrap, "pin lpin", loc(p.txt, p.sub, p.red)) }));
+
+const card = (outlet, date, head, foot) => mk(cardWrap, "card", `<div class="hd"><b>${outlet}</b><i>${date}</i></div><div class="bd">${head}<div class="ft">${foot}</div></div>`);
+const C = {
+  tv3: card("BULETIN TV3", "16 NOV 2026", `<mark>Ismail Lasim letak jawatan</mark>`, "Tajuk asal · buletintv3.my · kenyataan SU Agung BN"),
+  b17: card("BERNAMA", "17 NOV 2026", `Peletakan Jawatan MB Negeri Sembilan <mark>Perlu Perkenan Tuanku Muhriz</mark> - Istana`, "Tajuk asal · bernama.com"),
+  b20a: card("BERNAMA", "20 NOV 2026", `Ismail <mark>Tidak Pernah Setuju</mark> Surat Peletakan Jawatan Dikemukakan Kepada Tuanku Muhriz`, "Tajuk asal · bernama.com · kata Ismail"),
+  b20b: card("BERNAMA", "20 NOV 2026", `Istana Negeri Sembilan: Ismail Lasim <mark>Mesti Buktikan Sokongan Majoriti</mark> Untuk Kekal Sebagai MB`, "Tajuk asal · bernama.com"),
+};
+const SCH = [[C.tv3, T.bn2 - 0.1, T.esok - 0.1, 1080], [C.b17, T.istana1 - 0.1, T.pagi - 0.1, 1060], [C.b20a, T.diakata - 0.1, T.tapi - 0.1, 1150], [C.b20b, T.istana3 - 0.1, T.dun2 - 0.1, 1000]];
+const HL = [[C.tv3, T.letak - 0.2, T.letak + 0.8], [C.b17, T.perkenan - 0.4, T.perkenan + 0.6], [C.b20a, T.serah - 0.6, T.serah + 0.5], [C.b20b, T.untuk, T.majoriti + 0.3]];
+
+const ncard = mk(cardWrap, "ncard", `<div class="ini" style="overflow:hidden"><img src="assets/photos/ismail.jpg" style="width:100%;height:100%;object-fit:cover"></div><div><div class="nm">ISMAIL LASIM</div><div class="rl">MENTERI BESAR · ADUN JUASSEH</div></div>`);
+ncard.style.left = "160px";
+const duo = mk(cardWrap, "duo", `<div class="pt"><img src="assets/photos/ismail.jpg"><b>ISMAIL LASIM</b><i>MENGHADAP · PAGI TADI</i></div><div class="arrow">›</div><div class="pt royal"><img src="assets/photos/tuanku.jpg"><b>TUANKU MUHRIZ</b><i>YANG DI-PERTUAN BESAR</i></div>`);
+const [ptI, arrowEl, ptT] = duo.children;
+const letter = mk(cardWrap, "letter", `<svg width="260" height="190" viewBox="0 0 260 190"><rect x="4" y="4" width="252" height="182" rx="10" fill="#f4f1ea" stroke="#d9d3c4" stroke-width="3"/><path d="M8 10 L130 100 L252 10" fill="none" stroke="#cfc7b4" stroke-width="5"/>${[0, 1, 2].map((i) => `<rect x="40" y="${120 + i * 18}" width="${180 - i * 40}" height="8" rx="4" fill="#d9d3c4"/>`).join("")}</svg><div class="stamp" style="left:14px;top:60px;font-size:32px">BELUM DISAHKAN</div>`);
+const stampEl = letter.querySelector(".stamp");
+
+// seats
+const PARTY = [["BN", 18, "#2f6bff", "bn", "s18"], ["PH", 11, "#e3262f", "ph", "s11"], ["PN", 7, "#19a974", "pn", "s7"]];
+const pts = []; [8, 12, 16].forEach((n, r) => { const R = 150 + r * 62; for (let i = 0; i < n; i++) { const a = Math.PI - (i / (n - 1)) * Math.PI; pts.push({ a, x: 380 + R * Math.cos(a), y: 360 - R * Math.sin(a) }); } });
+pts.sort((p, q) => q.a - p.a);
+function seatsCard(grey) {
+  const e = mk(cardWrap, "seats", `<div class="k">${grey ? "DUN NEGERI SEMBILAN" : "KEPUTUSAN PRN · 1 OGOS 2026"}</div>
+    <svg width="760" height="380" viewBox="0 0 760 380">${pts.map((p) => `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="21" fill="#252a33" stroke="rgba(0,0,0,.35)" stroke-width="3"/>`).join("")}
+    <line class="mj" x1="380" y1="20" x2="380" y2="372" stroke="#fff" stroke-width="4" stroke-dasharray="10 8"/>
+    ${grey ? `<text class="q" x="380" y="330" text-anchor="middle" font-family="Serif" font-style="italic" font-weight="700" font-size="150" fill="#ff2d46">?</text>` : ""}</svg>
+    <div class="maj">MAJORITI <b>19</b> / <span class="tot">36</span></div>${grey ? "" : `<div class="leg">${PARTY.map(([p, n, c]) => `<span><i style="background:${c}"></i>${p} <b class="pc">0</b></span>`).join("")}</div>`}`);
+  e.style.left = "160px"; return e;
+}
+const S1 = seatsCard(false), S2 = seatsCard(true);
+const S1c = [...S1.querySelectorAll("circle")], S2c = [...S2.querySelectorAll("circle")], S1n = [...S1.querySelectorAll(".pc")];
+
+// timeline strip
+const TL = [["2 OGOS", "ANGKAT SUMPAH", T.ogos], ["16 NOV", "BN: LETAK JAWATAN", T.isnin], ["17 NOV", "ISTANA: PERLU PERKENAN", T.esok], ["20 NOV", "MENGHADAP · KENYATAAN ISTANA", T.pagi]];
+const tlEl = mk(cardWrap, "tl", `${TL.map(([d, s]) => `<div class="tn"><b></b><i>${d}</i><u>${s}</u></div>`).join("")}<div class="tbar"><div></div></div>`);
+const tns = [...tlEl.querySelectorAll(".tn")], tbar = tlEl.querySelector(".tbar div");
+
+const capEl = document.getElementById("cap");
+const capSpans = CAPS.map((c) => c.w.map((w, i) => { const s = document.createElement("span"); s.textContent = w.t + (i < c.w.length - 1 ? " " : ""); return s; }));
+const hook = document.getElementById("hook"), outro = document.getElementById("outro"), fade = document.getElementById("fade"), tint = document.getElementById("tint");
+const fbtn = document.getElementById("fbtn"), sbtn = document.getElementById("sbtn");
+const fxEl = document.getElementById("fx"); fxEl.style.display = "none";
+
+function show(el, a, b, top, fi = 0.3, fo = 0.25) {
+  const k = win(globalT, a, b, fi, fo);
+  if (k <= 0) { el.style.display = "none"; return 0; }
+  el.style.display = el.classList.contains("duo") || el.classList.contains("tl") || el.classList.contains("ncard") ? "flex" : "block";
+  el.style.opacity = k; if (top != null) el.style.top = top + 50 * (1 - eout((globalT - a) / 0.4)) + "px"; return k;
+}
+let globalT = 0;
+function renderAt(t) {
+  globalT = t;
+  const v = cam(t); g.setView(v);
+  g.layers.n9.mesh.material.opacity = clamp((t - T.sembilan1 + 0.3) / 0.4) * (0.85 + 0.15 * Math.sin(t * 3));
+  g.layers.states.mesh.material.opacity = clamp((t - 1.0) / 1.0);
+  g.render();
+
+  // pins
+  for (const p of PINS) {
+    const k = win(t, p.a, p.b, 0.25, 0.25);
+    if (k <= 0) { p.el.style.display = "none"; continue; }
+    const s = g.project(p.ll[0], p.ll[1]);
+    p.el.style.display = "flex"; p.el.style.left = s.x + "px"; p.el.style.top = s.y + "px"; p.el.style.opacity = k;
+    p.el.style.transform = `translate(-13px,-50%) scale(${0.7 + 0.3 * eout((t - p.a) / 0.25)})`;
+  }
+
+  // cards + highlights
+  for (const [el, a, b, top] of SCH) show(el, a, b, top);
+  for (const [el, a, b] of HL) for (const m of el.querySelectorAll("mark")) m.style.backgroundSize = `${100 * clamp((t - a) / (b - a))}% 100%`;
+
+  // name card
+  show(ncard, T.ismail1 - 0.2, T.masa - 0.15, 1120);
+  // seats: PRN result fills party by party
+  if (show(S1, T.masa - 0.1, T.isnin - 0.15, 800) > 0) {
+    let i0 = 0;
+    PARTY.forEach(([, n, c, a, z], pi) => { const u = clamp((t - T[a] + 0.1) / Math.max(0.5, T[z] - T[a] + 0.3));
+      const k = Math.floor(u * n + 1e-6); for (let i = 0; i < n; i++) S1c[i0 + i].setAttribute("fill", i < k ? c : "#252a33"); S1n[pi].textContent = k; i0 += n; });
+  }
+  if (show(S2, T.dun2 - 0.1, T.kita + 1.5, 780) > 0) {
+    const u = clamp((t - T.dun2) / 1.2); S2c.forEach((c, i) => c.setAttribute("fill", i < Math.floor(u * 36 + 1e-6) ? "#3a404b" : "#1c2027"));
+    const mj = clamp((t - T.majoriti2 + 0.1) / 0.3); S2.querySelector(".mj").setAttribute("stroke", mj > 0 ? "#ff2d46" : "#fff");
+    S2c.forEach((c, i) => { if (i < 19 && t > T.s19) c.setAttribute("stroke", "rgba(255,45,70,.9)"); else c.setAttribute("stroke", "rgba(0,0,0,.35)"); });
+    const q = S2.querySelector(".q"), uq = clamp((t - T.tapi2) / 0.25); q.style.opacity = uq;
+    q.setAttribute("transform", `translate(380 290) scale(${1.6 - 0.6 * eout(uq) + 0.05 * Math.sin(t * 4) * uq}) translate(-380 -290)`);
+  }
+  // letter flies to the palace pin, then gets the stamp
+  { const k = win(t, T.surat1 - 0.3, T.pagi - 0.1, 0.2, 0.3);
+    letter.style.display = k > 0 ? "block" : "none";
+    if (k > 0) { const s = g.project(2.70, 101.95), u = eout((t - T.surat1 + 0.3) / 0.7);
+      const x = -320 + (s.x + 40 - -320) * u, y = s.y - 330 + 140 * (1 - u) * Math.sin(u * Math.PI);
+      letter.style.left = x + "px"; letter.style.top = y + "px"; letter.style.opacity = k; letter.style.transform = `rotate(${-4 - 20 * (1 - u)}deg)`;
+      const us = clamp((t - T.disahkan) / 0.22); stampEl.style.display = t >= T.disahkan ? "block" : "none"; stampEl.style.opacity = us;
+      stampEl.style.transform = `rotate(-8deg) scale(${1.7 - 0.7 * eout(us)})`; } }
+  // audience: Ismail, then Tuanku (official portrait, no effects)
+  if (show(duo, T.menghadap - 0.4, T.tapi - 0.1, null) > 0) {
+    duo.style.top = "560px";
+    ptI.style.opacity = clamp((t - T.menghadap + 0.4) / 0.3); ptI.style.transform = `translateY(${30 * (1 - eout((t - T.menghadap + 0.4) / 0.4))}px)`;
+    arrowEl.style.opacity = 0.7 * clamp((t - T.menghadap) / 0.3);
+    ptT.style.opacity = clamp((t - T.menghadap - 0.2) / 0.4); ptT.style.transform = `translateY(${30 * (1 - eout((t - T.menghadap - 0.2) / 0.5))}px)`;
+  }
+  // timeline
+  if (show(tlEl, T.ogos - 0.2, T.end_vo + 0.3, null) > 0) {
+    let on = 0; TL.forEach(([, , a], i) => { if (t >= a) on = i + 1; });
+    tns.forEach((n, i) => { n.classList.toggle("done", i < on); n.classList.toggle("now", i === on - 1);
+      const pop = clamp((t - TL[i][2]) / 0.3); n.querySelector("b").style.transform = `scale(${i === on - 1 ? 1 + 0.4 * (1 - pop) : 1})`; });
+    const prev = on > 1 ? TL[on - 1][2] : 0; tbar.style.width = Math.max(0, (on - 2 + eout((t - prev) / 0.6)) / 3) * 100 + "%";
+  }
+
+  // captions
+  let ci = -1; for (let i = 0; i < CAPS.length; i++) if (t >= CAPS[i].a && t < CAPS[i].b) ci = i;
+  const hookOn = t < T.ni - 0.1;
+  if (ci < 0 || hookOn || t > T.end_vo + 0.6) capEl.style.display = "none";
+  else {
+    capEl.style.display = "block";
+    if (capEl.dataset.i != ci) { capEl.innerHTML = ""; capSpans[ci].forEach((s) => capEl.appendChild(s)); capEl.dataset.i = ci; }
+    CAPS[ci].w.forEach((w, j) => { const s = capSpans[ci][j]; s.style.color = t >= w.at - 0.03 ? (w.k ? "#ff2d46" : "#fff") : "rgba(255,255,255,.36)"; });
+  }
+
+  // hook
+  const hk = win(t, 0.05, T.ni - 0.3, 0.2, 0.3);
+  hook.style.display = hk > 0 ? "block" : "none"; hook.style.opacity = hk;
+  const [ha, hb, hc, hl] = hook.children;
+  ha.style.opacity = clamp((t - 0.1) / 0.25); ha.style.transform = `translateY(${20 * (1 - eout((t - 0.1) / 0.3))}px)`;
+  const ub = clamp((t - 0.62) / 0.2); hb.style.opacity = ub; hb.style.transform = `scale(${1.45 - 0.45 * eout(ub)})`;
+  hc.style.opacity = clamp((t - T.sembilan1 + 0.25) / 0.2); hl.style.transform = `scaleX(${eout((t - T.sembilan1) / 0.5)})`;
+
+  tint.style.opacity = Math.max(0.6 * win(t, 0.62, 0.9, 0.05, 0.5), 0.6 * win(t, T.disahkan, T.disahkan + 0.25, 0.05, 0.5), 0.7 * win(t, T.kekal, T.kekal + 0.4, 0.1, 0.8), 0.5 * win(t, T.tapi2, T.tapi2 + 0.3, 0.05, 0.6));
+
+  // outro
+  const ot = T.end_vo + 0.4, ok = win(t, ot, DURATION + 1, 0.4, 0.1);
+  outro.style.display = ok > 0 ? "block" : "none"; outro.style.opacity = ok;
+  outro.firstElementChild.style.transform = `translateY(${40 * (1 - eout((t - ot) / 0.5))}px)`;
+  const followed = t > ot + 1.2; fbtn.textContent = followed ? "Following" : "Follow"; fbtn.style.background = followed ? "#2a2f38" : "#ff2d46";
+  const subbed = t > ot + 1.7; sbtn.textContent = subbed ? "Subscribed" : "Subscribe"; sbtn.style.background = subbed ? "#2a2f38" : "#ff2d46";
+  fade.style.opacity = clamp((t - (DURATION - 0.45)) / 0.4);
+}
+window.__renderAt = renderAt;
+window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+tl.to({}, { duration: DURATION }, 0);
+window.__timelines["main"] = tl;
+renderAt(0);
+resolveWorld();
+</script>
+</body>
+</html>
