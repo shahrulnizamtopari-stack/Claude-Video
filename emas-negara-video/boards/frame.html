@@ -101,6 +101,10 @@ html,body{width:1080px;height:1920px;background:#05070b;overflow:hidden;font-fam
 .br{display:flex;align-items:center;gap:14px;margin:10px 0}.br img{width:64px;height:64px;object-fit:contain}.br .nm{width:140px;font:800 24px Inter;color:#fff}.br .bb{flex:1;height:26px;background:#20252e;border-radius:6px;overflow:hidden}.br .bb div{height:100%;background:#5b6573}.br.hot .bb div{background:#ff2d46}.br .v{width:110px;text-align:right;font:800 28px Inter;color:#fff}
 .donut{margin:18px auto 0;width:220px;height:220px;border-radius:50%;background:conic-gradient(#ff2d46 0 83%,#2a2f38 83% 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}.donut::before{content:"";position:absolute;inset:34px;border-radius:50%;background:#0b0d12}.donut b,.donut i{position:relative}.donut b{font:italic 700 64px Serif;color:#ff2d46}.donut i{font:700 16px Mono;color:#c9d0d8;font-style:normal}
 .vs{position:absolute;top:560px;left:60px;right:60px;display:flex;align-items:center;justify-content:center;gap:24px}.opt{width:380px;height:380px;border-radius:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:110px;box-shadow:0 24px 60px rgba(0,0,0,.6)}.opt b{font:800 60px Inter;color:#fff;margin-top:8px}.opt i{font:700 22px Mono;color:#fff;font-style:normal;letter-spacing:4px}.opt.a{background:#b3121f}.opt.b{background:#14834d}.or{font:800 40px Inter;color:#fff}
+.gk{position:absolute;left:90px;right:90px;top:880px;background:rgba(10,12,17,.92);border-radius:18px;padding:24px 30px 22px;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.gk .no{font:800 44px Inter;color:#ffce00;letter-spacing:2px}.gk .num{font:italic 700 150px/1 Serif;color:#ffcf4a;margin:4px 0 6px;text-shadow:0 0 30px rgba(255,200,60,.35)}.gk .num span{font:800 40px Inter;font-style:normal;color:#fff;margin-left:10px}
+.gk .kk{font:700 16px Mono;color:#c9d0d8;letter-spacing:2px}.gk .ex{margin-top:10px}.gk .ex b{font:800 28px Inter;color:#fff}.gk .ex b.up{color:#4cff8a}.gk .ex i{font-style:normal;color:#ff2d46}
+.gk .gi{display:flex;flex-wrap:wrap;gap:4px;margin-top:14px}
 #tintS{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,30,50,0) 40%,rgba(255,30,50,.45) 100%)}
 </style></head><body>
 <canvas id="gl" width="1080" height="1920"></canvas>
@@ -266,48 +270,31 @@ const P = {
     const a2 = box(L, -170, 52, -130, 72); for (let i = 0; i < 13; i++) { c.fillStyle = i % 2 ? "#fff" : "#B22234"; c.fillRect(a2.x, a2.y + i * a2.h / 13, a2.w, a2.h / 13 + 1); } },
   ru: (c, L) => { const b = box(L, 19, 41, 180, 78); ["#fff", "#0039A6", "#D52B1E"].forEach((col, i) => { c.fillStyle = col; c.fillRect(b.x, b.y + i * b.h / 3, b.w, b.h / 3 + 1); }); },
 };
-const LEADER = { uk: ["ANDY BURNHAM", "PERDANA MENTERI UK"], fr: ["EMMANUEL MACRON", "PRESIDEN PERANCIS"], cn: ["XI JINPING", "PRESIDEN CHINA"], us: ["DONALD TRUMP", "PRESIDEN AS"], ru: ["VLADIMIR PUTIN", "PRESIDEN RUSIA"] };
-const TIE = { uk: "#C8102E", fr: "#0055A4", cn: "#DE2910", us: "#B22234", ru: "#0039A6" };
-const FIG = await (await fetch("../assets/leaders/fig.json")).json();
-// AI caricature split at the neck: body layer + head layer that wobbles around the neck pivot
-function bobbleHTML(k, rot = 0, H = 600) {
-  const m = FIG[k], sc = H / m.h, w = m.w * sc;
-  return `<div class="fig" style="width:${w}px;height:${H}px;margin-left:${-w / 2}px">
-    <img class="fb" src="../assets/leaders/${k}-fbody.png" style="width:${w}px;height:${H}px">
-    <img class="fh" src="../assets/leaders/${k}-fhead.png" style="width:${w}px;height:${(m.neck + 7) * sc}px;transform-origin:${m.px * sc}px ${m.neck * sc}px;transform:rotate(${rot}deg)"></div>
-    <div class="np"><b>${LEADER[k][0]}</b><br><i>${LEADER[k][1]}</i></div>`;
-}
-const bobble = (k, x, y, rot = -3) => html(`<div class="bob" style="left:${x}px;top:${y}px">${bobbleHTML(k, rot)}</div>`);
-const warheads = (n) => `<div class="wh">${Array.from({ length: n }, (_, i) => `<svg width="22" height="40" viewBox="0 0 22 40"><path d="M11 0 Q22 14 20 30 L2 30 Q0 14 11 0Z" fill="${i < n ? "#ff2d46" : "#333"}"/><rect x="4" y="31" width="14" height="8" rx="2" fill="#9aa3ad"/></svg>`).join("")}</div>`;
-const rank = (r, n, k, extra = "", icons = 0) => html(`<div class="rk"><div class="no">#${r}</div><div class="num">${n}</div><div class="kk">KEPALA PELEDAK · SIPRI 2026</div>${extra}${icons ? warheads(icons) : ""}</div>`);
+// gold reserves frames
+P.de = (c, L) => { const b = box(L, 5.5, 47, 15.5, 55.2); ["#000", "#DD0000", "#FFCE00"].forEach((col, i) => { c.fillStyle = col; c.fillRect(b.x, b.y + i * b.h / 3, b.w, b.h / 3 + 1); }); };
+P.it = (c, L) => { const b = box(L, 6.5, 36, 19, 47.2); ["#009246", "#fff", "#CE2B37"].forEach((col, i) => { c.fillStyle = col; c.fillRect(b.x + i * b.w / 3, b.y, b.w / 3 + 1, b.h); }); };
+const barIcon = `<svg width="26" height="16" viewBox="0 0 26 16"><path d="M5 1 L21 1 L25 15 L1 15Z" fill="url(#gb)"/><path d="M5 1 L21 1 L19 5 L7 5Z" fill="#fff3b8" opacity=".7"/></svg>`;
+const defs = `<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="gb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe08a"/><stop offset="1" stop-color="#c48a1a"/></linearGradient></defs></svg>`;
+const goldCard = (r, n, extra, icons) => html(`${defs}<div class="gk"><div class="no">#${r}</div><div class="num">${n}<span> TAN</span></div><div class="kk">RIZAB EMAS · DATA IMF/WGC Q3 2026</div>${extra ? `<div class="ex">${extra}</div>` : ""}<div class="gi">${Array.from({ length: icons }, () => barIcon).join("")}</div><div class="kk" style="margin-top:6px">1 JONGKONG = 100 TAN</div></div>`);
 const FR = {
-  1() { g.setView({ lat: 30, lon: 40, dist: 4.6, tilt: 4, yShift: 0.1 });
-    for (const [la, lo] of [[39, -98], [62, 95], [35, 104], [46.5, 2.5], [54, -2], [22, 79], [30, 70], [31, 35], [40, 127]]) { const p = g.project(la, lo); if (p.visible) html(`<div class="nd" style="left:${p.x}px;top:${p.y}px"></div>`); }
-    html(`<div class="chip" style="top:330px">● 4,012 SIAP DIGUNA · SEKARANG</div>`);
-    html(`<div class="title" style="top:1000px"><div class="a">SATU NEGARA PEGANG</div><div class="b"><span>5,420</span></div><div class="c">TEKA SIAPA?</div><div class="ln"></div></div>`); },
-  2() { flagFill("fUK", UKf, { lon0: -9, lon1: 3, lat0: 49, lat1: 61, ppd: 120 }, P.uk); g.setView({ lat: 54.5, lon: -3, dist: 0.55, tilt: 14, yShift: 0.2 });
-    bobble("uk", 30, 720); rank(5, "225", "uk", `<div class="ex">UJIAN PERTAMA · 1952</div>`, 2); capB(`Nombor lima: <span class="r">United Kingdom</span>`); },
-  3() { flagFill("fFR", FRf, { lon0: -6, lon1: 10, lat0: 41, lat1: 52, ppd: 100 }, P.fr); g.setView({ lat: 47, lon: 2.5, dist: 0.5, tilt: 14, yShift: 0.2 });
-    bobble("fr", 30, 720); rank(4, "370", "fr", `<div class="ex">TERMASUK 80 BERSARA</div>`, 4); capB(`Nombor empat: <span class="r">Perancis</span>`); },
-  4() { flagFill("fCN", CNf, { lon0: 72, lon1: 136, lat0: 17, lat1: 55, ppd: 20 }, P.cn); g.setView({ lat: 36, lon: 104, dist: 1.5, tilt: 10, yShift: 0.2 });
-    bobble("cn", 30, 720); rank(3, "620", "cn", `<div class="ex up">▲ PALING LAJU BERTAMBAH · 600 → 620</div>`, 6); capB(`paling <span class="r">laju bertambah</span> di dunia`); },
-  5() { flagFill("fUS", USf, { lon0: -172, lon1: -64, lat0: 18, lat1: 72, ppd: 12 }, P.us); g.setView({ lat: 42, lon: -100, dist: 2.0, tilt: 8, yShift: 0.2 });
-    bobble("us", 30, 720); rank(2, "5,042", "us", `<div class="ex">UJIAN PERTAMA · 1945</div>`, 50); capB(`Nombor dua: <span class="r">Amerika Syarikat</span>`); },
-  6() { flagFill("fRU", RUf, { lon0: 19, lon1: 180, lat0: 41, lat1: 78, ppd: 10 }, P.ru); g.setView({ lat: 56, lon: 95, dist: 3.6, tilt: 6, yShift: 0.2 });
-    bobble("ru", 30, 720); rank(1, "5,420", "ru", `<div class="ex">👑 TERBESAR DI DUNIA</div>`, 54); capB(`Dan nombor satu: <span class="r">Rusia</span>`); },
-  7() { g.setView({ lat: 45, lon: 40, dist: 4.4, tilt: 4, yShift: 0.15 });
-    const D = [["RUSIA", 5420, "ru"], ["AS", 5042, "us"], ["CHINA", 620, "cn"], ["PERANCIS", 370, "fr"], ["UK", 225, "uk"]];
-    html(`<div class="bars5"><div class="k">KEPALA PELEDAK · SIPRI 2026</div>${D.map(([n, v, k], i) => `<div class="br ${i < 2 ? "hot" : ""}"><img src="../assets/leaders/${k}-fhead.png"><span class="nm">${n}</span><div class="bb"><div style="width:${v / 5420 * 100}%"></div></div><span class="v">${v.toLocaleString("en")}</span></div>`).join("")}<div class="donut"><b>&gt;80%</b><i>RUSIA + AS</i></div></div>`);
-    capB(`pegang <span class="r">lebih lapan puluh peratus</span>`); },
-  8() { const L = g.layer("asean", 6, { lon0: 92, lon1: 141, lat0: -11, lat1: 29, ppd: 40 }), c = L.ctx; c.fillStyle = "rgba(40,200,120,.45)"; c.strokeStyle = "#5dffb0"; c.lineWidth = 3;
-    for (const f of ASEAN) { L.path(f.geometry); c.fill("evenodd"); c.stroke(); } L.tex.needsUpdate = true; malaysiaFlag();
-    g.setView({ lat: 8, lon: 113, dist: 1.7, tilt: 8, yShift: 0.2 });
-    html(`<div class="rk" style="text-align:center"><div class="no" style="color:#5dffb0">MALAYSIA</div><div class="num" style="color:#5dffb0">0</div><div class="kk">ASIA TENGGARA · ZON BEBAS SENJATA NUKLEAR</div><div class="ex">PERJANJIAN BANGKOK · 1995</div></div>`);
-    capB(`Asia Tenggara ialah <span class="r">zon bebas senjata nuklear</span>`); },
-  9() { g.setView({ lat: 30, lon: 60, dist: 4.4, tilt: 4, yShift: 0.15 });
-    html(`<div class="vs"><div class="opt a">☢️<b>DENGAN</b><i>NUKLEAR</i></div><div class="or">ATAU</div><div class="opt b">🕊️<b>TANPA</b><i>NUKLEAR</i></div></div>`);
-    html(`<div class="bubs" style="top:1040px"><span>DENGAN 💥</span><span class="r">TANPA 🕊️</span><span>50-50 🤔</span></div><div class="komen" style="top:1270px">KOMEN ↓</div>`);
-    capB(`dengan nuklear… atau <span class="r">tanpa nuklear?</span>`); },
+  1() { flagFill("fCN", C_(156), { lon0: 72, lon1: 136, lat0: 17, lat1: 55, ppd: 20 }, P.cn); g.setView({ lat: 36, lon: 104, dist: 1.6, tilt: 10, yShift: 0.26 });
+    goldCard(5, "2,435", `<b class="up">▲ CHINA MASIH TERUS MENAMBAH</b>`, 24); capB(`Nombor lima: <span class="r">China</span>`); },
+  2() { flagFill("fFR", C_(250), { lon0: -6, lon1: 10, lat0: 41, lat1: 52, ppd: 100 }, P.fr); g.setView({ lat: 47, lon: 2.5, dist: 0.55, tilt: 14, yShift: 0.26 });
+    goldCard(4, "2,437", `<b>BEZA DENGAN CHINA: <i>2 TAN JE</i></b>`, 24); capB(`Beza dengan China? <span class="r">Dua tan je</span>`); },
+  3() { flagFill("fIT", C_(380), { lon0: 6, lon1: 19, lat0: 36, lat1: 48, ppd: 100 }, P.it); g.setView({ lat: 42.5, lon: 12.5, dist: 0.6, tilt: 14, yShift: 0.26 });
+    goldCard(3, "2,452", "", 25); capB(`Nombor tiga: <span class="r">Itali</span>`); },
+  4() { flagFill("fDE", C_(276), { lon0: 5, lon1: 16, lat0: 47, lat1: 56, ppd: 100 }, P.de); g.setView({ lat: 46, lon: -30, dist: 2.6, tilt: 8, yShift: 0.24 });
+    { const p1 = g.project(50.1, 8.7), p2 = g.project(40.7, -74.0); html(`<svg style="position:absolute;inset:0" width="1080" height="1920"><path d="M${p1.x} ${p1.y} Q${(p1.x + p2.x) / 2} ${Math.min(p1.y, p2.y) - 180} ${p2.x} ${p2.y}" stroke="#ffd36b" stroke-width="7" fill="none" stroke-dasharray="16 12"/></svg>`); }
+    locPin(50.1, 8.7, "FRANKFURT", "BUNDESBANK"); locPin(40.7, -74.0, "NEW YORK", "SEBAHAGIAN EMAS JERMAN", true);
+    goldCard(2, "3,349", "", 33); capB(`sebahagian emas Jerman… <span class="r">di New York</span>`); },
+  5() { flagFill("fUS", C_(840), { lon0: -172, lon1: -64, lat0: 18, lat1: 72, ppd: 12 }, P.us); g.setView({ lat: 42, lon: -100, dist: 2.0, tilt: 8, yShift: 0.26 });
+    goldCard(1, "8,133", `<b>👑 LEBIH 2× JERMAN</b>`, 81); capB(`Nombor satu: <span class="r">Amerika Syarikat</span>`); },
+  6() { malaysiaFlag(); g.setView({ lat: 4, lon: 109, dist: 1.2, tilt: 10, yShift: 0.22 });
+    html(`<div class="gk" style="text-align:center"><div class="no" style="color:#ff2d46">MALAYSIA</div><div class="num" style="font-size:96px;color:#fff">TIDAK<br>DALAM TOP 50</div><div class="kk">NO. 50 = KEMBOJA · 54 TAN</div></div>`); capB(`Malaysia? <span class="r">Tak masuk 50 teratas</span>`); },
+  7() { malaysiaFlag(); g.setView({ lat: 4, lon: 109, dist: 1.4, tilt: 10, yShift: 0.15 });
+    html(`<div class="vs"><div class="opt a" style="background:#c79a1e">🪙<b>PATUT</b><i>BELI LAGI</i></div><div class="or">ATAU</div><div class="opt b" style="background:#2a3550">🙅<b>TAK</b><i>PERLU</i></div></div>`);
+    html(`<div class="bubs" style="top:1040px"><span>PATUT! 🪙</span><span class="r">TAK PERLU</span><span>Beli Bitcoin 😂</span></div><div class="komen" style="top:1270px">KOMEN ↓</div>`);
+    capB(`Malaysia patut <span class="r">beli lebih banyak emas?</span>`); },
 };
 FR[F]();
 window.__pins=[...document.querySelectorAll('.pin')].map(e=>e.style.left+','+e.style.top);
