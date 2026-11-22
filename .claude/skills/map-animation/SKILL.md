@@ -116,3 +116,44 @@ pure function of time). For 3D object explainers see `explainer-style`; for text
 - Crime/politics: no suspect names or faces, "ditahan / direman / belum didakwa", show conflicting official numbers
   side by side with their source, never draw a route no source gives. The user likes an ending that asks viewers a
   question to comment on (risk vs reward), not a guess about who is guilty.
+
+## 7. Later formats and tools (Nov 2026)
+
+Reference films after LCS, newest first: `whatif-mi-video/` (WHAT IF two countries merge), `emas-negara-video/` (top 5 gold,
+AI pour clip + animated hook), `nuklear-video/` (top 5 countdown with caricatures), `emas-kasut-video/`, `tudm-video/`,
+`mb9-video/`, `taiwan-video/`.
+
+- **Top 5 countdown:** camera flies country to country, `flagFill()` paints the flag inside the country (painters in
+  `P.uk/fr/cn/us/ru/de/it`), rank card counts up, icon grid (1 icon = 100). Ending is a two-button poll + comment bubbles.
+- **Leader caricatures:** the user prefers **AI-generated full-body big-head caricatures** (they generate them; give one
+  shared prompt so the style matches). Cut out with `rembg` (`isnet-general-use`), split head/body at the neck (narrowest
+  alpha row) so the head can wobble; drop-in with bounce. Real-photo bobbleheads looked bad - don't.
+  Same treatment for every leader; name + title plate big enough to read on a phone; no "KARIKATUR · AI" label on screen
+  (the user removed it; put "karikatur dijana AI" in the TikTok caption). Check who holds office before drawing anyone
+  (e.g. UK PM changed in Jul 2026). For a two-country what-if, put real leaders only in a "friendly neighbours" beat,
+  never as if they endorse the merger; add a small "VIDEO HIPOTETIKAL" tag.
+- **Hook animations in SVG** (`emas-negara-video/boards/hook.html`): isometric gold bars melt, pour and rise into a
+  to-scale cube beside a house, over a dimmed map of the country. Can follow a 2 s AI B-roll clip with a white flash cut.
+- **WHAT IF effects** (`whatif-mi-video/index.html`): zip seam (gold ribbon grows, reversed dashed ribbon shrinks, spark at
+  the slider), gold shockwave + screen shake on the merge, leaderboard rows that merge and climb (`runBoard`), lift-fly-slam
+  of the merged shape onto Europe at **true size** (stretch lon by 1/cos(lat) when moving a shape north), name slot machine.
+- **AI stills as B-roll** work: show them in the window with a slow push (Ken Burns) and, for gold, a light sweep.
+- **Captions** can sit in a bottom band (y≈1490); keep cards ending ≤ ~1420.
+
+## 8. Audio: the voice must be loud and clear
+
+The user complained twice the VO was too quiet. Now: VO through `acompressor` + loudnorm to about −13 LUFS before the
+render, SFX track `data-volume` 0.5, and after the render run `tools/remix_audio.sh` (compressed VO, SFX side-chain
+ducked under the voice, final −13 LUFS, TP −1). The remix only touches audio, so a quiet video can be fixed in minutes.
+
+## 9. More pitfalls
+
+- **Horizontal lines across the globe:** polygons crossing the antimeridian (Russia, Fiji) drew straight lines across the
+  whole world layer. Fixed in `globe.js` `path()` and the borders loop: break the ring where |Δlon| > 180. Copy the
+  fixed `globe.js` into new projects.
+- Composite command: map the overlay output (`-filter_complex "...overlay...[v]" -map "[v]"`), not `-map 0:v`, or the
+  captions silently vanish. Always look at a frame strip of the final.
+- CSS class names collide (`.hd` card header vs a head image) - give new elements distinct classes.
+- Several SVGs with the same gradient `id` break when the first one is hidden: give each a unique id.
+- Killing a shell that runs a render chain also cancels the running render ("render_cancelled_parent_exited").
+- `at()` must strip the punctuation used in FIX (`.,?:`), or words like "Maphilindo:" are not found.
