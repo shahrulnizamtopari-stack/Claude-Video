@@ -62,7 +62,7 @@ export async function createGlobe(canvas, { W, H, base = "assets/", scale = 1 } 
     const path = (geom) => {
       const polys = geom.type === "Polygon" ? [geom.coordinates] : geom.type === "MultiPolygon" ? geom.coordinates : [];
       ctx.beginPath();
-      for (const poly of polys) for (const ring of poly) { ring.forEach(([lo, la], i) => (i ? ctx.lineTo(ox(lo), oy(la)) : ctx.moveTo(ox(lo), oy(la)))); ctx.closePath(); }
+      for (const poly of polys) for (const ring of poly) { const jump = ring.some(([lo], i) => i && Math.abs(lo - ring[i - 1][0]) > 180); if (jump) { for (let i = 0; i < ring.length; i++) { const [lo, la] = ring[i]; (i && Math.abs(lo - ring[i - 1][0]) < 180) ? ctx.lineTo(ox(lo), oy(la)) : ctx.moveTo(ox(lo), oy(la)); } } else { ring.forEach(([lo, la], i) => (i ? ctx.lineTo(ox(lo), oy(la)) : ctx.moveTo(ox(lo), oy(la)))); ctx.closePath(); } }
     };
     return (layers[name] = { c, ctx, tex, mesh: m, ox, oy, R, OW, OH, path, ppd: R.ppd });
   }

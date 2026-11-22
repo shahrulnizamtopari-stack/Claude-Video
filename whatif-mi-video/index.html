@@ -242,7 +242,10 @@ const win = (t, a, b, fi = 0.35, fo = 0.35) => clamp((t - a) / fi) * (1 - clamp(
 // ---------------- globe layers ----------------
 const borders = g.layer("borders", 0, { lon0: -180, lon1: 180, lat0: -60, lat1: 80, ppd: 12 });
 { const L = borders, c = L.ctx; c.strokeStyle = "rgba(255,255,255,.35)"; c.lineWidth = 1; c.lineJoin = "round";
-  for (const f of countries) { L.path(f.geometry); c.stroke(); } L.tex.needsUpdate = true; }
+  // break rings where they jump across the antimeridian (Russia, Fiji...) or they draw lines across the whole world
+  for (const f of countries) { const polys = f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.type === "MultiPolygon" ? f.geometry.coordinates : [];
+    c.beginPath(); for (const poly of polys) for (const ring of poly) ring.forEach(([lo, la], i) => { (i && Math.abs(lo - ring[i - 1][0]) < 180) ? c.lineTo(L.ox(lo), L.oy(la)) : c.moveTo(L.ox(lo), L.oy(la)); }); c.stroke(); }
+  L.tex.needsUpdate = true; }
 const SEA = { lon0: 92, lon1: 142, lat0: -12, lat1: 22, ppd: 40 };
 function fillL(name, feats, fill, stroke, z = 6, R = SEA) { const L = g.layer(name, z, R), c = L.ctx; c.fillStyle = fill; c.strokeStyle = stroke; c.lineWidth = 3;
   for (const f of feats) { L.path(f.geometry); c.fill("evenodd"); c.stroke(); } L.tex.needsUpdate = true; L.mesh.material.opacity = 0; return L; }
