@@ -486,7 +486,7 @@ function renderAt(t) {
   if (show(pDev, t, T.tahun + 0.3, e9, "flex")) place(pDev, DEV);
   if (show(ring9, t, T.tahun, e9)) ring9.style.transform = `scale(${0.85 + 0.15 * eout((t - T.tahun) / 0.6)})`;
   if (show(price9, t, T.tahun - 0.1, e9)) { const u = eout((t - T.terjual) / Math.max(0.6, T.pound2 - T.terjual)); p9n.textContent = "£" + (Math.round(150000 * u / 1000) * 1000).toLocaleString("en");
-    p9n.style.transform = `scale(${t > T.pound2 ? pop(clamp((t - T.pound2) / 0.35)) : 1})`; p9u.style.opacity = clamp((t - T.kurang + 0.1) / 0.25); }
+    p9n.style.transform = `scale(${t > T.pound2 ? pop(clamp((t - T.pound2) / 0.35)) : 1})`; p9u.style.opacity = clamp((t - T.kurang + 0.1) / 0.25); p9n.style.opacity = clamp((t - T.terjual + 0.15) / 0.2); }
   // S10 CTA
   if (show(qq, t, T.kalau - 0.1, DURATION + 1, "block", 0.3, 0.1)) rise(qq, t, T.kalau - 0.1);
   if (show(jual, t, T.kalau + 0.3, DURATION + 1, "flex", 0.3, 0.1)) {
