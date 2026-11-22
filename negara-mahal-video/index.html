@@ -208,11 +208,11 @@ html.caps #world,html.caps #ui>*:not(#cap){visibility:hidden!important}
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="65.18" data-width="1080" data-height="1920" data-fps="30">
-  <div id="world" class="clip" data-start="0" data-duration="65.18" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+<div id="root" data-composition-id="main" data-start="0" data-duration="74.72" data-width="1080" data-height="1920" data-fps="30">
+  <div id="world" class="clip" data-start="0" data-duration="74.72" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
     <canvas id="gl" width="1080" height="1920"></canvas>
   </div>
-  <div id="ui" class="clip" data-start="0" data-duration="65.18" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
+  <div id="ui" class="clip" data-start="0" data-duration="74.72" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
     <div class="vig"></div>
     <div id="tintR"></div>
     <div id="tintG"></div>
@@ -223,8 +223,8 @@ html.caps #world,html.caps #ui>*:not(#cap){visibility:hidden!important}
     <div id="cap"></div>
     <div id="fade"></div>
   </div>
-  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="63.686531" data-track-index="5" data-volume="1"></audio>
-  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="65.18" data-track-index="6" data-volume="0.5"></audio>
+  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="73.247347" data-track-index="5" data-volume="1"></audio>
+  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="74.72" data-track-index="6" data-volume="0.5"></audio>
 </div>
 
 <script>
@@ -245,7 +245,12 @@ const scale = LAYER === 2 ? 0.25 : Number(vars.previewScale) || 1;
 await Promise.all(["400 40px Inter", "700 40px Inter", "800 40px Inter", "700 20px Mono", "italic 700 40px Serif", "700 40px Serif"].map((f) => document.fonts.load(f)));
 
 const W = 1080, H = 1920;
-const g = await createGlobe(document.getElementById("gl"), { W, H, base: "assets/", scale });
+const PATCHES = [
+  { src: "hi-tm.jpg", lon0: 50, lon1: 70, lat0: 33, lat1: 45 }, { src: "hi-is.jpg", lon0: -28, lon1: -10, lat0: 61, lat1: 68.5 },
+  { src: "hi-bs.jpg", lon0: -81, lon1: -71, lat0: 19, lat1: 28 }, { src: "hi-ch.jpg", lon0: 4, lon1: 12.5, lat0: 44.5, lat1: 49 },
+  { src: "hi-sg.jpg", lon0: 97, lon1: 110, lat0: -3.5, lat1: 8 },
+];
+const g = await createGlobe(document.getElementById("gl"), { W, H, base: "assets/", scale, patches: PATCHES });
 if (LAYER === 2) g.render = () => {};
 const topo = await (await fetch("assets/geo/countries-10m.json")).json();
 const countries = topojson.feature(topo, topo.objects.countries).features;
@@ -359,7 +364,7 @@ const SV = {
   ch: '<svg viewBox="0 0 20 20"><rect width="20" height="20" fill="#DA291C"/><rect x="8" y="4" width="4" height="12" fill="#fff"/><rect x="4" y="8" width="12" height="4" fill="#fff"/></svg>',
   my: '<svg viewBox="0 0 28 14">' + Array.from({ length: 14 }, (_, i) => `<rect y="${i}" width="28" height="1" fill="${i % 2 ? "#fff" : "#cc0001"}"/>`).join("") + '<rect width="14" height="8" fill="#010066"/><circle cx="5.5" cy="4" r="2.6" fill="#fc0"/><circle cx="6.3" cy="4" r="2.1" fill="#010066"/><circle cx="10" cy="4" r="1.4" fill="#fc0"/></svg>',
 };
-const src = mk(pinWrap, "src", "Source: Numbeo | 2026 Mid-Year | Cost of Living + Rent | Sovereign countries only");
+const src = mk(pinWrap, "src", "Source: Numbeo | 2026 Mid-Year | Cost of Living + Rent | Sovereign countries only<br><span style='opacity:.75'>Imej satelit: Esri, Maxar, Earthstar Geographics</span>");
 
 // hook A: receipt + price tags
 const rows = Array.from({ length: 17 }, (_, i) => `<rect x="40" y="${150 + i * 50}" width="${150 + (i * 53) % 130}" height="14" rx="4" fill="#c9c2b2"/><rect x="${330 - (i % 3) * 10}" y="${150 + i * 50}" width="${70 + (i % 3) * 10}" height="14" rx="4" fill="#9b937f"/>`).join("");

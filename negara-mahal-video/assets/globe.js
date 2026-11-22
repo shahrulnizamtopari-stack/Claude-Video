@@ -18,7 +18,7 @@ function loadTex(url) {
   return new Promise((res, rej) => new THREE.TextureLoader().load(url, (t) => { t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; res(t); }, undefined, rej));
 }
 
-export async function createGlobe(canvas, { W, H, base = "assets/", scale = 1 } = {}) {
+export async function createGlobe(canvas, { W, H, base = "assets/", scale = 1, patches = [] } = {}) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
   renderer.setPixelRatio(scale);
   renderer.setSize(W, H, false);
@@ -35,6 +35,14 @@ export async function createGlobe(canvas, { W, H, base = "assets/", scale = 1 } 
     fragmentShader: "uniform sampler2D map; varying vec2 vUv; void main(){ vec2 e=min(vUv,1.-vUv); float a=smoothstep(0.,0.06,e.x)*smoothstep(0.,0.08,e.y); vec4 c=texture2D(map,vUv); gl_FragColor=vec4(c.rgb,a);\n#include <colorspace_fragment>\n}",
   }));
   scene.add(hiMesh);
+  // extra sharp patches (Esri World Imagery, baked by tools/bake_patch.py), feathered like the SE Asia patch
+  const extra = await Promise.all(patches.map((q) => loadTex(base + "tex/" + q.src)));
+  patches.forEach((q, i) => {
+    const m = new THREE.Mesh(patchGeo(1.0004 + i * 0.00004, q.lon0, q.lon1, q.lat0, q.lat1, 200), new THREE.ShaderMaterial({
+      transparent: true, depthWrite: false, uniforms: { map: { value: extra[i] } },
+      vertexShader: hiMesh.material.vertexShader, fragmentShader: hiMesh.material.fragmentShader }));
+    m.renderOrder = 1 + i; scene.add(m);
+  });
 
   // Soft blue rim (atmosphere)
   const atm = new THREE.Mesh(new THREE.SphereGeometry(1.06, 96, 96), new THREE.ShaderMaterial({

@@ -99,7 +99,7 @@ for i in range(10): put(tick(), T["my2"] + 0.3 + (T["v22"] - T["my2"]) * i / 10,
 put(ping(880), T["v22"], 0.5)
 put(pop(), T["jadi"], 0.9); put(ping(990), T["komen"], 0.6)
 
-pk = np.max(np.abs(out)); out = out / pk * 0.85
+pk = np.max(np.abs(out)); out = np.tanh(out / pk * 2.4); out = out / np.max(np.abs(out)) * 0.9  # soft-clip so ticks/whooshes are not buried under the big hits
 with wave.open(os.path.join(ROOT, "assets", "sfx.wav"), "wb") as w:
     w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR)
     w.writeframes((out * 32767).astype(np.int16).tobytes())
