@@ -1,0 +1,5 @@
+renders/
+boards/snap*/
+node_modules/
+snaps/
+assets/tex/.tiles/
