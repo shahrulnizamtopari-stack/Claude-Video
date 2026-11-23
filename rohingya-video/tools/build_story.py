@@ -7,29 +7,25 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 d = json.load(open(os.path.join(ROOT, "assets", "transcript.json")))
 W = d if isinstance(d, list) else d["words"]
 
-FIX = {"berperang.": "berperang!", "serumpuh": "serumpun", "ini": "ni", "Aska": "Askar", "Bonyo.": "Borneo!", "ASEAN": "ASEAN!",
-       "mahkamah": "Mahkamah", "sipadan": "Sipadan", "licitan": "Ligitan", "Pandet": "Pendet", "Tarian": "tarian", "disunteng": "disunting",
-       "Channel.": "Channel.", "daripada": "daripada", "mim": "meme", "boycott": "boikot", "perselisehan.": "perselisihan?", "bermusuh.": "bermusuh…",
-       "Ganyang": "\u201cGanyang", "konfrontasi.": "Konfrontasi.", "ni,": "ni.", "114": "RM114", "bilion": "bilion"}
-JOIN = {("antara", "bangsa"): "Antarabangsa", ("Enigmatic", "Malaysia."): "\u201cEnigmatic Malaysia\u201d."}
+FIX = {"sejarah,": "sejarah…", "mahkamah": "Mahkamah", "dunia": "Dunia", "istihar": "isytihar", "jenosit.": "genosid.", "jenosit": "genosid",
+       "itu": "tu", "keadilan": "Keadilan", "6,": "6:", "herit": "heret", "Afrika,": "Afrika:", "inkar,": "ingkar,", "majlis": "Majlis",
+       "keselamatan": "Keselamatan", "kwasa": "kuasa", "Vito": "veto", "kemana?": "ke mana?", "arakan": "Arakan", "Ami.": "Army.", "UNH.": "UNHCR.",
+       "10": "10", "Masalahnya,": "Masalahnya…", "lalu,": "lalu,"}
+JOIN = {("mangsa", "nya"): "mangsanya", ("antara", "bangsa"): "Antarabangsa"}
 _W = []
 for w in W:
     if _W and (_W[-1]["text"], w["text"]) in JOIN:
         _W[-1] = {**_W[-1], "text": JOIN[(_W[-1]["text"], w["text"])], "end": w["end"]}; continue
     _W.append(dict(w))
 W = _W
-for k in range(len(W) - 1):
-    if W[k]["text"] == "ASEAN" and W[k + 1]["text"] == "daripada": W[k + 1] = {**W[k + 1], "text": "Daripada"}
-    if W[k]["text"] == "Ganyang": W[k + 1] = {**W[k + 1], "text": "Malaysia!\u201d"}
 # "Singapura." before "Dan" is a question
 for k in range(len(W) - 1):
     if W[k]["text"] == "Singapura." and W[k + 1]["text"] == "Dan": W[k]["text"] = "Singapura?"
 DROP = set()
 DISPLAY = {}
-KEY = {"berperang!", "bola,", "batik,", "makanan", "gaduh.", "bertelagah?", "1963.", "Sukarno", "British", "\u201cGanyang", "Malaysia!\u201d", "Konfrontasi.",
-       "bertempur", "Borneo!", "1966,", "berdamai.", "ASEAN!", "musuh", "rakan", "serantau.", "2002,", "Sipadan", "Ligitan", "milik", "Sulawesi",
-       "salah", "faham.", "Pendet", "Bali", "\u201cEnigmatic Malaysia\u201d.", "Discovery", "Channel.", "Bukannya", "meme", "boikot", "RM114", "bilion", "ringgit.",
-       "bermusuh…", "media", "sosial", "viral", "korang?"}
+KEY = {"pertama", "sejarah…", "genosid.", "Myanmar.", "Malaysia.", "9", "6:", "genosid", "Rohingya", "10", "ribu", "dibunuh.", "700", "Bangladesh.",
+       "Gambia.", "tak", "adil.", "ganti", "rugi", "polis.", "veto", "China.", "ke mana?", "Arakan", "Army.", "habis.", "120", "berhenti", "daftar",
+       "dihantar", "pulang", "bantu?", "hormat."}
 SOFT = {"China"}  # only key inside specific beats (handled below by index)
 
 words = []
@@ -85,15 +81,15 @@ def at(text, n=1):
     raise SystemExit(f"word not found: {text} #{n}")
 
 T = {
-  "pelik": at("pelik"), "perang": at("berperang"), "bola": at("bola"), "batik": at("batik"), "makanan": at("makanan"), "kenapa": at("Kenapa"),
-  "semua": at("Semuanya"), "y63": at("1963"), "sukarno": at("Sukarno"), "british": at("British"), "ganyang": at("Ganyang"), "konf": at("Konfrontasi"),
-  "askar": at("Askar"), "borneo": at("Borneo"), "dengar": at("dengar"), "y66": at("1966"), "damai": at("berdamai"), "setahun": at("setahun"),
-  "asean": at("ASEAN"), "musuh": at("musuh"), "serantau": at("serantau"), "diuji": at("diuji"), "y02": at("2002"), "mahkamah": at("Mahkamah"),
-  "sipadan": at("Sipadan"), "milik": at("milik"), "namun": at("Namun"), "sulawesi": at("Sulawesi"), "pelik2": at("pelik", 2), "salah": at("salah"),
-  "y09": at("2009"), "pendet": at("Pendet"), "bali": at("Bali"), "enigmatic": at("Enigmatic Malaysia"), "ramai": at("Ramai"), "rupanya": at("Rupanya"),
-  "discovery": at("Discovery"), "bukannya": at("Bukannya"), "masuk": at("Masuk"), "y26": at("2026"), "meme": at("meme"), "boikot": at("boikot"),
-  "tapi4": at("Tapi", 4), "y25": at("2025"), "rm114": at("RM114"), "jadi": at("Jadi"), "atau": at("Atau"), "kalau": at("Kalau"), "viral": at("viral"),
-  "akhir": at("pendapat") - 0.6, "korang": at("korang"),
+  "pertama": at("pertama"), "genosid1": at("genosid"), "myanmar1": at("Myanmar"), "mangsa": at("mangsanya"), "malaysia1": at("Malaysia"),
+  "nov": at("November"), "keadilan": at("Keadilan"), "undi": at("undi"), "genosid2": at("genosid", 2), "rakhine": at("Rakhine"),
+  "sekurang": at("Sekurang-kurangnya"), "dibunuh": at("dibunuh"), "lebih": at("Lebih"), "bangladesh": at("Bangladesh"),
+  "tapi": at("Tapi"), "amerika": at("Amerika"), "bukan2": at("bukan", 2), "afrika": at("Afrika"), "gambia": at("Gambia"),
+  "mmkata": at("kata"), "china2": at("China", 2), "arahkan": at("arahkan"), "ganti": at("ganti"), "pulang1": at("pulang"),
+  "masalah": at("Masalahnya"), "polis": at("polis"), "kalau": at("Kalau"), "majlis": at("Majlis"), "veto": at("veto"), "china3": at("China", 3),
+  "pulangke": at("pulang", 2), "sebahagian": at("Sebahagian"), "arakan": at("Arakan"), "perang": at("Perang"), "hormati": at("hormati"),
+  "n120": at("120"), "menurut": at("menurut"), "berhenti": at("berhenti"), "jadi": at("Jadi"), "hantar": at("dihantar"), "bantu": at("bantu"),
+  "komen": at("Komen"),
 }
 END_VO = words[-1]["e"]
 T["end_vo"] = END_VO
