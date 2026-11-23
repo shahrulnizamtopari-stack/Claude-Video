@@ -548,7 +548,6 @@ function renderAt(t) {
   if (show(tgBn8, t, T.tanpa - 0.1, e8)) place(tgBn8, 4.75, 114.7, `translate(-50%,-50%) scale(${pop(clamp((t - T.tanpa) / 0.35))})`);
   if (show(ind, t, T.merdeka - 0.1, e8)) ind.style.transform = `translateX(${300 * (1 - eout((t - T.merdeka + 0.1) / 0.4))}px)`;
   // S9
-  show(hyp, t, T.kalau, DURATION + 1, "block", 0.3, 0.1);
   if (show(qq, t, T.kalau - 0.1, DURATION + 1, "block", 0.3, 0.1)) rise(qq, t, T.kalau - 0.1);
   show(k1, t, T.berubah - 0.2, DURATION + 1, "block", 0.3, 0.1);
   if (show(k2, t, T.komen - 0.1, DURATION + 1, "block", 0.25, 0.1)) k2.style.transform = `translateY(${12 * Math.abs(Math.sin(t * 5))}px)`;
