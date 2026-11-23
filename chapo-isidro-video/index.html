@@ -278,6 +278,10 @@ html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,h
 #redt{background:radial-gradient(ellipse at 50% 50%,rgba(255,30,30,0) 40%,rgba(255,30,30,.5) 100%)}
 #dimc{position:absolute;inset:0;background:#05070b;opacity:0;pointer-events:none}
 #svgfx{position:absolute;inset:0;pointer-events:none}
+.phw{position:absolute;left:150px;top:200px;width:780px;height:440px;border-radius:18px;overflow:hidden;border:3px solid rgba(255,255,255,.9);box-shadow:0 30px 80px rgba(0,0,0,.75);clip-path:inset(0 round 18px);display:none;background:#000}
+.phw img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.phw i{position:absolute;right:10px;bottom:8px;font:700 13px Mono;font-style:normal;color:#fff;background:rgba(0,0,0,.6);padding:3px 8px;border-radius:3px;letter-spacing:1px}
+.phw b{position:absolute;left:14px;top:12px;font:700 16px Mono;color:#fff;background:rgba(0,0,0,.55);padding:4px 10px;border-radius:4px;letter-spacing:3px}
 html.caps #world,html.caps #ui>*:not(#cap){visibility:hidden!important}
 </style>
 </head>
@@ -319,7 +323,7 @@ if (LAYER === 2) document.documentElement.classList.add("caps");
 const scale = LAYER === 2 ? 0.25 : Number(vars.previewScale) || 1;
 await Promise.all(["400 40px Inter", "700 40px Inter", "800 40px Inter", "700 20px Mono", "italic 700 40px Serif"].map((f) => document.fonts.load(f)));
 const W = 1080, H = 1920;
-const g = await createGlobe(document.getElementById("gl"), { W, H, base: "assets/", scale, patches: [{ src: "hi-sin.jpg", lon0: -110.5, lon1: -105.5, lat0: 23, lat1: 27.5 }] });
+const g = await createGlobe(document.getElementById("gl"), { W, H, base: "assets/", scale, patches: [{ src: "hi-sin.jpg", lon0: -110.5, lon1: -105.5, lat0: 23, lat1: 27.5 }, { src: "hi-sin2.jpg", lon0: -109.3, lon1: -107.0, lat0: 24.5, lat1: 26.2 }, { src: "hi-gua.jpg", lon0: -108.75, lon1: -108.2, lat0: 25.35, lat1: 25.78 }] });
 if (LAYER === 2) g.render = () => {};
 const topo = await (await fetch("assets/geo/countries-10m.json")).json();
 const countries = topojson.feature(topo, topo.objects.countries).features;
@@ -357,10 +361,10 @@ mxFlag(); const mxL = g.layers["mx"]; mxL.mesh.material.opacity = 0;
 const K = [
   [0, 25.4, -107.9, 0.22, 18, 0.18], [T.terbakar, 25.2, -108.15, 0.13, 18, 0.18], [T.ini1 - 0.2, 25.2, -108.2, 0.125, 18, 0.18],
   [T.ini1 + 0.6, 24, -102, 2.2, 6, 0.1], [T.nov - 0.1, 24, -102.3, 2.15, 6, 0.1],
-  [T.fausto - 0.4, 25.5, -108.47, 0.06, 18, 0.22], [T.bukan2 - 0.3, 25.5, -108.47, 0.058, 18, 0.22],
+  [T.nov + 0.5, 25.56, -108.469, 0.0085, 0, 0.06], [T.bukan2 - 0.3, 25.56, -108.469, 0.0075, 0, 0.06],
   [T.bukan2 + 0.5, 24, -102, 2.2, 6, 0.1], [T.sepuluh - 0.3, 24.2, -101.8, 2.2, 6, 0.1],
   [T.sepuluh + 0.4, 30, -100, 2.6, 6, 0.1], [T.operasi - 0.3, 30.2, -100.2, 2.55, 6, 0.1],
-  [T.operasi + 0.7, 25.5, -108.47, 0.08, 18, 0.2], [T.walaupun - 0.3, 25.5, -108.45, 0.078, 18, 0.2],
+  [T.operasi + 0.7, 25.56, -108.469, 0.012, 0, 0.06], [T.walaupun - 0.3, 25.56, -108.469, 0.011, 0, 0.06],
   [T.walaupun + 0.4, 25.15, -108.1, 0.2, 14, 0.1], [T.jadi - 0.2, 25.15, -108.12, 0.2, 14, 0.1],
   [T.jadi + 0.5, 25.15, -108.1, 0.22, 12, 0.06], [DURATION, 25.15, -108.15, 0.23, 12, 0.06],
 ];
@@ -390,7 +394,9 @@ const t1 = mk(cardWrap, "ttl", `<div class="a">BAYANGKAN…</div><div class="b">
 const pSin = locPin("SINALOA", "", true);
 const st2 = mk(cardWrap, "stamp2 red", "BUKAN FILEM<small>INI BERLAKU DI MEXICO</small>"); st2.style.top = "1050px";
 const pGua = locPin("GUASAVE, SINALOA", "20 NOV 2026 · OPERASI TENTERA", true);
-const c3 = mk(cardWrap, "pc2", `<div class="sil">${silSvg}</div><b>FAUSTO ISIDRO MEZA FLORES</b><i>"EL CHAPO ISIDRO"<br>DITANGKAP · DITUDUH DI AS</i>`); c3.style.left = "330px"; c3.style.top = "900px";
+const phw = mk(cardWrap, "phw", `<img src="assets/photos/guasave-paisaje.jpg"><img src="assets/photos/guasave-street.jpg" style="opacity:0"><b>GUASAVE · SINALOA</b><i>FOTO: DUAR SRS (CC0)</i>`);
+const [ph1, ph2] = phw.querySelectorAll("img"), phc = phw.querySelector("i");
+const c3 = mk(cardWrap, "pc2", `<div class="sil">${silSvg}</div><b>FAUSTO ISIDRO MEZA FLORES</b><i>"EL CHAPO ISIDRO"<br>DITANGKAP · DITUDUH DI AS</i>`); c3.style.left = "330px"; c3.style.top = "1080px";
 const t4 = mk(cardWrap, "ttl", `<div class="a">JANGAN KELIRU</div><div class="b" style="font-size:84px">2 "EL CHAPO"</div>`); t4.style.top = "300px";
 const c4a = mk(cardWrap, "pc2", `<div class="mk" style="background:#b3121f">✕</div><div class="sil">${silSvg}</div><b>JOAQUÍN "EL CHAPO" GUZMÁN</b><i>YANG TERKENAL<br>DIPENJARA DI AS</i>`); c4a.style.cssText += ";left:70px;top:620px;width:440px";
 const c4b = mk(cardWrap, "pc2", `<div class="mk" style="background:#14834d">✓</div><div class="sil">${silSvg}</div><b>FAUSTO ISIDRO MEZA FLORES</b><i>"EL CHAPO ISIDRO"<br>DITANGKAP 20 NOV 2026</i>`); c4b.style.cssText += ";left:570px;top:620px;width:440px;box-shadow:0 0 0 4px #ff8a3d,0 24px 60px rgba(0,0,0,.6)";
@@ -418,7 +424,7 @@ const stampIn = (el, t, a) => { el.style.transform = `translateX(-50%) rotate(-7
 
 function renderAt(t) {
   const v = cam(t); g.setView(v);
-  g.setPatchOp(0, clamp((0.5 - v.dist) / 0.2));
+  g.setPatchOp(0, clamp((0.5 - v.dist) / 0.2)); g.setPatchOp(1, clamp((0.16 - v.dist) / 0.03)); g.setPatchOp(2, clamp((0.04 - v.dist) / 0.015));
   mxL.mesh.material.opacity = win(t, T.mexico1 - 0.3, T.nov, 0.4, 0.4) * 0.95;
   g.render();
   // night + red tint
@@ -443,6 +449,9 @@ function renderAt(t) {
   const e3 = T.bukan2 - 0.2;
   if (show(pGua, t, T.nov + 0.6, e3, "flex")) place(pGua, 25.57, -108.47);
   if (show(c3, t, T.fausto - 0.1, e3)) rise(c3, t, T.fausto - 0.1, 70);
+  if (show(phw, t, T.nov + 0.3, e3, "block", 0.3, 0.3)) { const u = clamp((t - T.nov - 0.3) / (e3 - T.nov)); const sw = clamp((t - T.fausto - 0.6) / 0.4);
+    ph1.style.transform = `scale(${1.05 + 0.08 * u})`; ph2.style.opacity = sw; ph2.style.transform = `scale(${1.04 + 0.06 * sw})`;
+    phc.textContent = sw > 0.5 ? "FOTO: DANIEL RAMIREZ (CC BY 2.0)" : "FOTO: DUAR SRS (CC0)"; phw.style.transform = `translateY(${-40 * (1 - eout((t - T.nov - 0.3) / 0.4))}px)`; }
   // S4
   const e4 = T.sepuluh - 0.3;
   dimc.style.opacity = 0.55 * Math.max(win(t, T.bukan2, e4, 0.3, 0.3), win(t, T.jadi, DURATION + 1, 0.4, 0.1));
