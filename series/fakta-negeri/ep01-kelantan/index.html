@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ms" data-composition-variables='[{"id":"previewScale","type":"number","label":"3D render scale (0.5 for previews)","default":1,"min":0.25,"max":1,"step":0.25},{"id":"fx","type":"string","label":"effects override (JSON, testing only)","default":""}]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/lib/gsap.min.js"></script>
+    <script type="importmap">{ "imports": { "three": "./assets/lib/three.module.min.js" } }</script>
+    <style>
+      @font-face { font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 600; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 700; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 800; src: url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #070b14; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "Inter", sans-serif; }
+      #world { position: absolute; inset: 0; }
+      #world canvas { width: 1080px; height: 1920px; display: block; }
+      #ui { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+      .fade-top { position: absolute; left: 0; right: 0; top: 0; height: 520px; background: linear-gradient(rgba(7,11,20,0.85) 0%, rgba(7,11,20,0.45) 45%, rgba(7,11,20,0) 100%); }
+      .fade-bot { position: absolute; left: 0; right: 0; bottom: 0; height: 420px; background: linear-gradient(rgba(7,11,20,0), rgba(7,11,20,0.75) 70%, #070b14); }
+      #badge { position: absolute; left: 50%; top: 92px; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; padding: 9px 20px; border-radius: 30px;
+        background: rgba(10,16,30,0.7); border: 2px solid rgba(255,90,42,0.55); font-weight: 800; font-size: 24px; letter-spacing: 4px; color: #f4efe6; white-space: nowrap; }
+      #badge i { width: 12px; height: 12px; border-radius: 50%; background: #ff5a2a; box-shadow: 0 0 12px #ff5a2a; }
+      #title { position: absolute; left: 60px; right: 60px; top: 168px; text-align: center; font-weight: 700; font-size: 54px; letter-spacing: -1.2px; color: #f4efe6; line-height: 1.15; text-shadow: 0 2px 20px rgba(0,0,0,0.6); }
+      #title em { font-style: normal; color: #ff7a3a; }
+      .lbl { position: absolute; height: 0; }
+      .lbl .pt { position: absolute; left: -8px; top: -8px; width: 16px; height: 16px; border-radius: 50%; background: #ff5a2a; border: 3px solid #070b14; box-shadow: 0 0 14px #ff5a2a; }
+      .lbl .ln { position: absolute; top: -1.5px; height: 3px; background: #f4efe6; }
+      .lbl .tx { position: absolute; top: -32px; padding: 7px 14px; font-weight: 800; font-size: 26px; letter-spacing: 3px; color: #070b14; background: rgba(244,239,230,0.95); border-bottom: 4px solid #ff5a2a; white-space: nowrap; }
+      #note { position: absolute; left: 40px; top: 1460px; max-width: 1000px; padding: 7px 14px; border-radius: 8px; background: rgba(10,16,30,0.72); font-weight: 500; font-size: 22px; color: #aab4c8; }
+      #stamp { position: absolute; left: 50%; top: 700px; transform: translate(-50%, -50%) rotate(-5deg); padding: 18px 40px; border: 9px solid #ff4a2a; border-radius: 16px; color: #ff5a2a;
+        font-weight: 800; font-size: 104px; letter-spacing: 4px; background: rgba(7,11,20,0.55); white-space: nowrap; text-shadow: 0 0 30px rgba(255,74,42,0.5); }
+      #stamp small { display: block; text-align: center; font-size: 30px; letter-spacing: 10px; color: #f4efe6; margin-top: 4px; }
+      .card { position: absolute; left: 50px; right: 50px; background: rgba(10,16,30,0.88); border: 2px solid rgba(255,90,42,0.4); border-radius: 26px; padding: 26px 30px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(255,90,42,0.12); color: #f4efe6; }
+      .card .k { font-weight: 800; font-size: 22px; letter-spacing: 3px; color: #ff7a3a; margin-bottom: 14px; }
+      #clocks { top: 930px; } #clocks .row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+      #clocks .c { background: rgba(255,255,255,0.05); border-radius: 18px; padding: 16px 18px; }
+      #clocks .c b { display: block; font-weight: 800; font-size: 76px; letter-spacing: -2px; font-variant-numeric: tabular-nums; line-height: 1; }
+      #clocks .c span { display: block; font-weight: 700; font-size: 22px; letter-spacing: 2px; color: #aab4c8; margin-top: 8px; }
+      #clocks .c em { font-style: normal; display: block; font-weight: 800; font-size: 26px; letter-spacing: 2px; margin-bottom: 8px; }
+      #clocks #c0 { border: 2px solid #ff5a2a; } #clocks #c0 em { color: #ff7a3a; } #clocks #c1 em { color: #8fb0e8; }
+      #clocks .gap { margin-top: 18px; text-align: center; font-weight: 800; font-size: 34px; color: #ffd08a; }
+      #days { top: 960px; } #days .big { font-weight: 800; font-size: 120px; letter-spacing: -4px; line-height: 1; font-variant-numeric: tabular-nums; }
+      #days .big small { font-size: 40px; letter-spacing: 0; color: #aab4c8; margin-left: 12px; }
+      #days .bar { margin-top: 18px; height: 14px; border-radius: 7px; background: rgba(255,255,255,0.1); overflow: hidden; } #days .bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ff7a3a, #ff2a10); box-shadow: 0 0 18px #ff4a2a; }
+      #days .barl { display: flex; justify-content: space-between; margin-top: 10px; font-weight: 700; font-size: 22px; color: #aab4c8; }
+      #cta { position: absolute; left: 0; right: 0; top: 1140px; text-align: center; }
+      #cta div { display: inline-block; padding: 18px 34px; border-radius: 40px; background: rgba(244,239,230,0.95); color: #070b14; font-weight: 800; font-size: 40px; }
+      #cta div em { font-style: normal; color: #e0452b; }
+      #captions-host { z-index: 10; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1080" data-height="1920" data-fps="30">
+      <div id="world" class="clip" data-start="0" data-duration="60" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+        <canvas id="world-canvas" width="1080" height="1920"></canvas>
+      </div>
+      <div id="ui" class="clip" data-start="0" data-duration="60" data-track-index="2" data-track-kind="graphics" data-layout-ignore>
+        <div class="fade-top"></div><div class="fade-bot"></div>
+        <div id="badge"><i></i>FAKTA NEGERI · #1</div>
+        <div id="title"></div>
+        <div id="labels"></div>
+        <div id="note"></div>
+        <div id="stamp">8 DIS 1941<small>KOTA BHARU · KELANTAN</small></div>
+        <div id="clocks" class="card"><div class="k">MASA SERANGAN · WAKTU TEMPATAN</div>
+          <div class="row"><div class="c" id="c0"><em>KOTA BHARU</em><b id="ck0">00:25</b><span>8 DIS 1941</span></div><div class="c" id="c1"><em>PEARL HARBOR</em><b id="ck1">07:48</b><span>7 DIS 1941 (HAWAII)</span></div></div>
+          <div class="gap" id="gap">Kelantan diserang ≈ 1½ jam lebih awal</div></div>
+        <div id="days" class="card"><div class="k">JEPUN MARA KE SELATAN</div>
+          <div class="big"><span id="dn">0</span><small>hari</small></div>
+          <div class="bar"><i id="dbar"></i></div><div class="barl"><span>8 Dis 1941 · Kota Bharu</span><span>15 Feb 1942 · Singapura</span></div></div>
+        <div id="cta"><div>Negeri mana kita <em>bongkar</em> lepas ni? ↓</div></div>
+      </div>
+      <!-- AUDIO: voiceover + sfx tracks are added once the voiceover MP3 arrives -->
+      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="60"
+        data-track-index="3" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+    </div>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      let resolveWorld;
+      window.__hf.buildReady["world"] = new Promise((r) => (resolveWorld = r));
+    </script>
+    <script type="module">
+      import { createWorld } from "./assets/world.js";
+      import { warp } from "./assets/timing.js";
+      const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
+      const scale = Number(vars.previewScale) || 1;
+      await Promise.all(["500", "600", "700", "800"].map((w) => document.fonts.load(`${w} 40px "Inter"`)));
+      let fxOpts = {}; try { fxOpts = vars.fx ? JSON.parse(vars.fx) : {}; } catch (e) {}
+      const world = createWorld(document.getElementById("world-canvas"), 1080, 1920, scale, fxOpts);
+
+      const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+      const ss = (e0, e1, x) => { const u = clamp((x - e0) / (e1 - e0)); return u * u * (3 - 2 * u); };
+      const win = (t, t0, t1, fin = 0.3, fout = 0.3) => (t0 <= 0 ? 1 : ss(t0, t0 + fin, t)) * (t1 >= 60 ? 1 : 1 - ss(t1 - fout, t1, t));
+
+      const HOOK = "Jepun serang <em>Kelantan</em> dulu?!";
+      const CH = [
+        [0, 7.2, HOOK], [8.4, 15.0, "Malam <em>8 Disember 1941</em>"], [15.0, 18.2, "Ribuan tentera <em>mendarat</em>"], [18.2, 25.6, "Pantai jadi <em>medan perang</em>"],
+        [28.0, 37.6, "<em>Kelantan</em> dulu, baru <em>Pearl Harbor</em>"], [37.6, 46.2, "Mara sampai <em>Singapura</em>"], [46.2, 53.6, "Pantai yang nampak <em>biasa</em>"], [53.6, 58.8, "Korang <em>tahu tak</em>?"], [58.8, 60, HOOK],
+      ];
+      const NOTES = [
+        [11.4, 18.0, "Pendaratan bermula sekitar 00:25 waktu Malaya, 8 Dis 1941 · Pantai Sabak & Badang, Kota Bharu"],
+        [21.4, 25.4, "Pesawat Lockheed Hudson, Tentera Udara Diraja Australia (RAAF), dari lapangan terbang Kota Bharu"],
+        [32.0, 37.4, "00:25 waktu Malaya (8 Dis) = 16:55 GMT · 07:48 waktu Hawaii (7 Dis) = 18:18 GMT"],
+        [41.2, 46.0, "Singapura menyerah pada 15 Februari 1942, 70 hari selepas pendaratan di Kota Bharu"],
+      ];
+      const LABELS = [
+        ["kelantan", "KELANTAN", 4.2, 7.6, 1],
+        ["ships", "KAPAL PERANG JEPUN", 10.6, 14.8, -1], ["boats", "BOT PENDARAT", 15.6, 18.0, 1],
+        ["pill", "KUBU PERTAHANAN", 18.6, 21.2, 1], ["hudson", "HUDSON · RAAF", 21.8, 23.8, 1],
+        ["kbG", "KELANTAN", 28.8, 37.4, 1], ["phG", "PEARL HARBOR", 31.4, 37.4, -1],
+        ["sg", "SINGAPURA", 45.4, 46.1, -1], ["pillDay", "SISA KUBU · MASIH ADA", 47.0, 52.8, 1],
+      ];
+      const $ = (s) => document.querySelector(s);
+      const titleEl = $("#title"), noteEl = $("#note"), labelsEl = $("#labels"), cta = $("#cta"), stamp = $("#stamp");
+      const lblEls = LABELS.map(() => { const d = document.createElement("div"); d.className = "lbl"; d.innerHTML = '<span class="ln"></span><span class="pt"></span><span class="tx"></span>'; labelsEl.appendChild(d); return d; });
+      function overlay(o, t) {
+        const ch = CH.find(([a, b]) => t >= a && t < b);
+        const ta = ch ? win(t, ch[0], ch[1], 0.35, 0.3) : 0;
+        if (ch && titleEl.innerHTML !== ch[2]) titleEl.innerHTML = ch[2];
+        titleEl.style.opacity = ta; titleEl.style.filter = `blur(${(1 - ta) * 10}px)`; titleEl.style.transform = `scale(${0.96 + 0.04 * ta})`;
+        LABELS.forEach(([k, txt, t0, t1, side], i) => {
+          const el = lblEls[i], p = o.anchors[k]; const la = p && p[2] ? win(t, t0, t1, 0.25, 0.25) : 0;
+          el.style.opacity = la; if (la <= 0) return;
+          el.style.left = p[0] + "px"; el.style.top = p[1] + "px";
+          const L = 110 * ss(t0, t0 + 0.35, t);
+          const ln = el.querySelector(".ln"), tx = el.querySelector(".tx");
+          ln.style.width = L + "px"; ln.style.left = side > 0 ? "0px" : -L + "px";
+          if (tx.textContent !== txt) tx.textContent = txt;
+          tx.style.left = side > 0 ? L + "px" : "auto"; tx.style.right = side > 0 ? "auto" : L + "px";
+        });
+        const n = NOTES.find(([a, b]) => t >= a && t < b);
+        noteEl.style.opacity = n ? win(t, n[0], n[1]) : 0; if (n && noteEl.textContent !== n[2]) noteEl.textContent = n[2];
+        // date stamp slams in on "8 Disember 1941"
+        const sa = win(t, 7.3, 10.2, 0.12, 0.4); const sp = ss(7.3, 7.5, t);
+        stamp.style.opacity = sa; stamp.style.transform = `translate(-50%, -50%) rotate(-5deg) scale(${1.5 - 0.5 * sp})`;
+        // clocks
+        const ca = win(t, 31.8, 37.4, 0.35, 0.35); $("#clocks").style.opacity = ca; $("#clocks").style.transform = `translateY(${(1 - ss(31.8, 32.2, t)) * 30}px)`;
+        $("#c1").style.opacity = ss(32.6, 33.0, t); $("#gap").style.opacity = ss(33.6, 34.0, t);
+        // day counter
+        const da = win(t, 41.0, 46.1, 0.35, 0.3); $("#days").style.opacity = da; $("#days").style.transform = `translateY(${(1 - ss(41.0, 41.4, t)) * 30}px)`;
+        const dk = ss(39.0, 45.4, t); const dn = Math.round(70 * dk); $("#dn").textContent = dn; $("#dbar").style.width = 100 * dk + "%";
+        const ctaA = win(t, 56.0, 59.4, 0.35, 0.5); cta.style.opacity = ctaA; cta.style.transform = `translateY(${(1 - ss(56.0, 56.4, t)) * 24}px)`;
+        $("#badge").style.opacity = 1;
+      }
+      function renderAt(t) { const ct = warp(t); const o = world.render(ct); overlay(o, ct); }
+      window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+      renderAt(0);
+      resolveWorld();
+    </script>
+  </body>
+</html>
