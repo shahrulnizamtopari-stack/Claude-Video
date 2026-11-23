@@ -7,12 +7,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 d = json.load(open(os.path.join(ROOT, "assets", "transcript.json")))
 W = d if isinstance(d, list) else d["words"]
 
-FIX = {"duit.": "duit!", "Abdurrahman": "Abdul Rahman", "Serawak": "Sarawak,", "Saifudin": "Saifuddien", "ke-3": "Ketiga",
-       "terbesar,": "terbesar?", "minyak.": "Minyak!", "dulu,": "dulu!", "sultan": "Sultan", "majlis": "Majlis", "raja-raja": "Raja-Raja",
-       "Desember": "Disember", "pemberontakkan": "pemberontakan", "perjanjian": "Perjanjian", "tandatangan.": "tandatangan!",
-       "Comment": "Komen", "ini": "ni", "1961,": "1961,"}
+FIX = {"film": "filem", "Narcos,": "Narcos.", "Mexico.": "Mexico!", "bandar.": "bandar!", "maud": "maut,", "angkota": "anggota",
+       "tentera.": "tentera!", "peributan": "perebutan", "ketangkap": "ke tangkap", "Koment": "Komen", "dolar,": "dolar!",
+       "dadah": "dadah?", "Flores": "Flores,"}
 # ASR split words
-JOIN = {("serta", "i"): "sertai"}
+JOIN = {}
 _W = []
 for w in W:
     if _W and (_W[-1]["text"], w["text"]) in JOIN:
@@ -21,9 +20,8 @@ for w in W:
 W = _W
 DROP = set()
 DISPLAY = {}
-KEY = {"Malaysia?", "minyak", "duit!", "1961,", "Tunku", "Abdul Rahman", "setuju.", "Minyak!", "kongsi",
-       "kawal", "sendiri.", "tunggu", "dulu!", "Majlis", "Raja-Raja", "dipertikaikan.", "1962,", "pemberontakan", "British.", "9", "Julai",
-       "1963,", "Brunei", "tak", "tandatangan!", "tanpa", "1984.", "sertai", "berubah?", "Komen"}
+KEY = {"terbakar,", "dibakar", "tembakan", "Narcos.", "Mexico!", "20", "November", "El", "Chapo", "Isidro.", "terkenal", "FBI.",
+       "5", "juta", "dolar!", "berdarah.", "11", "maut,", "4", "tentera!", "lumpuh.", "perebutan", "kuasa", "kartel", "perang", "Komen"}
 SOFT = {"China"}  # only key inside specific beats (handled below by index)
 
 words = []
@@ -33,8 +31,7 @@ for i, w in enumerate(W):
         words[-1]["e"] = w["end"]; continue
     t = FIX.get(t, t); t = DISPLAY.get(t, t)
     nxt = W[i + 1]["text"] if i + 1 < len(W) else ""
-    if t == "Malaysia." and i < 12: t = "Malaysia?"
-    if t == "Malaysia," and nxt == "Tanah": t = "Malaysia:"
+    if t == "tapi" and nxt == "operasi": t = "Tapi"
     if words and re.search(r"[.?!]$", words[-1]["t"]) and t[:1].islower(): t = t[:1].upper() + t[1:]
     if t == "Nombor" and words and not re.search(r"[.?!:,]$", words[-1]["t"]): t = "nombor"
     if t == "tapi" and words and re.search(r"[.?!]$", words[-1]["t"]): t = "Tapi"
@@ -85,16 +82,13 @@ def at(text, n=1):
     raise SystemExit(f"word not found: {text} #{n}")
 
 T = {
-  "kau": at("Kau"), "brunei1": at("Brunei"), "malaysia1": at("Malaysia"), "tapi1": at("Tapi"), "minyak1": at("minyak"), "sebab": at("sebabnya"),
-  "duit": at("duit"), "tahun": at("Tahun"), "y1961": at("1961"), "tunku": at("Tunku"), "cadang": at("cadangkan"), "tanah": at("Tanah"),
-  "singapura": at("Singapura"), "sabah": at("Sabah"), "sarawak": at("Sarawak"), "brunei2": at("Brunei", 2), "sultan": at("Sultan"),
-  "setuju": at("setuju"), "masalah": at("Masalah"), "minyak2": at("minyak", 2), "persekutuan": at("Persekutuan"), "kongsi": at("kongsi"),
-  "kawal": at("kawal"), "dan2": at("Dan", 3), "tunggu": at("tunggu"), "kedudukan": at("kedudukan"), "majlis": at("Majlis"),
-  "dipertikaikan": at("dipertikaikan"), "disember": at("Disember"), "y1962": at("1962"), "pemberontakan": at("pemberontakan"),
-  "menentang": at("menentang"), "dipatahkan": at("dipatahkan"), "british": at("British"), "jul9": at("9"), "y1963": at("1963"),
-  "perjanjian": at("Perjanjian"), "ditandatangani": at("ditandatangani"), "turut": at("turut"), "terbentuk": at("terbentuk"),
-  "tanpa": at("tanpa"), "merdeka": at("merdeka"), "y1984": at("1984"), "kalau": at("Kalau"), "sertai": at("sertai"), "berubah": at("berubah"),
-  "komen": at("Komen"),
+  "tentera1": at("tentera"), "terbakar": at("terbakar"), "lori": at("lori"), "tembakan": at("tembakan"), "bandar": at("bandar"),
+  "ini1": at("Ini"), "narcos": at("Narcos"), "mexico1": at("Mexico"), "nov": at("November"), "fausto": at("Fausto"), "chapo1": at("Chapo"),
+  "bukan2": at("Bukan", 2), "terkenal": at("terkenal"), "sepuluh": at("sepuluh"), "fbi": at("FBI"), "amerika": at("Amerika"),
+  "ganjaran": at("ganjaran"), "juta": at("juta"), "operasi": at("operasi"), "berdarah": at("berdarah"), "n11": at("11"),
+  "tentera3": at("tentera", 3), "menakutkan": at("menakutkan"), "walaupun": at("Walaupun"), "ditangkap": at("ditangkap"),
+  "rangkaian": at("rangkaian"), "lumpuh": at("lumpuh"), "pakar": at("Pakar"), "perebutan": at("perebutan"), "jadi": at("Jadi", 2),
+  "kartel": at("kartel"), "perang": at("perang"), "komen": at("Komen"),
 }
 END_VO = words[-1]["e"]
 T["end_vo"] = END_VO
