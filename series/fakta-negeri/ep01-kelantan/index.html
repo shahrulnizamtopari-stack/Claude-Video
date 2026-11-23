@@ -59,6 +59,7 @@
       .photo img { position: absolute; left: 50%; top: 50%; width: 100%; height: 100%; object-fit: cover; transform: translate(-50%, -50%); filter: grayscale(1) sepia(0.25) contrast(1.08); }
       .photo .cap { margin-top: 14px; font-weight: 800; font-size: 30px; color: #1a1c22; line-height: 1.2; }
       .photo .cap span { display: block; margin-top: 6px; font-weight: 600; font-size: 20px; color: #5a5f6c; letter-spacing: 0.5px; }
+      .photo.sm { left: 170px; right: 170px; top: 420px; } .photo.sm .im { height: 500px; }
       .photo .tag { position: absolute; left: 30px; top: -22px; padding: 6px 16px; background: #ff4a2a; color: #fff; font-weight: 800; font-size: 22px; letter-spacing: 3px; border-radius: 4px; }
       #cta { position: absolute; left: 0; right: 0; top: 1140px; text-align: center; }
       #cta div { display: inline-block; padding: 18px 34px; border-radius: 40px; background: rgba(244,239,230,0.96); color: #070b14; font-weight: 800; font-size: 40px; }
@@ -68,20 +69,20 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1080" data-height="1920" data-fps="30">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="62.167" data-width="1080" data-height="1920" data-fps="30">
       <!-- satellite basemaps (Esri World Imagery, baked with tools/bake_all.sh) -->
-      <video id="v-dive" class="clip bgv" src="assets/maps/dive.mp4" muted playsinline data-start="0" data-duration="7.6" data-track-index="0"></video>
-      <div id="p-dive" class="clip plate" data-start="7.6" data-duration="0.8" data-track-index="0"><img src="assets/maps/dive-last.jpg" alt="" /></div>
-      <video id="v-globe" class="clip bgv" src="assets/maps/globe.mp4" muted playsinline data-start="28" data-duration="9.6" data-track-index="0"></video>
-      <div id="p-march" class="clip plate" data-start="37.6" data-duration="8.6" data-track-index="0"><div id="marchZ" style="position:absolute;inset:0;transform-origin:540px 960px"><img src="assets/maps/march.jpg" alt="" /><svg id="svg-march" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div></div>
-      <video id="v-sabak" class="clip bgv" src="assets/maps/sabak.mp4" muted playsinline data-start="46.2" data-duration="7.4" data-track-index="0"></video>
-      <div id="p-outro" class="clip plate" data-start="53.6" data-duration="3.8" data-track-index="0"><div id="outroZ" style="position:absolute;inset:0;transform-origin:540px 960px"><img src="assets/maps/outro.jpg" alt="" /><svg id="svg-outro" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div></div>
-      <video id="v-out" class="clip bgv" src="assets/maps/out.mp4" muted playsinline data-start="57.4" data-duration="2.6" data-track-index="0"></video>
-      <div id="world" class="clip" data-start="0" data-duration="60" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
+      <video id="v-dive" class="clip bgv" src="assets/maps/dive.mp4" muted playsinline data-start="0.0" data-duration="6.633" data-track-index="0"></video>
+      <div id="p-dive" class="clip plate" data-start="6.633" data-duration="1.067" data-track-index="0"><img src="assets/maps/dive-last.jpg" alt="" /></div>
+      <video id="v-globe" class="clip bgv" src="assets/maps/globe.mp4" muted playsinline data-start="27.767" data-duration="10.133" data-track-index="0"></video>
+      <div id="p-march" class="clip plate" data-start="37.9" data-duration="8.967" data-track-index="0"><div id="marchZ" style="position:absolute;inset:0;transform-origin:540px 960px"><img src="assets/maps/march.jpg" alt="" /><svg id="svg-march" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div></div>
+      <video id="v-sabak" class="clip bgv" src="assets/maps/sabak.mp4" muted playsinline data-start="46.867" data-duration="9.4" data-track-index="0"></video>
+      <div id="p-outro" class="clip plate" data-start="56.267" data-duration="3.133" data-track-index="0"><div id="outroZ" style="position:absolute;inset:0;transform-origin:540px 960px"><img src="assets/maps/outro.jpg" alt="" /><svg id="svg-outro" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div></div>
+      <video id="v-out" class="clip bgv" src="assets/maps/out.mp4" muted playsinline data-start="59.4" data-duration="2.767" data-track-index="0"></video>
+      <div id="world" class="clip" data-start="0" data-duration="62.167" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
         <canvas id="world-canvas" width="1080" height="1920"></canvas>
       </div>
-      <svg id="mapfx" class="clip" data-start="0" data-duration="60" data-track-index="2" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
-      <div id="ui" class="clip" data-start="0" data-duration="60" data-track-index="3" data-track-kind="graphics" data-layout-ignore>
+      <svg id="mapfx" class="clip" data-start="0" data-duration="62.167" data-track-index="2" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+      <div id="ui" class="clip" data-start="0" data-duration="62.167" data-track-index="3" data-track-kind="graphics" data-layout-ignore>
         <div class="fade-top"></div><div class="fade-bot"></div>
         <div id="dip"></div>
         <div id="badge"><i></i>FAKTA NEGERI · #1</div>
@@ -94,6 +95,7 @@
         <div class="photo" id="ph-landing"><div class="tag">GAMBAR SEBENAR</div><div class="im"><img src="assets/photos/landing.jpg" alt="" /></div><div class="cap">Tentera Jepun mendarat di pantai Tanah Melayu<span>Disember 1941 · Tentera Darat Imperial Jepun</span></div></div>
         <div class="photo" id="ph-hudson"><div class="tag">GAMBAR SEBENAR</div><div class="im"><img src="assets/photos/hudson.jpg" alt="" /></div><div class="cap">Skuadron 8 RAAF dan pesawat Hudson di Kota Bharu<span>1941 · State Library of South Australia</span></div></div>
         <div class="photo" id="ph-pearl"><div class="tag">GAMBAR SEBENAR</div><div class="im"><img src="assets/photos/pearl.jpg" alt="" /></div><div class="cap">USS Arizona terbakar di Pearl Harbor<span>7 Disember 1941 (waktu Hawaii) · Tentera Laut AS</span></div></div>
+        <div class="photo sm" id="ph-surrender"><div class="tag">GAMBAR SEBENAR</div><div class="im"><img src="assets/photos/surrender.jpg" alt="" /></div><div class="cap">British menyerah kalah di Singapura<span>15 Februari 1942 · Imperial War Museums</span></div></div>
         <div id="clocks" class="card"><div class="k">MASA SERANGAN · WAKTU TEMPATAN</div>
           <div class="row"><div class="c" id="c0"><em>KOTA BHARU</em><b>00:25</b><span>8 DIS 1941</span></div><div class="c" id="c1"><em>PEARL HARBOR</em><b>07:48</b><span>7 DIS 1941 (HAWAII)</span></div></div>
           <div class="gap" id="gap">Kelantan diserang ≈ 1½ jam lebih awal</div></div>
@@ -102,8 +104,9 @@
           <div class="bar"><i id="dbar"></i></div><div class="barl"><span>8 Dis 1941 · Kota Bharu</span><span>15 Feb 1942 · Singapura</span></div></div>
         <div id="cta"><div>Negeri mana kita <em>bongkar</em> lepas ni? ↓</div></div>
       </div>
-      <!-- AUDIO: voiceover + sfx tracks are added once the voiceover MP3 arrives -->
-      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="60"
+      <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="62.167" data-track-index="5" data-volume="1"></audio>
+      <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="62.167" data-track-index="6" data-volume="0.45"></audio>
+      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="62.167"
         data-track-index="4" data-track-kind="captions" data-width="1080" data-height="1920"></div>
     </div>
 
@@ -163,18 +166,18 @@
       const NOTES = [
         [11.4, 15.0, "Pendaratan bermula sekitar 00:25 waktu Malaya, 8 Dis 1941 · Pantai Sabak & Badang, Kota Bharu"],
         [33.0, 37.4, "00:25 waktu Malaya (8 Dis) = 16:55 GMT · 07:48 waktu Hawaii (7 Dis) = 18:18 GMT"],
-        [41.2, 45.0, "Singapura menyerah pada 15 Februari 1942, 70 hari selepas pendaratan di Kota Bharu"],
+        [40.6, 43.4, "Singapura menyerah pada 15 Februari 1942, 70 hari selepas pendaratan di Kota Bharu"],
       ];
       // [anchor source, text, sub, t0, t1, side]
       const LABELS = [
         [() => SH.dive.points.kb, "KOTA BHARU", "", 5.6, 7.4, 1], [() => SH.dive.polys.find((p) => p.name === "Kelantan").label, "KELANTAN", "", 5.0, 7.4, -1],
         [(o) => o.anchors.ships, "KAPAL PERANG JEPUN", "", 10.6, 14.8, -1], [(o) => o.anchors.pill, "KUBU PERTAHANAN", "", 18.6, 21.2, 1],
         [() => SH.globe0.points.kb, "KELANTAN", "", 28.4, 30.2, 1], [() => SH.globe.points.kb, "KELANTAN", "00:25", 32.8, 37.4, 1], [() => SH.globe.points.ph, "PEARL HARBOR", "07:48", 33.2, 37.4, -1],
-        [() => SH.march.points.kb, "KOTA BHARU", "8 DIS", 38.4, 45.6, 1], [() => SH.march.points.sg, "SINGAPURA", "15 FEB", 45.2, 46.1, -1],
+        [() => SH.march.points.kb, "KOTA BHARU", "8 DIS", 38.4, 45.6, 1], [() => SH.march.points.sg, "SINGAPURA", "15 FEB", 43.3, 46.1, -1],
         [() => SH.sabak.points.sabak, "PANTAI SABAK", "kawasan pendaratan 1941", 51.6, 53.5, -1],
       ];
       const CREDITS = [[0, 8.4, "Imej: Esri World Imagery"], [28, 37.6, "Imej: Esri World Imagery"], [37.6, 60, "Imej: Esri World Imagery"]];
-      const PHOTOS = [["#ph-landing", 15.2, 18.3], ["#ph-hudson", 21.6, 25.3], ["#ph-pearl", 30.3, 32.9]];
+      const PHOTOS = [["#ph-landing", 15.2, 18.3], ["#ph-hudson", 21.6, 25.3], ["#ph-pearl", 30.3, 32.9], ["#ph-surrender", 43.7, 46.15]];
       const CUTS = [8.4, 28.0, 37.6, 46.2, 53.6];
       const $ = (s) => document.querySelector(s);
       const titleEl = $("#title"), noteEl = $("#note"), labelsEl = $("#labels"), cta = $("#cta"), stamp = $("#stamp"), creditEl = $("#credit");
@@ -193,7 +196,7 @@
         for (const [n, s] of Object.entries(diveS.m)) { const k = n === "Kelantan"; s.fill.setAttribute("fill-opacity", k ? 0.32 * ss(5.4, 6.2, t) * (0.85 + 0.15 * Math.sin(t * 5)) : 0); s.line.setAttribute("stroke-opacity", k ? 0 : 0.7); }
         kelLine.setAttribute("stroke-dashoffset", 1 - ss(5.0, 6.4, t));
         gGlobe.style.opacity = t > 28 && t < 37.6 ? 1 : 0; arcP.setAttribute("stroke-dashoffset", 1 - ss(33.4, 35.0, t));
-        const front = ss(39.0, 45.4, t), frontE = ss(39.6, 44.2, t);
+        const front = ss(39.0, 43.4, t), frontE = ss(39.6, 42.8, t);
         fW.setAttribute("stroke-dashoffset", 1 - front); fE.setAttribute("stroke-dashoffset", 1 - frontE);
         const hw = fW.getPointAtLength(fW.getTotalLength() * clamp(front, 0.001, 1)), he = fE.getPointAtLength(fE.getTotalLength() * clamp(frontE, 0.001, 1));
         headW.setAttribute("cx", hw.x); headW.setAttribute("cy", hw.y); headE.setAttribute("cx", he.x); headE.setAttribute("cy", he.y);
@@ -201,7 +204,7 @@
         const frontY = Math.min(hw.y, he.y);
         for (const [n, s] of Object.entries(marchS.m)) { const ly = s.label ? s.label[1] : 0; const taken = n === "Kelantan" ? ss(38.6, 39.4, t) : (front > 0 ? ss(ly - 60, ly + 60, frontY) : 0);
           s.fill.setAttribute("fill-opacity", 0.38 * taken); s.line.setAttribute("stroke", taken > 0.5 ? "#ffb090" : "#ffffff"); }
-        sgDot.setAttribute("opacity", ss(45.3, 45.6, t) * (0.7 + 0.3 * Math.sin(t * 9)));
+        sgDot.setAttribute("opacity", ss(43.3, 43.6, t) * (0.7 + 0.3 * Math.sin(t * 9)));
         const names = Object.keys(outroS.m);
         names.forEach((n, i) => { const s = outroS.m[n]; const k = (t - 54.0) * 4 - i * 0.9; const b = k > 0 ? Math.exp(-(((k % 8) + 8) % 8) * 1.4) * (1 - ss(56.8, 57.4, t)) : 0;
           s.fill.setAttribute("fill-opacity", 0.55 * b); s.line.setAttribute("stroke-opacity", 0.5 + 0.5 * b); });
@@ -227,8 +230,8 @@
           p.querySelector("img").style.transform = `translate(-50%, -50%) scale(${1.04 + 0.08 * ss(t0, t1, t)})`; });
         const ca = win(t, 33.0, 37.4, 0.35, 0.35); $("#clocks").style.opacity = ca; $("#clocks").style.transform = `translateY(${(1 - ss(33.0, 33.4, t)) * 30}px)`;
         $("#c1").style.opacity = ss(33.4, 33.8, t); $("#gap").style.opacity = ss(34.2, 34.6, t);
-        const da = win(t, 41.0, 44.6, 0.35, 0.3); $("#days").style.opacity = da; $("#days").style.transform = `translateY(${(1 - ss(41.0, 41.4, t)) * 30}px)`;
-        const dk = ss(39.0, 45.4, t); $("#dn").textContent = Math.round(70 * dk); $("#dbar").style.width = 100 * dk + "%";
+        const da = win(t, 40.6, 43.6, 0.35, 0.3); $("#days").style.opacity = da; $("#days").style.transform = `translateY(${(1 - ss(40.6, 41.0, t)) * 30}px)`;
+        const dk = ss(39.0, 43.4, t); $("#dn").textContent = Math.round(70 * dk); $("#dbar").style.width = 100 * dk + "%";
         $("#today").style.opacity = win(t, 46.6, 53.4, 0.3, 0.3);
         const ctaA = win(t, 55.4, 57.6, 0.35, 0.4); cta.style.opacity = ctaA; cta.style.transform = `translateY(${(1 - ss(55.4, 55.8, t)) * 24}px)`;
         $("#badge").style.opacity = t > 57.4 ? 1 - ss(57.4, 58.0, t) + ss(59.4, 60, t) : 1;

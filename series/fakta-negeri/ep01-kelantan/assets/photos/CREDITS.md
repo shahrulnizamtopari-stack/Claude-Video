@@ -8,3 +8,4 @@
 
 Maps: Esri World Imagery (Esri, Maxar, Earthstar Geographics), baked with tools/bake_all.sh.
 State borders: Natural Earth (public domain).
+| surrender.jpg | Surrender Singapore.jpg (sent by the user, upscaled 4x from 196x133) | Imperial War Museums HU 2781 | Public domain |
