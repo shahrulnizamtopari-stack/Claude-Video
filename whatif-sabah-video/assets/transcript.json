@@ -1,0 +1,704 @@
+[
+  {
+    "text": "Bayangkan",
+    "start": 0.05,
+    "end": 0.63,
+    "id": "w0"
+  },
+  {
+    "text": "Malaysia",
+    "start": 0.86,
+    "end": 1.26,
+    "id": "w1"
+  },
+  {
+    "text": "tanpa",
+    "start": 1.26,
+    "end": 1.63,
+    "id": "w2"
+  },
+  {
+    "text": "sabah",
+    "start": 1.63,
+    "end": 2,
+    "id": "w3"
+  },
+  {
+    "text": "dan",
+    "start": 2,
+    "end": 2.22,
+    "id": "w4"
+  },
+  {
+    "text": "serawak,",
+    "start": 2.22,
+    "end": 2.8,
+    "id": "w5"
+  },
+  {
+    "text": "peta",
+    "start": 2.85,
+    "end": 3.04,
+    "id": "w6"
+  },
+  {
+    "text": "kita",
+    "start": 3.04,
+    "end": 3.28,
+    "id": "w7"
+  },
+  {
+    "text": "tinggal",
+    "start": 3.28,
+    "end": 3.7,
+    "id": "w8"
+  },
+  {
+    "text": "semenanjung",
+    "start": 3.7,
+    "end": 4.33,
+    "id": "w9"
+  },
+  {
+    "text": "je",
+    "start": 4.39,
+    "end": 4.51,
+    "id": "w10"
+  },
+  {
+    "text": "dan",
+    "start": 4.57,
+    "end": 4.73,
+    "id": "w11"
+  },
+  {
+    "text": "ada",
+    "start": 4.73,
+    "end": 4.94,
+    "id": "w12"
+  },
+  {
+    "text": "empat",
+    "start": 4.94,
+    "end": 5.17,
+    "id": "w13"
+  },
+  {
+    "text": "benda",
+    "start": 5.36,
+    "end": 5.64,
+    "id": "w14"
+  },
+  {
+    "text": "besar",
+    "start": 5.64,
+    "end": 6,
+    "id": "w15"
+  },
+  {
+    "text": "yang",
+    "start": 6,
+    "end": 6.21,
+    "id": "w16"
+  },
+  {
+    "text": "kita",
+    "start": 6.24,
+    "end": 6.43,
+    "id": "w17"
+  },
+  {
+    "text": "akan",
+    "start": 6.45,
+    "end": 6.66,
+    "id": "w18"
+  },
+  {
+    "text": "hilang.",
+    "start": 6.66,
+    "end": 7,
+    "id": "w19"
+  },
+  {
+    "text": "Yang",
+    "start": 7.05,
+    "end": 7.31,
+    "id": "w20"
+  },
+  {
+    "text": "keempat,",
+    "start": 7.34,
+    "end": 8.02,
+    "id": "w21"
+  },
+  {
+    "text": "ramai",
+    "start": 8.02,
+    "end": 8.34,
+    "id": "w22"
+  },
+  {
+    "text": "tak",
+    "start": 8.42,
+    "end": 8.6,
+    "id": "w23"
+  },
+  {
+    "text": "sangka.",
+    "start": 8.6,
+    "end": 9.1,
+    "id": "w24"
+  },
+  {
+    "text": "Tahun",
+    "start": 9.17,
+    "end": 9.6,
+    "id": "w25"
+  },
+  {
+    "text": "1963,",
+    "start": 9.6,
+    "end": 10.94,
+    "id": "w26"
+  },
+  {
+    "text": "kita",
+    "start": 10.94,
+    "end": 11.22,
+    "id": "w27"
+  },
+  {
+    "text": "bersatu",
+    "start": 11.22,
+    "end": 11.71,
+    "id": "w28"
+  },
+  {
+    "text": "jadi",
+    "start": 11.71,
+    "end": 11.99,
+    "id": "w29"
+  },
+  {
+    "text": "Malaysia.",
+    "start": 11.99,
+    "end": 12.6,
+    "id": "w30"
+  },
+  {
+    "text": "Tapi",
+    "start": 12.65,
+    "end": 12.88,
+    "id": "w31"
+  },
+  {
+    "text": "kalau",
+    "start": 12.88,
+    "end": 13.2,
+    "id": "w32"
+  },
+  {
+    "text": "tak,",
+    "start": 13.21,
+    "end": 13.59,
+    "id": "w33"
+  },
+  {
+    "text": "pertama,",
+    "start": 13.59,
+    "end": 14.41,
+    "id": "w34"
+  },
+  {
+    "text": "size.",
+    "start": 14.41,
+    "end": 15,
+    "id": "w35"
+  },
+  {
+    "text": "Sabah",
+    "start": 15.04,
+    "end": 15.42,
+    "id": "w36"
+  },
+  {
+    "text": "dan",
+    "start": 15.42,
+    "end": 15.62,
+    "id": "w37"
+  },
+  {
+    "text": "serawak",
+    "start": 15.86,
+    "end": 16.26,
+    "id": "w38"
+  },
+  {
+    "text": "ialah",
+    "start": 16.26,
+    "end": 16.68,
+    "id": "w39"
+  },
+  {
+    "text": "60%",
+    "start": 16.68,
+    "end": 17.27,
+    "id": "w40"
+  },
+  {
+    "text": "tanah",
+    "start": 17.27,
+    "end": 17.62,
+    "id": "w41"
+  },
+  {
+    "text": "Malaysia.",
+    "start": 17.86,
+    "end": 18.44,
+    "id": "w42"
+  },
+  {
+    "text": "Tanpa",
+    "start": 18.49,
+    "end": 18.78,
+    "id": "w43"
+  },
+  {
+    "text": "mereka,",
+    "start": 18.8,
+    "end": 19.35,
+    "id": "w44"
+  },
+  {
+    "text": "Malaysia",
+    "start": 19.35,
+    "end": 19.91,
+    "id": "w45"
+  },
+  {
+    "text": "cuma",
+    "start": 19.91,
+    "end": 20.18,
+    "id": "w46"
+  },
+  {
+    "text": "sebesar",
+    "start": 20.2,
+    "end": 20.68,
+    "id": "w47"
+  },
+  {
+    "text": "gris.",
+    "start": 20.7,
+    "end": 21.06,
+    "id": "w48"
+  },
+  {
+    "text": "Kedua,",
+    "start": 21.25,
+    "end": 21.79,
+    "id": "w49"
+  },
+  {
+    "text": "Gunung",
+    "start": 21.8,
+    "end": 22.31,
+    "id": "w50"
+  },
+  {
+    "text": "Kinabalu,",
+    "start": 22.32,
+    "end": 23.28,
+    "id": "w51"
+  },
+  {
+    "text": "4,095",
+    "start": 23.28,
+    "end": 24.72,
+    "id": "w52"
+  },
+  {
+    "text": "meter.",
+    "start": 24.72,
+    "end": 25.28,
+    "id": "w53"
+  },
+  {
+    "text": "Puncak",
+    "start": 25.33,
+    "end": 25.66,
+    "id": "w54"
+  },
+  {
+    "text": "tertinggi",
+    "start": 25.66,
+    "end": 26.22,
+    "id": "w55"
+  },
+  {
+    "text": "negara.",
+    "start": 26.22,
+    "end": 26.81,
+    "id": "w56"
+  },
+  {
+    "text": "Bukan",
+    "start": 26.89,
+    "end": 27.15,
+    "id": "w57"
+  },
+  {
+    "text": "milik",
+    "start": 27.15,
+    "end": 27.47,
+    "id": "w58"
+  },
+  {
+    "text": "kita",
+    "start": 27.7,
+    "end": 27.75,
+    "id": "w59"
+  },
+  {
+    "text": "lagi.",
+    "start": 27.75,
+    "end": 28.18,
+    "id": "w60"
+  },
+  {
+    "text": "Ketiga,",
+    "start": 28.29,
+    "end": 28.86,
+    "id": "w61"
+  },
+  {
+    "text": "hampir",
+    "start": 29.08,
+    "end": 29.42,
+    "id": "w62"
+  },
+  {
+    "text": "6",
+    "start": 29.42,
+    "end": 29.68,
+    "id": "w63"
+  },
+  {
+    "text": "juta",
+    "start": 29.68,
+    "end": 30.01,
+    "id": "w64"
+  },
+  {
+    "text": "rakyat",
+    "start": 30.01,
+    "end": 30.51,
+    "id": "w65"
+  },
+  {
+    "text": "sabah",
+    "start": 30.51,
+    "end": 30.86,
+    "id": "w66"
+  },
+  {
+    "text": "dan",
+    "start": 31.1,
+    "end": 31.18,
+    "id": "w67"
+  },
+  {
+    "text": "serawak.",
+    "start": 31.25,
+    "end": 31.88,
+    "id": "w68"
+  },
+  {
+    "text": "Bukan",
+    "start": 31.93,
+    "end": 32.18,
+    "id": "w69"
+  },
+  {
+    "text": "lagi",
+    "start": 32.18,
+    "end": 32.41,
+    "id": "w70"
+  },
+  {
+    "text": "rakyat",
+    "start": 32.42,
+    "end": 32.78,
+    "id": "w71"
+  },
+  {
+    "text": "Malaysia.",
+    "start": 32.78,
+    "end": 33.48,
+    "id": "w72"
+  },
+  {
+    "text": "Tapi",
+    "start": 33.53,
+    "end": 33.77,
+    "id": "w73"
+  },
+  {
+    "text": "tunggu",
+    "start": 33.77,
+    "end": 34.13,
+    "id": "w74"
+  },
+  {
+    "text": "dulu.",
+    "start": 34.34,
+    "end": 34.56,
+    "id": "w75"
+  },
+  {
+    "text": "Yang",
+    "start": 34.61,
+    "end": 34.87,
+    "id": "w76"
+  },
+  {
+    "text": "keempat",
+    "start": 34.9,
+    "end": 35.49,
+    "id": "w77"
+  },
+  {
+    "text": "ini,",
+    "start": 35.49,
+    "end": 35.88,
+    "id": "w78"
+  },
+  {
+    "text": "bukan",
+    "start": 35.88,
+    "end": 36.19,
+    "id": "w79"
+  },
+  {
+    "text": "tanah,",
+    "start": 36.19,
+    "end": 36.64,
+    "id": "w80"
+  },
+  {
+    "text": "bukan",
+    "start": 36.64,
+    "end": 37.12,
+    "id": "w81"
+  },
+  {
+    "text": "gunung,",
+    "start": 37.12,
+    "end": 37.72,
+    "id": "w82"
+  },
+  {
+    "text": "tapi",
+    "start": 37.76,
+    "end": 37.98,
+    "id": "w83"
+  },
+  {
+    "text": "benda",
+    "start": 37.98,
+    "end": 38.3,
+    "id": "w84"
+  },
+  {
+    "text": "yang",
+    "start": 38.3,
+    "end": 38.35,
+    "id": "w85"
+  },
+  {
+    "text": "gerakkan",
+    "start": 38.58,
+    "end": 39.06,
+    "id": "w86"
+  },
+  {
+    "text": "ekonomi",
+    "start": 39.14,
+    "end": 39.52,
+    "id": "w87"
+  },
+  {
+    "text": "kita.",
+    "start": 39.52,
+    "end": 39.99,
+    "id": "w88"
+  },
+  {
+    "text": "Tenaga!",
+    "start": 40.04,
+    "end": 41.04,
+    "id": "w89"
+  },
+  {
+    "text": "Di",
+    "start": 41.09,
+    "end": 41.22,
+    "id": "w90"
+  },
+  {
+    "text": "bintulu,",
+    "start": 41.22,
+    "end": 42.04,
+    "id": "w91"
+  },
+  {
+    "text": "ada",
+    "start": 42.04,
+    "end": 42.25,
+    "id": "w92"
+  },
+  {
+    "text": "antara",
+    "start": 42.27,
+    "end": 42.69,
+    "id": "w93"
+  },
+  {
+    "text": "kompleks",
+    "start": 42.7,
+    "end": 43.31,
+    "id": "w94"
+  },
+  {
+    "text": "gas",
+    "start": 43.32,
+    "end": 43.65,
+    "id": "w95"
+  },
+  {
+    "text": "asli",
+    "start": 43.88,
+    "end": 43.98,
+    "id": "w96"
+  },
+  {
+    "text": "cecair",
+    "start": 44.09,
+    "end": 44.47,
+    "id": "w97"
+  },
+  {
+    "text": "terbesar",
+    "start": 44.47,
+    "end": 45.05,
+    "id": "w98"
+  },
+  {
+    "text": "di",
+    "start": 45.05,
+    "end": 45.2,
+    "id": "w99"
+  },
+  {
+    "text": "dunia.",
+    "start": 45.2,
+    "end": 45.84,
+    "id": "w100"
+  },
+  {
+    "text": "Jadi",
+    "start": 45.89,
+    "end": 46.15,
+    "id": "w101"
+  },
+  {
+    "text": "kau",
+    "start": 46.18,
+    "end": 46.42,
+    "id": "w102"
+  },
+  {
+    "text": "rasa,",
+    "start": 46.42,
+    "end": 46.89,
+    "id": "w103"
+  },
+  {
+    "text": "tanpa",
+    "start": 46.89,
+    "end": 47.18,
+    "id": "w104"
+  },
+  {
+    "text": "sabah",
+    "start": 47.26,
+    "end": 47.55,
+    "id": "w105"
+  },
+  {
+    "text": "dan",
+    "start": 47.57,
+    "end": 47.75,
+    "id": "w106"
+  },
+  {
+    "text": "serawak,",
+    "start": 47.78,
+    "end": 48.28,
+    "id": "w107"
+  },
+  {
+    "text": "apa",
+    "start": 48.33,
+    "end": 48.44,
+    "id": "w108"
+  },
+  {
+    "text": "yang",
+    "start": 48.44,
+    "end": 48.62,
+    "id": "w109"
+  },
+  {
+    "text": "Malaysia",
+    "start": 48.64,
+    "end": 48.9,
+    "id": "w110"
+  },
+  {
+    "text": "paling",
+    "start": 49.14,
+    "end": 49.4,
+    "id": "w111"
+  },
+  {
+    "text": "rasa",
+    "start": 49.4,
+    "end": 49.61,
+    "id": "w112"
+  },
+  {
+    "text": "hilang?",
+    "start": 49.61,
+    "end": 50.12,
+    "id": "w113"
+  },
+  {
+    "text": "Comment",
+    "start": 50.17,
+    "end": 50.43,
+    "id": "w114"
+  },
+  {
+    "text": "kat",
+    "start": 50.46,
+    "end": 50.58,
+    "id": "w115"
+  },
+  {
+    "text": "bawah!",
+    "start": 50.58,
+    "end": 50.96,
+    "id": "w116"
+  }
+]

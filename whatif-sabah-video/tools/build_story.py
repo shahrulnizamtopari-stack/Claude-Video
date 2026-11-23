@@ -7,10 +7,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 d = json.load(open(os.path.join(ROOT, "assets", "transcript.json")))
 W = d if isinstance(d, list) else d["words"]
 
-FIX = {"duit.": "duit!", "Abdurrahman": "Abdul Rahman", "Serawak": "Sarawak,", "Saifudin": "Saifuddien", "ke-3": "Ketiga",
-       "terbesar,": "terbesar?", "minyak.": "Minyak!", "dulu,": "dulu!", "sultan": "Sultan", "majlis": "Majlis", "raja-raja": "Raja-Raja",
-       "Desember": "Disember", "pemberontakkan": "pemberontakan", "perjanjian": "Perjanjian", "tandatangan.": "tandatangan!",
-       "Comment": "Komen", "ini": "ni", "1961,": "1961,"}
+FIX = {"Bayangkan": "Bayangkan,", "sabah": "Sabah", "serawak,": "Sarawak,", "serawak.": "Sarawak.", "semenanjung": "Semenanjung", "serawak": "Sarawak", "je": "je!", "Puncak": "puncak", "size.": "saiz.",
+       "gris.": "Greece.", "bintulu,": "Bintulu,", "Comment": "Komen", "sangka.": "sangka!", "tak,": "tak?", "pertama,": "Pertama,",
+       "dulu.": "dulu!", "ini,": "ni,", "dunia.": "dunia!", "negara.": "negara,", "meter.": "meter,"}
 # ASR split words
 JOIN = {("serta", "i"): "sertai"}
 _W = []
@@ -21,9 +20,8 @@ for w in W:
 W = _W
 DROP = set()
 DISPLAY = {}
-KEY = {"Malaysia?", "minyak", "duit!", "1961,", "Tunku", "Abdul Rahman", "setuju.", "Minyak!", "kongsi",
-       "kawal", "sendiri.", "tunggu", "dulu!", "Majlis", "Raja-Raja", "dipertikaikan.", "1962,", "pemberontakan", "British.", "9", "Julai",
-       "1963,", "Brunei", "tak", "tandatangan!", "tanpa", "1984.", "sertai", "berubah?", "Komen"}
+KEY = {"Sabah", "Sarawak,", "Semenanjung", "empat", "keempat,", "sangka!", "1963,", "Malaysia.", "saiz.", "60%", "Greece.", "Kinabalu,",
+       "4,095", "tertinggi", "6", "juta", "rakyat", "tunggu", "dulu!", "Tenaga!", "Bintulu,", "terbesar", "hilang?", "Komen"}
 SOFT = {"China"}  # only key inside specific beats (handled below by index)
 
 words = []
@@ -36,6 +34,7 @@ for i, w in enumerate(W):
     if t == "Malaysia." and i < 12: t = "Malaysia?"
     if t == "Malaysia," and nxt == "Tanah": t = "Malaysia:"
     if words and re.search(r"[.?!]$", words[-1]["t"]) and t[:1].islower(): t = t[:1].upper() + t[1:]
+    if t == "Bukan" and words and words[-1]["t"].endswith(","): t = "bukan"
     if t == "Nombor" and words and not re.search(r"[.?!:,]$", words[-1]["t"]): t = "nombor"
     if t == "tapi" and words and re.search(r"[.?!]$", words[-1]["t"]): t = "Tapi"
     words.append({"t": t, "s": round(w["start"], 3), "e": round(w["end"], 3), "i": i})
@@ -85,16 +84,12 @@ def at(text, n=1):
     raise SystemExit(f"word not found: {text} #{n}")
 
 T = {
-  "kau": at("Kau"), "brunei1": at("Brunei"), "malaysia1": at("Malaysia"), "tapi1": at("Tapi"), "minyak1": at("minyak"), "sebab": at("sebabnya"),
-  "duit": at("duit"), "tahun": at("Tahun"), "y1961": at("1961"), "tunku": at("Tunku"), "cadang": at("cadangkan"), "tanah": at("Tanah"),
-  "singapura": at("Singapura"), "sabah": at("Sabah"), "sarawak": at("Sarawak"), "brunei2": at("Brunei", 2), "sultan": at("Sultan"),
-  "setuju": at("setuju"), "masalah": at("Masalah"), "minyak2": at("minyak", 2), "persekutuan": at("Persekutuan"), "kongsi": at("kongsi"),
-  "kawal": at("kawal"), "dan2": at("Dan", 3), "tunggu": at("tunggu"), "kedudukan": at("kedudukan"), "majlis": at("Majlis"),
-  "dipertikaikan": at("dipertikaikan"), "disember": at("Disember"), "y1962": at("1962"), "pemberontakan": at("pemberontakan"),
-  "menentang": at("menentang"), "dipatahkan": at("dipatahkan"), "british": at("British"), "jul9": at("9"), "y1963": at("1963"),
-  "perjanjian": at("Perjanjian"), "ditandatangani": at("ditandatangani"), "turut": at("turut"), "terbentuk": at("terbentuk"),
-  "tanpa": at("tanpa"), "merdeka": at("merdeka"), "y1984": at("1984"), "kalau": at("Kalau"), "sertai": at("sertai"), "berubah": at("berubah"),
-  "komen": at("Komen"),
+  "bayangkan": at("Bayangkan"), "sabah1": at("Sabah"), "tinggal": at("tinggal"), "empat": at("empat"), "keempat1": at("keempat"),
+  "sangka": at("sangka"), "tahun": at("Tahun"), "bersatu": at("bersatu"), "kalau": at("kalau"), "pertama": at("Pertama"), "saiz": at("saiz"),
+  "p60": at("60%"), "tanpa2": at("Tanpa", 2), "greece": at("Greece"), "kedua": at("Kedua"), "kinabalu": at("Kinabalu"), "m4095": at("4,095"),
+  "puncak": at("Puncak"), "bukan1": at("Bukan"), "ketiga": at("Ketiga"), "juta": at("juta"), "tapi2": at("Tapi", 2), "tunggu": at("tunggu"),
+  "keempat2": at("keempat", 2), "tanah2": at("tanah", 2), "gunung2": at("gunung", 2), "ekonomi": at("ekonomi"), "tenaga": at("Tenaga"),
+  "bintulu": at("Bintulu"), "terbesar": at("terbesar"), "jadi": at("Jadi", 2), "hilang2": at("hilang", 2), "komen": at("Komen"),
 }
 END_VO = words[-1]["e"]
 T["end_vo"] = END_VO
