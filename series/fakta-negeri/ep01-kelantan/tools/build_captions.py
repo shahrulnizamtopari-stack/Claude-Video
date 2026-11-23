@@ -55,17 +55,39 @@ def words():
     return out
 
 
+KEEP = {("Pearl", "Harbor"), ("Pearl", "Harbor!"), ("Kota", "Bharu"), ("70", "hari…"), ("1½", "JAM"), ("Asia", "Pasifik.")}
+WEAK = {"dan", "yang", "di", "ke", "dari", "untuk", "ini", "tu", "tapi", "sebelum", "pun", "dah", "kita", "dalam", "salah", "satu", "mula", "terus", "tak", "the", "sementara", "daripada", "ketika", "masih", "pernah", "menjadi", "kawasan"}
+KEY = {"KELANTAN", "Pearl", "Harbor", "1941.", "1½", "JAM", "Australia", "70", "hari…", "Singapura", "Jepun!", "biasa", "bongkar", "Kelantan,", "tidur,", "Ribuan", "meletus.", "udara!", "Asia", "Pasifik."}
+
+
 def phrases(ws, disp=None):
-    """Group words: max 3 shown words per phrase, break after . , ? ! : and ...; hidden words stick to the word before."""
+    """Groups of shown words: break after . ? ! and …, after commas when long enough, at ~24 characters; never end on a weak word.
+    Hidden words ("") stick to the word before."""
     disp = disp or [w["text"] for w in ws]
     groups, cur = [], []
+    def ln(g): return len(" ".join(disp[j] for j in g if disp[j] != ""))
     for i, w in enumerate(ws):
-        if disp[i] == "" and not cur and groups:
+        if disp[i] == "" and cur:
+            cur.append(i); continue
+        if disp[i] == "" and groups:
             groups[-1].append(i); continue
         cur.append(i)
-        if sum(1 for j in cur if disp[j] != "") == 3 and i + 1 < len(ws) and disp[i + 1] == "":
-            continue
-        if sum(1 for j in cur if disp[j] != "") >= 3 or re.search(r"[.,?!:]['\"]?$", w["text"]):
+        t = disp[i]
+        nxt = next((j for j in range(i + 1, len(ws)) if disp[j] != ""), None)
+        # rest of this sentence after word i (shown words only)
+        rest = []
+        for j in range(i + 1, len(ws)):
+            if disp[j] == "": continue
+            rest.append(disp[j])
+            if re.search(r"[.?!…]['\"]?$", disp[j]): break
+        rest_len = len(" ".join(rest))
+        pair = nxt is not None and (t, disp[nxt]) in KEEP
+        sentence_end = re.search(r"[.?!…]['\"]?$", t)
+        comma = t.endswith(",") and ln(cur) >= 12 and rest_len > 12
+        too_long = nxt is not None and ln(cur) + 1 + len(disp[nxt]) > 26 and rest_len > 12
+        end = not pair and (sentence_end or comma or too_long)
+        if end and not (t.lower().strip(",.") in WEAK and not re.search(r"[.?!…,]$", t)):
+            # absorb trailing hidden words
             groups.append(cur); cur = []
     if cur:
         groups.append(cur)
@@ -91,29 +113,23 @@ def main():
         for k, i in enumerate(g):
             if disp_all[i] == "":
                 continue
-            disp = disp_all[i].strip("'\"").replace("'", "’")
-            disp = re.sub(r"\.\.\.$", "…", disp)
-            spans.append(f'<span class="w" id="w{i}"><span class="hl"><i></i><b></b></span><span class="t">{html.escape(disp)}</span></span>')
-            nk = next((m for m in range(k + 1, len(g)) if disp_all[g[m]] != ""), None)
-            ws_end = ws[g[nk]]["start"] if nk is not None else end
-            tweens.append(f'    tl.set("#w{i} .hl", {{opacity: 1}}, {ws[i]["start"]}); tl.set("#w{i} .t", {{color: "#ffffff"}}, {ws[i]["start"]});')
-            if nk is not None:
-                tweens.append(f'    tl.set("#w{i} .hl", {{opacity: 0}}, {ws_end}); tl.set("#w{i} .t", {{color: "#14161c"}}, {ws_end});')
-        blocks.append(f'    <div id="cp{gi}" class="clip cap" data-start="{start}" data-duration="{dur}" data-track-index="1"><div class="pill">{" ".join(spans)}</div></div>')
-        tweens.append(f'    tl.fromTo("#cp{gi} .pill", {{opacity: 0, y: 14, scale: 0.96}}, {{opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}}, {start});')
+            d = disp_all[i].strip("'\"").replace("'", "’")
+            d = re.sub(r"\.\.\.$", "…", d)
+            spans.append(f'<span class="w" id="w{i}">{html.escape(d)}</span>')
+            col = "#ff2d46" if (ws[i]["text"] in KEY or disp_all[i] in KEY) else "#ffffff"
+            tweens.append(f'    tl.set("#w{i}", {{color: "{col}"}}, {round(ws[i]["start"] - 0.03, 3)});')
+        blocks.append(f'    <div id="cp{gi}" class="clip cap" data-start="{start}" data-duration="{dur}" data-track-index="1"><div class="line">{" ".join(spans)}</div></div>')
     doc = f'''<template>
   <style>
     @font-face {{ font-family: "Inter"; font-weight: 700; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); }}
     #root {{ position: absolute; inset: 0; pointer-events: none; }}
-    #root .cap {{ position: absolute; left: 0; right: 0; top: 1330px; display: flex; justify-content: center; }}
-    #root .pill {{ display: inline-flex; gap: 6px; align-items: center; padding: 10px 14px; border-radius: 22px;
-      background: rgba(255,255,255,0.86); box-shadow: 0 10px 34px rgba(30,40,80,0.16), 0 1px 0 rgba(255,255,255,0.9) inset; }}
-    #root .w {{ position: relative; display: inline-block; padding: 4px 10px; }}
-    #root .t {{ position: relative; font-family: "Inter", sans-serif; font-weight: 700; font-size: 60px; letter-spacing: -1.2px; line-height: 1.1; color: #a3a9b8; }}
-    #root .hl {{ position: absolute; inset: 0; background: {BLUE}; border-radius: 8px; opacity: 0; box-shadow: 0 6px 18px rgba(47,91,255,0.35); }}
-    #root .hl i, #root .hl b {{ position: absolute; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 3.5px solid {BLUE}; }}
-    #root .hl i {{ left: -8px; top: -8px; }}
-    #root .hl b {{ right: -8px; bottom: -8px; }}
+    /* map-animation captions: bottom band, word by word (grey = coming, white = spoken, red = key word) */
+    #root .cap {{ position: absolute; left: 60px; right: 60px; top: 1490px; text-align: center; }}
+    #root .line {{ position: relative; display: inline-block; font-family: "Inter", sans-serif; font-weight: 700; font-size: 48px; line-height: 1.15; letter-spacing: -0.5px;
+      text-shadow: 0 3px 14px rgba(0,0,0,0.95), 0 0 4px rgba(0,0,0,0.9); }}
+    #root .line::before {{ content: ""; position: absolute; left: -20px; right: -20px; top: -18px; bottom: -18px; z-index: -1; border-radius: 20px;
+      background: linear-gradient(rgba(5,7,11,0), rgba(5,7,11,0.55) 30%, rgba(5,7,11,0.55) 70%, rgba(5,7,11,0)); }}
+    #root .w {{ color: rgba(255,255,255,0.36); white-space: pre; }}
   </style>
   <div id="root" data-composition-id="captions" data-width="1080" data-height="1920" data-layout-allow-overflow>
 {chr(10).join(blocks)}

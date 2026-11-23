@@ -2,354 +2,197 @@
   <style>
     @font-face { font-family: "Inter"; font-weight: 700; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); }
     #root { position: absolute; inset: 0; pointer-events: none; }
-    #root .cap { position: absolute; left: 0; right: 0; top: 1330px; display: flex; justify-content: center; }
-    #root .pill { display: inline-flex; gap: 6px; align-items: center; padding: 10px 14px; border-radius: 22px;
-      background: rgba(255,255,255,0.86); box-shadow: 0 10px 34px rgba(30,40,80,0.16), 0 1px 0 rgba(255,255,255,0.9) inset; }
-    #root .w { position: relative; display: inline-block; padding: 4px 10px; }
-    #root .t { position: relative; font-family: "Inter", sans-serif; font-weight: 700; font-size: 60px; letter-spacing: -1.2px; line-height: 1.1; color: #a3a9b8; }
-    #root .hl { position: absolute; inset: 0; background: #e0452b; border-radius: 8px; opacity: 0; box-shadow: 0 6px 18px rgba(47,91,255,0.35); }
-    #root .hl i, #root .hl b { position: absolute; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 3.5px solid #e0452b; }
-    #root .hl i { left: -8px; top: -8px; }
-    #root .hl b { right: -8px; bottom: -8px; }
+    /* map-animation captions: bottom band, word by word (grey = coming, white = spoken, red = key word) */
+    #root .cap { position: absolute; left: 60px; right: 60px; top: 1490px; text-align: center; }
+    #root .line { position: relative; display: inline-block; font-family: "Inter", sans-serif; font-weight: 700; font-size: 48px; line-height: 1.15; letter-spacing: -0.5px;
+      text-shadow: 0 3px 14px rgba(0,0,0,0.95), 0 0 4px rgba(0,0,0,0.9); }
+    #root .line::before { content: ""; position: absolute; left: -20px; right: -20px; top: -18px; bottom: -18px; z-index: -1; border-radius: 20px;
+      background: linear-gradient(rgba(5,7,11,0), rgba(5,7,11,0.55) 30%, rgba(5,7,11,0.55) 70%, rgba(5,7,11,0)); }
+    #root .w { color: rgba(255,255,255,0.36); white-space: pre; }
   </style>
   <div id="root" data-composition-id="captions" data-width="1080" data-height="1920" data-layout-allow-overflow>
-    <div id="cp0" class="clip cap" data-start="0.25" data-duration="1.2" data-track-index="1"><div class="pill"><span class="w" id="w0"><span class="hl"><i></i><b></b></span><span class="t">Korang</span></span> <span class="w" id="w1"><span class="hl"><i></i><b></b></span><span class="t">tahu</span></span> <span class="w" id="w2"><span class="hl"><i></i><b></b></span><span class="t">tak…</span></span></div></div>
-    <div id="cp1" class="clip cap" data-start="1.45" data-duration="1.2" data-track-index="1"><div class="pill"><span class="w" id="w3"><span class="hl"><i></i><b></b></span><span class="t">sebelum</span></span> <span class="w" id="w4"><span class="hl"><i></i><b></b></span><span class="t">Jepun</span></span> <span class="w" id="w5"><span class="hl"><i></i><b></b></span><span class="t">bom</span></span></div></div>
-    <div id="cp2" class="clip cap" data-start="2.65" data-duration="1.2" data-track-index="1"><div class="pill"><span class="w" id="w6"><span class="hl"><i></i><b></b></span><span class="t">Pearl</span></span> <span class="w" id="w7"><span class="hl"><i></i><b></b></span><span class="t">Harbor</span></span> <span class="w" id="w8"><span class="hl"><i></i><b></b></span><span class="t">di</span></span></div></div>
-    <div id="cp3" class="clip cap" data-start="3.85" data-duration="0.4" data-track-index="1"><div class="pill"><span class="w" id="w9"><span class="hl"><i></i><b></b></span><span class="t">Amerika,</span></span></div></div>
-    <div id="cp4" class="clip cap" data-start="4.25" data-duration="1.2" data-track-index="1"><div class="pill"><span class="w" id="w10"><span class="hl"><i></i><b></b></span><span class="t">tentera</span></span> <span class="w" id="w11"><span class="hl"><i></i><b></b></span><span class="t">Jepun</span></span> <span class="w" id="w12"><span class="hl"><i></i><b></b></span><span class="t">sebenarnya</span></span></div></div>
-    <div id="cp5" class="clip cap" data-start="5.45" data-duration="1.2" data-track-index="1"><div class="pill"><span class="w" id="w13"><span class="hl"><i></i><b></b></span><span class="t">dah</span></span> <span class="w" id="w14"><span class="hl"><i></i><b></b></span><span class="t">serang</span></span> <span class="w" id="w15"><span class="hl"><i></i><b></b></span><span class="t">KELANTAN</span></span></div></div>
-    <div id="cp6" class="clip cap" data-start="6.65" data-duration="0.65" data-track-index="1"><div class="pill"><span class="w" id="w16"><span class="hl"><i></i><b></b></span><span class="t">dulu?!</span></span></div></div>
-    <div id="cp7" class="clip cap" data-start="7.3" data-duration="2.4" data-track-index="1"><div class="pill"><span class="w" id="w17"><span class="hl"><i></i><b></b></span><span class="t">8</span></span> <span class="w" id="w18"><span class="hl"><i></i><b></b></span><span class="t">Disember</span></span> <span class="w" id="w19"><span class="hl"><i></i><b></b></span><span class="t">1941.</span></span></div></div>
-    <div id="cp8" class="clip cap" data-start="9.7" data-duration="1.188" data-track-index="1"><div class="pill"><span class="w" id="w20"><span class="hl"><i></i><b></b></span><span class="t">Ketika</span></span> <span class="w" id="w21"><span class="hl"><i></i><b></b></span><span class="t">penduduk</span></span> <span class="w" id="w22"><span class="hl"><i></i><b></b></span><span class="t">Kota</span></span></div></div>
-    <div id="cp9" class="clip cap" data-start="10.888" data-duration="1.189" data-track-index="1"><div class="pill"><span class="w" id="w23"><span class="hl"><i></i><b></b></span><span class="t">Bharu</span></span> <span class="w" id="w24"><span class="hl"><i></i><b></b></span><span class="t">masih</span></span> <span class="w" id="w25"><span class="hl"><i></i><b></b></span><span class="t">tidur,</span></span></div></div>
-    <div id="cp10" class="clip cap" data-start="12.077" data-duration="1.188" data-track-index="1"><div class="pill"><span class="w" id="w26"><span class="hl"><i></i><b></b></span><span class="t">kapal</span></span> <span class="w" id="w27"><span class="hl"><i></i><b></b></span><span class="t">perang</span></span> <span class="w" id="w28"><span class="hl"><i></i><b></b></span><span class="t">Jepun</span></span></div></div>
-    <div id="cp11" class="clip cap" data-start="13.265" data-duration="1.189" data-track-index="1"><div class="pill"><span class="w" id="w29"><span class="hl"><i></i><b></b></span><span class="t">muncul</span></span> <span class="w" id="w30"><span class="hl"><i></i><b></b></span><span class="t">di</span></span> <span class="w" id="w31"><span class="hl"><i></i><b></b></span><span class="t">perairan</span></span></div></div>
-    <div id="cp12" class="clip cap" data-start="14.454" data-duration="0.646" data-track-index="1"><div class="pill"><span class="w" id="w32"><span class="hl"><i></i><b></b></span><span class="t">Kelantan.</span></span></div></div>
-    <div id="cp13" class="clip cap" data-start="15.1" data-duration="1.264" data-track-index="1"><div class="pill"><span class="w" id="w33"><span class="hl"><i></i><b></b></span><span class="t">Ribuan</span></span> <span class="w" id="w34"><span class="hl"><i></i><b></b></span><span class="t">tentera</span></span> <span class="w" id="w35"><span class="hl"><i></i><b></b></span><span class="t">mula</span></span></div></div>
-    <div id="cp14" class="clip cap" data-start="16.364" data-duration="1.265" data-track-index="1"><div class="pill"><span class="w" id="w36"><span class="hl"><i></i><b></b></span><span class="t">mendarat</span></span> <span class="w" id="w37"><span class="hl"><i></i><b></b></span><span class="t">di</span></span> <span class="w" id="w38"><span class="hl"><i></i><b></b></span><span class="t">kawasan</span></span></div></div>
-    <div id="cp15" class="clip cap" data-start="17.629" data-duration="0.671" data-track-index="1"><div class="pill"><span class="w" id="w39"><span class="hl"><i></i><b></b></span><span class="t">pantai.</span></span></div></div>
-    <div id="cp16" class="clip cap" data-start="18.3" data-duration="0.927" data-track-index="1"><div class="pill"><span class="w" id="w40"><span class="hl"><i></i><b></b></span><span class="t">Tembakan</span></span> <span class="w" id="w41"><span class="hl"><i></i><b></b></span><span class="t">meletus.</span></span></div></div>
-    <div id="cp17" class="clip cap" data-start="19.227" data-duration="1.39" data-track-index="1"><div class="pill"><span class="w" id="w42"><span class="hl"><i></i><b></b></span><span class="t">Askar</span></span> <span class="w" id="w43"><span class="hl"><i></i><b></b></span><span class="t">yang</span></span> <span class="w" id="w44"><span class="hl"><i></i><b></b></span><span class="t">mempertahankan</span></span></div></div>
-    <div id="cp18" class="clip cap" data-start="20.617" data-duration="0.926" data-track-index="1"><div class="pill"><span class="w" id="w45"><span class="hl"><i></i><b></b></span><span class="t">pantai</span></span> <span class="w" id="w46"><span class="hl"><i></i><b></b></span><span class="t">melawan,</span></span></div></div>
-    <div id="cp19" class="clip cap" data-start="21.543" data-duration="1.39" data-track-index="1"><div class="pill"><span class="w" id="w47"><span class="hl"><i></i><b></b></span><span class="t">sementara</span></span> <span class="w" id="w48"><span class="hl"><i></i><b></b></span><span class="t">pesawat</span></span> <span class="w" id="w49"><span class="hl"><i></i><b></b></span><span class="t">Australia</span></span></div></div>
-    <div id="cp20" class="clip cap" data-start="22.933" data-duration="1.39" data-track-index="1"><div class="pill"><span class="w" id="w50"><span class="hl"><i></i><b></b></span><span class="t">menyerang</span></span> <span class="w" id="w51"><span class="hl"><i></i><b></b></span><span class="t">kapal</span></span> <span class="w" id="w52"><span class="hl"><i></i><b></b></span><span class="t">Jepun</span></span></div></div>
-    <div id="cp21" class="clip cap" data-start="24.323" data-duration="1.177" data-track-index="1"><div class="pill"><span class="w" id="w53"><span class="hl"><i></i><b></b></span><span class="t">dari</span></span> <span class="w" id="w54"><span class="hl"><i></i><b></b></span><span class="t">udara!</span></span></div></div>
-    <div id="cp22" class="clip cap" data-start="25.5" data-duration="1.007" data-track-index="1"><div class="pill"><span class="w" id="w55"><span class="hl"><i></i><b></b></span><span class="t">Tapi</span></span> <span class="w" id="w56"><span class="hl"><i></i><b></b></span><span class="t">ini</span></span> <span class="w" id="w57"><span class="hl"><i></i><b></b></span><span class="t">bahagian</span></span></div></div>
-    <div id="cp23" class="clip cap" data-start="26.507" data-duration="1.007" data-track-index="1"><div class="pill"><span class="w" id="w58"><span class="hl"><i></i><b></b></span><span class="t">yang</span></span> <span class="w" id="w59"><span class="hl"><i></i><b></b></span><span class="t">ramai</span></span> <span class="w" id="w60"><span class="hl"><i></i><b></b></span><span class="t">tak</span></span></div></div>
-    <div id="cp24" class="clip cap" data-start="27.514" data-duration="1.478" data-track-index="1"><div class="pill"><span class="w" id="w61"><span class="hl"><i></i><b></b></span><span class="t">tahu…</span></span> <span class="w" id="w62"><span class="hl"><i></i><b></b></span><span class="t">Serangan</span></span> <span class="w" id="w63"><span class="hl"><i></i><b></b></span><span class="t">di</span></span></div></div>
-    <div id="cp25" class="clip cap" data-start="28.992" data-duration="1.337" data-track-index="1"><div class="pill"><span class="w" id="w64"><span class="hl"><i></i><b></b></span><span class="t">Kelantan</span></span> <span class="w" id="w65"><span class="hl"><i></i><b></b></span><span class="t">bermula</span></span> <span class="w" id="w66"><span class="hl"><i></i><b></b></span><span class="t">kira-kira</span></span></div></div>
-    <div id="cp26" class="clip cap" data-start="30.329" data-duration="1.784" data-track-index="1"><div class="pill"><span class="w" id="w67"><span class="hl"><i></i><b></b></span><span class="t">1½</span></span> <span class="w" id="w68"><span class="hl"><i></i><b></b></span><span class="t">JAM</span></span> <span class="w" id="w70"><span class="hl"><i></i><b></b></span><span class="t">sebelum</span></span></div></div>
-    <div id="cp27" class="clip cap" data-start="32.113" data-duration="1.587" data-track-index="1"><div class="pill"><span class="w" id="w71"><span class="hl"><i></i><b></b></span><span class="t">serangan</span></span> <span class="w" id="w72"><span class="hl"><i></i><b></b></span><span class="t">Pearl</span></span> <span class="w" id="w73"><span class="hl"><i></i><b></b></span><span class="t">Harbor!</span></span></div></div>
-    <div id="cp28" class="clip cap" data-start="33.7" data-duration="1.023" data-track-index="1"><div class="pill"><span class="w" id="w74"><span class="hl"><i></i><b></b></span><span class="t">Dan</span></span> <span class="w" id="w75"><span class="hl"><i></i><b></b></span><span class="t">kedua-duanya</span></span> <span class="w" id="w76"><span class="hl"><i></i><b></b></span><span class="t">sebahagian</span></span></div></div>
-    <div id="cp29" class="clip cap" data-start="34.723" data-duration="1.022" data-track-index="1"><div class="pill"><span class="w" id="w77"><span class="hl"><i></i><b></b></span><span class="t">daripada</span></span> <span class="w" id="w78"><span class="hl"><i></i><b></b></span><span class="t">operasi</span></span> <span class="w" id="w79"><span class="hl"><i></i><b></b></span><span class="t">ketenteraan</span></span></div></div>
-    <div id="cp30" class="clip cap" data-start="35.745" data-duration="1.023" data-track-index="1"><div class="pill"><span class="w" id="w80"><span class="hl"><i></i><b></b></span><span class="t">besar</span></span> <span class="w" id="w81"><span class="hl"><i></i><b></b></span><span class="t">Jepun</span></span> <span class="w" id="w82"><span class="hl"><i></i><b></b></span><span class="t">di</span></span></div></div>
-    <div id="cp31" class="clip cap" data-start="36.768" data-duration="0.932" data-track-index="1"><div class="pill"><span class="w" id="w83"><span class="hl"><i></i><b></b></span><span class="t">Asia</span></span> <span class="w" id="w84"><span class="hl"><i></i><b></b></span><span class="t">Pasifik.</span></span></div></div>
-    <div id="cp32" class="clip cap" data-start="37.7" data-duration="0.914" data-track-index="1"><div class="pill"><span class="w" id="w85"><span class="hl"><i></i><b></b></span><span class="t">Tapi</span></span> <span class="w" id="w86"><span class="hl"><i></i><b></b></span><span class="t">Jepun</span></span> <span class="w" id="w87"><span class="hl"><i></i><b></b></span><span class="t">tak</span></span></div></div>
-    <div id="cp33" class="clip cap" data-start="38.614" data-duration="0.913" data-track-index="1"><div class="pill"><span class="w" id="w88"><span class="hl"><i></i><b></b></span><span class="t">berhenti</span></span> <span class="w" id="w89"><span class="hl"><i></i><b></b></span><span class="t">di</span></span> <span class="w" id="w90"><span class="hl"><i></i><b></b></span><span class="t">Kelantan.</span></span></div></div>
-    <div id="cp34" class="clip cap" data-start="39.527" data-duration="0.914" data-track-index="1"><div class="pill"><span class="w" id="w91"><span class="hl"><i></i><b></b></span><span class="t">Mereka</span></span> <span class="w" id="w92"><span class="hl"><i></i><b></b></span><span class="t">terus</span></span> <span class="w" id="w93"><span class="hl"><i></i><b></b></span><span class="t">mara</span></span></div></div>
-    <div id="cp35" class="clip cap" data-start="40.441" data-duration="0.859" data-track-index="1"><div class="pill"><span class="w" id="w94"><span class="hl"><i></i><b></b></span><span class="t">ke</span></span> <span class="w" id="w95"><span class="hl"><i></i><b></b></span><span class="t">selatan.</span></span></div></div>
-    <div id="cp36" class="clip cap" data-start="41.3" data-duration="1.295" data-track-index="1"><div class="pill"><span class="w" id="w96"><span class="hl"><i></i><b></b></span><span class="t">Dalam</span></span> <span class="w" id="w97"><span class="hl"><i></i><b></b></span><span class="t">masa</span></span> <span class="w" id="w98"><span class="hl"><i></i><b></b></span><span class="t">kira-kira</span></span></div></div>
-    <div id="cp37" class="clip cap" data-start="42.595" data-duration="1.296" data-track-index="1"><div class="pill"><span class="w" id="w99"><span class="hl"><i></i><b></b></span><span class="t">70</span></span> <span class="w" id="w100"><span class="hl"><i></i><b></b></span><span class="t">hari…</span></span> <span class="w" id="w101"><span class="hl"><i></i><b></b></span><span class="t">Singapura</span></span></div></div>
-    <div id="cp38" class="clip cap" data-start="43.891" data-duration="1.295" data-track-index="1"><div class="pill"><span class="w" id="w102"><span class="hl"><i></i><b></b></span><span class="t">pun</span></span> <span class="w" id="w103"><span class="hl"><i></i><b></b></span><span class="t">jatuh</span></span> <span class="w" id="w104"><span class="hl"><i></i><b></b></span><span class="t">ke</span></span></div></div>
-    <div id="cp39" class="clip cap" data-start="45.186" data-duration="1.114" data-track-index="1"><div class="pill"><span class="w" id="w105"><span class="hl"><i></i><b></b></span><span class="t">tangan</span></span> <span class="w" id="w106"><span class="hl"><i></i><b></b></span><span class="t">Jepun!</span></span></div></div>
-    <div id="cp40" class="clip cap" data-start="46.3" data-duration="0.358" data-track-index="1"><div class="pill"><span class="w" id="w107"><span class="hl"><i></i><b></b></span><span class="t">Bayangkan.</span></span></div></div>
-    <div id="cp41" class="clip cap" data-start="46.658" data-duration="1.072" data-track-index="1"><div class="pill"><span class="w" id="w108"><span class="hl"><i></i><b></b></span><span class="t">Pantai</span></span> <span class="w" id="w109"><span class="hl"><i></i><b></b></span><span class="t">yang</span></span> <span class="w" id="w110"><span class="hl"><i></i><b></b></span><span class="t">nampak</span></span></div></div>
-    <div id="cp42" class="clip cap" data-start="47.73" data-duration="1.073" data-track-index="1"><div class="pill"><span class="w" id="w111"><span class="hl"><i></i><b></b></span><span class="t">biasa</span></span> <span class="w" id="w112"><span class="hl"><i></i><b></b></span><span class="t">di</span></span> <span class="w" id="w113"><span class="hl"><i></i><b></b></span><span class="t">Kelantan,</span></span></div></div>
-    <div id="cp43" class="clip cap" data-start="48.803" data-duration="1.072" data-track-index="1"><div class="pill"><span class="w" id="w114"><span class="hl"><i></i><b></b></span><span class="t">sebenarnya</span></span> <span class="w" id="w115"><span class="hl"><i></i><b></b></span><span class="t">pernah</span></span> <span class="w" id="w116"><span class="hl"><i></i><b></b></span><span class="t">menjadi</span></span></div></div>
-    <div id="cp44" class="clip cap" data-start="49.875" data-duration="1.073" data-track-index="1"><div class="pill"><span class="w" id="w117"><span class="hl"><i></i><b></b></span><span class="t">lokasi</span></span> <span class="w" id="w118"><span class="hl"><i></i><b></b></span><span class="t">pembukaan</span></span> <span class="w" id="w119"><span class="hl"><i></i><b></b></span><span class="t">salah</span></span></div></div>
-    <div id="cp45" class="clip cap" data-start="50.948" data-duration="1.072" data-track-index="1"><div class="pill"><span class="w" id="w120"><span class="hl"><i></i><b></b></span><span class="t">satu</span></span> <span class="w" id="w121"><span class="hl"><i></i><b></b></span><span class="t">kempen</span></span> <span class="w" id="w122"><span class="hl"><i></i><b></b></span><span class="t">perang</span></span></div></div>
-    <div id="cp46" class="clip cap" data-start="52.02" data-duration="1.073" data-track-index="1"><div class="pill"><span class="w" id="w123"><span class="hl"><i></i><b></b></span><span class="t">terbesar</span></span> <span class="w" id="w124"><span class="hl"><i></i><b></b></span><span class="t">dalam</span></span> <span class="w" id="w125"><span class="hl"><i></i><b></b></span><span class="t">sejarah</span></span></div></div>
-    <div id="cp47" class="clip cap" data-start="53.093" data-duration="0.607" data-track-index="1"><div class="pill"><span class="w" id="w126"><span class="hl"><i></i><b></b></span><span class="t">Asia.</span></span></div></div>
-    <div id="cp48" class="clip cap" data-start="53.7" data-duration="0.879" data-track-index="1"><div class="pill"><span class="w" id="w127"><span class="hl"><i></i><b></b></span><span class="t">Orang</span></span> <span class="w" id="w128"><span class="hl"><i></i><b></b></span><span class="t">Kelantan,</span></span></div></div>
-    <div id="cp49" class="clip cap" data-start="54.579" data-duration="1.317" data-track-index="1"><div class="pill"><span class="w" id="w129"><span class="hl"><i></i><b></b></span><span class="t">korang</span></span> <span class="w" id="w130"><span class="hl"><i></i><b></b></span><span class="t">tahu</span></span> <span class="w" id="w131"><span class="hl"><i></i><b></b></span><span class="t">tak</span></span></div></div>
-    <div id="cp50" class="clip cap" data-start="55.896" data-duration="0.879" data-track-index="1"><div class="pill"><span class="w" id="w132"><span class="hl"><i></i><b></b></span><span class="t">sejarah</span></span> <span class="w" id="w133"><span class="hl"><i></i><b></b></span><span class="t">ni?</span></span></div></div>
-    <div id="cp51" class="clip cap" data-start="56.775" data-duration="1.318" data-track-index="1"><div class="pill"><span class="w" id="w134"><span class="hl"><i></i><b></b></span><span class="t">Negeri</span></span> <span class="w" id="w135"><span class="hl"><i></i><b></b></span><span class="t">mana</span></span> <span class="w" id="w136"><span class="hl"><i></i><b></b></span><span class="t">kita</span></span></div></div>
-    <div id="cp52" class="clip cap" data-start="58.093" data-duration="1.318" data-track-index="1"><div class="pill"><span class="w" id="w137"><span class="hl"><i></i><b></b></span><span class="t">patut</span></span> <span class="w" id="w138"><span class="hl"><i></i><b></b></span><span class="t">bongkar</span></span> <span class="w" id="w139"><span class="hl"><i></i><b></b></span><span class="t">lepas</span></span></div></div>
-    <div id="cp53" class="clip cap" data-start="59.411" data-duration="0.589" data-track-index="1"><div class="pill"><span class="w" id="w140"><span class="hl"><i></i><b></b></span><span class="t">ni?</span></span></div></div>
+    <div id="cp0" class="clip cap" data-start="0.25" data-duration="1.2" data-track-index="1"><div class="line"><span class="w" id="w0">Korang</span> <span class="w" id="w1">tahu</span> <span class="w" id="w2">tak…</span></div></div>
+    <div id="cp1" class="clip cap" data-start="1.45" data-duration="2.0" data-track-index="1"><div class="line"><span class="w" id="w3">sebelum</span> <span class="w" id="w4">Jepun</span> <span class="w" id="w5">bom</span> <span class="w" id="w6">Pearl</span> <span class="w" id="w7">Harbor</span></div></div>
+    <div id="cp2" class="clip cap" data-start="3.45" data-duration="1.6" data-track-index="1"><div class="line"><span class="w" id="w8">di</span> <span class="w" id="w9">Amerika,</span> <span class="w" id="w10">tentera</span> <span class="w" id="w11">Jepun</span></div></div>
+    <div id="cp3" class="clip cap" data-start="5.05" data-duration="1.2" data-track-index="1"><div class="line"><span class="w" id="w12">sebenarnya</span> <span class="w" id="w13">dah</span> <span class="w" id="w14">serang</span></div></div>
+    <div id="cp4" class="clip cap" data-start="6.25" data-duration="1.05" data-track-index="1"><div class="line"><span class="w" id="w15">KELANTAN</span> <span class="w" id="w16">dulu?!</span></div></div>
+    <div id="cp5" class="clip cap" data-start="7.3" data-duration="2.4" data-track-index="1"><div class="line"><span class="w" id="w17">8</span> <span class="w" id="w18">Disember</span> <span class="w" id="w19">1941.</span></div></div>
+    <div id="cp6" class="clip cap" data-start="9.7" data-duration="1.585" data-track-index="1"><div class="line"><span class="w" id="w20">Ketika</span> <span class="w" id="w21">penduduk</span> <span class="w" id="w22">Kota</span> <span class="w" id="w23">Bharu</span></div></div>
+    <div id="cp7" class="clip cap" data-start="11.285" data-duration="0.792" data-track-index="1"><div class="line"><span class="w" id="w24">masih</span> <span class="w" id="w25">tidur,</span></div></div>
+    <div id="cp8" class="clip cap" data-start="12.077" data-duration="1.585" data-track-index="1"><div class="line"><span class="w" id="w26">kapal</span> <span class="w" id="w27">perang</span> <span class="w" id="w28">Jepun</span> <span class="w" id="w29">muncul</span></div></div>
+    <div id="cp9" class="clip cap" data-start="13.662" data-duration="1.438" data-track-index="1"><div class="line"><span class="w" id="w30">di</span> <span class="w" id="w31">perairan</span> <span class="w" id="w32">Kelantan.</span></div></div>
+    <div id="cp10" class="clip cap" data-start="15.1" data-duration="1.686" data-track-index="1"><div class="line"><span class="w" id="w33">Ribuan</span> <span class="w" id="w34">tentera</span> <span class="w" id="w35">mula</span> <span class="w" id="w36">mendarat</span></div></div>
+    <div id="cp11" class="clip cap" data-start="16.786" data-duration="1.514" data-track-index="1"><div class="line"><span class="w" id="w37">di</span> <span class="w" id="w38">kawasan</span> <span class="w" id="w39">pantai.</span></div></div>
+    <div id="cp12" class="clip cap" data-start="18.3" data-duration="0.927" data-track-index="1"><div class="line"><span class="w" id="w40">Tembakan</span> <span class="w" id="w41">meletus.</span></div></div>
+    <div id="cp13" class="clip cap" data-start="19.227" data-duration="1.39" data-track-index="1"><div class="line"><span class="w" id="w42">Askar</span> <span class="w" id="w43">yang</span> <span class="w" id="w44">mempertahankan</span></div></div>
+    <div id="cp14" class="clip cap" data-start="20.617" data-duration="0.926" data-track-index="1"><div class="line"><span class="w" id="w45">pantai</span> <span class="w" id="w46">melawan,</span></div></div>
+    <div id="cp15" class="clip cap" data-start="21.543" data-duration="0.927" data-track-index="1"><div class="line"><span class="w" id="w47">sementara</span> <span class="w" id="w48">pesawat</span></div></div>
+    <div id="cp16" class="clip cap" data-start="22.47" data-duration="1.39" data-track-index="1"><div class="line"><span class="w" id="w49">Australia</span> <span class="w" id="w50">menyerang</span> <span class="w" id="w51">kapal</span></div></div>
+    <div id="cp17" class="clip cap" data-start="23.86" data-duration="1.64" data-track-index="1"><div class="line"><span class="w" id="w52">Jepun</span> <span class="w" id="w53">dari</span> <span class="w" id="w54">udara!</span></div></div>
+    <div id="cp18" class="clip cap" data-start="25.5" data-duration="2.6" data-track-index="1"><div class="line"><span class="w" id="w55">Tapi</span> <span class="w" id="w56">ini</span> <span class="w" id="w57">bahagian</span> <span class="w" id="w58">yang</span> <span class="w" id="w59">ramai</span> <span class="w" id="w60">tak</span> <span class="w" id="w61">tahu…</span></div></div>
+    <div id="cp19" class="clip cap" data-start="28.1" data-duration="1.338" data-track-index="1"><div class="line"><span class="w" id="w62">Serangan</span> <span class="w" id="w63">di</span> <span class="w" id="w64">Kelantan</span></div></div>
+    <div id="cp20" class="clip cap" data-start="29.438" data-duration="2.229" data-track-index="1"><div class="line"><span class="w" id="w65">bermula</span> <span class="w" id="w66">kira-kira</span> <span class="w" id="w67">1½</span> <span class="w" id="w68">JAM</span></div></div>
+    <div id="cp21" class="clip cap" data-start="31.667" data-duration="2.033" data-track-index="1"><div class="line"><span class="w" id="w70">sebelum</span> <span class="w" id="w71">serangan</span> <span class="w" id="w72">Pearl</span> <span class="w" id="w73">Harbor!</span></div></div>
+    <div id="cp22" class="clip cap" data-start="33.7" data-duration="0.682" data-track-index="1"><div class="line"><span class="w" id="w74">Dan</span> <span class="w" id="w75">kedua-duanya</span></div></div>
+    <div id="cp23" class="clip cap" data-start="34.382" data-duration="1.023" data-track-index="1"><div class="line"><span class="w" id="w76">sebahagian</span> <span class="w" id="w77">daripada</span> <span class="w" id="w78">operasi</span></div></div>
+    <div id="cp24" class="clip cap" data-start="35.405" data-duration="2.295" data-track-index="1"><div class="line"><span class="w" id="w79">ketenteraan</span> <span class="w" id="w80">besar</span> <span class="w" id="w81">Jepun</span> <span class="w" id="w82">di</span> <span class="w" id="w83">Asia</span> <span class="w" id="w84">Pasifik.</span></div></div>
+    <div id="cp25" class="clip cap" data-start="37.7" data-duration="1.827" data-track-index="1"><div class="line"><span class="w" id="w85">Tapi</span> <span class="w" id="w86">Jepun</span> <span class="w" id="w87">tak</span> <span class="w" id="w88">berhenti</span> <span class="w" id="w89">di</span> <span class="w" id="w90">Kelantan.</span></div></div>
+    <div id="cp26" class="clip cap" data-start="39.527" data-duration="1.773" data-track-index="1"><div class="line"><span class="w" id="w91">Mereka</span> <span class="w" id="w92">terus</span> <span class="w" id="w93">mara</span> <span class="w" id="w94">ke</span> <span class="w" id="w95">selatan.</span></div></div>
+    <div id="cp27" class="clip cap" data-start="41.3" data-duration="2.159" data-track-index="1"><div class="line"><span class="w" id="w96">Dalam</span> <span class="w" id="w97">masa</span> <span class="w" id="w98">kira-kira</span> <span class="w" id="w99">70</span> <span class="w" id="w100">hari…</span></div></div>
+    <div id="cp28" class="clip cap" data-start="43.459" data-duration="2.841" data-track-index="1"><div class="line"><span class="w" id="w101">Singapura</span> <span class="w" id="w102">pun</span> <span class="w" id="w103">jatuh</span> <span class="w" id="w104">ke</span> <span class="w" id="w105">tangan</span> <span class="w" id="w106">Jepun!</span></div></div>
+    <div id="cp29" class="clip cap" data-start="46.3" data-duration="0.358" data-track-index="1"><div class="line"><span class="w" id="w107">Bayangkan.</span></div></div>
+    <div id="cp30" class="clip cap" data-start="46.658" data-duration="1.43" data-track-index="1"><div class="line"><span class="w" id="w108">Pantai</span> <span class="w" id="w109">yang</span> <span class="w" id="w110">nampak</span> <span class="w" id="w111">biasa</span></div></div>
+    <div id="cp31" class="clip cap" data-start="48.088" data-duration="0.715" data-track-index="1"><div class="line"><span class="w" id="w112">di</span> <span class="w" id="w113">Kelantan,</span></div></div>
+    <div id="cp32" class="clip cap" data-start="48.803" data-duration="1.43" data-track-index="1"><div class="line"><span class="w" id="w114">sebenarnya</span> <span class="w" id="w115">pernah</span> <span class="w" id="w116">menjadi</span> <span class="w" id="w117">lokasi</span></div></div>
+    <div id="cp33" class="clip cap" data-start="50.233" data-duration="1.43" data-track-index="1"><div class="line"><span class="w" id="w118">pembukaan</span> <span class="w" id="w119">salah</span> <span class="w" id="w120">satu</span> <span class="w" id="w121">kempen</span></div></div>
+    <div id="cp34" class="clip cap" data-start="51.663" data-duration="2.037" data-track-index="1"><div class="line"><span class="w" id="w122">perang</span> <span class="w" id="w123">terbesar</span> <span class="w" id="w124">dalam</span> <span class="w" id="w125">sejarah</span> <span class="w" id="w126">Asia.</span></div></div>
+    <div id="cp35" class="clip cap" data-start="53.7" data-duration="0.879" data-track-index="1"><div class="line"><span class="w" id="w127">Orang</span> <span class="w" id="w128">Kelantan,</span></div></div>
+    <div id="cp36" class="clip cap" data-start="54.579" data-duration="2.196" data-track-index="1"><div class="line"><span class="w" id="w129">korang</span> <span class="w" id="w130">tahu</span> <span class="w" id="w131">tak</span> <span class="w" id="w132">sejarah</span> <span class="w" id="w133">ni?</span></div></div>
+    <div id="cp37" class="clip cap" data-start="56.775" data-duration="1.757" data-track-index="1"><div class="line"><span class="w" id="w134">Negeri</span> <span class="w" id="w135">mana</span> <span class="w" id="w136">kita</span> <span class="w" id="w137">patut</span></div></div>
+    <div id="cp38" class="clip cap" data-start="58.532" data-duration="1.468" data-track-index="1"><div class="line"><span class="w" id="w138">bongkar</span> <span class="w" id="w139">lepas</span> <span class="w" id="w140">ni?</span></div></div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
-    tl.set("#w0 .hl", {opacity: 1}, 0.25); tl.set("#w0 .t", {color: "#ffffff"}, 0.25);
-    tl.set("#w0 .hl", {opacity: 0}, 0.65); tl.set("#w0 .t", {color: "#14161c"}, 0.65);
-    tl.set("#w1 .hl", {opacity: 1}, 0.65); tl.set("#w1 .t", {color: "#ffffff"}, 0.65);
-    tl.set("#w1 .hl", {opacity: 0}, 1.05); tl.set("#w1 .t", {color: "#14161c"}, 1.05);
-    tl.set("#w2 .hl", {opacity: 1}, 1.05); tl.set("#w2 .t", {color: "#ffffff"}, 1.05);
-    tl.fromTo("#cp0 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 0.25);
-    tl.set("#w3 .hl", {opacity: 1}, 1.45); tl.set("#w3 .t", {color: "#ffffff"}, 1.45);
-    tl.set("#w3 .hl", {opacity: 0}, 1.85); tl.set("#w3 .t", {color: "#14161c"}, 1.85);
-    tl.set("#w4 .hl", {opacity: 1}, 1.85); tl.set("#w4 .t", {color: "#ffffff"}, 1.85);
-    tl.set("#w4 .hl", {opacity: 0}, 2.25); tl.set("#w4 .t", {color: "#14161c"}, 2.25);
-    tl.set("#w5 .hl", {opacity: 1}, 2.25); tl.set("#w5 .t", {color: "#ffffff"}, 2.25);
-    tl.fromTo("#cp1 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 1.45);
-    tl.set("#w6 .hl", {opacity: 1}, 2.65); tl.set("#w6 .t", {color: "#ffffff"}, 2.65);
-    tl.set("#w6 .hl", {opacity: 0}, 3.05); tl.set("#w6 .t", {color: "#14161c"}, 3.05);
-    tl.set("#w7 .hl", {opacity: 1}, 3.05); tl.set("#w7 .t", {color: "#ffffff"}, 3.05);
-    tl.set("#w7 .hl", {opacity: 0}, 3.45); tl.set("#w7 .t", {color: "#14161c"}, 3.45);
-    tl.set("#w8 .hl", {opacity: 1}, 3.45); tl.set("#w8 .t", {color: "#ffffff"}, 3.45);
-    tl.fromTo("#cp2 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 2.65);
-    tl.set("#w9 .hl", {opacity: 1}, 3.85); tl.set("#w9 .t", {color: "#ffffff"}, 3.85);
-    tl.fromTo("#cp3 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 3.85);
-    tl.set("#w10 .hl", {opacity: 1}, 4.25); tl.set("#w10 .t", {color: "#ffffff"}, 4.25);
-    tl.set("#w10 .hl", {opacity: 0}, 4.65); tl.set("#w10 .t", {color: "#14161c"}, 4.65);
-    tl.set("#w11 .hl", {opacity: 1}, 4.65); tl.set("#w11 .t", {color: "#ffffff"}, 4.65);
-    tl.set("#w11 .hl", {opacity: 0}, 5.05); tl.set("#w11 .t", {color: "#14161c"}, 5.05);
-    tl.set("#w12 .hl", {opacity: 1}, 5.05); tl.set("#w12 .t", {color: "#ffffff"}, 5.05);
-    tl.fromTo("#cp4 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 4.25);
-    tl.set("#w13 .hl", {opacity: 1}, 5.45); tl.set("#w13 .t", {color: "#ffffff"}, 5.45);
-    tl.set("#w13 .hl", {opacity: 0}, 5.85); tl.set("#w13 .t", {color: "#14161c"}, 5.85);
-    tl.set("#w14 .hl", {opacity: 1}, 5.85); tl.set("#w14 .t", {color: "#ffffff"}, 5.85);
-    tl.set("#w14 .hl", {opacity: 0}, 6.25); tl.set("#w14 .t", {color: "#14161c"}, 6.25);
-    tl.set("#w15 .hl", {opacity: 1}, 6.25); tl.set("#w15 .t", {color: "#ffffff"}, 6.25);
-    tl.fromTo("#cp5 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 5.45);
-    tl.set("#w16 .hl", {opacity: 1}, 6.65); tl.set("#w16 .t", {color: "#ffffff"}, 6.65);
-    tl.fromTo("#cp6 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 6.65);
-    tl.set("#w17 .hl", {opacity: 1}, 7.3); tl.set("#w17 .t", {color: "#ffffff"}, 7.3);
-    tl.set("#w17 .hl", {opacity: 0}, 8.017); tl.set("#w17 .t", {color: "#14161c"}, 8.017);
-    tl.set("#w18 .hl", {opacity: 1}, 8.017); tl.set("#w18 .t", {color: "#ffffff"}, 8.017);
-    tl.set("#w18 .hl", {opacity: 0}, 8.733); tl.set("#w18 .t", {color: "#14161c"}, 8.733);
-    tl.set("#w19 .hl", {opacity: 1}, 8.733); tl.set("#w19 .t", {color: "#ffffff"}, 8.733);
-    tl.fromTo("#cp7 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 7.3);
-    tl.set("#w20 .hl", {opacity: 1}, 9.7); tl.set("#w20 .t", {color: "#ffffff"}, 9.7);
-    tl.set("#w20 .hl", {opacity: 0}, 10.096); tl.set("#w20 .t", {color: "#14161c"}, 10.096);
-    tl.set("#w21 .hl", {opacity: 1}, 10.096); tl.set("#w21 .t", {color: "#ffffff"}, 10.096);
-    tl.set("#w21 .hl", {opacity: 0}, 10.492); tl.set("#w21 .t", {color: "#14161c"}, 10.492);
-    tl.set("#w22 .hl", {opacity: 1}, 10.492); tl.set("#w22 .t", {color: "#ffffff"}, 10.492);
-    tl.fromTo("#cp8 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 9.7);
-    tl.set("#w23 .hl", {opacity: 1}, 10.888); tl.set("#w23 .t", {color: "#ffffff"}, 10.888);
-    tl.set("#w23 .hl", {opacity: 0}, 11.285); tl.set("#w23 .t", {color: "#14161c"}, 11.285);
-    tl.set("#w24 .hl", {opacity: 1}, 11.285); tl.set("#w24 .t", {color: "#ffffff"}, 11.285);
-    tl.set("#w24 .hl", {opacity: 0}, 11.681); tl.set("#w24 .t", {color: "#14161c"}, 11.681);
-    tl.set("#w25 .hl", {opacity: 1}, 11.681); tl.set("#w25 .t", {color: "#ffffff"}, 11.681);
-    tl.fromTo("#cp9 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 10.888);
-    tl.set("#w26 .hl", {opacity: 1}, 12.077); tl.set("#w26 .t", {color: "#ffffff"}, 12.077);
-    tl.set("#w26 .hl", {opacity: 0}, 12.473); tl.set("#w26 .t", {color: "#14161c"}, 12.473);
-    tl.set("#w27 .hl", {opacity: 1}, 12.473); tl.set("#w27 .t", {color: "#ffffff"}, 12.473);
-    tl.set("#w27 .hl", {opacity: 0}, 12.869); tl.set("#w27 .t", {color: "#14161c"}, 12.869);
-    tl.set("#w28 .hl", {opacity: 1}, 12.869); tl.set("#w28 .t", {color: "#ffffff"}, 12.869);
-    tl.fromTo("#cp10 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 12.077);
-    tl.set("#w29 .hl", {opacity: 1}, 13.265); tl.set("#w29 .t", {color: "#ffffff"}, 13.265);
-    tl.set("#w29 .hl", {opacity: 0}, 13.662); tl.set("#w29 .t", {color: "#14161c"}, 13.662);
-    tl.set("#w30 .hl", {opacity: 1}, 13.662); tl.set("#w30 .t", {color: "#ffffff"}, 13.662);
-    tl.set("#w30 .hl", {opacity: 0}, 14.058); tl.set("#w30 .t", {color: "#14161c"}, 14.058);
-    tl.set("#w31 .hl", {opacity: 1}, 14.058); tl.set("#w31 .t", {color: "#ffffff"}, 14.058);
-    tl.fromTo("#cp11 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 13.265);
-    tl.set("#w32 .hl", {opacity: 1}, 14.454); tl.set("#w32 .t", {color: "#ffffff"}, 14.454);
-    tl.fromTo("#cp12 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 14.454);
-    tl.set("#w33 .hl", {opacity: 1}, 15.1); tl.set("#w33 .t", {color: "#ffffff"}, 15.1);
-    tl.set("#w33 .hl", {opacity: 0}, 15.521); tl.set("#w33 .t", {color: "#14161c"}, 15.521);
-    tl.set("#w34 .hl", {opacity: 1}, 15.521); tl.set("#w34 .t", {color: "#ffffff"}, 15.521);
-    tl.set("#w34 .hl", {opacity: 0}, 15.943); tl.set("#w34 .t", {color: "#14161c"}, 15.943);
-    tl.set("#w35 .hl", {opacity: 1}, 15.943); tl.set("#w35 .t", {color: "#ffffff"}, 15.943);
-    tl.fromTo("#cp13 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 15.1);
-    tl.set("#w36 .hl", {opacity: 1}, 16.364); tl.set("#w36 .t", {color: "#ffffff"}, 16.364);
-    tl.set("#w36 .hl", {opacity: 0}, 16.786); tl.set("#w36 .t", {color: "#14161c"}, 16.786);
-    tl.set("#w37 .hl", {opacity: 1}, 16.786); tl.set("#w37 .t", {color: "#ffffff"}, 16.786);
-    tl.set("#w37 .hl", {opacity: 0}, 17.207); tl.set("#w37 .t", {color: "#14161c"}, 17.207);
-    tl.set("#w38 .hl", {opacity: 1}, 17.207); tl.set("#w38 .t", {color: "#ffffff"}, 17.207);
-    tl.fromTo("#cp14 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 16.364);
-    tl.set("#w39 .hl", {opacity: 1}, 17.629); tl.set("#w39 .t", {color: "#ffffff"}, 17.629);
-    tl.fromTo("#cp15 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 17.629);
-    tl.set("#w40 .hl", {opacity: 1}, 18.3); tl.set("#w40 .t", {color: "#ffffff"}, 18.3);
-    tl.set("#w40 .hl", {opacity: 0}, 18.763); tl.set("#w40 .t", {color: "#14161c"}, 18.763);
-    tl.set("#w41 .hl", {opacity: 1}, 18.763); tl.set("#w41 .t", {color: "#ffffff"}, 18.763);
-    tl.fromTo("#cp16 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 18.3);
-    tl.set("#w42 .hl", {opacity: 1}, 19.227); tl.set("#w42 .t", {color: "#ffffff"}, 19.227);
-    tl.set("#w42 .hl", {opacity: 0}, 19.69); tl.set("#w42 .t", {color: "#14161c"}, 19.69);
-    tl.set("#w43 .hl", {opacity: 1}, 19.69); tl.set("#w43 .t", {color: "#ffffff"}, 19.69);
-    tl.set("#w43 .hl", {opacity: 0}, 20.153); tl.set("#w43 .t", {color: "#14161c"}, 20.153);
-    tl.set("#w44 .hl", {opacity: 1}, 20.153); tl.set("#w44 .t", {color: "#ffffff"}, 20.153);
-    tl.fromTo("#cp17 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 19.227);
-    tl.set("#w45 .hl", {opacity: 1}, 20.617); tl.set("#w45 .t", {color: "#ffffff"}, 20.617);
-    tl.set("#w45 .hl", {opacity: 0}, 21.08); tl.set("#w45 .t", {color: "#14161c"}, 21.08);
-    tl.set("#w46 .hl", {opacity: 1}, 21.08); tl.set("#w46 .t", {color: "#ffffff"}, 21.08);
-    tl.fromTo("#cp18 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 20.617);
-    tl.set("#w47 .hl", {opacity: 1}, 21.543); tl.set("#w47 .t", {color: "#ffffff"}, 21.543);
-    tl.set("#w47 .hl", {opacity: 0}, 22.007); tl.set("#w47 .t", {color: "#14161c"}, 22.007);
-    tl.set("#w48 .hl", {opacity: 1}, 22.007); tl.set("#w48 .t", {color: "#ffffff"}, 22.007);
-    tl.set("#w48 .hl", {opacity: 0}, 22.47); tl.set("#w48 .t", {color: "#14161c"}, 22.47);
-    tl.set("#w49 .hl", {opacity: 1}, 22.47); tl.set("#w49 .t", {color: "#ffffff"}, 22.47);
-    tl.fromTo("#cp19 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 21.543);
-    tl.set("#w50 .hl", {opacity: 1}, 22.933); tl.set("#w50 .t", {color: "#ffffff"}, 22.933);
-    tl.set("#w50 .hl", {opacity: 0}, 23.397); tl.set("#w50 .t", {color: "#14161c"}, 23.397);
-    tl.set("#w51 .hl", {opacity: 1}, 23.397); tl.set("#w51 .t", {color: "#ffffff"}, 23.397);
-    tl.set("#w51 .hl", {opacity: 0}, 23.86); tl.set("#w51 .t", {color: "#14161c"}, 23.86);
-    tl.set("#w52 .hl", {opacity: 1}, 23.86); tl.set("#w52 .t", {color: "#ffffff"}, 23.86);
-    tl.fromTo("#cp20 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 22.933);
-    tl.set("#w53 .hl", {opacity: 1}, 24.323); tl.set("#w53 .t", {color: "#ffffff"}, 24.323);
-    tl.set("#w53 .hl", {opacity: 0}, 24.787); tl.set("#w53 .t", {color: "#14161c"}, 24.787);
-    tl.set("#w54 .hl", {opacity: 1}, 24.787); tl.set("#w54 .t", {color: "#ffffff"}, 24.787);
-    tl.fromTo("#cp21 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 24.323);
-    tl.set("#w55 .hl", {opacity: 1}, 25.5); tl.set("#w55 .t", {color: "#ffffff"}, 25.5);
-    tl.set("#w55 .hl", {opacity: 0}, 25.836); tl.set("#w55 .t", {color: "#14161c"}, 25.836);
-    tl.set("#w56 .hl", {opacity: 1}, 25.836); tl.set("#w56 .t", {color: "#ffffff"}, 25.836);
-    tl.set("#w56 .hl", {opacity: 0}, 26.171); tl.set("#w56 .t", {color: "#14161c"}, 26.171);
-    tl.set("#w57 .hl", {opacity: 1}, 26.171); tl.set("#w57 .t", {color: "#ffffff"}, 26.171);
-    tl.fromTo("#cp22 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 25.5);
-    tl.set("#w58 .hl", {opacity: 1}, 26.507); tl.set("#w58 .t", {color: "#ffffff"}, 26.507);
-    tl.set("#w58 .hl", {opacity: 0}, 26.843); tl.set("#w58 .t", {color: "#14161c"}, 26.843);
-    tl.set("#w59 .hl", {opacity: 1}, 26.843); tl.set("#w59 .t", {color: "#ffffff"}, 26.843);
-    tl.set("#w59 .hl", {opacity: 0}, 27.179); tl.set("#w59 .t", {color: "#14161c"}, 27.179);
-    tl.set("#w60 .hl", {opacity: 1}, 27.179); tl.set("#w60 .t", {color: "#ffffff"}, 27.179);
-    tl.fromTo("#cp23 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 26.507);
-    tl.set("#w61 .hl", {opacity: 1}, 27.514); tl.set("#w61 .t", {color: "#ffffff"}, 27.514);
-    tl.set("#w61 .hl", {opacity: 0}, 28.1); tl.set("#w61 .t", {color: "#14161c"}, 28.1);
-    tl.set("#w62 .hl", {opacity: 1}, 28.1); tl.set("#w62 .t", {color: "#ffffff"}, 28.1);
-    tl.set("#w62 .hl", {opacity: 0}, 28.546); tl.set("#w62 .t", {color: "#14161c"}, 28.546);
-    tl.set("#w63 .hl", {opacity: 1}, 28.546); tl.set("#w63 .t", {color: "#ffffff"}, 28.546);
-    tl.fromTo("#cp24 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 27.514);
-    tl.set("#w64 .hl", {opacity: 1}, 28.992); tl.set("#w64 .t", {color: "#ffffff"}, 28.992);
-    tl.set("#w64 .hl", {opacity: 0}, 29.438); tl.set("#w64 .t", {color: "#14161c"}, 29.438);
-    tl.set("#w65 .hl", {opacity: 1}, 29.438); tl.set("#w65 .t", {color: "#ffffff"}, 29.438);
-    tl.set("#w65 .hl", {opacity: 0}, 29.883); tl.set("#w65 .t", {color: "#14161c"}, 29.883);
-    tl.set("#w66 .hl", {opacity: 1}, 29.883); tl.set("#w66 .t", {color: "#ffffff"}, 29.883);
-    tl.fromTo("#cp25 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 28.992);
-    tl.set("#w67 .hl", {opacity: 1}, 30.329); tl.set("#w67 .t", {color: "#ffffff"}, 30.329);
-    tl.set("#w67 .hl", {opacity: 0}, 30.775); tl.set("#w67 .t", {color: "#14161c"}, 30.775);
-    tl.set("#w68 .hl", {opacity: 1}, 30.775); tl.set("#w68 .t", {color: "#ffffff"}, 30.775);
-    tl.set("#w68 .hl", {opacity: 0}, 31.667); tl.set("#w68 .t", {color: "#14161c"}, 31.667);
-    tl.set("#w70 .hl", {opacity: 1}, 31.667); tl.set("#w70 .t", {color: "#ffffff"}, 31.667);
-    tl.fromTo("#cp26 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 30.329);
-    tl.set("#w71 .hl", {opacity: 1}, 32.113); tl.set("#w71 .t", {color: "#ffffff"}, 32.113);
-    tl.set("#w71 .hl", {opacity: 0}, 32.558); tl.set("#w71 .t", {color: "#14161c"}, 32.558);
-    tl.set("#w72 .hl", {opacity: 1}, 32.558); tl.set("#w72 .t", {color: "#ffffff"}, 32.558);
-    tl.set("#w72 .hl", {opacity: 0}, 33.004); tl.set("#w72 .t", {color: "#14161c"}, 33.004);
-    tl.set("#w73 .hl", {opacity: 1}, 33.004); tl.set("#w73 .t", {color: "#ffffff"}, 33.004);
-    tl.fromTo("#cp27 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 32.113);
-    tl.set("#w74 .hl", {opacity: 1}, 33.7); tl.set("#w74 .t", {color: "#ffffff"}, 33.7);
-    tl.set("#w74 .hl", {opacity: 0}, 34.041); tl.set("#w74 .t", {color: "#14161c"}, 34.041);
-    tl.set("#w75 .hl", {opacity: 1}, 34.041); tl.set("#w75 .t", {color: "#ffffff"}, 34.041);
-    tl.set("#w75 .hl", {opacity: 0}, 34.382); tl.set("#w75 .t", {color: "#14161c"}, 34.382);
-    tl.set("#w76 .hl", {opacity: 1}, 34.382); tl.set("#w76 .t", {color: "#ffffff"}, 34.382);
-    tl.fromTo("#cp28 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 33.7);
-    tl.set("#w77 .hl", {opacity: 1}, 34.723); tl.set("#w77 .t", {color: "#ffffff"}, 34.723);
-    tl.set("#w77 .hl", {opacity: 0}, 35.064); tl.set("#w77 .t", {color: "#14161c"}, 35.064);
-    tl.set("#w78 .hl", {opacity: 1}, 35.064); tl.set("#w78 .t", {color: "#ffffff"}, 35.064);
-    tl.set("#w78 .hl", {opacity: 0}, 35.405); tl.set("#w78 .t", {color: "#14161c"}, 35.405);
-    tl.set("#w79 .hl", {opacity: 1}, 35.405); tl.set("#w79 .t", {color: "#ffffff"}, 35.405);
-    tl.fromTo("#cp29 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 34.723);
-    tl.set("#w80 .hl", {opacity: 1}, 35.745); tl.set("#w80 .t", {color: "#ffffff"}, 35.745);
-    tl.set("#w80 .hl", {opacity: 0}, 36.086); tl.set("#w80 .t", {color: "#14161c"}, 36.086);
-    tl.set("#w81 .hl", {opacity: 1}, 36.086); tl.set("#w81 .t", {color: "#ffffff"}, 36.086);
-    tl.set("#w81 .hl", {opacity: 0}, 36.427); tl.set("#w81 .t", {color: "#14161c"}, 36.427);
-    tl.set("#w82 .hl", {opacity: 1}, 36.427); tl.set("#w82 .t", {color: "#ffffff"}, 36.427);
-    tl.fromTo("#cp30 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 35.745);
-    tl.set("#w83 .hl", {opacity: 1}, 36.768); tl.set("#w83 .t", {color: "#ffffff"}, 36.768);
-    tl.set("#w83 .hl", {opacity: 0}, 37.109); tl.set("#w83 .t", {color: "#14161c"}, 37.109);
-    tl.set("#w84 .hl", {opacity: 1}, 37.109); tl.set("#w84 .t", {color: "#ffffff"}, 37.109);
-    tl.fromTo("#cp31 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 36.768);
-    tl.set("#w85 .hl", {opacity: 1}, 37.7); tl.set("#w85 .t", {color: "#ffffff"}, 37.7);
-    tl.set("#w85 .hl", {opacity: 0}, 38.005); tl.set("#w85 .t", {color: "#14161c"}, 38.005);
-    tl.set("#w86 .hl", {opacity: 1}, 38.005); tl.set("#w86 .t", {color: "#ffffff"}, 38.005);
-    tl.set("#w86 .hl", {opacity: 0}, 38.309); tl.set("#w86 .t", {color: "#14161c"}, 38.309);
-    tl.set("#w87 .hl", {opacity: 1}, 38.309); tl.set("#w87 .t", {color: "#ffffff"}, 38.309);
-    tl.fromTo("#cp32 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 37.7);
-    tl.set("#w88 .hl", {opacity: 1}, 38.614); tl.set("#w88 .t", {color: "#ffffff"}, 38.614);
-    tl.set("#w88 .hl", {opacity: 0}, 38.918); tl.set("#w88 .t", {color: "#14161c"}, 38.918);
-    tl.set("#w89 .hl", {opacity: 1}, 38.918); tl.set("#w89 .t", {color: "#ffffff"}, 38.918);
-    tl.set("#w89 .hl", {opacity: 0}, 39.223); tl.set("#w89 .t", {color: "#14161c"}, 39.223);
-    tl.set("#w90 .hl", {opacity: 1}, 39.223); tl.set("#w90 .t", {color: "#ffffff"}, 39.223);
-    tl.fromTo("#cp33 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 38.614);
-    tl.set("#w91 .hl", {opacity: 1}, 39.527); tl.set("#w91 .t", {color: "#ffffff"}, 39.527);
-    tl.set("#w91 .hl", {opacity: 0}, 39.832); tl.set("#w91 .t", {color: "#14161c"}, 39.832);
-    tl.set("#w92 .hl", {opacity: 1}, 39.832); tl.set("#w92 .t", {color: "#ffffff"}, 39.832);
-    tl.set("#w92 .hl", {opacity: 0}, 40.136); tl.set("#w92 .t", {color: "#14161c"}, 40.136);
-    tl.set("#w93 .hl", {opacity: 1}, 40.136); tl.set("#w93 .t", {color: "#ffffff"}, 40.136);
-    tl.fromTo("#cp34 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 39.527);
-    tl.set("#w94 .hl", {opacity: 1}, 40.441); tl.set("#w94 .t", {color: "#ffffff"}, 40.441);
-    tl.set("#w94 .hl", {opacity: 0}, 40.745); tl.set("#w94 .t", {color: "#14161c"}, 40.745);
-    tl.set("#w95 .hl", {opacity: 1}, 40.745); tl.set("#w95 .t", {color: "#ffffff"}, 40.745);
-    tl.fromTo("#cp35 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 40.441);
-    tl.set("#w96 .hl", {opacity: 1}, 41.3); tl.set("#w96 .t", {color: "#ffffff"}, 41.3);
-    tl.set("#w96 .hl", {opacity: 0}, 41.732); tl.set("#w96 .t", {color: "#14161c"}, 41.732);
-    tl.set("#w97 .hl", {opacity: 1}, 41.732); tl.set("#w97 .t", {color: "#ffffff"}, 41.732);
-    tl.set("#w97 .hl", {opacity: 0}, 42.164); tl.set("#w97 .t", {color: "#14161c"}, 42.164);
-    tl.set("#w98 .hl", {opacity: 1}, 42.164); tl.set("#w98 .t", {color: "#ffffff"}, 42.164);
-    tl.fromTo("#cp36 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 41.3);
-    tl.set("#w99 .hl", {opacity: 1}, 42.595); tl.set("#w99 .t", {color: "#ffffff"}, 42.595);
-    tl.set("#w99 .hl", {opacity: 0}, 43.027); tl.set("#w99 .t", {color: "#14161c"}, 43.027);
-    tl.set("#w100 .hl", {opacity: 1}, 43.027); tl.set("#w100 .t", {color: "#ffffff"}, 43.027);
-    tl.set("#w100 .hl", {opacity: 0}, 43.459); tl.set("#w100 .t", {color: "#14161c"}, 43.459);
-    tl.set("#w101 .hl", {opacity: 1}, 43.459); tl.set("#w101 .t", {color: "#ffffff"}, 43.459);
-    tl.fromTo("#cp37 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 42.595);
-    tl.set("#w102 .hl", {opacity: 1}, 43.891); tl.set("#w102 .t", {color: "#ffffff"}, 43.891);
-    tl.set("#w102 .hl", {opacity: 0}, 44.323); tl.set("#w102 .t", {color: "#14161c"}, 44.323);
-    tl.set("#w103 .hl", {opacity: 1}, 44.323); tl.set("#w103 .t", {color: "#ffffff"}, 44.323);
-    tl.set("#w103 .hl", {opacity: 0}, 44.755); tl.set("#w103 .t", {color: "#14161c"}, 44.755);
-    tl.set("#w104 .hl", {opacity: 1}, 44.755); tl.set("#w104 .t", {color: "#ffffff"}, 44.755);
-    tl.fromTo("#cp38 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 43.891);
-    tl.set("#w105 .hl", {opacity: 1}, 45.186); tl.set("#w105 .t", {color: "#ffffff"}, 45.186);
-    tl.set("#w105 .hl", {opacity: 0}, 45.618); tl.set("#w105 .t", {color: "#14161c"}, 45.618);
-    tl.set("#w106 .hl", {opacity: 1}, 45.618); tl.set("#w106 .t", {color: "#ffffff"}, 45.618);
-    tl.fromTo("#cp39 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 45.186);
-    tl.set("#w107 .hl", {opacity: 1}, 46.3); tl.set("#w107 .t", {color: "#ffffff"}, 46.3);
-    tl.fromTo("#cp40 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 46.3);
-    tl.set("#w108 .hl", {opacity: 1}, 46.658); tl.set("#w108 .t", {color: "#ffffff"}, 46.658);
-    tl.set("#w108 .hl", {opacity: 0}, 47.015); tl.set("#w108 .t", {color: "#14161c"}, 47.015);
-    tl.set("#w109 .hl", {opacity: 1}, 47.015); tl.set("#w109 .t", {color: "#ffffff"}, 47.015);
-    tl.set("#w109 .hl", {opacity: 0}, 47.373); tl.set("#w109 .t", {color: "#14161c"}, 47.373);
-    tl.set("#w110 .hl", {opacity: 1}, 47.373); tl.set("#w110 .t", {color: "#ffffff"}, 47.373);
-    tl.fromTo("#cp41 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 46.658);
-    tl.set("#w111 .hl", {opacity: 1}, 47.73); tl.set("#w111 .t", {color: "#ffffff"}, 47.73);
-    tl.set("#w111 .hl", {opacity: 0}, 48.088); tl.set("#w111 .t", {color: "#14161c"}, 48.088);
-    tl.set("#w112 .hl", {opacity: 1}, 48.088); tl.set("#w112 .t", {color: "#ffffff"}, 48.088);
-    tl.set("#w112 .hl", {opacity: 0}, 48.445); tl.set("#w112 .t", {color: "#14161c"}, 48.445);
-    tl.set("#w113 .hl", {opacity: 1}, 48.445); tl.set("#w113 .t", {color: "#ffffff"}, 48.445);
-    tl.fromTo("#cp42 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 47.73);
-    tl.set("#w114 .hl", {opacity: 1}, 48.803); tl.set("#w114 .t", {color: "#ffffff"}, 48.803);
-    tl.set("#w114 .hl", {opacity: 0}, 49.16); tl.set("#w114 .t", {color: "#14161c"}, 49.16);
-    tl.set("#w115 .hl", {opacity: 1}, 49.16); tl.set("#w115 .t", {color: "#ffffff"}, 49.16);
-    tl.set("#w115 .hl", {opacity: 0}, 49.518); tl.set("#w115 .t", {color: "#14161c"}, 49.518);
-    tl.set("#w116 .hl", {opacity: 1}, 49.518); tl.set("#w116 .t", {color: "#ffffff"}, 49.518);
-    tl.fromTo("#cp43 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 48.803);
-    tl.set("#w117 .hl", {opacity: 1}, 49.875); tl.set("#w117 .t", {color: "#ffffff"}, 49.875);
-    tl.set("#w117 .hl", {opacity: 0}, 50.233); tl.set("#w117 .t", {color: "#14161c"}, 50.233);
-    tl.set("#w118 .hl", {opacity: 1}, 50.233); tl.set("#w118 .t", {color: "#ffffff"}, 50.233);
-    tl.set("#w118 .hl", {opacity: 0}, 50.59); tl.set("#w118 .t", {color: "#14161c"}, 50.59);
-    tl.set("#w119 .hl", {opacity: 1}, 50.59); tl.set("#w119 .t", {color: "#ffffff"}, 50.59);
-    tl.fromTo("#cp44 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 49.875);
-    tl.set("#w120 .hl", {opacity: 1}, 50.948); tl.set("#w120 .t", {color: "#ffffff"}, 50.948);
-    tl.set("#w120 .hl", {opacity: 0}, 51.305); tl.set("#w120 .t", {color: "#14161c"}, 51.305);
-    tl.set("#w121 .hl", {opacity: 1}, 51.305); tl.set("#w121 .t", {color: "#ffffff"}, 51.305);
-    tl.set("#w121 .hl", {opacity: 0}, 51.663); tl.set("#w121 .t", {color: "#14161c"}, 51.663);
-    tl.set("#w122 .hl", {opacity: 1}, 51.663); tl.set("#w122 .t", {color: "#ffffff"}, 51.663);
-    tl.fromTo("#cp45 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 50.948);
-    tl.set("#w123 .hl", {opacity: 1}, 52.02); tl.set("#w123 .t", {color: "#ffffff"}, 52.02);
-    tl.set("#w123 .hl", {opacity: 0}, 52.378); tl.set("#w123 .t", {color: "#14161c"}, 52.378);
-    tl.set("#w124 .hl", {opacity: 1}, 52.378); tl.set("#w124 .t", {color: "#ffffff"}, 52.378);
-    tl.set("#w124 .hl", {opacity: 0}, 52.735); tl.set("#w124 .t", {color: "#14161c"}, 52.735);
-    tl.set("#w125 .hl", {opacity: 1}, 52.735); tl.set("#w125 .t", {color: "#ffffff"}, 52.735);
-    tl.fromTo("#cp46 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 52.02);
-    tl.set("#w126 .hl", {opacity: 1}, 53.093); tl.set("#w126 .t", {color: "#ffffff"}, 53.093);
-    tl.fromTo("#cp47 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 53.093);
-    tl.set("#w127 .hl", {opacity: 1}, 53.7); tl.set("#w127 .t", {color: "#ffffff"}, 53.7);
-    tl.set("#w127 .hl", {opacity: 0}, 54.139); tl.set("#w127 .t", {color: "#14161c"}, 54.139);
-    tl.set("#w128 .hl", {opacity: 1}, 54.139); tl.set("#w128 .t", {color: "#ffffff"}, 54.139);
-    tl.fromTo("#cp48 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 53.7);
-    tl.set("#w129 .hl", {opacity: 1}, 54.579); tl.set("#w129 .t", {color: "#ffffff"}, 54.579);
-    tl.set("#w129 .hl", {opacity: 0}, 55.018); tl.set("#w129 .t", {color: "#14161c"}, 55.018);
-    tl.set("#w130 .hl", {opacity: 1}, 55.018); tl.set("#w130 .t", {color: "#ffffff"}, 55.018);
-    tl.set("#w130 .hl", {opacity: 0}, 55.457); tl.set("#w130 .t", {color: "#14161c"}, 55.457);
-    tl.set("#w131 .hl", {opacity: 1}, 55.457); tl.set("#w131 .t", {color: "#ffffff"}, 55.457);
-    tl.fromTo("#cp49 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 54.579);
-    tl.set("#w132 .hl", {opacity: 1}, 55.896); tl.set("#w132 .t", {color: "#ffffff"}, 55.896);
-    tl.set("#w132 .hl", {opacity: 0}, 56.336); tl.set("#w132 .t", {color: "#14161c"}, 56.336);
-    tl.set("#w133 .hl", {opacity: 1}, 56.336); tl.set("#w133 .t", {color: "#ffffff"}, 56.336);
-    tl.fromTo("#cp50 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 55.896);
-    tl.set("#w134 .hl", {opacity: 1}, 56.775); tl.set("#w134 .t", {color: "#ffffff"}, 56.775);
-    tl.set("#w134 .hl", {opacity: 0}, 57.214); tl.set("#w134 .t", {color: "#14161c"}, 57.214);
-    tl.set("#w135 .hl", {opacity: 1}, 57.214); tl.set("#w135 .t", {color: "#ffffff"}, 57.214);
-    tl.set("#w135 .hl", {opacity: 0}, 57.654); tl.set("#w135 .t", {color: "#14161c"}, 57.654);
-    tl.set("#w136 .hl", {opacity: 1}, 57.654); tl.set("#w136 .t", {color: "#ffffff"}, 57.654);
-    tl.fromTo("#cp51 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 56.775);
-    tl.set("#w137 .hl", {opacity: 1}, 58.093); tl.set("#w137 .t", {color: "#ffffff"}, 58.093);
-    tl.set("#w137 .hl", {opacity: 0}, 58.532); tl.set("#w137 .t", {color: "#14161c"}, 58.532);
-    tl.set("#w138 .hl", {opacity: 1}, 58.532); tl.set("#w138 .t", {color: "#ffffff"}, 58.532);
-    tl.set("#w138 .hl", {opacity: 0}, 58.971); tl.set("#w138 .t", {color: "#14161c"}, 58.971);
-    tl.set("#w139 .hl", {opacity: 1}, 58.971); tl.set("#w139 .t", {color: "#ffffff"}, 58.971);
-    tl.fromTo("#cp52 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 58.093);
-    tl.set("#w140 .hl", {opacity: 1}, 59.411); tl.set("#w140 .t", {color: "#ffffff"}, 59.411);
-    tl.fromTo("#cp53 .pill", {opacity: 0, y: 14, scale: 0.96}, {opacity: 1, y: 0, scale: 1, duration: 0.18, ease: "power2.out"}, 59.411);
+    tl.set("#w0", {color: "#ffffff"}, 0.22);
+    tl.set("#w1", {color: "#ffffff"}, 0.62);
+    tl.set("#w2", {color: "#ffffff"}, 1.02);
+    tl.set("#w3", {color: "#ffffff"}, 1.42);
+    tl.set("#w4", {color: "#ffffff"}, 1.82);
+    tl.set("#w5", {color: "#ffffff"}, 2.22);
+    tl.set("#w6", {color: "#ff2d46"}, 2.62);
+    tl.set("#w7", {color: "#ff2d46"}, 3.02);
+    tl.set("#w8", {color: "#ffffff"}, 3.42);
+    tl.set("#w9", {color: "#ffffff"}, 3.82);
+    tl.set("#w10", {color: "#ffffff"}, 4.22);
+    tl.set("#w11", {color: "#ffffff"}, 4.62);
+    tl.set("#w12", {color: "#ffffff"}, 5.02);
+    tl.set("#w13", {color: "#ffffff"}, 5.42);
+    tl.set("#w14", {color: "#ffffff"}, 5.82);
+    tl.set("#w15", {color: "#ff2d46"}, 6.22);
+    tl.set("#w16", {color: "#ffffff"}, 6.62);
+    tl.set("#w17", {color: "#ffffff"}, 7.27);
+    tl.set("#w18", {color: "#ffffff"}, 7.987);
+    tl.set("#w19", {color: "#ff2d46"}, 8.703);
+    tl.set("#w20", {color: "#ffffff"}, 9.67);
+    tl.set("#w21", {color: "#ffffff"}, 10.066);
+    tl.set("#w22", {color: "#ffffff"}, 10.462);
+    tl.set("#w23", {color: "#ffffff"}, 10.858);
+    tl.set("#w24", {color: "#ffffff"}, 11.255);
+    tl.set("#w25", {color: "#ff2d46"}, 11.651);
+    tl.set("#w26", {color: "#ffffff"}, 12.047);
+    tl.set("#w27", {color: "#ffffff"}, 12.443);
+    tl.set("#w28", {color: "#ffffff"}, 12.839);
+    tl.set("#w29", {color: "#ffffff"}, 13.235);
+    tl.set("#w30", {color: "#ffffff"}, 13.632);
+    tl.set("#w31", {color: "#ffffff"}, 14.028);
+    tl.set("#w32", {color: "#ffffff"}, 14.424);
+    tl.set("#w33", {color: "#ff2d46"}, 15.07);
+    tl.set("#w34", {color: "#ffffff"}, 15.491);
+    tl.set("#w35", {color: "#ffffff"}, 15.913);
+    tl.set("#w36", {color: "#ffffff"}, 16.334);
+    tl.set("#w37", {color: "#ffffff"}, 16.756);
+    tl.set("#w38", {color: "#ffffff"}, 17.177);
+    tl.set("#w39", {color: "#ffffff"}, 17.599);
+    tl.set("#w40", {color: "#ffffff"}, 18.27);
+    tl.set("#w41", {color: "#ff2d46"}, 18.733);
+    tl.set("#w42", {color: "#ffffff"}, 19.197);
+    tl.set("#w43", {color: "#ffffff"}, 19.66);
+    tl.set("#w44", {color: "#ffffff"}, 20.123);
+    tl.set("#w45", {color: "#ffffff"}, 20.587);
+    tl.set("#w46", {color: "#ffffff"}, 21.05);
+    tl.set("#w47", {color: "#ffffff"}, 21.513);
+    tl.set("#w48", {color: "#ffffff"}, 21.977);
+    tl.set("#w49", {color: "#ff2d46"}, 22.44);
+    tl.set("#w50", {color: "#ffffff"}, 22.903);
+    tl.set("#w51", {color: "#ffffff"}, 23.367);
+    tl.set("#w52", {color: "#ffffff"}, 23.83);
+    tl.set("#w53", {color: "#ffffff"}, 24.293);
+    tl.set("#w54", {color: "#ff2d46"}, 24.757);
+    tl.set("#w55", {color: "#ffffff"}, 25.47);
+    tl.set("#w56", {color: "#ffffff"}, 25.806);
+    tl.set("#w57", {color: "#ffffff"}, 26.141);
+    tl.set("#w58", {color: "#ffffff"}, 26.477);
+    tl.set("#w59", {color: "#ffffff"}, 26.813);
+    tl.set("#w60", {color: "#ffffff"}, 27.149);
+    tl.set("#w61", {color: "#ffffff"}, 27.484);
+    tl.set("#w62", {color: "#ffffff"}, 28.07);
+    tl.set("#w63", {color: "#ffffff"}, 28.516);
+    tl.set("#w64", {color: "#ffffff"}, 28.962);
+    tl.set("#w65", {color: "#ffffff"}, 29.408);
+    tl.set("#w66", {color: "#ffffff"}, 29.853);
+    tl.set("#w67", {color: "#ff2d46"}, 30.299);
+    tl.set("#w68", {color: "#ff2d46"}, 30.745);
+    tl.set("#w70", {color: "#ffffff"}, 31.637);
+    tl.set("#w71", {color: "#ffffff"}, 32.083);
+    tl.set("#w72", {color: "#ff2d46"}, 32.528);
+    tl.set("#w73", {color: "#ffffff"}, 32.974);
+    tl.set("#w74", {color: "#ffffff"}, 33.67);
+    tl.set("#w75", {color: "#ffffff"}, 34.011);
+    tl.set("#w76", {color: "#ffffff"}, 34.352);
+    tl.set("#w77", {color: "#ffffff"}, 34.693);
+    tl.set("#w78", {color: "#ffffff"}, 35.034);
+    tl.set("#w79", {color: "#ffffff"}, 35.375);
+    tl.set("#w80", {color: "#ffffff"}, 35.715);
+    tl.set("#w81", {color: "#ffffff"}, 36.056);
+    tl.set("#w82", {color: "#ffffff"}, 36.397);
+    tl.set("#w83", {color: "#ff2d46"}, 36.738);
+    tl.set("#w84", {color: "#ff2d46"}, 37.079);
+    tl.set("#w85", {color: "#ffffff"}, 37.67);
+    tl.set("#w86", {color: "#ffffff"}, 37.975);
+    tl.set("#w87", {color: "#ffffff"}, 38.279);
+    tl.set("#w88", {color: "#ffffff"}, 38.584);
+    tl.set("#w89", {color: "#ffffff"}, 38.888);
+    tl.set("#w90", {color: "#ffffff"}, 39.193);
+    tl.set("#w91", {color: "#ffffff"}, 39.497);
+    tl.set("#w92", {color: "#ffffff"}, 39.802);
+    tl.set("#w93", {color: "#ffffff"}, 40.106);
+    tl.set("#w94", {color: "#ffffff"}, 40.411);
+    tl.set("#w95", {color: "#ffffff"}, 40.715);
+    tl.set("#w96", {color: "#ffffff"}, 41.27);
+    tl.set("#w97", {color: "#ffffff"}, 41.702);
+    tl.set("#w98", {color: "#ffffff"}, 42.134);
+    tl.set("#w99", {color: "#ff2d46"}, 42.565);
+    tl.set("#w100", {color: "#ff2d46"}, 42.997);
+    tl.set("#w101", {color: "#ff2d46"}, 43.429);
+    tl.set("#w102", {color: "#ffffff"}, 43.861);
+    tl.set("#w103", {color: "#ffffff"}, 44.293);
+    tl.set("#w104", {color: "#ffffff"}, 44.725);
+    tl.set("#w105", {color: "#ffffff"}, 45.156);
+    tl.set("#w106", {color: "#ff2d46"}, 45.588);
+    tl.set("#w107", {color: "#ffffff"}, 46.27);
+    tl.set("#w108", {color: "#ffffff"}, 46.628);
+    tl.set("#w109", {color: "#ffffff"}, 46.985);
+    tl.set("#w110", {color: "#ffffff"}, 47.343);
+    tl.set("#w111", {color: "#ff2d46"}, 47.7);
+    tl.set("#w112", {color: "#ffffff"}, 48.058);
+    tl.set("#w113", {color: "#ff2d46"}, 48.415);
+    tl.set("#w114", {color: "#ffffff"}, 48.773);
+    tl.set("#w115", {color: "#ffffff"}, 49.13);
+    tl.set("#w116", {color: "#ffffff"}, 49.488);
+    tl.set("#w117", {color: "#ffffff"}, 49.845);
+    tl.set("#w118", {color: "#ffffff"}, 50.203);
+    tl.set("#w119", {color: "#ffffff"}, 50.56);
+    tl.set("#w120", {color: "#ffffff"}, 50.918);
+    tl.set("#w121", {color: "#ffffff"}, 51.275);
+    tl.set("#w122", {color: "#ffffff"}, 51.633);
+    tl.set("#w123", {color: "#ffffff"}, 51.99);
+    tl.set("#w124", {color: "#ffffff"}, 52.348);
+    tl.set("#w125", {color: "#ffffff"}, 52.705);
+    tl.set("#w126", {color: "#ffffff"}, 53.063);
+    tl.set("#w127", {color: "#ffffff"}, 53.67);
+    tl.set("#w128", {color: "#ff2d46"}, 54.109);
+    tl.set("#w129", {color: "#ffffff"}, 54.549);
+    tl.set("#w130", {color: "#ffffff"}, 54.988);
+    tl.set("#w131", {color: "#ffffff"}, 55.427);
+    tl.set("#w132", {color: "#ffffff"}, 55.866);
+    tl.set("#w133", {color: "#ffffff"}, 56.306);
+    tl.set("#w134", {color: "#ffffff"}, 56.745);
+    tl.set("#w135", {color: "#ffffff"}, 57.184);
+    tl.set("#w136", {color: "#ffffff"}, 57.624);
+    tl.set("#w137", {color: "#ffffff"}, 58.063);
+    tl.set("#w138", {color: "#ff2d46"}, 58.502);
+    tl.set("#w139", {color: "#ffffff"}, 58.941);
+    tl.set("#w140", {color: "#ffffff"}, 59.381);
     window.__timelines["captions"] = tl;
   </script>
 </template>
