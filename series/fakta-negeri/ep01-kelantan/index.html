@@ -222,7 +222,7 @@
         noteEl.style.opacity = n ? win(t, n[0], n[1]) : 0; if (n && noteEl.textContent !== n[2]) noteEl.textContent = n[2];
         const c = CREDITS.find(([a, b]) => t >= a && t < b); creditEl.textContent = c ? c[2] : "";
         // ---- cards ----
-        const sa = win(t, 7.3, 8.4, 0.12, 0.2); const sp = ss(7.3, 7.5, t);
+        const sa = win(t, 7.3, 9.9, 0.12, 0.35); const sp = ss(7.3, 7.5, t);
         stamp.style.opacity = sa; stamp.style.transform = `translate(-50%, -50%) rotate(-5deg) scale(${1.5 - 0.5 * sp})`;
         PHOTOS.forEach(([id, t0, t1]) => { const p = $(id); const a = win(t, t0, t1, 0.3, 0.3); p.style.opacity = a; p.style.transform = `translateY(${(1 - ss(t0, t0 + 0.4, t)) * 40}px) rotate(${-1.2 + 0.6 * a}deg)`;
           p.querySelector("img").style.transform = `translate(-50%, -50%) scale(${1.04 + 0.08 * ss(t0, t1, t)})`; });
