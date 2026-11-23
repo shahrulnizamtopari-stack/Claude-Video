@@ -64,6 +64,7 @@
       #cta { position: absolute; left: 0; right: 0; top: 1140px; text-align: center; }
       #cta div { display: inline-block; padding: 18px 34px; border-radius: 40px; background: rgba(244,239,230,0.96); color: #070b14; font-weight: 800; font-size: 40px; }
       #cta div em { font-style: normal; color: #e0452b; }
+      #aitag { position: absolute; right: 30px; top: 300px; padding: 6px 14px; border-radius: 6px; background: rgba(7,11,20,0.6); border: 1px solid rgba(255,255,255,0.35); color: rgba(255,255,255,0.85); font-weight: 700; font-size: 20px; letter-spacing: 3px; }
       #today { position: absolute; left: 50%; top: 300px; transform: translateX(-50%); padding: 8px 22px; border-radius: 30px; background: rgba(244,239,230,0.95); color: #070b14; font-weight: 800; font-size: 28px; letter-spacing: 4px; }
       #captions-host { z-index: 10; }
     </style>
@@ -78,9 +79,12 @@
       <video id="v-sabak" class="clip bgv" src="assets/maps/sabak.mp4" muted playsinline data-start="46.867" data-duration="9.4" data-track-index="0"></video>
       <div id="p-outro" class="clip plate" data-start="56.267" data-duration="3.133" data-track-index="0"><div id="outroZ" style="position:absolute;inset:0;transform-origin:540px 960px"><img src="assets/maps/outro.jpg" alt="" /><svg id="svg-outro" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div></div>
       <video id="v-out" class="clip bgv" src="assets/maps/out.mp4" muted playsinline data-start="59.4" data-duration="2.767" data-track-index="0"></video>
-      <div id="world" class="clip" data-start="0" data-duration="62.167" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
-        <canvas id="world-canvas" width="1080" height="1920"></canvas>
-      </div>
+      <video id="br1" class="clip bgv broll" src="assets/broll/1.mp4" muted playsinline data-start="7.715" data-duration="4.085" data-media-start="0.0" data-track-index="1"></video>
+      <video id="br2" class="clip bgv broll" src="assets/broll/2.mp4" muted playsinline data-start="11.8" data-duration="2.95" data-media-start="2.3" data-track-index="1"></video>
+      <video id="br3" class="clip bgv broll" src="assets/broll/3.mp4" muted playsinline data-start="14.75" data-duration="3.05" data-media-start="0.8" data-track-index="1"></video>
+      <video id="br4" class="clip bgv broll" src="assets/broll/4.mp4" muted playsinline data-start="17.8" data-duration="4.0" data-media-start="0.3" data-track-index="1"></video>
+      <video id="br5" class="clip bgv broll" src="assets/broll/5.mp4" muted playsinline data-start="21.8" data-duration="3.6" data-media-start="1.6" data-track-index="1"></video>
+      <video id="br6" class="clip bgv broll" src="assets/broll/6.mp4" muted playsinline data-start="25.4" data-duration="2.367" data-media-start="1.5" data-track-index="1"></video>
       <svg id="mapfx" class="clip" data-start="0" data-duration="62.167" data-track-index="2" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
       <div id="ui" class="clip" data-start="0" data-duration="62.167" data-track-index="3" data-track-kind="graphics" data-layout-ignore>
         <div class="fade-top"></div><div class="fade-bot"></div>
@@ -88,12 +92,13 @@
         <div id="badge"><i></i>FAKTA NEGERI · #1</div>
         <div id="title"></div>
         <div id="today">HARI INI</div>
+        <div id="aitag">ILUSTRASI · AI</div>
         <div id="labels"></div>
         <div id="note"></div>
         <div id="credit"></div>
         <div id="stamp">8 DIS 1941<small>KOTA BHARU · KELANTAN</small></div>
-        <div class="photo" id="ph-landing"><div class="tag">GAMBAR SEBENAR</div><div class="im"><img src="assets/photos/landing.jpg" alt="" /></div><div class="cap">Tentera Jepun mendarat di pantai Tanah Melayu<span>Disember 1941 · Tentera Darat Imperial Jepun</span></div></div>
-        <div class="photo" id="ph-hudson"><div class="tag">GAMBAR SEBENAR</div><div class="im"><img src="assets/photos/hudson.jpg" alt="" /></div><div class="cap">Skuadron 8 RAAF dan pesawat Hudson di Kota Bharu<span>1941 · State Library of South Australia</span></div></div>
+        <div class="photo sm" id="ph-landing"><div class="tag">GAMBAR SEBENAR</div><div class="im"><img src="assets/photos/landing.jpg" alt="" /></div><div class="cap">Tentera Jepun mendarat di pantai Tanah Melayu<span>Disember 1941 · Tentera Darat Imperial Jepun</span></div></div>
+        <div class="photo sm" id="ph-hudson"><div class="tag">GAMBAR SEBENAR</div><div class="im"><img src="assets/photos/hudson.jpg" alt="" /></div><div class="cap">Skuadron 8 RAAF dan pesawat Hudson di Kota Bharu<span>1941 · State Library of South Australia</span></div></div>
         <div class="photo" id="ph-pearl"><div class="tag">GAMBAR SEBENAR</div><div class="im"><img src="assets/photos/pearl.jpg" alt="" /></div><div class="cap">USS Arizona terbakar di Pearl Harbor<span>7 Disember 1941 (waktu Hawaii) · Tentera Laut AS</span></div></div>
         <div class="photo sm" id="ph-surrender"><div class="tag">GAMBAR SEBENAR</div><div class="im"><img src="assets/photos/surrender.jpg" alt="" /></div><div class="cap">British menyerah kalah di Singapura<span>15 Februari 1942 · Imperial War Museums</span></div></div>
         <div id="clocks" class="card"><div class="k">MASA SERANGAN · WAKTU TEMPATAN</div>
@@ -117,14 +122,12 @@
       window.__hf.buildReady["world"] = new Promise((r) => (resolveWorld = r));
     </script>
     <script type="module">
-      import { createWorld } from "./assets/world.js";
       import { warp } from "./assets/timing.js";
       import { SH } from "./assets/maps/shapes.js";
       const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
       const scale = Number(vars.previewScale) || 1;
       await Promise.all(["500", "600", "700", "800"].map((w) => document.fonts.load(`${w} 40px "Inter"`)));
       let fxOpts = {}; try { fxOpts = vars.fx ? JSON.parse(vars.fx) : {}; } catch (e) {}
-      const world = createWorld(document.getElementById("world-canvas"), 1080, 1920, scale, fxOpts);
 
       const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
       const ss = (e0, e1, x) => { const u = clamp((x - e0) / (e1 - e0)); return u * u * (3 - 2 * u); };
@@ -171,13 +174,13 @@
       // [anchor source, text, sub, t0, t1, side]
       const LABELS = [
         [() => SH.dive.points.kb, "KOTA BHARU", "", 5.6, 7.4, 1], [() => SH.dive.polys.find((p) => p.name === "Kelantan").label, "KELANTAN", "", 5.0, 7.4, -1],
-        [(o) => o.anchors.ships, "KAPAL PERANG JEPUN", "", 10.6, 14.8, -1], [(o) => o.anchors.pill, "KUBU PERTAHANAN", "", 18.6, 21.2, 1],
+        [() => [640, 905], "KAPAL PERANG JEPUN", "", 12.3, 14.8, -1], [() => [360, 600], "KUBU PERTAHANAN", "", 18.6, 21.2, 1],
         [() => SH.globe0.points.kb, "KELANTAN", "", 28.4, 30.2, 1], [() => SH.globe.points.kb, "KELANTAN", "00:25", 32.8, 37.4, 1], [() => SH.globe.points.ph, "PEARL HARBOR", "07:48", 33.2, 37.4, -1],
         [() => SH.march.points.kb, "KOTA BHARU", "8 DIS", 38.4, 45.6, 1], [() => SH.march.points.sg, "SINGAPURA", "15 FEB", 43.3, 46.1, -1],
         [() => SH.sabak.points.sabak, "PANTAI SABAK", "kawasan pendaratan 1941", 51.6, 53.5, -1],
       ];
       const CREDITS = [[0, 8.4, "Imej: Esri World Imagery"], [28, 37.6, "Imej: Esri World Imagery"], [37.6, 60, "Imej: Esri World Imagery"]];
-      const PHOTOS = [["#ph-landing", 15.2, 18.3], ["#ph-hudson", 21.6, 25.3], ["#ph-pearl", 30.3, 32.9], ["#ph-surrender", 43.7, 46.15]];
+      const PHOTOS = [["#ph-landing", 15.9, 17.9], ["#ph-hudson", 21.6, 23.2], ["#ph-pearl", 30.3, 32.9], ["#ph-surrender", 43.7, 46.15]];
       const CUTS = [8.4, 28.0, 37.6, 46.2, 53.6];
       const $ = (s) => document.querySelector(s);
       const titleEl = $("#title"), noteEl = $("#note"), labelsEl = $("#labels"), cta = $("#cta"), stamp = $("#stamp"), creditEl = $("#credit");
@@ -233,12 +236,11 @@
         const da = win(t, 40.6, 43.6, 0.35, 0.3); $("#days").style.opacity = da; $("#days").style.transform = `translateY(${(1 - ss(40.6, 41.0, t)) * 30}px)`;
         const dk = ss(39.0, 43.4, t); $("#dn").textContent = Math.round(70 * dk); $("#dbar").style.width = 100 * dk + "%";
         $("#today").style.opacity = win(t, 46.6, 53.4, 0.3, 0.3);
+        $("#aitag").style.opacity = win(t, 8.6, 27.9, 0.3, 0.2);
         const ctaA = win(t, 55.4, 57.6, 0.35, 0.4); cta.style.opacity = ctaA; cta.style.transform = `translateY(${(1 - ss(55.4, 55.8, t)) * 24}px)`;
         $("#badge").style.opacity = t > 57.4 ? 1 - ss(57.4, 58.0, t) + ss(59.4, 60, t) : 1;
       }
-      const wc = document.getElementById("world");
-      function renderAt(t) { const ct = warp(t); const inBeach = ct > 8.36 && ct < 28.0; wc.style.opacity = inBeach ? 1 : 0;
-        const o = inBeach ? world.render(ct) : { anchors: {} }; overlay(o, ct); }
+      function renderAt(t) { const ct = warp(t); overlay({ anchors: {} }, ct); }
       window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = gsap.timeline({ paused: true });

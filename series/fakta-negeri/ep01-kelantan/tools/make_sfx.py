@@ -181,7 +181,7 @@ b0, b1 = U(8.4), U(28.0)
 put(fade(waves(b1 - b0), 0.6, 0.6), b0, 0.75)
 put(fade(crickets(U(18.4) - b0), 0.8, 0.5), b0, 0.12, 0.3)
 put(horn(2.4), U(10.0), 0.4, -0.4)
-for i in range(5): put(clunk(), U(11.2 + i * 0.25), 0.4, -0.6 + 0.3 * i)
+for i, tx in enumerate((12.0, 12.35, 12.7, 13.05, 13.3)): put(clunk(), tx, 0.45, -0.6 + 0.3 * i)  # searchlights in B-roll 2
 put(fade(motor(U(18.6) - U(14.8)), 1.0, 0.4), U(14.8), 0.6, 0.1)
 # 4. firefight: volleys + machine guns + distant artillery, war drums
 f0, f1 = W("meletus.") - 0.05, U(25.6)
@@ -201,9 +201,9 @@ while bt < f1:
 # 5. Hudsons: three fly-bys, dive, bombs on the ships
 for i in range(3):
     x, (p0, p1) = plane(4.6, 92 + i * 6, -0.9, 0.9, dive=True); put_pan_sweep(x, U(21.0 + i * 0.55) - 0.4, 0.55, p0, p1)
-for i, tb in enumerate((23.4, 24.1, 24.8)):
-    put(riser(0.5) * 0.5, U(tb) - 0.5, 0.25)                    # bomb whistle
-    put(explosion(True, 1.0), U(tb), 0.95, [-0.3, 0.3, 0.0][i])
+for i, tb in enumerate((23.55, 24.3, 25.0)):  # real times of the splashes / fireball in B-roll 5
+    put(riser(0.5) * 0.5, tb - 0.5, 0.25)                    # bomb whistle
+    put(explosion(True, 1.0), tb, 0.95, [-0.3, 0.3, 0.0][i])
 # 6. hush: everything stops on "Tapi ini bahagian…" -> one heartbeat hit, tension pad
 put(impact(0.7), U(25.6), 0.6)
 put(fade(drone(U(28.0) - U(25.6) + 0.5, 41), 0.2, 0.5), U(25.6), 0.5)
