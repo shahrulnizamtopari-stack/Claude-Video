@@ -1,0 +1,5 @@
+# Skrip VO: "El Chapo Isidro Ditangkap" (draf 1, ≈53 s)
+
+Gaya: MAP ANIMATION. Fakta: `research/chapo-isidro-2026.md`. 118 patah perkataan ≈ 53 s pada kelajuan Cartesia 1.1 pengguna.
+
+Bayangkan, tentera tangkap seorang lelaki, tapi tiba-tiba jalan raya terbakar, lori dibakar, dan bunyi tembakan bergema satu bandar! Ini bukan babak filem Narcos. Ini betul-betul berlaku di Mexico! Dua puluh November lepas, tentera Mexico tangkap Fausto Isidro Meza Flores, atau El Chapo Isidro. Bukan El Chapo yang terkenal tu, tapi dia antara sepuluh buruan paling dikehendaki FBI. Amerika siap tawarkan ganjaran lima juta dolar! Tapi operasi ni bertukar jadi pertempuran berdarah. Sebelas orang maut, termasuk empat anggota tentera! Yang lebih menakutkan? Walaupun ketua dah ditangkap, rangkaian dia belum tentu lumpuh. Pakar bimbang berlaku perebutan kuasa antara kumpulan bersenjata. Jadi, mampu ke tangkap ketua kartel hentikan jenayah dadah? Atau ni baru permulaan perang yang lebih besar? Komen pendapat korang!
