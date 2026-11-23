@@ -193,6 +193,17 @@ html,body{width:1080px;height:1920px;background:#05070b;overflow:hidden;font-fam
 .chips{position:absolute;left:60px;right:60px;display:flex;flex-wrap:wrap;justify-content:center;gap:18px}
 .chips span{font:800 40px Inter;color:#0b0d12;background:#ffce00;padding:14px 26px;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.5)}
 .chips span.w{background:#fff}
+.trk{position:absolute;top:120px;left:0;right:0;display:flex;justify-content:center;gap:14px}
+.trk div{width:190px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:8px;font:800 21px Inter;color:#9aa3ad;background:rgba(10,12,17,.85);border:3px solid #3a404b}
+.trk div b{font:italic 700 34px Serif}.trk div.on{color:#0b0d12;background:#ffce00;border-color:#ffce00}.trk div.now{box-shadow:0 0 30px rgba(255,206,0,.7)}
+.trk div.lock{color:#ffce00;border-color:#ffce00;border-style:dashed}
+.list4{position:absolute;left:90px;right:90px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.list4 div{height:120px;border-radius:16px;background:rgba(10,12,17,.9);border:3px solid #3a404b;display:flex;align-items:center;justify-content:center;gap:14px;font:800 40px Inter;color:#c9d0d8}
+.list4 div b{font:italic 700 64px Serif;color:#ffce00}.list4 div.q{border:4px dashed #ffce00;color:#ffce00;box-shadow:0 0 40px rgba(255,206,0,.35)}
+.nots{position:absolute;left:0;right:0;text-align:center}
+.nots div{font:800 70px Inter;color:#c9d0d8;margin:10px 0;position:relative;display:inline-block}
+.nots div::after{content:"";position:absolute;left:-14px;right:-14px;top:50%;height:10px;background:#ff4d5e;transform:rotate(-4deg)}
+.nots .x{display:block}
 </style></head><body>
 <canvas id="gl" width="1080" height="1920"></canvas>
 <div class="vig"></div>
@@ -244,12 +255,14 @@ function penOnGreece() {
   c.fillStyle = "rgba(255,206,0,.45)"; c.fill("evenodd"); c.shadowColor = "#ffce00"; c.shadowBlur = 20; c.strokeStyle = "#ffce00"; c.lineWidth = 5; c.stroke(); c.shadowBlur = 0; L.tex.needsUpdate = true;
 }
 const person = `<svg viewBox="0 0 34 44"><circle cx="17" cy="10" r="8" fill="#ffce00"/><path d="M3 44 Q3 22 17 22 Q31 22 31 44Z" fill="#ffce00"/></svg>`;
+const trk = (n, lockShake) => html(`<div class="trk">${["SAIZ", "KINABALU", "RAKYAT", "TENAGA"].map((l, i) => `<div class="${i < n ? "on" : i === 3 ? "lock" : ""} ${i === n - 1 ? "now" : ""}"><b>${i + 1}</b>${i < n ? l : i === 3 ? "🔒" : ""}</div>`).join("")}</div>`);
 const FR = {
   1() { fillShapes("pen", PEN, myFlag); fillShapes("bor", [...SABAH, ...SARAWAK], solid("rgba(5,7,11,.6)", { stroke: "#ff4d5e", lw: 6, dash: [16, 10] }));
     g.setView({ lat: 4.2, lon: 109, dist: 1.5, tilt: 8, yShift: 0.14 });
     tag(2.6, 113.3, "SARAWAK?"); tag(5.4, 117.1, "SABAH?");
-    html(`<div class="ttl" style="top:1000px"><div class="a">BAYANGKAN…</div><div class="b" style="font-size:92px">MALAYSIA <span>TANPA</span></div><div class="b" style="font-size:72px">SABAH &amp; SARAWAK</div></div>`);
-    capB(`Malaysia tanpa <span class="r">Sabah dan Sarawak</span>`); },
+    html(`<div class="ttl" style="top:900px"><div class="a">BAYANGKAN…</div><div class="b" style="font-size:92px">MALAYSIA <span>TANPA</span></div><div class="b" style="font-size:72px">SABAH &amp; SARAWAK</div></div>`);
+    html(`<div class="list4" style="top:1110px"><div><b>1</b>?</div><div><b>2</b>?</div><div><b>3</b>?</div><div class="q"><b>4</b>🔒</div></div>`);
+    capB(`Yang keempat, <span class="r">ramai tak sangka!</span>`); },
   2() { fillShapes("pen", PEN, solid("rgba(255,206,0,.3)", { stroke: "#ffce00" })); fillShapes("bor", [...SABAH, ...SARAWAK], solid("rgba(255,206,0,.55)", { stroke: "#ffce00", glow: "#ffce00", lw: 5 }));
     g.setView({ lat: 3.8, lon: 109, dist: 1.5, tilt: 8, yShift: 0.06 });
     tag(4.4, 102.3, "TANAH MELAYU"); tag(2.6, 113.3, "SARAWAK", 1); tag(5.4, 117.1, "SABAH", 1);
@@ -258,32 +271,37 @@ const FR = {
   3() { fillShapes("pen", PEN, solid("rgba(120,130,145,.35)", { stroke: "#c9d0d8", lw: 3 })); fillShapes("bor", [...SABAH, ...SARAWAK], solid("rgba(255,206,0,.6)", { stroke: "#ffce00", glow: "#ffce00", lw: 5 }));
     g.setView({ lat: 4.0, lon: 109, dist: 1.5, tilt: 8, yShift: 0.18 });
     html(`<div class="big60" style="top:1000px"><div class="k">KELUASAN TANAH MALAYSIA</div><div class="n">60%</div><div class="u">DI SABAH &amp; SARAWAK</div><div class="split"><div style="width:40%;background:#5b6573;color:#fff">SEMENANJUNG 40%</div><div style="width:60%;background:#ffce00;color:#0b0d12">SABAH + SARAWAK 60%</div></div></div>`);
-    capB(`<span class="r">enam puluh peratus</span> tanah Malaysia!`); },
+    trk(1); capB(`<span class="r">enam puluh peratus</span> tanah Malaysia!`); },
   4() { fillShapes("gr", [GR], solid("rgba(13,94,175,.55)", { stroke: "#fff", lw: 4 }), 6, { lon0: 19, lon1: 30, lat0: 34, lat1: 42.5, ppd: 140 }); penOnGreece();
     g.setView({ lat: 38.6, lon: 23.5, dist: 0.85, tilt: 10, yShift: 0.12 });
     tag(41.6, 21.0, "GREECE");
     html(`<div class="cmp2" style="top:1040px"><div class="row"><span>SEMENANJUNG MALAYSIA</span><b style="color:#ffce00">131,956</b></div><div class="row"><span>GREECE</span><b style="color:#7fb6ff">131,957</b></div><div class="eq">km² · BEZA CUMA 1 km²!</div></div>`);
-    capB(`Malaysia cuma <span class="r">sebesar Greece</span>`); },
+    trk(1); capB(`Malaysia cuma <span class="r">sebesar Greece</span>`); },
   5() { g.setView({ lat: 6.02, lon: 116.56, dist: 0.06, tilt: 10, yShift: 0.12 });
     pin(6.075, 116.558, "GUNUNG KINABALU", "4,095 m · PUNCAK TERTINGGI MALAYSIA");
-    html(`<div class="ttl" style="top:250px"><div class="a">KEDUA</div><div class="b" style="font-size:90px">4,095 <span>METER</span></div></div>`);
-    capB(`puncak tertinggi negara, <span class="r">bukan milik kita lagi</span>`); },
+    html(`<div class="ttl" style="top:250px"><div class="a">KEDUA · PUNCAK TERTINGGI</div><div class="b" style="font-size:90px">4,095 <span>METER</span></div></div>`);
+    trk(2); capB(`puncak tertinggi negara, <span class="r">bukan milik kita lagi</span>`); },
   6() { fillShapes("bor", [...SABAH, ...SARAWAK], solid("rgba(255,206,0,.45)", { stroke: "#ffce00", lw: 4 })); g.setView({ lat: 4.0, lon: 114.5, dist: 0.9, tilt: 8, yShift: 0.16 });
     html(`<div class="big60" style="top:980px"><div class="k">KETIGA · BANCI 2020</div><div class="n" style="font-size:150px">5.9 JUTA</div><div class="u">RAKYAT SABAH &amp; SARAWAK</div><div class="ppl">${Array.from({ length: 6 }, () => person).join("")}</div></div>`);
-    capB(`hampir <span class="r">enam juta rakyat</span> Sabah dan Sarawak`); },
-  7() { g.setView({ lat: 3.22, lon: 113.08, dist: 0.05, tilt: 10, yShift: 0.12 });
+    trk(3); capB(`hampir <span class="r">enam juta rakyat</span> Sabah dan Sarawak`); },
+  7() { g.setView({ lat: 4.0, lon: 113.5, dist: 1.0, tilt: 8, yShift: 0.1 }); html(`<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(5,10,30,.35),rgba(5,10,30,.93))"></div>`);
+    trk(3); html(`<div style="position:absolute;top:300px;left:0;right:0;text-align:center"><span style="display:inline-block;font:800 40px Inter;letter-spacing:6px;color:#0b0d12;background:#ffce00;padding:8px 22px;border-radius:8px">TUNGGU DULU…</span></div>`);
+    html(`<div class="nots" style="top:520px"><div>BUKAN TANAH</div><span class="x"></span><div>BUKAN GUNUNG</div></div>`);
+    html(`<div class="ttl" style="top:900px"><div class="b" style="font-size:80px">TAPI YANG <span>GERAKKAN</span></div><div class="b" style="font-size:80px">EKONOMI KITA…</div></div>`);
+    capB(`bukan tanah, bukan gunung, <span class="r">tapi…</span>`); },
+  8() { g.setView({ lat: 3.22, lon: 113.08, dist: 0.05, tilt: 10, yShift: 0.12 });
     pin(3.265, 113.07, "BINTULU, SARAWAK", "KOMPLEKS LNG PETRONAS");
-    html(`<div class="ttl" style="top:250px"><div class="a">KEEMPAT · TENAGA</div><div class="b" style="font-size:84px">GAS <span>ASLI CECAIR</span></div></div>`);
+    html(`<div class="ttl" style="top:250px"><div class="a">KEEMPAT</div><div class="b" style="font-size:110px">TENAGA<span>!</span></div></div>`);
     html(`<div class="big60" style="top:1080px"><div class="k">ANTARA KOMPLEKS LNG TERBESAR DUNIA</div><div class="n" style="font-size:120px">~29 JUTA</div><div class="u">TAN SETAHUN · DI SATU LOKASI</div></div>`);
-    capB(`antara kompleks gas asli cecair <span class="r">terbesar di dunia!</span>`); },
-  8() { fillShapes("all", [...PEN, ...SABAH, ...SARAWAK], myFlag); g.setView({ lat: 3.8, lon: 109, dist: 1.6, tilt: 8, yShift: -0.02 });
+    trk(4); capB(`antara kompleks gas asli cecair <span class="r">terbesar di dunia!</span>`); },
+  9() { fillShapes("all", [...PEN, ...SABAH, ...SARAWAK], myFlag); g.setView({ lat: 3.8, lon: 109, dist: 1.6, tilt: 8, yShift: -0.02 });
     html(`<div class="qq" style="top:960px;position:absolute;left:60px;right:60px;text-align:center;font:800 60px/1.1 Inter;color:#f6f3ec;text-shadow:0 6px 24px rgba(0,0,0,.9)">APA MALAYSIA<br><span style="color:#ffce00">PALING RASA HILANG?</span></div>`);
     html(`<div class="chips" style="top:1170px"><span>📏 SAIZ</span><span class="w">🏔️ KINABALU</span><span>👥 RAKYAT</span><span class="w">⚡ TENAGA</span></div>`);
     html(`<div class="kom" style="top:1360px;display:block;position:absolute;left:0;right:0;text-align:center;font:800 54px Inter;color:#ffce00;letter-spacing:4px">KOMEN ↓</div>`);
     capB(`apa yang Malaysia <span class="r">paling rasa hilang?</span>`); },
 };
 FR[F]();
-const PO = { 5: [1], 7: [2] }; [0, 1, 2].forEach((i) => g.setPatchOp(i, (PO[F] || []).includes(i) ? 1 : 0));
+const PO = { 5: [1], 8: [2] }; [0, 1, 2].forEach((i) => g.setPatchOp(i, (PO[F] || []).includes(i) ? 1 : 0));
 g.render();
 document.body.dataset.ready = "1";
 </script></body></html>
