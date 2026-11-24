@@ -66,7 +66,7 @@ def setwin(el_id, start, dur):
 for s in range(nseg):
     e = SCENE[s + 1] + 0.45 if s + 1 < nseg else END
     setwin(f"s{s+1}", SCENE[s], round(e - SCENE[s], 2))
-setwin("dive", 0, round(SCENE[1] + 0.45, 2))
+if 'id="dive"' in html: setwin("dive", 0, round(SCENE[1] + 0.45, 2))
 for el in ("root", "bar", "captions-host", "mix"):
     if f'id="{el}"' in html: setwin(el, 0, END)
 open(A("index.html"), "w").write(html)

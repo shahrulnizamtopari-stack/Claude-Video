@@ -15,7 +15,7 @@ def W(seg, word, n=0):
         if "".join(ch for ch in w["t"].lower() if ch.isalnum() or ch == ".").startswith(word): c += 1
     raise KeyError((seg, word))
 def add(t, sig, g=1.0):
-    i = int(t * SR); j = min(N, i + len(sig))
+    i = int(max(0, t) * SR); j = min(N, i + len(sig))
     if i < N: out[i:j] += g * sig[: j - i]
 def lp(x, a):  # one-pole low-pass
     y = np.empty_like(x); acc = 0.0
@@ -50,15 +50,16 @@ for k in range(int(END / beat)):
 # events
 for s in SC[1:]: add(s - 0.3, whoosh(), 0.55)
 add(0.0, thump(40, 1.2), 0.7)
-add(3.4, thump(60, 0.5), 0.5)                                   # pin lands
-for seg, w in ((2, "kajang"), (2, "langgak"), (3, "rm42"), (3, "12"), (3, "rm210"), (4, "enam"), (4, "rm50"),
-               (5, "rumah"), (7, "pelawat"), (7, "langgar"), (8, "penyokong"), (8, "dia"), (9, "pengkritik"),
-               (9, "seorang"), (10, "15"), (10, "rm11"), (10, "masih")):
+for w in ("istana", "mahkamah", "rumah"): add(W(1, w) - 0.05, thump(60, 0.5), 0.5)  # pins land
+add(W(1, "dua") - 0.12, tick(), 0.5)
+for seg, w in ((2, "rumah"), (2, "ogos"), (3, "badan"), (3, "mahkamah"), (4, "perkara"), (5, "jabatan"), (5, "bantahan"),
+               (5, "keputusan"), (6, "maksudnya"), (8, "belum"), (9, "komen")):
     add(W(seg, w) - 0.12, tick(), 0.5)
-add(W(4, "dipotong"), swipe(), 0.7); add(W(4, "denda") + 0.1, swipe(), 0.7)
-add(W(6, "dibayar") - 0.05, stamp(), 0.9)
-add(W(10, "15") - 0.1, thump(45, 0.8), 0.6)
-add(W(11, "adil") - 0.1, thump(50, 0.9), 0.55); add(W(11, "dua") - 0.1, thump(42, 1.4), 0.75)
+for n in range(3): add(W(4, "bukan", n) + 0.35, stamp(), 0.6)
+add(W(6, "non") - 0.1, thump(45, 0.8), 0.7)
+add(W(7, "dinyahklasifikasi"), swipe(), 0.7)
+add(W(8, "17") - 0.15, thump(55, 0.5), 0.6)
+add(W(9, "persoalannya") - 0.1, thump(42, 1.4), 0.7)
 out = out / max(1e-9, np.abs(out).max()) * 0.6
 with wave.open(os.path.join(ROOT, "assets", "sfx.wav"), "wb") as f:
     f.setnchannels(1); f.setsampwidth(2); f.setframerate(SR); f.writeframes((out * 32767).astype(np.int16).tobytes())
