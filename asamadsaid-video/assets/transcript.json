@@ -1,0 +1,668 @@
+[
+  {
+    "text": "24",
+    "start": 0,
+    "end": 0.85,
+    "id": "w0"
+  },
+  {
+    "text": "November,",
+    "start": 0.85,
+    "end": 2.07,
+    "id": "w1"
+  },
+  {
+    "text": "jam",
+    "start": 2.07,
+    "end": 2.13,
+    "id": "w2"
+  },
+  {
+    "text": "6.10",
+    "start": 2.2,
+    "end": 2.65,
+    "id": "w3"
+  },
+  {
+    "text": "petang,",
+    "start": 2.65,
+    "end": 3.04,
+    "id": "w4"
+  },
+  {
+    "text": "Malaysia",
+    "start": 3.04,
+    "end": 3.52,
+    "id": "w5"
+  },
+  {
+    "text": "kehilangan",
+    "start": 3.52,
+    "end": 4.12,
+    "id": "w6"
+  },
+  {
+    "text": "seorang",
+    "start": 4.12,
+    "end": 4.54,
+    "id": "w7"
+  },
+  {
+    "text": "sasterawan",
+    "start": 4.54,
+    "end": 5.14,
+    "id": "w8"
+  },
+  {
+    "text": "negara.",
+    "start": 5.14,
+    "end": 5.54,
+    "id": "w9"
+  },
+  {
+    "text": "Lelaki",
+    "start": 5.54,
+    "end": 5.95,
+    "id": "w10"
+  },
+  {
+    "text": "ini",
+    "start": 6.02,
+    "end": 6.17,
+    "id": "w11"
+  },
+  {
+    "text": "pernah",
+    "start": 6.17,
+    "end": 6.59,
+    "id": "w12"
+  },
+  {
+    "text": "disiasat",
+    "start": 6.59,
+    "end": 7.15,
+    "id": "w13"
+  },
+  {
+    "text": "polis",
+    "start": 7.15,
+    "end": 7.52,
+    "id": "w14"
+  },
+  {
+    "text": "hanya",
+    "start": 7.52,
+    "end": 7.88,
+    "id": "w15"
+  },
+  {
+    "text": "kerana",
+    "start": 7.93,
+    "end": 8.36,
+    "id": "w16"
+  },
+  {
+    "text": "sebuah",
+    "start": 8.52,
+    "end": 8.82,
+    "id": "w17"
+  },
+  {
+    "text": "puisi,",
+    "start": 8.82,
+    "end": 9.32,
+    "id": "w18"
+  },
+  {
+    "text": "namanya",
+    "start": 9.32,
+    "end": 9.98,
+    "id": "w19"
+  },
+  {
+    "text": "A.",
+    "start": 9.98,
+    "end": 10.35,
+    "id": "w20"
+  },
+  {
+    "text": "Samad",
+    "start": 10.35,
+    "end": 10.82,
+    "id": "w21"
+  },
+  {
+    "text": "Said",
+    "start": 10.82,
+    "end": 11.24,
+    "id": "w22"
+  },
+  {
+    "text": "atau",
+    "start": 11.24,
+    "end": 11.68,
+    "id": "w23"
+  },
+  {
+    "text": "Pak",
+    "start": 11.68,
+    "end": 12.01,
+    "id": "w24"
+  },
+  {
+    "text": "Samad.",
+    "start": 12.01,
+    "end": 12.84,
+    "id": "w25"
+  },
+  {
+    "text": "Lahir",
+    "start": 12.84,
+    "end": 13.25,
+    "id": "w26"
+  },
+  {
+    "text": "tahun",
+    "start": 13.32,
+    "end": 13.69,
+    "id": "w27"
+  },
+  {
+    "text": "1935",
+    "start": 13.69,
+    "end": 14.71,
+    "id": "w28"
+  },
+  {
+    "text": "di",
+    "start": 14.71,
+    "end": 14.88,
+    "id": "w29"
+  },
+  {
+    "text": "Durian",
+    "start": 14.88,
+    "end": 15.37,
+    "id": "w30"
+  },
+  {
+    "text": "Tunggal,",
+    "start": 15.37,
+    "end": 16.13,
+    "id": "w31"
+  },
+  {
+    "text": "Melaka,",
+    "start": 16.13,
+    "end": 16.76,
+    "id": "w32"
+  },
+  {
+    "text": "tapi",
+    "start": 16.76,
+    "end": 17.05,
+    "id": "w33"
+  },
+  {
+    "text": "membesar",
+    "start": 17.05,
+    "end": 17.63,
+    "id": "w34"
+  },
+  {
+    "text": "di",
+    "start": 17.63,
+    "end": 17.77,
+    "id": "w35"
+  },
+  {
+    "text": "Singapura,",
+    "start": 17.77,
+    "end": 18.56,
+    "id": "w36"
+  },
+  {
+    "text": "zaman",
+    "start": 18.56,
+    "end": 18.88,
+    "id": "w37"
+  },
+  {
+    "text": "perang.",
+    "start": 18.95,
+    "end": 19.66,
+    "id": "w38"
+  },
+  {
+    "text": "Kisah",
+    "start": 19.66,
+    "end": 19.98,
+    "id": "w39"
+  },
+  {
+    "text": "hidup",
+    "start": 19.98,
+    "end": 20.31,
+    "id": "w40"
+  },
+  {
+    "text": "susah",
+    "start": 20.31,
+    "end": 20.64,
+    "id": "w41"
+  },
+  {
+    "text": "orang",
+    "start": 20.64,
+    "end": 20.87,
+    "id": "w42"
+  },
+  {
+    "text": "Melayu",
+    "start": 21.06,
+    "end": 21.37,
+    "id": "w43"
+  },
+  {
+    "text": "di",
+    "start": 21.37,
+    "end": 21.5,
+    "id": "w44"
+  },
+  {
+    "text": "kampung",
+    "start": 21.5,
+    "end": 21.97,
+    "id": "w45"
+  },
+  {
+    "text": "Kambing,",
+    "start": 21.97,
+    "end": 22.48,
+    "id": "w46"
+  },
+  {
+    "text": "dia",
+    "start": 22.69,
+    "end": 22.76,
+    "id": "w47"
+  },
+  {
+    "text": "tulis",
+    "start": 22.76,
+    "end": 23.09,
+    "id": "w48"
+  },
+  {
+    "text": "jadi",
+    "start": 23.09,
+    "end": 23.36,
+    "id": "w49"
+  },
+  {
+    "text": "novel",
+    "start": 23.36,
+    "end": 23.7,
+    "id": "w50"
+  },
+  {
+    "text": "Salina.",
+    "start": 23.7,
+    "end": 24.22,
+    "id": "w51"
+  },
+  {
+    "text": "Tahun",
+    "start": 24.22,
+    "end": 24.62,
+    "id": "w52"
+  },
+  {
+    "text": "1985,",
+    "start": 24.62,
+    "end": 25.77,
+    "id": "w53"
+  },
+  {
+    "text": "dia",
+    "start": 25.77,
+    "end": 26.01,
+    "id": "w54"
+  },
+  {
+    "text": "dinobatkan",
+    "start": 26.01,
+    "end": 26.8,
+    "id": "w55"
+  },
+  {
+    "text": "sasterawan",
+    "start": 26.81,
+    "end": 27.63,
+    "id": "w56"
+  },
+  {
+    "text": "negara.",
+    "start": 27.63,
+    "end": 28.45,
+    "id": "w57"
+  },
+  {
+    "text": "Tapi",
+    "start": 28.46,
+    "end": 28.83,
+    "id": "w58"
+  },
+  {
+    "text": "tunggu",
+    "start": 28.83,
+    "end": 29.38,
+    "id": "w59"
+  },
+  {
+    "text": "dulu,",
+    "start": 29.38,
+    "end": 29.93,
+    "id": "w60"
+  },
+  {
+    "text": "pada",
+    "start": 29.93,
+    "end": 30.3,
+    "id": "w61"
+  },
+  {
+    "text": "usia",
+    "start": 30.3,
+    "end": 30.59,
+    "id": "w62"
+  },
+  {
+    "text": "76,",
+    "start": 30.66,
+    "end": 31.28,
+    "id": "w63"
+  },
+  {
+    "text": "dia",
+    "start": 31.49,
+    "end": 31.72,
+    "id": "w64"
+  },
+  {
+    "text": "turun",
+    "start": 31.72,
+    "end": 32.15,
+    "id": "w65"
+  },
+  {
+    "text": "ke",
+    "start": 32.15,
+    "end": 32.32,
+    "id": "w66"
+  },
+  {
+    "text": "jalan",
+    "start": 32.32,
+    "end": 32.77,
+    "id": "w67"
+  },
+  {
+    "text": "jadi",
+    "start": 32.77,
+    "end": 33.07,
+    "id": "w68"
+  },
+  {
+    "text": "pengurusi",
+    "start": 33.07,
+    "end": 33.72,
+    "id": "w69"
+  },
+  {
+    "text": "bersama",
+    "start": 33.72,
+    "end": 34.23,
+    "id": "w70"
+  },
+  {
+    "text": "Bersih.",
+    "start": 34.23,
+    "end": 34.84,
+    "id": "w71"
+  },
+  {
+    "text": "Puisinya,",
+    "start": 34.84,
+    "end": 35.7,
+    "id": "w72"
+  },
+  {
+    "text": "Unggon",
+    "start": 35.7,
+    "end": 36.06,
+    "id": "w73"
+  },
+  {
+    "text": "Bersih,",
+    "start": 36.24,
+    "end": 36.9,
+    "id": "w74"
+  },
+  {
+    "text": "disiasat",
+    "start": 36.9,
+    "end": 37.59,
+    "id": "w75"
+  },
+  {
+    "text": "bawah",
+    "start": 37.59,
+    "end": 38.02,
+    "id": "w76"
+  },
+  {
+    "text": "Akta",
+    "start": 38.02,
+    "end": 38.36,
+    "id": "w77"
+  },
+  {
+    "text": "Hasutan.",
+    "start": 38.36,
+    "end": 39.34,
+    "id": "w78"
+  },
+  {
+    "text": "Dia",
+    "start": 39.34,
+    "end": 39.52,
+    "id": "w79"
+  },
+  {
+    "text": "menghembuskan",
+    "start": 39.59,
+    "end": 40.56,
+    "id": "w80"
+  },
+  {
+    "text": "nafas",
+    "start": 40.74,
+    "end": 41.03,
+    "id": "w81"
+  },
+  {
+    "text": "terakhir",
+    "start": 41.03,
+    "end": 41.67,
+    "id": "w82"
+  },
+  {
+    "text": "di",
+    "start": 41.67,
+    "end": 41.78,
+    "id": "w83"
+  },
+  {
+    "text": "hospital",
+    "start": 41.87,
+    "end": 42.48,
+    "id": "w84"
+  },
+  {
+    "text": "Kuala",
+    "start": 42.48,
+    "end": 42.88,
+    "id": "w85"
+  },
+  {
+    "text": "Lumpur",
+    "start": 42.88,
+    "end": 43.35,
+    "id": "w86"
+  },
+  {
+    "text": "pada",
+    "start": 43.35,
+    "end": 43.69,
+    "id": "w87"
+  },
+  {
+    "text": "usia",
+    "start": 43.69,
+    "end": 43.98,
+    "id": "w88"
+  },
+  {
+    "text": "91",
+    "start": 44.05,
+    "end": 44.5,
+    "id": "w89"
+  },
+  {
+    "text": "tahun.",
+    "start": 44.5,
+    "end": 45.28,
+    "id": "w90"
+  },
+  {
+    "text": "Perdana",
+    "start": 45.28,
+    "end": 45.84,
+    "id": "w91"
+  },
+  {
+    "text": "Menteri",
+    "start": 45.84,
+    "end": 46.39,
+    "id": "w92"
+  },
+  {
+    "text": "sendiri",
+    "start": 46.39,
+    "end": 46.96,
+    "id": "w93"
+  },
+  {
+    "text": "gelar",
+    "start": 46.96,
+    "end": 47.36,
+    "id": "w94"
+  },
+  {
+    "text": "dia,",
+    "start": 47.36,
+    "end": 47.72,
+    "id": "w95"
+  },
+  {
+    "text": "pendidik",
+    "start": 47.81,
+    "end": 48.4,
+    "id": "w96"
+  },
+  {
+    "text": "bangsa",
+    "start": 48.4,
+    "end": 48.88,
+    "id": "w97"
+  },
+  {
+    "text": "Al",
+    "start": 48.88,
+    "end": 49.04,
+    "id": "w98"
+  },
+  {
+    "text": "Fateha.",
+    "start": 49.04,
+    "end": 49.58,
+    "id": "w99"
+  },
+  {
+    "text": "Karya",
+    "start": 49.58,
+    "end": 49.76,
+    "id": "w100"
+  },
+  {
+    "text": "Pak",
+    "start": 49.83,
+    "end": 49.92,
+    "id": "w101"
+  },
+  {
+    "text": "Samad",
+    "start": 49.92,
+    "end": 50.13,
+    "id": "w102"
+  },
+  {
+    "text": "mana",
+    "start": 50.13,
+    "end": 50.3,
+    "id": "w103"
+  },
+  {
+    "text": "yang",
+    "start": 50.3,
+    "end": 50.46,
+    "id": "w104"
+  },
+  {
+    "text": "paling",
+    "start": 50.46,
+    "end": 50.72,
+    "id": "w105"
+  },
+  {
+    "text": "kau",
+    "start": 50.72,
+    "end": 50.82,
+    "id": "w106"
+  },
+  {
+    "text": "ingat?",
+    "start": 50.98,
+    "end": 51.26,
+    "id": "w107"
+  },
+  {
+    "text": "Kongsi",
+    "start": 51.26,
+    "end": 51.6,
+    "id": "w108"
+  },
+  {
+    "text": "kat",
+    "start": 51.6,
+    "end": 51.71,
+    "id": "w109"
+  },
+  {
+    "text": "bawah.",
+    "start": 51.78,
+    "end": 52.08,
+    "id": "w110"
+  }
+]

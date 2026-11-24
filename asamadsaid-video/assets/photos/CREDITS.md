@@ -1,0 +1,2 @@
+- samad-2025.jpg: "A. Samad Said (cropped).jpg", Ahmad Ali Karim / Wikimedia Malaysia, CC0 1.0 (Wikimedia Commons)
+- samad-2015.jpg: "A. Samad Said on 28 March 2015 (cropped).jpg", Khairil Yusof, CC BY 2.5 (Wikimedia Commons)
