@@ -66,7 +66,7 @@
             </svg>
             <div class="pin" id="s1p1" style="left:431px;top:980px"><div class="ring" id="s1r1"></div><div class="dot"></div><div class="tag" style="left:-300px;top:30px;font-size:30px;padding:8px 14px">Istana Negara</div></div>
             <div class="pin cyan" id="s1p2" style="left:600px;top:472px"><div class="ring" id="s1r2"></div><div class="dot"></div><div class="tag" style="left:40px;top:-40px;font-size:30px;padding:8px 14px">Kompleks Mahkamah KL</div></div>
-            <div class="pin red" id="s1p3" style="left:646px;top:980px"><div class="ring" id="s1r3"></div><div class="dot"></div><div class="tag" style="left:30px;top:30px;font-size:30px;padding:8px 14px">Langgak Duta<small>RUMAH NAJIB</small></div></div>
+            <div class="pin red" id="s1p3" style="left:646px;top:980px"><div class="ring" id="s1r3"></div><div class="dot"></div><div class="tag" style="left:30px;top:30px;font-size:30px;padding:8px 14px 8px 8px;display:flex;align-items:center;gap:14px"><div style="flex:none;width:84px;height:84px;border-radius:50%;overflow:hidden;border:4px solid var(--red)"><img src="assets/photos/najib.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 12%" /></div><div>Langgak Duta<small>RUMAH NAJIB</small></div></div></div>
             <div id="s1km" style="position:absolute;left:660px;top:690px"><span class="chip">≈ 2 KM</span></div>
           </div>
           
@@ -79,18 +79,17 @@
       <!-- 2 · house arrest until Aug 2028 -->
       <div id="s2" class="scene clip" data-start="7.32" data-duration="6.75" data-track-index="1" data-track-kind="graphics" style="z-index:2">
         <div class="in" id="s2in">
-          <div class="kb" id="s2map" style="transform-origin:540px 960px"><img class="bg" src="assets/maps/home.jpg" alt="" />
-            <svg width="1080" height="1920" style="position:absolute;left:0;top:0"><circle id="s2c" cx="540" cy="960" r="150" fill="rgba(255,77,79,.16)" stroke="#ff4d4f" stroke-width="7" stroke-dasharray="26 16" /></svg></div>
-          <div class="mapshade" style="background:linear-gradient(180deg, rgba(10,14,24,.86) 0%, rgba(10,14,24,.25) 24%, rgba(10,14,24,.2) 40%, rgba(10,14,24,.92) 60%, #0a0e18 100%)"></div>
+          <div class="kb" id="s2kb"><img class="bg" src="assets/photos/najib.jpg" alt="" style="height:1303px;object-position:50% 0%" /></div>
+          <div class="shade face"></div>
           <div class="kicker"><i></i><span>Sekarang</span></div>
-          <div class="h" id="s2t" style="position:absolute;left:70px;right:70px;top:262px;font-size:96px">TAHANAN <span style="color:var(--red)">RUMAH</span></div>
-          <div id="s2tl" style="position:absolute;left:90px;right:90px;top:900px">
+          <div class="h" id="s2t" style="position:absolute;left:70px;right:70px;top:660px;font-size:96px">TAHANAN <span style="color:var(--red)">RUMAH</span></div>
+          <div id="s2tl" style="position:absolute;left:90px;right:90px;top:840px">
             <div style="position:relative;height:14px;border-radius:7px;background:rgba(246,243,236,.25)"><div id="s2fill" style="position:absolute;inset:0;border-radius:7px;background:var(--yellow);transform-origin:0 50%"></div></div>
             <div style="display:flex;justify-content:space-between;margin-top:30px;font-weight:700;font-size:34px;line-height:1.25">
               <div id="s2a">18 Sept 2026<br /><span style="color:var(--dim);font-weight:400">pengampunan bersyarat</span></div>
               <div id="s2b" style="text-align:right;color:var(--yellow)">23 Ogos 2028<br /><span style="font-weight:400">tamat</span></div></div>
           </div>
-          <div class="credit" data-layout-ignore>Imej satelit: Esri, Maxar, Earthstar Geographics</div>
+          <div class="credit" data-layout-ignore>Foto: Kerajaan Malaysia / Wikimedia Commons, CC BY-SA 3.0</div>
         </div>
       </div>
 
@@ -231,8 +230,8 @@
       ping("#s1r1", W(1, "bersambung")); ping("#s1r2", W(1, "bersambung")); ping("#s1r3", W(1, "bersambung"));
 
       // 2 house arrest: circle, then the timeline fills to 2028
-      tl.fromTo("#s2map", { scale: 1.3, y: -330 }, { scale: 1.42, y: -330, duration: D(2), ease: "none" }, SC[1]);
-      pop("#s2t", SC[1] + 0.2); tl.from("#s2c", { opacity: 0, attr: { r: 30 }, duration: 0.6, ease: "back.out(1.6)" }, W(2, "rumah") - 0.1);
+      tl.fromTo("#s2kb", { scale: 1.02 }, { scale: 1.12, duration: D(2), ease: "none" }, SC[1]);
+      pop("#s2t", W(2, "rumah") - 0.2);
       pop("#s2tl", W(2, "sampai") - 0.3); tl.fromTo("#s2fill", { scaleX: 0 }, { scaleX: 1, duration: 1.0, ease: "power2.inOut" }, W(2, "ogos") - 0.2);
       tl.from("#s2a", { opacity: 0, duration: 0.3 }, W(2, "pengampunan") - 0.1);
 

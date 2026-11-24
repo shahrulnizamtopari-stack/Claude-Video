@@ -23,7 +23,7 @@ Video sambungan (episod 2).
 | # | Masa | Visual | Gerakan |
 |---|---|---|---|
 | 1 | 0–5 | Satelit Jalan Duta dari atas. Tajuk "BADAN PEGUAM vs TAHANAN RUMAH" pada frame 0 | Kamera terjun dari glob ke Jalan Duta; 3 pin jatuh satu-satu: Istana Negara, Kompleks Mahkamah KL, Langgak Duta |
-| 2 | 5–12 | Pin rumah Langgak Duta (dekat) | Bulatan merah putus-putus; garis masa 18 Sept 2026 → 23 Ogos 2028 terisi |
+| 2 | 5–12 | Potret Najib (gambar rasmi, Wikimedia) | Tajuk "TAHANAN RUMAH" bawah muka; garis masa 18 Sept 2026 → 23 Ogos 2028 terisi |
 | 3 | 12–20 | Satelit pusat KL | Garisan kuning dilukis dari Wisma Badan Peguam (Leboh Pasar Besar) ke Kompleks Mahkamah Jalan Duta; label "10 NOV: FAIL SEMAKAN" |
 | 4 | 20–28 | Latar gelap, kad biru Badan Peguam | Tiga perkataan dipangkah satu demi satu: PENGAMPUNAN ✗, PENANGGUHAN ✗, PEREMITAN ✗; cip "Perkara 42" |
 | 5 | 28–37 | Satelit Lembah Klang (zum keluar) | Garisan merah dari Jabatan Peguam Negara, Putrajaya ke mahkamah KL; label "12 NOV: AGC BANTAH" |
