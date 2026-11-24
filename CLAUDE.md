@@ -9,6 +9,8 @@ Vertical 3D explainer videos (Malay voiceover) made with HyperFrames + Three.js.
   The approval stops below are for explainers; for these edits follow what the user asks (often: render straight to MP4).
 - **Bongkar (teardown) videos:** use the `bongkar-style` skill (`.claude/skills/bongkar-style/SKILL.md`): dark studio, object sliced open
   in real 3D, captions synced to the user's voiceover. Reference project: `lighter-video/`.
+- **Siri "FAKTA NEGERI"** (one fact per Malaysian state, satellite map + Flow B-roll + archive photos, war-style sound):
+  read `series/fakta-negeri/README.md` first. Reference episode: `series/fakta-negeri/ep01-kelantan/`.
 - **Reference project:** `ricecooker-video/` (v3 studio look, "Periuk Nasi Boleh Ditipu"). New topics start as a copy of it.
   For beautiful physical subjects use the v4 cinematic look: `lebah-video/` (skill §0b).
   Older looks: `lift-video/` (v2), `plane-video/` (v1).
