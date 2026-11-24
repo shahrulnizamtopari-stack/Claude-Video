@@ -1,0 +1,74 @@
+<title>Periuk Nasi Boleh Ditipu</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: one phone-width column like a technical sheet: header, voiceover script, frame cards (still left, notes right on wide screens), risks */
+:root{
+  --bg:#eef1f8; --panel:#ffffff; --ink:#15171c; --muted:#5d6475; --line:#d9dee8; --accent:#2f5bff; --accent-soft:#e3e9ff;
+  --display:"Schibsted Grotesk",system-ui,sans-serif; --body:"Schibsted Grotesk",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#11141b;--panel:#1a1e28;--ink:#eef1f8;--muted:#a3abbd;--line:#2c3242;--accent:#7d9bff;--accent-soft:#1f2a4d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11141b;--panel:#1a1e28;--ink:#eef1f8;--muted:#a3abbd;--line:#2c3242;--accent:#7d9bff;--accent-soft:#1f2a4d;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+.wrap{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:32px}
+.eyebrow{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,7vw,46px);line-height:1.05;letter-spacing:-.02em;margin:8px 0 0;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+h2{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.01em;margin:0 0 12px;text-wrap:balance}
+.lede{color:var(--muted);margin:10px 0 0;max-width:62ch}
+.specs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.specs span{font-family:var(--mono);font-size:12.5px;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--panel)}
+.script{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;max-width:72ch}
+.script p{margin:0;font-size:17px}
+.script .note{margin-top:10px;color:var(--muted);font-size:14px}
+.frames{display:flex;flex-direction:column;gap:16px}
+.card{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:20px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+.card img{width:100%;max-width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:8px;display:block;border:1px solid var(--line)}
+.meta{min-width:0;display:flex;flex-direction:column;gap:10px}
+.head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;border-bottom:2px solid var(--ink);padding-bottom:6px}
+.head h3{margin:0;font-family:var(--display);font-weight:800;font-size:19px;text-transform:uppercase;letter-spacing:.06em}
+.time{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--accent);font-variant-numeric:tabular-nums}
+.meta p{margin:0}
+.vo{font-weight:600;background:var(--accent-soft);border-radius:8px;padding:8px 12px}
+.sfx{color:var(--muted);font-size:14.5px}
+.sfx span{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-right:8px;color:var(--ink)}
+@media (max-width:620px){.card{grid-template-columns:minmax(0,1fr)}.card img{max-width:320px;margin:0 auto}}
+ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px;max-width:70ch}
+.next{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.next p{margin:0}
+</style>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Storyboard · tunggu kelulusan</div>
+    <h1>Periuk Nasi <em>Boleh Ditipu</em></h1>
+    <p class="lede">Gaya studio teknikal: latar putih kebiruan, garis dakwat, satu warna aksen biru. Satu syot kamera tanpa potong, kapsyen frasa dengan kotak pilih biru, HUD suhu live, label penunjuk dan nota sumber. Gambar di bawah dirender terus dari scene 3D sebenar.</p>
+    <div class="specs"><span>60 s</span><span>1080×1920</span><span>30 fps</span><span>voiceover Melayu</span><span>tanpa muzik</span><span>loop</span></div>
+  </header>
+
+  <section>
+    <h2>Skrip voiceover (satu perenggan)</h2>
+    <div class="script"><p>{{SCRIPT}}</p><p class="note">182 patah perkataan, lebih kurang 60 saat pada rentak sederhana.</p></div>
+  </section>
+
+  <section>
+    <h2>9 babak</h2>
+    <div class="frames">{{CARDS}}</div>
+  </section>
+
+  <section>
+    <h2>Risiko dan perkara belum pasti</h2>
+    <ol>
+      <li><strong>Panjang skrip.</strong> 182 patah dalam 60 saat agak padat. Kalau rakaman lebih 60 saat, kita buang satu ayat atau panjangkan video sikit. Suara takkan dipercepatkan.</li>
+      <li><strong>Close-up magnet (16 s).</strong> Wayar dan tuas melintang depan kamera. Wayar akan dialihkan ke belakang termostat masa build.</li>
+      <li><strong>Dua periuk (22–38 s).</strong> Periuk agak kecil dalam skrin telefon. Kalau nampak kecil dalam preview, kamera akan crop lebih rapat ke bahagian bawah.</li>
+      <li><strong>Penutup periuk.</strong> Penutup yang terbuka nampak macam bulatan putih di belakang tajuk. Boleh buang atau condongkan lagi.</li>
+      <li><strong>Mekanisme dipermudahkan.</strong> Termostat dilukis ringkas (satu ferit, satu magnet, satu spring). Nota sumber di skrin cakap begitu.</li>
+    </ol>
+  </section>
+
+  <section class="next">
+    <p><strong>Lepas lulus:</strong> siapkan animasi setiap babak, render preview 540×960 dan berhenti untuk komen kau. Hanya lepas tu baru render final 1080×1920.</p>
+  </section>
+</div>

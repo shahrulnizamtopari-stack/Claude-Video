@@ -1,0 +1,71 @@
+<title>Gua Terbesar Sarawak</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: one phone-width column like a technical sheet: header, voiceover script, frame cards (still left, notes right on wide screens), risks */
+:root{
+  --bg:#eef1f8; --panel:#ffffff; --ink:#15171c; --muted:#5d6475; --line:#d9dee8; --accent:#d23a1e; --accent-soft:#fde6df;
+  --display:"Schibsted Grotesk",system-ui,sans-serif; --body:"Schibsted Grotesk",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#11141b;--panel:#1a1e28;--ink:#eef1f8;--muted:#a3abbd;--line:#2c3242;--accent:#ff7a4a;--accent-soft:#3a1d16;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11141b;--panel:#1a1e28;--ink:#eef1f8;--muted:#a3abbd;--line:#2c3242;--accent:#ff7a4a;--accent-soft:#3a1d16;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+.wrap{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:32px}
+.eyebrow{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,7vw,46px);line-height:1.05;letter-spacing:-.02em;margin:8px 0 0;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+h2{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.01em;margin:0 0 12px;text-wrap:balance}
+.lede{color:var(--muted);margin:10px 0 0;max-width:62ch}
+.specs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.specs span{font-family:var(--mono);font-size:12.5px;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--panel)}
+.script{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;max-width:72ch}
+.script p{margin:0;font-size:17px}
+.script .note{margin-top:10px;color:var(--muted);font-size:14px}
+.frames{display:flex;flex-direction:column;gap:16px}
+.card{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:20px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+.card img{width:100%;max-width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:8px;display:block;border:1px solid var(--line)}
+.meta{min-width:0;display:flex;flex-direction:column;gap:10px}
+.head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;border-bottom:2px solid var(--ink);padding-bottom:6px}
+.head h3{margin:0;font-family:var(--display);font-weight:800;font-size:19px;text-transform:uppercase;letter-spacing:.06em}
+.time{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--accent);font-variant-numeric:tabular-nums}
+.meta p{margin:0}
+.vo{font-weight:600;background:var(--accent-soft);border-radius:8px;padding:8px 12px}
+.sfx{color:var(--muted);font-size:14.5px}
+.sfx span{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-right:8px;color:var(--ink)}
+@media (max-width:620px){.card{grid-template-columns:minmax(0,1fr)}.card img{max-width:320px;margin:0 auto}}
+ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px;max-width:70ch}
+.next{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.next p{margin:0}
+</style>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Fakta Negeri #2 · storyboard</div>
+    <h1>Gua Terbesar Dunia Di <em>Sarawak</em></h1>
+    <p class="lede">Format sama dengan episod Kelantan: peta satelit sebenar, kapsyen gaya Top 5 di jalur bawah, B-roll Flow kau untuk babak dalam gua, dan kad nombor (23 padang bola, ranking dunia, UNESCO). Semua gambar di bawah dirender terus dari projek, dah sync dengan voiceover kau (61.6 s).</p>
+    <div class="specs"><span>61.6 s</span><span>1080×1920</span><span>30 fps</span><span>voiceover Cartesia</span><span>5 klip Flow</span><span>loop</span></div>
+  </header>
+
+  <section>
+    <h2>Skrip voiceover (satu perenggan)</h2>
+    <div class="script"><p>{{SCRIPT}}</p><p class="note">145 patah perkataan, suara 59.9 s.</p></div>
+  </section>
+
+  <section>
+    <h2>15 babak</h2>
+    <div class="frames">{{CARDS}}</div>
+  </section>
+
+  <section>
+    <h2>Risiko dan perkara belum pasti</h2>
+    <ol>
+      <li><strong>Pin Sarawak Chamber dan Gua Rusa</strong> dalam babak Mulu masih guna unjuran sementara (bake Mulu belum siap), jadi labelnya lari ke tepi. Akan tepat dalam preview.</li>
+      <li><strong>Klip 4 (ruang gergasi)</strong> cuma 6 s, suara perlukan 7.1 s, jadi frame terakhir klip tu kekal sebagai latar kad nombor.</li>
+      <li><strong>Takde gambar sejarah sebenar</strong> untuk episod ni (Wikimedia sekat muat turun dari server). Kalau kau ada gambar Sarawak Chamber atau penjelajah 1981, hantar dan aku masukkan sebagai kad “GAMBAR SEBENAR”.</li>
+      <li><strong>Angka “23 padang bola”</strong> ialah kiraan sendiri: 164,459 m² ÷ padang FIFA 105 × 68 m. Nota sumber kecil ada di skrin.</li>
+    </ol>
+  </section>
+
+  <section class="next"><p><strong>Lepas kau okey:</strong> bake Mulu siap, aku render preview 540×960 dan hantar, kemudian final dua lapisan + cover + caption.</p></section>
+</div>
