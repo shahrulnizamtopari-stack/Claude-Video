@@ -20,9 +20,9 @@ def unwarp(c):
     return A[-1][0]
 FPS = 30
 VIDEOS = {"v-dive": ("dive", 0, 5.6), "v-langkawi": ("langkawi", 5.6, 8.6), "v-out": ("out", 58.6, 60)}
-PLATES = {"p-lang1": (30.2, 33.0), "p-lang2": (38.0, 45.6), "p-phuket": (45.6, 49.4), "p-lang3": (49.4, 53.6), "p-outro": (53.6, 58.6)}
+PLATES = {"p-lang1": (30.2, 33.0), "p-lang2": (38.0, 39.6), "p-phuket": (45.6, 49.4), "p-lang3": (49.4, 53.6), "p-outro": (53.6, 58.6)}
 # B-roll clips play at their own speed: (canonical start, canonical end, media start); clip length 6.04 s
-BROLL = {"br1": (8.6, 10.4, 2.0), "br2": (10.4, 13.6, 0.6), "br3": (13.6, 19.4, 0.1), "br4": (19.4, 25.4, 0.0), "br5": (33.0, 38.0, 0.6)}
+BROLL = {"br1": (8.6, 10.4, 2.0), "br2": (10.4, 13.6, 0.6), "br3": (13.6, 19.4, 0.1), "br4": (19.4, 25.4, 0.0), "br5": (33.0, 38.0, 0.6), "br6": (39.6, 45.6, 0.0)}
 CLIP_LEN = 6.0
 q = lambda x: round(round(x * FPS) / FPS, 3)
 html = open(os.path.join(ROOT, "index.html")).read()
@@ -50,15 +50,22 @@ for vid, (name, c0, c1) in VIDEOS.items():
     set_clip(vid, r0, round(r1 - r0, 3)); print(vid, r0, round(r1 - r0, 3), N, "frames from", n_src)
 for bid, (c0, c1, ms) in BROLL.items():
     r0, r1 = q(unwarp(c0)), q(unwarp(c1)); d = round(r1 - r0, 3)
-    if ms + d > CLIP_LEN: ms = round(max(0.0, CLIP_LEN - d), 3)
-    if d > CLIP_LEN and bid != "br4":  # too short: start later so it still ends on the next shot; the plate before holds
-        print("NOTE", bid, "needs", d, "s; clip has", CLIP_LEN, "-> starts", round(d - CLIP_LEN, 3), "s later"); r0 = q(r1 - CLIP_LEN); d = round(r1 - r0, 3)
-    elif d > CLIP_LEN: print("NOTE", bid, "needs", d, "s; clip has", CLIP_LEN, "-> the chamber still holds after it"); d = CLIP_LEN
-    html, n = re.subn(rf'(id="{bid}"[^>]*?data-start=")[^"]*("[^>]*?data-duration=")[^"]*("[^>]*?data-media-start=")[^"]*"', rf'\g<1>{r0}\g<2>{d}\g<3>{ms}"', html)
-    assert n == 1, bid; print(bid, r0, d, "media", ms)
+    n = bid[2:]; src = os.path.join(ROOT, "assets", "broll", f"{n}.mp4"); avail = CLIP_LEN - ms
+    if d > avail:  # slow the clip down (frame blend) so it fills the spoken span exactly
+        fac = d / avail; out = os.path.join(ROOT, "assets", "broll", f"{n}_rt.mp4")
+        subprocess.run(["ffmpeg", "-nostdin", "-y", "-loglevel", "error", "-ss", str(ms), "-t", str(avail), "-i", src, "-vf", f"setpts={fac:.4f}*PTS,minterpolate=fps=30:mi_mode=blend",
+                        "-an", "-c:v", "libx264", "-crf", "16", "-g", "15", "-pix_fmt", "yuv420p", out], check=True)
+        html = re.sub(rf'(id="{bid}"[^>]*?src=")[^"]*"', rf'\g<1>assets/broll/{n}_rt.mp4"', html); ms = 0.0
+        print(bid, "slowed", round(fac, 3), "x")
+    else:
+        html = re.sub(rf'(id="{bid}"[^>]*?src=")[^"]*"', rf'\g<1>assets/broll/{n}.mp4"', html)
+    html, k = re.subn(rf'(id="{bid}"[^>]*?data-start=")[^"]*("[^>]*?data-duration=")[^"]*("[^>]*?data-media-start=")[^"]*"', rf'\g<1>{r0}\g<2>{d}\g<3>{ms}"', html)
+    assert k == 1, bid; print(bid, r0, d, "media", ms)
 # the chamber still (last frame of br4) holds from the end of br4 to the end of the numbers
 r_end4 = float(re.search(r'id="br4"[^>]*?data-start="([^"]*)"[^>]*?data-duration="([^"]*)"', html).group(1)) + float(re.search(r'id="br4"[^>]*?data-duration="([^"]*)"', html).group(1))
 set_clip("p-keris", q(r_end4), round(q(unwarp(30.2)) - q(r_end4), 3))
+r_br6 = float(re.search(r'id="br6"[^>]*?data-start="([^"]*)"', html).group(1)); r_l2 = q(unwarp(38.0))
+set_clip("p-lang2", r_l2, round(r_br6 - r_l2, 3))
 for pid, (c0, c1) in PLATES.items():
     r0, r1 = q(unwarp(c0)), q(unwarp(c1)); set_clip(pid, r0, round(r1 - r0, 3)); print(pid, r0, round(r1 - r0, 3))
 html = re.sub(r'(data-composition-id="main" data-start="0" data-duration=")[^"]*"', rf'\g<1>{DUR}"', html)

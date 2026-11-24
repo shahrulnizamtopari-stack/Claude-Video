@@ -1,0 +1,782 @@
+[
+ {
+  "text": "Korang",
+  "start": 0.05,
+  "end": 0.28
+ },
+ {
+  "text": "tahu",
+  "start": 0.32,
+  "end": 0.51
+ },
+ {
+  "text": "tak\u2026",
+  "start": 0.51,
+  "end": 0.72
+ },
+ {
+  "text": "ada",
+  "start": 0.94,
+  "end": 1
+ },
+ {
+  "text": "satu",
+  "start": 1,
+  "end": 1.26
+ },
+ {
+  "text": "pulau",
+  "start": 1.3,
+  "end": 1.6
+ },
+ {
+  "text": "di",
+  "start": 1.6,
+  "end": 1.73
+ },
+ {
+  "text": "Malaysia",
+  "start": 1.73,
+  "end": 2.32
+ },
+ {
+  "text": "yang",
+  "start": 2.32,
+  "end": 2.61
+ },
+ {
+  "text": "dipercayai",
+  "start": 2.61,
+  "end": 3.3
+ },
+ {
+  "text": "pernah",
+  "start": 3.41,
+  "end": 3.74
+ },
+ {
+  "text": "kena",
+  "start": 3.8,
+  "end": 4.06
+ },
+ {
+  "text": "SUMPAH,",
+  "start": 4.06,
+  "end": 4.43
+ },
+ {
+  "text": "selama",
+  "start": 4.63,
+  "end": 5.02
+ },
+ {
+  "text": "tujuh",
+  "start": 5.02,
+  "end": 5.44
+ },
+ {
+  "text": "keturunan?!",
+  "start": 5.44,
+  "end": 6.3
+ },
+ {
+  "text": "Pulau",
+  "start": 6.35,
+  "end": 6.8
+ },
+ {
+  "text": "Langkawi,",
+  "start": 6.8,
+  "end": 7.56
+ },
+ {
+  "text": "Kedah.",
+  "start": 7.6,
+  "end": 8.12
+ },
+ {
+  "text": "Lebih",
+  "start": 8.17,
+  "end": 8.45
+ },
+ {
+  "text": "dua",
+  "start": 8.45,
+  "end": 8.592
+ },
+ {
+  "text": "ratus",
+  "start": 8.592,
+  "end": 8.83
+ },
+ {
+  "text": "tahun",
+  "start": 9.06,
+  "end": 9.38
+ },
+ {
+  "text": "dulu,",
+  "start": 9.43,
+  "end": 9.8
+ },
+ {
+  "text": "hidup",
+  "start": 9.8,
+  "end": 10.18
+ },
+ {
+  "text": "seorang",
+  "start": 10.18,
+  "end": 10.72
+ },
+ {
+  "text": "wanita",
+  "start": 10.72,
+  "end": 11.18
+ },
+ {
+  "text": "bernama",
+  "start": 11.18,
+  "end": 11.72
+ },
+ {
+  "text": "Mahsuri.",
+  "start": 11.72,
+  "end": 12.34
+ },
+ {
+  "text": "Suaminya,",
+  "start": 12.39,
+  "end": 13.06
+ },
+ {
+  "text": "Wan",
+  "start": 13.28,
+  "end": 13.4
+ },
+ {
+  "text": "Darus,",
+  "start": 13.4,
+  "end": 13.97
+ },
+ {
+  "text": "keluar",
+  "start": 13.97,
+  "end": 14.47
+ },
+ {
+  "text": "berperang",
+  "start": 14.47,
+  "end": 15.22
+ },
+ {
+  "text": "melawan",
+  "start": 15.22,
+  "end": 15.8
+ },
+ {
+  "text": "Siam.",
+  "start": 15.8,
+  "end": 16.48
+ },
+ {
+  "text": "Bila",
+  "start": 16.53,
+  "end": 16.76
+ },
+ {
+  "text": "suami",
+  "start": 16.8,
+  "end": 17.19
+ },
+ {
+  "text": "tiada,",
+  "start": 17.19,
+  "end": 17.8
+ },
+ {
+  "text": "Mahsuri",
+  "start": 17.8,
+  "end": 18.29
+ },
+ {
+  "text": "difitnah",
+  "start": 18.29,
+  "end": 18.85
+ },
+ {
+  "text": "berzina",
+  "start": 18.85,
+  "end": 19.38
+ },
+ {
+  "text": "dengan",
+  "start": 19.38,
+  "end": 19.78
+ },
+ {
+  "text": "seorang",
+  "start": 19.78,
+  "end": 20.22
+ },
+ {
+  "text": "pengembara",
+  "start": 20.28,
+  "end": 20.89
+ },
+ {
+  "text": "bernama",
+  "start": 20.89,
+  "end": 21.35
+ },
+ {
+  "text": "Deramang.",
+  "start": 21.35,
+  "end": 21.92
+ },
+ {
+  "text": "Dia",
+  "start": 21.97,
+  "end": 22.16
+ },
+ {
+  "text": "dihukum",
+  "start": 22.16,
+  "end": 22.64
+ },
+ {
+  "text": "bunuh.",
+  "start": 22.86,
+  "end": 23.29
+ },
+ {
+  "text": "Tapi",
+  "start": 23.41,
+  "end": 23.64
+ },
+ {
+  "text": "menurut",
+  "start": 23.64,
+  "end": 24.08
+ },
+ {
+  "text": "legenda,",
+  "start": 24.3,
+  "end": 24.73
+ },
+ {
+  "text": "senjata",
+  "start": 24.81,
+  "end": 25.25
+ },
+ {
+  "text": "biasa",
+  "start": 25.25,
+  "end": 25.6
+ },
+ {
+  "text": "tak",
+  "start": 25.6,
+  "end": 25.81
+ },
+ {
+  "text": "lut.",
+  "start": 25.81,
+  "end": 26.26
+ },
+ {
+  "text": "Akhirnya",
+  "start": 26.31,
+  "end": 26.78
+ },
+ {
+  "text": "dia",
+  "start": 26.84,
+  "end": 26.97
+ },
+ {
+  "text": "ditikam",
+  "start": 27.19,
+  "end": 27.45
+ },
+ {
+  "text": "dengan",
+  "start": 27.45,
+  "end": 27.86
+ },
+ {
+  "text": "keris",
+  "start": 27.86,
+  "end": 28.19
+ },
+ {
+  "text": "keluarganya",
+  "start": 28.19,
+  "end": 28.92
+ },
+ {
+  "text": "sendiri\u2026",
+  "start": 28.93,
+  "end": 29.52
+ },
+ {
+  "text": "dan",
+  "start": 29.57,
+  "end": 29.75
+ },
+ {
+  "text": "darah",
+  "start": 29.75,
+  "end": 30.13
+ },
+ {
+  "text": "yang",
+  "start": 30.13,
+  "end": 30.23
+ },
+ {
+  "text": "mengalir,",
+  "start": 30.46,
+  "end": 31.05
+ },
+ {
+  "text": "berwarna",
+  "start": 31.05,
+  "end": 31.66
+ },
+ {
+  "text": "PUTIH.",
+  "start": 31.66,
+  "end": 32.35
+ },
+ {
+  "text": "Tanda",
+  "start": 32.41,
+  "end": 32.74
+ },
+ {
+  "text": "dia",
+  "start": 32.74,
+  "end": 32.97
+ },
+ {
+  "text": "tak",
+  "start": 32.97,
+  "end": 33.08
+ },
+ {
+  "text": "bersalah.",
+  "start": 33.3,
+  "end": 34.08
+ },
+ {
+  "text": "Sebelum",
+  "start": 34.13,
+  "end": 34.6
+ },
+ {
+  "text": "mati,",
+  "start": 34.66,
+  "end": 35.06
+ },
+ {
+  "text": "Mahsuri",
+  "start": 35.06,
+  "end": 35.59
+ },
+ {
+  "text": "bersumpah:",
+  "start": 35.59,
+  "end": 36.6
+ },
+ {
+  "text": "Langkawi",
+  "start": 36.65,
+  "end": 37.21
+ },
+ {
+  "text": "takkan",
+  "start": 37.21,
+  "end": 37.67
+ },
+ {
+  "text": "aman",
+  "start": 37.67,
+  "end": 37.97
+ },
+ {
+  "text": "selama",
+  "start": 38.05,
+  "end": 38.44
+ },
+ {
+  "text": "tujuh",
+  "start": 38.44,
+  "end": 38.81
+ },
+ {
+  "text": "keturunan.",
+  "start": 38.81,
+  "end": 39.8
+ },
+ {
+  "text": "Tak",
+  "start": 39.85,
+  "end": 40.04
+ },
+ {
+  "text": "lama",
+  "start": 40.04,
+  "end": 40.31
+ },
+ {
+  "text": "lepas",
+  "start": 40.38,
+  "end": 40.76
+ },
+ {
+  "text": "tu,",
+  "start": 40.76,
+  "end": 41.06
+ },
+ {
+  "text": "Siam",
+  "start": 41.1,
+  "end": 41.4
+ },
+ {
+  "text": "serang",
+  "start": 41.4,
+  "end": 41.88
+ },
+ {
+  "text": "Langkawi.",
+  "start": 41.88,
+  "end": 42.84
+ },
+ {
+  "text": "Penduduk",
+  "start": 42.89,
+  "end": 43.36
+ },
+ {
+  "text": "bakar",
+  "start": 43.42,
+  "end": 43.7
+ },
+ {
+  "text": "padi",
+  "start": 43.78,
+  "end": 43.96
+ },
+ {
+  "text": "sendiri",
+  "start": 43.96,
+  "end": 44.43
+ },
+ {
+  "text": "di",
+  "start": 44.43,
+  "end": 44.56
+ },
+ {
+  "text": "Padang",
+  "start": 44.56,
+  "end": 44.96
+ },
+ {
+  "text": "Matsirat.",
+  "start": 44.96,
+  "end": 45.67
+ },
+ {
+  "text": "Sampai",
+  "start": 45.73,
+  "end": 46.1
+ },
+ {
+  "text": "hari",
+  "start": 46.1,
+  "end": 46.37
+ },
+ {
+  "text": "ni,",
+  "start": 46.37,
+  "end": 46.66
+ },
+ {
+  "text": "tempat",
+  "start": 46.66,
+  "end": 47.05
+ },
+ {
+  "text": "tu",
+  "start": 47.13,
+  "end": 47.22
+ },
+ {
+  "text": "dipanggil",
+  "start": 47.22,
+  "end": 47.85
+ },
+ {
+  "text": "Beras",
+  "start": 47.85,
+  "end": 48.2
+ },
+ {
+  "text": "Terbakar.",
+  "start": 48.2,
+  "end": 48.98
+ },
+ {
+  "text": "Tapi",
+  "start": 49.05,
+  "end": 49.46
+ },
+ {
+  "text": "tahun",
+  "start": 49.46,
+  "end": 50.04
+ },
+ {
+  "text": "seribu",
+  "start": 50.04,
+  "end": 50.336
+ },
+ {
+  "text": "sembilan",
+  "start": 50.336,
+  "end": 50.732
+ },
+ {
+  "text": "ratus",
+  "start": 50.732,
+  "end": 50.978
+ },
+ {
+  "text": "lapan",
+  "start": 50.978,
+  "end": 51.225
+ },
+ {
+  "text": "puluh",
+  "start": 51.225,
+  "end": 51.472
+ },
+ {
+  "text": "enam,",
+  "start": 51.472,
+  "end": 51.67
+ },
+ {
+  "text": "Langkawi",
+  "start": 51.68,
+  "end": 52.21
+ },
+ {
+  "text": "mula",
+  "start": 52.21,
+  "end": 52.47
+ },
+ {
+  "text": "dibangunkan",
+  "start": 52.47,
+  "end": 53.17
+ },
+ {
+  "text": "jadi",
+  "start": 53.23,
+  "end": 53.43
+ },
+ {
+  "text": "pusat",
+  "start": 53.63,
+  "end": 53.8
+ },
+ {
+  "text": "pelancongan.",
+  "start": 53.8,
+  "end": 54.8
+ },
+ {
+  "text": "Hari",
+  "start": 54.85,
+  "end": 55.14
+ },
+ {
+  "text": "ni,",
+  "start": 55.14,
+  "end": 55.48
+ },
+ {
+  "text": "lebih",
+  "start": 55.48,
+  "end": 55.9
+ },
+ {
+  "text": "tiga",
+  "start": 55.9,
+  "end": 56.15
+ },
+ {
+  "text": "juta",
+  "start": 56.15,
+  "end": 56.48
+ },
+ {
+  "text": "pelancong",
+  "start": 56.48,
+  "end": 57.23
+ },
+ {
+  "text": "datang",
+  "start": 57.23,
+  "end": 57.73
+ },
+ {
+  "text": "setiap",
+  "start": 57.73,
+  "end": 58.23
+ },
+ {
+  "text": "tahun.",
+  "start": 58.23,
+  "end": 58.72
+ },
+ {
+  "text": "Dan",
+  "start": 58.77,
+  "end": 58.95
+ },
+ {
+  "text": "keturunan",
+  "start": 58.95,
+  "end": 59.63
+ },
+ {
+  "text": "ketujuh",
+  "start": 59.66,
+  "end": 60.09
+ },
+ {
+  "text": "Mahsuri?",
+  "start": 60.17,
+  "end": 60.87
+ },
+ {
+  "text": "Dikatakan",
+  "start": 60.87,
+  "end": 61.54
+ },
+ {
+  "text": "lahir",
+  "start": 61.54,
+  "end": 61.91
+ },
+ {
+  "text": "di",
+  "start": 61.91,
+  "end": 62.02
+ },
+ {
+  "text": "Phuket,",
+  "start": 62.13,
+  "end": 62.66
+ },
+ {
+  "text": "Thailand.",
+  "start": 62.66,
+  "end": 63.32
+ },
+ {
+  "text": "Sumpahan",
+  "start": 63.37,
+  "end": 63.96
+ },
+ {
+  "text": "dah",
+  "start": 63.96,
+  "end": 64.04
+ },
+ {
+  "text": "tamat\u2026",
+  "start": 64.26,
+  "end": 64.58
+ },
+ {
+  "text": "atau",
+  "start": 64.63,
+  "end": 64.92
+ },
+ {
+  "text": "cuma",
+  "start": 64.92,
+  "end": 65.24
+ },
+ {
+  "text": "kebetulan?",
+  "start": 65.24,
+  "end": 66.23
+ },
+ {
+  "text": "Orang",
+  "start": 66.29,
+  "end": 66.52
+ },
+ {
+  "text": "Kedah,",
+  "start": 66.56,
+  "end": 66.93
+ },
+ {
+  "text": "korang",
+  "start": 66.93,
+  "end": 67.28
+ },
+ {
+  "text": "percaya",
+  "start": 67.28,
+  "end": 67.61
+ },
+ {
+  "text": "tak?",
+  "start": 67.69,
+  "end": 68.03
+ },
+ {
+  "text": "Negeri",
+  "start": 68.03,
+  "end": 68.35
+ },
+ {
+  "text": "mana",
+  "start": 68.35,
+  "end": 68.57
+ },
+ {
+  "text": "kita",
+  "start": 68.57,
+  "end": 68.79
+ },
+ {
+  "text": "patut",
+  "start": 68.79,
+  "end": 69.06
+ },
+ {
+  "text": "bongkar",
+  "start": 69.06,
+  "end": 69.38
+ },
+ {
+  "text": "lepas",
+  "start": 69.39,
+  "end": 69.66
+ },
+ {
+  "text": "ni?",
+  "start": 69.66,
+  "end": 69.98
+ }
+]
