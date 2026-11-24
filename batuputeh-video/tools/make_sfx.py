@@ -42,40 +42,34 @@ def pop():
     return np.sin(2 * np.pi * (520 * np.exp(-tt2 * 30) + 180) * tt2) * env(n2, .001, .08) * .6
 def tick(): return tone(2400, .025, .001, .02) * .25
 
-# bed: drone + pulse; silent in the re-hook; low under the question
+# bed: drone + pulse; silent in the re-hook
 n = N; tt = np.arange(n) / SR
 drone = sum(np.sin(2 * np.pi * f * tt + k) / k for k, f in enumerate([55, 110, 165, 220], 1))
 lvl = np.full(n, 0.04)
-lvl *= 1 - 0.95 * np.clip(1 - np.abs(tt - (T["tunggu"] + 1.5)) / 2.2, 0, 1)
-lvl *= np.clip((T["jadi"] + 0.3 - tt) / 0.5, 0, 1) * 0.7 + 0.3
+lvl *= 1 - 0.95 * np.clip(1 - np.abs(tt - (T["tunggu"] + 1.2)) / 1.8, 0, 1)
+lvl *= np.clip((T["kalau"] + 0.3 - tt) / 0.5, 0, 1) * 0.7 + 0.3
 put(drone * (0.6 + 0.4 * np.sin(2 * np.pi * tt / 9)) * lvl * env(n, 1.0, 2.0), 0, 1)
+sea = lp(noise(DUR), 450) * (0.5 + 0.5 * np.sin(2 * np.pi * tt / 6)) ** 2
+put(sea * 0.08 * np.clip((T["mahkamah"] - tt) / 1.0, 0, 1), 0, 1)
 def kick():
     d = .18; m = int(d * SR); t2 = np.arange(m) / SR
     return np.sin(2 * np.pi * (120 * np.exp(-t2 * 25) + 45) * t2) * env(m, .001, .16)
-for a0, b0, g0 in ((T["tahun"], T["tapi2"] - 0.1, 0.3), (T["tenaga"], T["jadi"] - 0.1, 0.38)):
+for a0, b0, g0 in ((T["namanya"], T["tunggu"] - 0.1, 0.3), (T["y2008"], T["kalau"] - 0.1, 0.38)):
     t0 = a0
     while t0 < b0: put(kick(), t0, g0); t0 += 0.55
-# hook: Borneo fades (low sweep), list boxes, lock
-put(whoosh(1.0), T["tinggal"] - 0.3, 0.5); put(impact(.6), T["tinggal"], 0.6)
-for i in range(4): put(pop(), T["empat"] - 0.1 + i * 0.12, 0.8)
-put(ping(500), T["keempat1"], 0.5); put(impact(.5), T["sangka"], 0.5)
-# flights
-for t in (T["tahun"] - 0.2, T["pertama"], T["tanpa2"] - 0.2, T["kedua"] - 0.2, T["ketiga"], T["tunggu"] + 0.3, T["tenaga"], T["jadi"]):
+put(ping(700), T["pulau1"], 0.4); put(whoosh(.7), T["km14"] - 0.2, 0.4); put(ping(1320), T["km14"], 0.5)
+put(pop(), T["singapura1"], 0.8); put(impact(.8), T["surat1"] - 0.5, 0.9)
+for t in (T["namanya"] - 0.2, T["y1850"] - 0.3, T["dijaga"], T["y1979"] - 0.2, T["mahkamah"] - 0.4, T["tunggu"] + 0.3, T["keputusan"]):
     put(whoosh(1.3), t, 0.4)
-# tracker lights
-for k in ("pertama", "kedua", "ketiga", "tenaga"): put(ping(880), T[k], 0.45)
-for i in range(12): put(tick(), T["saiz"] + 0.2 + (T["p60"] - T["saiz"]) * i / 12, 1)
-put(impact(.6), T["p60"], 0.6); put(pop(), T["greece"] - 0.1, 0.8); put(ping(1320), T["greece"] + 0.8, 0.5)
-put(pop(), T["kinabalu"] + 0.4, 0.8); put(impact(.6), T["m4095"], 0.6)
-for i in range(10): put(tick(), T["ketiga"] + 0.2 + (T["juta"] - T["ketiga"]) * i / 10, 1)
-for i in range(6): put(pop(), T["juta"] + i * 0.1, 0.5)
-# re-hook
+put(pop(), T["batu1"], 0.8); put(pop(), T["y1850"], 0.7); put(ping(880), T["y100"], 0.5)
+put(pop(), T["wilayah"], 0.7); put(impact(.7), T["bantah"], 0.9)
+put(impact(.6), T["mahkamah"] + 0.1, 0.6)
 put(impact(1.1), T["tunggu"], 1.1)
-put(impact(.4), T["tanah2"] + 0.15, 0.6); put(impact(.4), T["gunung2"] + 0.15, 0.6)
-m = int((T["tenaga"] - T["ekonomi"] + 0.6) * SR); tr = np.arange(m) / SR
-put(lp(noise(m / SR), 3000) * (tr / tr[-1]) ** 2 * 0.5, T["ekonomi"] - 0.6, 0.6)
-put(impact(1.3), T["tenaga"], 1.2); put(pop(), T["bintulu"] + 0.2, 0.8); put(ping(1500), T["terbesar"], 0.4)
-put(pop(), T["jadi"] + 0.1, 0.9); put(ping(990), T["komen"], 0.6)
+pap = lp(noise(.5), 5000) * env(int(.5 * SR), .02, .3); put(pap, T["muncul"], 0.5)
+put(ping(500), T["tuntut1"], 0.5)
+for i in range(12): put(tick(), T["n12"] - 0.2 + i * 0.05, 1)
+put(impact(.8), T["n4"], 0.9); put(pop(), T["batu2"], 0.8); put(pop(), T["batuan"], 0.8)
+put(pop(), T["kalau"] + 0.4, 0.8); put(pop(), T["kalau"] + 0.55, 0.8); put(ping(990), T["komen"], 0.6)
 
 pk = np.max(np.abs(out)); out = np.tanh(out / pk * 2.4); out = out / np.max(np.abs(out)) * 0.9  # soft-clip so ticks/whooshes are not buried under the big hits
 with wave.open(os.path.join(ROOT, "assets", "sfx.wav"), "wb") as w:
