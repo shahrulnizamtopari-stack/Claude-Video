@@ -1,0 +1,215 @@
+<template>
+  <style>
+    @font-face { font-family: "Inter"; font-weight: 700; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); }
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    /* map-animation captions: bottom band, word by word (grey = coming, white = spoken, red = key word) */
+    #root .cap { position: absolute; left: 60px; right: 60px; top: 1490px; text-align: center; }
+    #root .line { position: relative; display: inline-block; font-family: "Inter", sans-serif; font-weight: 700; font-size: 48px; line-height: 1.15; letter-spacing: -0.5px;
+      text-shadow: 0 3px 14px rgba(0,0,0,0.95), 0 0 4px rgba(0,0,0,0.9); }
+    #root .line::before { content: ""; position: absolute; left: -20px; right: -20px; top: -18px; bottom: -18px; z-index: -1; border-radius: 20px;
+      background: linear-gradient(rgba(5,7,11,0), rgba(5,7,11,0.55) 30%, rgba(5,7,11,0.55) 70%, rgba(5,7,11,0)); }
+    #root .w { color: rgba(255,255,255,0.36); white-space: pre; }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920" data-layout-allow-overflow>
+    <div id="cp0" class="clip cap" data-start="0.05" data-duration="0.89" data-track-index="1"><div class="line"><span class="w" id="w0">Korang</span> <span class="w" id="w1">tahu</span> <span class="w" id="w2">tak…</span></div></div>
+    <div id="cp1" class="clip cap" data-start="0.94" data-duration="1.38" data-track-index="1"><div class="line"><span class="w" id="w3">ada</span> <span class="w" id="w4">satu</span> <span class="w" id="w5">pulau</span> <span class="w" id="w6">di</span> <span class="w" id="w7">Malaysia</span></div></div>
+    <div id="cp2" class="clip cap" data-start="2.32" data-duration="1.48" data-track-index="1"><div class="line"><span class="w" id="w8">yang</span> <span class="w" id="w9">dipercayai</span> <span class="w" id="w10">pernah</span></div></div>
+    <div id="cp3" class="clip cap" data-start="3.8" data-duration="0.83" data-track-index="1"><div class="line"><span class="w" id="w11">kena</span> <span class="w" id="w12">SUMPAH,</span></div></div>
+    <div id="cp4" class="clip cap" data-start="4.63" data-duration="1.72" data-track-index="1"><div class="line"><span class="w" id="w13">selama</span> <span class="w" id="w14">7</span> <span class="w" id="w15">keturunan?!</span></div></div>
+    <div id="cp5" class="clip cap" data-start="6.35" data-duration="1.82" data-track-index="1"><div class="line"><span class="w" id="w16">Pulau</span> <span class="w" id="w17">Langkawi,</span> <span class="w" id="w18">Kedah.</span></div></div>
+    <div id="cp6" class="clip cap" data-start="8.17" data-duration="1.63" data-track-index="1"><div class="line"><span class="w" id="w19">Lebih</span> <span class="w" id="w20">200</span> <span class="w" id="w22">tahun</span> <span class="w" id="w23">dulu,</span></div></div>
+    <div id="cp7" class="clip cap" data-start="9.8" data-duration="1.38" data-track-index="1"><div class="line"><span class="w" id="w24">hidup</span> <span class="w" id="w25">seorang</span> <span class="w" id="w26">wanita</span></div></div>
+    <div id="cp8" class="clip cap" data-start="11.18" data-duration="1.21" data-track-index="1"><div class="line"><span class="w" id="w27">bernama</span> <span class="w" id="w28">Mahsuri.</span></div></div>
+    <div id="cp9" class="clip cap" data-start="12.39" data-duration="1.58" data-track-index="1"><div class="line"><span class="w" id="w29">Suaminya,</span> <span class="w" id="w30">Wan</span> <span class="w" id="w31">Darus,</span></div></div>
+    <div id="cp10" class="clip cap" data-start="13.97" data-duration="2.56" data-track-index="1"><div class="line"><span class="w" id="w32">keluar</span> <span class="w" id="w33">berperang</span> <span class="w" id="w34">melawan</span> <span class="w" id="w35">Siam.</span></div></div>
+    <div id="cp11" class="clip cap" data-start="16.53" data-duration="1.27" data-track-index="1"><div class="line"><span class="w" id="w36">Bila</span> <span class="w" id="w37">suami</span> <span class="w" id="w38">tiada,</span></div></div>
+    <div id="cp12" class="clip cap" data-start="17.8" data-duration="1.58" data-track-index="1"><div class="line"><span class="w" id="w39">Mahsuri</span> <span class="w" id="w40">difitnah</span> <span class="w" id="w41">berzina</span></div></div>
+    <div id="cp13" class="clip cap" data-start="19.38" data-duration="1.51" data-track-index="1"><div class="line"><span class="w" id="w42">dengan</span> <span class="w" id="w43">seorang</span> <span class="w" id="w44">pengembara</span></div></div>
+    <div id="cp14" class="clip cap" data-start="20.89" data-duration="1.08" data-track-index="1"><div class="line"><span class="w" id="w45">bernama</span> <span class="w" id="w46">Deramang.</span></div></div>
+    <div id="cp15" class="clip cap" data-start="21.97" data-duration="1.44" data-track-index="1"><div class="line"><span class="w" id="w47">Dia</span> <span class="w" id="w48">dihukum</span> <span class="w" id="w49">bunuh.</span></div></div>
+    <div id="cp16" class="clip cap" data-start="23.41" data-duration="1.4" data-track-index="1"><div class="line"><span class="w" id="w50">Tapi</span> <span class="w" id="w51">menurut</span> <span class="w" id="w52">legenda,</span></div></div>
+    <div id="cp17" class="clip cap" data-start="24.81" data-duration="1.5" data-track-index="1"><div class="line"><span class="w" id="w53">senjata</span> <span class="w" id="w54">biasa</span> <span class="w" id="w55">tak</span> <span class="w" id="w56">lut.</span></div></div>
+    <div id="cp18" class="clip cap" data-start="26.31" data-duration="1.14" data-track-index="1"><div class="line"><span class="w" id="w57">Akhirnya</span> <span class="w" id="w58">dia</span> <span class="w" id="w59">ditikam</span></div></div>
+    <div id="cp19" class="clip cap" data-start="27.45" data-duration="2.12" data-track-index="1"><div class="line"><span class="w" id="w60">dengan</span> <span class="w" id="w61">keris</span> <span class="w" id="w62">keluarganya</span> <span class="w" id="w63">sendiri…</span></div></div>
+    <div id="cp20" class="clip cap" data-start="29.57" data-duration="1.48" data-track-index="1"><div class="line"><span class="w" id="w64">dan</span> <span class="w" id="w65">darah</span> <span class="w" id="w66">yang</span> <span class="w" id="w67">mengalir,</span></div></div>
+    <div id="cp21" class="clip cap" data-start="31.05" data-duration="1.36" data-track-index="1"><div class="line"><span class="w" id="w68">berwarna</span> <span class="w" id="w69">PUTIH.</span></div></div>
+    <div id="cp22" class="clip cap" data-start="32.41" data-duration="1.72" data-track-index="1"><div class="line"><span class="w" id="w70">Tanda</span> <span class="w" id="w71">dia</span> <span class="w" id="w72">tak</span> <span class="w" id="w73">bersalah.</span></div></div>
+    <div id="cp23" class="clip cap" data-start="34.13" data-duration="0.93" data-track-index="1"><div class="line"><span class="w" id="w74">Sebelum</span> <span class="w" id="w75">mati,</span></div></div>
+    <div id="cp24" class="clip cap" data-start="35.06" data-duration="1.59" data-track-index="1"><div class="line"><span class="w" id="w76">Mahsuri</span> <span class="w" id="w77">bersumpah:</span></div></div>
+    <div id="cp25" class="clip cap" data-start="36.65" data-duration="1.4" data-track-index="1"><div class="line"><span class="w" id="w78">Langkawi</span> <span class="w" id="w79">takkan</span> <span class="w" id="w80">aman</span></div></div>
+    <div id="cp26" class="clip cap" data-start="38.05" data-duration="1.8" data-track-index="1"><div class="line"><span class="w" id="w81">selama</span> <span class="w" id="w82">7</span> <span class="w" id="w83">keturunan.</span></div></div>
+    <div id="cp27" class="clip cap" data-start="39.85" data-duration="1.25" data-track-index="1"><div class="line"><span class="w" id="w84">Tak</span> <span class="w" id="w85">lama</span> <span class="w" id="w86">lepas</span> <span class="w" id="w87">tu,</span></div></div>
+    <div id="cp28" class="clip cap" data-start="41.1" data-duration="1.79" data-track-index="1"><div class="line"><span class="w" id="w88">Siam</span> <span class="w" id="w89">serang</span> <span class="w" id="w90">Langkawi.</span></div></div>
+    <div id="cp29" class="clip cap" data-start="42.89" data-duration="1.07" data-track-index="1"><div class="line"><span class="w" id="w91">Penduduk</span> <span class="w" id="w92">bakar</span> <span class="w" id="w93">padi</span></div></div>
+    <div id="cp30" class="clip cap" data-start="43.96" data-duration="1.77" data-track-index="1"><div class="line"><span class="w" id="w94">sendiri</span> <span class="w" id="w95">di</span> <span class="w" id="w96">Padang</span> <span class="w" id="w97">Matsirat.</span></div></div>
+    <div id="cp31" class="clip cap" data-start="45.73" data-duration="0.93" data-track-index="1"><div class="line"><span class="w" id="w98">Sampai</span> <span class="w" id="w99">hari</span> <span class="w" id="w100">ni,</span></div></div>
+    <div id="cp32" class="clip cap" data-start="46.66" data-duration="2.39" data-track-index="1"><div class="line"><span class="w" id="w101">tempat</span> <span class="w" id="w102">tu</span> <span class="w" id="w103">dipanggil</span> <span class="w" id="w104">Beras</span> <span class="w" id="w105">Terbakar.</span></div></div>
+    <div id="cp33" class="clip cap" data-start="49.05" data-duration="2.63" data-track-index="1"><div class="line"><span class="w" id="w106">Tapi</span> <span class="w" id="w107">tahun</span> <span class="w" id="w108">1986,</span></div></div>
+    <div id="cp34" class="clip cap" data-start="51.68" data-duration="1.55" data-track-index="1"><div class="line"><span class="w" id="w114">Langkawi</span> <span class="w" id="w115">mula</span> <span class="w" id="w116">dibangunkan</span></div></div>
+    <div id="cp35" class="clip cap" data-start="53.23" data-duration="1.62" data-track-index="1"><div class="line"><span class="w" id="w117">jadi</span> <span class="w" id="w118">pusat</span> <span class="w" id="w119">pelancongan.</span></div></div>
+    <div id="cp36" class="clip cap" data-start="54.85" data-duration="1.63" data-track-index="1"><div class="line"><span class="w" id="w120">Hari</span> <span class="w" id="w121">ni,</span> <span class="w" id="w122">lebih</span> <span class="w" id="w123">3</span> <span class="w" id="w124">juta</span></div></div>
+    <div id="cp37" class="clip cap" data-start="56.48" data-duration="2.29" data-track-index="1"><div class="line"><span class="w" id="w125">pelancong</span> <span class="w" id="w126">datang</span> <span class="w" id="w127">setiap</span> <span class="w" id="w128">tahun.</span></div></div>
+    <div id="cp38" class="clip cap" data-start="58.77" data-duration="2.1" data-track-index="1"><div class="line"><span class="w" id="w129">Dan</span> <span class="w" id="w130">keturunan</span> <span class="w" id="w131">ketujuh</span> <span class="w" id="w132">Mahsuri?</span></div></div>
+    <div id="cp39" class="clip cap" data-start="60.87" data-duration="2.5" data-track-index="1"><div class="line"><span class="w" id="w133">Dikatakan</span> <span class="w" id="w134">lahir</span> <span class="w" id="w135">di</span> <span class="w" id="w136">Phuket,</span> <span class="w" id="w137">Thailand.</span></div></div>
+    <div id="cp40" class="clip cap" data-start="63.37" data-duration="1.26" data-track-index="1"><div class="line"><span class="w" id="w138">Sumpahan</span> <span class="w" id="w139">dah</span> <span class="w" id="w140">tamat…</span></div></div>
+    <div id="cp41" class="clip cap" data-start="64.63" data-duration="1.66" data-track-index="1"><div class="line"><span class="w" id="w141">atau</span> <span class="w" id="w142">cuma</span> <span class="w" id="w143">kebetulan?</span></div></div>
+    <div id="cp42" class="clip cap" data-start="66.29" data-duration="0.64" data-track-index="1"><div class="line"><span class="w" id="w144">Orang</span> <span class="w" id="w145">Kedah,</span></div></div>
+    <div id="cp43" class="clip cap" data-start="66.93" data-duration="1.1" data-track-index="1"><div class="line"><span class="w" id="w146">korang</span> <span class="w" id="w147">percaya</span> <span class="w" id="w148">tak?</span></div></div>
+    <div id="cp44" class="clip cap" data-start="68.03" data-duration="1.03" data-track-index="1"><div class="line"><span class="w" id="w149">Negeri</span> <span class="w" id="w150">mana</span> <span class="w" id="w151">kita</span> <span class="w" id="w152">patut</span></div></div>
+    <div id="cp45" class="clip cap" data-start="69.06" data-duration="1.52" data-track-index="1"><div class="line"><span class="w" id="w153">bongkar</span> <span class="w" id="w154">lepas</span> <span class="w" id="w155">ni?</span></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.set("#w0", {color: "#ffffff"}, 0.02);
+    tl.set("#w1", {color: "#ffffff"}, 0.29);
+    tl.set("#w2", {color: "#ffffff"}, 0.48);
+    tl.set("#w3", {color: "#ffffff"}, 0.91);
+    tl.set("#w4", {color: "#ffffff"}, 0.97);
+    tl.set("#w5", {color: "#ffffff"}, 1.27);
+    tl.set("#w6", {color: "#ffffff"}, 1.57);
+    tl.set("#w7", {color: "#ffffff"}, 1.7);
+    tl.set("#w8", {color: "#ffffff"}, 2.29);
+    tl.set("#w9", {color: "#ffffff"}, 2.58);
+    tl.set("#w10", {color: "#ffffff"}, 3.38);
+    tl.set("#w11", {color: "#ffffff"}, 3.77);
+    tl.set("#w12", {color: "#ff2d46"}, 4.03);
+    tl.set("#w13", {color: "#ffffff"}, 4.6);
+    tl.set("#w14", {color: "#ff2d46"}, 4.99);
+    tl.set("#w15", {color: "#ff2d46"}, 5.41);
+    tl.set("#w16", {color: "#ffffff"}, 6.32);
+    tl.set("#w17", {color: "#ff2d46"}, 6.77);
+    tl.set("#w18", {color: "#ff2d46"}, 7.57);
+    tl.set("#w19", {color: "#ffffff"}, 8.14);
+    tl.set("#w20", {color: "#ffffff"}, 8.42);
+    tl.set("#w22", {color: "#ffffff"}, 9.03);
+    tl.set("#w23", {color: "#ffffff"}, 9.4);
+    tl.set("#w24", {color: "#ffffff"}, 9.77);
+    tl.set("#w25", {color: "#ffffff"}, 10.15);
+    tl.set("#w26", {color: "#ffffff"}, 10.69);
+    tl.set("#w27", {color: "#ffffff"}, 11.15);
+    tl.set("#w28", {color: "#ff2d46"}, 11.69);
+    tl.set("#w29", {color: "#ffffff"}, 12.36);
+    tl.set("#w30", {color: "#ffffff"}, 13.25);
+    tl.set("#w31", {color: "#ffffff"}, 13.37);
+    tl.set("#w32", {color: "#ffffff"}, 13.94);
+    tl.set("#w33", {color: "#ffffff"}, 14.44);
+    tl.set("#w34", {color: "#ffffff"}, 15.19);
+    tl.set("#w35", {color: "#ff2d46"}, 15.77);
+    tl.set("#w36", {color: "#ffffff"}, 16.5);
+    tl.set("#w37", {color: "#ffffff"}, 16.77);
+    tl.set("#w38", {color: "#ffffff"}, 17.16);
+    tl.set("#w39", {color: "#ffffff"}, 17.77);
+    tl.set("#w40", {color: "#ff2d46"}, 18.26);
+    tl.set("#w41", {color: "#ffffff"}, 18.82);
+    tl.set("#w42", {color: "#ffffff"}, 19.35);
+    tl.set("#w43", {color: "#ffffff"}, 19.75);
+    tl.set("#w44", {color: "#ffffff"}, 20.25);
+    tl.set("#w45", {color: "#ffffff"}, 20.86);
+    tl.set("#w46", {color: "#ff2d46"}, 21.32);
+    tl.set("#w47", {color: "#ffffff"}, 21.94);
+    tl.set("#w48", {color: "#ffffff"}, 22.13);
+    tl.set("#w49", {color: "#ffffff"}, 22.83);
+    tl.set("#w50", {color: "#ffffff"}, 23.38);
+    tl.set("#w51", {color: "#ffffff"}, 23.61);
+    tl.set("#w52", {color: "#ff2d46"}, 24.27);
+    tl.set("#w53", {color: "#ffffff"}, 24.78);
+    tl.set("#w54", {color: "#ffffff"}, 25.22);
+    tl.set("#w55", {color: "#ffffff"}, 25.57);
+    tl.set("#w56", {color: "#ffffff"}, 25.78);
+    tl.set("#w57", {color: "#ffffff"}, 26.28);
+    tl.set("#w58", {color: "#ffffff"}, 26.81);
+    tl.set("#w59", {color: "#ffffff"}, 27.16);
+    tl.set("#w60", {color: "#ffffff"}, 27.42);
+    tl.set("#w61", {color: "#ffffff"}, 27.83);
+    tl.set("#w62", {color: "#ffffff"}, 28.16);
+    tl.set("#w63", {color: "#ffffff"}, 28.9);
+    tl.set("#w64", {color: "#ffffff"}, 29.54);
+    tl.set("#w65", {color: "#ffffff"}, 29.72);
+    tl.set("#w66", {color: "#ffffff"}, 30.1);
+    tl.set("#w67", {color: "#ffffff"}, 30.43);
+    tl.set("#w68", {color: "#ffffff"}, 31.02);
+    tl.set("#w69", {color: "#ff2d46"}, 31.63);
+    tl.set("#w70", {color: "#ffffff"}, 32.38);
+    tl.set("#w71", {color: "#ffffff"}, 32.71);
+    tl.set("#w72", {color: "#ffffff"}, 32.94);
+    tl.set("#w73", {color: "#ff2d46"}, 33.27);
+    tl.set("#w74", {color: "#ffffff"}, 34.1);
+    tl.set("#w75", {color: "#ffffff"}, 34.63);
+    tl.set("#w76", {color: "#ffffff"}, 35.03);
+    tl.set("#w77", {color: "#ffffff"}, 35.56);
+    tl.set("#w78", {color: "#ffffff"}, 36.62);
+    tl.set("#w79", {color: "#ffffff"}, 37.18);
+    tl.set("#w80", {color: "#ffffff"}, 37.64);
+    tl.set("#w81", {color: "#ffffff"}, 38.02);
+    tl.set("#w82", {color: "#ff2d46"}, 38.41);
+    tl.set("#w83", {color: "#ff2d46"}, 38.78);
+    tl.set("#w84", {color: "#ffffff"}, 39.82);
+    tl.set("#w85", {color: "#ffffff"}, 40.01);
+    tl.set("#w86", {color: "#ffffff"}, 40.35);
+    tl.set("#w87", {color: "#ffffff"}, 40.73);
+    tl.set("#w88", {color: "#ffffff"}, 41.07);
+    tl.set("#w89", {color: "#ffffff"}, 41.37);
+    tl.set("#w90", {color: "#ffffff"}, 41.85);
+    tl.set("#w91", {color: "#ffffff"}, 42.86);
+    tl.set("#w92", {color: "#ffffff"}, 43.39);
+    tl.set("#w93", {color: "#ffffff"}, 43.75);
+    tl.set("#w94", {color: "#ffffff"}, 43.93);
+    tl.set("#w95", {color: "#ffffff"}, 44.4);
+    tl.set("#w96", {color: "#ffffff"}, 44.53);
+    tl.set("#w97", {color: "#ff2d46"}, 44.93);
+    tl.set("#w98", {color: "#ffffff"}, 45.7);
+    tl.set("#w99", {color: "#ffffff"}, 46.07);
+    tl.set("#w100", {color: "#ffffff"}, 46.34);
+    tl.set("#w101", {color: "#ffffff"}, 46.63);
+    tl.set("#w102", {color: "#ffffff"}, 47.1);
+    tl.set("#w103", {color: "#ffffff"}, 47.19);
+    tl.set("#w104", {color: "#ffffff"}, 47.82);
+    tl.set("#w105", {color: "#ff2d46"}, 48.17);
+    tl.set("#w106", {color: "#ffffff"}, 49.02);
+    tl.set("#w107", {color: "#ffffff"}, 49.43);
+    tl.set("#w108", {color: "#ff2d46"}, 50.01);
+    tl.set("#w114", {color: "#ffffff"}, 51.65);
+    tl.set("#w115", {color: "#ffffff"}, 52.18);
+    tl.set("#w116", {color: "#ffffff"}, 52.44);
+    tl.set("#w117", {color: "#ffffff"}, 53.2);
+    tl.set("#w118", {color: "#ffffff"}, 53.6);
+    tl.set("#w119", {color: "#ff2d46"}, 53.77);
+    tl.set("#w120", {color: "#ffffff"}, 54.82);
+    tl.set("#w121", {color: "#ffffff"}, 55.11);
+    tl.set("#w122", {color: "#ffffff"}, 55.45);
+    tl.set("#w123", {color: "#ff2d46"}, 55.87);
+    tl.set("#w124", {color: "#ff2d46"}, 56.12);
+    tl.set("#w125", {color: "#ffffff"}, 56.45);
+    tl.set("#w126", {color: "#ffffff"}, 57.2);
+    tl.set("#w127", {color: "#ffffff"}, 57.7);
+    tl.set("#w128", {color: "#ffffff"}, 58.2);
+    tl.set("#w129", {color: "#ffffff"}, 58.74);
+    tl.set("#w130", {color: "#ffffff"}, 58.92);
+    tl.set("#w131", {color: "#ffffff"}, 59.63);
+    tl.set("#w132", {color: "#ffffff"}, 60.14);
+    tl.set("#w133", {color: "#ffffff"}, 60.84);
+    tl.set("#w134", {color: "#ffffff"}, 61.51);
+    tl.set("#w135", {color: "#ffffff"}, 61.88);
+    tl.set("#w136", {color: "#ff2d46"}, 62.1);
+    tl.set("#w137", {color: "#ffffff"}, 62.63);
+    tl.set("#w138", {color: "#ffffff"}, 63.34);
+    tl.set("#w139", {color: "#ffffff"}, 63.93);
+    tl.set("#w140", {color: "#ffffff"}, 64.23);
+    tl.set("#w141", {color: "#ffffff"}, 64.6);
+    tl.set("#w142", {color: "#ffffff"}, 64.89);
+    tl.set("#w143", {color: "#ff2d46"}, 65.21);
+    tl.set("#w144", {color: "#ffffff"}, 66.26);
+    tl.set("#w145", {color: "#ffffff"}, 66.53);
+    tl.set("#w146", {color: "#ffffff"}, 66.9);
+    tl.set("#w147", {color: "#ff2d46"}, 67.25);
+    tl.set("#w148", {color: "#ffffff"}, 67.66);
+    tl.set("#w149", {color: "#ffffff"}, 68.0);
+    tl.set("#w150", {color: "#ffffff"}, 68.32);
+    tl.set("#w151", {color: "#ffffff"}, 68.54);
+    tl.set("#w152", {color: "#ffffff"}, 68.76);
+    tl.set("#w153", {color: "#ff2d46"}, 69.03);
+    tl.set("#w154", {color: "#ffffff"}, 69.36);
+    tl.set("#w155", {color: "#ffffff"}, 69.63);
+    window.__timelines["captions"] = tl;
+  </script>
+</template>
