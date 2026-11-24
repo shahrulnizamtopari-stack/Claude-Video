@@ -12,22 +12,20 @@ import json, os, re, html, subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SEGMENTS = [  # (start, end, script text) -- approved script, canonical design time
-    (0, 5.6, "Korang tahu tak… ada satu pulau di Malaysia yang dipercayai pernah kena SUMPAH, selama tujuh keturunan?!"),
-    (5.6, 7.4, "Pulau Langkawi, Kedah."),
-    (7.4, 13.6, "Lebih dua ratus tahun dulu, hidup seorang wanita bernama Mahsuri. Suaminya, Wan Darus, keluar berperang melawan Siam."),
-    (13.6, 17.4, "Bila suami tiada, Mahsuri difitnah berzina dengan seorang pengembara bernama Deramang."),
-    (17.4, 20.8, "Dia dihukum bunuh. Tapi menurut legenda, senjata biasa tak lut."),
-    (20.8, 26.6, "Akhirnya dia ditikam dengan keris keluarganya sendiri… dan darah yang mengalir, berwarna PUTIH. Tanda dia tak bersalah."),
-    (26.6, 30.2, "Sebelum mati, Mahsuri bersumpah: Langkawi takkan aman selama tujuh keturunan."),
-    (30.2, 38.0, "Tak lama lepas tu, Siam serang Langkawi. Penduduk bakar padi sendiri di Padang Matsirat. Sampai hari ni, tempat tu dipanggil Beras Terbakar."),
-    (38.0, 45.6, "Tapi tahun seribu sembilan ratus lapan puluh enam, Langkawi mula dibangunkan jadi pusat pelancongan. Hari ni, lebih tiga juta pelancong datang setiap tahun."),
-    (45.6, 49.4, "Dan keturunan ketujuh Mahsuri? Dikatakan lahir di Phuket, Thailand."),
-    (49.4, 53.6, "Sumpahan dah tamat… atau cuma kebetulan? Orang Kedah, korang percaya tak?"),
+    (0, 5.6, "Korang tahu tak… ada satu lagu dari Terengganu yang ramai orang tak berani nyanyi waktu senja?!"),
+    (5.6, 7.4, "Namanya Ulek Mayang."),
+    (7.4, 12.4, "Menurut legenda, seorang nelayan muda keluar ke laut… dan ditemui terbaring, tak sedarkan diri."),
+    (12.4, 16.2, "Rupa-rupanya, seorang puteri laut jatuh cinta padanya… lalu membawa pergi rohnya."),
+    (16.2, 24.4, "Kawan-kawannya panggil bomoh untuk pulihkan dia. Tapi puteri laut tak mahu lepaskan. Dia panggil adik-beradiknya, dan berlakulah pertarungan antara bomoh dan para puteri."),
+    (24.4, 32.6, "Akhirnya muncul puteri ketujuh, yang paling sulung. Dia tamatkan semuanya dengan satu pesan: yang laut, balik ke laut… yang darat, balik ke darat."),
+    (32.6, 40.4, "Dari situlah lahir tarian Ulek Mayang. Tujuh penari wanita, mewakili tujuh puteri. Dan mayang, iaitu bunga kelapa, dipercayai boleh menghalau makhluk halus."),
+    (40.4, 46.2, "Sampai hari ni, ada yang percaya lagu ni berhantu… terutama bila dinyanyi waktu senja, di tepi pantai."),
+    (46.2, 50.8, "Ritual asalnya dah lama ditinggalkan. Yang tinggal, tarian budaya yang cantik… dan sedikit seram."),
+    (50.8, 53.6, "Orang Terengganu, korang berani nyanyi Ulek Mayang waktu senja?"),
     (53.6, 60, "Negeri mana kita patut bongkar lepas ni?"),
 ]
 # caption display: spoken number words shown as figures ("" = hidden word, its time goes to the word before)
-DISPLAY = [(["dua", "ratus", "tahun"], ["200", "", "tahun"]), (["tujuh", "keturunan?!"], ["7", "keturunan?!"]), (["tujuh", "keturunan."], ["7", "keturunan."]),
-           (["seribu", "sembilan", "ratus", "lapan", "puluh", "enam,"], ["1986,", "", "", "", "", ""]), (["tiga", "juta"], ["3", "juta"])]
+DISPLAY = [(["Tujuh", "penari"], ["7", "penari"]), (["tujuh", "puteri."], ["7", "puteri."])]
 BLUE = "#e0452b"
 _vo = os.path.join(ROOT, "assets", "voiceover.mp3")
 # film length = the voiceover's own length (rounded to whole frames); canonical design time stays 0..60
@@ -56,9 +54,9 @@ def words():
     return out
 
 
-KEEP = {("Pulau", "Langkawi,"), ("Wan", "Darus,"), ("Padang", "Matsirat."), ("Beras", "Terbakar."), ("7", "keturunan?!"), ("7", "keturunan."), ("3", "juta"), ("200", "tahun")}
-WEAK = {"dan", "yang", "di", "ke", "dari", "untuk", "ini", "tu", "tapi", "pun", "dah", "kita", "dalam", "satu", "mula", "tak", "daripada", "masih", "bukan", "seorang", "setiap", "lebih", "dengan", "selama", "sendiri…", "bila", "jadi"}
-KEY = {"SUMPAH,", "7", "keturunan?!", "keturunan.", "Langkawi,", "Kedah.", "Mahsuri.", "Siam.", "Deramang.", "legenda,", "PUTIH.", "bersalah.", "Matsirat.", "Terbakar.", "1986,", "pelancongan.", "3", "juta", "Phuket,", "kebetulan?", "percaya", "bongkar", "difitnah"}
+KEEP = {("Ulek", "Mayang."), ("Ulek", "Mayang"), ("puteri", "laut"), ("7", "penari"), ("7", "puteri."), ("bunga", "kelapa,"), ("tepi", "pantai.")}
+WEAK = {"dan", "yang", "di", "ke", "dari", "untuk", "ini", "tu", "tapi", "pun", "dah", "kita", "dalam", "satu", "tak", "daripada", "masih", "seorang", "dengan", "lalu", "antara", "para", "iaitu", "boleh", "bila", "ada"}
+KEY = {"senja?!", "Ulek", "Mayang.", "legenda,", "puteri", "laut", "rohnya.", "bomoh", "pertarungan", "ketujuh,", "laut,", "darat,", "7", "kelapa,", "halus.", "berhantu…", "senja,", "seram.", "berani", "bongkar"}
 
 
 def phrases(ws, disp=None):

@@ -165,76 +165,63 @@ def drone(d, f=55):
     t = tt(d); x = sum(np.sin(2 * np.pi * f * k * t + k) * (0.6 / k) for k in (1, 2, 3)) * (0.7 + 0.3 * np.sin(2 * np.pi * t / 6)) + band(noise(d), 40, 300) * 0.4
     return norm(x)
 
-# ================= THE BED (ep 3: Sumpahan Mahsuri) =================
+# ================= THE BED (ep 4: Ulek Mayang) =================
 def chime(f=660):
     d = 2.5; t = tt(d); return reverb(norm(sum(np.sin(2 * np.pi * f * k * t) * np.exp(-t * (1.5 + k)) / k for k in (1, 2.76, 5.4))), 3.0, 6000, 0.5)
-def crackle(d, seed=6):
-    r = np.random.default_rng(seed); n = int(d * SR); x = (r.random(n) > 0.9985) * r.standard_normal(n) * 3 + band(r.standard_normal(n), 60, 1500) * 0.4
-    return norm(x)
+def gong(f=98):
+    d = 4.0; t = tt(d); x = sum(np.sin(2 * np.pi * f * m * t + m) * np.exp(-t * (0.8 + 0.4 * m)) / m for m in (1, 2.02, 2.97, 4.1))
+    return reverb(norm(x * (1 + 0.3 * np.sin(2 * np.pi * 3 * t))), 2.5, 3000, 0.4)
+def violin(f, d):
+    t = tt(d); vib = 1 + 0.006 * np.sin(2 * np.pi * 5.5 * t); ph = 2 * np.pi * np.cumsum(f * vib) / SR
+    x = sum(np.sin(k * ph) / k ** 1.2 for k in range(1, 9)) * np.minimum(1, t / 0.4) * np.minimum(1, (d - t) / 0.5)
+    return reverb(norm(band(x, 200, 5000)), 2.2, 5000, 0.45)
 def choir(d, f=146.8):
     t = tt(d); x = sum(np.sin(2 * np.pi * f * m * t * (1 + 0.003 * np.sin(2 * np.pi * 5 * t + m))) for m in (1, 1.2, 1.5, 2)) * np.minimum(1, t / 1.0) * np.minimum(1, (d - t) / 1.0)
     return norm(band(x, hi=2500))
-# 1. hook: space, dive, SUMPAH stamp
+def wind(d, seed=8):
+    r = np.random.default_rng(seed); t = tt(d); return norm(band(r.standard_normal(len(t)), 300, 2500) * (0.5 + 0.5 * np.sin(2 * np.pi * t / 3.3) ** 2))
+def rebana(big=1.0):
+    d = 0.6; t = tt(d); return reverb(norm(np.sin(2 * np.pi * 180 * t * (1 + 0.3 * np.exp(-t * 30))) * np.exp(-t * 14) + band(noise(d), 1500, 7000) * np.exp(-t * 40) * 0.6) * big, 1.2, 4000, 0.25)
+# 1. hook: space, dive, dusk stamp
 put(fade(drone(8.0, 49), 0.3, 1.2), 0, 0.55)
 put(whoosh(2.4, 200, 4000), 0.6, 0.45, -0.3)
-put(riser(1.6), W("SUMPAH,") - 1.6, 0.4); put(impact(1.0), W("SUMPAH,") - 0.02, 0.95); put(stamp(), W("SUMPAH,"), 0.6)
-put(whoosh(1.4, 150, 3000), U(5.6), 0.45, 0.3)
-# 2. legend: village, farewell, accusation (choir pad, gamelan-ish chimes)
-l0, l1 = U(8.6), U(30.2)
-put(fade(choir(l1 - l0, 146.8), 1.0, 1.0), l0, 0.22)
-put(fade(waves(U(13.6) - l0, calm=True, seed=3), 0.5, 0.5), l0, 0.3)
-put(horn(1.6) * 0.5, U(11.0), 0.25, -0.3)
-put(fade(crackle(U(19.4) - U(13.6)), 0.4, 0.4), U(13.6), 0.25)          # torches
-for tx in np.arange(U(14.0), U(19.0), 0.9): put(taiko(0.4, 58), tx, 0.3)
-put(impact(0.7), W("Deramang."), 0.5)
-# 3. keris + white blood: silence, chime, heartbeat
-put(fade(drone(U(25.4) - U(19.4) + 1, 38), 0.5, 1.0), U(19.4), 0.5)
-for tx in np.arange(U(19.6), W("PUTIH.") - 0.3, 0.8): put(taiko(0.5, 46), tx, 0.4)
-put(riser(1.6), W("PUTIH.") - 1.6, 0.35); put(chime(880), W("PUTIH.") - 0.05, 0.6); put(impact(0.8), W("PUTIH.") - 0.05, 0.6)
-# 4. the curse: 7 rising pings, impact
-for i in range(7): put(ping(440 * 2 ** (i / 12 * 2)), U(27.4 + i * 0.32), 0.3, -0.6 + 0.2 * i)
-put(impact(1.0), W("bersumpah:"), 0.8)
-# 5. 1821 war: stamp, war drums, fire
-put(stamp(), U(30.4), 0.9); put(impact(0.9), U(30.4), 0.7)
-w0, w1 = U(30.4), U(38.0)
-beat = 60 / 108; bt = w0
-while bt < w1:
-    k = int(round((bt - w0) / beat)); put(taiko(1.0 if k % 4 == 0 else 0.6, 58 if k % 4 == 0 else 66), bt, 0.5); bt += beat
-put(fade(crackle(w1 - U(33.0) + 0.5, 9), 0.3, 0.6), U(33.0), 0.6)
-put(whoosh(1.2, 100, 2000), U(33.0), 0.45)
-for k, tx in enumerate(np.arange(U(33.6), w1, 1.3)): put(explosion(False, 0.4), tx, 0.25, (k % 3 - 1) * 0.5)
-put(impact(0.7), W("Beras"), 0.55)
-# 6. 1986: bright lift, waves, counter ticks
-put(stamp(), U(38.2), 0.8); put(riser(1.4), U(38.2) - 1.0, 0.3)
-put(fade(waves(U(45.6) - U(38.2), calm=True, seed=12), 0.6, 0.6), U(38.2), 0.4)
-for k, tx in enumerate((U(40.0), U(43.0))): put(gull() * 0.6, tx, 0.25, [-0.4, 0.4][k])
-for tx in np.arange(U(42.6), U(44.4), 0.07): put(tick(2600), tx, 0.12, 0.2)
-put(chime(1320), U(44.4), 0.4)
-# 7. Phuket line, the question
-put(whoosh(1.0, 300, 5000), U(45.6), 0.45); put(ping(990), W("Phuket,"), 0.4, 0.4)
-put(fade(choir(U(53.6) - U(49.4), 130.8), 0.6, 0.8), U(49.4), 0.25)
-put(stamp() * 0.6, U(49.7), 0.4, -0.4); put(stamp() * 0.6, U(51.2), 0.4, 0.4)
-# 8. outro
+put(riser(1.4), U(3.4) - 1.4, 0.35); put(gong(), U(3.4), 0.8); put(stamp(), U(3.4), 0.5)
+put(whoosh(0.7), U(5.6) - 0.35, 0.45)
+# 2. ULEK MAYANG title over the boats; dusk sea under the whole legend
+put(gong(87), U(5.7), 0.7)
+put(fade(waves(U(16.2) - U(5.6), calm=True, seed=4), 0.6, 0.8), U(5.6), 0.5)
+put(fade(choir(U(16.2) - U(7.4), 130.8), 1.0, 1.0), U(7.4), 0.25)
+for k, (f, d) in enumerate([(587, 1.6), (523, 1.2), (440, 2.4), (494, 1.6), (440, 2.8)]): put(violin(f, d), U(7.6) + sum([1.6, 1.2, 2.4, 1.6, 2.8][:k]), 0.16, 0.2)
+put(chime(990), U(12.6), 0.4)
+# 3. bomoh vs princesses: incense, rebana, wind spirits, gongs
+put(fade(wind(U(24.4) - U(16.2)), 0.6, 0.8), U(16.2), 0.35)
+for tx in np.arange(U(16.4), U(24.4), 60 / 104 / 1.0): put(rebana(0.8), tx, 0.3, 0.2)
+for tx in np.arange(U(20.2), U(24.4), 60 / 104 * 2): put(taiko(0.8, 62), tx, 0.45)
+put(gong(73), U(20.2), 0.6); put(riser(2.0), U(24.4) - 2.0, 0.35)
+# 4. seventh princess: everything calms, shimmer, the quote
+put(chime(1320), U(24.4), 0.6); put(impact(0.6), U(24.4), 0.4)
+put(fade(choir(U(32.6) - U(24.4), 174.6), 0.8, 1.0), U(24.4), 0.3)
+put(gong(110), U(30.2), 0.6); put(gong(98), U(31.4), 0.6)
+put(whoosh(0.6), U(32.6) - 0.35, 0.45)
+# 5. the dance: rebana + gong cycle + violin melody
+for tx in np.arange(U(32.6), U(40.4), 60 / 100 / 2): put(rebana(0.6), tx, 0.22, -0.2)
+for tx in np.arange(U(32.6), U(40.4), 60 / 100 * 4): put(gong(98), tx, 0.45)
+for k, (f, d) in enumerate([(659, 1.0), (587, 1.0), (523, 1.6), (587, 1.0), (440, 2.4)]): put(violin(f, d), U(33.0) + sum([1.0, 1.0, 1.6, 1.0, 2.4][:k]), 0.18, -0.2)
+for i in range(7): put(ping(660 * 2 ** (i / 12 * 2)), U(34.8 + i * 0.25), 0.25, -0.6 + 0.2 * i)
+# 6. haunted song at dusk on the shore: wind, waves, a far voice-like choir, heartbeat
+put(whoosh(1.6, 150, 3000), U(40.4), 0.4)
+put(fade(waves(U(53.6) - U(40.4), calm=True, seed=10), 0.6, 0.8), U(40.4), 0.5)
+put(fade(wind(U(50.8) - U(40.4), 11), 0.8, 0.8), U(40.4), 0.25)
+put(fade(choir(U(46.2) - U(41.0), 110.0), 1.2, 1.2), U(41.0), 0.3)
+put(impact(0.7), W("berhantu…"), 0.55)
+for tx in np.arange(U(43.6), U(46.2), 0.8): put(taiko(0.5, 46), tx, 0.35)
+put(gong(87), U(46.4), 0.5)
+put(stamp() * 0.6, U(51.2), 0.4, -0.4); put(stamp() * 0.6, U(51.8), 0.4, 0.4)
+# 7. outro
 for i in range(16): put(ping(880 * 2 ** ((i % 5) / 12 * 2)), U(54.0 + i * 0.225), 0.3, -0.7 + 0.09 * i)
 put(impact(0.6), W("bongkar"), 0.55)
 put(whoosh(2.6, 150, 5000), U(58.6), 0.5)
 put(fade(drone(DUR - U(58.6), 49), 1.2, 0.0), U(58.6), 0.55)
-# ostinato (D minor) + pulse
-def saw_note(f, d):
-    t = tt(d); x = 2 * ((f * t) % 1) - 1; x = x + 0.5 * (2 * ((f * 1.005 * t) % 1) - 1)
-    return band(x, hi=1100) * np.exp(-t * 3.0) * np.minimum(1, t / 0.005)
-def ostinato(t0, t1, bpm, g, roots):
-    e = 60 / bpm / 2; k = 0; tx = t0
-    while tx < t1:
-        bar = int((tx - t0) / (e * 8)); root = roots[bar % len(roots)]
-        f = root * [1, 1, 2, 1, 1.5, 1, 2, 1.5][k % 8]
-        put(saw_note(f, e * 1.8), tx, g * (1.0 if k % 2 == 0 else 0.7), 0.25 if k % 2 else -0.25); tx += e; k += 1
-D2, A1, F2, C2, Bb1 = 73.42, 55.0, 87.31, 65.41, 58.27
-ostinato(0.4, U(8.6), 96, 0.10, [D2, D2, Bb1, C2])
-ostinato(U(30.2), U(38.0), 108, 0.15, [D2, Bb1, C2, A1])
-ostinato(U(38.2), U(45.6), 100, 0.11, [F2, C2, D2, Bb1])
-ostinato(U(53.6), DUR, 96, 0.12, [D2, Bb1, F2, C2])
-for tx in np.arange(0.4, U(5.4), 60 / 96): put(taiko(0.5, 52), tx, 0.3)
 
 # ---------- master ----------
 mix = np.stack([L, R], 1)[: int(DUR * SR)]

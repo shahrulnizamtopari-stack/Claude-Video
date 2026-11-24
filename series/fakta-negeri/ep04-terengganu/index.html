@@ -80,52 +80,55 @@
       #q div { padding: 26px 18px; border-radius: 22px; text-align: center; font-weight: 800; font-size: 44px; color: #fff; box-shadow: 0 16px 40px rgba(0,0,0,0.5); opacity: 0; }
       #q .a { background: rgba(140,60,200,0.92); } #q .b { background: rgba(30,110,200,0.92); }
       #q div span { display: block; font-size: 22px; letter-spacing: 3px; opacity: 0.85; margin-bottom: 6px; }
+      #namecard { position: absolute; left: 50%; top: 760px; transform: translate(-50%, -50%); text-align: center; color: #fff; text-shadow: 0 4px 24px rgba(0,0,0,0.8); white-space: nowrap; }
+      #namecard small { display: block; font-weight: 800; font-size: 28px; letter-spacing: 8px; color: #ffd08a; }
+      #namecard b { display: block; font-weight: 800; font-size: 132px; letter-spacing: -2px; line-height: 1; }
+      #quote { position: absolute; left: 60px; right: 60px; top: 760px; transform: translateY(-50%); text-align: center; color: #fff6dc; text-shadow: 0 4px 24px rgba(0,0,0,0.9); }
+      #quote span { display: block; font-weight: 800; font-size: 64px; line-height: 1.12; letter-spacing: -1px; opacity: 0; }
+      #quote small { display: block; margin-top: 18px; font-weight: 600; font-size: 26px; color: #ffd08a; }
+      #gen .p.on.y i, #gen .p.on.y b { background: #ffd23a; box-shadow: 0 0 22px rgba(255,210,58,0.8); }
+      .dusk { position: absolute; inset: 0; background: linear-gradient(rgba(120,40,80,0.35), rgba(255,110,60,0.25) 40%, rgba(20,10,30,0.45)); mix-blend-mode: multiply; }
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="71.633" data-width="1080" data-height="1920" data-fps="30">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60.0" data-width="1080" data-height="1920" data-fps="30">
       <!-- satellite basemaps (Esri World Imagery, baked with tools/bake_all.sh); real-time positions written by tools/retime_bakes.py -->
-      <video id="v-dive" class="clip bgv" src="assets/maps/dive.mp4" muted playsinline data-start="0.0" data-duration="6.2" data-track-index="0"></video>
-      <video id="v-langkawi" class="clip bgv" src="assets/maps/langkawi.mp4" muted playsinline data-start="6.2" data-duration="3.0" data-track-index="0"></video>
-      <div id="p-keris" class="clip plate" data-start="32.7" data-duration="7.0" data-track-index="0"><img id="kerisImg" src="assets/maps/keris.jpg" alt="" /></div>
-      <div id="p-lang1" class="clip plate" data-start="39.7" data-duration="3.5" data-track-index="0"><img src="assets/maps/langkawi-last.jpg" alt="" /></div>
-      <div id="p-lang2" class="clip plate" data-start="48.933" data-duration="1.667" data-track-index="0"><img class="kb2" src="assets/maps/langkawi-last.jpg" alt="" /></div>
-      <div id="p-phuket" class="clip plate" data-start="58.633" data-duration="4.634" data-track-index="0"><img src="assets/maps/phuket.jpg" alt="" /><svg id="svg-phuket" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div>
-      <div id="p-lang3" class="clip plate" data-start="63.267" data-duration="4.666" data-track-index="0"><img src="assets/maps/langkawi-last.jpg" alt="" /></div>
-      <div id="p-outro" class="clip plate" data-start="67.933" data-duration="2.4" data-track-index="0"><div id="outroZ" style="position:absolute;inset:0;transform-origin:540px 960px"><img src="assets/maps/outro.jpg" alt="" /><svg id="svg-outro" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div></div>
-      <video id="v-out" class="clip bgv" src="assets/maps/out.mp4" muted playsinline data-start="70.333" data-duration="1.3" data-track-index="0"></video>
+      <video id="v-dive" class="clip bgv" src="assets/maps/dive.mp4" muted playsinline data-start="0.0" data-duration="5.6" data-track-index="0"></video>
+      <div id="p-princess" class="clip plate" data-start="30.4" data-duration="2.2" data-track-index="0"><img id="princessImg" src="assets/maps/princess.jpg" alt="" /></div>
+      <video id="v-coast" class="clip bgv" src="assets/maps/coast.mp4" muted playsinline data-start="40.4" data-duration="3.0" data-track-index="0"></video>
+      <div id="p-coast" class="clip plate" data-start="43.4" data-duration="10.2" data-track-index="0"><img id="coastImg" src="assets/maps/coast-last.jpg" alt="" /><div class="dusk"></div></div>
+      <div id="p-outro" class="clip plate" data-start="53.6" data-duration="5.0" data-track-index="0"><div id="outroZ" style="position:absolute;inset:0;transform-origin:540px 960px"><img src="assets/maps/outro.jpg" alt="" /><svg id="svg-outro" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div></div>
+      <video id="v-out" class="clip bgv" src="assets/maps/out.mp4" muted playsinline data-start="58.6" data-duration="1.4" data-track-index="0"></video>
       <!-- Flow B-roll (ILUSTRASI · AI) -->
-      <video id="br1" class="clip bgv broll" src="assets/broll/1.mp4" muted playsinline data-start="9.2" data-duration="2.167" data-media-start="2.0" data-track-index="1"></video>
-      <video id="br2" class="clip bgv broll" src="assets/broll/2.mp4" muted playsinline data-start="11.367" data-duration="5.0" data-media-start="0.6" data-track-index="1"></video>
-      <video id="br3" class="clip bgv broll" src="assets/broll/3_rt.mp4" muted playsinline data-start="16.367" data-duration="8.466" data-media-start="0.0" data-track-index="1"></video>
-      <video id="br4" class="clip bgv broll" src="assets/broll/4_rt.mp4" muted playsinline data-start="24.833" data-duration="7.867" data-media-start="0.0" data-track-index="1"></video>
-      <video id="br6" class="clip bgv broll" src="assets/broll/6_rt.mp4" muted playsinline data-start="50.6" data-duration="8.033" data-media-start="0.0" data-track-index="1"></video>
-      <video id="br5" class="clip bgv broll" src="assets/broll/5_rt.mp4" muted playsinline data-start="43.2" data-duration="5.733" data-media-start="0.0" data-track-index="1"></video>
-      <svg id="mapfx" class="clip" data-start="0" data-duration="71.633" data-track-index="2" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
-      <div id="ui" class="clip" data-start="0" data-duration="71.633" data-track-index="3" data-track-kind="graphics" data-layout-ignore>
+      <video id="br1" class="clip bgv broll" src="assets/broll/1.mp4" muted playsinline data-start="5.6" data-duration="1.8" data-media-start="1.0" data-track-index="1"></video>
+      <video id="br2" class="clip bgv broll" src="assets/broll/2_rt.mp4" muted playsinline data-start="7.4" data-duration="8.8" data-media-start="0.0" data-track-index="1"></video>
+      <video id="br3" class="clip bgv broll" src="assets/broll/3.mp4" muted playsinline data-start="16.2" data-duration="4.0" data-media-start="0.8" data-track-index="1"></video>
+      <video id="br4" class="clip bgv broll" src="assets/broll/4.mp4" muted playsinline data-start="20.2" data-duration="4.2" data-media-start="1.6" data-track-index="1"></video>
+      <video id="br5" class="clip bgv broll" src="assets/broll/5_rt.mp4" muted playsinline data-start="24.4" data-duration="6.0" data-media-start="0.0" data-track-index="1"></video>
+      <video id="br6" class="clip bgv broll" src="assets/broll/6_rt.mp4" muted playsinline data-start="32.6" data-duration="7.8" data-media-start="0.0" data-track-index="1"></video>
+      <svg id="mapfx" class="clip" data-start="0" data-duration="60.0" data-track-index="2" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+      <div id="ui" class="clip" data-start="0" data-duration="60.0" data-track-index="3" data-track-kind="graphics" data-layout-ignore>
         <div class="fade-top"></div><div class="fade-bot"></div>
         <div id="dip"></div>
-        <div id="badge"><i></i>FAKTA NEGERI · #3</div>
+        <div id="badge"><i></i>FAKTA NEGERI · #4</div>
         <div id="title"></div>
         <div id="aitag">ILUSTRASI · AI</div>
         <div id="era" class="leg">LEGENDA</div>
         <div id="labels"></div>
         <div id="note"></div>
         <div id="credit"></div>
-        <div id="stamp">SUMPAH<small>7 KETURUNAN</small></div>
-        <div id="stamp2"><span id="s2t">1821</span><small id="s2s">SIAM SERANG LANGKAWI</small></div>
-        <div id="gen" class="card"><div class="k">SUMPAHAN MAHSURI · MENURUT LEGENDA</div>
-          <div class="row"></div><div class="t">7 keturunan</div></div>
-        <div id="tour" class="card"><div class="k">PELANCONG KE LANGKAWI · SETAHUN</div>
-          <div class="big"><span id="tn">0</span><small>juta+</small></div>
-          <div class="bar"><i id="tbar"></i></div><div class="sub">Dari “pulau sumpahan” ke pulau bebas cukai</div></div>
+        <div id="stamp">JANGAN NYANYI<small>WAKTU SENJA?!</small></div>
+        <div id="namecard"><small>LAGU &amp; TARIAN · TERENGGANU</small><b>ULEK MAYANG</b></div>
+        <div id="quote"><span>“Yang laut, balik ke laut…</span><span>yang darat, balik ke darat.”</span><small>— pesan puteri ketujuh, menurut legenda</small></div>
+        <div id="gen" class="card"><div class="k">TARIAN ULEK MAYANG</div>
+          <div class="row"></div><div class="t">7 penari = 7 puteri</div></div>
         <div id="chip"></div>
-        <div id="q"><div class="a"><span>A</span>SUMPAHAN TAMAT</div><div class="b"><span>B</span>KEBETULAN</div></div>
+        <div id="q"><div class="a"><span>A</span>BERANI 😤</div><div class="b"><span>B</span>TAK BERANI 😨</div></div>
         <div id="cta"><div>Negeri mana kita <em>bongkar</em> lepas ni? ↓</div></div>
       </div>
-      <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="71.633" data-track-index="5" data-volume="1"></audio>
-      <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="71.633" data-track-index="6" data-volume="0.4"></audio>
-      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="71.633"
+      <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="60.0" data-track-index="5" data-volume="1"></audio>
+      <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="60.0" data-track-index="6" data-volume="0.4"></audio>
+      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="60.0"
         data-track-index="4" data-track-kind="captions" data-width="1080" data-height="1920"></div>
     </div>
 
@@ -152,62 +155,49 @@
       const stateLayer = (parent, sh) => { const g = el("g", {}, parent); const m = {};
         sh.polys.forEach((p) => { m[p.name] = { fill: el("path", { d: p.d, fill: "#ff3a1a", "fill-opacity": 0, stroke: "none" }, g), line: el("path", { d: p.d, fill: "none", stroke: "#ffffff", "stroke-width": 2.2, "stroke-opacity": 0.85, "stroke-linejoin": "round" }, g), label: p.label }; });
         return { g, m }; };
-      const HERO = "Kedah";
+      const HERO = "Terengganu";
       const gDive = el("g", {}, fx); const diveS = stateLayer(gDive, SH.dive);
       const heroLine = el("path", { d: SH.dive.polys.find((p) => p.name === HERO).d, fill: "none", stroke: "#ff5a2a", "stroke-width": 6, filter: "url(#glow)", pathLength: 1, "stroke-dasharray": 1, "stroke-dashoffset": 1, "stroke-linejoin": "round" }, gDive);
-      const gL = el("g", {}, fx); const mts = SH.langkawi.points.matsirat;
-      const ring = el("circle", { cx: mts[0], cy: mts[1], r: 30, fill: "none", stroke: "#ff5a2a", "stroke-width": 5, filter: "url(#glow)" }, gL);
-      const pSvg = document.getElementById("svg-phuket"); el("defs", {}, pSvg).appendChild(gl.cloneNode(true));
-      const lp = el("path", { d: lineD(SH.phuket.lines.lp), fill: "none", stroke: "#ffd08a", "stroke-width": 6, "stroke-dasharray": "18 12", filter: "url(#glow)" }, pSvg);
-      const lpLen = 2000;
       const oSvg = document.getElementById("svg-outro"); el("defs", {}, oSvg).appendChild(gl.cloneNode(true));
       const outroS = stateLayer(oSvg, SH.outro);
       const genRow = document.querySelector("#gen .row");
-      const gens = Array.from({ length: 7 }, (_, i) => { const d = document.createElement("div"); d.className = "p"; d.innerHTML = `<i></i><b></b><span>${i + 1}</span>`; genRow.appendChild(d); return d; });
+      const gens = Array.from({ length: 7 }, (_, i) => { const d = document.createElement("div"); d.className = "p" + (i === 3 ? " y" : ""); d.innerHTML = `<i></i><b></b><span>${i + 1}</span>`; genRow.appendChild(d); return d; });
 
-      const HOOK = "Pulau kena <em>sumpah</em>?!";
+      const HOOK = "Lagu paling <em>seram</em> Terengganu?";
       const CH = [
-        [0, 5.6, HOOK], [5.6, 8.6, "<em>Langkawi</em>, Kedah"], [8.6, 17.4, "Kisah <em>Mahsuri</em>"], [17.4, 25.4, "Darah <em>putih</em>"], [25.4, 30.2, "Sumpah <em>7 keturunan</em>"],
-        [30.2, 38.0, "<em>1821</em>: Siam serang"], [38.0, 45.6, "<em>1986</em>: Langkawi bangkit"], [45.6, 49.4, "Keturunan ke-<em>7</em>"], [49.4, 53.6, "Tamat… atau <em>kebetulan</em>?"], [53.6, 58.6, "Negeri mana <em>lepas ni</em>?"],
+        [0, 5.6, HOOK], [7.4, 16.2, "Nelayan &amp; <em>puteri laut</em>"], [16.2, 24.4, "Bomoh lawan <em>puteri</em>"], [24.4, 32.6, "Puteri <em>ketujuh</em>"],
+        [32.6, 40.4, "Lahirnya <em>tarian</em>"], [40.4, 46.2, "Lagu <em>berhantu</em>?"], [46.2, 50.8, "Dari ritual ke <em>budaya</em>"], [50.8, 53.6, "Korang <em>berani</em>?"], [53.6, 58.6, "Negeri mana <em>lepas ni</em>?"],
       ];
       const NOTES = [
-        [8.8, 17.2, "Kisah Mahsuri ialah legenda rakyat Langkawi (lewat abad ke-18) · banyak versi"],
-        [30.4, 37.8, "Sejarah: Siam serang Kedah & Langkawi pada 1821 · penduduk bakar padi di Padang Matsirat"],
-        [38.2, 45.4, "1986: Langkawi dibangunkan jadi pusat pelancongan · lebih 3 juta pelancong setahun (2012)"],
-        [45.8, 49.2, "Keturunan ke-7 dikatakan lahir di Phuket, Thailand · dikenali umum pada tahun 2000"],
+        [7.6, 16.0, "Legenda Ulek Mayang · banyak versi · versi Wikipedia (EN)"],
+        [32.8, 40.2, "7 penari: 6 bersongket, ketua berbaju kuning (Puteri Tujuh) · mayang = bunga kelapa"],
+        [46.4, 50.6, "Ritual asal berterusan sehingga beberapa dekad lalu · kini dipersembahkan sebagai tarian budaya"],
       ];
       const LABELS = [
-        [() => SH.dive.polys.find((p) => p.name === HERO).label, "KEDAH", "", 4.2, 5.6, 1], [() => SH.dive.points.langkawi, "LANGKAWI", "", 4.6, 5.6, -1],
-        [() => SH.langkawi.points.langkawi, "PULAU LANGKAWI", "", 7.0, 8.5, 1],
-        [() => SH.langkawi.points.matsirat, "PADANG MATSIRAT", "Beras Terbakar", 31.0, 32.9, 1],
-        [() => SH.phuket.points.langkawi, "LANGKAWI", "", 45.9, 49.3, 1], [() => SH.phuket.points.phuket, "PHUKET", "Thailand", 46.8, 49.3, 1],
+        [() => SH.dive.polys.find((p) => p.name === HERO).label, "TERENGGANU", "", 4.2, 5.6, -1],
+        [() => SH.coast.points.kt, "KUALA TERENGGANU", "Laut China Selatan", 41.6, 46.0, 1],
       ];
-      const CREDITS = [[0, 8.6, "Imej: Esri World Imagery"], [30.2, 33.0, "Imej: Esri World Imagery"], [38.0, 39.6, "Imej: Esri World Imagery"], [45.6, 60, "Imej: Esri World Imagery"]];
-      const CUTS = [8.6, 30.2, 38.0, 45.6, 49.4, 53.6];
+      const CREDITS = [[0, 5.6, "Imej: Esri World Imagery"], [40.4, 60, "Imej: Esri World Imagery"]];
+      const CUTS = [5.6, 32.6, 40.4, 53.6];
       const $ = (s) => document.querySelector(s);
       const titleEl = $("#title"), noteEl = $("#note"), labelsEl = $("#labels"), cta = $("#cta"), creditEl = $("#credit"), chip = $("#chip"), era = $("#era");
       const lblEls = LABELS.map(() => { const d = document.createElement("div"); d.className = "lbl"; d.innerHTML = '<span class="ln"></span><span class="pt"></span><span class="tx"></span>'; labelsEl.appendChild(d); return d; });
-      const CHIPS = [[36.9, 38.0, "Sampai hari ni: <em>Beras Terbakar</em>"], [48.3, 49.3, "Keturunan <em>ke-7</em> · Phuket"]];
+      const CHIPS = [[12.6, 16.0, "Puteri laut <em>bawa pergi rohnya</em>"], [37.6, 40.2, "Mayang = <em>bunga kelapa</em>"], [43.6, 46.0, "Waktu <em>senja</em> · tepi pantai"], [48.0, 50.6, "Ritual → <em>tarian budaya</em>"]];
       function overlay(t) {
         const c = CH.find(([a, b]) => t >= a && t < b);
         const ta = c ? win(t, c[0], c[1], 0.35, 0.3) : 0;
         if (c && titleEl.innerHTML !== c[2]) titleEl.innerHTML = c[2];
         titleEl.style.opacity = ta; titleEl.style.filter = `blur(${(1 - ta) * 10}px)`;
         let dip = 0; CUTS.forEach((k) => { dip = Math.max(dip, 1 - clamp(Math.abs(t - k) / 0.22)); }); $("#dip").style.opacity = dip;
-        // ---- map layers ----
         gDive.style.opacity = t < 5.6 && t > 3.6 ? ss(3.6, 4.2, t) : 0;
         for (const [n, s] of Object.entries(diveS.m)) { const k = n === HERO; s.fill.setAttribute("fill-opacity", k ? 0.3 * ss(4.4, 5.0, t) * (0.85 + 0.15 * Math.sin(t * 5)) : 0); s.line.setAttribute("stroke-opacity", k ? 0 : 0.7); }
         heroLine.setAttribute("stroke-dashoffset", 1 - ss(4.0, 5.2, t));
-        gL.style.opacity = t > 30.6 && t < 33.0 ? ss(30.6, 31.0, t) : 0;
-        const ph = ((t - 30.6) % 1.2) / 1.2; ring.setAttribute("r", 22 + 40 * ph); ring.setAttribute("stroke-opacity", 1 - ph);
-        lp.setAttribute("stroke-dashoffset", -t * 60); lp.style.opacity = ss(46.0, 46.6, t);
-        document.querySelector("#p-lang2 .kb2").style.transform = `scale(${1 + 0.06 * ss(38, 45.6, t)})`;
         const oz = 1 + 0.05 * ss(53.6, 58.6, t); $("#outroZ").style.transform = `scale(${oz})`;
         Object.keys(outroS.m).forEach((n, i) => { const s = outroS.m[n]; const k = (t - 54.0) * 4 - i * 0.9; const b = k > 0 ? Math.exp(-(((k % 8) + 8) % 8) * 1.4) * (1 - ss(58.0, 58.6, t)) : 0;
           const hero = n === HERO ? 0.35 * (1 - ss(58.0, 58.6, t)) * ss(53.8, 54.2, t) : 0;
           s.fill.setAttribute("fill-opacity", Math.max(0.55 * b, hero)); s.line.setAttribute("stroke-opacity", 0.5 + 0.5 * b); });
-        $("#kerisImg").style.transform = `scale(${1 + 0.05 * ss(25.4, 30.2, t)})`; $("#kerisImg").style.filter = "brightness(0.6)";
-        // ---- labels ----
+        $("#princessImg").style.transform = `scale(${1 + 0.05 * ss(30.4, 32.6, t)})`; $("#princessImg").style.filter = "brightness(0.55)";
+        $("#coastImg").style.transform = `scale(${1 + 0.07 * ss(43.4, 53.6, t)})`;
         LABELS.forEach(([src, txt, sub, t0, t1, side], i) => {
           const e = lblEls[i]; const la = win(t, t0, t1, 0.25, 0.25); e.style.opacity = la; if (la <= 0) return;
           const p = src(); e.style.left = p[0] + "px"; e.style.top = p[1] + "px";
@@ -220,22 +210,18 @@
         const n = NOTES.find(([a, b]) => t >= a && t < b);
         noteEl.style.opacity = n ? win(t, n[0], n[1]) : 0; if (n && noteEl.textContent !== n[2]) noteEl.textContent = n[2];
         const cr = CREDITS.find(([a, b]) => t >= a && t < b); creditEl.textContent = cr ? cr[2] : "";
-        $("#aitag").style.opacity = Math.max(win(t, 8.7, 25.3, 0.2, 0.2), win(t, 33.1, 37.9, 0.2, 0.2), win(t, 39.7, 45.5, 0.2, 0.2));
-        const leg = t >= 8.6 && t < 30.2, sej = t >= 30.2 && t < 49.4;
-        era.className = leg ? "leg" : "sej"; era.textContent = leg ? "LEGENDA" : "SEJARAH"; era.style.opacity = Math.max(win(t, 8.7, 30.1, 0.2, 0.2), win(t, 30.3, 49.3, 0.2, 0.2));
-        // ---- cards ----
-        const sa = win(t, 3.6, 5.5, 0.12, 0.3); $("#stamp").style.opacity = sa; $("#stamp").style.transform = `translate(-50%, -50%) rotate(-5deg) scale(${1.5 - 0.5 * ss(3.6, 3.8, t)})`;
-        const s1 = win(t, 30.4, 32.9, 0.12, 0.3), s2 = win(t, 38.2, 40.4, 0.12, 0.3);
-        $("#stamp2").style.opacity = Math.max(s1, s2);
-        if (s2 > 0) { $("#s2t").textContent = "1986"; $("#s2s").textContent = "LANGKAWI DIBANGUNKAN"; } else { $("#s2t").textContent = "1821"; $("#s2s").textContent = "SIAM SERANG LANGKAWI"; }
-        const st0 = s2 > 0 ? 38.2 : 30.4; $("#stamp2").style.transform = `translate(-50%, -50%) rotate(-5deg) scale(${1.5 - 0.5 * ss(st0, st0 + 0.2, t)})`;
-        const ga = win(t, 26.6, 30.1, 0.35, 0.3); $("#gen").style.opacity = ga; $("#gen").style.transform = `translateY(${(1 - ss(26.6, 27.0, t)) * 30}px)`;
-        gens.forEach((g, i) => g.classList.toggle("on", t > 27.4 + i * 0.32));
-        const tv = win(t, 42.3, 45.4, 0.35, 0.3); $("#tour").style.opacity = tv; $("#tour").style.transform = `translateY(${(1 - ss(42.3, 42.7, t)) * 30}px)`;
-        const tk = ss(42.6, 44.4, t); $("#tn").textContent = (3 * tk).toFixed(1).replace(".0", ""); $("#tbar").style.width = 100 * tk + "%";
+        $("#aitag").style.opacity = Math.max(win(t, 5.7, 32.5, 0.2, 0.2), win(t, 32.7, 40.3, 0.2, 0.2));
+        const leg = t >= 7.4 && t < 32.6, bud = t >= 32.6 && t < 50.8;
+        era.className = leg ? "leg" : "sej"; era.textContent = leg ? "LEGENDA" : "BUDAYA"; era.style.opacity = Math.max(win(t, 7.5, 32.5, 0.2, 0.2), win(t, 32.7, 50.7, 0.2, 0.2));
+        const sa = win(t, 3.4, 5.5, 0.12, 0.3); $("#stamp").style.opacity = sa; $("#stamp").style.transform = `translate(-50%, -50%) rotate(-5deg) scale(${1.5 - 0.5 * ss(3.4, 3.6, t)})`;
+        const na = win(t, 5.7, 7.4, 0.3, 0.25); $("#namecard").style.opacity = na; $("#namecard").style.transform = `translate(-50%, -50%) scale(${0.85 + 0.15 * pop(5.7, t, 0.5)})`;
+        const qa = win(t, 30.0, 32.5, 0.2, 0.3); $("#quote").style.opacity = qa;
+        const qs = document.querySelectorAll("#quote span"); qs[0].style.opacity = ss(30.2, 30.6, t); qs[1].style.opacity = ss(31.4, 31.8, t);
+        const ga = win(t, 34.4, 37.4, 0.35, 0.3); $("#gen").style.opacity = ga; $("#gen").style.transform = `translateY(${(1 - ss(34.4, 34.8, t)) * 30}px)`;
+        gens.forEach((g, i) => g.classList.toggle("on", t > 34.8 + i * 0.25));
         const cc = CHIPS.find(([a, b]) => t >= a && t < b); chip.style.opacity = cc ? win(t, cc[0], cc[1], 0.25, 0.3) : 0; if (cc && chip.innerHTML !== cc[2]) chip.innerHTML = cc[2];
         if (cc) chip.style.transform = `translateX(-50%) scale(${0.8 + 0.2 * pop(cc[0], t)})`;
-        document.querySelectorAll("#q div").forEach((d, i) => { const t0 = 49.7 + i * 1.5; d.style.opacity = win(t, t0, 53.5, 0.25, 0.3); d.style.transform = `translateX(${(1 - ss(t0, t0 + 0.35, t)) * (i ? 60 : -60)}px)`; });
+        document.querySelectorAll("#q div").forEach((d, i) => { const t0 = 51.2 + i * 0.6; d.style.opacity = win(t, t0, 53.5, 0.25, 0.3); d.style.transform = `translateX(${(1 - ss(t0, t0 + 0.35, t)) * (i ? 60 : -60)}px)`; });
         const ctaA = win(t, 54.4, 58.7, 0.35, 0.4); cta.style.opacity = ctaA; cta.style.transform = `translateY(${(1 - ss(54.4, 54.8, t)) * 24}px)`;
         $("#badge").style.opacity = t > 58.6 ? 1 - ss(58.6, 59.1, t) + ss(59.6, 60, t) : 1;
       }
