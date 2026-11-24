@@ -23,6 +23,7 @@ Look: v4 cinematic adapted for history (night navy `#070b14`, fire orange/red ac
 | # | State | Folder | Topic |
 |---|---|---|---|
 | 1 | Kelantan | `ep01-kelantan/` | Japan landed at Kota Bharu (8 Dec 1941) before Pearl Harbor |
+| 2 | Sarawak | `ep02-sarawak/` | Sarawak Chamber, largest cave chamber in the world by area (≈ 23 football pitches); Deer Cave bats; UNESCO 2000 |
 
 New episode: copy the newest episode folder, keep `geo.js`, the map code, opener/outro, overlay and tools; replace the
 middle scenes, the state name in the opener, the `SEGMENTS` script and the labels/notes.
@@ -43,3 +44,6 @@ middle scenes, the state name in the opener, the `SEGMENTS` script and the label
 7. Cover (`cover/cover.html`, a B-roll frame + big title) and `cover/caption.txt` (credits line: AI clips, public-domain photos, Esri).
 
 Wikimedia rate-limits this server hard (429): if a photo will not download, ask the user to send it.
+
+Notes from ep 2: Flow clips are 6.0 s; when the voice needs longer, `retime_bakes.py` starts the clip later and a still of its
+last frame (or the plate before) covers the gap. Keep the outro ≥ 2 s of real time (the last sentence ends near the voice end).
