@@ -30,7 +30,7 @@ DISPLAY = [(["seribu", "sembilan", "ratus", "lapan", "puluh", "satu."], ["1981."
 BLUE = "#e0452b"
 _vo = os.path.join(ROOT, "assets", "voiceover.mp3")
 # film length = the voiceover's own length (rounded to whole frames); canonical design time stays 0..60
-TAIL = 1.0  # seconds after the voice for the zoom back out to space (loop)
+TAIL = 1.6  # seconds after the voice for the zoom back out to space (loop)
 DUR = round(round((float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", _vo])) + TAIL) * 30) / 30, 3) if os.path.exists(_vo) else 60.0
 
 

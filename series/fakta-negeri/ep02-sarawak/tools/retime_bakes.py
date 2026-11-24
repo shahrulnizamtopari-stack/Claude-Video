@@ -19,8 +19,8 @@ def unwarp(c):
         if c <= c1: return r0 + (c - c0) / (c1 - c0) * (r1 - r0)
     return A[-1][0]
 FPS = 30
-VIDEOS = {"v-dive": ("dive", 0, 7.2), "v-mulu": ("mulu", 7.2, 17.4), "v-out": ("out", 57.4, 60)}
-PLATES = {"p-mulu": (50.0, 53.6), "p-outro": (53.6, 57.4)}
+VIDEOS = {"v-dive": ("dive", 0, 7.2), "v-mulu": ("mulu", 7.2, 17.4), "v-out": ("out", 58.6, 60)}
+PLATES = {"p-mulu": (50.0, 53.6), "p-outro": (53.6, 58.6)}
 # B-roll clips play at their own speed: (canonical start, canonical end, media start); clip length 6.04 s
 BROLL = {"br2": (17.4, 19.6, 0.4), "br3": (19.6, 22.6, 0.2), "br4": (22.6, 28.6, 0.0), "br5": (39.8, 45.4, 0.3), "br1": (45.4, 50.0, 0.6)}
 CLIP_LEN = 6.0
@@ -51,12 +51,15 @@ for vid, (name, c0, c1) in VIDEOS.items():
 for bid, (c0, c1, ms) in BROLL.items():
     r0, r1 = q(unwarp(c0)), q(unwarp(c1)); d = round(r1 - r0, 3)
     if ms + d > CLIP_LEN: ms = round(max(0.0, CLIP_LEN - d), 3)
-    if d > CLIP_LEN: print("WARNING", bid, "needs", d, "s; clip has", CLIP_LEN); d = CLIP_LEN
+    if d > CLIP_LEN and bid != "br4":  # too short: start later so it still ends on the next shot; the plate before holds
+        print("NOTE", bid, "needs", d, "s; clip has", CLIP_LEN, "-> starts", round(d - CLIP_LEN, 3), "s later"); r0 = q(r1 - CLIP_LEN); d = round(r1 - r0, 3)
+    elif d > CLIP_LEN: print("NOTE", bid, "needs", d, "s; clip has", CLIP_LEN, "-> the chamber still holds after it"); d = CLIP_LEN
     html, n = re.subn(rf'(id="{bid}"[^>]*?data-start=")[^"]*("[^>]*?data-duration=")[^"]*("[^>]*?data-media-start=")[^"]*"', rf'\g<1>{r0}\g<2>{d}\g<3>{ms}"', html)
     assert n == 1, bid; print(bid, r0, d, "media", ms)
 # the chamber still (last frame of br4) holds from the end of br4 to the end of the numbers
 r_end4 = float(re.search(r'id="br4"[^>]*?data-start="([^"]*)"[^>]*?data-duration="([^"]*)"', html).group(1)) + float(re.search(r'id="br4"[^>]*?data-duration="([^"]*)"', html).group(1))
-set_clip("p-chamber", q(r_end4), round(q(unwarp(39.8)) - q(r_end4), 3))
+r_br5 = float(re.search(r'id="br5"[^>]*?data-start="([^"]*)"', html).group(1))
+set_clip("p-chamber", q(r_end4), round(r_br5 - q(r_end4), 3))
 for pid, (c0, c1) in PLATES.items():
     r0, r1 = q(unwarp(c0)), q(unwarp(c1)); set_clip(pid, r0, round(r1 - r0, 3)); print(pid, r0, round(r1 - r0, 3))
 html = re.sub(r'(data-composition-id="main" data-start="0" data-duration=")[^"]*"', rf'\g<1>{DUR}"', html)

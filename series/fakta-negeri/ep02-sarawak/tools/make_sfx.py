@@ -219,8 +219,8 @@ put(whoosh(0.6), U(50.0) - 0.35, 0.5)
 # 6. outro
 for i in range(16): put(ping(880 * 2 ** ((i % 5) / 12 * 2)), U(54.0 + i * 0.225), 0.3, -0.7 + 0.09 * i)
 put(impact(0.6), W("bongkar"), 0.55)
-put(whoosh(2.6, 150, 5000), U(57.4), 0.5)
-put(fade(drone(DUR - U(57.4), 49), 1.2, 0.0), U(57.4), 0.55)
+put(whoosh(2.6, 150, 5000), U(58.6), 0.5)
+put(fade(drone(DUR - U(58.6), 49), 1.2, 0.0), U(58.6), 0.55)
 # epic but softer bed (wonder, not war): D-minor ostinato + pulse
 def saw_note(f, d):
     t = tt(d); x = 2 * ((f * t) % 1) - 1; x = x + 0.5 * (2 * ((f * 1.005 * t) % 1) - 1)
