@@ -133,6 +133,7 @@
         <div id="rank" class="card"><div class="k">BILIK GUA TERBESAR DUNIA · IKUT KELUASAN</div>
           <div class="r win" id="r1"><div class="n">#1</div><div class="t"><b>Sarawak Chamber</b><span>Gunung Mulu, Sarawak, Malaysia</span></div><div class="v">164,459 m²</div></div>
           <div class="foot" id="rfoot">Ikut isi padu: nombor 2 dunia, selepas Miao Room (China)</div></div>
+        <div class="photo" id="ph-deer"><div class="tag">GAMBAR SEBENAR</div><div class="im"><img src="assets/photos/deercave.jpg" alt="" /></div><div class="cap">Gua Rusa (Deer Cave), Gunung Mulu<span>Mulut gua dan hutan di dalamnya · gambar dihantar pengguna</span></div></div>
         <div id="batchip">±3 <em>JUTA</em> kelawar</div>
         <div id="unesco"><small>TAPAK WARISAN DUNIA</small><b>UNESCO</b><em>2000</em></div>
         <div id="cta"><div>Negeri mana kita <em>bongkar</em> lepas ni? ↓</div></div>
@@ -230,7 +231,7 @@
         const n = NOTES.find(([a, b]) => t >= a && t < b);
         noteEl.style.opacity = n ? win(t, n[0], n[1]) : 0; if (n && noteEl.textContent !== n[2]) noteEl.textContent = n[2];
         const cr = CREDITS.find(([a, b]) => t >= a && t < b); creditEl.textContent = cr ? cr[2] : "";
-        $("#aitag").style.opacity = Math.max(win(t, 17.5, 28.5, 0.2, 0.2), win(t, 39.9, 49.9, 0.2, 0.2));
+        $("#aitag").style.opacity = Math.max(win(t, 17.5, 28.5, 0.2, 0.2), win(t, 42.8, 49.9, 0.2, 0.2));
         // ---- cards ----
         const sa = win(t, 10.4, 13.0, 0.12, 0.3); $("#stamp").style.opacity = sa; $("#stamp").style.transform = `translate(-50%, -50%) rotate(-5deg) scale(${1.5 - 0.5 * ss(10.4, 10.6, t)})`;
         const tm = win(t, 12.6, 17.2, 0.35, 0.3); $("#team").style.opacity = tm; $("#team").style.transform = `translateY(${(1 - ss(12.6, 13.0, t)) * 30}px)`;
@@ -242,6 +243,8 @@
         pitchEls.forEach((p, i) => { const t0 = 32.6 + (2.1 * i) / 23; const a = i < np ? 1 : 0; p.style.opacity = a; p.style.transform = `scale(${a ? 0.6 + 0.4 * pop(t0, t, 0.25) : 0.6})`; });
         const ra = win(t, 35.7, 39.7, 0.35, 0.3); $("#rank").style.opacity = ra; $("#rank").style.transform = `translateY(${(1 - ss(35.7, 36.1, t)) * 30}px)`;
         $("#r1").style.transform = `scale(${0.9 + 0.1 * pop(37.9, t)})`; $("#rfoot").style.opacity = ss(38.6, 39.0, t);
+        { const p = $("#ph-deer"); const a = win(t, 39.9, 42.8, 0.3, 0.3); p.style.opacity = a; p.style.transform = `translateY(${(1 - ss(39.9, 40.3, t)) * 40}px) rotate(${-1.2 + 0.6 * a}deg)`;
+          p.querySelector("img").style.transform = `translate(-50%, -50%) scale(${1.04 + 0.08 * ss(39.9, 42.8, t)})`; p.querySelector("img").style.filter = "none"; }
         $("#batchip").style.opacity = win(t, 42.9, 45.2, 0.25, 0.3); $("#batchip").style.transform = `translateX(-50%) scale(${0.8 + 0.2 * pop(42.9, t)})`;
         const ua = win(t, 47.8, 49.8, 0.12, 0.3); $("#unesco").style.opacity = ua; $("#unesco").style.transform = `translate(-50%, -50%) rotate(-4deg) scale(${1.5 - 0.5 * ss(47.8, 48.0, t)})`;
         const ctaA = win(t, 54.4, 58.7, 0.35, 0.4); cta.style.opacity = ctaA; cta.style.transform = `translateY(${(1 - ss(54.4, 54.8, t)) * 24}px)`;
