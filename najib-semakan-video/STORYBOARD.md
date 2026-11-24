@@ -8,7 +8,7 @@ Video sambungan (episod 2).
 
 | Masa | Skrip |
 |---|---|
-| 0–5 | Istana. Mahkamah. Rumah Najib. Tiga tempat ni, jarak tak sampai dua kilometer. Dan sekarang, semuanya bersambung dalam satu kes. |
+| 0–5 | Istana. Mahkamah. Rumah Najib. Tiga tempat ni, jaraknya lebih kurang dua kilometer je. Dan sekarang, semuanya bersambung dalam satu kes. |
 | 5–12 | Najib sekarang jalani baki hukuman di rumah, sampai Ogos 2028. Itu hasil pengampunan bersyarat, September lepas. |
 | 12–20 | Tapi 10 November, Badan Peguam Malaysia failkan semakan kehakiman di Mahkamah Tinggi Kuala Lumpur, untuk cabar perintah tahanan rumah tu. |
 | 20–28 | Hujah dia: tahanan rumah bukan pengampunan, bukan penangguhan, bukan peremitan hukuman. Jadi ia di luar Perkara 42 Perlembagaan. |
@@ -38,7 +38,7 @@ Sama macam `najib-video`: frasa 2–4 perkataan, Montserrat 800, 62 px, pil gela
 
 ## 4. Sumber aset
 
-- Peta: Esri World Imagery, dibake semula dengan `najib-video/tools/bake-basemap-vertical.mjs` (3 bake baru: terjun ke Jalan Duta, laluan Badan Peguam, laluan Putrajaya).
+- Peta: Esri World Imagery, dijahit dengan `tools/stitch_map.py` (duta, bar, agc) + `home.jpg` dari video pertama. Babak 1 akan dapat klip terjun dari glob (bake MapLibre) untuk preview.
 - Gambar: guna semula `istana.jpg`, `court.jpg`, `najib.jpg` dari `najib-video/assets/photos` (kredit Wikimedia sama).
 - Tiada logo Badan Peguam atau AGC (elak isu hak cipta/penyamaran); guna tipografi.
 
@@ -46,7 +46,7 @@ Sama macam `najib-video`: frasa 2–4 perkataan, Montserrat 800, 62 px, pil gela
 
 1. **Kes masih berjalan:** skrip hanya lapor fakta dan hujah kedua pihak, tiada ramalan keputusan.
 2. **Institusi diraja:** tiada komen atau nada sinis tentang titah Agong. Soalan penutup soal undang-undang, bukan soal "adil".
-3. Jarak "tak sampai dua kilometer" akan disahkan dengan koordinat sebenar masa bake peta; kalau salah, ayat diubah.
+3. Jarak disahkan (OSM): Istana–Langgak Duta ≈0.8 km, kedua-duanya ke Kompleks Mahkamah KL ≈2 km. Ayat: "lebih kurang dua kilometer".
 4. Tarikh failkan: kebanyakan sumber kata 10 Nov (ada yang tulis 11 Nov). Skrip guna 10 Nov.
 5. Pin rumah tunjuk kawasan Langgak Duta, bukan bumbung rumah tertentu (sama macam video pertama).
 

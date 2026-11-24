@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Montserrat"; font-weight: 800; src: url("assets/fonts/montserrat-latin-800-normal.woff2") format("woff2"); }
+      :root { --ground: #0a0e18; --ink: #f6f3ec; --dim: #aab2c5; --yellow: #ffc531; --red: #ff4d4f; --cyan: #7ee8ff; --orange: #ff8a3d; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0a0e18; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "Inter", sans-serif; color: var(--ink); }
+      .scene { position: absolute; inset: 0; overflow: hidden; }
+      .in { position: absolute; inset: 0; opacity: 0; }
+      .bg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+      .kb { position: absolute; inset: 0; transform-origin: 50% 25%; }
+      .shade.face { background: linear-gradient(180deg, rgba(10,14,24,.72) 0%, rgba(10,14,24,.08) 16%, rgba(10,14,24,.10) 28%, rgba(10,14,24,.90) 38%, #0a0e18 52%); }
+      .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,14,24,.78) 0%, rgba(10,14,24,.30) 26%, rgba(10,14,24,.55) 55%, rgba(10,14,24,.94) 78%, #0a0e18 100%); }
+      .shade.heavy { background: linear-gradient(180deg, rgba(10,14,24,.88) 0%, rgba(10,14,24,.72) 40%, rgba(10,14,24,.95) 76%, #0a0e18 100%); }
+      .mapshade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,14,24,.70) 0%, rgba(10,14,24,.05) 20%, rgba(10,14,24,.05) 52%, rgba(10,14,24,.90) 72%, #0a0e18 100%); }
+      .h { font-family: "Montserrat", sans-serif; font-weight: 800; line-height: 1; letter-spacing: -1px; }
+      .kicker { position: absolute; left: 70px; top: 196px; display: flex; align-items: center; gap: 16px; font-weight: 700; font-size: 30px; letter-spacing: 3px; text-transform: uppercase; color: var(--ink); }
+      .kicker i { width: 14px; height: 38px; background: var(--yellow); border-radius: 3px; }
+      .credit { position: absolute; left: 70px; top: 1350px; font-size: 22px; color: rgba(246,243,236,.62); background: rgba(10,14,24,.6); padding: 5px 10px; border-radius: 6px; }
+      .stat { position: absolute; left: 70px; right: 70px; }
+      .stat .lbl { font-weight: 700; font-size: 32px; letter-spacing: 3px; text-transform: uppercase; color: var(--dim); margin-bottom: 10px; }
+      .stat .val { font-size: 136px; color: var(--ink); white-space: nowrap; }
+      .stat .val.y { color: var(--yellow); } .stat .val.r { color: var(--red); }
+      .chip { display: inline-block; font-weight: 700; font-size: 34px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 24px; border-radius: 12px; background: var(--yellow); color: #14110a; }
+      .chip.red { background: var(--red); color: #fff; } .chip.dark { background: rgba(10,14,24,.86); color: var(--ink); border: 2px solid rgba(246,243,236,.28); }
+      .pin { position: absolute; width: 0; height: 0; }
+      .pin .dot { position: absolute; left: -17px; top: -17px; width: 34px; height: 34px; border-radius: 50%; background: var(--yellow); border: 6px solid #0a0e18; box-shadow: 0 0 0 4px var(--yellow); }
+      .pin .ring { position: absolute; left: -60px; top: -60px; width: 120px; height: 120px; border-radius: 50%; border: 5px solid var(--yellow); opacity: 0; }
+      .pin.cyan .dot { background: var(--cyan); box-shadow: 0 0 0 4px var(--cyan); } .pin.cyan .ring { border-color: var(--cyan); }
+      .pin.red .dot { background: var(--red); box-shadow: 0 0 0 4px var(--red); } .pin.red .ring { border-color: var(--red); }
+      .tag { position: absolute; white-space: nowrap; font-weight: 700; font-size: 34px; padding: 12px 20px; border-radius: 12px; background: rgba(10,14,24,.9); color: var(--ink); border: 2px solid rgba(246,243,236,.25); }
+      .tag small { display: block; font-size: 28px; font-weight: 400; color: var(--dim); margin-top: 4px; letter-spacing: 1px; }
+      .strike { position: absolute; left: -12px; right: -12px; top: 50%; height: 12px; margin-top: -6px; background: var(--red); border-radius: 6px; transform-origin: 0 50%; }
+      .side { position: absolute; left: 70px; right: 70px; padding: 44px 46px; border-radius: 28px; background: rgba(16,21,36,.92); border: 2px solid rgba(246,243,236,.14); }
+      .side .who { font-weight: 700; font-size: 32px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 22px; }
+      .side .q { font-size: 68px; line-height: 1.08; }
+      .list { position: absolute; left: 70px; right: 70px; }
+      .list .row { display: flex; align-items: center; gap: 22px; padding: 22px 26px; margin-bottom: 18px; border-radius: 18px; background: rgba(10,14,24,.88); border: 2px solid rgba(246,243,236,.16); font-weight: 700; font-size: 38px; }
+      .list .row b { flex: none; width: 54px; height: 54px; border-radius: 50%; background: var(--yellow); color: #14110a; display: flex; align-items: center; justify-content: center; font-size: 30px; }
+      .list .row.red b { background: var(--red); color: #fff; }
+      .xrow { display:flex; align-items:center; justify-content:space-between; padding: 26px 34px; margin-bottom: 22px; border-radius: 20px; background: rgba(16,21,36,.92); border: 2px solid rgba(246,243,236,.16); }
+      .xrow .h { font-size: 72px; position: relative; }
+      .xrow .no { flex:none; width: 86px; height: 86px; border-radius: 50%; background: var(--red); color:#fff; display:flex; align-items:center; justify-content:center; font-family:"Montserrat",sans-serif; font-weight:800; font-size:56px; }
+      .doc { position:absolute; left:150px; right:150px; padding: 50px 50px 60px; border-radius: 10px; background: #efeadf; color:#1b1d24; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+      .doc .ln { height: 14px; border-radius: 7px; background: rgba(27,29,36,.18); margin-top: 22px; }
+      .cal { position:absolute; left:290px; width:500px; border-radius: 30px; overflow:hidden; background:#f6f3ec; box-shadow: 0 30px 80px rgba(0,0,0,.6); text-align:center; color:#14110a; }
+      .cal .top { background: var(--red); color:#fff; font-weight:700; font-size: 44px; letter-spacing: 6px; padding: 22px 0; }
+      #captions-host { position: absolute; inset: 0; z-index: 50; }
+      #bar { position: absolute; left: 0; top: 0; height: 8px; width: 1080px; background: var(--yellow); transform-origin: 0 50%; z-index: 60; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1080" data-height="1920" data-fps="30">
+
+      <!-- 1 · HOOK: Jalan Duta, three pins, ~2 km -->
+      <div id="s1" class="scene clip" data-start="0" data-duration="7.77" data-track-index="0" data-track-kind="graphics" style="z-index:1">
+        <div class="in" id="s1in" style="opacity:1">
+          <div class="kb" id="s1map" style="transform-origin:540px 760px"><img class="bg" src="assets/maps/duta.jpg" alt="" /><div class="mapshade"></div>
+            <svg width="1080" height="1920" style="position:absolute;left:0;top:0;overflow:visible">
+              <path id="s1tri" d="M 431 980 L 600 472 L 646 980 Z" fill="rgba(255,197,49,.10)" stroke="#ffc531" stroke-width="5" stroke-dasharray="18 14" stroke-linejoin="round" />
+            </svg>
+            <div class="pin" id="s1p1" style="left:431px;top:980px"><div class="ring" id="s1r1"></div><div class="dot"></div><div class="tag" style="left:-300px;top:30px;font-size:30px;padding:8px 14px">Istana Negara</div></div>
+            <div class="pin cyan" id="s1p2" style="left:600px;top:472px"><div class="ring" id="s1r2"></div><div class="dot"></div><div class="tag" style="left:40px;top:-40px;font-size:30px;padding:8px 14px">Kompleks Mahkamah KL</div></div>
+            <div class="pin red" id="s1p3" style="left:646px;top:980px"><div class="ring" id="s1r3"></div><div class="dot"></div><div class="tag" style="left:30px;top:30px;font-size:30px;padding:8px 14px">Langgak Duta<small>RUMAH NAJIB</small></div></div>
+            <div id="s1km" style="position:absolute;left:660px;top:690px"><span class="chip">≈ 2 KM</span></div>
+          </div>
+          
+          <div class="kicker" id="s1k"><i></i><span>Jalan Duta · Kuala Lumpur</span></div>
+          <div class="h" id="s1t" style="position:absolute;left:70px;right:70px;top:270px;font-size:92px">BADAN PEGUAM<br /><span style="color:var(--yellow)">vs</span> TAHANAN<br /><span style="color:var(--red)">RUMAH</span></div>
+          <div class="credit" data-layout-ignore>Imej satelit: Esri, Maxar, Earthstar Geographics</div>
+        </div>
+      </div>
+
+      <!-- 2 · house arrest until Aug 2028 -->
+      <div id="s2" class="scene clip" data-start="7.32" data-duration="6.75" data-track-index="1" data-track-kind="graphics" style="z-index:2">
+        <div class="in" id="s2in">
+          <div class="kb" id="s2map" style="transform-origin:540px 960px"><img class="bg" src="assets/maps/home.jpg" alt="" />
+            <svg width="1080" height="1920" style="position:absolute;left:0;top:0"><circle id="s2c" cx="540" cy="960" r="150" fill="rgba(255,77,79,.16)" stroke="#ff4d4f" stroke-width="7" stroke-dasharray="26 16" /></svg></div>
+          <div class="mapshade" style="background:linear-gradient(180deg, rgba(10,14,24,.86) 0%, rgba(10,14,24,.25) 24%, rgba(10,14,24,.2) 40%, rgba(10,14,24,.92) 60%, #0a0e18 100%)"></div>
+          <div class="kicker"><i></i><span>Sekarang</span></div>
+          <div class="h" id="s2t" style="position:absolute;left:70px;right:70px;top:262px;font-size:96px">TAHANAN <span style="color:var(--red)">RUMAH</span></div>
+          <div id="s2tl" style="position:absolute;left:90px;right:90px;top:900px">
+            <div style="position:relative;height:14px;border-radius:7px;background:rgba(246,243,236,.25)"><div id="s2fill" style="position:absolute;inset:0;border-radius:7px;background:var(--yellow);transform-origin:0 50%"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:30px;font-weight:700;font-size:34px;line-height:1.25">
+              <div id="s2a">18 Sept 2026<br /><span style="color:var(--dim);font-weight:400">pengampunan bersyarat</span></div>
+              <div id="s2b" style="text-align:right;color:var(--yellow)">23 Ogos 2028<br /><span style="font-weight:400">tamat</span></div></div>
+          </div>
+          <div class="credit" data-layout-ignore>Imej satelit: Esri, Maxar, Earthstar Geographics</div>
+        </div>
+      </div>
+
+      <!-- 3 · Bar files: Wisma Badan Peguam → court -->
+      <div id="s3" class="scene clip" data-start="13.62" data-duration="8.25" data-track-index="0" data-track-kind="graphics" style="z-index:3">
+        <div class="in" id="s3in">
+          <div class="kb" id="s3map" style="transform-origin:540px 860px"><img class="bg" src="assets/maps/bar.jpg" alt="" /><div class="mapshade"></div>
+            <svg width="1080" height="1920" style="position:absolute;left:0;top:0;overflow:visible">
+              <path id="s3routeU" d="M 767 1138 Q 640 760 311 566" fill="none" stroke="#0a0e18" stroke-width="14" stroke-linecap="round" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" />
+              <path id="s3route" d="M 767 1138 Q 640 760 311 566" fill="none" stroke="#7ee8ff" stroke-width="7" stroke-linecap="round" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" />
+            </svg>
+            <div class="pin cyan" id="s3a" style="left:767px;top:1138px"><div class="dot"></div><div class="tag" style="left:-420px;top:-30px;font-size:28px;padding:8px 14px">Wisma Badan Peguam</div></div>
+            <div class="pin" id="s3b" style="left:311px;top:566px"><div class="ring" id="s3ring"></div><div class="dot"></div><div class="tag" style="left:36px;top:-34px;font-size:28px;padding:8px 14px">Mahkamah Tinggi KL</div></div>
+          </div>
+          
+          <div class="kicker"><i style="background:var(--cyan)"></i><span>10 November 2026</span></div>
+          <div class="h" id="s3t" style="position:absolute;left:70px;right:70px;top:262px;font-size:80px">FAIL SEMAKAN<br /><span style="color:var(--cyan)">KEHAKIMAN</span></div>
+          <div class="credit" data-layout-ignore>Imej satelit: Esri, Maxar, Earthstar Geographics</div>
+        </div>
+      </div>
+
+      <!-- 4 · Bar's argument: three NOs, Article 42 -->
+      <div id="s4" class="scene clip" data-start="21.42" data-duration="7.45" data-track-index="1" data-track-kind="graphics" style="z-index:4">
+        <div class="in" id="s4in">
+          <div class="kicker"><i style="background:var(--cyan)"></i><span>Hujah Badan Peguam</span></div>
+          <div class="h" id="s4t" style="position:absolute;left:70px;right:70px;top:262px;font-size:76px">TAHANAN RUMAH<br /><span style="color:var(--cyan)">BUKAN…</span></div>
+          <div style="position:absolute;left:70px;right:70px;top:500px">
+            <div class="xrow" id="s4r1"><div class="h">PENGAMPUNAN</div><div class="no" id="s4x1">✕</div></div>
+            <div class="xrow" id="s4r2"><div class="h">PENANGGUHAN</div><div class="no" id="s4x2">✕</div></div>
+            <div class="xrow" id="s4r3"><div class="h">PEREMITAN</div><div class="no" id="s4x3">✕</div></div>
+          </div>
+          <div id="s4c" style="position:absolute;left:70px;top:1000px"><span class="chip">Di luar Perkara 42?</span></div>
+        </div>
+      </div>
+
+      <!-- 5 · AGC objects: Putrajaya → KL -->
+      <div id="s5" class="scene clip" data-start="28.42" data-duration="8.25" data-track-index="0" data-track-kind="graphics" style="z-index:5">
+        <div class="in" id="s5in">
+          <div class="kb" id="s5map" style="transform-origin:540px 860px"><img class="bg" src="assets/maps/agc.jpg" alt="" /><div class="mapshade"></div>
+            <svg width="1080" height="1920" style="position:absolute;left:0;top:0;overflow:visible">
+              <path id="s5routeU" d="M 553 1069 Q 700 760 528 468" fill="none" stroke="#0a0e18" stroke-width="14" stroke-linecap="round" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" />
+              <path id="s5route" d="M 553 1069 Q 700 760 528 468" fill="none" stroke="#ff4d4f" stroke-width="7" stroke-linecap="round" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" />
+            </svg>
+            <div class="pin red" id="s5a" style="left:553px;top:1069px"><div class="dot"></div><div class="tag" style="left:-470px;top:-120px;font-size:28px;padding:8px 14px">Putrajaya<small>JABATAN PEGUAM NEGARA</small></div></div>
+            <div class="pin" id="s5b" style="left:528px;top:468px"><div class="ring" id="s5ring"></div><div class="dot"></div><div class="tag" style="left:36px;top:-34px;font-size:28px;padding:8px 14px">Mahkamah KL</div></div>
+          </div>
+          
+          <div class="kicker"><i style="background:var(--red)"></i><span>12 November 2026</span></div>
+          <div class="h" id="s5t" style="position:absolute;left:70px;right:70px;top:262px;font-size:80px">AGC <span style="color:var(--red)">BANTAH</span></div>
+          <div id="s5q" style="position:absolute;left:70px;right:70px;top:700px"><span class="chip dark" style="font-size:30px;text-transform:none;letter-spacing:0">“Keputusan Agong tak boleh dicabar”</span></div>
+          <div class="credit" data-layout-ignore>Imej satelit: Esri, Maxar, Earthstar Geographics</div>
+        </div>
+      </div>
+
+      <!-- 6 · non-justiciable -->
+      <div id="s6" class="scene clip" data-start="36.22" data-duration="5.45" data-track-index="1" data-track-kind="graphics" style="z-index:6">
+        <div class="in" id="s6in">
+          <div class="kicker"><i style="background:var(--red)"></i><span>Istilah undang-undang · Perkara 42</span></div>
+          <div class="h" id="s6v" style="position:absolute;left:0;right:0;top:470px;text-align:center;font-size:124px;color:var(--red)">NON-<br />JUSTICIABLE</div>
+          <div id="s6n" style="position:absolute;left:70px;right:70px;top:820px;text-align:center"><div class="h" style="font-size:62px;line-height:1.15">= mahkamah <span style="color:var(--yellow)">tak boleh</span><br />semak langsung</div></div>
+        </div>
+      </div>
+
+      <!-- 7 · minutes declassified -->
+      <div id="s7" class="scene clip" data-start="41.22" data-duration="6.05" data-track-index="0" data-track-kind="graphics" style="z-index:7">
+        <div class="in" id="s7in">
+          <div class="kb" id="s7kb"><img class="bg" src="assets/photos/istana.jpg" alt="" style="object-position:38% 50%" /></div>
+          <div class="shade heavy"></div>
+          <div class="kicker"><i></i><span>Lembaga Pengampunan WP · ke-64</span></div>
+          <div class="doc" id="s7d" style="top:330px;transform:rotate(-3deg)">
+            <div style="font-weight:700;font-size:30px;letter-spacing:3px">MINIT MESYUARAT</div>
+            <div class="h" style="font-size:44px;margin-top:12px">Lembaga Pengampunan</div>
+            <div class="ln"></div><div class="ln" style="width:86%"></div><div class="ln"></div><div class="ln" style="width:70%"></div><div class="ln"></div><div class="ln" style="width:58%"></div>
+            <div id="s7s" style="position:absolute;right:40px;top:260px;transform:rotate(12deg)"><div class="h" style="position:relative;font-size:70px;color:#c62828;border:8px solid #c62828;border-radius:14px;padding:8px 22px">SULIT<div class="strike" id="s7x" style="background:#1b1d24"></div></div></div>
+          </div>
+          <div id="s7c" style="position:absolute;left:0;right:0;top:960px;text-align:center"><span class="chip">Dinyahklasifikasi</span></div>
+          <div class="credit" data-layout-ignore>Foto: Azreey / Wikimedia Commons, CC BY-SA 4.0</div>
+        </div>
+      </div>
+
+      <!-- 8 · 17 March 2027 -->
+      <div id="s8" class="scene clip" data-start="46.82" data-duration="6.25" data-track-index="1" data-track-kind="graphics" style="z-index:8">
+        <div class="in" id="s8in">
+          <div class="kb" id="s8kb"><img class="bg" src="assets/photos/court.jpg" alt="" /></div>
+          <div class="shade heavy"></div>
+          <div class="kicker"><i></i><span>Hujahan semua pihak</span></div>
+          <div class="cal" id="s8cal" style="top:330px"><div class="top">MAC 2027</div><div class="h" style="font-size:300px;padding:30px 0 40px">17</div></div>
+          <div id="s8c" style="position:absolute;left:0;right:0;top:1000px;text-align:center"><span class="chip dark">Belum ada keputusan</span></div>
+          <div class="credit" data-layout-ignore>Foto: Renek78 / Wikimedia Commons, CC BY-SA 4.0</div>
+        </div>
+      </div>
+
+      <!-- 9 · question, back on the Duta map -->
+      <div id="s9" class="scene clip" data-start="52.62" data-duration="7.38" data-track-index="0" data-track-kind="graphics" style="z-index:9">
+        <div class="in" id="s9in">
+          <div class="kb" id="s9map" style="transform-origin:540px 980px;transform:translateY(130px) scale(1.15)"><img class="bg" src="assets/maps/duta.jpg" alt="" />
+            <svg width="1080" height="1920" style="position:absolute;left:0;top:0;overflow:visible"><path d="M 431 980 L 600 472 L 646 980 Z" fill="rgba(255,197,49,.10)" stroke="#ffc531" stroke-width="5" stroke-dasharray="18 14" stroke-linejoin="round" /></svg>
+            <div class="pin" style="left:431px;top:980px"><div class="dot"></div></div><div class="pin cyan" style="left:600px;top:472px"><div class="dot"></div></div><div class="pin red" style="left:646px;top:980px"><div class="dot"></div></div>
+          </div>
+          <div class="mapshade" style="background:linear-gradient(180deg, rgba(10,14,24,.92) 0%, rgba(10,14,24,.6) 30%, rgba(10,14,24,.15) 45%, rgba(10,14,24,.9) 68%, #0a0e18 100%)"></div>
+          <div class="kicker"><i></i><span>Kau rasa?</span></div>
+          <div class="h" id="s9t" style="position:absolute;left:70px;right:70px;top:270px;font-size:74px;line-height:1.05">MAHKAMAH BOLEH<br /><span style="color:var(--yellow)">SEMAK</span> KEPUTUSAN<br />PENGAMPUNAN?</div>
+          <div id="s9c" style="position:absolute;left:70px;top:1360px"><span class="chip">Komen di bawah</span></div>
+          <div class="credit" data-layout-ignore style="top:1450px">Imej satelit: Esri, Maxar, Earthstar Geographics</div>
+        </div>
+      </div>
+
+      <div id="bar" class="clip" data-start="0" data-duration="60" data-track-index="4" data-track-kind="graphics" data-layout-ignore></div>
+      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="60"
+        data-track-index="3" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+    </div>
+
+    <script src="assets/timing.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const SC = window.SCENE, END = window.END;
+      const W = (seg, word, n = 0) => {
+        const k = word.toLowerCase(); let c = 0;
+        for (const w of window.WS[seg - 1]) if (w.t.toLowerCase().replace(/[^\w.]/g, "").startsWith(k) && c++ === n) return w.s;
+        throw new Error("no word " + seg + " " + word);
+      };
+      const D = (i) => (i < SC.length ? SC[i] : END) - SC[i - 1] + 0.45;
+      const F = 0.4;
+      for (let i = 2; i <= 9; i++) tl.to("#s" + i + "in", { opacity: 1, duration: F, ease: "power2.out" }, SC[i - 1]);
+      const pop = (s, t, o = {}) => tl.from(s, { opacity: 0, y: 46, duration: 0.45, ease: "back.out(1.7)", ...o }, t);
+      const ping = (s, t) => tl.fromTo(s, { scale: 0.3, opacity: 0.95 }, { scale: 1.9, opacity: 0, duration: 1.0, ease: "power2.out" }, t);
+      const drop = (s, t) => tl.from(s, { opacity: 0, y: -160, duration: 0.5, ease: "bounce.out" }, t);
+      tl.fromTo("#bar", { scaleX: 0 }, { scaleX: 1, duration: END, ease: "none" }, 0);
+
+      // 1 hook: headline on frame 0, then a pin on each place as it is named; the triangle on "dua kilometer"
+      tl.fromTo("#s1map", { scale: 1.08 }, { scale: 1.0, duration: D(1), ease: "none" }, 0);
+      tl.to("#s1t", { opacity: 0, y: -40, duration: 0.3, ease: "power2.in" }, W(1, "istana") - 0.1);
+      drop("#s1p1", W(1, "istana") - 0.1); ping("#s1r1", W(1, "istana") + 0.3);
+      drop("#s1p2", W(1, "mahkamah") - 0.1); ping("#s1r2", W(1, "mahkamah") + 0.3);
+      drop("#s1p3", W(1, "rumah") - 0.1); ping("#s1r3", W(1, "rumah") + 0.3);
+      tl.from("#s1tri", { opacity: 0, duration: 0.5 }, W(1, "jaraknya")); pop("#s1km", W(1, "dua") - 0.1, { scale: 0.6, y: 0 });
+      ping("#s1r1", W(1, "bersambung")); ping("#s1r2", W(1, "bersambung")); ping("#s1r3", W(1, "bersambung"));
+
+      // 2 house arrest: circle, then the timeline fills to 2028
+      tl.fromTo("#s2map", { scale: 1.3, y: -330 }, { scale: 1.42, y: -330, duration: D(2), ease: "none" }, SC[1]);
+      pop("#s2t", SC[1] + 0.2); tl.from("#s2c", { opacity: 0, attr: { r: 30 }, duration: 0.6, ease: "back.out(1.6)" }, W(2, "rumah") - 0.1);
+      pop("#s2tl", W(2, "sampai") - 0.3); tl.fromTo("#s2fill", { scaleX: 0 }, { scaleX: 1, duration: 1.0, ease: "power2.inOut" }, W(2, "ogos") - 0.2);
+      tl.from("#s2a", { opacity: 0, duration: 0.3 }, W(2, "pengampunan") - 0.1);
+
+      // 3 Bar: route drawn from the Bar to the court
+      tl.fromTo("#s3map", { scale: 1.06 }, { scale: 1.0, duration: D(3), ease: "none" }, SC[2]);
+      pop("#s3t", W(3, "failkan") - 0.2);
+      tl.from("#s3a", { opacity: 0, scale: 0, duration: 0.35, ease: "back.out(2.5)" }, W(3, "badan") - 0.15);
+      tl.to("#s3route, #s3routeU", { strokeDashoffset: 0, duration: W(3, "mahkamah") - W(3, "badan"), ease: "power2.inOut" }, W(3, "badan"));
+      tl.from("#s3b", { opacity: 0, scale: 0, duration: 0.35, ease: "back.out(2.5)" }, W(3, "mahkamah") - 0.15); ping("#s3ring", W(3, "mahkamah") + 0.15);
+
+      // 4 three NOs, one per "bukan"
+      pop("#s4t", W(4, "tahanan") - 0.15);
+      [1, 2, 3].forEach((n) => { pop("#s4r" + n, W(4, "bukan", n - 1) - 0.15, { x: -60, y: 0 }); tl.from("#s4x" + n, { scale: 2.6, opacity: 0, duration: 0.22, ease: "power4.in" }, W(4, "bukan", n - 1) + 0.35); });
+      pop("#s4c", W(4, "perkara") - 0.15);
+
+      // 5 AGC: red route from Putrajaya to KL
+      tl.fromTo("#s5map", { scale: 1.06 }, { scale: 1.0, duration: D(5), ease: "none" }, SC[4]);
+      pop("#s5t", W(5, "jabatan") - 0.2);
+      tl.from("#s5a", { opacity: 0, scale: 0, duration: 0.35, ease: "back.out(2.5)" }, W(5, "jabatan") - 0.15);
+      tl.to("#s5route, #s5routeU", { strokeDashoffset: 0, duration: W(5, "bantahan") - W(5, "jabatan") + 0.3, ease: "power2.inOut" }, W(5, "jabatan"));
+      tl.from("#s5b", { opacity: 0, scale: 0, duration: 0.35, ease: "back.out(2.5)" }, W(5, "bantahan") + 0.1); ping("#s5ring", W(5, "bantahan") + 0.4);
+      pop("#s5q", W(5, "keputusan") - 0.15);
+
+      // 6 the term slams in, the meaning follows
+      tl.from("#s6v", { opacity: 0, scale: 1.8, duration: 0.3, ease: "power4.in" }, W(6, "non") - 0.25);
+      pop("#s6n", W(6, "maksudnya") - 0.1);
+
+      // 7 minutes: the SULIT stamp is struck out
+      tl.fromTo("#s7kb", { scale: 1.02 }, { scale: 1.12, duration: D(7), ease: "none" }, SC[6]);
+      pop("#s7d", SC[6] + 0.2, { rotation: -10 });
+      tl.from("#s7x", { scaleX: 0, duration: 0.3, ease: "power3.out" }, W(7, "dinyahklasifikasi")); pop("#s7c", W(7, "dinyahklasifikasi") + 0.2);
+
+      // 8 calendar
+      tl.fromTo("#s8kb", { scale: 1.12 }, { scale: 1.02, duration: D(8), ease: "none" }, SC[7]);
+      tl.from("#s8cal", { opacity: 0, rotationX: -90, transformOrigin: "50% 0%", duration: 0.5, ease: "back.out(1.4)" }, W(8, "17") - 0.3);
+      pop("#s8c", W(8, "belum") - 0.15);
+
+      // 9 question
+      pop("#s9t", W(9, "persoalannya") - 0.1); pop("#s9c", W(9, "komen") - 0.15);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
