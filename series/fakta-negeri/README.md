@@ -24,6 +24,7 @@ Look: v4 cinematic adapted for history (night navy `#070b14`, fire orange/red ac
 |---|---|---|---|
 | 1 | Kelantan | `ep01-kelantan/` | Japan landed at Kota Bharu (8 Dec 1941) before Pearl Harbor |
 | 2 | Sarawak | `ep02-sarawak/` | Sarawak Chamber, largest cave chamber in the world by area (≈ 23 football pitches); Deer Cave bats; UNESCO 2000 |
+| 3 | Kedah | `ep03-kedah/` | Sumpahan Mahsuri (legend, tagged LEGENDA) + 1821 Siam attack / 1986 tourism (tagged SEJARAH); A/B question ending |
 
 New episode: copy the newest episode folder, keep `geo.js`, the map code, opener/outro, overlay and tools; replace the
 middle scenes, the state name in the opener, the `SEGMENTS` script and the labels/notes.
@@ -47,3 +48,7 @@ Wikimedia rate-limits this server hard (429): if a photo will not download, ask 
 
 Notes from ep 2: Flow clips are 6.0 s; when the voice needs longer, `retime_bakes.py` starts the clip later and a still of its
 last frame (or the plate before) covers the gap. Keep the outro ≥ 2 s of real time (the last sentence ends near the voice end).
+
+Notes from ep 3: when the voice runs long, `retime_bakes.py` slows short Flow clips with frame blending (`<n>_rt.mp4`) instead of
+leaving gaps. For legends, show a LEGENDA / SEJARAH chip so viewers can tell legend from record. An A/B question card before the
+outro works as the comment hook.
