@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ms" data-composition-variables='[{"id":"previewScale","type":"number","label":"3D render scale (0.5 for previews)","default":1,"min":0.25,"max":1,"step":0.25},{"id":"fx","type":"string","label":"effects override (JSON, testing only)","default":""},{"id":"layer","type":"number","label":"0 full, 1 clean plate (no captions), 2 captions only (transparent)","default":0,"min":0,"max":2,"step":1}]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/lib/gsap.min.js"></script>
+    <script type="importmap">{ "imports": { "three": "./assets/lib/three.module.min.js" } }</script>
+    <style>
+      @font-face { font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 600; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 700; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 800; src: url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #070b14; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "Inter", sans-serif; background: #070b14; }
+      .bgv { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; z-index: 0; }
+      .plate { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+      .plate img { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+      .plate svg { position: absolute; left: 0; top: 0; }
+      #world { position: absolute; inset: 0; z-index: 1; }
+      #world canvas { width: 1080px; height: 1920px; display: block; }
+      #mapfx { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+      #ui { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+      .fade-top { position: absolute; left: 0; right: 0; top: 0; height: 520px; background: linear-gradient(rgba(7,11,20,0.85) 0%, rgba(7,11,20,0.45) 45%, rgba(7,11,20,0) 100%); }
+      .fade-bot { position: absolute; left: 0; right: 0; bottom: 0; height: 420px; background: linear-gradient(rgba(7,11,20,0), rgba(7,11,20,0.75) 70%, #070b14); }
+      #dip { position: absolute; inset: 0; background: #000; opacity: 0; z-index: 4; }
+      #badge { position: absolute; left: 50%; top: 92px; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; padding: 9px 20px; border-radius: 30px;
+        background: rgba(10,16,30,0.7); border: 2px solid rgba(255,90,42,0.55); font-weight: 800; font-size: 24px; letter-spacing: 4px; color: #f4efe6; white-space: nowrap; }
+      #badge i { width: 12px; height: 12px; border-radius: 50%; background: #ff5a2a; box-shadow: 0 0 12px #ff5a2a; }
+      #title { position: absolute; left: 60px; right: 60px; top: 168px; text-align: center; font-weight: 700; font-size: 54px; letter-spacing: -1.2px; color: #f4efe6; line-height: 1.15; text-shadow: 0 2px 20px rgba(0,0,0,0.7); }
+      #title em { font-style: normal; color: #ff7a3a; }
+      .lbl { position: absolute; height: 0; }
+      .lbl .pt { position: absolute; left: -9px; top: -9px; width: 18px; height: 18px; border-radius: 50%; background: #ff5a2a; border: 3px solid #fff; box-shadow: 0 0 16px #ff5a2a; }
+      .lbl .ln { position: absolute; top: -1.5px; height: 3px; background: #f4efe6; box-shadow: 0 0 6px rgba(0,0,0,0.6); }
+      .lbl .tx { position: absolute; top: -32px; padding: 7px 14px; font-weight: 800; font-size: 26px; letter-spacing: 3px; color: #070b14; background: rgba(244,239,230,0.96); border-bottom: 4px solid #ff5a2a; white-space: nowrap; }
+      .lbl .tx small { display: block; font-weight: 600; font-size: 19px; letter-spacing: 1px; color: #4a5266; }
+      #note { position: absolute; left: 40px; top: 1398px; max-width: 1000px; padding: 7px 14px; border-radius: 8px; background: rgba(10,16,30,0.78); font-weight: 500; font-size: 22px; color: #b6c0d4; }
+      #credit { position: absolute; right: 24px; top: 1868px; font-weight: 500; font-size: 17px; color: rgba(220,228,240,0.6); text-shadow: 0 1px 3px #000; }
+      #stamp { position: absolute; left: 50%; top: 760px; transform: translate(-50%, -50%) rotate(-5deg); padding: 18px 40px; border: 9px solid #ff4a2a; border-radius: 16px; color: #ff5a2a;
+        font-weight: 800; font-size: 104px; letter-spacing: 4px; background: rgba(7,11,20,0.7); white-space: nowrap; text-shadow: 0 0 30px rgba(255,74,42,0.5); }
+      #stamp small { display: block; text-align: center; font-size: 30px; letter-spacing: 10px; color: #f4efe6; margin-top: 4px; }
+      .card { position: absolute; left: 50px; right: 50px; background: rgba(10,16,30,0.9); border: 2px solid rgba(255,90,42,0.4); border-radius: 26px; padding: 26px 30px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(255,90,42,0.12); color: #f4efe6; }
+      .card .k { font-weight: 800; font-size: 22px; letter-spacing: 3px; color: #ff7a3a; margin-bottom: 14px; }
+      /* archive photo card: a print on dark paper, slow push-in */
+      .photo { position: absolute; left: 70px; right: 70px; top: 360px; padding: 14px 14px 18px; background: #e9e2d2; border-radius: 6px; box-shadow: 0 30px 80px rgba(0,0,0,0.65); opacity: 0; }
+      .photo .im { position: relative; height: 640px; overflow: hidden; background: #222; }
+      .photo img { position: absolute; left: 50%; top: 50%; width: 100%; height: 100%; object-fit: cover; transform: translate(-50%, -50%); filter: grayscale(1) sepia(0.25) contrast(1.08); }
+      .photo .cap { margin-top: 14px; font-weight: 800; font-size: 30px; color: #1a1c22; line-height: 1.2; }
+      .photo .cap span { display: block; margin-top: 6px; font-weight: 600; font-size: 20px; color: #5a5f6c; letter-spacing: 0.5px; }
+      .photo.sm { left: 170px; right: 170px; top: 420px; } .photo.sm .im { height: 500px; }
+      .photo .tag { position: absolute; left: 30px; top: -22px; padding: 6px 16px; background: #ff4a2a; color: #fff; font-weight: 800; font-size: 22px; letter-spacing: 3px; border-radius: 4px; }
+      #cta { position: absolute; left: 0; right: 0; top: 1140px; text-align: center; }
+      #cta div { display: inline-block; padding: 18px 34px; border-radius: 40px; background: rgba(244,239,230,0.96); color: #070b14; font-weight: 800; font-size: 40px; }
+      #cta div em { font-style: normal; color: #e0452b; }
+      #aitag { position: absolute; right: 30px; top: 300px; padding: 6px 14px; border-radius: 6px; background: rgba(7,11,20,0.6); border: 1px solid rgba(255,255,255,0.35); color: rgba(255,255,255,0.85); font-weight: 700; font-size: 20px; letter-spacing: 3px; }
+      #today { position: absolute; left: 50%; top: 300px; transform: translateX(-50%); padding: 8px 22px; border-radius: 30px; background: rgba(244,239,230,0.95); color: #070b14; font-weight: 800; font-size: 28px; letter-spacing: 4px; }
+      #captions-host { z-index: 10; }
+      html.caps, html.caps body, html.caps #root { background: transparent !important; }
+      html.caps .bgv, html.caps .plate, html.caps #mapfx, html.caps #ui { visibility: hidden !important; }
+      /* ep03 cards */
+      #era { position: absolute; left: 30px; top: 300px; padding: 6px 14px; border-radius: 6px; font-weight: 800; font-size: 22px; letter-spacing: 4px; }
+      #era.leg { background: rgba(140,60,200,0.85); color: #fff; } #era.sej { background: rgba(255,90,42,0.9); color: #fff; }
+      #gen { top: 900px; text-align: center; } #gen .row { display: flex; justify-content: center; gap: 14px; margin-top: 10px; }
+      #gen .p { width: 92px; display: flex; flex-direction: column; align-items: center; gap: 6px; opacity: 0.25; }
+      #gen .p i { width: 46px; height: 46px; border-radius: 50%; background: #f4efe6; } #gen .p b { width: 80px; height: 60px; border-radius: 40px 40px 10px 10px; background: #f4efe6; }
+      #gen .p span { font-weight: 800; font-size: 22px; color: #aab4c8; }
+      #gen .p.on i, #gen .p.on b { background: #ff4a2a; box-shadow: 0 0 20px rgba(255,74,42,0.6); } #gen .p.on { opacity: 1; }
+      #gen .t { margin-top: 14px; font-weight: 800; font-size: 40px; color: #ff7a3a; }
+      #stamp2 { position: absolute; left: 50%; top: 760px; transform: translate(-50%, -50%) rotate(-5deg); padding: 16px 36px; border: 9px solid #ff4a2a; border-radius: 16px; color: #ff5a2a;
+        font-weight: 800; font-size: 92px; letter-spacing: 3px; background: rgba(7,11,20,0.7); white-space: nowrap; text-align: center; }
+      #stamp2 small { display: block; font-size: 30px; letter-spacing: 8px; color: #f4efe6; }
+      #tour { top: 1000px; } #tour .big { font-weight: 800; font-size: 110px; letter-spacing: -4px; line-height: 1; color: #5fd3c7; font-variant-numeric: tabular-nums; }
+      #tour .big small { font-size: 36px; letter-spacing: 0; color: #f4efe6; margin-left: 12px; }
+      #tour .bar { margin-top: 16px; height: 14px; border-radius: 7px; background: rgba(255,255,255,0.1); overflow: hidden; } #tour .bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #5fd3c7, #ffd08a); }
+      #tour .sub { margin-top: 10px; font-weight: 700; font-size: 22px; color: #aab4c8; }
+      #chip { position: absolute; left: 50%; top: 1040px; transform: translateX(-50%); padding: 12px 26px; border-radius: 40px; background: rgba(244,239,230,0.95); color: #070b14; font-weight: 800; font-size: 36px; white-space: nowrap; }
+      #chip em { font-style: normal; color: #e0452b; }
+      #q { position: absolute; left: 60px; right: 60px; top: 860px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      #q div { padding: 26px 18px; border-radius: 22px; text-align: center; font-weight: 800; font-size: 44px; color: #fff; box-shadow: 0 16px 40px rgba(0,0,0,0.5); opacity: 0; }
+      #q .a { background: rgba(140,60,200,0.92); } #q .b { background: rgba(30,110,200,0.92); }
+      #q div span { display: block; font-size: 22px; letter-spacing: 3px; opacity: 0.85; margin-bottom: 6px; }
+      #namecard { position: absolute; left: 50%; top: 760px; transform: translate(-50%, -50%); text-align: center; color: #fff; text-shadow: 0 4px 24px rgba(0,0,0,0.8); white-space: nowrap; }
+      #namecard small { display: block; font-weight: 800; font-size: 28px; letter-spacing: 8px; color: #ffd08a; }
+      #namecard b { display: block; font-weight: 800; font-size: 132px; letter-spacing: -2px; line-height: 1; }
+      #quote { position: absolute; left: 60px; right: 60px; top: 760px; transform: translateY(-50%); text-align: center; color: #fff6dc; text-shadow: 0 4px 24px rgba(0,0,0,0.9); }
+      #quote span { display: block; font-weight: 800; font-size: 64px; line-height: 1.12; letter-spacing: -1px; opacity: 0; }
+      #quote small { display: block; margin-top: 18px; font-weight: 600; font-size: 26px; color: #ffd08a; }
+      #gen .p.on.y i, #gen .p.on.y b { background: #ffd23a; box-shadow: 0 0 22px rgba(255,210,58,0.8); }
+      .dusk { position: absolute; inset: 0; background: linear-gradient(rgba(120,40,80,0.35), rgba(255,110,60,0.25) 40%, rgba(20,10,30,0.45)); mix-blend-mode: multiply; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="69.733" data-width="1080" data-height="1920" data-fps="30">
+      <!-- satellite basemaps (Esri World Imagery, baked with tools/bake_all.sh); real-time positions written by tools/retime_bakes.py -->
+      <video id="v-dive" class="clip bgv" src="assets/maps/dive.mp4" muted playsinline data-start="0.0" data-duration="4.9" data-track-index="0"></video>
+      <div id="p-princess" class="clip plate" data-start="36.0" data-duration="2.667" data-track-index="0"><img id="princessImg" src="assets/maps/princess.jpg" alt="" /></div>
+      <video id="v-coast" class="clip bgv" src="assets/maps/coast.mp4" muted playsinline data-start="49.433" data-duration="3.434" data-track-index="0"></video>
+      <div id="p-coast" class="clip plate" data-start="52.867" data-duration="13.166" data-track-index="0"><img id="coastImg" src="assets/maps/coast-last.jpg" alt="" /><div class="dusk"></div></div>
+      <div id="p-outro" class="clip plate" data-start="66.033" data-duration="2.4" data-track-index="0"><div id="outroZ" style="position:absolute;inset:0;transform-origin:540px 960px"><img src="assets/maps/outro.jpg" alt="" /><svg id="svg-outro" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div></div>
+      <video id="v-out" class="clip bgv" src="assets/maps/out.mp4" muted playsinline data-start="68.433" data-duration="1.3" data-track-index="0"></video>
+      <!-- Flow B-roll (ILUSTRASI · AI) -->
+      <video id="br1" class="clip bgv broll" src="assets/broll/1.mp4" muted playsinline data-start="4.9" data-duration="4.233" data-media-start="0.6" data-track-index="1"></video>
+      <video id="br2" class="clip bgv broll" src="assets/broll/2_rt.mp4" muted playsinline data-start="9.133" data-duration="9.467" data-media-start="0.0" data-track-index="1"></video>
+      <video id="br3" class="clip bgv broll" src="assets/broll/3.mp4" muted playsinline data-start="18.6" data-duration="4.667" data-media-start="0.8" data-track-index="1"></video>
+      <video id="br4" class="clip bgv broll" src="assets/broll/4_rt.mp4" muted playsinline data-start="23.267" data-duration="5.066" data-media-start="0.0" data-track-index="1"></video>
+      <video id="br5" class="clip bgv broll" src="assets/broll/5_rt.mp4" muted playsinline data-start="28.333" data-duration="7.667" data-media-start="0.0" data-track-index="1"></video>
+      <video id="br6" class="clip bgv broll" src="assets/broll/6_rt.mp4" muted playsinline data-start="38.667" data-duration="10.766" data-media-start="0.0" data-track-index="1"></video>
+      <svg id="mapfx" class="clip" data-start="0" data-duration="69.733" data-track-index="2" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+      <div id="ui" class="clip" data-start="0" data-duration="69.733" data-track-index="3" data-track-kind="graphics" data-layout-ignore>
+        <div class="fade-top"></div><div class="fade-bot"></div>
+        <div id="dip"></div>
+        <div id="badge"><i></i>FAKTA NEGERI · #4</div>
+        <div id="title"></div>
+        <div id="aitag">ILUSTRASI · AI</div>
+        <div id="era" class="leg">LEGENDA</div>
+        <div id="labels"></div>
+        <div id="note"></div>
+        <div id="credit"></div>
+        <div id="stamp">JANGAN NYANYI<small>WAKTU SENJA?!</small></div>
+        <div id="namecard"><small>LAGU &amp; TARIAN · TERENGGANU</small><b>ULEK MAYANG</b></div>
+        <div id="quote"><span>“Yang laut, balik ke laut…</span><span>yang darat, balik ke darat.”</span><small>— pesan puteri ketujuh, menurut legenda</small></div>
+        <div id="gen" class="card"><div class="k">TARIAN ULEK MAYANG</div>
+          <div class="row"></div><div class="t">7 penari = 7 puteri</div></div>
+        <div id="chip"></div>
+        <div id="q"><div class="a"><span>A</span>BERANI 😤</div><div class="b"><span>B</span>TAK BERANI 😨</div></div>
+        <div id="cta"><div>Negeri mana kita <em>bongkar</em> lepas ni? ↓</div></div>
+      </div>
+      <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="69.733" data-track-index="5" data-volume="1"></audio>
+      <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="69.733" data-track-index="6" data-volume="0.4"></audio>
+      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="69.733"
+        data-track-index="4" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+    </div>
+
+    <script type="module">
+      import { warp } from "./assets/timing.js";
+      import { SH } from "./assets/maps/shapes.js";
+      const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
+      if (Number(vars.layer) === 1) document.getElementById("captions-host").style.display = "none";
+      await Promise.all(["500", "600", "700", "800"].map((w) => document.fonts.load(`${w} 40px "Inter"`)));
+
+      const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+      const ss = (e0, e1, x) => { const u = clamp((x - e0) / (e1 - e0)); return u * u * (3 - 2 * u); };
+      const win = (t, t0, t1, fin = 0.3, fout = 0.3) => (t0 <= 0 ? 1 : ss(t0, t0 + fin, t)) * (t1 >= 60 ? 1 : 1 - ss(t1 - fout, t1, t));
+      const pop = (t0, t, d = 0.35) => { const u = clamp((t - t0) / d); if (u <= 0) return 0; const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(u - 1, 3) + c1 * Math.pow(u - 1, 2); };
+      const NS = "http://www.w3.org/2000/svg";
+      const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); parent.appendChild(e); return e; };
+      const lineD = (pts) => pts.map((p, i) => (i ? "L" : "M") + p[0] + " " + p[1]).join(" ");
+
+      // ---------- SVG map layers ----------
+      const fx = document.getElementById("mapfx");
+      const defs = el("defs", {}, fx);
+      const gl = el("filter", { id: "glow", x: "-20%", y: "-20%", width: "140%", height: "140%" }, defs);
+      el("feGaussianBlur", { stdDeviation: "6", result: "b" }, gl); const mg = el("feMerge", {}, gl); el("feMergeNode", { in: "b" }, mg); el("feMergeNode", { in: "SourceGraphic" }, mg);
+      const stateLayer = (parent, sh) => { const g = el("g", {}, parent); const m = {};
+        sh.polys.forEach((p) => { m[p.name] = { fill: el("path", { d: p.d, fill: "#ff3a1a", "fill-opacity": 0, stroke: "none" }, g), line: el("path", { d: p.d, fill: "none", stroke: "#ffffff", "stroke-width": 2.2, "stroke-opacity": 0.85, "stroke-linejoin": "round" }, g), label: p.label }; });
+        return { g, m }; };
+      const HERO = "Terengganu";
+      const gDive = el("g", {}, fx); const diveS = stateLayer(gDive, SH.dive);
+      const heroLine = el("path", { d: SH.dive.polys.find((p) => p.name === HERO).d, fill: "none", stroke: "#ff5a2a", "stroke-width": 6, filter: "url(#glow)", pathLength: 1, "stroke-dasharray": 1, "stroke-dashoffset": 1, "stroke-linejoin": "round" }, gDive);
+      const oSvg = document.getElementById("svg-outro"); el("defs", {}, oSvg).appendChild(gl.cloneNode(true));
+      const outroS = stateLayer(oSvg, SH.outro);
+      const genRow = document.querySelector("#gen .row");
+      const gens = Array.from({ length: 7 }, (_, i) => { const d = document.createElement("div"); d.className = "p" + (i === 3 ? " y" : ""); d.innerHTML = `<i></i><b></b><span>${i + 1}</span>`; genRow.appendChild(d); return d; });
+
+      const HOOK = "Lagu paling <em>seram</em> Terengganu?";
+      const CH = [
+        [0, 5.6, HOOK], [7.4, 16.2, "Nelayan &amp; <em>puteri laut</em>"], [16.2, 24.4, "Bomoh lawan <em>puteri</em>"], [24.4, 32.6, "Puteri <em>ketujuh</em>"],
+        [32.6, 40.4, "Lahirnya <em>tarian</em>"], [40.4, 46.2, "Lagu <em>berhantu</em>?"], [46.2, 50.8, "Dari ritual ke <em>budaya</em>"], [50.8, 53.6, "Korang <em>berani</em>?"], [53.6, 58.6, "Negeri mana <em>lepas ni</em>?"],
+      ];
+      const NOTES = [
+        [7.6, 16.0, "Legenda Ulek Mayang · banyak versi · versi Wikipedia (EN)"],
+        [32.8, 40.2, "7 penari: 6 bersongket, ketua berbaju kuning (Puteri Tujuh) · mayang = bunga kelapa"],
+        [46.4, 50.6, "Ritual asal berterusan sehingga beberapa dekad lalu · kini dipersembahkan sebagai tarian budaya"],
+      ];
+      const LABELS = [
+        [() => SH.dive.polys.find((p) => p.name === HERO).label, "TERENGGANU", "", 4.2, 5.6, -1],
+        [() => SH.coast.points.kt, "KUALA TERENGGANU", "Laut China Selatan", 41.6, 46.0, 1],
+      ];
+      const CREDITS = [[0, 5.6, "Imej: Esri World Imagery"], [40.4, 60, "Imej: Esri World Imagery"]];
+      const CUTS = [5.6, 32.6, 40.4, 53.6];
+      const $ = (s) => document.querySelector(s);
+      const titleEl = $("#title"), noteEl = $("#note"), labelsEl = $("#labels"), cta = $("#cta"), creditEl = $("#credit"), chip = $("#chip"), era = $("#era");
+      const lblEls = LABELS.map(() => { const d = document.createElement("div"); d.className = "lbl"; d.innerHTML = '<span class="ln"></span><span class="pt"></span><span class="tx"></span>'; labelsEl.appendChild(d); return d; });
+      const CHIPS = [[12.6, 16.0, "Puteri laut <em>bawa pergi rohnya</em>"], [37.1, 40.2, "Mayang = <em>bunga kelapa</em>"], [44.6, 46.1, "Waktu <em>senja</em> · tepi pantai"], [47.8, 50.6, "Ritual → <em>tarian budaya</em>"]];
+      function overlay(t) {
+        const c = CH.find(([a, b]) => t >= a && t < b);
+        const ta = c ? win(t, c[0], c[1], 0.35, 0.3) : 0;
+        if (c && titleEl.innerHTML !== c[2]) titleEl.innerHTML = c[2];
+        titleEl.style.opacity = ta; titleEl.style.filter = `blur(${(1 - ta) * 10}px)`;
+        let dip = 0; CUTS.forEach((k) => { dip = Math.max(dip, 1 - clamp(Math.abs(t - k) / 0.22)); }); $("#dip").style.opacity = dip;
+        gDive.style.opacity = t < 5.6 && t > 3.6 ? ss(3.6, 4.2, t) : 0;
+        for (const [n, s] of Object.entries(diveS.m)) { const k = n === HERO; s.fill.setAttribute("fill-opacity", k ? 0.3 * ss(4.4, 5.0, t) * (0.85 + 0.15 * Math.sin(t * 5)) : 0); s.line.setAttribute("stroke-opacity", k ? 0 : 0.7); }
+        heroLine.setAttribute("stroke-dashoffset", 1 - ss(4.0, 5.2, t));
+        const oz = 1 + 0.05 * ss(53.6, 58.6, t); $("#outroZ").style.transform = `scale(${oz})`;
+        Object.keys(outroS.m).forEach((n, i) => { const s = outroS.m[n]; const k = (t - 54.0) * 4 - i * 0.9; const b = k > 0 ? Math.exp(-(((k % 8) + 8) % 8) * 1.4) * (1 - ss(58.0, 58.6, t)) : 0;
+          const hero = n === HERO ? 0.35 * (1 - ss(58.0, 58.6, t)) * ss(53.8, 54.2, t) : 0;
+          s.fill.setAttribute("fill-opacity", Math.max(0.55 * b, hero)); s.line.setAttribute("stroke-opacity", 0.5 + 0.5 * b); });
+        $("#princessImg").style.transform = `scale(${1 + 0.05 * ss(30.4, 32.6, t)})`; $("#princessImg").style.filter = "brightness(0.55)";
+        $("#coastImg").style.transform = `scale(${1 + 0.07 * ss(43.4, 53.6, t)})`;
+        LABELS.forEach(([src, txt, sub, t0, t1, side], i) => {
+          const e = lblEls[i]; const la = win(t, t0, t1, 0.25, 0.25); e.style.opacity = la; if (la <= 0) return;
+          const p = src(); e.style.left = p[0] + "px"; e.style.top = p[1] + "px";
+          const L = 100 * ss(t0, t0 + 0.35, t);
+          const ln = e.querySelector(".ln"), tx = e.querySelector(".tx");
+          ln.style.width = L + "px"; ln.style.left = side > 0 ? "0px" : -L + "px";
+          const h = sub ? `${txt}<small>${sub}</small>` : txt; if (tx.innerHTML !== h) tx.innerHTML = h;
+          tx.style.left = side > 0 ? L + "px" : "auto"; tx.style.right = side > 0 ? "auto" : L + "px";
+        });
+        const n = NOTES.find(([a, b]) => t >= a && t < b);
+        noteEl.style.opacity = n ? win(t, n[0], n[1]) : 0; if (n && noteEl.textContent !== n[2]) noteEl.textContent = n[2];
+        const cr = CREDITS.find(([a, b]) => t >= a && t < b); creditEl.textContent = cr ? cr[2] : "";
+        $("#aitag").style.opacity = Math.max(win(t, 5.7, 32.5, 0.2, 0.2), win(t, 32.7, 40.3, 0.2, 0.2));
+        const leg = t >= 7.4 && t < 32.6, bud = t >= 32.6 && t < 50.8;
+        era.className = leg ? "leg" : "sej"; era.textContent = leg ? "LEGENDA" : "BUDAYA"; era.style.opacity = Math.max(win(t, 7.5, 32.5, 0.2, 0.2), win(t, 32.7, 50.7, 0.2, 0.2));
+        const sa = win(t, 3.4, 5.5, 0.12, 0.3); $("#stamp").style.opacity = sa; $("#stamp").style.transform = `translate(-50%, -50%) rotate(-5deg) scale(${1.5 - 0.5 * ss(3.4, 3.6, t)})`;
+        const na = win(t, 5.7, 7.4, 0.3, 0.25); $("#namecard").style.opacity = na; $("#namecard").style.transform = `translate(-50%, -50%) scale(${0.85 + 0.15 * pop(5.7, t, 0.5)})`;
+        const qa = win(t, 28.9, 32.5, 0.2, 0.3); $("#quote").style.opacity = qa;
+        const qs = document.querySelectorAll("#quote span"); qs[0].style.opacity = ss(29.1, 29.5, t); qs[1].style.opacity = ss(30.9, 31.3, t);
+        const ga = win(t, 34.4, 37.4, 0.35, 0.3); $("#gen").style.opacity = ga; $("#gen").style.transform = `translateY(${(1 - ss(34.4, 34.8, t)) * 30}px)`;
+        gens.forEach((g, i) => g.classList.toggle("on", t > 34.8 + i * 0.25));
+        const cc = CHIPS.find(([a, b]) => t >= a && t < b); chip.style.opacity = cc ? win(t, cc[0], cc[1], 0.25, 0.3) : 0; if (cc && chip.innerHTML !== cc[2]) chip.innerHTML = cc[2];
+        if (cc) chip.style.transform = `translateX(-50%) scale(${0.8 + 0.2 * pop(cc[0], t)})`;
+        document.querySelectorAll("#q div").forEach((d, i) => { const t0 = 51.2 + i * 0.6; d.style.opacity = win(t, t0, 53.5, 0.25, 0.3); d.style.transform = `translateX(${(1 - ss(t0, t0 + 0.35, t)) * (i ? 60 : -60)}px)`; });
+        const ctaA = win(t, 54.4, 58.7, 0.35, 0.4); cta.style.opacity = ctaA; cta.style.transform = `translateY(${(1 - ss(54.4, 54.8, t)) * 24}px)`;
+        $("#badge").style.opacity = t > 58.6 ? 1 - ss(58.6, 59.1, t) + ss(59.6, 60, t) : 1;
+      }
+      function renderAt(t) { overlay(warp(t)); }
+      window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+      renderAt(0);
+    </script>
+  </body>
+</html>
