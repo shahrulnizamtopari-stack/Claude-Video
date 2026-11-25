@@ -1,0 +1,4 @@
+- pengisytiharan-1957.jpg: "Pengisytiharan Kemerdekaan Tanah Melayu 1957.jpg", Kerajaan Tanah Melayu / Arkib Negara Malaysia, domain awam (PD Malaysia), Wikimedia Commons
+- merdeka-1957.jpg: "Merdeka 1957 tunku abdul rahman.jpg", PD-UKGov, Wikimedia Commons
+- pemasyhuran-1963.jpg: "Pemasyhuran Malaysia Rumi.jpg", foto Taufik (2023) teks pemasyhuran, PD Malaysia, Wikimedia Commons
+- leaders/tunku-fig.png: karikatur AI (dari brunei-video)
