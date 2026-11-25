@@ -25,6 +25,7 @@ Look: v4 cinematic adapted for history (night navy `#070b14`, fire orange/red ac
 | 1 | Kelantan | `ep01-kelantan/` | Japan landed at Kota Bharu (8 Dec 1941) before Pearl Harbor |
 | 2 | Sarawak | `ep02-sarawak/` | Sarawak Chamber, largest cave chamber in the world by area (≈ 23 football pitches); Deer Cave bats; UNESCO 2000 |
 | 3 | Kedah | `ep03-kedah/` | Sumpahan Mahsuri (legend, tagged LEGENDA) + 1821 Siam attack / 1986 tourism (tagged SEJARAH); A/B question ending |
+| 4 | Terengganu | `ep04-terengganu/` | Ulek Mayang: sea-princess legend (LEGENDA), 7 dancers / coconut blossom (BUDAYA); no song recording used (copyright) |
 
 New episode: copy the newest episode folder, keep `geo.js`, the map code, opener/outro, overlay and tools; replace the
 middle scenes, the state name in the opener, the `SEGMENTS` script and the labels/notes.
