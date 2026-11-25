@@ -287,7 +287,7 @@ const TL = [["1957", "MERDEKA"], ["1961", "IDEA"], ["1963", "MALAYSIA"], ["1965"
 const timeline = (on) => html(`<div class="tl4">${TL.map(([d, s], i) => `<div class="tn ${i === on ? "now done" : ""}" style="opacity:${i === on ? 1 : 0.55}"><b></b><i>${d}</i><u>${s}</u></div>`).join("")}<div class="tbar"><div style="width:${on / 3 * 100}%"></div></div></div>`);
 const PEN = { lat: 4.0, lon: 102.0, dist: 0.32, tilt: 8, yShift: 0.1 };
 const WIDE = { lat: 3.6, lon: 109.2, dist: 1.6, tilt: 8, yShift: 0.08 };
-const P = { merdeka: "pengisytiharan-1957.jpg" };
+const P = { merdeka: "pengisytiharan-1957.jpg", sukarno: "sukarno-fig.png", lky: "lky-fig.png" };
 const FR = {
   1() { g.setView(PEN); fill(MALAYA, ...GOLD); credit(); label([4.3, 101.9], "TANAH MELAYU", 34, "#ffce00");
     html(`<div class="dt" style="top:230px"><div class="k">MERDEKA!</div><div class="n" style="font-size:150px">31 OGOS</div><div class="y">1957</div></div>`);
@@ -327,15 +327,15 @@ const FR = {
   8() { g.setView({ ...WIDE, lat: 1.5, lon: 112, dist: 1.7 }); timeline(2); fill(IDN, ...RED); fill([...MALAYA, ...SABAH, ...SARAWAK, ...SGP], "rgba(255,206,0,.25)", "#ffce00", 2);
     html(`<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(60,0,10,.1),rgba(30,0,5,.7))"></div>`);
     html(`<div style="position:absolute;top:250px;left:0;right:0;text-align:center"><span style="display:inline-block;font:800 40px Inter;letter-spacing:6px;color:#0b0d12;background:#ffce00;padding:8px 22px;border-radius:8px">TUNGGU DULU…</span></div>`);
-    label([-1.5, 113.5], "INDONESIA", 40, "#ff8a8a");
+    label([-3.2, 106.5], "INDONESIA", 40, "#ff8a8a");
     html(`<div class="stamp2 red" style="top:420px;font-size:64px">KONFRONTASI<small>20 JAN 1963 – 11 OGOS 1966</small></div>`);
-    P.sukarno ? fig(640, 760, 470, P.sukarno, "SUKARNO", "PRESIDEN INDONESIA", true) : ph(650, 720, 330, 520, "SUKARNO", "kau jana guna prompt");
+    P.sukarno ? fig(700, 760, 470, P.sukarno, "SUKARNO", "PRESIDEN INDONESIA", true) : ph(650, 720, 330, 520, "SUKARNO", "kau jana guna prompt");
     capB(`Indonesia teruskan <span class="r">Konfrontasi</span>`); },
   9() { g.setView({ lat: 1.42, lon: 103.8, dist: 0.06, tilt: 8, yShift: 0.12 }); credit(); timeline(3); fill(SGP, "rgba(160,160,170,.35)", "#ff4d5e", 5, { lon0: 103.4, lon1: 104.3, lat0: 1.1, lat1: 1.7, ppd: 2400 });
     label([1.25, 103.82], "SINGAPURA", 40, "#ff8a8a");
     html(`<div class="stamp2 red" style="top:280px;font-size:64px">BERPISAH<small>9 OGOS 1965</small></div>`);
     html(`<div class="ttl" style="top:470px"><div class="a">BARU 2 TAHUN</div><div class="b" style="font-size:72px">MALAYSIA <span>HILANG SATU</span></div></div>`);
-    P.lky ? fig(620, 800, 470, P.lky, "LEE KUAN YEW", "PERDANA MENTERI SINGAPURA", true) : ph(680, 860, 300, 440, "LEE KUAN YEW", "kau jana guna prompt");
+    P.lky ? fig(760, 820, 430, P.lky, "LEE KUAN YEW", "PERDANA MENTERI SINGAPURA", true) : ph(680, 860, 300, 440, "LEE KUAN YEW", "kau jana guna prompt");
     capB(`Singapura <span class="r">berpisah</span> dari Malaysia`); },
   10() { g.setView({ ...WIDE, dist: 1.7 }); fill([...MALAYA, ...SABAH, ...SARAWAK], "rgba(255,206,0,.25)", "#ffce00", 2);
     html(`<div style="position:absolute;inset:0;background:rgba(5,7,11,.55)"></div>`);
