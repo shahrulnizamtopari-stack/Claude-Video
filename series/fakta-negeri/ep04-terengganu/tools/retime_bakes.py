@@ -22,7 +22,7 @@ FPS = 30
 VIDEOS = {"v-dive": ("dive", 0, 5.6), "v-coast": ("coast", 40.4, 43.4), "v-out": ("out", 58.6, 60)}
 PLATES = {"p-coast": (43.4, 53.6), "p-outro": (53.6, 58.6)}
 # B-roll clips play at their own speed: (canonical start, canonical end, media start); short clips are slowed to fit
-BROLL = {"br1": (5.6, 7.4, 1.0), "br2": (7.4, 16.2, 0.0), "br3": (16.2, 20.2, 0.8), "br4": (20.2, 24.4, 1.6), "br5": (24.4, 30.4, 0.0), "br6": (32.6, 40.4, 0.0)}
+BROLL = {"br1": (5.6, 9.2, 0.6), "br2": (9.2, 16.2, 0.0), "br3": (16.2, 20.2, 0.8), "br4": (20.2, 24.4, 1.6), "br5": (24.4, 30.4, 0.0), "br6": (32.6, 40.4, 0.0)}
 CLIP_LEN = 6.0
 CLIP_LENS = {"5": 4.0}
 q = lambda x: round(round(x * FPS) / FPS, 3)

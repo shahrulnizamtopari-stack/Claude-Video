@@ -201,7 +201,7 @@ put(gong(73), U(20.2), 0.6); put(riser(2.0), U(24.4) - 2.0, 0.35)
 # 4. seventh princess: everything calms, shimmer, the quote
 put(chime(1320), U(24.4), 0.6); put(impact(0.6), U(24.4), 0.4)
 put(fade(choir(U(32.6) - U(24.4), 174.6), 0.8, 1.0), U(24.4), 0.3)
-put(gong(110), U(30.2), 0.6); put(gong(98), U(31.4), 0.6)
+put(gong(110), W("laut,"), 0.6); put(gong(98), W("darat,"), 0.6)
 put(whoosh(0.6), U(32.6) - 0.35, 0.45)
 # 5. the dance: rebana + gong cycle + violin melody
 for tx in np.arange(U(32.6), U(40.4), 60 / 100 / 2): put(rebana(0.6), tx, 0.22, -0.2)
