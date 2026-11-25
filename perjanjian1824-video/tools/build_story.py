@@ -7,8 +7,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 d = json.load(open(os.path.join(ROOT, "assets", "transcript.json")))
 W = d if isinstance(d, list) else d["words"]
 
-FIX = {"ini": "ni", "ini,": "ni,", "itu": "tu", "Abdur": "Abdul", "Kobol": "Cobbold", "konfrontasi": "Konfrontasi", "dulu,": "dulu!", "besar": "besar:"}
-JOIN = {("Suruhan", "Jaya"): "Suruhanjaya"}
+FIX = {"Puncernya": "Puncanya", "Melayu.": "Melayu!", "March": "Mac", "Selat": "selat", "Selat.": "selat.", "dulu,": "dulu!"}
+JOIN = {("tanda", "tangan"): "tandatangan", ("Inggeris", "Belanda."): "Inggeris-Belanda.", ("Johor", "Riau."): "Johor-Riau."}
 _W = []
 for w in W:
     if _W and (_W[-1]["text"], w["text"]) in JOIN:
@@ -17,10 +17,9 @@ for w in W:
 W = _W
 DROP = set()
 DISPLAY = {}
-KEY = {"Merdeka,", "31", "Ogos.", "belum", "wujud", "pun!", "hilang", "negeri.", "1957,", "Persekutuan", "1961,", "Tunku", "Abdul", "Rahman",
-       "Singapura,", "Sabah,", "Sarawak", "Brunei.", "Suruhanjaya", "Cobbold", "Borneo,", "1963,", "Perjanjian", "London.", "tak", "tandatangan.",
-       "1963.", "bantah", "PBB", "16", "September", "lahir.", "tunggu", "dulu!", "Konfrontasi", "1966.", "1965,", "berpisah", "kebangsaan", "sebenar.",
-       "setuju?", "Komen", "September?", "bantah,", "Konfrontasi,"}
+KEY = {"dua", "negara?", "Puncanya", "London", "raja", "Melayu!", "Mac", "1824,", "Inggeris-Belanda.", "Melaka", "Bengkulu", "Sumatera",
+       "Utara", "British.", "Selatan", "Belanda.", "tunggu", "dulu!", "belah", "dua:", "Johor-Riau.", "Singapura", "Riau", "Lingga", "beradik",
+       "sultan", "sempadan", "satu", "negara", "ke?", "Komen"}
 SOFT = set()
 
 words = []
@@ -31,11 +30,9 @@ for i, w in enumerate(W):
     t = FIX.get(t, t); t = DISPLAY.get(t, t)
     nxt = W[i + 1]["text"] if i + 1 < len(W) else ""
     if words and re.search(r"[.?!]$", words[-1]["t"]) and t[:1].islower(): t = t[:1].upper() + t[1:]
-    if t == "pun" and nxt == "dan": t = "pun!"
-    if t == "Brunei" and nxt == "tak": t = "Brunei,"
-    if t == "bantah" and nxt == "dan": t = "bantah,"
-    if t == "kata" and nxt == "16": t = "kata,"
-    if t == "konfrontasi" or t == "Konfrontasi": t = "Konfrontasi,"
+    if t == "perjanjian" and nxt == "Inggeris-Belanda.": t = "Perjanjian"
+    if t == "dua." and nxt == "Kesultanan": t = "dua:"
+    if t == "sama." and nxt == "Nenek": t = "sama,"
     words.append({"t": t, "s": round(w["start"], 3), "e": round(w["end"], 3), "i": i})
 
 def key(w):
@@ -53,7 +50,7 @@ for w in words:
     if re.search(r"[.…?!]$", w["t"]) or (w["t"].endswith(",") and len(" ".join(x["t"] for x in cur)) > 12): flush()
 flush()
 # never end a group on a weak word
-WEAK = {"Tunku", "Abdul", "Persekutuan", "Tanah", "Perjanjian", "lah", "Hari", "Istana", "Pulau", "di", "ke", "dan", "yang", "dari", "untuk", "satu", "ada", "tak", "kod", "supaya", "salah"}
+WEAK = {"Perjanjian", "Kesultanan", "di", "Nenek", "Istana", "Pulau", "di", "ke", "dan", "yang", "dari", "untuk", "satu", "ada", "tak", "kod", "supaya", "salah"}
 for k in range(len(groups) - 1):
     while groups[k] and groups[k][-1]["t"] in WEAK and len(groups[k]) > 1:
         groups[k + 1].insert(0, groups[k].pop())
@@ -83,14 +80,12 @@ def at(text, n=1):
     raise SystemExit(f"word not found: {text} #{n}")
 
 T = {
-  "merdeka1": at("Merdeka"), "ogos1": at("31"), "tahu": at("tahu"), "belum": at("belum"), "hilang": at("hilang"), "y1957": at("1957"),
-  "persekutuan": at("Persekutuan"), "mei": at("Mei"), "tunku": at("Tunku"), "idea": at("idea"), "tanah2": at("Tanah", 2), "singapura1": at("Singapura"),
-  "sabah1": at("Sabah"), "sarawak1": at("Sarawak"), "brunei1": at("Brunei"), "suruhanjaya": at("Suruhanjaya"), "borneo": at("Borneo"), "rakyat": at("rakyat"),
-  "julai": at("Julai"), "perjanjian": at("Perjanjian"), "london": at("London"), "brunei2": at("Brunei", 2), "tak2": at("tandatangan"),
-  "sepatutnya": at("sepatutnya"), "ogos63": at("31", 2), "indonesia1": at("Indonesia"), "filipina": at("Filipina"), "pbb": at("PBB"),
-  "akhirnya": at("Akhirnya"), "sept16": at("16"), "lahir3": at("lahir", 3), "tunggu": at("tunggu"), "konfrontasi": at("Konfrontasi"), "y1966": at("1966"),
-  "y1965": at("1965"), "singapura2": at("Singapura", 2), "berpisah": at("berpisah"), "hari": at("Hari"), "sabah2": at("Sabah", 2),
-  "setuju": at("setuju"), "ogos3": at("31", 3), "sept3": at("16", 3), "komen": at("Komen"),
+  "malaysia1": at("Malaysia"), "nenek": at("Nenek"), "kenapa": at("kenapa"), "puncanya": at("Puncanya"), "london": at("London"), "tanpa": at("tanpa"),
+  "raja": at("raja"), "n17": at("17"), "y1824": at("1824"), "british1": at("British"), "perjanjian2": at("Perjanjian", 2), "inggeris": at("Inggeris-Belanda"),
+  "serah1": at("serahkan"), "melaka": at("Melaka"), "serah2": at("serahkan", 2), "bengkulu": at("Bengkulu"), "sumatera": at("Sumatera"),
+  "utara": at("Utara"), "selatan": at("Selatan"), "tunggu": at("tunggu"), "garisan1": at("garisan"), "belah": at("belah"), "kesultanan": at("Kesultanan"),
+  "johor": at("Johor"), "singapura": at("Singapura"), "riau": at("Riau"), "lingga": at("Lingga"), "beradik": at("beradik"), "sultan": at("sultan"),
+  "garisan2": at("garisan", 2), "sempadan": at("sempadan"), "kalau": at("Kalau"), "satu2": at("satu", 3), "komen": at("Komen"),
 }
 END_VO = words[-1]["e"]
 T["end_vo"] = END_VO
