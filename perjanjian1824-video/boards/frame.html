@@ -293,6 +293,7 @@ const flagPin = (ll, k, label, sub, dy = 0) => { const p = g.project(ll[0], ll[1
 const pin = (ll, label, sub, red) => { const p = g.project(ll[0], ll[1]);
   html(`<div class="pin" style="left:${p.x}px;top:${p.y}px;flex-direction:row;align-items:center;transform:translate(-13px,-50%)"><div class="dot ${red ? "red" : ""}"></div><div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px"><div class="lab">${label}</div>${sub ? `<div class="sub ${red ? "red" : ""}">${sub}</div>` : ""}</div></div>`); return p; };
 const credit = () => html(`<div style="position:absolute;right:30px;bottom:40px;font:700 13px Mono;color:rgba(255,255,255,.5);letter-spacing:1px">IMEJ SATELIT: ESRI, MAXAR, EARTHSTAR GEOGRAPHICS</div>`);
+const fig = (left, top, h, src, name, role, flip) => html(`<img class="fig" src="../assets/leaders/${src}" style="left:${left}px;top:${top}px;height:${h}px;${flip ? "transform:scaleX(-1)" : ""}"><div class="np2" style="left:${left - 60}px;width:${h * 0.42 + 120}px;top:${top + h - 10}px"><b>${name}</b><br><i>${role}</i></div>`);
 const ph = (left, top, w, h, who, note) => html(`<div class="ph3" style="left:${left}px;top:${top}px;width:${w}px;height:${h}px"><svg viewBox="0 0 60 90" width="110" height="160" style="opacity:.7"><circle cx="30" cy="20" r="16" fill="#ffce00"/><path d="M4 90 Q4 44 30 42 Q56 44 56 90Z" fill="#ffce00"/></svg><div>KARIKATUR<br>${who}</div><em style="font-style:normal;color:#fff;font-size:16px">${note}</em></div>`);
 const LINE = [[6.2, 97.2], [5.6, 98.2], [4.6, 99.2], [3.6, 100.2], [2.8, 100.9], [2.1, 101.7], [1.6, 102.7], [1.2, 103.4], [1.17, 103.75], [1.2, 104.05], [1.27, 104.4], [1.45, 104.9], [1.9, 105.6]];
 const strait = (col = "#fff", dash = true, w = 7) => { const pts = LINE.map(([la, lo]) => g.project(la, lo)); html(`<svg style="position:absolute;inset:0" width="1080" height="1920"><path d="M${pts.map((p) => p.x + " " + p.y).join(" L")}" fill="none" stroke="${col}" stroke-width="${w}" ${dash ? 'stroke-dasharray="18 12"' : ""} style="filter:drop-shadow(0 0 10px ${col})"/></svg>`); };
@@ -320,7 +321,7 @@ const FR = {
     capB(`Belanda serahkan <span class="r">Melaka</span> kepada British`); },
   4() { g.setView(VS); credit(); fill([...MALAYA, ...SGP], ...BR, 3, RZ); fill(SUMATRA.concat(RIAU), ...NL, 3, RZ); strait("#fff");
     html(`<div class="ttl" style="top:250px"><div class="b" style="font-size:72px"><span style="color:#ff6b7a">UTARA</span> → BRITISH</div><div class="b" style="font-size:72px;margin-top:10px"><span style="color:#ffa64d">SELATAN</span> → BELANDA</div></div>`);
-    flagPin([3.6, 101.9], "uk", "BRITISH", ""); flagPin([-0.6, 101.6], "nl", "BELANDA", "");
+    flagPin([3.6, 101.9], "uk", "BRITISH", ""); flagPin([-0.6, 101.6], "nl", "BELANDA", ""); fig(740, 860, 400, "raffles-fig.png", "STAMFORD RAFFLES", "BUKA SINGAPURA 1819");
     capB(`Utara selat, untuk <span class="r">British</span>`); },
   5() { g.setView({ lat: 1.0, lon: 104.1, dist: 0.26, tilt: 8, yShift: 0.1 }); credit(); fill([...JOHOR, ...SGP, ...RIAU], ...GOLD, 3, RJ);
     html(`<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(5,10,30,0),rgba(5,10,30,.5))"></div>`);
@@ -330,7 +331,7 @@ const FR = {
     capB(`belah satu kerajaan Melayu <span class="r">jadi dua</span>`); },
   6() { g.setView({ lat: 1.0, lon: 104.1, dist: 0.26, tilt: 8, yShift: 0.1 }); credit(); fill([...JOHOR, ...SGP], ...BR, 3, RJ); fill(RIAU, ...NL, 3, RJ); strait("#fff");
     flagPin([1.9, 103.45], "uk", "JOHOR + SINGAPURA", "BAWAH BRITISH", -10); flagPin([-0.05, 104.55], "nl", "RIAU + LINGGA", "BAWAH BELANDA", -10);
-    ph(50, 880, 280, 400, "SULTAN HUSSEIN", "ditabal British · 1819"); ph(750, 880, 280, 400, "SULTAN ABDUL RAHMAN", "ditabal Belanda");
+    fig(70, 840, 400, "hussein-fig.png", "SULTAN HUSSEIN", "DITABAL BRITISH · 1819"); html(`<div class="ncard" style="top:1000px;left:auto;right:50px;width:420px;padding:18px 22px;border:3px solid #ff8c1e"><div><div style="font:800 34px Inter;color:#fff">SULTAN<br>ABDUL RAHMAN</div><div class="rl" style="color:#ffa64d">DITABAL BELANDA · LINGGA</div></div></div>`);
     html(`<div class="stamp2 gold" style="top:1300px;font-size:40px">DUA BERADIK, DUA SULTAN</div>`);
     capB(`Dua beradik, jadi sultan di <span class="r">dua belah selat</span>`); },
   7() { g.setView({ lat: 1.6, lon: 104.5, dist: 0.95, tilt: 8, yShift: 0.08 }); credit(); fill(MYALL, ...GOLD, 2); fill(IDN, "rgba(255,255,255,.12)", "#fff", 2); strait("#ffce00", false, 6);
