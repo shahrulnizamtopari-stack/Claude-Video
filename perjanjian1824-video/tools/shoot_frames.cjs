@@ -5,7 +5,7 @@ const fs = require("fs"), path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 const TYPES = { ".html": "text/html", ".js": "text/javascript", ".json": "application/json", ".jpg": "image/jpeg", ".png": "image/png", ".woff2": "font/woff2", ".mp3": "audio/mpeg" };
 (async () => {
-  const fr = process.argv.slice(2).length ? process.argv.slice(2) : Array.from({ length: 10 }, (_, i) => String(i + 1));
+  const fr = process.argv.slice(2).length ? process.argv.slice(2) : Array.from({ length: 8 }, (_, i) => String(i + 1));
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
   await p.route("http://local/**", (r) => {
