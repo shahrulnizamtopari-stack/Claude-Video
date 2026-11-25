@@ -1,0 +1,105 @@
+#!/usr/bin/env python3
+"""Transcript -> assets/story.js: caption groups (spelling fixed, key words marked) and named beat times.
+Run after every new voiceover: python3 tools/build_story.py"""
+import json, os, re
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+d = json.load(open(os.path.join(ROOT, "assets", "transcript.json")))
+W = d if isinstance(d, list) else d["words"]
+
+FIX = {"ini": "ni", "ini,": "ni,", "itu": "tu", "Abdur": "Abdul", "Kobol": "Cobbold", "konfrontasi": "Konfrontasi", "dulu,": "dulu!", "besar": "besar:"}
+JOIN = {("Suruhan", "Jaya"): "Suruhanjaya"}
+_W = []
+for w in W:
+    if _W and (_W[-1]["text"], w["text"]) in JOIN:
+        _W[-1] = {**_W[-1], "text": JOIN[(_W[-1]["text"], w["text"])], "end": w["end"]}; continue
+    _W.append(dict(w))
+W = _W
+DROP = set()
+DISPLAY = {}
+KEY = {"Merdeka,", "31", "Ogos.", "belum", "wujud", "pun!", "hilang", "negeri.", "1957,", "Persekutuan", "1961,", "Tunku", "Abdul", "Rahman",
+       "Singapura,", "Sabah,", "Sarawak", "Brunei.", "Suruhanjaya", "Cobbold", "Borneo,", "1963,", "Perjanjian", "London.", "tak", "tandatangan.",
+       "1963.", "bantah", "PBB", "16", "September", "lahir.", "tunggu", "dulu!", "Konfrontasi", "1966.", "1965,", "berpisah", "kebangsaan", "sebenar.",
+       "setuju?", "Komen", "September?", "bantah,", "Konfrontasi,"}
+SOFT = set()
+
+words = []
+for i, w in enumerate(W):
+    t = w["text"]
+    if t in DROP:
+        words[-1]["e"] = w["end"]; continue
+    t = FIX.get(t, t); t = DISPLAY.get(t, t)
+    nxt = W[i + 1]["text"] if i + 1 < len(W) else ""
+    if words and re.search(r"[.?!]$", words[-1]["t"]) and t[:1].islower(): t = t[:1].upper() + t[1:]
+    if t == "pun" and nxt == "dan": t = "pun!"
+    if t == "Brunei" and nxt == "tak": t = "Brunei,"
+    if t == "bantah" and nxt == "dan": t = "bantah,"
+    if t == "kata" and nxt == "16": t = "kata,"
+    if t == "konfrontasi" or t == "Konfrontasi": t = "Konfrontasi,"
+    words.append({"t": t, "s": round(w["start"], 3), "e": round(w["end"], 3), "i": i})
+
+def key(w):
+    return w["t"] in KEY
+
+# group: split at sentence ends, then commas, max ~24 chars per group
+groups, cur = [], []
+def flush():
+    global cur
+    if cur: groups.append(cur); cur = []
+for w in words:
+    cand = " ".join(x["t"] for x in cur + [w])
+    if cur and len(cand) > 26: flush()
+    cur.append(w)
+    if re.search(r"[.…?!]$", w["t"]) or (w["t"].endswith(",") and len(" ".join(x["t"] for x in cur)) > 12): flush()
+flush()
+# never end a group on a weak word
+WEAK = {"Tunku", "Abdul", "Persekutuan", "Tanah", "Perjanjian", "lah", "Hari", "Istana", "Pulau", "di", "ke", "dan", "yang", "dari", "untuk", "satu", "ada", "tak", "kod", "supaya", "salah"}
+for k in range(len(groups) - 1):
+    while groups[k] and groups[k][-1]["t"] in WEAK and len(groups[k]) > 1:
+        groups[k + 1].insert(0, groups[k].pop())
+
+# merge tiny groups (one short word) into the previous group when it still fits
+k = 1
+while k < len(groups):
+    txt = lambda g: " ".join(x["t"] for x in g)
+    if (len(groups[k]) == 1 or len(txt(groups[k])) <= 8) and len(txt(groups[k - 1] + groups[k])) <= 30:
+        groups[k - 1] += groups.pop(k)
+    else:
+        k += 1
+
+caps = []
+for k, g in enumerate(groups):
+    a = g[0]["s"] - 0.08
+    b = groups[k + 1][0]["s"] - 0.08 if k + 1 < len(groups) else g[-1]["e"] + 1.2
+    caps.append({"a": round(a, 3), "b": round(b, 3), "w": [{"t": w["t"].replace(",", "").replace(".", "") if False else w["t"],
+                 "at": w["s"], "k": 1 if key(w) else 0} for w in g]})
+
+def at(text, n=1):
+    c = 0
+    for w in words:
+        if w["t"].lower().strip(".,?!:") == text.lower().strip(".,?!:"):
+            c += 1
+            if c == n: return w["s"]
+    raise SystemExit(f"word not found: {text} #{n}")
+
+T = {
+  "merdeka1": at("Merdeka"), "ogos1": at("31"), "tahu": at("tahu"), "belum": at("belum"), "hilang": at("hilang"), "y1957": at("1957"),
+  "persekutuan": at("Persekutuan"), "mei": at("Mei"), "tunku": at("Tunku"), "idea": at("idea"), "tanah2": at("Tanah", 2), "singapura1": at("Singapura"),
+  "sabah1": at("Sabah"), "sarawak1": at("Sarawak"), "brunei1": at("Brunei"), "suruhanjaya": at("Suruhanjaya"), "borneo": at("Borneo"), "rakyat": at("rakyat"),
+  "julai": at("Julai"), "perjanjian": at("Perjanjian"), "london": at("London"), "brunei2": at("Brunei", 2), "tak2": at("tandatangan"),
+  "sepatutnya": at("sepatutnya"), "ogos63": at("31", 2), "indonesia1": at("Indonesia"), "filipina": at("Filipina"), "pbb": at("PBB"),
+  "akhirnya": at("Akhirnya"), "sept16": at("16"), "lahir3": at("lahir", 3), "tunggu": at("tunggu"), "konfrontasi": at("Konfrontasi"), "y1966": at("1966"),
+  "y1965": at("1965"), "singapura2": at("Singapura", 2), "berpisah": at("berpisah"), "hari": at("Hari"), "sabah2": at("Sabah", 2),
+  "setuju": at("setuju"), "ogos3": at("31", 3), "sept3": at("16", 3), "komen": at("Komen"),
+}
+END_VO = words[-1]["e"]
+T["end_vo"] = END_VO
+DUR = round(END_VO + 1.6, 2)
+
+js = "// generated by tools/build_story.py — do not edit by hand\n"
+js += f"export const DURATION = {DUR};\nexport const VO_LEN = {d.get('duration', END_VO) if isinstance(d, dict) else END_VO};\n"
+js += "export const T = " + json.dumps(T) + ";\n"
+js += "export const CAPS = " + json.dumps(caps, ensure_ascii=False) + ";\n"
+open(os.path.join(ROOT, "assets", "story.js"), "w").write(js)
+for c in caps: print(f'{c["a"]:6.2f}-{c["b"]:6.2f}  ' + " ".join(("*" if w["k"] else "") + w["t"] for w in c["w"]))
+print("DURATION", DUR)
