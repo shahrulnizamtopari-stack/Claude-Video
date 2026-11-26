@@ -287,7 +287,7 @@ const ph = (left, top, w, h, who, note) => html(`<div class="ph3" style="left:${
 const fig = (left, top, h, src, name, role) => html(`<img class="fig" src="../assets/leaders/${src}" style="left:${left}px;top:${top}px;height:${h}px"><div class="np2" style="left:${left - 60}px;width:${h * 0.45 + 120}px;top:${top + h - 10}px"><b>${name}</b><br><i>${role}</i></div>`);
 const mini = (top, yr, n, col = "#ff4d5e") => html(`<div style="position:absolute;top:${top}px;left:90px;display:flex;align-items:center;gap:16px;background:rgba(10,12,17,.94);border-radius:16px;padding:14px 22px;box-shadow:0 14px 34px rgba(0,0,0,.5)">${lg("dap", 64)}<div style="font:700 22px Mono;letter-spacing:3px;color:#ff8a8a">${yr}</div><div style="font:italic 700 96px/1 Serif;color:${col}">${n}</div><div style="font:800 30px Inter;color:#fff">KERUSI</div></div>`);
 const KV = { lat: 1.53, lon: 110.36, dist: 0.016, tilt: 8, yShift: 0.12 };
-const PAD = [1.553, 110.355], PEN = [1.545, 110.392], KSN = [1.468, 110.330], PJ = [2.93, 101.69];
+const PAD = [1.553, 110.355], PEN = [1.528, 110.40], KSN = [1.468, 110.330], PJ = [2.93, 101.69];
 const FR = {
   1() { g.setView(SV); credit(); fill(SWK, "rgba(255,206,0,.15)", "#ffce00");
     [KCH, SBU, BTU, MRI].forEach((ll) => ring(ll, "#ff4d5e", 34));
@@ -296,7 +296,7 @@ const FR = {
       <div style="font:800 60px Inter;color:#fff;align-self:center">→</div>
       <div style="text-align:center"><div style="font:italic 700 110px/1 Serif;color:#ff4d5e">2</div><div style="width:120px;height:37px;background:linear-gradient(#ff4d5e,#b3121f);border-radius:10px 10px 0 0"></div><div style="font:800 32px Inter;color:#fff;margin-top:8px">2021</div></div></div>`);
     html(`<div class="stamp2 red" style="top:1180px;font-size:60px">APA JADI?</div>`);
-    ph(760, 820, 260, 380, "CHONG CHIENG JEN", "pengerusi DAP Sarawak");
+    fig(760, 830, 360, "chong-fig.png", "CHONG CHIENG JEN", "PENGERUSI DAP SARAWAK");
     capB(`Sepuluh tahun kemudian, <span class="r">tinggal dua je!</span>`); },
   2() { g.setView(KV); credit();
     ring(PAD, "#ff4d5e", 44, "PADUNGAN", "DAP", "#ff4d5e"); ring(PEN, "#ff4d5e", 44, "PENDING", "DAP", "#ff4d5e"); ring(KSN, "#ff4d5e", 44, "KOTA SENTOSA", "DAP", "#ff4d5e");
@@ -311,7 +311,7 @@ const FR = {
   4() { g.setView(KV); credit();
     ring(PAD, "#ff4d5e", 44, "PADUNGAN", "DAP BERTAHAN", "#ff4d5e"); ring(PEN, "#ff4d5e", 44, "PENDING", "DAP BERTAHAN", "#ff4d5e"); ring(KSN, "#ffce00", 44, "KOTA SENTOSA", "→ SUPP", "#ffce00");
     mini(250, "2021", 2);
-    ph(60, 820, 260, 380, "SIM KUI HIAN", "presiden SUPP (GPS)");
+    fig(70, 830, 360, "sim-fig.png", "SIM KUI HIAN", "PRESIDEN SUPP (GPS)");
     capB(`Cuma <span class="r">Padungan dan Pending</span> yang bertahan`); },
   5() { g.setView(SV); credit(); fill(SWK, "rgba(255,206,0,.32)", "#ffce00");
     html(`<div class="big60" style="top:250px;border:3px solid #ffce00"><div style="display:flex;align-items:center;justify-content:center;gap:16px">${lg("gps", 80)}<div class="k" style="color:#ffce00">GPS · PRN 2021</div></div><div class="n" style="font-size:150px">12 / 16</div><div class="u">KERUSI MAJORITI CINA</div>
@@ -334,7 +334,7 @@ const FR = {
     const x = (k) => `<div style="position:relative">${lg(k, 140)}<div style="position:absolute;left:-10px;right:-10px;top:50%;height:12px;background:#ff2d46;transform:rotate(-20deg);border-radius:6px"></div></div>`;
     html(`<div style="position:absolute;top:700px;left:90px;display:flex;flex-direction:column;gap:24px">${x("pkr")}${x("amanah")}</div>`);
     html(`<div style="position:absolute;top:1060px;left:70px;font:800 30px Inter;color:#ff8a8a;letter-spacing:2px">TAK TURUN</div>`);
-    ph(560, 700, 300, 440, "CHONG CHIENG JEN", "seorang diri, angkat bahu");
+    fig(560, 700, 440, "chong-fig.png", "CHONG CHIENG JEN", "SEORANG DIRI");
     capB(`PKR dan Amanah, <span class="r">rakan sendiri</span>, tak turun langsung`); },
   8() { g.setView({ ...SV, dist: 0.7 }); fill(SWK, "rgba(255,206,0,.2)", "#ffce00");
     html(`<div style="position:absolute;inset:0;background:rgba(5,7,11,.55)"></div>`);
