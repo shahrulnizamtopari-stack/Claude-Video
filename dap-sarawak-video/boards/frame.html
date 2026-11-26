@@ -251,7 +251,8 @@ const W = 1080, H = 1920;
 const F = +(new URLSearchParams(location.search).get("f") || 1);
 const g = await createGlobe(document.getElementById("gl"), { W, H, base: "../assets/", patches: [
   { src: "hi-borneo.jpg", lon0: 108, lon1: 119.5, lat0: -4.5, lat1: 7.5 },
-  { src: "hi-swk.jpg", lon0: 109.5, lon1: 115.7, lat0: 0.8, lat1: 5.1 } ] });
+  { src: "hi-kch.jpg", lon0: 110.1, lon1: 110.65, lat0: 1.3, lat1: 1.75 },
+  { src: "hi-my.jpg", lon0: 99.5, lon1: 119.5, lat0: 0.5, lat1: 7.5 } ] });
 const topo = await (await fetch("../assets/geo/countries-10m.json")).json();
 const countries = topojson.feature(topo, topo.objects.countries).features;
 const ST = (await (await fetch("../assets/geo/my-states.json")).json()).features;
@@ -281,43 +282,59 @@ const seats = (n, red, lost, top, label, sub, col = "#ff4d5e") => html(`<div sty
   ${lost ? `<div style="margin-top:12px;font:800 30px Inter;color:#ffce00;text-align:right">${lost}</div>` : ""}</div>`);
 const KCH = [1.55, 110.34], SBU = [2.30, 111.82], BTU = [3.17, 113.03], MRI = [4.40, 113.99];
 const SV = { lat: 2.75, lon: 112.4, dist: 0.6, tilt: 8, yShift: 0.1 };
+const ring = (ll, col, r = 40, lab, sub, subc) => { const p = g.project(ll[0], ll[1]); html(`<div style="position:absolute;left:${p.x - r}px;top:${p.y - r}px;width:${r * 2}px;height:${r * 2}px;border-radius:50%;border:6px solid ${col};box-shadow:0 0 30px ${col},inset 0 0 20px ${col}"></div><div style="position:absolute;left:${p.x - 9}px;top:${p.y - 9}px;width:18px;height:18px;border-radius:50%;background:${col}"></div>` + (lab ? `<div style="position:absolute;left:${p.x + r + 8}px;top:${p.y - 24}px;display:flex;flex-direction:column;gap:5px;align-items:flex-start"><div class="lab">${lab}</div>${sub ? `<div class="sub" style="background:${subc || col};color:${subc === "#ffce00" ? "#0b0d12" : "#fff"}">${sub}</div>` : ""}</div>` : "")); };
+const ph = (left, top, w, h, who, note) => html(`<div class="ph3" style="left:${left}px;top:${top}px;width:${w}px;height:${h}px"><svg viewBox="0 0 60 90" width="100" height="150" style="opacity:.7"><circle cx="30" cy="20" r="16" fill="#ffce00"/><path d="M4 90 Q4 44 30 42 Q56 44 56 90Z" fill="#ffce00"/></svg><div>KARIKATUR<br>${who}</div><em style="font-style:normal;color:#fff;font-size:15px">${note}</em></div>`);
+const fig = (left, top, h, src, name, role) => html(`<img class="fig" src="../assets/leaders/${src}" style="left:${left}px;top:${top}px;height:${h}px"><div class="np2" style="left:${left - 60}px;width:${h * 0.45 + 120}px;top:${top + h - 10}px"><b>${name}</b><br><i>${role}</i></div>`);
+const mini = (top, yr, n, col = "#ff4d5e") => html(`<div style="position:absolute;top:${top}px;left:90px;display:flex;align-items:center;gap:16px;background:rgba(10,12,17,.94);border-radius:16px;padding:14px 22px;box-shadow:0 14px 34px rgba(0,0,0,.5)">${lg("dap", 64)}<div style="font:700 22px Mono;letter-spacing:3px;color:#ff8a8a">${yr}</div><div style="font:italic 700 96px/1 Serif;color:${col}">${n}</div><div style="font:800 30px Inter;color:#fff">KERUSI</div></div>`);
+const KV = { lat: 1.53, lon: 110.36, dist: 0.016, tilt: 8, yShift: 0.12 };
+const PAD = [1.553, 110.355], PEN = [1.545, 110.392], KSN = [1.468, 110.330], PJ = [2.93, 101.69];
 const FR = {
-  1() { g.setView(SV); credit(); fill(SWK, "rgba(255,206,0,.18)", "#ffce00"); dimBg(.4);
-    html(`<div style="position:absolute;top:240px;left:150px;right:150px;height:560px;display:flex;align-items:flex-end;justify-content:center;gap:120px">
-      <div style="text-align:center"><div style="font:italic 700 140px/1 Serif;color:#ff4d5e">12</div><div style="width:200px;height:400px;background:linear-gradient(#ff4d5e,#b3121f);border-radius:12px 12px 0 0"></div><div style="font:800 40px Inter;color:#fff;margin-top:10px">2011</div></div>
-      <div style="text-align:center"><div style="font:italic 700 140px/1 Serif;color:#ff4d5e">2</div><div style="width:200px;height:67px;background:linear-gradient(#ff4d5e,#b3121f);border-radius:12px 12px 0 0"></div><div style="font:800 40px Inter;color:#fff;margin-top:10px">2021</div></div></div>`);
-    html(`<div style="position:absolute;top:900px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:20px">${lg("dap", 100)}<div style="font:800 54px Inter;color:#fff">DAP SARAWAK</div></div>`);
-    html(`<div class="stamp2 red" style="top:1110px;font-size:60px">APA JADI?</div>`);
+  1() { g.setView(SV); credit(); fill(SWK, "rgba(255,206,0,.15)", "#ffce00");
+    [KCH, SBU, BTU, MRI].forEach((ll) => ring(ll, "#ff4d5e", 34));
+    html(`<div style="position:absolute;top:230px;left:90px;right:90px;display:flex;align-items:flex-end;justify-content:center;gap:60px;background:rgba(10,12,17,.9);border-radius:18px;padding:20px 30px">
+      ${lg("dap", 90)}<div style="text-align:center"><div style="font:italic 700 110px/1 Serif;color:#ff4d5e">12</div><div style="width:120px;height:220px;background:linear-gradient(#ff4d5e,#b3121f);border-radius:10px 10px 0 0"></div><div style="font:800 32px Inter;color:#fff;margin-top:8px">2011</div></div>
+      <div style="font:800 60px Inter;color:#fff;align-self:center">→</div>
+      <div style="text-align:center"><div style="font:italic 700 110px/1 Serif;color:#ff4d5e">2</div><div style="width:120px;height:37px;background:linear-gradient(#ff4d5e,#b3121f);border-radius:10px 10px 0 0"></div><div style="font:800 32px Inter;color:#fff;margin-top:8px">2021</div></div></div>`);
+    html(`<div class="stamp2 red" style="top:1180px;font-size:60px">APA JADI?</div>`);
+    ph(760, 820, 260, 380, "CHONG CHIENG JEN", "pengerusi DAP Sarawak");
     capB(`Sepuluh tahun kemudian, <span class="r">tinggal dua je!</span>`); },
-  2() { g.setView(SV); credit(); fill(SWK, "rgba(255,206,0,.15)", "#ffce00");
-    pin(KCH, "KUCHING", "", true); pin(SBU, "SIBU", "", true); pin(BTU, "BINTULU", "", true); pin(MRI, "MIRI", "", true);
-    seats(12, 12, "", 250, "PRN 2011", "REKOD TERBAIK DAP SARAWAK");
+  2() { g.setView(KV); credit();
+    ring(PAD, "#ff4d5e", 44, "PADUNGAN", "DAP", "#ff4d5e"); ring(PEN, "#ff4d5e", 44, "PENDING", "DAP", "#ff4d5e"); ring(KSN, "#ff4d5e", 44, "KOTA SENTOSA", "DAP", "#ff4d5e");
+    html(`<div class="ttl" style="top:240px"><div class="a">PRN 2011 · KUCHING</div><div class="b" style="font-size:72px">DAP <span style="color:#ff4d5e">MENYAPU BANDAR</span></div></div>`);
+    mini(1080, "2011", 12);
     capB(`DAP menang <span class="r">dua belas kerusi</span> di Sarawak`); },
-  3() { g.setView(SV); credit(); fill(SWK, "rgba(255,206,0,.15)", "#ffce00");
-    seats(12, 7, "HILANG 5 KERUSI", 250, "PRN 2016", "TINGGAL TUJUH");
+  3() { g.setView({ lat: 3.0, lon: 112.6, dist: 0.32, tilt: 8, yShift: 0.1 }); credit(); fill(SWK, "rgba(255,206,0,.15)", "#ffce00");
+    ring(SBU, "#7a828c", 40, "SIBU", "-", "#5b6573"); ring(BTU, "#7a828c", 40, "BINTULU", "", ""); ring(MRI, "#7a828c", 40, "MIRI", "", "");
+    html(`<div class="stamp2 red" style="top:300px;font-size:60px">HILANG 5 KERUSI</div>`);
+    mini(1080, "2016", 7);
     capB(`DAP hilang lima kerusi, <span class="r">tinggal tujuh</span>`); },
-  4() { g.setView(SV); credit(); fill(SWK, "rgba(255,206,0,.15)", "#ffce00");
-    pin(KCH, "PADUNGAN · PENDING", "DAP BERTAHAN", true); pin(SBU, "BUKIT ASSEK · PELAWAN", "→ SUPP", "g"); pin(BTU, "TANJONG BATU", "→ SUPP", "g"); pin(MRI, "PUJUT", "→ SUPP", "g");
-    seats(7, 2, "HILANG 5 LAGI", 250, "PRN 2021", "TINGGAL DUA");
+  4() { g.setView(KV); credit();
+    ring(PAD, "#ff4d5e", 44, "PADUNGAN", "DAP BERTAHAN", "#ff4d5e"); ring(PEN, "#ff4d5e", 44, "PENDING", "DAP BERTAHAN", "#ff4d5e"); ring(KSN, "#ffce00", 44, "KOTA SENTOSA", "→ SUPP", "#ffce00");
+    mini(250, "2021", 2);
+    ph(60, 820, 260, 380, "SIM KUI HIAN", "presiden SUPP (GPS)");
     capB(`Cuma <span class="r">Padungan dan Pending</span> yang bertahan`); },
-  5() { g.setView(SV); credit(); fill(SWK, "rgba(255,206,0,.3)", "#ffce00"); dimBg(.45);
-    html(`<div class="big60" style="top:260px;border:3px solid #ffce00"><div style="display:flex;align-items:center;justify-content:center;gap:16px">${lg("gps", 80)}<div class="k" style="color:#ffce00">GPS · PRN 2021</div></div><div class="n" style="font-size:170px">12 / 16</div><div class="u">KERUSI MAJORITI CINA</div>
-      <div style="display:grid;grid-template-columns:repeat(16,1fr);gap:8px;margin-top:20px">${Array.from({ length: 16 }, (_, i) => `<i style="aspect-ratio:1;border-radius:50%;display:block;${i < 12 ? "background:#ffce00" : "border:4px solid #5b6573"}"></i>`).join("")}</div></div>`);
-    html(`<div class="stamp2 gold" style="top:900px;font-size:46px">TERBAIK DALAM 15 TAHUN</div>`);
+  5() { g.setView(SV); credit(); fill(SWK, "rgba(255,206,0,.32)", "#ffce00");
+    html(`<div class="big60" style="top:250px;border:3px solid #ffce00"><div style="display:flex;align-items:center;justify-content:center;gap:16px">${lg("gps", 80)}<div class="k" style="color:#ffce00">GPS · PRN 2021</div></div><div class="n" style="font-size:150px">12 / 16</div><div class="u">KERUSI MAJORITI CINA</div>
+      <div style="display:grid;grid-template-columns:repeat(16,1fr);gap:8px;margin-top:18px">${Array.from({ length: 16 }, (_, i) => `<i style="aspect-ratio:1;border-radius:50%;display:block;${i < 12 ? "background:#ffce00" : "border:4px solid #5b6573"}"></i>`).join("")}</div></div>`);
+    html(`<div class="stamp2 gold" style="top:830px;font-size:44px">TERBAIK DALAM 15 TAHUN</div>`);
+    fig(720, 930, 330, "johari-fig.png", "ABANG JOHARI", "PENGERUSI GPS");
     capB(`<span class="r">prestasi terbaik</span> dalam lima belas tahun`); },
-  6() { g.setView(SV); fill(SWK, "rgba(255,206,0,.15)", "#ffce00"); dimBg(.6);
-    html(`<div class="ttl" style="top:250px"><div class="b" style="font-size:96px">KENAPA<span>?</span></div><div class="a" style="font-size:28px;margin-top:10px;color:#c9d0d8">KATA PENGANALISIS</div></div>`);
-    const r = (n, t, s) => `<div style="display:flex;gap:22px;align-items:center;background:rgba(10,12,17,.95);border-radius:18px;padding:24px 28px;box-shadow:0 14px 34px rgba(0,0,0,.5)"><div style="width:90px;height:90px;border-radius:50%;background:#ffce00;display:flex;align-items:center;justify-content:center;font:800 50px Inter;color:#0b0d12;flex:none">${n}</div><div><div style="font:800 44px/1.1 Inter;color:#fff">${t}</div><div style="font:700 20px Mono;color:#9aa3ad;letter-spacing:1px;margin-top:6px">${s}</div></div></div>`;
-    html(`<div style="position:absolute;top:500px;left:80px;right:80px;display:flex;flex-direction:column;gap:24px">${r(1, "KECEWA REKOD 22 BULAN PH", "PH DI PUTRAJAYA 2018 – 2020")}${r(2, "SENTIMEN \"UTAMAKAN SARAWAK\"", "UNDI BERALIH KE PARTI TEMPATAN")}</div>`);
-    capB(`pengundi kecewa dengan <span class="r">rekod 22 bulan</span>`); },
-  7() { g.setView(SV); fill(SWK, "rgba(255,206,0,.15)", "#ffce00"); dimBg(.7);
+  6() { g.setView({ lat: 2.6, lon: 106.2, dist: 1.35, tilt: 8, yShift: 0.08 }); dimBg(.35);
+    const A = g.project(PJ[0], PJ[1]), B = g.project(KCH[0], KCH[1]);
+    html(`<svg style="position:absolute;inset:0" width="1080" height="1920"><defs><marker id="ah" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#ff4d5e"/></marker></defs><path d="M${A.x} ${A.y} Q${(A.x + B.x) / 2} ${Math.min(A.y, B.y) - 220} ${B.x} ${B.y}" stroke="#ff4d5e" stroke-width="7" stroke-dasharray="16 10" fill="none" marker-end="url(#ah)"/></svg>`);
+    pin(PJ, "PUTRAJAYA", "PH · 22 BULAN (2018–20)", true); pin(KCH, "KUCHING", "");
+    html(`<div class="ttl" style="top:240px"><div class="b" style="font-size:90px">KENAPA<span>?</span></div><div class="a" style="font-size:26px;margin-top:8px;color:#c9d0d8">KATA PENGANALISIS</div></div>`);
+    const r = (n, t, s2) => `<div style="display:flex;gap:20px;align-items:center;background:rgba(10,12,17,.95);border-radius:18px;padding:20px 24px;box-shadow:0 14px 34px rgba(0,0,0,.5)"><div style="width:80px;height:80px;border-radius:50%;background:#ffce00;display:flex;align-items:center;justify-content:center;font:800 46px Inter;color:#0b0d12;flex:none">${n}</div><div><div style="font:800 40px/1.1 Inter;color:#fff">${t}</div><div style="font:700 19px Mono;color:#9aa3ad;letter-spacing:1px;margin-top:6px">${s2}</div></div></div>`;
+    html(`<div style="position:absolute;top:1000px;left:80px;right:80px;display:flex;flex-direction:column;gap:18px">${r(1, "KECEWA REKOD 22 BULAN PH", "PH DI PUTRAJAYA 2018 – 2020")}${r(2, "SENTIMEN \"UTAMAKAN SARAWAK\"", "UNDI BERALIH KE PARTI TEMPATAN")}</div>`);
+    capB(`rekod <span class="r">22 bulan</span> Pakatan Harapan di Putrajaya`); },
+  7() { g.setView({ ...KV, dist: 0.03 }); credit(); dimBg(.5);
     html(`<div style="position:absolute;top:250px;left:0;right:0;text-align:center"><span style="display:inline-block;font:800 40px Inter;letter-spacing:6px;color:#0b0d12;background:#ffce00;padding:8px 22px;border-radius:8px">TUNGGU DULU…</span></div>`);
     html(`<div class="ttl" style="top:340px"><div class="b" style="font-size:72px">PRN 2026: <span>SEORANG DIRI</span></div></div>`);
-    html(`<div style="position:absolute;top:560px;left:0;right:0;display:flex;justify-content:center">${lg("dap", 260)}</div>`);
-    html(`<div style="position:absolute;top:850px;left:0;right:0;text-align:center;font:800 44px Inter;color:#fff">DAP · <span style="color:#ff4d5e">12 KERUSI</span></div>`);
-    const x = (k) => `<div style="position:relative">${lg(k, 170)}<div style="position:absolute;left:-10px;right:-10px;top:50%;height:14px;background:#ff2d46;transform:rotate(-20deg);border-radius:7px"></div></div>`;
-    html(`<div style="position:absolute;top:960px;left:0;right:0;display:flex;justify-content:center;gap:40px">${x("pkr")}${x("amanah")}</div>`);
-    html(`<div class="stamp2 red" style="top:1170px;font-size:44px">RAKAN SENDIRI TAK TURUN</div>`);
+    html(`<div style="position:absolute;top:500px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:20px">${lg("dap", 120)}<div style="font:800 50px Inter;color:#fff">12 KERUSI</div></div>`);
+    const x = (k) => `<div style="position:relative">${lg(k, 140)}<div style="position:absolute;left:-10px;right:-10px;top:50%;height:12px;background:#ff2d46;transform:rotate(-20deg);border-radius:6px"></div></div>`;
+    html(`<div style="position:absolute;top:700px;left:90px;display:flex;flex-direction:column;gap:24px">${x("pkr")}${x("amanah")}</div>`);
+    html(`<div style="position:absolute;top:1060px;left:70px;font:800 30px Inter;color:#ff8a8a;letter-spacing:2px">TAK TURUN</div>`);
+    ph(560, 700, 300, 440, "CHONG CHIENG JEN", "seorang diri, angkat bahu");
     capB(`PKR dan Amanah, <span class="r">rakan sendiri</span>, tak turun langsung`); },
   8() { g.setView({ ...SV, dist: 0.7 }); fill(SWK, "rgba(255,206,0,.2)", "#ffce00");
     html(`<div style="position:absolute;inset:0;background:rgba(5,7,11,.55)"></div>`);
@@ -327,7 +344,7 @@ const FR = {
     capB(`DAP bangkit semula, <span class="r">atau terus tenggelam?</span>`); },
 };
 FR[F]();
-g.setPatchOp(0, 1); g.setPatchOp(1, 0);
+g.setPatchOp(0, F === 6 ? 0 : 1); g.setPatchOp(1, [2, 4, 7].includes(F) ? 1 : 0); g.setPatchOp(2, F === 6 ? 1 : 0);
 g.render();
 document.body.dataset.ready = "1";
 </script></body></html>
