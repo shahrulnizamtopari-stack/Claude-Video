@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sound bed for prnsarawak-video (assets/sfx.wav, 48 kHz mono). Every sound sits on something visible; times come from
+"""Sound bed for dap-sarawak-video (assets/sfx.wav, 48 kHz mono). Every sound sits on something visible; times come from
 assets/story.js (VO time), so run tools/build_story.py first."""
 import os, re, json, wave
 import numpy as np
@@ -47,21 +47,24 @@ n = N; tt = np.arange(n) / SR
 drone = sum(np.sin(2 * np.pi * f * tt + k) / k for k, f in enumerate([55, 110, 165, 220], 1))
 lvl = np.full(n, 0.04)
 lvl *= 1 - 0.95 * np.clip(1 - np.abs(tt - (T["tunggu"] + 1.2)) / 1.8, 0, 1)
-lvl *= np.clip((T["untuk"] - 0.5 - tt) / 1.0, 0, 1) * 0.5 + 0.5
+lvl *= np.clip((T["jadi"] - 0.5 - tt) / 1.0, 0, 1) * 0.5 + 0.5
 put(drone * lvl, 0, 1)
-for t in (T["kenapa"] - 0.1, T["dap"] - 0.3, T["ceritanya"] - 0.3, T["malah"] - 0.3, T["untuk"] - 0.4):
+for t in (T["sepuluh"] - 0.3, T["y2016"] - 0.3, T["y2021"] - 0.3, T["malah"] - 0.3, T["kenapa"] - 0.2, T["tunggu"] + 0.3, T["jadi"] - 0.3):
     put(whoosh(.9), t, 0.35)
-put(impact(.6), 0.1, 0.6); put(pop(), 0.4, 0.5); put(impact(.7), T["gelanggang"] - 0.05, 0.85)
-for k in ("pkr", "amanah", "bn", "pas", "bersatu"):
-    put(whoosh(.3), T[k] - 0.15, 0.35); put(impact(.35), T[k] + 0.35, 0.55)
-put(pop(), T["dap"] - 0.15, 0.7); put(pop(), T["gps1"] - 0.15, 0.7)
-for i in range(30): put(tick(), T["n82"] - 0.5 + i * 0.03, 1)
-put(impact(.6), T["n82"] + 0.4, 0.6)
-for i in range(4): put(whoosh(.4), T["keluar1"] + i * 0.12, 0.3)
-put(pop(), T["bentuk"] - 0.3, 0.6); put(impact(.5), T["gps2"] - 0.1 + 0.29, 0.6); put(impact(.7), T["utamakan"] - 0.05, 0.8)
-put(impact(1.1), T["tunggu"], 1.1); put(ping(880), T["ketua"] - 0.15, 0.5); put(ping(990), T["perlembagaan"] - 0.15, 0.5)
-put(impact(.7), T["petros"] - 0.3, 0.8)
-put(pop(), T["setuju"] - 0.2, 0.8); put(pop(), T["setuju"], 0.8); put(ping(990), T["komen"], 0.6)
+put(impact(.5), 0.2, 0.6)
+for i in range(3): put(pop(), T["n12"] - 0.2 + i * 0.2, 0.6)
+put(ping(700), T["rekod1"] - 0.3, 0.4)
+for i in range(4): put(pop(), T["sepuluh"] + 0.5 + i * 0.12, 0.5)
+put(whoosh(.5), T["n2"] - 0.3, 0.5); put(impact(.5), T["tinggal1"] - 0.1 + 0.29, 0.6); put(impact(.8), T["apa"] - 0.05, 0.9)
+put(impact(.7), T["hilang1"] - 0.05, 0.8)
+for i in range(5): put(tick(), T["hilang1"] + i * 0.16, 1)
+for i in range(5): put(tick(), T["hilang2"] + i * 0.16, 1)
+put(pop(), T["padungan"], 0.6); put(pop(), T["pending"], 0.6); put(ping(990), T["supp"] - 0.1, 0.5); put(impact(.5), T["supp"] - 0.1 + 0.29, 0.6)
+for i in range(12): put(tick(), T["gps12"] - 0.2 + i * 0.07, 1)
+put(impact(.7), T["prestasi"] - 0.05, 0.8); put(impact(.5), T["malah"] + 0.3 + 0.29, 0.5)
+put(whoosh(1.0), T["putrajaya"] - 0.2, 0.4); put(pop(), T["kecewa"] - 0.15, 0.6); put(pop(), T["sentimen"] - 0.15, 0.6)
+put(impact(1.1), T["tunggu"], 1.1); put(impact(.4), T["pkr"] + 0.3, 0.6); put(impact(.4), T["amanah"] + 0.3, 0.6); put(impact(.5), T["seorang"] - 0.1 + 0.29, 0.6)
+put(pop(), T["bangkit"] - 0.3, 0.8); put(pop(), T["bangkit"], 0.8); put(ping(990), T["komen"], 0.6)
 
 pk = np.max(np.abs(out)); out = np.tanh(out / pk * 2.4); out = out / np.max(np.abs(out)) * 0.9  # soft-clip so ticks/whooshes are not buried under the big hits
 with wave.open(os.path.join(ROOT, "assets", "sfx.wav"), "wb") as w:
