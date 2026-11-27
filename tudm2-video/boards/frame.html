@@ -1,0 +1,295 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Inter;src:url(../assets/fonts/Inter-400.woff2);font-weight:400}
+@font-face{font-family:Inter;src:url(../assets/fonts/Inter-700.woff2);font-weight:700}
+@font-face{font-family:Inter;src:url(../assets/fonts/inter-latin-800-normal.woff2);font-weight:800}
+@font-face{font-family:Mono;src:url(../assets/fonts/JetBrainsMono-700.woff2);font-weight:700}
+@font-face{font-family:Serif;src:url(../assets/fonts/EBGaramond-400.woff2);font-weight:400}
+@font-face{font-family:Serif;src:url(../assets/fonts/EBGaramond-700.woff2);font-weight:700}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;background:#05070b;overflow:hidden;font-family:Inter}
+#gl{position:absolute;inset:0;width:1080px;height:1920px}
+.vig{position:absolute;inset:0;pointer-events:none;background:
+ linear-gradient(180deg,#05070b 0%,rgba(5,7,11,.92) 7%,rgba(5,7,11,.15) 22%,rgba(5,7,11,0) 40%,rgba(5,7,11,0) 70%,rgba(5,7,11,.55) 90%,#05070b 100%)}
+#ov{position:absolute;inset:0}
+.cap{position:absolute;top:168px;left:0;right:0;text-align:center;font:700 46px/1.15 Inter;color:#fff;letter-spacing:-.5px;padding:0 70px}
+.cap .r{color:#ff2d46}.cap .g{color:rgba(255,255,255,.38)}
+.pin{position:absolute;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;gap:6px}
+.lab{font:700 20px/1 Mono;letter-spacing:2px;color:#fff;background:#0b0d12;padding:7px 10px 6px;border-radius:4px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.5)}
+.sub{font:700 17px/1 Mono;letter-spacing:1.5px;color:#0b0d12;background:#fff;padding:5px 8px 4px;border-radius:3px;white-space:nowrap;margin-top:-4px}
+.sub.red{background:#ff2d46;color:#fff}
+.flag{width:56px;height:38px;border-radius:4px;box-shadow:0 0 0 3px #fff,0 6px 16px rgba(0,0,0,.6);overflow:hidden}
+.flag svg{width:100%;height:100%;display:block}
+.dot{width:26px;height:26px;border-radius:50%;background:#fff;border:7px solid #0b0d12;box-shadow:0 0 0 3px #fff}
+.card{position:absolute;left:50%;transform:translateX(-50%);width:760px;border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.hd{background:#0e1015;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:16px 24px}
+.hd b{font:800 26px Inter;letter-spacing:.5px}.hd b:before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:#ff2d46;margin-right:12px;vertical-align:3px}
+.hd i{font:700 18px Mono;letter-spacing:2px;color:#9aa3ad;font-style:normal}
+.bd{background:#fff;color:#111;padding:22px 28px 16px;font:400 46px/1.16 Serif}
+.bd mark{background:rgba(255,64,110,.42);color:#111;padding:0 2px}
+.ft{font:700 15px Mono;color:#8a929b;letter-spacing:1px;margin-top:12px}
+.media{height:330px;background:linear-gradient(135deg,#1b2633,#0d131b);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#7f8c99;font:700 20px Mono;letter-spacing:2px;text-align:center;border-top:1px solid #222}
+.media em{font-style:normal;color:#ffcf4a;font-size:17px}
+.stat{position:absolute;left:50%;transform:translateX(-50%);width:760px;background:rgba(10,12,17,.94);border-radius:16px;padding:34px 40px 30px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.stat .k{font:700 22px Mono;letter-spacing:4px;color:#c9d0d8}
+.stat .n{font:italic 700 190px/1 Serif;color:#ff2d46;margin:14px 0 6px}
+.stat .u{font:800 40px Inter;color:#fff;letter-spacing:.5px}
+.stat .bar{height:4px;background:#2a2f38;margin-top:24px;border-radius:2px}.stat .bar div{height:100%;background:#ff2d46;width:70%}
+.title{position:absolute;top:250px;left:0;right:0;text-align:center;color:#fff}
+.title .a{font:800 54px Inter;letter-spacing:3px}
+.title .b{font:800 150px/1 Inter;letter-spacing:-5px}.title .b span{color:#ff2d46}
+.title .c{font:800 50px Inter;letter-spacing:6px;margin-top:18px}
+.title .ln{width:520px;height:5px;background:#ff2d46;margin:22px auto 0}
+.person{position:absolute;width:250px;border-radius:12px;overflow:hidden;background:#0e1015;box-shadow:0 18px 40px rgba(0,0,0,.6)}
+.person .ph{height:260px;background:linear-gradient(160deg,#3a4552,#151b22);display:flex;align-items:center;justify-content:center;font:700 16px Mono;color:#8996a3;letter-spacing:1px;text-align:center;padding:10px}
+.person .nm{font:800 24px Inter;color:#fff;padding:12px 14px 2px}.person .rl{font:700 14px Mono;color:#9aa3ad;padding:0 14px 14px;letter-spacing:1.5px}
+.win{position:absolute;left:220px;top:380px;width:640px;height:800px;border:3px solid rgba(255,255,255,.9);border-radius:18px;background:linear-gradient(160deg,#243142,#0c1118);box-shadow:0 30px 80px rgba(0,0,0,.7);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#8fa0b2;font:700 22px Mono;letter-spacing:2px;text-align:center;padding:0 40px}.win em{font-style:normal;color:#ffcf4a;font-size:19px;letter-spacing:1px}.win i{position:absolute;right:14px;top:14px;font:700 16px Mono;color:#fff;background:rgba(0,0,0,.55);padding:5px 10px;border-radius:4px;font-style:normal}
+.stamp{position:absolute;font:800 46px Inter;color:#ff2d46;border:5px solid #ff2d46;padding:4px 18px;border-radius:8px;transform:rotate(-8deg);letter-spacing:2px;background:rgba(10,12,17,.6)}
+.wm{position:absolute;right:40px;bottom:330px;font:800 26px Inter;color:#fff;text-align:right;opacity:.9}
+.cap{top:255px!important}
+.title .b{font:800 230px/1 Inter!important}
+.tl{position:absolute;left:60px;right:60px;bottom:120px;display:flex;justify-content:space-between}
+.tn{position:relative;z-index:1;width:220px;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.45}
+.tn b{width:26px;height:26px;border-radius:50%;background:#0b0d12;border:5px solid #9aa3ad}
+.tn i{font:700 22px Mono;font-style:normal;color:#fff;letter-spacing:2px}
+.tn u{font:700 14px Mono;text-decoration:none;color:#9aa3ad;letter-spacing:1px;text-align:center}
+.tn.done{opacity:1}.tn.done b{border-color:#fff;background:#fff}.tn.now b{background:#ff2d46;border-color:#ff2d46;box-shadow:0 0 0 8px rgba(255,45,70,.3)}.tn.now u{color:#ff2d46}
+.tbar{position:absolute;left:110px;right:110px;top:13px;height:4px;background:#3a404b}.tbar div{height:100%;background:#fff}
+.seats{position:absolute;left:160px;width:760px;background:rgba(10,12,17,.94);border-radius:16px;padding:26px 0 24px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.seats .k{font:700 22px Mono;letter-spacing:4px;color:#c9d0d8;margin-bottom:6px}
+.seats .maj{font:800 34px Inter;color:#fff;margin-top:-4px}.seats .maj b{color:#ff2d46;font-size:44px}
+.leg{color:#fff;display:flex;justify-content:center;gap:36px;margin-top:14px;font:800 28px Inter}.leg i{display:inline-block;width:20px;height:20px;border-radius:50%;margin-right:10px;vertical-align:-2px}
+.letter{position:absolute;filter:drop-shadow(0 20px 40px rgba(0,0,0,.6));transform:rotate(-4deg)}
+.ncard{position:absolute;width:760px;display:flex;gap:26px;align-items:center;background:rgba(10,12,17,.94);border-radius:16px;padding:26px 30px;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.ncard .ini{width:120px;height:120px;border-radius:50%;background:#2a2f38;border:4px solid #fff;display:flex;align-items:center;justify-content:center;font:800 48px Inter;color:#fff;flex:none}
+.ncard .nm{font:800 54px Inter;color:#fff}.ncard .rl{font:700 20px Mono;color:#ffce00;letter-spacing:2px;margin-top:8px}
+.ncard .ini img{width:100%;height:100%;object-fit:cover;border-radius:50%}.ncard .ini{overflow:hidden}
+.duo{position:absolute;top:600px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:26px}
+.pt{width:300px;background:rgba(10,12,17,.94);border-radius:14px;padding:12px 12px 16px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.pt img{width:276px;height:330px;object-fit:cover;object-position:50% 20%;border-radius:8px;display:block;border:3px solid #fff}
+.pt.royal img{border-color:#ffce00}
+.pt b{display:block;font:800 26px Inter;color:#fff;margin-top:12px}.pt i{display:block;font:700 15px Mono;font-style:normal;color:#ffce00;letter-spacing:1.5px;margin-top:6px}
+.duo .arrow{font:800 70px Inter;color:#fff;opacity:.7}
+.bags,.ppl{position:absolute;left:140px;width:800px;background:rgba(10,12,17,.94);border-radius:16px;padding:26px 24px 22px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6);overflow:hidden}
+.bags .k,.ppl .k{font:700 22px Mono;letter-spacing:4px;color:#c9d0d8;margin-bottom:18px}
+.bags .row{display:flex;justify-content:center;gap:24px}
+.bags .scan{position:absolute;left:62%;top:60px;width:10px;height:150px;background:#7fdcff;box-shadow:0 0 30px 12px rgba(127,220,255,.7)}
+.nost{margin-top:16px;font:700 20px Mono;letter-spacing:2px;color:#9aa3ad}.nost .x{color:#ff2d46;margin-left:14px}
+.ppl .row{display:flex;justify-content:center;gap:40px;align-items:flex-end}.ppl .ic{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:300px}
+.ppl .gl{font:800 26px Inter;margin-top:12px}.ppl .ft2{font:700 15px Mono;color:#8a929b;letter-spacing:1px;margin-top:16px}
+.stat .n{font-size:200px}
+#tintS{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,30,50,0) 40%,rgba(255,30,50,.45) 100%)}
+.part{position:absolute;top:110px;left:50%;transform:translateX(-50%);font:700 22px Mono;letter-spacing:4px;color:#fff;background:#ff2d46;padding:10px 18px 8px;border-radius:6px;white-space:nowrap}
+.acc{display:flex;flex-direction:column;align-items:center;gap:4px}.acc b{font:800 26px Inter;color:#ffce00;margin-top:6px}.acc i{font:700 15px Mono;font-style:normal;color:#c9d0d8;letter-spacing:1px}
+.sep{width:3px;align-self:stretch;background:#2a2f38;margin:0 6px}
+.pen{position:absolute;left:140px;width:800px;background:rgba(10,12,17,.95);border-radius:16px;padding:30px 30px 24px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6);border:2px solid rgba(255,45,70,.5)}
+.pen .k{font:700 22px Mono;letter-spacing:3px;color:#ff2d46}
+.pen .o1{font:italic 700 96px/1.05 Serif;white-space:nowrap;color:#ff2d46;margin-top:18px}.pen .or{font:700 26px Mono;letter-spacing:6px;color:#9aa3ad;margin:10px 0}
+.pen .o2{font:800 52px Inter;color:#fff}.pen .o2 b{font:italic 700 92px Serif;color:#ff2d46}
+.pen .ft2,.ppl .ft2{font:700 15px Mono;color:#8a929b;letter-spacing:1px;margin-top:18px}
+.bub{position:absolute;background:#fff;color:#111;font:700 32px Inter;padding:18px 26px;border-radius:26px 26px 26px 6px;box-shadow:0 14px 40px rgba(0,0,0,.5)}.bub.r{border-radius:26px 26px 6px 26px;background:#ffce00}
+.komen{position:absolute;left:0;right:0;top:1230px;text-align:center;font:800 44px Inter;color:#fff;letter-spacing:3px}
+</style></head><body>
+<canvas id="gl" width="1080" height="1920"></canvas>
+<div class="vig"></div>
+<div id="ov"></div>
+<script src="../assets/lib/topojson-client.min.js"></script>
+<script type="module">
+import { createGlobe, ll } from "../assets/globe.js";
+const W = 1080, H = 1920;
+const F = +(new URLSearchParams(location.search).get("f") || 1);
+const g = await createGlobe(document.getElementById("gl"), { W, H, base: "../assets/" });
+const topo = await (await fetch("../assets/geo/countries-10m.json")).json();
+const countries = topojson.feature(topo, topo.objects.countries).features;
+const byId = (id) => countries.find((c) => +c.id === id);
+const CN = byId(156), MY = byId(458), VN = byId(704), PH = byId(608), BN = byId(96), TW = byId(158);
+
+// ---------- overlay layers ----------
+const borders = g.layer("borders", 0, { lon0: 92, lon1: 140, lat0: -6, lat1: 34, ppd: 80 });
+const red = g.layer("china", 1, { lon0: 72, lon1: 136, lat0: 16, lat1: 54, ppd: 40 });
+const myl = g.layer("malaysia", 2, { lon0: 99, lon1: 120, lat0: 0, lat1: 8, ppd: 160 });
+const lines = g.layer("lines", 3, { lon0: 92, lon1: 140, lat0: -6, lat1: 34, ppd: 80 });
+const near = (f) => { const c = f.geometry.coordinates.flat(3); return true; };
+{ const L = borders, c = L.ctx; c.strokeStyle = "rgba(255,255,255,.35)"; c.lineWidth = 1; c.lineJoin = "round";
+  for (const f of countries) { L.path(f.geometry); c.stroke(); } L.tex.needsUpdate = true; }
+function chinaRed() {
+  const L = red, c = L.ctx; c.save(); L.path(CN.geometry); c.clip("evenodd");
+  c.fillStyle = "rgba(190,18,40,.6)"; c.fillRect(0, 0, L.OW, L.OH);
+  c.fillStyle = "rgba(60,0,8,.35)"; for (let y = 0; y < L.OH; y += 6) c.fillRect(0, y, L.OW, 2.5);
+  c.restore(); c.strokeStyle = "#ff3d55"; c.lineWidth = 2.5; L.path(CN.geometry); c.stroke(); L.tex.needsUpdate = true;
+}
+function malaysiaFlag() {
+  const L = myl, c = L.ctx; c.save(); L.path(MY.geometry); c.clip("evenodd");
+  const x0 = L.ox(99.5), x1 = L.ox(119.4), y0 = L.oy(7.5), y1 = L.oy(0.8), sh = (y1 - y0) / 14;
+  for (let i = 0; i < 14; i++) { c.fillStyle = i % 2 ? "rgba(255,255,255,.62)" : "rgba(204,0,1,.7)"; c.fillRect(x0, y0 + i * sh, x1 - x0, sh + 1); }
+  c.fillStyle = "rgba(1,0,102,.78)"; c.fillRect(x0, y0, (x1 - x0) * 0.5, sh * 8);
+  c.fillStyle = "#ffcc00"; const cx = L.ox(103.6), cy = L.oy(5.0), r = sh * 2.6;
+  c.beginPath(); c.arc(cx, cy, r, 0, 7); c.fill(); c.fillStyle = "rgb(1,0,102)"; c.beginPath(); c.arc(cx + r * 0.32, cy, r * 0.82, 0, 7); c.fill();
+  c.restore(); c.strokeStyle = "#fff"; c.lineWidth = 5; L.path(MY.geometry); c.stroke(); L.tex.needsUpdate = true;
+}
+// ---------- Negeri Sembilan ----------
+const ST = (await (await fetch("../assets/geo/my-states.json")).json()).features;
+const N9 = ST.find((f) => f.properties.name === "Negeri Sembilan");
+const stl = g.layer("states", 4, { lon0: 99, lon1: 105, lat0: 0.8, lat1: 7, ppd: 300 });
+function states(n9fill = true) {
+  const L = stl, c = L.ctx; c.lineJoin = "round";
+  c.strokeStyle = "rgba(255,255,255,.45)"; c.lineWidth = 1.5; for (const f of ST) { L.path(f.geometry); c.stroke(); }
+  if (n9fill) { c.save(); L.path(N9.geometry); c.clip("evenodd"); c.fillStyle = "rgba(255,206,0,.22)"; c.fillRect(0, 0, L.OW, L.OH);
+    c.fillStyle = "rgba(255,206,0,.10)"; for (let y = 0; y < L.OH; y += 8) c.fillRect(0, y, L.OW, 3); c.restore(); }
+  if (n9fill) { c.shadowColor = "#ffce00"; c.shadowBlur = 24; c.strokeStyle = "#ffd84a"; c.lineWidth = 5; L.path(N9.geometry); c.stroke(); c.shadowBlur = 0; }
+  L.tex.needsUpdate = true;
+}
+const SEREMBAN = [2.7259, 101.9378];
+// timeline strip at the bottom: dates light up as the story moves
+const TL = [["2 OGOS", "ANGKAT SUMPAH"], ["16 NOV", "BN: LETAK JAWATAN"], ["17 NOV", "ISTANA: PERLU PERKENAN"], ["20 NOV", "ISTANA: BUKTIKAN MAJORITI"]];
+function timeline(on) {
+  html(`<div class="tl">${TL.map(([d, s], i) => `<div class="tn ${i < on ? "done" : ""} ${i === on - 1 ? "now" : ""}"><b></b><i>${d}</i><u>${s}</u></div>`).join("")}<div class="tbar"><div style="width:${Math.max(0, (on - 1) / 3) * 100}%"></div></div></div>`);
+}
+// 36-seat hemicycle
+const PARTY = [["BN", 18, "#2f6bff"], ["PH", 11, "#e3262f"], ["PN", 7, "#19a974"]];
+function seats(top, mode = "party", q = false) {
+  const rows = [8, 12, 16], R0 = 150, dR = 62, pts = [];
+  rows.forEach((n, r) => { const R = R0 + r * dR; for (let i = 0; i < n; i++) { const a = Math.PI - (i / (n - 1)) * Math.PI; pts.push({ a, x: 380 + R * Math.cos(a), y: 360 - R * Math.sin(a) }); } });
+  pts.sort((p, q2) => q2.a - p.a);
+  const col = []; for (const [, n, c] of PARTY) for (let i = 0; i < n; i++) col.push(c);
+  const dots = pts.map((p, i) => `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="21" fill="${mode === "grey" ? "#3a404b" : col[i]}" stroke="rgba(0,0,0,.35)" stroke-width="3"/>`).join("");
+  const leg = mode === "grey" ? "" : `<div class="leg">${PARTY.map(([p, n, c]) => `<span><i style="background:${c}"></i>${p} <b>${n}</b></span>`).join("")}</div>`;
+  html(`<div class="seats" style="top:${top}px"><div class="k">${mode === "grey" ? "DUN NEGERI SEMBILAN" : "KEPUTUSAN PRN · 1 OGOS 2026"}</div>
+    <svg width="760" height="380" viewBox="0 0 760 380">${dots}<line x1="380" y1="20" x2="380" y2="372" stroke="#fff" stroke-width="4" stroke-dasharray="10 8"/>
+    ${q ? `<text x="380" y="330" text-anchor="middle" font-family="Serif" font-style="italic" font-weight="700" font-size="150" fill="#ff2d46">?</text>` : ""}</svg>
+    <div class="maj">MAJORITI <b>19</b> / 36</div>${leg}</div>`);
+}
+const letter = (x, y, stampTxt) => html(`<div class="letter" style="left:${x}px;top:${y}px"><svg width="260" height="190" viewBox="0 0 260 190"><rect x="4" y="4" width="252" height="182" rx="10" fill="#f4f1ea" stroke="#d9d3c4" stroke-width="3"/><path d="M8 10 L130 100 L252 10" fill="none" stroke="#cfc7b4" stroke-width="5"/>${[0,1,2].map(i=>`<rect x="40" y="${120+i*18}" width="${180-i*40}" height="8" rx="4" fill="#d9d3c4"/>`).join("")}</svg>${stampTxt ? `<div class="stamp" style="left:20px;top:56px;font-size:34px">${stampTxt}</div>` : ""}</div>`);
+const nameCard = (x, y, ini, nm, rl, ph) => html(`<div class="ncard" style="left:${x}px;top:${y}px"><div class="ini">${ph ? `<img src="../assets/photos/${ph}">` : ini}</div><div><div class="nm">${nm}</div><div class="rl">${rl}</div></div></div>`);
+// ---------- HTML helpers ----------
+const ov = document.getElementById("ov");
+const FL = {
+  MY: '<svg viewBox="0 0 28 14"><g>' + Array.from({ length: 14 }, (_, i) => `<rect y="${i}" width="28" height="1" fill="${i % 2 ? "#fff" : "#cc0001"}"/>`).join("") + '</g><rect width="14" height="8" fill="#010066"/><circle cx="5.5" cy="4" r="2.6" fill="#fc0"/><circle cx="6.3" cy="4" r="2.1" fill="#010066"/><circle cx="10" cy="4" r="1.4" fill="#fc0"/></svg>',
+  CN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#de2910"/><text x="3" y="10" font-size="9" fill="#ffde00">★</text></svg>',
+  VN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#da251d"/><text x="9.5" y="15" font-size="12" fill="#ff0">★</text></svg>',
+  PH: '<svg viewBox="0 0 30 20"><rect width="30" height="10" fill="#0038a8"/><rect y="10" width="30" height="10" fill="#ce1126"/><path d="M0 0L14 10L0 20Z" fill="#fff"/><circle cx="5" cy="10" r="2" fill="#fcd116"/></svg>',
+  BN: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#f7e017"/><path d="M0 4L30 11V16L0 9Z" fill="#fff"/><path d="M0 9L30 16V20L0 13Z" fill="#000"/><circle cx="15" cy="10" r="3" fill="#cf1126"/></svg>',
+  TW: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#fe0000"/><rect width="15" height="10" fill="#000095"/><circle cx="7.5" cy="5" r="2.5" fill="#fff"/></svg>',
+};
+function flagPin(lat, lon, code, label, dy = 0) {
+  const p = g.project(lat, lon); const e = document.createElement("div"); e.className = "pin";
+  e.style.left = p.x + "px"; e.style.top = p.y + dy + "px";
+  e.innerHTML = `<div class="flag">${FL[code]}</div><div class="lab">${label}</div>`; ov.appendChild(e);
+}
+function locPin(lat, lon, label, sub, red) {
+  const p = g.project(lat, lon); const e = document.createElement("div"); e.className = "pin"; e.style.flexDirection = "row"; e.style.alignItems = "center";
+  e.style.transform = "translate(-13px,-50%)"; e.style.left = p.x + "px"; e.style.top = p.y + "px";
+  e.innerHTML = `<div class="dot"></div><div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px"><div class="lab">${label}</div>${sub ? `<div class="sub ${red ? "red" : ""}">${sub}</div>` : ""}</div>`; ov.appendChild(e);
+}
+const html = (s) => ov.insertAdjacentHTML("beforeend", s);
+const cap = (s) => html(`<div class="cap">${s}</div>`);
+const card = (top, outlet, date, head, foot, media) => html(`<div class="card" style="top:${top}px"><div class="hd"><b>${outlet}</b><i>${date}</i></div><div class="bd">${head}<div class="ft">${foot}</div></div>${media ? `<div class="media">${media}</div>` : ""}</div>`);
+const stat = (top, k, n, u) => html(`<div class="stat" style="top:${top}px"><div class="k">${k}</div><div class="n">${n}</div><div class="u">${u}</div><div class="bar"><div></div></div></div>`);
+
+
+// top-down ship silhouette (pointed bow) with a short wake
+function shipIcon(L, lo, la, ang, col, sz = 1, wake = true) {
+  const c = L.ctx; c.save(); c.translate(L.ox(lo), L.oy(la)); c.rotate(ang); c.scale(sz, sz);
+  if (wake) { c.strokeStyle = "rgba(255,255,255,.55)"; c.lineWidth = 2; c.beginPath(); c.moveTo(-14, -4); c.lineTo(-34, -9); c.moveTo(-14, 4); c.lineTo(-34, 9); c.stroke(); }
+  c.shadowColor = col; c.shadowBlur = 10; c.fillStyle = col;
+  c.beginPath(); c.moveTo(16, 0); c.lineTo(6, -5); c.lineTo(-14, -5); c.lineTo(-14, 5); c.lineTo(6, 5); c.closePath(); c.fill();
+  c.shadowBlur = 0; c.fillStyle = "rgba(0,0,0,.45)"; c.fillRect(-6, -2.5, 8, 5); c.restore();
+}
+function ringShips(n = 16, r = 1.55) {
+  for (let i = 0; i < n; i++) { const a = i / n * 6.283 + .2, lo = 120.9 + r * 1.1 * Math.cos(a), la = 23.7 + r * Math.sin(a);
+    if (lo < 119.6 && la > 24.2 && la < 25.6) continue; shipIcon(lines, lo, la, -(a + 1.57), "#ff2d46", 1.6); }
+  lines.tex.needsUpdate = true;
+}
+function cargoShips(P, sz = 2) { for (const [lo, la, a] of P) shipIcon(lines, lo, la, a, "#e9f6ff", sz); lines.tex.needsUpdate = true; }
+// approximate drill zone: dashed red box + hatch
+function zone(lo0, la0, lo1, la1) {
+  const L = lines, c = L.ctx, x = L.ox(lo0), y = L.oy(la1), w = L.ox(lo1) - x, h = L.oy(la0) - y;
+  c.save(); c.beginPath(); c.rect(x, y, w, h); c.clip(); c.strokeStyle = "rgba(255,45,70,.35)"; c.lineWidth = 3;
+  for (let k = -h; k < w; k += 14) { c.beginPath(); c.moveTo(x + k, y + h); c.lineTo(x + k + h, y); c.stroke(); } c.restore();
+  c.setLineDash([12, 8]); c.strokeStyle = "#ff2d46"; c.lineWidth = 4; c.strokeRect(x, y, w, h); c.setLineDash([]); L.tex.needsUpdate = true;
+}
+function splash(lo, la) { const L = lines, c = L.ctx; c.strokeStyle = "#ffd0a0"; for (const [r, a] of [[6, 1], [13, .7], [21, .4]]) { c.globalAlpha = a; c.lineWidth = 3; c.beginPath(); c.arc(L.ox(lo), L.oy(la), r, 0, 7); c.stroke(); } c.globalAlpha = 1; L.tex.needsUpdate = true; }
+// rocket arcs drawn on screen between projected points (lifted bezier), with trail glow + head
+function rockets(pairs, prog = 1) {
+  let svg = `<svg style="position:absolute;inset:0" width="1080" height="1920"><defs><linearGradient id="rg" x1="0" x2="1"><stop offset="0" stop-color="#ff9a3c" stop-opacity="0"/><stop offset="1" stop-color="#ffe2b0"/></linearGradient><filter id="gw"><feGaussianBlur stdDeviation="4"/></filter></defs>`;
+  for (const [a, b, p = prog] of pairs) {
+    const A = g.project(a[1], a[0]), B = g.project(b[1], b[0]); const d = Math.hypot(B.x - A.x, B.y - A.y);
+    const C = { x: (A.x + B.x) / 2, y: (A.y + B.y) / 2 - d * 0.55 };
+    const q = (t) => ({ x: (1 - t) ** 2 * A.x + 2 * (1 - t) * t * C.x + t * t * B.x, y: (1 - t) ** 2 * A.y + 2 * (1 - t) * t * C.y + t * t * B.y });
+    const pts = Array.from({ length: 30 }, (_, i) => q(i / 29 * p)); const path = "M" + pts.map((o) => `${o.x.toFixed(1)} ${o.y.toFixed(1)}`).join(" L");
+    const h = pts[pts.length - 1];
+    svg += `<path d="${path}" stroke="#ff6a2a" stroke-width="10" fill="none" opacity=".55" filter="url(#gw)"/><path d="${path}" stroke="#ffd9a8" stroke-width="3.5" fill="none" stroke-dasharray="2 7" stroke-linecap="round"/>`;
+    if (p < 1) svg += `<circle cx="${h.x}" cy="${h.y}" r="14" fill="#ffb347" filter="url(#gw)"/><circle cx="${h.x}" cy="${h.y}" r="6" fill="#fff"/>`;
+    svg += `<circle cx="${A.x}" cy="${A.y}" r="16" fill="#ff8a2a" opacity=".8" filter="url(#gw)"/><circle cx="${A.x}" cy="${A.y}" r="5" fill="#fff"/>`;
+  }
+  html(svg + "</svg>");
+}
+const tag = (lat, lon, t) => { const p = g.project(lat, lon); html(`<div class="sub red" style="position:absolute;left:${p.x}px;top:${p.y}px;transform:translate(-50%,-50%)">${t}</div>`); };
+
+// ---------- frames (PART 2: dakwaan) ----------
+const SUBANG = [3.13, 101.55], SHAHALAM = [3.073, 101.518], KV = [3.08, 101.70];
+const bagSvg = (pk, s = 1) => `<svg width="${110*s}" height="${130*s}" viewBox="0 0 110 130"><rect x="38" y="4" width="34" height="18" rx="6" fill="none" stroke="#9aa3ad" stroke-width="5"/><rect x="6" y="20" width="98" height="104" rx="12" fill="#14171d" stroke="#3a404b" stroke-width="3"/>${[0,1,2,3,4].map(i=>`<path d="M6 ${34+i*20} L104 ${26+i*20}" stroke="rgba(255,255,255,.18)" stroke-width="3"/>`).join("")}${pk ? `<rect x="24" y="44" width="62" height="30" rx="4" fill="#ff9a3c" opacity=".95"/><rect x="24" y="80" width="62" height="30" rx="4" fill="#ff9a3c" opacity=".8"/>` : ""}</svg>`;
+const man = (c, w = 44, q = false) => `<svg width="${w}" height="${w*58/44}" viewBox="0 0 44 58"><circle cx="22" cy="14" r="11" fill="${c}"/><path d="M2 58 Q2 30 22 30 Q42 30 42 58Z" fill="${c}"/>${q ? `<text x="22" y="52" text-anchor="middle" font-family="Inter" font-weight="800" font-size="22" fill="#05070b">?</text>` : ""}</svg>`;
+const people = (top, k, groups, foot) => html(`<div class="ppl" style="top:${top}px"><div class="k">${k}</div><div class="row">${groups.map(([n, c, lab, q]) => `<div class="grp"><div class="ic">${Array.from({length:n},()=>man(c,44,q)).join("")}</div><div class="gl" style="color:${c}">${n} ${lab}</div></div>`).join("")}</div><div class="ft2">${foot}</div></div>`);
+const part = (t) => html(`<div class="part">${t}</div>`);
+const gavel = `<svg width="120" height="120" viewBox="0 0 120 120"><g transform="rotate(-35 60 60)"><rect x="22" y="30" width="56" height="26" rx="6" fill="#ffce00"/><rect x="16" y="26" width="10" height="34" rx="3" fill="#e0b400"/><rect x="74" y="26" width="10" height="34" rx="3" fill="#e0b400"/><rect x="46" y="54" width="9" height="56" rx="4" fill="#c9d0d8"/></g><rect x="20" y="104" width="80" height="10" rx="4" fill="#9aa3ad"/></svg>`;
+const TL2 = [["17 NOV", "DITANGKAP"], ["27 NOV", "DIDAKWA"], ["23 FEB", "SEBUTAN SEMULA"], ["—", "MAHKAMAH TINGGI"]];
+function timeline2(on, bottom = 330) {
+  html(`<div class="tl" style="bottom:${bottom}px">${TL2.map(([d, s], i) => `<div class="tn ${i < on ? "done" : ""} ${i === on - 1 ? "now" : ""}"><b></b><i>${d}</i><u>${s}</u></div>`).join("")}<div class="tbar"><div style="width:${Math.max(0, (on - 1) / 3) * 100}%"></div></div></div>`);
+}
+const accused = (top) => html(`<div class="ppl" style="top:${top}px"><div class="k">6 TERTUDUH · DIDAKWA BERSAMA</div><div class="row" style="gap:22px">
+  ${[["LT", "33"], ["LT", "27"], ["KAPT", "34"]].map(([r, a]) => `<div class="acc">${man("#ffce00", 70)}<b>${r}</b><i>${a} TAHUN</i></div>`).join("")}
+  <div class="sep"></div>
+  ${[0,1,2].map(() => `<div class="acc">${man("#9aa3ad", 70)}<b style="color:#9aa3ad">AWAM</b><i>&nbsp;</i></div>`).join("")}</div>
+  <div class="row" style="gap:0;margin-top:14px"><div class="gl" style="color:#ffce00;width:50%">3 PEGAWAI TUDM</div><div class="gl" style="color:#9aa3ad;width:50%">3 ORANG AWAM</div></div>
+  <div class="ft2">Pangkat &amp; umur menurut Media Selangor · nama tidak ditunjuk</div></div>`);
+const penalty = (top) => html(`<div class="pen" style="top:${top}px"><div class="k">JIKA SABIT KESALAHAN · SEKSYEN 39B</div>
+  <div class="opt"><div class="o1">HUKUMAN MATI</div><div class="or">ATAU</div><div class="o2">PENJARA <b>30–40</b> TAHUN</div></div>
+  <div class="ft2">Selepas pindaan 2023 (Akta 846) · sumber: FMT</div></div>`);
+const bubbles = () => html(`<div class="bub" style="left:110px;top:900px">Siapa yang lepaskan beg tu? 🤔</div><div class="bub r" style="right:100px;top:1010px">Kawalan bagasi kena ketat</div><div class="bub" style="left:150px;top:1120px">Tunggu mahkamah putuskan</div><div class="komen">KOMEN ↓</div>`);
+const FR = {
+  1() { g.setView({ lat: 3.6, lon: 104.5, dist: 0.75, tilt: 10, yShift: -0.1 }); states(false);
+    locPin(SUBANG[0], SUBANG[1], "SUBANG", "", true);
+    part("PART 2 · KES 96 KG TUDM");
+    html(`<div class="title" style="top:300px"><div class="b"><span>6</span></div><div class="c" style="font-size:96px;letter-spacing:4px">DIDAKWA</div><div class="a" style="margin-top:18px">KES SYABU PANGKALAN TUDM</div><div class="ln"></div></div>`); },
+  2() { g.setView({ lat: 3.13, lon: 101.6, dist: 0.14, tilt: 20, yShift: 0.2 }); states(false);
+    cap(`Polis tahan <span class="r">sebelas orang</span>`); part("IMBAS KEMBALI · PART 1");
+    locPin(SUBANG[0], SUBANG[1], "PANGKALAN UDARA SUBANG", "17 NOV · 5 BEG", true);
+    html(`<div class="bags" style="top:820px;padding:18px 24px 16px"><div class="k" style="margin-bottom:10px">5 BEG · KAWASAN BAGASI</div><div class="row" style="gap:18px">${[0,1,2,3,4].map(()=>bagSvg(true, .7)).join("")}</div></div>`);
+    people(1110, "POLIS · 11 DITAHAN", [[5, "#ff2d46", "ANGGOTA TUDM"], [6, "#9aa3ad", "ORANG AWAM"]], "Lembah Klang & Labuan · menurut polis"); },
+  3() { g.setView({ lat: 3.09, lon: 101.53, dist: 0.1, tilt: 22, yShift: 0.22 }); states(false);
+    cap(`mengedar <span class="r">96.2 kilo</span> syabu`);
+    locPin(SHAHALAM[0], SHAHALAM[1], "MAHKAMAH MAJISTRET SHAH ALAM", "27 NOV 2026", true);
+    html(`<div style="position:absolute;left:480px;top:830px">${gavel}</div>`);
+    stat(1000, "DIDAKWA BERSAMA MENGEDAR · METHAMPHETAMINE", "96.2", "KILOGRAM · ANGKA PERTUDUHAN"); },
+  4() { g.setView({ lat: 3.09, lon: 101.53, dist: 0.12, tilt: 22, yShift: 0.22 }); states(false);
+    cap(`dua <span class="r">leftenan</span> dan seorang <span class="r">kapten</span>`);
+    locPin(SHAHALAM[0], SHAHALAM[1], "SHAH ALAM", "", true);
+    accused(1000); },
+  5() { g.setView({ lat: 3.09, lon: 101.53, dist: 0.12, tilt: 22, yShift: 0.22 }); states(false);
+    cap(`bawah <span class="r">Seksyen 39B</span> Akta Dadah Berbahaya`);
+    html(`<div class="stamp" style="left:250px;top:760px;font-size:54px;transform:rotate(-5deg)">SEKSYEN 39B · ADB 1952</div>`);
+    card(1060, "MEDIA SELANGOR", "27 NOV 2026", `Tiga pegawai TUDM, tiga orang awam <mark>didakwa edar 96.2kg syabu</mark>`, "Tajuk asal · mediaselangor.com"); },
+  6() { g.setView({ lat: 3.09, lon: 101.53, dist: 0.09, tilt: 22, yShift: 0.22 }); states(false);
+    cap(`<span class="r">Kalau sabit</span> kesalahan, boleh dihukum mati`);
+    html(`<div id="tintS"></div>`); penalty(900); },
+  7() { g.setView({ lat: 3.09, lon: 101.53, dist: 0.14, tilt: 20, yShift: 0.22 }); states(false);
+    cap(`Semua <span class="r">tak dibenarkan</span> ikat jamin`);
+    locPin(SHAHALAM[0], SHAHALAM[1], "SHAH ALAM", "TIADA PENGAKUAN DIREKOD", true);
+    html(`<div class="stamp" style="left:290px;top:930px;font-size:64px">TIADA JAMINAN</div>`);
+    timeline2(2, 420); },
+  8() { g.setView({ lat: 4.4, lon: 108.6, dist: 1.15, tilt: 8, yShift: 0.16 }); states(false);
+    cap(`Status yang lain <span class="r">belum diumumkan</span>`);
+    locPin(KV[0], KV[1], "LEMBAH KLANG", "", true); locPin(5.28, 115.24, "LABUAN", "");
+    people(1000, "11 DITAHAN · 6 DIDAKWA", [[6, "#ff2d46", "DIDAKWA"], [5, "#4a515c", "BELUM DIUMUM", true]], "Aritmetik daripada angka polis (11) & pertuduhan (6)"); },
+  9() { g.setView({ lat: 3.13, lon: 101.6, dist: 0.3, tilt: 14, yShift: 0.05 }); states(false);
+    cap(`didakwa <span class="r">tak bermaksud bersalah</span>`);
+    html(`<div class="stamp" style="left:220px;top:620px;font-size:62px">DIDAKWA ≠ BERSALAH</div>`);
+    bubbles();
+    html(`<div class="title" style="top:1330px"><div style="font:800 26px Inter">Untuk part seterusnya &nbsp;<span style="background:#ff2d46;padding:10px 20px;border-radius:8px">Follow</span> <span style="background:#ff2d46;padding:10px 20px;border-radius:8px">Subscribe</span></div></div>`); },
+};
+FR[F]();
+g.render();
+document.body.dataset.ready = "1";
+</script></body></html>
