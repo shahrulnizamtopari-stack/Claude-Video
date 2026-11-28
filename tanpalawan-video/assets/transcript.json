@@ -1,0 +1,476 @@
+[
+  {
+    "text": "PRN",
+    "start": 0,
+    "end": 0.19,
+    "id": "w0"
+  },
+  {
+    "text": "Sarawak",
+    "start": 0.19,
+    "end": 0.65,
+    "id": "w1"
+  },
+  {
+    "text": "belum",
+    "start": 0.65,
+    "end": 0.99,
+    "id": "w2"
+  },
+  {
+    "text": "mengundi",
+    "start": 0.99,
+    "end": 1.51,
+    "id": "w3"
+  },
+  {
+    "text": "lagi,",
+    "start": 1.51,
+    "end": 2.02,
+    "id": "w4"
+  },
+  {
+    "text": "tapi",
+    "start": 2.1,
+    "end": 2.43,
+    "id": "w5"
+  },
+  {
+    "text": "GPS",
+    "start": 2.49,
+    "end": 2.74,
+    "id": "w6"
+  },
+  {
+    "text": "dah",
+    "start": 2.74,
+    "end": 3.03,
+    "id": "w7"
+  },
+  {
+    "text": "menang",
+    "start": 3.03,
+    "end": 3.6,
+    "id": "w8"
+  },
+  {
+    "text": "29",
+    "start": 3.6,
+    "end": 4.17,
+    "id": "w9"
+  },
+  {
+    "text": "kerusi.",
+    "start": 4.17,
+    "end": 4.84,
+    "id": "w10"
+  },
+  {
+    "text": "Hari",
+    "start": 4.84,
+    "end": 5.12,
+    "id": "w11"
+  },
+  {
+    "text": "penamaan",
+    "start": 5.12,
+    "end": 5.68,
+    "id": "w12"
+  },
+  {
+    "text": "calon,",
+    "start": 5.68,
+    "end": 6.12,
+    "id": "w13"
+  },
+  {
+    "text": "29",
+    "start": 6.12,
+    "end": 6.85,
+    "id": "w14"
+  },
+  {
+    "text": "calon",
+    "start": 6.94,
+    "end": 7.49,
+    "id": "w15"
+  },
+  {
+    "text": "GPS",
+    "start": 7.49,
+    "end": 7.88,
+    "id": "w16"
+  },
+  {
+    "text": "menang",
+    "start": 7.88,
+    "end": 8.27,
+    "id": "w17"
+  },
+  {
+    "text": "tanpa",
+    "start": 8.27,
+    "end": 8.6,
+    "id": "w18"
+  },
+  {
+    "text": "bertanding.",
+    "start": 8.6,
+    "end": 9.28,
+    "id": "w19"
+  },
+  {
+    "text": "Rekod",
+    "start": 9.28,
+    "end": 9.7,
+    "id": "w20"
+  },
+  {
+    "text": "baru,",
+    "start": 9.7,
+    "end": 10.22,
+    "id": "w21"
+  },
+  {
+    "text": "rekod",
+    "start": 10.22,
+    "end": 10.65,
+    "id": "w22"
+  },
+  {
+    "text": "lama,",
+    "start": 10.65,
+    "end": 11.03,
+    "id": "w23"
+  },
+  {
+    "text": "cuma",
+    "start": 11.22,
+    "end": 11.52,
+    "id": "w24"
+  },
+  {
+    "text": "19,",
+    "start": 11.52,
+    "end": 12.24,
+    "id": "w25"
+  },
+  {
+    "text": "termasuk",
+    "start": 12.24,
+    "end": 12.72,
+    "id": "w26"
+  },
+  {
+    "text": "premier",
+    "start": 12.72,
+    "end": 13.15,
+    "id": "w27"
+  },
+  {
+    "text": "Abang",
+    "start": 13.15,
+    "end": 13.45,
+    "id": "w28"
+  },
+  {
+    "text": "Johari",
+    "start": 13.45,
+    "end": 13.84,
+    "id": "w29"
+  },
+  {
+    "text": "dan",
+    "start": 13.84,
+    "end": 13.95,
+    "id": "w30"
+  },
+  {
+    "text": "2",
+    "start": 14.15,
+    "end": 14.29,
+    "id": "w31"
+  },
+  {
+    "text": "timbalan",
+    "start": 14.29,
+    "end": 14.84,
+    "id": "w32"
+  },
+  {
+    "text": "premier.",
+    "start": 14.85,
+    "end": 15.36,
+    "id": "w33"
+  },
+  {
+    "text": "Calon",
+    "start": 15.36,
+    "end": 15.64,
+    "id": "w34"
+  },
+  {
+    "text": "pun",
+    "start": 15.64,
+    "end": 15.81,
+    "id": "w35"
+  },
+  {
+    "text": "menyusut",
+    "start": 15.81,
+    "end": 16.26,
+    "id": "w36"
+  },
+  {
+    "text": "teruk.",
+    "start": 16.26,
+    "end": 16.76,
+    "id": "w37"
+  },
+  {
+    "text": "Tahun",
+    "start": 16.76,
+    "end": 17.11,
+    "id": "w38"
+  },
+  {
+    "text": "2021,",
+    "start": 17.3,
+    "end": 18.28,
+    "id": "w39"
+  },
+  {
+    "text": "349",
+    "start": 18.28,
+    "end": 19.33,
+    "id": "w40"
+  },
+  {
+    "text": "calon,",
+    "start": 19.33,
+    "end": 20.03,
+    "id": "w41"
+  },
+  {
+    "text": "kali",
+    "start": 20.23,
+    "end": 20.64,
+    "id": "w42"
+  },
+  {
+    "text": "ini",
+    "start": 20.64,
+    "end": 21,
+    "id": "w43"
+  },
+  {
+    "text": "cuma",
+    "start": 21,
+    "end": 21.48,
+    "id": "w44"
+  },
+  {
+    "text": "168.",
+    "start": 21.48,
+    "end": 22.56,
+    "id": "w45"
+  },
+  {
+    "text": "Tapi",
+    "start": 22.56,
+    "end": 22.9,
+    "id": "w46"
+  },
+  {
+    "text": "tunggu",
+    "start": 22.9,
+    "end": 23.41,
+    "id": "w47"
+  },
+  {
+    "text": "dulu,",
+    "start": 23.41,
+    "end": 23.92,
+    "id": "w48"
+  },
+  {
+    "text": "untuk",
+    "start": 23.92,
+    "end": 24.3,
+    "id": "w49"
+  },
+  {
+    "text": "majority,",
+    "start": 24.5,
+    "end": 25.21,
+    "id": "w50"
+  },
+  {
+    "text": "GPS",
+    "start": 25.21,
+    "end": 25.47,
+    "id": "w51"
+  },
+  {
+    "text": "perlukan",
+    "start": 25.47,
+    "end": 26.15,
+    "id": "w52"
+  },
+  {
+    "text": "42",
+    "start": 26.15,
+    "end": 26.67,
+    "id": "w53"
+  },
+  {
+    "text": "kerusi.",
+    "start": 26.67,
+    "end": 27.24,
+    "id": "w54"
+  },
+  {
+    "text": "Maknanya,",
+    "start": 27.24,
+    "end": 27.98,
+    "id": "w55"
+  },
+  {
+    "text": "sebelum",
+    "start": 27.98,
+    "end": 28.51,
+    "id": "w56"
+  },
+  {
+    "text": "seorang",
+    "start": 28.51,
+    "end": 28.98,
+    "id": "w57"
+  },
+  {
+    "text": "pun",
+    "start": 29.04,
+    "end": 29.25,
+    "id": "w58"
+  },
+  {
+    "text": "mengundi,",
+    "start": 29.25,
+    "end": 29.99,
+    "id": "w59"
+  },
+  {
+    "text": "GPS",
+    "start": 29.99,
+    "end": 30.21,
+    "id": "w60"
+  },
+  {
+    "text": "cuma",
+    "start": 30.21,
+    "end": 30.51,
+    "id": "w61"
+  },
+  {
+    "text": "perlu",
+    "start": 30.51,
+    "end": 30.87,
+    "id": "w62"
+  },
+  {
+    "text": "menang",
+    "start": 30.94,
+    "end": 31.33,
+    "id": "w63"
+  },
+  {
+    "text": "13",
+    "start": 31.33,
+    "end": 31.78,
+    "id": "w64"
+  },
+  {
+    "text": "kerusi",
+    "start": 31.78,
+    "end": 32.22,
+    "id": "w65"
+  },
+  {
+    "text": "lagi.",
+    "start": 32.22,
+    "end": 32.68,
+    "id": "w66"
+  },
+  {
+    "text": "Jadi,",
+    "start": 32.68,
+    "end": 33.1,
+    "id": "w67"
+  },
+  {
+    "text": "ni",
+    "start": 33.1,
+    "end": 33.24,
+    "id": "w68"
+  },
+  {
+    "text": "tanda",
+    "start": 33.24,
+    "end": 33.59,
+    "id": "w69"
+  },
+  {
+    "text": "Sarawak",
+    "start": 33.59,
+    "end": 34.08,
+    "id": "w70"
+  },
+  {
+    "text": "bersatu",
+    "start": 34.08,
+    "end": 34.43,
+    "id": "w71"
+  },
+  {
+    "text": "atau",
+    "start": 34.62,
+    "end": 34.85,
+    "id": "w72"
+  },
+  {
+    "text": "demokrasi",
+    "start": 34.85,
+    "end": 35.48,
+    "id": "w73"
+  },
+  {
+    "text": "makin",
+    "start": 35.48,
+    "end": 35.83,
+    "id": "w74"
+  },
+  {
+    "text": "lemah?",
+    "start": 35.83,
+    "end": 36.4,
+    "id": "w75"
+  },
+  {
+    "text": "Komen",
+    "start": 36.4,
+    "end": 36.66,
+    "id": "w76"
+  },
+  {
+    "text": "kat",
+    "start": 36.66,
+    "end": 36.82,
+    "id": "w77"
+  },
+  {
+    "text": "bawah!",
+    "start": 36.82,
+    "end": 37.27,
+    "id": "w78"
+  }
+]

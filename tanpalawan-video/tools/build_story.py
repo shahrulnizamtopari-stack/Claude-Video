@@ -7,16 +7,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 d = json.load(open(os.path.join(ROOT, "assets", "transcript.json")))
 W = d if isinstance(d, list) else d["words"]
 
-FIX = {"ANWA.": "Anwar.", "ANWA": "Anwar", "ANWA?": "Anwar?", "december": "Disember", "Macamana": "Macam mana", "parlimen": "Parlimen", "Fadilah": "Fadillah",
-       "timbalan": "Timbalan", "dulu,": "dulu!", "Pusat": "pusat", "berkampen.": "berkempen.", "Cheng": "Chieng", "Zhen,": "Jen,", "lawan.": "lawan!", "GPS.": "GPS!"}
+FIX = {"baru,": "baru!", "19,": "19.", "termasuk": "Termasuk", "premier": "Premier", "premier.": "Premier.", "timbalan": "Timbalan", "ini": "ni", "dulu,": "dulu!", "majority,": "majoriti,"}
 JOIN = {}
 _W = [dict(w) for w in W]
 W = _W
 DROP = set()
 DISPLAY = {}
-KEY = {"Putrajaya,", "kawan.", "Kuching,", "lawan!", "GPS", "DAP,", "perpaduan", "12", "bertembung", "kerusi.", "23", "31", "Anwar", "Fadillah", "Yusof",
-       "Borneo.", "tunggu", "dulu!", "PKR,", "sendiri,", "tarik", "diri.", "tak", "berkempen.", "seorang", "Chong", "Chieng", "Jen,", "tunduk", "ugutan", "GPS!",
-       "siapa", "betul?", "Anwar?", "Komen"}
+KEY = {"belum", "mengundi", "29", "kerusi!", "tanpa", "bertanding.", "Rekod", "baru!", "19.", "Premier", "Abang", "Johari", "menyusut", "teruk.", "349", "168.",
+       "tunggu", "dulu!", "42", "seorang", "13", "bersatu", "lemah?", "Komen"}
 SOFT = set()
 
 words = []
@@ -27,6 +25,7 @@ for i, w in enumerate(W):
     t = FIX.get(t, t); t = DISPLAY.get(t, t)
     nxt = W[i + 1]["text"] if i + 1 < len(W) else ""
     if words and re.search(r"[.?!]$", words[-1]["t"]) and t[:1].islower(): t = t[:1].upper() + t[1:]
+    if t == "kerusi." and nxt == "Hari": t = "kerusi!"
     words.append({"t": t, "s": round(w["start"], 3), "e": round(w["end"], 3), "i": i})
 
 def key(w):
@@ -44,7 +43,7 @@ for w in words:
     if re.search(r"[.…?!]$", w["t"]) or (w["t"].endswith(",") and len(" ".join(x["t"] for x in cur)) > 12): flush()
 flush()
 # never end a group on a weak word
-WEAK = {"Perdana", "Timbalan", "di", "Ketua", "Istana", "Pulau", "di", "ke", "dan", "yang", "dari", "untuk", "satu", "ada", "tak", "kod", "supaya", "salah"}
+WEAK = {"Perdana", "Timbalan", "di", "Ketua", "Abang", "Premier", "Istana", "Pulau", "di", "ke", "dan", "yang", "dari", "untuk", "satu", "ada", "tak", "kod", "supaya", "salah"}
 for k in range(len(groups) - 1):
     while groups[k] and groups[k][-1]["t"] in WEAK and len(groups[k]) > 1:
         groups[k + 1].insert(0, groups[k].pop())
@@ -74,11 +73,10 @@ def at(text, n=1):
     raise SystemExit(f"word not found: {text} #{n}")
 
 T = {
-  "kuching": at("Kuching"), "lawan": at("lawan"), "gps1": at("GPS"), "perpaduan": at("perpaduan"), "tapi1": at("Tapi"), "dis": at("Disember"),
-  "bertembung": at("bertembung"), "n12b": at("12", 2), "macam": at("Macam mana"), "pru": at("PRU"), "n23": at("23"), "n31": at("31"), "sokongan": at("Sokongan"),
-  "anwar2": at("Anwar", 2), "fadillah": at("Fadillah"), "borneo": at("Borneo"), "tunggu": at("tunggu"), "prn": at("PRN"), "pkr": at("PKR"), "parti": at("parti"),
-  "menteri3": at("Menteri", 3), "tinggal": at("Tinggal"), "seorang": at("seorang"), "ketua": at("Ketua"), "chong": at("Chong"), "dakwa": at("dakwa"), "pm": at("PM"),
-  "jadi": at("Jadi", 4), "siapa": at("siapa"), "anwar_last": at("Anwar", 4), "komen": at("Komen"),
+  "menang1": at("menang"), "n29a": at("29"), "hari": at("Hari"), "n29b": at("29", 2), "tanpa": at("tanpa"), "rekod": at("Rekod"), "lama": at("lama"), "n19": at("19"),
+  "termasuk": at("Termasuk"), "johari": at("Johari"), "timbalan": at("Timbalan"), "menyusut": at("menyusut"), "y2021": at("2021"), "n349": at("349"), "kali": at("kali"),
+  "n168": at("168"), "tunggu": at("tunggu"), "majoriti": at("majoriti"), "n42": at("42"), "maknanya": at("Maknanya"), "sebelum": at("sebelum"), "n13": at("13"),
+  "jadi": at("Jadi"), "bersatu": at("bersatu"), "lemah": at("lemah"), "komen": at("Komen"),
 }
 END_VO = words[-1]["e"]
 T["end_vo"] = END_VO

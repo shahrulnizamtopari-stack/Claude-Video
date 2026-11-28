@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sound bed for kawanlawan-video (assets/sfx.wav, 48 kHz mono). Every sound sits on something visible; times come from
+"""Sound bed for tanpalawan-video (assets/sfx.wav, 48 kHz mono). Every sound sits on something visible; times come from
 assets/story.js (VO time), so run tools/build_story.py first."""
 import os, re, json, wave
 import numpy as np
@@ -49,16 +49,19 @@ lvl = np.full(n, 0.04)
 lvl *= 1 - 0.95 * np.clip(1 - np.abs(tt - (T["tunggu"] + 1.2)) / 1.8, 0, 1)
 lvl *= np.clip((T["jadi"] - 0.5 - tt) / 1.0, 0, 1) * 0.5 + 0.5
 put(drone * lvl, 0, 1)
-for t in (T["tapi1"] - 0.3, T["sokongan"] - 0.3, T["tunggu"] + 0.3, T["tinggal"] - 0.3, T["jadi"] - 0.3):
+for t in (T["hari"] - 0.3, T["termasuk"] - 0.3, T["menyusut"] - 0.3, T["tunggu"] + 0.3, T["jadi"] - 0.3):
     put(whoosh(.9), t, 0.35)
-put(pop(), 0.3, 0.7); put(ping(880), 0.35, 0.4); put(whoosh(.6), T["kuching"] - 0.4, 0.4); put(impact(.8), T["lawan"] - 0.2, 0.9)
-put(pop(), T["tapi1"] + 0.4, 0.5); put(impact(.7), T["bertembung"] - 0.05, 0.85); put(pop(), T["macam"] - 0.1, 0.6)
-for i in range(23): put(tick(), T["n23"] - 0.4 + i * 0.039, 1)
-put(impact(.6), T["n31"] + 0.4, 0.7); put(impact(.5), T["pru"] + 0.3 + 0.29, 0.5)
-put(impact(.5), T["anwar2"] - 0.1 + 0.29, 0.6); put(impact(.5), T["fadillah"] - 0.1 + 0.29, 0.6); put(ping(990), T["fadillah"] + 0.4, 0.4)
-put(impact(1.1), T["tunggu"], 1.1); put(whoosh(1.4), T["pkr"] - 0.1, 0.5); put(pop(), T["menteri3"] - 0.15, 0.6)
-put(impact(.5), T["ketua"] - 0.1 + 0.29, 0.6); pap = lp(noise(.5), 5000) * env(int(.5 * SR), .02, .3); put(pap, T["dakwa"] - 0.3, 0.5); put(impact(.8), T["pm"] + 0.4, 0.8)
-put(whoosh(.5), T["siapa"], 0.5); put(pop(), T["siapa"] + 0.15, 0.8); put(ping(990), T["komen"], 0.6)
+put(impact(.6), 0.3, 0.6)
+for i in range(29): put(tick(), T["n29a"] - 0.9 + i * 0.03, 1)
+put(impact(.8), T["n29a"], 0.85); put(impact(.7), T["n29a"] + 0.4, 0.8)
+for i in range(29): put(tick(), T["n29b"] - 0.2 + i * 0.05, 1)
+put(whoosh(.8), T["rekod"], 0.4); put(impact(.7), T["rekod"] + 0.6, 0.85)
+put(impact(.5), T["termasuk"] + 0.29, 0.6); put(pop(), T["timbalan"] - 0.4, 0.6); put(pop(), T["timbalan"] - 0.1, 0.6)
+put(pop(), T["y2021"] - 0.2, 0.6); put(pop(), T["kali"] - 0.2, 0.6)
+for i in range(20): put(tick(), T["n168"] - 0.2 + i * 0.04, 1)
+put(impact(.7), T["n168"] + 0.6, 0.85)
+put(impact(1.1), T["tunggu"], 1.1); put(whoosh(.8), T["n42"], 0.4); put(impact(.8), T["n13"] - 0.05, 0.9)
+put(pop(), T["bersatu"] - 0.3, 0.8); put(pop(), T["bersatu"], 0.8); put(ping(990), T["komen"], 0.6)
 
 pk = np.max(np.abs(out)); out = np.tanh(out / pk * 2.4); out = out / np.max(np.abs(out)) * 0.9  # soft-clip so ticks/whooshes are not buried under the big hits
 with wave.open(os.path.join(ROOT, "assets", "sfx.wav"), "wb") as w:
