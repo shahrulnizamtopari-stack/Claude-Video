@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sound bed for tudm-video (assets/sfx.wav, 48 kHz mono). Every sound sits on something visible; times come from
+"""Sound bed for tudm2-video (assets/sfx.wav, 48 kHz mono). Every sound sits on something visible; times come from
 assets/story.js (VO time), so run tools/build_story.py first."""
 import os, re, json, wave
 import numpy as np
@@ -49,35 +49,46 @@ drone *= (0.6 + 0.4 * np.sin(2 * np.pi * tt / 9)) * env(n, 2.0, 2.5)
 put(drone * 0.035, 0, 1)
 
 # camera flights (as K in index.html)
-for t in (0.0, T["ni"] - 0.4, T["polis"], T["panglima"], T["tawau"], T["tudm3"]):
+for t in (0.0, T["ingat"] - 0.4, T["jumaat"] - 0.2, T["s11b"] - 0.2, T["ingat2"] - 0.2):
     put(whoosh(1.4), t, 0.35)
 # zoom punches (as ZP)
-for k in ("k96", "subang", "pelekat", "bungkusan", "k97", "s11", "s7", "juruterbang", "direman", "kompromi", "tentera2", "didakwa"):
+for k in ("six1", "didakwa1", "lima", "s11", "mahkamah2", "k962", "leftenan", "kapten", "seksyen", "mati", "k30", "tinggi", "jamin",
+          "feb", "six3", "diumumkan", "bersalah", "tentera"):
     put(whoosh(.55), T[k] - 0.2, 0.3)
-# B-roll windows (starts as the <video> tags)
-for t in (3.97, 10.88, 44.13):
+# B-roll windows (starts as the <video> tags); gavel strike ~3.3 s into its clip
+for t in (13.6, 34.0, 44.6):
     put(whoosh(.7), t - 0.35, 0.45); put(impact(.4), t, 0.35)
-# hook slam
-put(impact(.8), T["k96"], 0.9)
+put(impact(.9), 34.0 + 3.3, 1.0)
+# hook slams
+put(impact(.8), T["six1"], 0.9); put(impact(.5), T["didakwa1"], 0.6)
 # pins
-for k in ("subang", "lembah", "labuan", "tawau"): put(ping(660), T[k] + 0.05, 0.45)
-# bags pop in, sticker X, X-ray sweep hum and package pings
-for i in range(5): put(pop(), T["bagasi"] + 0.3 + i * 0.1, 0.7)
-put(impact(.35), T["pelekat"], 0.5)
-n = int(1.1 * SR); tt = np.arange(n) / SR
-put(np.sin(2 * np.pi * (300 + 500 * tt) * tt) * env(n, .05, .2) * .25, T["diimbas"], 1)
-for i in range(5): put(ping(1100), T["diimbas"] + 1.1 * (77 + 55 + i * 134) / 800, 0.4)
-put(impact(.6), T["bungkusan"], 0.6)
-# stat count-up ticks
-for i in range(12): put(tick(), T["k97"] - 0.3 + 0.9 * (1 - (1 - i / 12) ** 2), 1)
-put(impact(.6), T["syabu2"], 0.6)
-# people icons
-for i in range(11): put(pop() * .7, T["s11"] - 0.2 + i * 0.07, 0.6)
-for i in range(7): put(pop() * .7, T["s7"] - 0.2 + i * 0.09, 0.6)
-# cards in
-for t in (T["syabu2"] - 0.1, T["laporan"] - 0.1, T["direman"] - 0.4, T["tudm3"] - 0.1): put(pop(), t, 0.8)
-# stamp
-put(impact(.8), T["didakwa"], 0.95)
+for k in ("n17", "mahkamah2", "tiada"): put(ping(660), T[k] + 0.05, 0.45)
+put(ping(660), T["s11b"] + 0.6, 0.4); put(ping(660), T["s11b"] + 0.8, 0.35)
+# recap bags + 11 people
+for i in range(5): put(pop(), T["lima"] - 0.1 + i * 0.08, 0.6)
+for i in range(11): put(pop() * .7, T["s11"] - 0.25 + i * 0.05, 0.55)
+# court photo in: camera-shutter style click + pop
+put(tone(3200, .02, .001, .015) * .5, T["shah"] - 0.1, 1); put(pop(), T["shah"] - 0.05, 0.9)
+# stat count-up ticks + hit
+for i in range(12): put(tick(), T["k962"] - 0.2 + 1.0 * (1 - (1 - i / 12) ** 2), 1)
+put(impact(.6), T["k962"] + 0.8, 0.5)
+# accused icons
+for i in range(3): put(pop() * .8, T["tiga1"] - 0.05 + i * 0.1, 0.7)
+for i in range(3): put(pop() * .8, T["tiga2"] - 0.05 + i * 0.1, 0.7)
+# card, stamps
+put(pop(), T["pertuduhan"] - 0.1, 0.8)
+for k in ("seksyen", "didakwa3"): put(impact(.8), T[k], 0.9)
+put(impact(.7), T["jamin"] - 0.15, 0.8)
+# penalty card
+put(pop(), T["kalau"] - 0.1, 0.8); put(impact(.7), T["mati"] - 0.1, 0.7); put(pop(), T["penjara"] - 0.1, 0.6)
+# timeline nodes
+for k in ("tiada", "tinggi", "feb"): put(ping(990), T[k] - 0.2, 0.35)
+# 11 vs 6
+for i in range(6): put(pop() * .7, T["six3"] - 0.2 + i * 0.06, 0.6)
+for i in range(5): put(pop() * .5, T["status"] - 0.1 + i * 0.06, 0.5)
+# comment bubbles + KOMEN
+for i in range(3): put(pop(), T["pada"] + i * 0.5, 0.8)
+put(ping(880), T["komen"] - 0.1, 0.4)
 # outro clicks
 put(pop(), T["end_vo"] + 1.6, 1); put(pop(), T["end_vo"] + 2.1, 1)
 

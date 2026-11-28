@@ -7,21 +7,20 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 d = json.load(open(os.path.join(ROOT, "assets", "transcript.json")))
 W = d if isinstance(d, list) else d["words"]
 
-FIX = {"shabu": "syabu.", "shabu.": "syabu.", "Ini": "Ni", "berlaku?": "berlaku.", "2DM": "TUDM", "3DM": "TUDM", "bag": "beg",
-       "perlekat": "pelekat", "kira": "kira-kira", "lembah": "Lembah", "kelang": "Klang", "labuan.": "Labuan.",
-       "Ditawaw": "Di Tawau", "berkompromis.": "berkompromi.", "didakua": "didakwa", "siasatan": "Siasatan", "awal,": "awal:"}
-# ASR split words: join "di"+"tahan." -> "ditahan.", "di"+"reman" -> "direman", "jurur"+"terbang." -> "juruterbang."
-JOIN = {("di", "tahan."): "ditahan.", ("di", "reman"): "direman", ("jurur", "terbang."): "juruterbang."}
-_W = []
+FIX = {"Shabu": "syabu", "Shabu.": "syabu.", "bag": "beg", "Magistrate": "Majistret", "Captain,": "kapten,", "Saksian": "Seksyen",
+       "TU2": "TUDM: dua", "direkotkan,": "direkodkan,", "ini": "ni", "dibawah": "di bawah", "Comment": "Komen",
+       "tinggi.": "Tinggi.", "udara": "Udara", "Leftenan": "leftenan"}
+# per-occurrence fixes: (word, n) -> text
+NTH = {("pangkalan", 2): "Pangkalan", ("lagi,", 1): "lagi?", ("mahkamah", 1): "Mahkamah", ("mahkamah", 2): "Mahkamah", ("mahkamah", 3): "Mahkamah", ("bersalah,", 1): "bersalah."}
+_seen = {}
 for w in W:
-    if _W and (_W[-1]["text"], w["text"]) in JOIN:
-        _W[-1] = {**_W[-1], "text": JOIN[(_W[-1]["text"], w["text"])], "end": w["end"]}; continue
-    _W.append(dict(w))
-W = _W
+    k = w["text"]; _seen[k] = _seen.get(k, 0) + 1
+    if (k, _seen[k]) in NTH: w["text"] = NTH[(k, _seen[k])]
 DROP = set()
 DISPLAY = {}
-KEY = {"96", "syabu", "tentera.", "Di Tawau", "Subang,", "lima", "beg", "pelekat", "mencurigakan.", "syabu.", "97", "4.8", "11",
-       "7", "pegawai,", "juruterbang.", "Tawau", "direman", "berkompromi.", "tentera?", "belum", "didakwa"}
+KEY = {"syabu", "syabu.", "6", "didakwa", "17", "5", "beg", "11", "Majistret", "Shah", "Alam,", "96.2", "kilo", "3", "leftenan", "kapten,",
+       "awam.", "39B", "sabit", "mati", "30", "40", "Tiada", "Tinggi.", "tak", "dibenarkan", "23", "Februari.", "ditahan,", "didakwa.",
+       "belum", "diumumkan.", "bersalah.", "putuskan.", "tentera?", "Komen"}
 SOFT = {"China"}  # only key inside specific beats (handled below by index)
 
 words = []
@@ -47,7 +46,7 @@ for w in words:
     if re.search(r"[.…?]$", w["t"]) or (w["t"].endswith(",") and len(" ".join(x["t"] for x in cur)) > 12): flush()
 flush()
 # never end a group on a weak word
-WEAK = {"Istana", "Menteri", "Pulau", "di", "ke", "dan", "yang", "dari", "untuk", "satu", "ada", "tak", "kod", "supaya", "salah"}
+WEAK = {"Shah", "Istana", "Menteri", "Pulau", "di", "ke", "dan", "yang", "dari", "untuk", "satu", "ada", "tak", "kod", "supaya", "salah"}
 for k in range(len(groups) - 1):
     while groups[k] and groups[k][-1]["t"] in WEAK and len(groups[k]) > 1:
         groups[k + 1].insert(0, groups[k].pop())
@@ -77,15 +76,16 @@ def at(text, n=1):
     raise SystemExit(f"word not found: {text} #{n}")
 
 T = {
-  "k96": at("96"), "syabu1": at("syabu"), "dijumpai": at("Dijumpai"), "tentera1": at("tentera"), "ni": at("Ni"),
-  "selasa": at("Selasa"), "subang": at("Subang"), "anggota1": at("anggota"), "rondaan": at("rondaan"), "lima": at("lima"),
-  "beg": at("beg"), "plastik": at("plastik"), "bagasi": at("bagasi"), "tak1": at("Tak"), "pelekat": at("pelekat"),
-  "bila": at("Bila"), "diimbas": at("diimbas"), "bungkusan": at("bungkusan"), "ujian": at("Ujian"), "syabu2": at("syabu", 2),
-  "hampir": at("Hampir"), "k97": at("97"), "rm": at("4.8"), "polis": at("Polis"), "s11": at("11"), "lembah": at("Lembah"),
-  "labuan": at("Labuan"), "panglima": at("Panglima"), "s7": at("7"), "pegawai": at("pegawai"), "lain": at("lain-lain"),
-  "laporan": at("Laporan"), "juruterbang": at("juruterbang"), "tawau": at("Di Tawau"), "direman": at("direman"),
-  "tudm3": at("TUDM", 3), "kompromi": at("berkompromi"), "soalan": at("Soalannya"), "macam": at("macam"),
-  "tentera2": at("tentera", 2), "siasatan": at("Siasatan"), "mereka": at("Mereka"), "belum": at("belum"), "didakwa": at("didakwa"),
+  "kes": at("Kes"), "tudm1": at("TUDM"), "sekarang": at("Sekarang"), "six1": at("6"), "didakwa1": at("didakwa"), "ingat": at("Ingat"),
+  "n17": at("17"), "lima": at("5"), "beg": at("beg"), "bagasi": at("bagasi"), "subang2": at("Subang", 2), "polis": at("Polis"), "s11": at("11"),
+  "jumaat": at("Jumaat"), "mahkamah2": at("Mahkamah", 2), "shah": at("Shah"), "six2": at("6", 2), "dituduh": at("dituduh"),
+  "mengedar": at("mengedar"), "k962": at("96.2"), "syabu2": at("syabu", 2), "tiga1": at("3"), "pegawai": at("pegawai"),
+  "leftenan": at("leftenan"), "kapten": at("kapten"), "berumur": at("berumur"), "tiga2": at("3", 2), "awam": at("awam"),
+  "pertuduhan": at("Pertuduhan"), "seksyen": at("Seksyen"), "akta": at("Akta"), "kalau": at("Kalau"), "sabit": at("sabit"),
+  "mati": at("mati"), "penjara": at("penjara"), "k30": at("30"), "tiada": at("Tiada"), "tinggi": at("Tinggi"), "semua": at("Semua"),
+  "jamin": at("jamin"), "kes3": at("Kes", 3), "feb": at("Februari"), "s11b": at("11", 2), "six3": at("6", 3), "status": at("Status"),
+  "diumumkan": at("diumumkan"), "ingat2": at("Ingat", 2), "didakwa3": at("didakwa", 3), "bersalah": at("bersalah"),
+  "putuskan": at("putuskan"), "pada": at("Pada"), "tentera": at("tentera"), "komen": at("Komen"),
 }
 END_VO = words[-1]["e"]
 T["end_vo"] = END_VO

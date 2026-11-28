@@ -66,11 +66,11 @@ html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,h
 .stat .bar{height:5px;background:#2a2f38;margin-top:24px;border-radius:3px;overflow:hidden}.stat .bar div{height:100%;background:#ff2d46;width:0}
 .stamp{position:absolute;font:800 40px Inter;letter-spacing:3px;color:#ff2d46;border:6px solid #ff2d46;border-radius:8px;padding:6px 18px;background:rgba(255,255,255,.9);transform:rotate(-8deg);white-space:nowrap}
 .stat .stamp{background:rgba(10,12,17,.85)}
-.tl{position:absolute;display:none;left:60px;right:60px;bottom:120px;display:flex;justify-content:space-between}
+.tl{position:absolute;left:60px;right:60px;bottom:330px;display:flex;justify-content:space-between}
 .tn{position:relative;z-index:1;width:220px;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.45}
 .tn b{width:26px;height:26px;border-radius:50%;background:#0b0d12;border:5px solid #9aa3ad}
-.tn i{font:700 22px Mono;font-style:normal;color:#fff;letter-spacing:2px}
-.tn u{font:700 14px Mono;text-decoration:none;color:#9aa3ad;letter-spacing:1px;text-align:center}
+.tn i{font:700 26px Mono;font-style:normal;color:#fff;letter-spacing:2px}
+.tn u{font:700 18px Mono;text-decoration:none;color:#9aa3ad;letter-spacing:1px;text-align:center}
 .tn.done{opacity:1}.tn.done b{border-color:#fff;background:#fff}.tn.now b{background:#ff2d46;border-color:#ff2d46;box-shadow:0 0 0 8px rgba(255,45,70,.3)}.tn.now u{color:#ff2d46}
 .tbar{position:absolute;left:110px;right:110px;top:13px;height:4px;background:#3a404b}.tbar div{height:100%;background:#fff}
 .seats{position:absolute;left:160px;width:760px;background:rgba(10,12,17,.94);border-radius:16px;padding:26px 0 24px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6)}
@@ -114,32 +114,47 @@ html.caps #world,html.caps #broll,html.caps #fx,html.caps .vig,html.caps #tint,h
 #outro .fol .h{font:800 30px Inter}
 #outro .fol .btn{font:800 28px Inter;background:#ff2d46;border-radius:10px;padding:14px 28px;min-width:190px;text-align:center}
 #fade{position:absolute;inset:0;background:#05070b;opacity:0;pointer-events:none}
+.part{position:absolute;top:118px;left:50%;transform:translateX(-50%);font:700 22px Mono;letter-spacing:4px;color:#fff;background:#ff2d46;padding:10px 18px 8px;border-radius:6px;white-space:nowrap}
+.acc{display:flex;flex-direction:column;align-items:center;gap:4px}.acc b{font:800 26px Inter;color:#ffce00;margin-top:6px}.acc i{font:700 15px Mono;font-style:normal;color:#c9d0d8;letter-spacing:1px}
+.sep{width:3px;align-self:stretch;background:#2a2f38;margin:0 6px}
+.pen{left:140px;width:800px;background:rgba(10,12,17,.95);border-radius:16px;padding:30px 30px 24px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6);border:2px solid rgba(255,45,70,.5)}
+.pen .k{font:700 22px Mono;letter-spacing:3px;color:#ff2d46}
+.pen .o1{font:italic 700 84px/1.05 Serif;color:#ff2d46;margin-top:18px;white-space:nowrap}.pen .or{font:700 26px Mono;letter-spacing:6px;color:#9aa3ad;margin:10px 0}
+.pen .o2{font:800 52px Inter;color:#fff}.pen .o2 b{font:italic 700 92px Serif;color:#ff2d46}
+.pen .ft2{font:700 15px Mono;color:#8a929b;letter-spacing:1px;margin-top:18px}
+.bub{background:#fff;color:#111;font:700 32px Inter;padding:18px 26px;border-radius:26px 26px 26px 6px;box-shadow:0 14px 40px rgba(0,0,0,.5);white-space:nowrap}.bub.r{border-radius:26px 26px 6px 26px;background:#ffce00}
+.komen{left:0;right:0;text-align:center;font:800 44px Inter;color:#fff;letter-spacing:3px}
+.photo{left:90px;width:900px;border:4px solid #fff;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.7);clip-path:inset(0 round 16px)}
+.photo img{display:block;width:100%;height:520px;object-fit:cover;object-position:50% 30%}
+.photo .cr{position:absolute;right:12px;bottom:12px;font:700 16px Mono;color:#fff;background:rgba(0,0,0,.6);padding:5px 10px;border-radius:4px;letter-spacing:1px}
+.photo .tg{position:absolute;left:12px;top:12px;font:700 18px Mono;color:#fff;background:#ff2d46;padding:6px 12px;border-radius:4px;letter-spacing:2px}
+.tl .tn.fut b{border-style:dashed}
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="54.55" data-width="1080" data-height="1920" data-fps="30">
-  <div id="world" class="clip" data-start="0" data-duration="54.55" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
+<div id="root" data-composition-id="main" data-start="0" data-duration="66.58" data-width="1080" data-height="1920" data-fps="30">
+  <div id="world" class="clip" data-start="0" data-duration="66.58" data-track-index="0" data-track-kind="graphics" data-layout-ignore>
     <canvas id="gl" width="1080" height="1920"></canvas>
   </div>
   <div id="broll" data-layout-ignore>
-    <div class="bw" id="bw-plane2"><video id="v-plane2" class="clip" src="assets/broll/plane2.mp4" muted playsinline data-start="3.97" data-duration="3.3" data-track-index="2"></video></div>
-    <div class="bw" id="bw-bags"><video id="v-bags" class="clip" src="assets/broll/bags.mp4" muted playsinline data-start="10.88" data-duration="3.8" data-track-index="3"></video></div>
-    <div class="bw" id="bw-plane1"><video id="v-plane1" class="clip" src="assets/broll/plane1.mp4" muted playsinline data-start="44.13" data-duration="3.75" data-track-index="4"></video></div>
+    <div class="bw" id="bw-mahkamah"><video id="v-mahkamah" class="clip" src="assets/broll/mahkamah.mp4" muted playsinline data-start="13.6" data-duration="3.5" data-track-index="2"></video></div>
+    <div class="bw" id="bw-gavel"><video id="v-gavel" class="clip" src="assets/broll/gavel.mp4" muted playsinline data-start="34.0" data-duration="4.0" data-track-index="3"></video></div>
+    <div class="bw" id="bw-gari"><video id="v-gari" class="clip" src="assets/broll/gari.mp4" muted playsinline data-start="44.6" data-duration="4.0" data-track-index="4"></video></div>
     <div class="bshade"></div><div class="btag">ILUSTRASI · AI</div>
   </div>
-  <div id="ui" class="clip" data-start="0" data-duration="54.55" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
+  <div id="ui" class="clip" data-start="0" data-duration="66.58" data-track-index="1" data-track-kind="graphics" data-layout-ignore>
     <canvas id="fx" width="1080" height="1920"></canvas>
     <div class="vig"></div>
     <div id="tint"></div>
     <div id="pins"></div>
     <div id="cards"></div>
     <div id="cap"></div>
-    <div id="hook" class="el"><div class="b">96 KG</div><div class="c">SYABU</div><div class="a" style="margin-top:14px">DI PANGKALAN TENTERA</div><div class="ln"></div></div>
+    <div id="hook" class="el"><div class="b">6</div><div class="c" style="font-size:96px;letter-spacing:4px">DIDAKWA</div><div class="a" style="margin-top:18px">KES SYABU PANGKALAN TUDM</div><div class="ln"></div></div>
     <div id="outro" class="el"><div class="box"><div class="chev">›››</div><div class="nm">JANGAN TERLEPAS</div><div class="tg">ISU SEMASA · DALAM BAHASA KITA</div><div><div class="fol"><span class="h">Untuk part seterusnya</span><span class="btn" id="fbtn">Follow</span><span class="btn" id="sbtn">Subscribe</span></div></div></div></div>
     <div id="fade"></div>
   </div>
-  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="51.56" data-track-index="5" data-volume="1"></audio>
-  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="54.55" data-track-index="6" data-volume="0.9"></audio>
+  <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="63.63" data-track-index="5" data-volume="1"></audio>
+  <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="66.58" data-track-index="6" data-volume="0.5"></audio>
 </div>
 
 <script>
@@ -179,21 +194,20 @@ const stl = g.layer("states", 1, { lon0: 99, lon1: 120, lat0: 0.5, lat1: 7.5, pp
 { const L = stl, c = L.ctx; c.lineJoin = "round"; c.strokeStyle = "rgba(255,255,255,.4)"; c.lineWidth = 1.2; for (const f of ST) { L.path(f.geometry); c.stroke(); } L.tex.needsUpdate = true; }
 
 // ---------------- camera ----------------
-const SUBANG = [3.13, 101.55], LABUAN = [5.28, 115.24], TAWAU = [4.24, 117.89], KV = [3.08, 101.70];
+const SUBANG = [3.13, 101.55], SHAHALAM = [3.073, 101.518], LABUAN = [5.28, 115.24], KV = [3.08, 101.70];
 const K = [
-  [0, 5.5, 109, 1.6, 6, -0.1], [T.ni - 0.3, 3.3, 103.5, 0.7, 10, -0.1],
-  [T.subang - 0.4, 3.13, 101.6, 0.13, 20, 0.2], [T.ujian - 0.3, 3.13, 101.6, 0.12, 20, 0.2],
-  [T.ujian + 0.4, 3.13, 101.6, 0.14, 20, 0.2], [T.polis, 3.13, 101.6, 0.14, 20, 0.2],
-  [T.polis + 0.9, 4.4, 108.6, 1.15, 8, 0.16], [T.panglima - 0.2, 4.4, 108.8, 1.1, 8, 0.16],
-  [T.panglima + 0.7, 3.13, 101.6, 0.2, 18, 0.2], [T.tawau - 0.2, 3.13, 101.6, 0.19, 18, 0.2],
-  [T.tawau + 0.7, 4.9, 116.6, 0.42, 14, 0.13], [T.tudm3 - 0.2, 4.9, 116.6, 0.4, 14, 0.13],
-  [T.tudm3 + 0.7, 3.13, 101.6, 0.15, 20, 0.12], [T.siasatan, 3.13, 101.6, 0.14, 20, 0.12],
-  [DURATION, 3.3, 101.8, 0.35, 14, 0.05],
+  [0, 5.5, 109, 1.6, 6, -0.1], [T.ingat - 0.3, 3.6, 104.5, 0.75, 10, -0.1],
+  [T.lima, 3.13, 101.6, 0.14, 20, 0.2], [T.jumaat - 0.2, 3.13, 101.6, 0.13, 20, 0.2],
+  [T.jumaat + 0.9, 3.09, 101.53, 0.1, 22, 0.22], [T.kalau, 3.09, 101.53, 0.11, 22, 0.22],
+  [T.tiada, 3.09, 101.53, 0.12, 20, 0.22], [T.s11b - 0.2, 3.09, 101.53, 0.13, 20, 0.22],
+  [T.s11b + 0.9, 4.4, 108.6, 1.15, 8, 0.16], [T.ingat2 - 0.2, 4.4, 108.8, 1.1, 8, 0.16],
+  [T.ingat2 + 0.8, 3.13, 101.6, 0.3, 14, 0.05], [DURATION, 3.3, 101.8, 0.35, 14, 0.05],
 ];
 const ZP = [
-  [T.k96, -0.14, 0.5], [T.subang, -0.10, 0.5], [T.pelekat, -0.10, 0.4], [T.bungkusan, -0.12, 0.5], [T.k97, -0.14, 0.6],
-  [T.s11, -0.10, 0.5], [T.s7, -0.10, 0.5], [T.juruterbang, -0.10, 0.4], [T.direman, -0.12, 0.5], [T.kompromi, -0.08, 0.4],
-  [T.tentera2, -0.14, 0.5], [T.didakwa, -0.16, 0.6],
+  [T.six1, -0.14, 0.5], [T.didakwa1, -0.10, 0.5], [T.lima, -0.10, 0.4], [T.s11, -0.10, 0.5], [T.mahkamah2, -0.10, 0.5],
+  [T.k962, -0.14, 0.6], [T.leftenan, -0.08, 0.4], [T.kapten, -0.08, 0.4], [T.seksyen, -0.12, 0.5], [T.mati, -0.16, 0.6],
+  [T.k30, -0.08, 0.4], [T.tinggi, -0.10, 0.4], [T.jamin, -0.12, 0.5], [T.feb, -0.08, 0.4], [T.six3, -0.10, 0.5],
+  [T.diumumkan, 0.08, 0.5], [T.bersalah, -0.14, 0.6], [T.tentera, -0.12, 0.5],
 ];
 function zoomMod(t) {
   let m = 0;
@@ -215,39 +229,61 @@ const pinWrap = document.getElementById("pins"), cardWrap = document.getElementB
 const mk = (parent, cls, html) => { const e = document.createElement("div"); e.className = "el " + cls; e.innerHTML = html; parent.appendChild(e); return e; };
 const loc = (txt, sub, red) => `<div class="dot ${red ? "red" : ""}"></div><div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px"><div class="lab">${txt}</div>${sub ? `<div class="sub ${red ? "red" : ""}">${sub}</div>` : ""}</div>`;
 const PINS = [
-  { ll: SUBANG, txt: "SUBANG", sub: "", red: 1, a: 0.9, b: T.ni - 0.3 },
-  { ll: SUBANG, txt: "PANGKALAN UDARA SUBANG", sub: "17 NOV · RONDAAN RUTIN", red: 1, a: T.subang, b: T.polis + 0.3 },
-  { ll: KV, txt: "LEMBAH KLANG", sub: "OPERASI POLIS", red: 1, a: T.lembah, b: T.panglima },
-  { ll: LABUAN, txt: "LABUAN", sub: "OPERASI POLIS", red: 1, a: T.labuan, b: T.panglima },
-  { ll: TAWAU, txt: "TAWAU", sub: "REMAN 7 HARI", red: 1, a: T.tawau + 0.2, b: T.tudm3 },
-  { ll: LABUAN, txt: "LABUAN", sub: "OPERASI POLIS", a: T.tawau + 0.5, b: T.tudm3 },
-  { ll: SUBANG, txt: "PANGKALAN UDARA SUBANG", sub: "SIASATAN BERJALAN", red: 1, a: T.tudm3 + 0.6, b: T.end_vo },
+  { ll: SUBANG, txt: "SUBANG", sub: "", red: 1, a: 0.6, b: T.ingat - 0.3 },
+  { ll: SUBANG, txt: "PANGKALAN UDARA SUBANG", sub: "17 NOV · 5 BEG", red: 1, a: T.n17, b: T.jumaat },
+  { ll: SHAHALAM, txt: "MAHKAMAH MAJISTRET SHAH ALAM", sub: "27 NOV 2026", red: 1, a: T.mahkamah2, b: T.shah },
+  { ll: SHAHALAM, txt: "SHAH ALAM", sub: "", red: 1, a: T.syabu2 + 0.4, b: T.tiada },
+  { ll: SHAHALAM, txt: "SHAH ALAM", sub: "TIADA PENGAKUAN DIREKOD", red: 1, a: T.tiada, b: T.s11b },
+  { ll: KV, txt: "LEMBAH KLANG", sub: "", red: 1, a: T.s11b + 0.6, b: T.ingat2 },
+  { ll: LABUAN, txt: "LABUAN", sub: "", a: T.s11b + 0.8, b: T.ingat2 },
 ].map((p) => ({ ...p, el: mk(pinWrap, "pin lpin", loc(p.txt, p.sub, p.red)) }));
 
+const part = mk(cardWrap, "part", "");
 const card = (outlet, date, head, foot) => mk(cardWrap, "card", `<div class="hd"><b>${outlet}</b><i>${date}</i></div><div class="bd">${head}<div class="ft">${foot}</div></div>`);
-const C = {
-  fmt: card("FREE MALAYSIA TODAY", "20 NOV 2026", `Bagasi tanpa pelekat keselamatan cetus <mark>penemuan 96kg dadah</mark>`, "Tajuk asal · freemalaysiatoday.com"),
-  tv3: card("BULETIN TV3", "20 NOV 2026", `Seludup dadah: <mark>Juruterbang TUDM</mark> berpangkat Leftenan dan Kapten antara ditahan`, "Tajuk asal · buletintv3.my"),
-  bh1: card("BERITA HARIAN", "19 NOV 2026", `Edar dadah guna aset tentera: <mark>Dua anggota TUDM direman</mark>`, "Tajuk asal · bharian.com.my · Seksyen 39B ADB 1952"),
-  bh2: card("BERITA HARIAN", "20 NOV 2026", `Kes dadah 96.6kg: TUDM sahkan 7 anggota, pegawainya ditahan, <mark>tekad tak akan berkompromi</mark>`, "Tajuk asal · bharian.com.my"),
-};
-const SCH = [[C.fmt, T.syabu2 - 0.1, T.polis - 0.1, 1450], [C.tv3, T.laporan - 0.1, T.tawau - 0.2, 1300], [C.bh1, T.direman - 0.4, T.tudm3 - 0.1, 1150], [C.bh2, T.tudm3 - 0.1, T.siasatan - 0.1, 1230]];
-const HL = [[C.fmt, T.syabu2, T.syabu2 + 0.9], [C.tv3, T.juruterbang - 0.4, T.juruterbang + 0.5], [C.bh1, T.direman - 0.1, T.direman + 0.8], [C.bh2, T.kompromi - 0.6, T.kompromi + 0.4]];
+const C = { ms: card("MEDIA SELANGOR", "27 NOV 2026", `Tiga pegawai TUDM, tiga orang awam <mark>didakwa edar 96.2kg syabu</mark>`, "Tajuk asal · mediaselangor.com") };
+const SCH = [[C.ms, T.pertuduhan - 0.1, T.kalau - 0.5, 1060]];
+const HL = [[C.ms, T.pertuduhan + 0.3, T.pertuduhan + 1.3]];
 
-// stat
-const stat = mk(cardWrap, "stat", `<div class="k">SYABU DIRAMPAS · UJIAN AWAL</div><div><div class="n"><span class="v">0</span></div></div><div class="u">KILOGRAM</div><div class="bar"><div></div></div>`);
+// photo (Bernama), stat 96.2
+const photo = mk(cardWrap, "photo", `<img src="assets/photos/mahkamah-bernama.jpg"><div class="tg">MAHKAMAH MAJISTRET SHAH ALAM · 27 NOV</div><div class="cr">FOTO: BERNAMA</div>`);
+const photoImg = photo.querySelector("img");
+const stat = mk(cardWrap, "stat", `<div class="k">DIDAKWA BERSAMA MENGEDAR · METHAMPHETAMINE</div><div><div class="n"><span class="v">0</span></div></div><div class="u">KILOGRAM · ANGKA PERTUDUHAN</div><div class="bar"><div></div></div>`);
 stat.querySelector(".n").style.fontSize = "200px";
-// bags
-const bagSvg = `<svg width="110" height="130" viewBox="0 0 110 130"><rect x="38" y="4" width="34" height="18" rx="6" fill="none" stroke="#9aa3ad" stroke-width="5"/><rect x="6" y="20" width="98" height="104" rx="12" fill="#14171d" stroke="#3a404b" stroke-width="3"/>${[0, 1, 2, 3, 4].map((i) => `<path d="M6 ${34 + i * 20} L104 ${26 + i * 20}" stroke="rgba(255,255,255,.18)" stroke-width="3"/>`).join("")}<g class="pk"><rect x="24" y="44" width="62" height="30" rx="4" fill="#ff9a3c"/><rect x="24" y="80" width="62" height="30" rx="4" fill="#ff9a3c" opacity=".8"/></g></svg>`;
-const bags = mk(cardWrap, "bags", `<div class="k">5 BEG · DEKAT TUNTUTAN BAGASI</div><div class="row">${[0, 1, 2, 3, 4].map(() => `<div class="bg">${bagSvg}</div>`).join("")}</div><div class="scan"></div><div class="nost"><span class="st">PELEKAT SARINGAN</span><span class="x">✕ TIADA</span></div>`);
-const bagEls = [...bags.querySelectorAll(".bg")], pkEls = [...bags.querySelectorAll(".pk")], scanEl = bags.querySelector(".scan"), nostX = bags.querySelector(".x"), bagsK = bags.querySelector(".k");
-// people grids
-const person = (c) => `<svg width="44" height="58" viewBox="0 0 44 58"><circle cx="22" cy="14" r="11" fill="${c}"/><path d="M2 58 Q2 30 22 30 Q42 30 42 58Z" fill="${c}"/></svg>`;
-const ppl = (k, groups, foot) => mk(cardWrap, "ppl", `<div class="k">${k}</div><div class="row">${groups.map(([n, c, lab]) => `<div class="grp"><div class="ic">${Array.from({ length: n }, () => person(c)).join("")}</div><div class="gl" style="color:${c}">${n} ${lab}</div></div>`).join("")}</div><div class="ft2">${foot}</div>`);
+// recap bags (small)
+const bagSvg = `<svg width="77" height="91" viewBox="0 0 110 130"><rect x="38" y="4" width="34" height="18" rx="6" fill="none" stroke="#9aa3ad" stroke-width="5"/><rect x="6" y="20" width="98" height="104" rx="12" fill="#14171d" stroke="#3a404b" stroke-width="3"/>${[0, 1, 2, 3, 4].map((i) => `<path d="M6 ${34 + i * 20} L104 ${26 + i * 20}" stroke="rgba(255,255,255,.18)" stroke-width="3"/>`).join("")}<rect x="24" y="44" width="62" height="30" rx="4" fill="#ff9a3c"/><rect x="24" y="80" width="62" height="30" rx="4" fill="#ff9a3c" opacity=".8"/></svg>`;
+const bags = mk(cardWrap, "bags", `<div class="k" style="margin-bottom:10px">5 BEG · KAWASAN BAGASI</div><div class="row" style="gap:18px">${[0, 1, 2, 3, 4].map(() => `<div class="bg">${bagSvg}</div>`).join("")}</div>`);
+bags.style.padding = "18px 24px 16px";
+const bagEls = [...bags.querySelectorAll(".bg")];
+// people
+const person = (c, w = 44, q = false) => `<svg width="${w}" height="${w * 58 / 44}" viewBox="0 0 44 58"><circle cx="22" cy="14" r="11" fill="${c}"/><path d="M2 58 Q2 30 22 30 Q42 30 42 58Z" fill="${c}"/>${q ? `<text x="22" y="52" text-anchor="middle" font-family="Inter" font-weight="800" font-size="22" fill="#05070b">?</text>` : ""}</svg>`;
+const ppl = (k, groups, foot) => mk(cardWrap, "ppl", `<div class="k">${k}</div><div class="row">${groups.map(([n, c, lab, q]) => `<div class="grp"><div class="ic">${Array.from({ length: n }, () => person(c, 44, q)).join("")}</div><div class="gl" style="color:${c}">${n} ${lab}</div></div>`).join("")}</div><div class="ft2">${foot}</div>`);
 const P1 = ppl("POLIS · 11 DITAHAN", [[5, "#ff2d46", "ANGGOTA TUDM"], [6, "#9aa3ad", "ORANG AWAM"]], "Lembah Klang & Labuan · menurut polis");
-const P2 = ppl("PANGLIMA TUDM · 7 ANGGOTA DITAHAN", [[5, "#ffce00", "PEGAWAI"], [2, "#ff2d46", "LAIN-LAIN PANGKAT"]], "Kenyataan Panglima TUDM · Berita Harian");
-const P1i = [...P1.querySelectorAll("svg")], P2i = [...P2.querySelectorAll("svg")], P1g = [...P1.querySelectorAll(".gl")], P2g = [...P2.querySelectorAll(".gl")];
-const stampEl = mk(cardWrap, "stamp", "BELUM DIDAKWA"); stampEl.style.fontSize = "64px";
+const P3 = ppl("11 DITAHAN · 6 DIDAKWA", [[6, "#ff2d46", "DIDAKWA"], [5, "#4a515c", "BELUM DIUMUM", true]], "Aritmetik daripada angka polis (11) &amp; pertuduhan (6)");
+const P1i = [...P1.querySelectorAll("svg")], P1g = [...P1.querySelectorAll(".gl")], P3i = [...P3.querySelectorAll("svg")], P3g = [...P3.querySelectorAll(".gl")];
+// accused grid (no names)
+const ACC = mk(cardWrap, "ppl", `<div class="k">6 TERTUDUH · DIDAKWA BERSAMA</div><div class="row" style="gap:22px">
+  ${[["LT", "33"], ["LT", "27"], ["KAPT", "34"]].map(([r, a]) => `<div class="acc o">${person("#ffce00", 70)}<b>${r}</b><i>${a} TAHUN</i></div>`).join("")}
+  <div class="sep"></div>
+  ${[0, 1, 2].map(() => `<div class="acc c">${person("#9aa3ad", 70)}<b style="color:#9aa3ad">AWAM</b><i>&nbsp;</i></div>`).join("")}</div>
+  <div class="row" style="gap:0;margin-top:14px"><div class="gl" style="color:#ffce00;width:50%">3 PEGAWAI TUDM</div><div class="gl" style="color:#9aa3ad;width:50%">3 ORANG AWAM</div></div>
+  <div class="ft2">Pangkat &amp; umur menurut Media Selangor · nama tidak ditunjuk</div>`);
+const accO = [...ACC.querySelectorAll(".acc.o")], accC = [...ACC.querySelectorAll(".acc.c")], accG = [...ACC.querySelectorAll(".gl")];
+// penalty card
+const PEN = mk(cardWrap, "pen", `<div class="k">JIKA SABIT KESALAHAN · SEKSYEN 39B</div><div class="o1">HUKUMAN MATI</div><div class="or">ATAU</div><div class="o2">PENJARA <b>30–40</b> TAHUN</div><div class="ft2">Selepas pindaan 2023 (Akta 846) · sumber: FMT</div>`);
+const [penK, penO1, penOr, penO2] = PEN.children;
+// timeline
+const TL2 = [["17 NOV", "DITANGKAP", 0], ["27 NOV", "DIDAKWA", T.tiada], ["23 FEB", "SEBUTAN SEMULA", T.feb - 0.2], ["—", "MAHKAMAH TINGGI", T.tinggi - 0.2]];
+const tlEl = document.createElement("div"); tlEl.className = "tl"; tlEl.style.display = "none";
+tlEl.innerHTML = TL2.map(([d, s]) => `<div class="tn"><b></b><i>${d}</i><u>${s}</u></div>`).join("") + `<div class="tbar"><div></div></div>`;
+cardWrap.appendChild(tlEl);
+const tnEls = [...tlEl.querySelectorAll(".tn")], tbarFill = tlEl.querySelector(".tbar div");
+// stamps
+const stamp = (txt, fs) => { const e = mk(cardWrap, "stamp", txt); e.style.fontSize = fs + "px"; return e; };
+const S39 = stamp("SEKSYEN 39B · ADB 1952", 54), SJAM = stamp("TIADA JAMINAN", 64), SBER = stamp("DIDAKWA ≠ BERSALAH", 62);
+// comment bubbles
+const BUB = [["Siapa yang lepaskan beg tu? 🤔", 110, 900, ""], ["Kawalan bagasi kena ketat", 0, 1010, "r"], ["Tunggu mahkamah putuskan", 150, 1120, ""]].map(([txt, x, y, c], i) => {
+  const e = mk(cardWrap, "bub " + c, txt); if (c) e.style.right = "100px"; else e.style.left = x + "px"; e.style.top = y + "px"; return e; });
+const KOM = mk(cardWrap, "komen", "KOMEN ↓"); KOM.style.top = "1230px";
 
 const capEl = document.getElementById("cap");
 const capSpans = CAPS.map((c) => c.w.map((w, i) => { const s = document.createElement("span"); s.textContent = w.t + (i < c.w.length - 1 ? " " : ""); return s; }));
@@ -256,7 +292,7 @@ const fbtn = document.getElementById("fbtn"), sbtn = document.getElementById("sb
 document.getElementById("fx").style.display = "none";
 
 // framed FLOW B-roll windows (timing lives on the <video> tags)
-const BR = ["plane2", "bags", "plane1"].map((k) => { const v = document.getElementById("v-" + k);
+const BR = ["mahkamah", "gavel", "gari"].map((k) => { const v = document.getElementById("v-" + k);
   return { w: document.getElementById("bw-" + k), a: +v.dataset.start, b: +v.dataset.start + +v.dataset.duration }; });
 const brollEl = document.getElementById("broll"), vigEl = document.querySelector(".vig");
 function brollAt(t) {
@@ -272,6 +308,11 @@ const show = (el, t, a, b, top, disp = "block") => {
   el.style.display = disp; el.style.opacity = k; if (top != null) el.style.top = top + 50 * (1 - eout((t - a) / 0.4)) + "px"; return k;
 };
 const popIcons = (els, t, a, step) => els.forEach((e, i) => { const u = clamp((t - a - i * step) / 0.2); e.style.opacity = u; e.style.transform = `scale(${0.4 + 0.6 * eout(u)})`; });
+const slam = (el, t, a, b, x, y, rot = -8) => {
+  const on = win(t, a, b, 0.05, 0.3), u = clamp((t - a) / 0.22);
+  el.style.display = on > 0 ? "block" : "none"; el.style.left = x + "px"; el.style.top = y + "px"; el.style.opacity = on;
+  el.style.transform = `rotate(${rot}deg) scale(${1.7 - 0.7 * eout(u)})`;
+};
 
 function renderAt(t) {
   brollAt(t);
@@ -290,30 +331,53 @@ function renderAt(t) {
   for (const [el, a, b, top] of SCH) show(el, t, a, b, top);
   for (const [el, a, b] of HL) for (const m of el.querySelectorAll("mark")) m.style.backgroundSize = `${100 * clamp((t - a) / (b - a))}% 100%`;
 
-  // bags: appear one by one, sticker missing, X-ray pass lights the packages
-  if (show(bags, t, T.bagasi + 0.3, T.ujian - 0.1, 1080) > 0) {
-    popIcons(bagEls, t, T.bagasi + 0.3, 0.1);
-    nostX.style.opacity = clamp((t - T.pelekat) / 0.2); nostX.style.transform = `scale(${1.6 - 0.6 * eout((t - T.pelekat) / 0.25)})`; nostX.style.display = "inline-block";
-    const su = clamp((t - T.diimbas) / 1.1); scanEl.style.display = su > 0 && su < 1 ? "block" : "none"; scanEl.style.left = su * 800 + "px";
-    pkEls.forEach((p, i) => { const lit = su >= (77 + 55 + i * 134) / 800; p.style.opacity = lit ? 0.95 * (0.85 + 0.15 * Math.sin(t * 8 + i)) : 0; });
-    bagsK.textContent = t >= T.diimbas ? "IMBASAN · PASUKAN HANDAU TUDM" : "5 BEG · DEKAT TUNTUTAN BAGASI";
-  }
-  // stat 96.6 kg
-  if (show(stat, t, T.ujian - 0.1, T.polis - 0.1, 900) > 0) {
-    const u = eout((t - T.k97 + 0.3) / 0.9); stat.querySelector(".v").textContent = (96.6 * u).toFixed(1);
+  // part tag
+  { const k = Math.max(win(t, 0.1, T.ingat - 0.3, 0.3, 0.3), win(t, T.ingat - 0.1, T.jumaat - 0.2, 0.3, 0.3));
+    part.style.display = k > 0 ? "block" : "none"; part.style.opacity = k; part.textContent = t < T.ingat - 0.2 ? "PART 2 · KES 96 KG TUDM" : "IMBAS KEMBALI · PART 1"; }
+  // recap: bags, then 11 arrested
+  if (show(bags, t, T.lima - 0.1, T.jumaat - 0.2, 820) > 0) popIcons(bagEls, t, T.lima - 0.1, 0.08);
+  if (show(P1, t, T.polis - 0.1, T.jumaat - 0.2, 1110) > 0) { popIcons(P1i, t, T.s11 - 0.25, 0.05); P1g[0].style.opacity = clamp((t - T.s11) / 0.3); P1g[1].style.opacity = clamp((t - T.s11 - 0.2) / 0.3); }
+  // court photo with slow push, then stat 96.2
+  if (show(photo, t, T.shah - 0.1, T.tiga1 - 0.15, 330) > 0) photoImg.style.transform = `scale(${1.02 + 0.08 * clamp((t - T.shah) / 5)})`;
+  if (show(stat, t, T.mengedar - 0.2, T.tiga1 - 0.15, 920) > 0) {
+    const u = eout((t - T.k962 + 0.2) / 1.0); stat.querySelector(".v").textContent = (96.2 * u).toFixed(1);
     stat.querySelector(".bar div").style.width = 100 * u * 0.97 + "%";
-    stat.querySelector(".u").textContent = t >= T.rm - 0.1 ? "KILOGRAM · ≈ RM4.83 JUTA" : "KILOGRAM";
   }
-  if (show(P1, t, T.s11 - 0.3, T.panglima - 0.1, 1060) > 0) { popIcons(P1i, t, T.s11 - 0.2, 0.07); P1g[0].style.opacity = clamp((t - T.s11) / 0.3); P1g[1].style.opacity = clamp((t - T.s11 - 0.3) / 0.3); }
-  if (show(P2, t, T.panglima, T.tawau - 0.2, 820) > 0) { popIcons(P2i, t, T.s7 - 0.2, 0.09); P2g[0].style.opacity = clamp((t - T.pegawai + 0.2) / 0.3); P2g[1].style.opacity = clamp((t - T.lain + 0.2) / 0.3); }
-  // stamp
-  { const on = win(t, T.didakwa, T.end_vo + 0.3, 0.05, 0.3), u = clamp((t - T.didakwa) / 0.22);
-    stampEl.style.display = on > 0 ? "block" : "none"; stampEl.style.left = "260px"; stampEl.style.top = "640px"; stampEl.style.opacity = on;
-    stampEl.style.transform = `rotate(-8deg) scale(${1.7 - 0.7 * eout(u)})`; }
+  // accused grid
+  if (show(ACC, t, T.tiga1 - 0.1, T.pertuduhan - 0.15, 1000) > 0) {
+    popIcons(accO, t, T.tiga1 - 0.05, 0.1); popIcons(accC, t, T.tiga2 - 0.05, 0.1);
+    accO.forEach((e, i) => { e.querySelector("b").style.opacity = clamp((t - (i < 2 ? T.leftenan : T.kapten) + 0.1) / 0.25); e.querySelector("i").style.opacity = clamp((t - T.berumur) / 0.3); });
+    accC.forEach((e) => { e.querySelector("b").style.opacity = clamp((t - T.awam + 0.2) / 0.25); });
+    accG[0].style.opacity = clamp((t - T.pegawai) / 0.3); accG[1].style.opacity = clamp((t - T.awam) / 0.3);
+  }
+  slam(S39, t, T.seksyen, T.kalau - 0.5, 250, 760, -5);
+  // penalty
+  if (show(PEN, t, T.kalau - 0.1, T.tiada - 0.2, 1210) > 0) {
+    penO1.style.opacity = clamp((t - T.mati + 0.1) / 0.2); penO1.style.transform = `scale(${1.3 - 0.3 * eout((t - T.mati + 0.1) / 0.25)})`;
+    penOr.style.opacity = clamp((t - T.mati - 0.25) / 0.2); penO2.style.opacity = clamp((t - T.penjara + 0.1) / 0.25);
+  }
+  // court process timeline
+  { const k = win(t, T.tiada - 0.1, T.s11b - 0.2, 0.3, 0.3);
+    tlEl.style.display = k > 0 ? "flex" : "none"; tlEl.style.opacity = k;
+    if (k > 0) { let now = -1; TL2.forEach(([, , at], i) => { if (t >= at) now = (now < 0 || at >= TL2[now][2]) ? i : now; });
+      tnEls.forEach((e, i) => { const lit = t >= TL2[i][2]; e.className = "tn" + (lit ? " done" : "") + (i === now ? " now" : "") + (i >= 2 ? " fut" : ""); });
+      tbarFill.style.width = 100 / 3 * clamp((t - T.tiada) / 0.5) + "%"; } }
+  slam(SJAM, t, T.jamin - 0.15, T.kes3 + 0.3, 290, 1230);
+  // 11 vs 6
+  if (show(P3, t, T.s11b - 0.1, T.ingat2 - 0.1, 1000) > 0) {
+    popIcons(P3i.slice(0, 6), t, T.six3 - 0.2, 0.06); popIcons(P3i.slice(6), t, T.status - 0.1, 0.06);
+    P3g[0].style.opacity = clamp((t - T.six3) / 0.3); P3g[1].style.opacity = clamp((t - T.status) / 0.3);
+  }
+  // closing: stamp, comment bubbles
+  slam(SBER, t, T.didakwa3, T.end_vo + 0.3, 220, 620);
+  BUB.forEach((e, i) => { const a = T.pada + i * 0.5, k = win(t, a, T.end_vo + 0.3, 0.2, 0.3);
+    e.style.display = k > 0 ? "block" : "none"; e.style.opacity = k; e.style.transform = `scale(${0.6 + 0.4 * eout((t - a) / 0.25)})`; });
+  { const k = win(t, T.komen - 0.1, T.end_vo + 0.3, 0.2, 0.3); KOM.style.display = k > 0 ? "block" : "none"; KOM.style.opacity = k;
+    KOM.style.transform = `translateY(${10 * Math.sin(t * 8)}px)`; }
 
   // captions
   let ci = -1; for (let i = 0; i < CAPS.length; i++) if (t >= CAPS[i].a && t < CAPS[i].b) ci = i;
-  const hookOn = t < T.ni - 0.1;
+  const hookOn = t < T.ingat - 0.15;
   if (ci < 0 || hookOn || t > T.end_vo + 0.6) capEl.style.display = "none";
   else {
     capEl.style.display = "block";
@@ -321,16 +385,17 @@ function renderAt(t) {
     CAPS[ci].w.forEach((w, j) => { const s = capSpans[ci][j]; s.style.color = t >= w.at - 0.03 ? (w.k ? "#ff2d46" : "#fff") : "rgba(255,255,255,.36)"; });
   }
 
-  // hook
-  const hk = win(t, 0.05, T.ni - 0.3, 0.2, 0.3);
+  // hook: subtitle line first, then "6" slam, "DIDAKWA"
+  const hk = win(t, 0.05, T.ingat - 0.3, 0.2, 0.3);
   hook.style.display = hk > 0 ? "block" : "none"; hook.style.opacity = hk;
   const [hb, hc, ha, hl] = hook.children;
-  const ub = clamp((t - T.k96 + 0.05) / 0.2); hb.style.opacity = ub; hb.style.transform = `scale(${1.45 - 0.45 * eout(ub)})`;
-  hc.style.opacity = clamp((t - T.syabu1 + 0.1) / 0.2);
-  ha.style.opacity = clamp((t - T.dijumpai) / 0.25); ha.style.transform = `translateY(${20 * (1 - eout((t - T.dijumpai) / 0.3))}px)`;
-  hl.style.transform = `scaleX(${eout((t - T.tentera1 + 0.3) / 0.5)})`;
+  const ub = clamp((t - T.six1 + 0.05) / 0.2); hb.style.opacity = ub; hb.style.transform = `scale(${1.45 - 0.45 * eout(ub)})`;
+  const uc = clamp((t - T.didakwa1 + 0.05) / 0.2); hc.style.opacity = uc; hc.style.transform = `scale(${1.25 - 0.25 * eout(uc)})`;
+  ha.style.opacity = clamp((t - T.kes) / 0.3); ha.style.transform = `translateY(${20 * (1 - eout((t - T.kes) / 0.4))}px)`;
+  hl.style.transform = `scaleX(${eout((t - T.tudm1 + 0.3) / 0.6)})`;
 
-  tint.style.opacity = Math.max(0.7 * win(t, T.k96, T.k96 + 0.3, 0.05, 0.5), 0.5 * win(t, T.syabu2, T.syabu2 + 0.3, 0.05, 0.6), 0.5 * win(t, T.bungkusan, T.bungkusan + 0.3, 0.05, 0.6), 0.6 * win(t, T.didakwa, T.didakwa + 0.3, 0.05, 0.6));
+  tint.style.opacity = Math.max(0.7 * win(t, T.six1, T.six1 + 0.3, 0.05, 0.5), 0.5 * win(t, T.k962, T.k962 + 0.3, 0.05, 0.6),
+    0.6 * win(t, T.mati, T.mati + 0.6, 0.05, 0.8), 0.4 * win(t, T.jamin, T.jamin + 0.3, 0.05, 0.5), 0.6 * win(t, T.didakwa3, T.didakwa3 + 0.3, 0.05, 0.6));
 
   const ot = T.end_vo + 0.4, ok = win(t, ot, DURATION + 1, 0.4, 0.1);
   outro.style.display = ok > 0 ? "block" : "none"; outro.style.opacity = ok;
