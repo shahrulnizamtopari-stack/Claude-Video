@@ -275,8 +275,8 @@ const ballot = (x, y) => `<svg style="position:absolute;left:${x}px;top:${y}px" 
 const FR = {
   1() { g.setView(SV); credit(); fillSWK(.32); dimBg(.35);
     html(`<div class="dt" style="top:220px"><div class="k">PRN SARAWAK · BELUM MENGUNDI</div><div class="n" style="font-size:280px;color:#ffce00">29</div><div class="y" style="color:#fff">KERUSI DAH MENANG</div></div>`);
-    html(ballot(390, 760).replace('width="300" height="300"', 'width="320" height="320"'));
-    html(`<div class="stamp2 red" style="top:1150px;font-size:54px">SEBELUM MENGUNDI?!</div>`);
+    html(`<div style="position:absolute;left:300px;top:690px;width:480px;height:760px;border:4px solid #ffce00;border-radius:20px;overflow:hidden;box-shadow:0 0 60px rgba(255,206,0,.35),0 30px 80px rgba(0,0,0,.7)"><img src="../assets/photos/johari-ring.jpg" style="width:100%;height:100%;object-fit:cover;object-position:50% 40%"><div style="position:absolute;left:12px;top:12px;font:700 17px Mono;color:#0b0d12;background:#ffce00;padding:5px 10px;border-radius:4px;letter-spacing:2px">MENANG WALKOVER</div><div style="position:absolute;right:10px;bottom:8px;font:700 13px Mono;color:#fff;background:rgba(0,0,0,.6);padding:3px 8px;border-radius:3px">ILUSTRASI AI</div></div>`);
+    html(`<div class="stamp2 red" style="top:1330px;font-size:54px">SEBELUM MENGUNDI?!</div>`);
     capB(`PRN Sarawak belum mengundi lagi, tapi <span class="r">GPS dah menang 29 kerusi!</span>`); },
   2() { g.setView(SV); credit(); fillSWK(.3); dimBg(.5);
     html(`<div class="ttl" style="top:240px"><div class="a">HARI PENAMAAN CALON · 28 NOV</div><div class="b" style="font-size:62px">MENANG <span>TANPA BERTANDING</span></div></div>`);
