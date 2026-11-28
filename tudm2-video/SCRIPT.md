@@ -25,6 +25,8 @@ Kes syabu di pangkalan TUDM Subang. Sekarang, enam orang dah didakwa di mahkamah
 ## Semakan fakta
 Penuh dalam `research/tudm-dakwaan-2026.md`.
 
-## B-roll dari FLOW AI (pilihan, dilabel "ILUSTRASI · AI")
-1. Bangunan mahkamah moden Malaysia waktu pagi, dari luar, tiada tulisan / lambang / muka.
-2. Tukul hakim kayu atas meja, cahaya lembut, latar kabur.
+## B-roll dari FLOW AI (dalam `assets/broll/`, dilabel "ILUSTRASI · AI", tetingkap kecil)
+Semua 4.0 s, 720×1280 asal → 1080×1920 30fps. Disimpan dalam git (`git add -f`, root `.gitignore` abaikan *.mp4).
+1. `mahkamah.mp4`: bangunan mahkamah, pagi, push masuk → beat 03 "Mahkamah Majistret Shah Alam", sebelum foto Bernama.
+2. `gavel.mp4`: tukul hakim angkat dan ketuk, habuk → beat 06 "Kalau sabit kesalahan", sebelum kad hukuman.
+3. `gari.mp4`: tangan bergari, baju hitam, van tahanan → beat 07 "tak dibenarkan ikat jamin".
