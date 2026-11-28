@@ -53,3 +53,7 @@ last frame (or the plate before) covers the gap. Keep the outro ≥ 2 s of real 
 Notes from ep 3: when the voice runs long, `retime_bakes.py` slows short Flow clips with frame blending (`<n>_rt.mp4`) instead of
 leaving gaps. For legends, show a LEGENDA / SEJARAH chip so viewers can tell legend from record. An A/B question card before the
 outro works as the comment hook.
+
+Note from ep 5: the shared outro plate (ep02 bake, centre 109.4,4.4 zoom 5.75) leaves the peninsula off-screen on the left, so a
+peninsula hero state is not visible there. For a "whole peninsula" map use ep01's `march.jpg` + `march-shapes.json`, and for a
+future outro rebake use zoom ≈5.0 (ep01's original framing) so both the peninsula and Borneo fit.

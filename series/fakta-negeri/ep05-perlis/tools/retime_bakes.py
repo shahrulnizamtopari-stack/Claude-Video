@@ -19,12 +19,12 @@ def unwarp(c):
         if c <= c1: return r0 + (c - c0) / (c1 - c0) * (r1 - r0)
     return A[-1][0]
 FPS = 30
-VIDEOS = {"v-dive": ("dive", 0, 5.6), "v-coast": ("coast", 40.4, 43.4), "v-out": ("out", 58.6, 60)}
-PLATES = {"p-coast": (43.4, 53.6), "p-outro": (53.6, 58.6)}
+VIDEOS = {"v-dive": ("dive", 0, 5.4), "v-globe": ("globe", 33.6, 37.0), "v-out": ("out", 58.6, 60)}
+PLATES = {"p-nine": (7.0, 12.4), "p-close": (12.4, 19.6), "p-siam1": (19.6, 22.6), "p-siam2": (25.0, 27.4), "p-siam3": (37.0, 40.6), "p-close2": (50.0, 53.6), "p-outro": (53.6, 58.6)}
 # B-roll clips play at their own speed: (canonical start, canonical end, media start); short clips are slowed to fit
-BROLL = {"br1": (5.6, 9.2, 0.6), "br2": (9.2, 16.2, 0.0), "br3": (16.2, 20.2, 0.8), "br4": (20.2, 24.4, 1.6), "br5": (24.4, 30.4, 0.0), "br6": (32.6, 40.4, 0.0)}
+BROLL = {"br1": (5.4, 7.0, 1.4), "br2": (22.6, 25.0, 0.0), "br3": (27.4, 31.2, 0.0), "br4": (31.2, 33.6, 0.6), "br5": (40.6, 46.8, 0.0), "br6": (46.8, 50.0, 0.6)}
 CLIP_LEN = 6.0
-CLIP_LENS = {"5": 4.0}
+CLIP_LENS = {str(k): 4.0 for k in range(1, 7)}
 q = lambda x: round(round(x * FPS) / FPS, 3)
 html = open(os.path.join(ROOT, "index.html")).read()
 def set_clip(id_, s, d):
@@ -62,9 +62,6 @@ for bid, (c0, c1, ms) in BROLL.items():
         html = re.sub(rf'(id="{bid}"[^>]*?src=")[^"]*"', rf'\g<1>assets/broll/{n}.mp4"', html)
     html, k = re.subn(rf'(id="{bid}"[^>]*?data-start=")[^"]*("[^>]*?data-duration=")[^"]*("[^>]*?data-media-start=")[^"]*"', rf'\g<1>{r0}\g<2>{d}\g<3>{ms}"', html)
     assert k == 1, bid; print(bid, r0, d, "media", ms)
-# the princess still (last frame of br5) holds from the end of br5 to the dance
-r_end5 = float(re.search(r'id="br5"[^>]*?data-start="([^"]*)"', html).group(1)) + float(re.search(r'id="br5"[^>]*?data-duration="([^"]*)"', html).group(1))
-set_clip("p-princess", q(r_end5), round(q(unwarp(32.6)) - q(r_end5), 3))
 for pid, (c0, c1) in PLATES.items():
     r0, r1 = q(unwarp(c0)), q(unwarp(c1)); set_clip(pid, r0, round(r1 - r0, 3)); print(pid, r0, round(r1 - r0, 3))
 html = re.sub(r'(data-composition-id="main" data-start="0" data-duration=")[^"]*"', rf'\g<1>{DUR}"', html)

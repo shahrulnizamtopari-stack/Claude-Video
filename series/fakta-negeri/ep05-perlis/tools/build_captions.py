@@ -12,20 +12,24 @@ import json, os, re, html, subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SEGMENTS = [  # (start, end, script text) -- approved script, canonical design time
-    (0, 5.6, "Korang tahu tak… ada satu lagu dari Terengganu yang ramai orang tak berani nyanyi waktu senja?!"),
-    (5.6, 7.4, "Namanya Ulek Mayang."),
-    (7.4, 12.4, "Menurut legenda, seorang nelayan muda keluar ke laut… dan ditemui terbaring, tak sedarkan diri."),
-    (12.4, 16.2, "Rupa-rupanya, seorang puteri laut jatuh cinta padanya… lalu membawa pergi rohnya."),
-    (16.2, 24.4, "Kawan-kawannya panggil bomoh untuk pulihkan dia. Tapi puteri laut tak mahu lepaskan. Dia panggil adik-beradiknya, dan berlakulah pertarungan antara bomoh dan para puteri."),
-    (24.4, 32.6, "Akhirnya muncul puteri ketujuh, yang paling sulung. Dia tamatkan semuanya dengan satu pesan: yang laut, balik ke laut… yang darat, balik ke darat."),
-    (32.6, 40.4, "Dari situlah lahir tarian Ulek Mayang. Tujuh penari wanita, mewakili tujuh puteri. Dan mayang, iaitu bunga kelapa, dipercayai boleh menghalau makhluk halus."),
-    (40.4, 46.2, "Sampai hari ni, ada yang percaya lagu ni berhantu… terutama bila dinyanyi waktu senja, di tepi pantai."),
-    (46.2, 50.8, "Ritual asalnya dah lama ditinggalkan. Yang tinggal, tarian budaya yang cantik… dan sedikit seram."),
-    (50.8, 53.6, "Orang Terengganu, korang berani nyanyi Ulek Mayang waktu senja?"),
+    (0, 5.4, "Korang tahu tak… dari sembilan negeri beraja di Malaysia, cuma SATU yang pemerintahnya bergelar RAJA?!"),
+    (5.4, 7.0, "Negeri tu… Perlis."),
+    (7.0, 12.4, "Tujuh negeri ada Sultan. Negeri Sembilan ada Yang di-Pertuan Besar. Dan Perlis… ada Raja."),
+    (12.4, 19.6, "Perlis juga negeri paling kecil di Malaysia. Cuma lapan ratus sembilan belas kilometer persegi. Sarawak tu, lebih seratus lima puluh kali ganda besar!"),
+    (19.6, 25.0, "Dulu, Perlis sebahagian daripada Kedah. Tapi tahun seribu lapan ratus dua puluh satu, Siam takluk Kedah."),
+    (25.0, 31.2, "Lebih dua puluh tahun kemudian, Siam pisahkan Perlis jadi wilayah sendiri… dan lantik Syed Hussain Jamalullail sebagai pemerintah pertama."),
+    (31.2, 37.0, "Keluarga Jamalullail ni berketurunan Arab Hadhrami, dari Yaman. Dan keturunan mereka masih memerintah Perlis sampai hari ni."),
+    (37.0, 40.6, "Tahun seribu sembilan ratus sembilan, Siam serahkan Perlis kepada British."),
+    (40.6, 46.8, "Dan negeri paling kecil ni dah lahirkan dua Yang di-Pertuan Agong: Tuanku Syed Putra, dan Tuanku Syed Sirajuddin."),
+    (46.8, 53.6, "Kecil-kecil cili padi! Orang Perlis, korang tahu tak sejarah ni?"),
     (53.6, 60, "Negeri mana kita patut bongkar lepas ni?"),
 ]
 # caption display: spoken number words shown as figures ("" = hidden word, its time goes to the word before)
-DISPLAY = [(["Tujuh", "penari"], ["7", "penari"]), (["tujuh", "puteri."], ["7", "puteri."])]
+DISPLAY = [(["sembilan", "negeri", "beraja"], ["9", "negeri", "beraja"]), (["Tujuh", "negeri"], ["7", "negeri"]),
+           (["lapan", "ratus", "sembilan", "belas", "kilometer", "persegi."], ["819", "", "", "", "km².", ""]),
+           (["seratus", "lima", "puluh", "kali"], ["150", "", "", "kali"]), (["dua", "puluh", "tahun"], ["20", "", "tahun"]),
+           (["seribu", "lapan", "ratus", "dua", "puluh", "satu,"], ["1821,", "", "", "", "", ""]),
+           (["seribu", "sembilan", "ratus", "sembilan,"], ["1909,", "", "", ""]), (["dua", "Yang"], ["2", "Yang"])]
 BLUE = "#e0452b"
 _vo = os.path.join(ROOT, "assets", "voiceover.mp3")
 # film length = the voiceover's own length (rounded to whole frames); canonical design time stays 0..60
@@ -54,9 +58,9 @@ def words():
     return out
 
 
-KEEP = {("Ulek", "Mayang."), ("Ulek", "Mayang"), ("puteri", "laut"), ("7", "penari"), ("7", "puteri."), ("bunga", "kelapa,"), ("tepi", "pantai.")}
-WEAK = {"dan", "yang", "di", "ke", "dari", "untuk", "ini", "tu", "tapi", "pun", "dah", "kita", "dalam", "satu", "tak", "daripada", "masih", "seorang", "dengan", "lalu", "antara", "para", "iaitu", "boleh", "bila", "ada"}
-KEY = {"senja?!", "Ulek", "Mayang.", "legenda,", "puteri", "laut", "rohnya.", "bomoh", "pertarungan", "ketujuh,", "laut,", "darat,", "7", "kelapa,", "halus.", "berhantu…", "senja,", "seram.", "berani", "bongkar"}
+KEEP = {("Negeri", "Sembilan"), ("Yang", "di-Pertuan"), ("di-Pertuan", "Besar."), ("di-Pertuan", "Agong:"), ("Syed", "Hussain"), ("Hussain", "Jamalullail"), ("Syed", "Putra,"), ("Syed", "Sirajuddin."), ("Arab", "Hadhrami,"), ("cili", "padi!"), ("819", "km²."), ("150", "kali")}
+WEAK = {"dan", "yang", "di", "ke", "dari", "untuk", "ini", "tu", "tapi", "pun", "dah", "kita", "dalam", "tak", "daripada", "masih", "cuma", "ada", "jadi", "sebagai", "kepada", "lebih", "juga", "mereka", "ni"}
+KEY = {"SATU", "RAJA?!", "Perlis.", "Sultan.", "Raja.", "kecil", "819", "km².", "150", "1821,", "takluk", "Kedah.", "Jamalullail", "Hadhrami,", "Yaman.", "1909,", "British.", "2", "Agong:", "cili", "padi!", "bongkar"}
 
 
 def phrases(ws, disp=None):

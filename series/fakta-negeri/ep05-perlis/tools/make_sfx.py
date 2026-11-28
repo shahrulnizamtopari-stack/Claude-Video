@@ -182,46 +182,70 @@ def wind(d, seed=8):
     r = np.random.default_rng(seed); t = tt(d); return norm(band(r.standard_normal(len(t)), 300, 2500) * (0.5 + 0.5 * np.sin(2 * np.pi * t / 3.3) ** 2))
 def rebana(big=1.0):
     d = 0.6; t = tt(d); return reverb(norm(np.sin(2 * np.pi * 180 * t * (1 + 0.3 * np.exp(-t * 30))) * np.exp(-t * 14) + band(noise(d), 1500, 7000) * np.exp(-t * 40) * 0.6) * big, 1.2, 4000, 0.25)
-# 1. hook: space, dive, dusk stamp
+def nafiri(f, d):
+    t = tt(d); ph = 2 * np.pi * np.cumsum(f * (1 + 0.01 * np.sin(2 * np.pi * 6 * t))) / SR
+    x = sum(np.sin(k * ph) / k ** 0.7 for k in range(1, 12)) * np.minimum(1, t / 0.08) * np.minimum(1, (d - t) / 0.2)
+    return reverb(norm(band(x, 300, 6000)), 1.8, 5000, 0.35)
+def fanfare(t0, g=0.3):
+    for k, (f, d) in enumerate([(392, 0.3), (523, 0.3), (659, 0.5), (784, 1.0)]): put(nafiri(f, d), t0 + [0, 0.3, 0.6, 1.1][k], g)
+# 1. hook: space, dive, RAJA stamp with a royal hit
 put(fade(drone(8.0, 49), 0.3, 1.2), 0, 0.55)
 put(whoosh(2.4, 200, 4000), 0.6, 0.45, -0.3)
-put(riser(1.4), U(3.4) - 1.4, 0.35); put(gong(), U(3.4), 0.8); put(stamp(), U(3.4), 0.5)
-put(whoosh(0.7), U(5.6) - 0.35, 0.45)
-# 2. ULEK MAYANG title over the boats; dusk sea under the whole legend
-put(gong(87), U(5.7), 0.7)
-put(fade(waves(U(16.2) - U(5.6), calm=True, seed=4), 0.6, 0.8), U(5.6), 0.5)
-put(fade(choir(U(16.2) - U(7.4), 130.8), 1.0, 1.0), U(7.4), 0.25)
-for k, (f, d) in enumerate([(587, 1.6), (523, 1.2), (440, 2.4), (494, 1.6), (440, 2.8)]): put(violin(f, d), U(7.6) + sum([1.6, 1.2, 2.4, 1.6, 2.8][:k]), 0.16, 0.2)
-put(chime(990), U(12.6), 0.4)
-# 3. bomoh vs princesses: incense, rebana, wind spirits, gongs
-put(fade(wind(U(24.4) - U(16.2)), 0.6, 0.8), U(16.2), 0.35)
-for tx in np.arange(U(16.4), U(24.4), 60 / 104 / 1.0): put(rebana(0.8), tx, 0.3, 0.2)
-for tx in np.arange(U(20.2), U(24.4), 60 / 104 * 2): put(taiko(0.8, 62), tx, 0.45)
-put(gong(73), U(20.2), 0.6); put(riser(2.0), U(24.4) - 2.0, 0.35)
-# 4. seventh princess: everything calms, shimmer, the quote
-put(chime(1320), U(24.4), 0.6); put(impact(0.6), U(24.4), 0.4)
-put(fade(choir(U(32.6) - U(24.4), 174.6), 0.8, 1.0), U(24.4), 0.3)
-put(gong(110), W("laut,"), 0.6); put(gong(98), W("darat,"), 0.6)
-put(whoosh(0.6), U(32.6) - 0.35, 0.45)
-# 5. the dance: rebana + gong cycle + violin melody
-for tx in np.arange(U(32.6), U(40.4), 60 / 100 / 2): put(rebana(0.6), tx, 0.22, -0.2)
-for tx in np.arange(U(32.6), U(40.4), 60 / 100 * 4): put(gong(98), tx, 0.45)
-for k, (f, d) in enumerate([(659, 1.0), (587, 1.0), (523, 1.6), (587, 1.0), (440, 2.4)]): put(violin(f, d), U(33.0) + sum([1.0, 1.0, 1.6, 1.0, 2.4][:k]), 0.18, -0.2)
-for i in range(7): put(ping(660 * 2 ** (i / 12 * 2)), U(34.8 + i * 0.25), 0.25, -0.6 + 0.2 * i)
-# 6. haunted song at dusk on the shore: wind, waves, a far voice-like choir, heartbeat
-put(whoosh(1.6, 150, 3000), U(40.4), 0.4)
-put(fade(waves(U(53.6) - U(40.4), calm=True, seed=10), 0.6, 0.8), U(40.4), 0.5)
-put(fade(wind(U(50.8) - U(40.4), 11), 0.8, 0.8), U(40.4), 0.25)
-put(fade(choir(U(46.2) - U(41.0), 110.0), 1.2, 1.2), U(41.0), 0.3)
-put(impact(0.7), W("berhantu…"), 0.55)
-for tx in np.arange(U(43.6), U(46.2), 0.8): put(taiko(0.5, 46), tx, 0.35)
-put(gong(87), U(46.4), 0.5)
-put(stamp() * 0.6, U(51.2), 0.4, -0.4); put(stamp() * 0.6, U(51.8), 0.4, 0.4)
-# 7. outro
+put(riser(1.4), U(3.4) - 1.4, 0.35); put(impact(1.0), U(3.4), 0.9); put(gong(98), U(3.4), 0.5); put(stamp(), U(3.4), 0.5)
+put(whoosh(0.6), U(5.4) - 0.3, 0.4)
+# 2. paddy, then the 9 rulers map: three hits (Sultan x7, YDP Besar, Raja)
+put(fade(waves(U(7.0) - U(5.4) + 0.4, calm=True, seed=2), 0.3, 0.3), U(5.4), 0.25)
+put(whoosh(0.5), U(7.0) - 0.3, 0.4)
+for i in range(7): put(ping(523 * 2 ** (i / 12 * 2)), U(7.4) + i * 0.08, 0.2, -0.6 + 0.2 * i)
+put(ping(659), U(9.0), 0.35); put(impact(0.9), U(11.0), 0.8); fanfare(U(11.0), 0.22)
+# 3. size: count ticks, Sarawak grows, impact
+for tx in np.arange(U(14.0), U(15.2), 0.06): put(tick(2600), tx, 0.12, 0.2)
+put(riser(1.2), U(17.0), 0.3); put(impact(0.8), U(18.2), 0.7)
+# 4. 1821: war drums, stamp, elephants (low growl), fire
+put(stamp(), U(22.0), 0.9); put(impact(0.9), U(22.0), 0.7)
+w0, w1 = U(19.8), U(25.0); beat = 60 / 112; bt = w0
+while bt < w1:
+    k = int(round((bt - w0) / beat)); put(taiko(1.0 if k % 4 == 0 else 0.6, 58), bt, 0.5); bt += beat
+put(nafiri(233, 1.4) * 0.6, U(22.8), 0.3, -0.3)
+for k, tx in enumerate(np.arange(U(23.0), w1, 0.9)): put(explosion(False, 0.35), tx, 0.2, (k % 3 - 1) * 0.5)
+# 5. separation + installation: border draw whoosh, gong, nobat
+put(whoosh(1.2, 300, 5000), U(25.3), 0.4); put(gong(87), U(27.4), 0.6)
+for tx in np.arange(U(27.6), U(31.2), 60 / 92): put(rebana(0.6), tx, 0.22)
+fanfare(U(28.0), 0.25)
+# 6. Hadhramaut: desert wind, oud-like pluck line, globe whoosh
+put(fade(wind(U(33.6) - U(31.2) + 0.5, 3), 0.4, 0.4), U(31.2), 0.35)
+for k, f in enumerate((293.7, 311.1, 370.0, 392.0, 440.0, 392.0)): put(violin(f, 0.5) * 0.6, U(31.4) + k * 0.35, 0.18, 0.2)
+put(whoosh(1.4, 200, 4000), U(33.6), 0.45); put(chime(990), U(35.4), 0.4)
+# 7. 1909 stamp
+put(stamp(), U(37.4), 0.9); put(impact(0.7), U(37.4), 0.6)
+# 8. two Agong: royal procession, nobat, two hits
+for tx in np.arange(U(40.6), U(46.8), 60 / 92): put(rebana(0.6), tx, 0.25)
+for tx in np.arange(U(40.6), U(46.8), 60 / 92 * 4): put(gong(98), tx, 0.4)
+fanfare(U(40.8), 0.25); put(impact(0.7), U(43.4), 0.6); put(impact(0.7), U(45.0), 0.6)
+# 9. cili padi: sizzle + whoosh-pop, then the question
+put(impact(1.0), U(47.0), 0.8); put(fade(band(noise(1.6), 2000, 9000) * np.exp(-np.arange(int(1.6 * SR)) / SR * 2), 0.0, 0.3), U(47.6), 0.3)
+put(whoosh(0.5), U(50.0) - 0.3, 0.4)
+put(stamp() * 0.6, U(51.4), 0.4, -0.4); put(stamp() * 0.6, U(52.0), 0.4, 0.4)
+# 10. outro
 for i in range(16): put(ping(880 * 2 ** ((i % 5) / 12 * 2)), U(54.0 + i * 0.225), 0.3, -0.7 + 0.09 * i)
 put(impact(0.6), W("bongkar"), 0.55)
 put(whoosh(2.6, 150, 5000), U(58.6), 0.5)
 put(fade(drone(DUR - U(58.6), 49), 1.2, 0.0), U(58.6), 0.55)
+# heroic ostinato
+def saw_note(f, d):
+    t = tt(d); x = 2 * ((f * t) % 1) - 1; x = x + 0.5 * (2 * ((f * 1.005 * t) % 1) - 1)
+    return band(x, hi=1100) * np.exp(-t * 3.0) * np.minimum(1, t / 0.005)
+def ostinato(t0, t1, bpm, g, roots):
+    e = 60 / bpm / 2; k = 0; tx = t0
+    while tx < t1:
+        bar = int((tx - t0) / (e * 8)); root = roots[bar % len(roots)]
+        f = root * [1, 1, 2, 1, 1.5, 1, 2, 1.5][k % 8]
+        put(saw_note(f, e * 1.8), tx, g * (1.0 if k % 2 == 0 else 0.7), 0.25 if k % 2 else -0.25); tx += e; k += 1
+D2, A1, F2, C2, Bb1, G1 = 73.42, 55.0, 87.31, 65.41, 58.27, 49.0
+ostinato(0.4, U(19.6), 100, 0.11, [D2, Bb1, F2, C2])
+ostinato(U(19.6), U(25.0), 112, 0.15, [D2, Bb1, C2, A1])
+ostinato(U(25.0), U(46.8), 100, 0.11, [G1, D2, Bb1, C2])
+ostinato(U(46.8), DUR, 100, 0.12, [D2, Bb1, F2, C2])
 
 # ---------- master ----------
 mix = np.stack([L, R], 1)[: int(DUR * SR)]

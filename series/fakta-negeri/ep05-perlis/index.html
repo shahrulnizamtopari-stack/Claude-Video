@@ -80,55 +80,69 @@
       #q div { padding: 26px 18px; border-radius: 22px; text-align: center; font-weight: 800; font-size: 44px; color: #fff; box-shadow: 0 16px 40px rgba(0,0,0,0.5); opacity: 0; }
       #q .a { background: rgba(140,60,200,0.92); } #q .b { background: rgba(30,110,200,0.92); }
       #q div span { display: block; font-size: 22px; letter-spacing: 3px; opacity: 0.85; margin-bottom: 6px; }
-      #namecard { position: absolute; left: 50%; top: 760px; transform: translate(-50%, -50%); text-align: center; color: #fff; text-shadow: 0 4px 24px rgba(0,0,0,0.8); white-space: nowrap; }
-      #namecard small { display: block; font-weight: 800; font-size: 28px; letter-spacing: 8px; color: #ffd08a; }
-      #namecard b { display: block; font-weight: 800; font-size: 132px; letter-spacing: -2px; line-height: 1; }
-      #quote { position: absolute; left: 60px; right: 60px; top: 760px; transform: translateY(-50%); text-align: center; color: #fff6dc; text-shadow: 0 4px 24px rgba(0,0,0,0.9); }
-      #quote span { display: block; font-weight: 800; font-size: 64px; line-height: 1.12; letter-spacing: -1px; opacity: 0; }
-      #quote small { display: block; margin-top: 18px; font-weight: 600; font-size: 26px; color: #ffd08a; }
-      #gen .p.on.y i, #gen .p.on.y b { background: #ffd23a; box-shadow: 0 0 22px rgba(255,210,58,0.8); }
-      .dusk { position: absolute; inset: 0; background: linear-gradient(rgba(120,40,80,0.35), rgba(255,110,60,0.25) 40%, rgba(20,10,30,0.45)); mix-blend-mode: multiply; }
+      #nine { top: 1110px; } #nine .nr { display: flex; align-items: center; gap: 16px; margin-top: 10px; opacity: 0; }
+      #nine .nr i { width: 26px; height: 26px; border-radius: 6px; } #nine .nr b { font-weight: 800; font-size: 54px; width: 50px; } #nine .nr span { font-weight: 800; font-size: 28px; letter-spacing: 1px; }
+      #nine #n3 { background: rgba(255,58,26,0.18); border: 2px solid #ff3a1a; border-radius: 14px; padding: 4px 12px; }
+      #size { top: 1000px; } #size .big { font-weight: 800; font-size: 110px; letter-spacing: -4px; line-height: 1; color: #ff6a3a; font-variant-numeric: tabular-nums; } #size .big small { font-size: 40px; color: #f4efe6; margin-left: 10px; letter-spacing: 0; }
+      #size .cmp { display: grid; grid-template-columns: 60px 1fr 200px 1fr; align-items: end; gap: 14px; margin-top: 16px; } #size .sq { background: #ff3a1a; } #size .s1 { width: 16px; height: 16px; justify-self: center; } #size .s2 { width: 0; height: 0; background: rgba(95,211,111,0.85); position: relative; }
+      #size .s2 em { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); font-style: normal; font-weight: 800; font-size: 40px; color: #08120b; } #size .lab { font-weight: 700; font-size: 24px; color: #aab4c8; }
+      #agong { top: 960px; } #agong .ag { display: grid; grid-template-columns: 240px 1fr; grid-template-rows: auto auto; column-gap: 16px; margin-top: 12px; padding: 14px 18px; border-radius: 16px; background: rgba(255,197,49,0.12); border: 2px solid rgba(255,197,49,0.6); opacity: 0; }
+      #agong .ag b { grid-row: 1 / 3; font-weight: 800; font-size: 36px; white-space: nowrap; color: #ffc531; align-self: center; } #agong .ag span { font-weight: 800; font-size: 32px; } #agong .ag em { font-style: normal; font-weight: 700; font-size: 24px; color: #aab4c8; }
+      #cili { position: absolute; left: 0; right: 0; top: 520px; text-align: center; font-weight: 800; font-size: 76px; line-height: 1.05; color: #fff; text-shadow: 0 6px 30px rgba(0,0,0,0.85); }
+      #cili em { font-style: normal; font-size: 120px; color: #ff3a1a; }
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="69.733" data-width="1080" data-height="1920" data-fps="30">
-      <!-- satellite basemaps (Esri World Imagery, baked with tools/bake_all.sh); real-time positions written by tools/retime_bakes.py -->
-      <video id="v-dive" class="clip bgv" src="assets/maps/dive.mp4" muted playsinline data-start="0.0" data-duration="4.9" data-track-index="0"></video>
-      <div id="p-princess" class="clip plate" data-start="36.0" data-duration="2.667" data-track-index="0"><img id="princessImg" src="assets/maps/princess.jpg" alt="" /></div>
-      <video id="v-coast" class="clip bgv" src="assets/maps/coast.mp4" muted playsinline data-start="49.433" data-duration="3.434" data-track-index="0"></video>
-      <div id="p-coast" class="clip plate" data-start="52.867" data-duration="13.166" data-track-index="0"><img id="coastImg" src="assets/maps/coast-last.jpg" alt="" /><div class="dusk"></div></div>
-      <div id="p-outro" class="clip plate" data-start="66.033" data-duration="2.4" data-track-index="0"><div id="outroZ" style="position:absolute;inset:0;transform-origin:540px 960px"><img src="assets/maps/outro.jpg" alt="" /><svg id="svg-outro" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div></div>
-      <video id="v-out" class="clip bgv" src="assets/maps/out.mp4" muted playsinline data-start="68.433" data-duration="1.3" data-track-index="0"></video>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60.0" data-width="1080" data-height="1920" data-fps="30">
+      <!-- satellite basemaps (Esri World Imagery); real-time positions written by tools/retime_bakes.py -->
+      <video id="v-dive" class="clip bgv" src="assets/maps/dive.mp4" muted playsinline data-start="0.0" data-duration="5.4" data-track-index="0"></video>
+      <div id="p-nine" class="clip plate" data-start="7.0" data-duration="5.4" data-track-index="0"><div id="nineZ" style="position:absolute;inset:0;transform-origin:540px 1100px"><img src="assets/maps/peninsula.jpg" alt="" /><svg id="svg-nine" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div></div>
+      <div id="p-close" class="clip plate" data-start="12.4" data-duration="7.2" data-track-index="0"><img src="assets/maps/dive-last.jpg" alt="" /><svg id="svg-close" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div>
+      <div id="p-siam1" class="clip plate" data-start="19.6" data-duration="3.0" data-track-index="0"><img src="assets/maps/siam.jpg" alt="" /><svg id="svg-siam1" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div>
+      <div id="p-siam2" class="clip plate" data-start="25.0" data-duration="2.4" data-track-index="0"><img src="assets/maps/siam.jpg" alt="" /><svg id="svg-siam2" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div>
+      <video id="v-globe" class="clip bgv" src="assets/maps/globe.mp4" muted playsinline data-start="33.6" data-duration="3.4" data-track-index="0"></video>
+      <div id="p-siam3" class="clip plate" data-start="37.0" data-duration="3.6" data-track-index="0"><img src="assets/maps/siam.jpg" alt="" /><svg id="svg-siam3" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div>
+      <div id="p-close2" class="clip plate" data-start="50.0" data-duration="3.6" data-track-index="0"><img src="assets/maps/dive-last.jpg" alt="" /></div>
+      <div id="p-outro" class="clip plate" data-start="53.6" data-duration="5.0" data-track-index="0"><div id="outroZ" style="position:absolute;inset:0;transform-origin:540px 960px"><img src="assets/maps/outro.jpg" alt="" /><svg id="svg-outro" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div></div>
+      <video id="v-out" class="clip bgv" src="assets/maps/out.mp4" muted playsinline data-start="58.6" data-duration="1.4" data-track-index="0"></video>
       <!-- Flow B-roll (ILUSTRASI · AI) -->
-      <video id="br1" class="clip bgv broll" src="assets/broll/1.mp4" muted playsinline data-start="4.9" data-duration="4.233" data-media-start="0.6" data-track-index="1"></video>
-      <video id="br2" class="clip bgv broll" src="assets/broll/2_rt.mp4" muted playsinline data-start="9.133" data-duration="9.467" data-media-start="0.0" data-track-index="1"></video>
-      <video id="br3" class="clip bgv broll" src="assets/broll/3.mp4" muted playsinline data-start="18.6" data-duration="4.667" data-media-start="0.8" data-track-index="1"></video>
-      <video id="br4" class="clip bgv broll" src="assets/broll/4_rt.mp4" muted playsinline data-start="23.267" data-duration="5.066" data-media-start="0.0" data-track-index="1"></video>
-      <video id="br5" class="clip bgv broll" src="assets/broll/5_rt.mp4" muted playsinline data-start="28.333" data-duration="7.667" data-media-start="0.0" data-track-index="1"></video>
-      <video id="br6" class="clip bgv broll" src="assets/broll/6_rt.mp4" muted playsinline data-start="38.667" data-duration="10.766" data-media-start="0.0" data-track-index="1"></video>
-      <svg id="mapfx" class="clip" data-start="0" data-duration="69.733" data-track-index="2" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
-      <div id="ui" class="clip" data-start="0" data-duration="69.733" data-track-index="3" data-track-kind="graphics" data-layout-ignore>
+      <video id="br1" class="clip bgv broll" src="assets/broll/1.mp4" muted playsinline data-start="5.4" data-duration="1.6" data-media-start="1.4" data-track-index="1"></video>
+      <video id="br2" class="clip bgv broll" src="assets/broll/2.mp4" muted playsinline data-start="22.6" data-duration="2.4" data-media-start="0.0" data-track-index="1"></video>
+      <video id="br3" class="clip bgv broll" src="assets/broll/3.mp4" muted playsinline data-start="27.4" data-duration="3.8" data-media-start="0.0" data-track-index="1"></video>
+      <video id="br4" class="clip bgv broll" src="assets/broll/4.mp4" muted playsinline data-start="31.2" data-duration="2.4" data-media-start="0.6" data-track-index="1"></video>
+      <video id="br5" class="clip bgv broll" src="assets/broll/5_rt.mp4" muted playsinline data-start="40.6" data-duration="6.2" data-media-start="0.0" data-track-index="1"></video>
+      <video id="br6" class="clip bgv broll" src="assets/broll/6.mp4" muted playsinline data-start="46.8" data-duration="3.2" data-media-start="0.6" data-track-index="1"></video>
+      <svg id="mapfx" class="clip" data-start="0" data-duration="60.0" data-track-index="2" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+      <div id="ui" class="clip" data-start="0" data-duration="60.0" data-track-index="3" data-track-kind="graphics" data-layout-ignore>
         <div class="fade-top"></div><div class="fade-bot"></div>
         <div id="dip"></div>
-        <div id="badge"><i></i>FAKTA NEGERI · #4</div>
+        <div id="badge"><i></i>FAKTA NEGERI · #5</div>
         <div id="title"></div>
         <div id="aitag">ILUSTRASI · AI</div>
-        <div id="era" class="leg">LEGENDA</div>
+        <div id="era" class="sej">SEJARAH</div>
         <div id="labels"></div>
         <div id="note"></div>
         <div id="credit"></div>
-        <div id="stamp">JANGAN NYANYI<small>WAKTU SENJA?!</small></div>
-        <div id="namecard"><small>LAGU &amp; TARIAN · TERENGGANU</small><b>ULEK MAYANG</b></div>
-        <div id="quote"><span>“Yang laut, balik ke laut…</span><span>yang darat, balik ke darat.”</span><small>— pesan puteri ketujuh, menurut legenda</small></div>
-        <div id="gen" class="card"><div class="k">TARIAN ULEK MAYANG</div>
-          <div class="row"></div><div class="t">7 penari = 7 puteri</div></div>
+        <div id="stamp">RAJA<small>BUKAN SULTAN</small></div>
+        <div id="stamp2"><span id="s2t">1821</span><small id="s2s">SIAM TAKLUK KEDAH</small></div>
+        <div id="nine" class="card"><div class="k">9 NEGERI BERAJA · GELARAN PEMERINTAH</div>
+          <div class="nr" id="n1"><i style="background:#ffc531"></i><b>7</b><span>SULTAN</span></div>
+          <div class="nr" id="n2"><i style="background:#4aa3ff"></i><b>1</b><span>YANG DI-PERTUAN BESAR · N. Sembilan</span></div>
+          <div class="nr" id="n3"><i style="background:#ff3a1a"></i><b>1</b><span>RAJA · Perlis</span></div></div>
+        <div id="size" class="card"><div class="k">NEGERI PALING KECIL</div>
+          <div class="big"><span id="sz">0</span><small>km²</small></div>
+          <div class="cmp"><div class="sq s1"></div><div class="lab">Perlis</div><div class="sq s2"><em>×152</em></div><div class="lab">Sarawak</div></div></div>
+        <div id="agong" class="card"><div class="k">DARI NEGERI PALING KECIL · 2 YANG DI-PERTUAN AGONG</div>
+          <div class="ag" id="a1"><b>Agong ke-3</b><span>Tuanku Syed Putra</span><em>1960–1965</em></div>
+          <div class="ag" id="a2"><b>Agong ke-12</b><span>Tuanku Syed Sirajuddin</span><em>2001–2006</em></div></div>
+        <div id="cili">KECIL-KECIL<br><em>CILI PADI!</em></div>
         <div id="chip"></div>
-        <div id="q"><div class="a"><span>A</span>BERANI 😤</div><div class="b"><span>B</span>TAK BERANI 😨</div></div>
+        <div id="q"><div class="a"><span>A</span>DAH TAHU 😎</div><div class="b"><span>B</span>BARU TAHU 😮</div></div>
         <div id="cta"><div>Negeri mana kita <em>bongkar</em> lepas ni? ↓</div></div>
       </div>
-      <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="69.733" data-track-index="5" data-volume="1"></audio>
-      <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="69.733" data-track-index="6" data-volume="0.4"></audio>
-      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="69.733"
+      <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="60.0" data-track-index="5" data-volume="1"></audio>
+      <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="60.0" data-track-index="6" data-volume="0.4"></audio>
+      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="60.0"
         data-track-index="4" data-track-kind="captions" data-width="1080" data-height="1920"></div>
     </div>
 
@@ -155,49 +169,79 @@
       const stateLayer = (parent, sh) => { const g = el("g", {}, parent); const m = {};
         sh.polys.forEach((p) => { m[p.name] = { fill: el("path", { d: p.d, fill: "#ff3a1a", "fill-opacity": 0, stroke: "none" }, g), line: el("path", { d: p.d, fill: "none", stroke: "#ffffff", "stroke-width": 2.2, "stroke-opacity": 0.85, "stroke-linejoin": "round" }, g), label: p.label }; });
         return { g, m }; };
-      const HERO = "Terengganu";
+      const HERO = "Perlis";
       const gDive = el("g", {}, fx); const diveS = stateLayer(gDive, SH.dive);
       const heroLine = el("path", { d: SH.dive.polys.find((p) => p.name === HERO).d, fill: "none", stroke: "#ff5a2a", "stroke-width": 6, filter: "url(#glow)", pathLength: 1, "stroke-dasharray": 1, "stroke-dashoffset": 1, "stroke-linejoin": "round" }, gDive);
-      const oSvg = document.getElementById("svg-outro"); el("defs", {}, oSvg).appendChild(gl.cloneNode(true));
-      const outroS = stateLayer(oSvg, SH.outro);
-      const genRow = document.querySelector("#gen .row");
-      const gens = Array.from({ length: 7 }, (_, i) => { const d = document.createElement("div"); d.className = "p" + (i === 3 ? " y" : ""); d.innerHTML = `<i></i><b></b><span>${i + 1}</span>`; genRow.appendChild(d); return d; });
+      const mk = (id) => { const sv = document.getElementById(id); el("defs", {}, sv).appendChild(gl.cloneNode(true)); return sv; };
+      const nineS = stateLayer(mk("svg-nine"), SH.peninsula);
+      const closeSv = mk("svg-close"); const closeS = stateLayer(closeSv, SH.dive);
+      const closeHero = el("path", { d: SH.dive.polys.find((p) => p.name === HERO).d, fill: "none", stroke: "#ff5a2a", "stroke-width": 6, filter: "url(#glow)" }, closeSv);
+      const siamL = ["svg-siam1", "svg-siam2", "svg-siam3"].map((id) => { const sv = mk(id); const st = stateLayer(sv, SH.siam);
+        const ph = el("path", { d: SH.siam.polys.find((p) => p.name === HERO).d, fill: "none", stroke: "#ff5a2a", "stroke-width": 6, filter: "url(#glow)", pathLength: 1, "stroke-dasharray": 1, "stroke-dashoffset": 1 }, sv); return { st, ph }; });
+      const gGlobe = el("g", {}, fx);
+      const arcP = el("path", { d: SH.globe.lines.yp.map((p, i) => (i ? "L" : "M") + p[0] + " " + p[1]).join(" "), fill: "none", stroke: "#ffd08a", "stroke-width": 5, filter: "url(#glow)", pathLength: 1, "stroke-dasharray": 1, "stroke-dashoffset": 1, "stroke-linecap": "round" }, gGlobe);
+      const oSvg = mk("svg-outro"); const outroS = stateLayer(oSvg, SH.outro);
+      const SULTAN = ["Johor", "Kedah", "Kelantan", "Pahang", "Perak", "Selangor", "Terengganu"];
 
-      const HOOK = "Lagu paling <em>seram</em> Terengganu?";
+      const HOOK = "Satu-satunya negeri ada <em>Raja</em>";
       const CH = [
-        [0, 5.6, HOOK], [7.4, 16.2, "Nelayan &amp; <em>puteri laut</em>"], [16.2, 24.4, "Bomoh lawan <em>puteri</em>"], [24.4, 32.6, "Puteri <em>ketujuh</em>"],
-        [32.6, 40.4, "Lahirnya <em>tarian</em>"], [40.4, 46.2, "Lagu <em>berhantu</em>?"], [46.2, 50.8, "Dari ritual ke <em>budaya</em>"], [50.8, 53.6, "Korang <em>berani</em>?"], [53.6, 58.6, "Negeri mana <em>lepas ni</em>?"],
+        [0, 5.4, HOOK], [5.4, 7.0, "<em>Perlis</em>"], [7.0, 12.4, "9 negeri beraja, <em>3 gelaran</em>"], [12.4, 19.6, "Negeri paling <em>kecil</em>"], [19.6, 25.0, "<em>1821</em>: Siam takluk Kedah"],
+        [25.0, 31.2, "Perlis <em>berpisah</em>"], [31.2, 37.0, "Akar dari <em>Yaman</em>"], [37.0, 40.6, "<em>1909</em>: ke tangan British"], [40.6, 46.8, "<em>2 Agong</em> dari Perlis"], [46.8, 53.6, "Kecil-kecil <em>cili padi</em>"], [53.6, 58.6, "Negeri mana <em>lepas ni</em>?"],
       ];
       const NOTES = [
-        [7.6, 16.0, "Legenda Ulek Mayang · banyak versi · versi Wikipedia (EN)"],
-        [32.8, 40.2, "7 penari: 6 bersongket, ketua berbaju kuning (Puteri Tujuh) · mayang = bunga kelapa"],
-        [46.4, 50.6, "Ritual asal berterusan sehingga beberapa dekad lalu · kini dipersembahkan sebagai tarian budaya"],
+        [12.6, 19.4, "Perlis 819 km² · Sarawak 124,450 km² → ±152 kali ganda"],
+        [25.2, 31.0, "Siam pisahkan Perlis (1842) · Syed Hussain Jamalullail pemerintah pertama (1843)"],
+        [31.4, 36.8, "Keluarga Jamalullail: keturunan Arab Hadhrami, Hadhramaut (Yaman)"],
+        [37.2, 40.4, "Perjanjian Inggeris-Siam 1909: Kedah & Perlis diserahkan kepada Britain"],
       ];
       const LABELS = [
-        [() => SH.dive.polys.find((p) => p.name === HERO).label, "TERENGGANU", "", 4.2, 5.6, -1],
-        [() => SH.coast.points.kt, "KUALA TERENGGANU", "Laut China Selatan", 41.6, 46.0, 1],
+        [() => SH.dive.polys.find((p) => p.name === HERO).label, "PERLIS", "", 4.0, 5.4, 1],
+        [() => SH.siam.points.alorsetar, "KEDAH", "", 20.0, 22.5, 1], [() => SH.siam.polys.find((p) => p.name === "Thailand").label, "SIAM", "Thailand hari ini", 21.0, 22.5, -1],
+        [() => SH.siam.points.kangar, "PERLIS", "1842", 25.6, 27.3, 1],
+        [() => SH.globe.points.shibam, "HADHRAMAUT", "Yaman", 34.0, 36.9, -1], [() => SH.globe.points.kangar, "PERLIS", "", 35.2, 36.9, 1],
+        [() => SH.dive.points.arau, "ARAU", "bandar diraja", 50.3, 53.4, 1],
       ];
-      const CREDITS = [[0, 5.6, "Imej: Esri World Imagery"], [40.4, 60, "Imej: Esri World Imagery"]];
-      const CUTS = [5.6, 32.6, 40.4, 53.6];
+      const CREDITS = [[0, 5.4, "Imej: Esri World Imagery"], [7.0, 22.6, "Imej: Esri World Imagery"], [25.0, 27.4, "Imej: Esri World Imagery"], [33.6, 40.6, "Imej: Esri World Imagery"], [50, 60, "Imej: Esri World Imagery"]];
+      const CUTS = [5.4, 7.0, 12.4, 19.6, 25.0, 37.0, 40.6, 46.8, 50.0, 53.6];
       const $ = (s) => document.querySelector(s);
       const titleEl = $("#title"), noteEl = $("#note"), labelsEl = $("#labels"), cta = $("#cta"), creditEl = $("#credit"), chip = $("#chip"), era = $("#era");
       const lblEls = LABELS.map(() => { const d = document.createElement("div"); d.className = "lbl"; d.innerHTML = '<span class="ln"></span><span class="pt"></span><span class="tx"></span>'; labelsEl.appendChild(d); return d; });
-      const CHIPS = [[12.6, 16.0, "Puteri laut <em>bawa pergi rohnya</em>"], [37.1, 40.2, "Mayang = <em>bunga kelapa</em>"], [44.6, 46.1, "Waktu <em>senja</em> · tepi pantai"], [47.8, 50.6, "Ritual → <em>tarian budaya</em>"]];
+      const CHIPS = [[28.0, 31.0, "Syed Hussain <em>Jamalullail</em> · pemerintah pertama"]];
       function overlay(t) {
         const c = CH.find(([a, b]) => t >= a && t < b);
         const ta = c ? win(t, c[0], c[1], 0.35, 0.3) : 0;
         if (c && titleEl.innerHTML !== c[2]) titleEl.innerHTML = c[2];
         titleEl.style.opacity = ta; titleEl.style.filter = `blur(${(1 - ta) * 10}px)`;
-        let dip = 0; CUTS.forEach((k) => { dip = Math.max(dip, 1 - clamp(Math.abs(t - k) / 0.22)); }); $("#dip").style.opacity = dip;
-        gDive.style.opacity = t < 5.6 && t > 3.6 ? ss(3.6, 4.2, t) : 0;
-        for (const [n, s] of Object.entries(diveS.m)) { const k = n === HERO; s.fill.setAttribute("fill-opacity", k ? 0.3 * ss(4.4, 5.0, t) * (0.85 + 0.15 * Math.sin(t * 5)) : 0); s.line.setAttribute("stroke-opacity", k ? 0 : 0.7); }
-        heroLine.setAttribute("stroke-dashoffset", 1 - ss(4.0, 5.2, t));
+        let dip = 0; CUTS.forEach((k) => { dip = Math.max(dip, 1 - clamp(Math.abs(t - k) / 0.2)); }); $("#dip").style.opacity = dip * 0.8;
+        gDive.style.opacity = t < 5.4 && t > 3.4 ? ss(3.4, 4.0, t) : 0;
+        for (const [n, s] of Object.entries(diveS.m)) { const k = n === HERO; s.fill.setAttribute("fill-opacity", k ? 0.35 * ss(4.2, 4.8, t) * (0.85 + 0.15 * Math.sin(t * 5)) : 0); s.line.setAttribute("stroke-opacity", k ? 0 : 0.7); }
+        heroLine.setAttribute("stroke-dashoffset", 1 - ss(3.8, 4.8, t));
+        // 9 rulers map
+        for (const [n, s] of Object.entries(nineS.m)) { let col = null, on = 0;
+          if (SULTAN.includes(n)) { col = "#ffc531"; on = ss(7.4, 8.0, t); } else if (n === "Negeri Sembilan") { col = "#4aa3ff"; on = ss(9.0, 9.4, t); } else if (n === HERO) { col = "#ff3a1a"; on = ss(11.0, 11.4, t) * (0.8 + 0.2 * Math.sin(t * 6)); }
+          s.fill.setAttribute("fill", col || "#ffffff"); s.fill.setAttribute("fill-opacity", col ? 0.55 * on : 0); s.line.setAttribute("stroke-opacity", 0.6); }
+        $("#nineZ").style.transform = `scale(${1 + 0.05 * ss(7.0, 12.4, t)})`;
+        const na = win(t, 7.2, 12.3, 0.3, 0.3); $("#nine").style.opacity = na; $("#n1").style.opacity = ss(7.4, 7.8, t); $("#n2").style.opacity = ss(9.0, 9.4, t); $("#n3").style.opacity = ss(11.0, 11.4, t);
+        // size
+        for (const [n, s] of Object.entries(closeS.m)) { s.fill.setAttribute("fill-opacity", n === HERO ? 0.3 : 0); s.line.setAttribute("stroke-opacity", n === HERO ? 0 : 0.6); }
+        const sa2 = win(t, 13.6, 19.5, 0.35, 0.3); $("#size").style.opacity = sa2; $("#sz").textContent = Math.round(819 * ss(14.0, 15.2, t));
+        const grow = ss(17.0, 18.4, t); $("#size .s2").style.width = 200 * grow + "px"; $("#size .s2").style.height = 140 * grow + "px"; $("#size .s2 em").style.opacity = ss(18.2, 18.5, t);
+        // Siam plates
+        siamL.forEach(({ st, ph }, k) => { for (const [n, s] of Object.entries(st.m)) {
+            const thai = n === "Thailand", ked = n === "Kedah", per = n === HERO;
+            let col = "#ffffff", op = 0;
+            if (thai) { col = "#ff3a1a"; op = 0.4 * (k === 0 ? ss(21.0, 21.6, t) : 1); }
+            if (ked) { col = "#ffc531"; op = k === 0 ? 0.35 * ss(20.0, 20.5, t) : 0.2; }
+            if (per) { col = k === 0 ? "#ffc531" : "#ff3a1a"; op = k === 0 ? 0.35 * ss(20.0, 20.5, t) : 0.5; }
+            if (k === 2 && (thai)) { op = 0.15; }
+            if (k === 2 && (ked || per)) { col = "#4aa3ff"; op = 0.45 * ss(37.6, 38.2, t); }
+            s.fill.setAttribute("fill", col); s.fill.setAttribute("fill-opacity", op); s.line.setAttribute("stroke-opacity", 0.7); }
+          ph.setAttribute("stroke-dashoffset", k === 1 ? 1 - ss(25.3, 26.6, t) : k === 2 ? 0 : 1); });
+        gGlobe.style.opacity = t > 33.6 && t < 37.0 ? 1 : 0; arcP.setAttribute("stroke-dashoffset", 1 - ss(34.0, 35.4, t));
         const oz = 1 + 0.05 * ss(53.6, 58.6, t); $("#outroZ").style.transform = `scale(${oz})`;
         Object.keys(outroS.m).forEach((n, i) => { const s = outroS.m[n]; const k = (t - 54.0) * 4 - i * 0.9; const b = k > 0 ? Math.exp(-(((k % 8) + 8) % 8) * 1.4) * (1 - ss(58.0, 58.6, t)) : 0;
-          const hero = n === HERO ? 0.35 * (1 - ss(58.0, 58.6, t)) * ss(53.8, 54.2, t) : 0;
+          const hero = n === HERO ? 0.45 * (1 - ss(58.0, 58.6, t)) * ss(53.8, 54.2, t) : 0;
           s.fill.setAttribute("fill-opacity", Math.max(0.55 * b, hero)); s.line.setAttribute("stroke-opacity", 0.5 + 0.5 * b); });
-        $("#princessImg").style.transform = `scale(${1 + 0.05 * ss(30.4, 32.6, t)})`; $("#princessImg").style.filter = "brightness(0.55)";
-        $("#coastImg").style.transform = `scale(${1 + 0.07 * ss(43.4, 53.6, t)})`;
         LABELS.forEach(([src, txt, sub, t0, t1, side], i) => {
           const e = lblEls[i]; const la = win(t, t0, t1, 0.25, 0.25); e.style.opacity = la; if (la <= 0) return;
           const p = src(); e.style.left = p[0] + "px"; e.style.top = p[1] + "px";
@@ -210,18 +254,19 @@
         const n = NOTES.find(([a, b]) => t >= a && t < b);
         noteEl.style.opacity = n ? win(t, n[0], n[1]) : 0; if (n && noteEl.textContent !== n[2]) noteEl.textContent = n[2];
         const cr = CREDITS.find(([a, b]) => t >= a && t < b); creditEl.textContent = cr ? cr[2] : "";
-        $("#aitag").style.opacity = Math.max(win(t, 5.7, 32.5, 0.2, 0.2), win(t, 32.7, 40.3, 0.2, 0.2));
-        const leg = t >= 7.4 && t < 32.6, bud = t >= 32.6 && t < 50.8;
-        era.className = leg ? "leg" : "sej"; era.textContent = leg ? "LEGENDA" : "BUDAYA"; era.style.opacity = Math.max(win(t, 7.5, 32.5, 0.2, 0.2), win(t, 32.7, 50.7, 0.2, 0.2));
-        const sa = win(t, 3.4, 5.5, 0.12, 0.3); $("#stamp").style.opacity = sa; $("#stamp").style.transform = `translate(-50%, -50%) rotate(-5deg) scale(${1.5 - 0.5 * ss(3.4, 3.6, t)})`;
-        const na = win(t, 5.7, 7.4, 0.3, 0.25); $("#namecard").style.opacity = na; $("#namecard").style.transform = `translate(-50%, -50%) scale(${0.85 + 0.15 * pop(5.7, t, 0.5)})`;
-        const qa = win(t, 28.9, 32.5, 0.2, 0.3); $("#quote").style.opacity = qa;
-        const qs = document.querySelectorAll("#quote span"); qs[0].style.opacity = ss(29.1, 29.5, t); qs[1].style.opacity = ss(30.9, 31.3, t);
-        const ga = win(t, 34.4, 37.4, 0.35, 0.3); $("#gen").style.opacity = ga; $("#gen").style.transform = `translateY(${(1 - ss(34.4, 34.8, t)) * 30}px)`;
-        gens.forEach((g, i) => g.classList.toggle("on", t > 34.8 + i * 0.25));
+        $("#aitag").style.opacity = Math.max(win(t, 5.5, 6.9, 0.2, 0.2), win(t, 22.7, 24.9, 0.2, 0.2), win(t, 27.5, 33.5, 0.2, 0.2), win(t, 40.7, 49.9, 0.2, 0.2));
+        era.textContent = "SEJARAH"; era.style.opacity = win(t, 19.7, 46.7, 0.2, 0.2);
+        const sa = win(t, 3.4, 5.3, 0.12, 0.3); $("#stamp").style.opacity = sa; $("#stamp").style.transform = `translate(-50%, -50%) rotate(-5deg) scale(${1.5 - 0.5 * ss(3.4, 3.6, t)})`;
+        const s1 = win(t, 22.0, 24.9, 0.12, 0.3), s2 = win(t, 37.4, 40.5, 0.12, 0.3);
+        $("#stamp2").style.opacity = Math.max(s1, s2);
+        if (s2 > 0) { $("#s2t").textContent = "1909"; $("#s2s").textContent = "DISERAHKAN KEPADA BRITISH"; } else { $("#s2t").textContent = "1821"; $("#s2s").textContent = "SIAM TAKLUK KEDAH"; }
+        const st0 = s2 > 0 ? 37.4 : 22.0; $("#stamp2").style.transform = `translate(-50%, -50%) rotate(-5deg) scale(${1.5 - 0.5 * ss(st0, st0 + 0.2, t)})`;
+        const aa = win(t, 42.6, 46.7, 0.35, 0.3); $("#agong").style.opacity = aa; $("#agong").style.transform = `translateY(${(1 - ss(42.6, 43.0, t)) * 30}px)`;
+        $("#a1").style.opacity = ss(43.4, 43.8, t); $("#a2").style.opacity = ss(45.0, 45.4, t);
+        const ci = win(t, 47.0, 49.9, 0.15, 0.3); $("#cili").style.opacity = ci; $("#cili").style.transform = `scale(${0.7 + 0.3 * pop(47.0, t, 0.4)})`;
         const cc = CHIPS.find(([a, b]) => t >= a && t < b); chip.style.opacity = cc ? win(t, cc[0], cc[1], 0.25, 0.3) : 0; if (cc && chip.innerHTML !== cc[2]) chip.innerHTML = cc[2];
         if (cc) chip.style.transform = `translateX(-50%) scale(${0.8 + 0.2 * pop(cc[0], t)})`;
-        document.querySelectorAll("#q div").forEach((d, i) => { const t0 = 51.2 + i * 0.6; d.style.opacity = win(t, t0, 53.5, 0.25, 0.3); d.style.transform = `translateX(${(1 - ss(t0, t0 + 0.35, t)) * (i ? 60 : -60)}px)`; });
+        document.querySelectorAll("#q div").forEach((d, i) => { const t0 = 51.4 + i * 0.6; d.style.opacity = win(t, t0, 53.5, 0.25, 0.3); d.style.transform = `translateX(${(1 - ss(t0, t0 + 0.35, t)) * (i ? 60 : -60)}px)`; });
         const ctaA = win(t, 54.4, 58.7, 0.35, 0.4); cta.style.opacity = ctaA; cta.style.transform = `translateY(${(1 - ss(54.4, 54.8, t)) * 24}px)`;
         $("#badge").style.opacity = t > 58.6 ? 1 - ss(58.6, 59.1, t) + ss(59.6, 60, t) : 1;
       }
