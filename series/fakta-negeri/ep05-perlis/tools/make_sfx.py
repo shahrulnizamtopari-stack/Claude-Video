@@ -191,7 +191,7 @@ def fanfare(t0, g=0.3):
 # 1. hook: space, dive, RAJA stamp with a royal hit
 put(fade(drone(8.0, 49), 0.3, 1.2), 0, 0.55)
 put(whoosh(2.4, 200, 4000), 0.6, 0.45, -0.3)
-put(riser(1.4), U(3.4) - 1.4, 0.35); put(impact(1.0), U(3.4), 0.9); put(gong(98), U(3.4), 0.5); put(stamp(), U(3.4), 0.5)
+put(riser(1.4), W("RAJA?!") - 1.4, 0.35); put(impact(1.0), W("RAJA?!"), 0.9); put(gong(98), W("RAJA?!"), 0.5); put(stamp(), W("RAJA?!"), 0.5)
 put(whoosh(0.6), U(5.4) - 0.3, 0.4)
 # 2. paddy, then the 9 rulers map: three hits (Sultan x7, YDP Besar, Raja)
 put(fade(waves(U(7.0) - U(5.4) + 0.4, calm=True, seed=2), 0.3, 0.3), U(5.4), 0.25)
@@ -221,7 +221,7 @@ put(stamp(), U(37.4), 0.9); put(impact(0.7), U(37.4), 0.6)
 # 8. two Agong: royal procession, nobat, two hits
 for tx in np.arange(U(40.6), U(46.8), 60 / 92): put(rebana(0.6), tx, 0.25)
 for tx in np.arange(U(40.6), U(46.8), 60 / 92 * 4): put(gong(98), tx, 0.4)
-fanfare(U(40.8), 0.25); put(impact(0.7), U(43.4), 0.6); put(impact(0.7), U(45.0), 0.6)
+fanfare(U(40.8), 0.25); put(impact(0.7), W("Tuanku"), 0.6); put(impact(0.7), W("Tuanku", 2), 0.6)
 # 9. cili padi: sizzle + whoosh-pop, then the question
 put(impact(1.0), U(47.0), 0.8); put(fade(band(noise(1.6), 2000, 9000) * np.exp(-np.arange(int(1.6 * SR)) / SR * 2), 0.0, 0.3), U(47.6), 0.3)
 put(whoosh(0.5), U(50.0) - 0.3, 0.4)

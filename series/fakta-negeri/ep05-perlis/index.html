@@ -86,34 +86,35 @@
       #size { top: 1000px; } #size .big { font-weight: 800; font-size: 110px; letter-spacing: -4px; line-height: 1; color: #ff6a3a; font-variant-numeric: tabular-nums; } #size .big small { font-size: 40px; color: #f4efe6; margin-left: 10px; letter-spacing: 0; }
       #size .cmp { display: grid; grid-template-columns: 60px 1fr 200px 1fr; align-items: end; gap: 14px; margin-top: 16px; } #size .sq { background: #ff3a1a; } #size .s1 { width: 16px; height: 16px; justify-self: center; } #size .s2 { width: 0; height: 0; background: rgba(95,211,111,0.85); position: relative; }
       #size .s2 em { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); font-style: normal; font-weight: 800; font-size: 40px; color: #08120b; } #size .lab { font-weight: 700; font-size: 24px; color: #aab4c8; }
-      #agong { top: 960px; } #agong .ag { display: grid; grid-template-columns: 240px 1fr; grid-template-rows: auto auto; column-gap: 16px; margin-top: 12px; padding: 14px 18px; border-radius: 16px; background: rgba(255,197,49,0.12); border: 2px solid rgba(255,197,49,0.6); opacity: 0; }
-      #agong .ag b { grid-row: 1 / 3; font-weight: 800; font-size: 36px; white-space: nowrap; color: #ffc531; align-self: center; } #agong .ag span { font-weight: 800; font-size: 32px; } #agong .ag em { font-style: normal; font-weight: 700; font-size: 24px; color: #aab4c8; }
+      #agong { top: 960px; } #agong .ag { display: grid; grid-template-columns: 130px 240px 1fr; grid-template-rows: auto auto; column-gap: 16px; margin-top: 12px; padding: 14px 18px; border-radius: 16px; background: rgba(255,197,49,0.12); border: 2px solid rgba(255,197,49,0.6); opacity: 0; }
+      #agong .ag img { grid-row: 1 / 3; width: 120px; height: 150px; object-fit: cover; object-position: 50% 15%; border-radius: 10px; border: 3px solid #ffc531; } #agong .gs { margin-top: 10px; font-weight: 700; font-size: 18px; letter-spacing: 2px; color: #aab4c8; }
+      #agong .ag b { grid-row: 1 / 3; font-weight: 800; font-size: 36px; white-space: nowrap; color: #ffc531; align-self: center; } #agong .ag span { font-weight: 800; font-size: 30px; } #agong .ag em { font-style: normal; font-weight: 700; font-size: 24px; color: #aab4c8; }
       #cili { position: absolute; left: 0; right: 0; top: 520px; text-align: center; font-weight: 800; font-size: 76px; line-height: 1.05; color: #fff; text-shadow: 0 6px 30px rgba(0,0,0,0.85); }
       #cili em { font-style: normal; font-size: 120px; color: #ff3a1a; }
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="60.0" data-width="1080" data-height="1920" data-fps="30">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="65.0" data-width="1080" data-height="1920" data-fps="30">
       <!-- satellite basemaps (Esri World Imagery); real-time positions written by tools/retime_bakes.py -->
-      <video id="v-dive" class="clip bgv" src="assets/maps/dive.mp4" muted playsinline data-start="0.0" data-duration="5.4" data-track-index="0"></video>
-      <div id="p-nine" class="clip plate" data-start="7.0" data-duration="5.4" data-track-index="0"><div id="nineZ" style="position:absolute;inset:0;transform-origin:540px 1100px"><img src="assets/maps/peninsula.jpg" alt="" /><svg id="svg-nine" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div></div>
-      <div id="p-close" class="clip plate" data-start="12.4" data-duration="7.2" data-track-index="0"><img src="assets/maps/dive-last.jpg" alt="" /><svg id="svg-close" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div>
-      <div id="p-siam1" class="clip plate" data-start="19.6" data-duration="3.0" data-track-index="0"><img src="assets/maps/siam.jpg" alt="" /><svg id="svg-siam1" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div>
-      <div id="p-siam2" class="clip plate" data-start="25.0" data-duration="2.4" data-track-index="0"><img src="assets/maps/siam.jpg" alt="" /><svg id="svg-siam2" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div>
-      <video id="v-globe" class="clip bgv" src="assets/maps/globe.mp4" muted playsinline data-start="33.6" data-duration="3.4" data-track-index="0"></video>
-      <div id="p-siam3" class="clip plate" data-start="37.0" data-duration="3.6" data-track-index="0"><img src="assets/maps/siam.jpg" alt="" /><svg id="svg-siam3" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div>
-      <div id="p-close2" class="clip plate" data-start="50.0" data-duration="3.6" data-track-index="0"><img src="assets/maps/dive-last.jpg" alt="" /></div>
-      <div id="p-outro" class="clip plate" data-start="53.6" data-duration="5.0" data-track-index="0"><div id="outroZ" style="position:absolute;inset:0;transform-origin:540px 960px"><img src="assets/maps/outro.jpg" alt="" /><svg id="svg-outro" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div></div>
-      <video id="v-out" class="clip bgv" src="assets/maps/out.mp4" muted playsinline data-start="58.6" data-duration="1.4" data-track-index="0"></video>
+      <video id="v-dive" class="clip bgv" src="assets/maps/dive.mp4" muted playsinline data-start="0.0" data-duration="5.667" data-track-index="0"></video>
+      <div id="p-nine" class="clip plate" data-start="7.433" data-duration="6.0" data-track-index="0"><div id="nineZ" style="position:absolute;inset:0;transform-origin:540px 1100px"><img src="assets/maps/peninsula.jpg" alt="" /><svg id="svg-nine" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div></div>
+      <div id="p-close" class="clip plate" data-start="13.433" data-duration="8.7" data-track-index="0"><img src="assets/maps/dive-last.jpg" alt="" /><svg id="svg-close" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div>
+      <div id="p-siam1" class="clip plate" data-start="22.133" data-duration="3.967" data-track-index="0"><img src="assets/maps/siam.jpg" alt="" /><svg id="svg-siam1" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div>
+      <div id="p-siam2" class="clip plate" data-start="28.9" data-duration="3.233" data-track-index="0"><img src="assets/maps/siam.jpg" alt="" /><svg id="svg-siam2" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div>
+      <video id="v-globe" class="clip bgv" src="assets/maps/globe.mp4" muted playsinline data-start="41.633" data-duration="3.8" data-track-index="0"></video>
+      <div id="p-siam3" class="clip plate" data-start="45.433" data-duration="4.234" data-track-index="0"><img src="assets/maps/siam.jpg" alt="" /><svg id="svg-siam3" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div>
+      <div id="p-close2" class="clip plate" data-start="59.5" data-duration="1.567" data-track-index="0"><img src="assets/maps/dive-last.jpg" alt="" /></div>
+      <div id="p-outro" class="clip plate" data-start="61.067" data-duration="2.533" data-track-index="0"><div id="outroZ" style="position:absolute;inset:0;transform-origin:540px 960px"><img src="assets/maps/outro.jpg" alt="" /><svg id="svg-outro" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div></div>
+      <video id="v-out" class="clip bgv" src="assets/maps/out.mp4" muted playsinline data-start="63.6" data-duration="1.4" data-track-index="0"></video>
       <!-- Flow B-roll (ILUSTRASI · AI) -->
-      <video id="br1" class="clip bgv broll" src="assets/broll/1.mp4" muted playsinline data-start="5.4" data-duration="1.6" data-media-start="1.4" data-track-index="1"></video>
-      <video id="br2" class="clip bgv broll" src="assets/broll/2.mp4" muted playsinline data-start="22.6" data-duration="2.4" data-media-start="0.0" data-track-index="1"></video>
-      <video id="br3" class="clip bgv broll" src="assets/broll/3.mp4" muted playsinline data-start="27.4" data-duration="3.8" data-media-start="0.0" data-track-index="1"></video>
-      <video id="br4" class="clip bgv broll" src="assets/broll/4.mp4" muted playsinline data-start="31.2" data-duration="2.4" data-media-start="0.6" data-track-index="1"></video>
-      <video id="br5" class="clip bgv broll" src="assets/broll/5_rt.mp4" muted playsinline data-start="40.6" data-duration="6.2" data-media-start="0.0" data-track-index="1"></video>
-      <video id="br6" class="clip bgv broll" src="assets/broll/6.mp4" muted playsinline data-start="46.8" data-duration="3.2" data-media-start="0.6" data-track-index="1"></video>
-      <svg id="mapfx" class="clip" data-start="0" data-duration="60.0" data-track-index="2" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
-      <div id="ui" class="clip" data-start="0" data-duration="60.0" data-track-index="3" data-track-kind="graphics" data-layout-ignore>
+      <video id="br1" class="clip bgv broll" src="assets/broll/1.mp4" muted playsinline data-start="5.667" data-duration="1.766" data-media-start="1.4" data-track-index="1"></video>
+      <video id="br2" class="clip bgv broll" src="assets/broll/2.mp4" muted playsinline data-start="26.1" data-duration="2.8" data-media-start="0.0" data-track-index="1"></video>
+      <video id="br3" class="clip bgv broll" src="assets/broll/3_rt.mp4" muted playsinline data-start="32.133" data-duration="5.667" data-media-start="0.0" data-track-index="1"></video>
+      <video id="br4" class="clip bgv broll" src="assets/broll/4_rt.mp4" muted playsinline data-start="37.8" data-duration="3.833" data-media-start="0.0" data-track-index="1"></video>
+      <video id="br5" class="clip bgv broll" src="assets/broll/5_rt.mp4" muted playsinline data-start="49.667" data-duration="7.2" data-media-start="0.0" data-track-index="1"></video>
+      <video id="br6" class="clip bgv broll" src="assets/broll/6.mp4" muted playsinline data-start="56.867" data-duration="2.633" data-media-start="0.6" data-track-index="1"></video>
+      <svg id="mapfx" class="clip" data-start="0" data-duration="65.0" data-track-index="2" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+      <div id="ui" class="clip" data-start="0" data-duration="65.0" data-track-index="3" data-track-kind="graphics" data-layout-ignore>
         <div class="fade-top"></div><div class="fade-bot"></div>
         <div id="dip"></div>
         <div id="badge"><i></i>FAKTA NEGERI · #5</div>
@@ -133,16 +134,17 @@
           <div class="big"><span id="sz">0</span><small>km²</small></div>
           <div class="cmp"><div class="sq s1"></div><div class="lab">Perlis</div><div class="sq s2"><em>×152</em></div><div class="lab">Sarawak</div></div></div>
         <div id="agong" class="card"><div class="k">DARI NEGERI PALING KECIL · 2 YANG DI-PERTUAN AGONG</div>
-          <div class="ag" id="a1"><b>Agong ke-3</b><span>Tuanku Syed Putra</span><em>1960–1965</em></div>
-          <div class="ag" id="a2"><b>Agong ke-12</b><span>Tuanku Syed Sirajuddin</span><em>2001–2006</em></div></div>
+          <div class="ag" id="a1"><img src="assets/photos/syedputra.jpg" alt="" /><b>Agong ke-3</b><span>Tuanku Syed Putra</span><em>1960–1965</em></div>
+          <div class="ag" id="a2"><img src="assets/photos/sirajuddin.jpg" alt="" /><b>Agong ke-12</b><span>Tuanku Syed Sirajuddin</span><em>2001–2006 · Raja Perlis kini</em></div>
+          <div class="gs">GAMBAR SEBENAR · dihantar pengguna</div></div>
         <div id="cili">KECIL-KECIL<br><em>CILI PADI!</em></div>
         <div id="chip"></div>
         <div id="q"><div class="a"><span>A</span>DAH TAHU 😎</div><div class="b"><span>B</span>BARU TAHU 😮</div></div>
         <div id="cta"><div>Negeri mana kita <em>bongkar</em> lepas ni? ↓</div></div>
       </div>
-      <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="60.0" data-track-index="5" data-volume="1"></audio>
-      <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="60.0" data-track-index="6" data-volume="0.4"></audio>
-      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="60.0"
+      <audio id="vo" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="65.0" data-track-index="5" data-volume="1"></audio>
+      <audio id="sfx" class="clip" src="assets/sfx.wav" data-start="0" data-duration="65.0" data-track-index="6" data-volume="0.4"></audio>
+      <div id="captions-host" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="65.0"
         data-track-index="4" data-track-kind="captions" data-width="1080" data-height="1920"></div>
     </div>
 
@@ -256,13 +258,13 @@
         const cr = CREDITS.find(([a, b]) => t >= a && t < b); creditEl.textContent = cr ? cr[2] : "";
         $("#aitag").style.opacity = Math.max(win(t, 5.5, 6.9, 0.2, 0.2), win(t, 22.7, 24.9, 0.2, 0.2), win(t, 27.5, 33.5, 0.2, 0.2), win(t, 40.7, 49.9, 0.2, 0.2));
         era.textContent = "SEJARAH"; era.style.opacity = win(t, 19.7, 46.7, 0.2, 0.2);
-        const sa = win(t, 3.4, 5.3, 0.12, 0.3); $("#stamp").style.opacity = sa; $("#stamp").style.transform = `translate(-50%, -50%) rotate(-5deg) scale(${1.5 - 0.5 * ss(3.4, 3.6, t)})`;
+        const sa = win(t, 4.4, 5.35, 0.1, 0.25); $("#stamp").style.opacity = sa; $("#stamp").style.transform = `translate(-50%, -50%) rotate(-5deg) scale(${1.5 - 0.5 * ss(4.4, 4.6, t)})`;
         const s1 = win(t, 22.0, 24.9, 0.12, 0.3), s2 = win(t, 37.4, 40.5, 0.12, 0.3);
         $("#stamp2").style.opacity = Math.max(s1, s2);
         if (s2 > 0) { $("#s2t").textContent = "1909"; $("#s2s").textContent = "DISERAHKAN KEPADA BRITISH"; } else { $("#s2t").textContent = "1821"; $("#s2s").textContent = "SIAM TAKLUK KEDAH"; }
         const st0 = s2 > 0 ? 37.4 : 22.0; $("#stamp2").style.transform = `translate(-50%, -50%) rotate(-5deg) scale(${1.5 - 0.5 * ss(st0, st0 + 0.2, t)})`;
-        const aa = win(t, 42.6, 46.7, 0.35, 0.3); $("#agong").style.opacity = aa; $("#agong").style.transform = `translateY(${(1 - ss(42.6, 43.0, t)) * 30}px)`;
-        $("#a1").style.opacity = ss(43.4, 43.8, t); $("#a2").style.opacity = ss(45.0, 45.4, t);
+        const aa = win(t, 43.6, 46.7, 0.35, 0.3); $("#agong").style.opacity = aa; $("#agong").style.transform = `translateY(${(1 - ss(43.6, 44.0, t)) * 30}px)`;
+        $("#a1").style.opacity = ss(44.1, 44.5, t); $("#a2").style.opacity = ss(45.5, 45.9, t);
         const ci = win(t, 47.0, 49.9, 0.15, 0.3); $("#cili").style.opacity = ci; $("#cili").style.transform = `scale(${0.7 + 0.3 * pop(47.0, t, 0.4)})`;
         const cc = CHIPS.find(([a, b]) => t >= a && t < b); chip.style.opacity = cc ? win(t, cc[0], cc[1], 0.25, 0.3) : 0; if (cc && chip.innerHTML !== cc[2]) chip.innerHTML = cc[2];
         if (cc) chip.style.transform = `translateX(-50%) scale(${0.8 + 0.2 * pop(cc[0], t)})`;

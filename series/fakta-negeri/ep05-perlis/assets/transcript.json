@@ -1,0 +1,762 @@
+[
+ {
+  "text": "Korang",
+  "start": 0.06,
+  "end": 0.36
+ },
+ {
+  "text": "tahu",
+  "start": 0.36,
+  "end": 0.61
+ },
+ {
+  "text": "tak\u2026",
+  "start": 0.61,
+  "end": 1
+ },
+ {
+  "text": "dari",
+  "start": 1,
+  "end": 1.25
+ },
+ {
+  "text": "sembilan",
+  "start": 1.25,
+  "end": 1.75
+ },
+ {
+  "text": "negeri",
+  "start": 1.75,
+  "end": 2.12
+ },
+ {
+  "text": "beraja",
+  "start": 2.12,
+  "end": 2.5
+ },
+ {
+  "text": "di",
+  "start": 2.5,
+  "end": 2.62
+ },
+ {
+  "text": "Malaysia,",
+  "start": 2.62,
+  "end": 3.2
+ },
+ {
+  "text": "cuma",
+  "start": 3.26,
+  "end": 3.45
+ },
+ {
+  "text": "SATU",
+  "start": 3.45,
+  "end": 3.7
+ },
+ {
+  "text": "yang",
+  "start": 3.7,
+  "end": 3.91
+ },
+ {
+  "text": "pemerintahnya",
+  "start": 4.01,
+  "end": 4.76
+ },
+ {
+  "text": "bergelar",
+  "start": 4.76,
+  "end": 5.26
+ },
+ {
+  "text": "RAJA?!",
+  "start": 5.26,
+  "end": 5.72
+ },
+ {
+  "text": "Negeri",
+  "start": 5.78,
+  "end": 6.31
+ },
+ {
+  "text": "tu\u2026",
+  "start": 6.31,
+  "end": 6.72
+ },
+ {
+  "text": "Perlis.",
+  "start": 6.72,
+  "end": 7.48
+ },
+ {
+  "text": "Tujuh",
+  "start": 7.54,
+  "end": 7.85
+ },
+ {
+  "text": "negeri",
+  "start": 7.85,
+  "end": 8.3
+ },
+ {
+  "text": "ada",
+  "start": 8.41,
+  "end": 8.53
+ },
+ {
+  "text": "Sultan.",
+  "start": 8.53,
+  "end": 9.04
+ },
+ {
+  "text": "Negeri",
+  "start": 9.1,
+  "end": 9.42
+ },
+ {
+  "text": "Sembilan",
+  "start": 9.42,
+  "end": 9.76
+ },
+ {
+  "text": "ada",
+  "start": 9.97,
+  "end": 10.11
+ },
+ {
+  "text": "Yang",
+  "start": 10.11,
+  "end": 10.36
+ },
+ {
+  "text": "di-Pertuan",
+  "start": 10.36,
+  "end": 10.92
+ },
+ {
+  "text": "Besar.",
+  "start": 10.92,
+  "end": 11.48
+ },
+ {
+  "text": "Dan",
+  "start": 11.54,
+  "end": 11.78
+ },
+ {
+  "text": "Perlis\u2026",
+  "start": 11.82,
+  "end": 12.2
+ },
+ {
+  "text": "ada",
+  "start": 12.41,
+  "end": 12.72
+ },
+ {
+  "text": "Raja.",
+  "start": 12.72,
+  "end": 13.48
+ },
+ {
+  "text": "Perlis",
+  "start": 13.54,
+  "end": 13.84
+ },
+ {
+  "text": "juga",
+  "start": 13.84,
+  "end": 14.08
+ },
+ {
+  "text": "negeri",
+  "start": 14.08,
+  "end": 14.44
+ },
+ {
+  "text": "paling",
+  "start": 14.44,
+  "end": 14.8
+ },
+ {
+  "text": "kecil",
+  "start": 14.8,
+  "end": 15.1
+ },
+ {
+  "text": "di",
+  "start": 15.1,
+  "end": 15.22
+ },
+ {
+  "text": "Malaysia.",
+  "start": 15.22,
+  "end": 15.72
+ },
+ {
+  "text": "Cuma",
+  "start": 15.78,
+  "end": 16.14
+ },
+ {
+  "text": "lapan",
+  "start": 16.14,
+  "end": 16.323
+ },
+ {
+  "text": "ratus",
+  "start": 16.323,
+  "end": 16.506
+ },
+ {
+  "text": "sembilan",
+  "start": 16.506,
+  "end": 16.798
+ },
+ {
+  "text": "belas",
+  "start": 16.798,
+  "end": 16.981
+ },
+ {
+  "text": "kilometer",
+  "start": 16.981,
+  "end": 17.31
+ },
+ {
+  "text": "persegi.",
+  "start": 17.31,
+  "end": 18.4
+ },
+ {
+  "text": "Sarawak",
+  "start": 18.46,
+  "end": 19.03
+ },
+ {
+  "text": "tu,",
+  "start": 19.03,
+  "end": 19.44
+ },
+ {
+  "text": "lebih",
+  "start": 19.44,
+  "end": 19.88
+ },
+ {
+  "text": "seratus",
+  "start": 19.88,
+  "end": 20.23
+ },
+ {
+  "text": "lima",
+  "start": 20.23,
+  "end": 20.43
+ },
+ {
+  "text": "puluh",
+  "start": 20.43,
+  "end": 20.68
+ },
+ {
+  "text": "kali",
+  "start": 20.68,
+  "end": 21.03
+ },
+ {
+  "text": "ganda",
+  "start": 21.03,
+  "end": 21.46
+ },
+ {
+  "text": "besar!",
+  "start": 21.46,
+  "end": 22.2
+ },
+ {
+  "text": "Dulu,",
+  "start": 22.26,
+  "end": 22.58
+ },
+ {
+  "text": "Perlis",
+  "start": 22.58,
+  "end": 22.92
+ },
+ {
+  "text": "sebahagian",
+  "start": 23.09,
+  "end": 23.6
+ },
+ {
+  "text": "daripada",
+  "start": 23.6,
+  "end": 24.11
+ },
+ {
+  "text": "Kedah.",
+  "start": 24.11,
+  "end": 24.72
+ },
+ {
+  "text": "Tapi",
+  "start": 24.78,
+  "end": 25.18
+ },
+ {
+  "text": "tahun",
+  "start": 25.18,
+  "end": 25.76
+ },
+ {
+  "text": "seribu",
+  "start": 25.76,
+  "end": 26.111
+ },
+ {
+  "text": "lapan",
+  "start": 26.111,
+  "end": 26.404
+ },
+ {
+  "text": "ratus",
+  "start": 26.404,
+  "end": 26.697
+ },
+ {
+  "text": "dua",
+  "start": 26.697,
+  "end": 26.873
+ },
+ {
+  "text": "puluh",
+  "start": 26.873,
+  "end": 27.166
+ },
+ {
+  "text": "satu,",
+  "start": 27.166,
+  "end": 27.4
+ },
+ {
+  "text": "Siam",
+  "start": 27.4,
+  "end": 27.74
+ },
+ {
+  "text": "takluk",
+  "start": 27.74,
+  "end": 28.25
+ },
+ {
+  "text": "Kedah.",
+  "start": 28.25,
+  "end": 28.96
+ },
+ {
+  "text": "Lebih",
+  "start": 29.02,
+  "end": 29.37
+ },
+ {
+  "text": "dua",
+  "start": 29.37,
+  "end": 29.483
+ },
+ {
+  "text": "puluh",
+  "start": 29.483,
+  "end": 29.67
+ },
+ {
+  "text": "tahun",
+  "start": 29.89,
+  "end": 30.28
+ },
+ {
+  "text": "kemudian,",
+  "start": 30.28,
+  "end": 31.11
+ },
+ {
+  "text": "Siam",
+  "start": 31.11,
+  "end": 31.41
+ },
+ {
+  "text": "pisahkan",
+  "start": 31.41,
+  "end": 32
+ },
+ {
+  "text": "Perlis",
+  "start": 32,
+  "end": 32.48
+ },
+ {
+  "text": "jadi",
+  "start": 32.48,
+  "end": 32.7
+ },
+ {
+  "text": "wilayah",
+  "start": 32.7,
+  "end": 33.09
+ },
+ {
+  "text": "sendiri\u2026",
+  "start": 33.09,
+  "end": 33.67
+ },
+ {
+  "text": "dan",
+  "start": 33.74,
+  "end": 33.9
+ },
+ {
+  "text": "lantik",
+  "start": 33.9,
+  "end": 34.33
+ },
+ {
+  "text": "Syed",
+  "start": 34.33,
+  "end": 34.61
+ },
+ {
+  "text": "Hussain",
+  "start": 34.61,
+  "end": 35.088
+ },
+ {
+  "text": "Jamalullail",
+  "start": 35.088,
+  "end": 35.84
+ },
+ {
+  "text": "sebagai",
+  "start": 35.84,
+  "end": 36.36
+ },
+ {
+  "text": "pemerintah",
+  "start": 36.36,
+  "end": 37.08
+ },
+ {
+  "text": "pertama.",
+  "start": 37.08,
+  "end": 37.92
+ },
+ {
+  "text": "Keluarga",
+  "start": 37.98,
+  "end": 38.46
+ },
+ {
+  "text": "Jamalullail",
+  "start": 38.5,
+  "end": 39.292
+ },
+ {
+  "text": "ni",
+  "start": 39.292,
+  "end": 39.436
+ },
+ {
+  "text": "berketurunan",
+  "start": 39.436,
+  "end": 40.3
+ },
+ {
+  "text": "Arab",
+  "start": 40.3,
+  "end": 40.57
+ },
+ {
+  "text": "Hadhrami,",
+  "start": 40.58,
+  "end": 41.04
+ },
+ {
+  "text": "dari",
+  "start": 41.17,
+  "end": 41.47
+ },
+ {
+  "text": "Yaman.",
+  "start": 41.47,
+  "end": 42
+ },
+ {
+  "text": "Dan",
+  "start": 42.06,
+  "end": 42.19
+ },
+ {
+  "text": "keturunan",
+  "start": 42.19,
+  "end": 42.72
+ },
+ {
+  "text": "mereka",
+  "start": 42.93,
+  "end": 43.11
+ },
+ {
+  "text": "masih",
+  "start": 43.11,
+  "end": 43.42
+ },
+ {
+  "text": "memerintah",
+  "start": 43.42,
+  "end": 44.03
+ },
+ {
+  "text": "Perlis",
+  "start": 44.03,
+  "end": 44.4
+ },
+ {
+  "text": "sampai",
+  "start": 44.4,
+  "end": 44.77
+ },
+ {
+  "text": "hari",
+  "start": 44.77,
+  "end": 45.02
+ },
+ {
+  "text": "ni.",
+  "start": 45.02,
+  "end": 45.47
+ },
+ {
+  "text": "Tahun",
+  "start": 45.54,
+  "end": 45.9
+ },
+ {
+  "text": "seribu",
+  "start": 45.9,
+  "end": 46.164
+ },
+ {
+  "text": "sembilan",
+  "start": 46.164,
+  "end": 46.517
+ },
+ {
+  "text": "ratus",
+  "start": 46.517,
+  "end": 46.737
+ },
+ {
+  "text": "sembilan,",
+  "start": 46.737,
+  "end": 47.09
+ },
+ {
+  "text": "Siam",
+  "start": 47.09,
+  "end": 47.43
+ },
+ {
+  "text": "serahkan",
+  "start": 47.43,
+  "end": 48.1
+ },
+ {
+  "text": "Perlis",
+  "start": 48.1,
+  "end": 48.6
+ },
+ {
+  "text": "kepada",
+  "start": 48.6,
+  "end": 49.11
+ },
+ {
+  "text": "British.",
+  "start": 49.11,
+  "end": 49.76
+ },
+ {
+  "text": "Dan",
+  "start": 49.82,
+  "end": 49.96
+ },
+ {
+  "text": "negeri",
+  "start": 49.96,
+  "end": 50.35
+ },
+ {
+  "text": "paling",
+  "start": 50.35,
+  "end": 50.75
+ },
+ {
+  "text": "kecil",
+  "start": 50.75,
+  "end": 51.08
+ },
+ {
+  "text": "ni",
+  "start": 51.08,
+  "end": 51.28
+ },
+ {
+  "text": "dah",
+  "start": 51.28,
+  "end": 51.48
+ },
+ {
+  "text": "lahirkan",
+  "start": 51.48,
+  "end": 52.01
+ },
+ {
+  "text": "dua",
+  "start": 52.01,
+  "end": 52.21
+ },
+ {
+  "text": "Yang",
+  "start": 52.21,
+  "end": 52.47
+ },
+ {
+  "text": "di-Pertuan",
+  "start": 52.47,
+  "end": 53.06
+ },
+ {
+  "text": "Agong:",
+  "start": 53.06,
+  "end": 53.44
+ },
+ {
+  "text": "Tuanku",
+  "start": 53.5,
+  "end": 53.97
+ },
+ {
+  "text": "Syed",
+  "start": 53.97,
+  "end": 54.16
+ },
+ {
+  "text": "Putra,",
+  "start": 54.37,
+  "end": 54.79
+ },
+ {
+  "text": "dan",
+  "start": 54.79,
+  "end": 55.06
+ },
+ {
+  "text": "Tuanku",
+  "start": 55.06,
+  "end": 55.6
+ },
+ {
+  "text": "Syed",
+  "start": 55.6,
+  "end": 55.96
+ },
+ {
+  "text": "Sirajuddin.",
+  "start": 55.96,
+  "end": 56.96
+ },
+ {
+  "text": "Kecil-kecil",
+  "start": 57.02,
+  "end": 57.987
+ },
+ {
+  "text": "cili",
+  "start": 57.987,
+  "end": 58.373
+ },
+ {
+  "text": "padi!",
+  "start": 58.373,
+  "end": 58.76
+ },
+ {
+  "text": "Orang",
+  "start": 58.76,
+  "end": 59.07
+ },
+ {
+  "text": "Perlis,",
+  "start": 59.07,
+  "end": 59.6
+ },
+ {
+  "text": "korang",
+  "start": 59.6,
+  "end": 59.98
+ },
+ {
+  "text": "tahu",
+  "start": 59.98,
+  "end": 60.24
+ },
+ {
+  "text": "tak",
+  "start": 60.24,
+  "end": 60.42
+ },
+ {
+  "text": "sejarah",
+  "start": 60.46,
+  "end": 60.79
+ },
+ {
+  "text": "ni?",
+  "start": 60.93,
+  "end": 61.04
+ },
+ {
+  "text": "Negeri",
+  "start": 61.1,
+  "end": 61.42
+ },
+ {
+  "text": "mana",
+  "start": 61.42,
+  "end": 61.67
+ },
+ {
+  "text": "kita",
+  "start": 61.67,
+  "end": 61.76
+ },
+ {
+  "text": "patut",
+  "start": 61.97,
+  "end": 62.23
+ },
+ {
+  "text": "bongkar",
+  "start": 62.23,
+  "end": 62.6
+ },
+ {
+  "text": "lepas",
+  "start": 62.6,
+  "end": 62.91
+ },
+ {
+  "text": "ni?",
+  "start": 62.91,
+  "end": 63.28
+ }
+]
