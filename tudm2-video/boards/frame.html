@@ -89,6 +89,10 @@ html,body{width:1080px;height:1920px;background:#05070b;overflow:hidden;font-fam
 .pen .o2{font:800 52px Inter;color:#fff}.pen .o2 b{font:italic 700 92px Serif;color:#ff2d46}
 .pen .ft2,.ppl .ft2{font:700 15px Mono;color:#8a929b;letter-spacing:1px;margin-top:18px}
 .bub{position:absolute;background:#fff;color:#111;font:700 32px Inter;padding:18px 26px;border-radius:26px 26px 26px 6px;box-shadow:0 14px 40px rgba(0,0,0,.5)}.bub.r{border-radius:26px 26px 6px 26px;background:#ffce00}
+.photo{position:absolute;left:90px;width:900px;border:4px solid #fff;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.7);clip-path:inset(0 round 16px)}
+.photo img{display:block;width:100%;height:520px;object-fit:cover;object-position:50% 30%;transform:scale(1.06)}
+.photo .cr{position:absolute;right:12px;bottom:12px;font:700 16px Mono;color:#fff;background:rgba(0,0,0,.6);padding:5px 10px;border-radius:4px;letter-spacing:1px}
+.photo .tg{position:absolute;left:12px;top:12px;font:700 18px Mono;color:#fff;background:#ff2d46;padding:6px 12px;border-radius:4px;letter-spacing:2px}
 .komen{position:absolute;left:0;right:0;top:1230px;text-align:center;font:800 44px Inter;color:#fff;letter-spacing:3px}
 </style></head><body>
 <canvas id="gl" width="1080" height="1920"></canvas>
@@ -260,9 +264,8 @@ const FR = {
     people(1110, "POLIS · 11 DITAHAN", [[5, "#ff2d46", "ANGGOTA TUDM"], [6, "#9aa3ad", "ORANG AWAM"]], "Lembah Klang & Labuan · menurut polis"); },
   3() { g.setView({ lat: 3.09, lon: 101.53, dist: 0.1, tilt: 22, yShift: 0.22 }); states(false);
     cap(`mengedar <span class="r">96.2 kilo</span> syabu`);
-    locPin(SHAHALAM[0], SHAHALAM[1], "MAHKAMAH MAJISTRET SHAH ALAM", "27 NOV 2026", true);
-    html(`<div style="position:absolute;left:480px;top:830px">${gavel}</div>`);
-    stat(1000, "DIDAKWA BERSAMA MENGEDAR · METHAMPHETAMINE", "96.2", "KILOGRAM · ANGKA PERTUDUHAN"); },
+    html(`<div class="photo" style="top:330px"><img src="../assets/photos/mahkamah-bernama.jpg"><div class="tg">MAHKAMAH MAJISTRET SHAH ALAM · 27 NOV</div><div class="cr">FOTO: BERNAMA</div></div>`);
+    stat(920, "DIDAKWA BERSAMA MENGEDAR · METHAMPHETAMINE", "96.2", "KILOGRAM · ANGKA PERTUDUHAN"); },
   4() { g.setView({ lat: 3.09, lon: 101.53, dist: 0.12, tilt: 22, yShift: 0.22 }); states(false);
     cap(`dua <span class="r">leftenan</span> dan seorang <span class="r">kapten</span>`);
     locPin(SHAHALAM[0], SHAHALAM[1], "SHAH ALAM", "", true);
